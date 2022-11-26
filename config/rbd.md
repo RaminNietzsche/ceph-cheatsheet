@@ -4,7 +4,7 @@
 | ----- | ------- | ------------------ | ----------- | ---------------- |
 | `rbd_default_pool` | rbd | `regex("^[^@/]+$")`|  default pool for storing new images | | 
 | `rbd_default_data_pool` |  | `regex("^[^@/]*$")` | default pool for storing data blocks for new images | |
-| `rbd_default_features` | `layering,exclusive-lock,object-map,fast-diff,deep-flatten` |  | default v2 image features for new images | RBD features are only applicable for v2 images. This setting accepts either an integer bitmask value or comma-delimited string of RBD feature names. This setting is always internally stored as an integer bitmask value. The mapping between feature bitmask value and feature name is as follows: +1 -> layering, +2 -> striping, +4 -> exclusive-lock, +8 -> object-map, +16 -> fast-diff, +32 -> deep-flatten, +64 -> journaling, +128 -> data-pool |
+| `rbd_default_features` | layering,exclusive-lock,object-map,fast-diff,deep-flatten |  | default v2 image features for new images | RBD features are only applicable for v2 images. This setting accepts either an integer bitmask value or comma-delimited string of RBD feature names. This setting is always internally stored as an integer bitmask value. The mapping between feature bitmask value and feature name is as follows: +1 -> layering, +2 -> striping, +4 -> exclusive-lock, +8 -> object-map, +16 -> fast-diff, +32 -> deep-flatten, +64 -> journaling, +128 -> data-pool |
 | `rbd_op_threads` | `1` | |  number of threads to utilize for internal processing | |
 | `rbd_op_thread_timeout` | `60` | | time in seconds for detecting a hung thread | |
 | `rbd_disable_zero_copy_writes` | `true` |  | Disable the use of zero-copy writes to ensure unstable writes from clients cannot cause a CRC mismatch |  |
