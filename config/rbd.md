@@ -1,10 +1,10 @@
 
 ## RDB
 | Param | Default | Min or Valid Range | Description | Long Description |
-| ----- | ------- | ------------------ | ----------- | ---------------- |
-| `rbd_default_pool` | rbd | `regex("^[^@/]+$")`|  default pool for storing new images | | 
+| ----- | :-----: | ------------------ | ----------- | ---------------- |
+| `rbd_default_pool` | `rbd` | `regex("^[^@/]+$")`|  default pool for storing new images | | 
 | `rbd_default_data_pool` |  | `regex("^[^@/]*$")` | default pool for storing data blocks for new images | |
-| `rbd_default_features` | layering,exclusive-lock,object-map,fast-diff,deep-flatten |  | default v2 image features for new images | RBD features are only applicable for v2 images. This setting accepts either an integer bitmask value or comma-delimited string of RBD feature names. This setting is always internally stored as an integer bitmask value. The mapping between feature bitmask value and feature name is as follows: +1 -> layering, +2 -> striping, +4 -> exclusive-lock, +8 -> object-map, +16 -> fast-diff, +32 -> deep-flatten, +64 -> journaling, +128 -> data-pool |
+| `rbd_default_features` | `layering`, `exclusive-lock`, `object-map`, `fast-diff`, `deep-flatten` |  | default v2 image features for new images | RBD features are only applicable for v2 images. This setting accepts either an integer bitmask value or comma-delimited string of RBD feature names. This setting is always internally stored as an integer bitmask value. The mapping between feature bitmask value and feature name is as follows: +1 -> layering, +2 -> striping, +4 -> exclusive-lock, +8 -> object-map, +16 -> fast-diff, +32 -> deep-flatten, +64 -> journaling, +128 -> data-pool |
 | `rbd_op_threads` | `1` | |  number of threads to utilize for internal processing | |
 | `rbd_op_thread_timeout` | `60` | | time in seconds for detecting a hung thread | |
 | `rbd_disable_zero_copy_writes` | `true` |  | Disable the use of zero-copy writes to ensure unstable writes from clients cannot cause a CRC mismatch |  |
@@ -59,7 +59,7 @@
 | `rbd_journal_order` | `24` | between(12, 26) | default order (object size) for journal data objects |  |
 | `rbd_journal_splay_width` | `4` | | number of active journal objects | |
 | `rbd_journal_commit_age` | `5` |  | commit time interval, seconds | |
-| `rbd_journal_object_writethrough_until_flush` | `true` | when enabled, the rbd_journal_object_flush* configuration options are ignored until the first flush so that batched journal IO is known to be safe for consistency | |
+| `rbd_journal_object_writethrough_until_flush` | `true` |  | when enabled, the rbd_journal_object_flush* configuration options are ignored until the first flush so that batched journal IO is known to be safe for consistency | |
 | `rbd_journal_object_flush_interval` | `0` |  | maximum number of pending commits per journal object | |
 | `rbd_journal_object_flush_bytes` | `1_M` |  | maximum number of pending bytes per journal object | |
 | `rbd_journal_object_flush_age` | `0` |  | maximum age (in seconds) for pending commits | |
@@ -88,14 +88,14 @@
 | `rbd_qos_schedule_tick_min` | `50` | min(`1`) | minimum schedule tick (in milliseconds) for QoS | |
 | `rbd_discard_on_zeroed_write_same` | `true` |  | discard data on zeroed write same instead of writing zero |  |
 | `rbd_mtime_update_interval` | `60` | min(`0`) | RBD Image modify timestamp refresh interval. Set to 0 to disable modify timestamp update. | |
-| `rbd_atime_update_interval` | `60` | min(`0`) | RBD Image access timestamp refresh interval. Set to 0 to disable access timestamp update. | 
+| `rbd_atime_update_interval` | `60` | min(`0`) | RBD Image access timestamp refresh interval. Set to 0 to disable access timestamp update. | |
 | `rbd_io_scheduler` | simple | "none", "simple" | RBD IO scheduler |  |
 | `rbd_io_scheduler_simple_max_delay` | `0` | min(`0`) | maximum io delay (in milliseconds) for simple io scheduler (if set to 0 dalay is calculated based on latency stats) |  | 
 | `rbd_persistent_cache_mode` | disabled | "disabled", "rwl", "ssd" | enable persistent write back cache for this volume | |
 | `rbd_persistent_cache_log_periodic_stats` | `false` |  | emit periodic perf stats to debug log |  |
 | `rbd_persistent_cache_size` | `1073741824` | min(`1073741824`) | size of the persistent write back cache for this volume |  |
 | `rbd_persistent_cache_path` | `/tmp` | | location of the persistent write back cache in a DAX-enabled filesystem on persistent memory | |
-| `rbd_quiesce_notification_attempts` | `10` | `1` | the number of quiesce notification attempts | 
+| `rbd_quiesce_notification_attempts` | `10` | `1` | the number of quiesce notification attempts | |
 | `rbd_default_snapshot_quiesce_mode` | required | "required", "ignore-error", "skip" | default snapshot quiesce mode | |
 | `rbd_plugins` |  | | comma-delimited list of librbd plugins to enable | |
 | `rbd_config_pool_override_update_timestamp` | `0` | | timestamp of last update to pool-level config overrides | |
