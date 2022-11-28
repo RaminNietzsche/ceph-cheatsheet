@@ -1,0 +1,22 @@
+| Name | Desc | Level | Type | non-Daemon Default | Daemon Default | Min | Max | Valid Values | verbatim | See also | Flags | Services | Validator | Long Desc | Tags |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| <span id="SP_mon_cache_target_full_warn_ratio">mon_cache_target_full_warn_ratio</span> |  issue CACHE_POOL_NEAR_FULL health warning when cache pool utilization exceeds this ratio of usable space | Advanced | Float | 0.66 |  |  |  |  |  |  | NO_MON_UPDATECLUSTER_CREATE | mgr |  |  |  |
+| <span id="SP_mon_delta_reset_interval">mon_delta_reset_interval</span> |  window duration for rate calculations in 'ceph status' | Advanced | Float | 10 |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_osd_err_op_age_ratio">mon_osd_err_op_age_ratio</span> |  issue REQUEST_STUCK health error if OSD ops are slower than is age (seconds) | Advanced | Float | 128 |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_pg_check_down_all_threshold">mon_pg_check_down_all_threshold</span> |  threshold of down osds after which we check all pgs | Advanced | Float | 0.5 |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_pg_stuck_threshold">mon_pg_stuck_threshold</span> |  number of seconds after which pgs can be considered stuck inactive, unclean, etc | Advanced | Int | 1_min |  |  |  |  |  |  |  | mgr |  | see doc/control.rst under dump_stuck for more info |  |
+| <span id="SP_mon_pg_warn_max_object_skew">mon_pg_warn_max_object_skew</span> |  max skew few average in objects per pg | Advanced | Float | 10 |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_pg_warn_min_objects">mon_pg_warn_min_objects</span> |  do not warn below this object # | Advanced | Int | 10000 |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_pg_warn_min_per_osd">mon_pg_warn_min_per_osd</span> |  minimal number PGs per (in) osd before we warn the admin | Advanced | Uint | 0 |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_pg_warn_min_pool_objects">mon_pg_warn_min_pool_objects</span> |  do not warn on pools below this object # | Advanced | Int | 1000 |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_pool_quota_crit_threshold">mon_pool_quota_crit_threshold</span> |  percent of quota at which to issue errors | Advanced | Int | 0 |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_pool_quota_warn_threshold">mon_pool_quota_warn_threshold</span> |  percent of quota at which to issue warnings | Advanced | Int | 0 |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_reweight_max_change">mon_reweight_max_change</span> |   | Advanced | Float | 0.05 |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_reweight_max_osds">mon_reweight_max_osds</span> |   | Advanced | Int | 4 |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_reweight_min_bytes_per_osd">mon_reweight_min_bytes_per_osd</span> |   | Advanced | Size | 100_M |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_reweight_min_pgs_per_osd">mon_reweight_min_pgs_per_osd</span> |   | Advanced | Uint | 10 |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_stat_smooth_intervals">mon_stat_smooth_intervals</span> |  number of PGMaps stats over which we calc the average read/write throughput of the whole cluster | Advanced | Uint | 6 |  | 1 |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_target_pg_per_osd">mon_target_pg_per_osd</span> |  Automated PG management creates this many PGs per OSD | Advanced | Uint | 100 |  | 1 |  |  |  |  |  |  |  | When creating pools, the automated PG management logic will attempt to reach this target.  In some circumstances, it may exceed this target, up to the ``mon_max_pg_per_osd`` limit. Conversely, a lower number of PGs per OSD may be created if the cluster is not yet fully utilised |  |
+| <span id="SP_mon_warn_on_misplaced">mon_warn_on_misplaced</span> |  Issue a health warning if there are misplaced objects | Advanced | Bool | False |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_warn_on_pool_no_app">mon_warn_on_pool_no_app</span> |  issue POOL_APP_NOT_ENABLED health warning if pool has not application enabled | Dev | Bool | True |  |  |  |  |  |  |  | mgr |  |  |  |
+| <span id="SP_mon_warn_on_too_few_osds">mon_warn_on_too_few_osds</span> |  Issue a health warning if there are fewer OSDs than osd_pool_default_size | Advanced | Bool | True |  |  |  |  |  |  |  | mgr |  |  |  |

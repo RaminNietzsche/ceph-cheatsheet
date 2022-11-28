@@ -1,0 +1,45 @@
+| Name | Desc | Level | Type | non-Daemon Default | Daemon Default | Min | Max | Valid Values | verbatim | See also | Flags | Services | Validator | Long Desc | Tags |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| <span id="SP_client_acl_type">client_acl_type</span> |  ACL type to enforce (none or \"posix_acl\") | Advanced | Str |  |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_asio_thread_count">client_asio_thread_count</span> |  Size of thread pool for ASIO completions | Advanced | Uint | 2 |  | 1 |  |  |  |  |  | mds_client |  |  | client |
+| <span id="SP_client_cache_mid">client_cache_mid</span> |  mid-point of client cache LRU | Advanced | Float | 0.75 |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_cache_size">client_cache_size</span> |  soft maximum number of directory entries in client cache | Basic | Size | 16_K |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_caps_release_delay">client_caps_release_delay</span> |   | Dev | Int | 5 |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_check_pool_perm">client_check_pool_perm</span> |  confirm access to inode's data pool/namespace described in file layout | Advanced | Bool | True |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_debug_force_sync_read">client_debug_force_sync_read</span> |   | Dev | Bool | False |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_debug_getattr_caps">client_debug_getattr_caps</span> |   | Dev | Bool | False |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_debug_inject_tick_delay">client_debug_inject_tick_delay</span> |   | Dev | Secs | 0 |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_die_on_failed_dentry_invalidate">client_die_on_failed_dentry_invalidate</span> |  kill the client when no dentry invalidation options are available | Advanced | Bool | True |  |  |  |  |  |  |  | mds_client |  | The CephFS client requires a mechanism to invalidate dentries in the caller (e.g. the kernel for ceph-fuse) when capabilities must be recalled. If the client cannot do this then the MDS cache cannot shrink which can cause the MDS to fail. |  |
+| <span id="SP_client_die_on_failed_remount">client_die_on_failed_remount</span> |   | Dev | Bool | False |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_dirsize_rbytes">client_dirsize_rbytes</span> |  set the directory size as the number of file bytes recursively used | Advanced | Bool | True |  |  |  |  |  |  |  | mds_client |  | This option enables a CephFS feature that stores the recursive directory size (the bytes used by files in the directory and its descendents) in the st_size field of the stat structure. |  |
+| <span id="SP_client_force_lazyio">client_force_lazyio</span> |   | Advanced | Bool | False |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_fs">client_fs</span> |  CephFS file system name to mount | Advanced | Str |  |  |  |  |  |  |  | STARTUP | mds_client |  | Use this with ceph-fuse, or with any process that uses libcephfs.  Programs using libcephfs may also pass the filesystem name into mount(), which will override this setting. If no filesystem name is given in mount() or this setting, the default filesystem will be mounted (usually the first created). |  |
+| <span id="SP_client_inject_fixed_oldest_tid">client_inject_fixed_oldest_tid</span> |   | Dev | Bool | False |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_inject_release_failure">client_inject_release_failure</span> |   | Dev | Bool | False |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_max_inline_size">client_max_inline_size</span> |   | Dev | Size | 4_K |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_mds_namespace">client_mds_namespace</span> |   | Dev | Str |  |  |  |  |  |  |  | STARTUP | mds_client |  |  |  |
+| <span id="SP_client_metadata">client_metadata</span> |  metadata key=value comma-delimited pairs appended to session metadata | Advanced | Str |  |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_mount_gid">client_mount_gid</span> |  gid to mount as | Advanced | Int | -1 |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_mount_timeout">client_mount_timeout</span> |  timeout for mounting CephFS (seconds) | Advanced | Float | 5_min |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_mount_uid">client_mount_uid</span> |  uid to mount as | Advanced | Int | -1 |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_mountpoint">client_mountpoint</span> |  default mount-point | Advanced | Str | / |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_notify_timeout">client_notify_timeout</span> |   | Dev | Int | 10 |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_oc">client_oc</span> |  enable object caching | Advanced | Bool | True |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_oc_max_dirty">client_oc_max_dirty</span> |  maximum size of dirty pages in object cache | Advanced | Size | 100_M |  |  |  |  |  |  | RUNTIME | mds_client |  |  |  |
+| <span id="SP_client_oc_max_dirty_age">client_oc_max_dirty_age</span> |  maximum age of dirty pages in object cache (seconds) | Advanced | Float | 5 |  |  |  |  |  |  | RUNTIME | mds_client |  |  |  |
+| <span id="SP_client_oc_max_objects">client_oc_max_objects</span> |  maximum number of objects in cache | Advanced | Int | 1000 |  |  |  |  |  |  | RUNTIME | mds_client |  |  |  |
+| <span id="SP_client_oc_size">client_oc_size</span> |  maximum size of object cache | Advanced | Size | 200_M |  |  |  |  |  |  | RUNTIME | mds_client |  |  |  |
+| <span id="SP_client_oc_target_dirty">client_oc_target_dirty</span> |  target size of dirty pages object cache | Advanced | Size | 8_M |  |  |  |  |  |  | RUNTIME | mds_client |  |  |  |
+| <span id="SP_client_permissions">client_permissions</span> |  client-enforced permission checking | Advanced | Bool | True |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_quota_df">client_quota_df</span> |  show quota usage for statfs (df) | Advanced | Bool | True |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_readahead_max_bytes">client_readahead_max_bytes</span> |  maximum bytes to readahead in a file (zero is unlimited) | Advanced | Size | 0 |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_readahead_max_periods">client_readahead_max_periods</span> |  maximum stripe periods to readahead in a file | Advanced | Int | 4 |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_readahead_min">client_readahead_min</span> |  minimum bytes to readahead in a file | Advanced | Size | 128_K |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_reconnect_stale">client_reconnect_stale</span> |  reconnect when the session becomes stale | Advanced | Bool | False |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_shutdown_timeout">client_shutdown_timeout</span> |  timeout for shutting down CephFS | Advanced | Secs | 30 |  | 0 |  |  |  |  | RUNTIME | mds_client |  | Timeout for shutting down CephFS via unmount or shutdown. | client |
+| <span id="SP_client_snapdir">client_snapdir</span> |  pseudo directory for snapshot access to a directory | Advanced | Str | .snap |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_tick_interval">client_tick_interval</span> |  seconds between client upkeep ticks | Dev | Secs | 1 |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_trace">client_trace</span> |  file containing trace of client operations | Dev | Str |  |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_try_dentry_invalidate">client_try_dentry_invalidate</span> |   | Dev | Bool | False |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_use_faked_inos">client_use_faked_inos</span> |   | Dev | Bool | False |  |  |  |  |  |  |  | mds_client |  |  |  |
+| <span id="SP_client_use_random_mds">client_use_random_mds</span> |  issue new requests to a random active MDS | Dev | Bool | False |  |  |  |  |  |  |  | mds_client |  |  |  |

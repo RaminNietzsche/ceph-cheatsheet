@@ -1,0 +1,3 @@
+| Name | Desc | Level | Type | non-Daemon Default | Daemon Default | Min | Max | Valid Values | verbatim | See also | Flags | Services | Validator | Long Desc | Tags |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| <span id="SP_openssl_engine_opts">openssl_engine_opts</span> |  Use engine for specific openssl algorithm | Advanced | Str |  |  |  |  |  |  |  | STARTUP |  |  | Pass opts in this way: engine_id=engine1,dynamic_path=/some/path/engine1.so,default_algorithms=DIGESTS:engine_id=engine2,dynamic_path=/some/path/engine2.so,default_algorithms=CIPHERS,other_ctrl=other_value |  |

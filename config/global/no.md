@@ -1,0 +1,3 @@
+| Name | Desc | Level | Type | non-Daemon Default | Daemon Default | Min | Max | Valid Values | verbatim | See also | Flags | Services | Validator | Long Desc | Tags |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| <span id="SP_no_config_file">no_config_file</span> |  signal that we don't require a config file to be present | Advanced | Bool | False |  |  |  |  |  |  | NO_MON_UPDATESTARTUP | common |  | When specified, we won't be looking for a configuration file, and will instead expect that whatever options or values are required for us to work will be passed as arguments. | config |

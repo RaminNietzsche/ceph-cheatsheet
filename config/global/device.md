@@ -1,0 +1,3 @@
+| Name | Desc | Level | Type | non-Daemon Default | Daemon Default | Min | Max | Valid Values | verbatim | See also | Flags | Services | Validator | Long Desc | Tags |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| <span id="SP_device_failure_prediction_mode">device_failure_prediction_mode</span> |  Method used to predict device failures | Basic | Str | none |  |  |  | ["none", "local", "cloud"] |  |  | RUNTIME |  |  | To disable prediction, use 'none',  'local' uses a prediction model that runs inside the mgr daemon.  'cloud' will share metrics with a cloud service and query the service for devicelife expectancy. |  |
