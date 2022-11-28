@@ -2,8 +2,8 @@
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | <span id="SP_rbd_atime_update_interval">rbd_atime_update_interval</span> |  RBD Image access timestamp refresh interval. Set to 0 to disable access timestamp update. | Advanced | Uint | 60 |  | 0 |  |  |  |  |  | rbd |  |  |  |
 | <span id="SP_rbd_auto_exclusive_lock_until_manual_request">rbd_auto_exclusive_lock_until_manual_request</span> |  automatically acquire/release exclusive lock until it is explicitly requested | Advanced | Bool | True |  |  |  |  |  |  |  | rbd |  |  |  |
-| <span id="SP_rbd_balance_parent_reads">rbd_balance_parent_reads</span> |  distribute parent read requests to random OSD | Advanced | Bool | False |  |  |  |  |  | [[rbd_read_from_replica_policy](~/rbd/rbd.md#SP_rbd_read_from_replica_policy)] |  | rbd |  |  |  |
-| <span id="SP_rbd_balance_snap_reads">rbd_balance_snap_reads</span> |  distribute snap read requests to random OSD | Advanced | Bool | False |  |  |  |  |  | [[rbd_read_from_replica_policy](~/rbd/rbd.md#SP_rbd_read_from_replica_policy)] |  | rbd |  |  |  |
+| <span id="SP_rbd_balance_parent_reads">rbd_balance_parent_reads</span> |  distribute parent read requests to random OSD | Advanced | Bool | False |  |  |  |  |  | [[rbd_read_from_replica_policy](./rbd/rbd.md#SP_rbd_read_from_replica_policy)] |  | rbd |  |  |  |
+| <span id="SP_rbd_balance_snap_reads">rbd_balance_snap_reads</span> |  distribute snap read requests to random OSD | Advanced | Bool | False |  |  |  |  |  | [[rbd_read_from_replica_policy](./rbd/rbd.md#SP_rbd_read_from_replica_policy)] |  | rbd |  |  |  |
 | <span id="SP_rbd_blkin_trace_all">rbd_blkin_trace_all</span> |  create a blkin trace for all RBD requests | Advanced | Bool | False |  |  |  |  |  |  |  | rbd |  |  |  |
 | <span id="SP_rbd_blocklist_expire_seconds">rbd_blocklist_expire_seconds</span> |  number of seconds to blocklist - set to 0 for OSD default | Advanced | Uint | 0 |  |  |  |  |  |  |  | rbd |  |  |  |
 | <span id="SP_rbd_blocklist_on_break_lock">rbd_blocklist_on_break_lock</span> |  whether to blocklist clients whose lock was broken | Advanced | Bool | True |  |  |  |  |  |  |  | rbd |  |  |  |
@@ -81,8 +81,8 @@
 | <span id="SP_rbd_journal_order">rbd_journal_order</span> |  default order (object size) for journal data objects | Advanced | Uint | 24 |  | 12 | 26 |  |  |  |  | rbd |  |  |  |
 | <span id="SP_rbd_journal_pool">rbd_journal_pool</span> |  pool for journal objects | Advanced | Str |  |  |  |  |  |  |  |  | rbd |  |  |  |
 | <span id="SP_rbd_journal_splay_width">rbd_journal_splay_width</span> |  number of active journal objects | Advanced | Uint | 4 |  |  |  |  |  |  |  | rbd |  |  |  |
-| <span id="SP_rbd_localize_parent_reads">rbd_localize_parent_reads</span> |  localize parent requests to closest OSD | Advanced | Bool | False |  |  |  |  |  | [[rbd_read_from_replica_policy](~/rbd/rbd.md#SP_rbd_read_from_replica_policy)] |  | rbd |  |  |  |
-| <span id="SP_rbd_localize_snap_reads">rbd_localize_snap_reads</span> |  localize snap read requests to closest OSD | Advanced | Bool | False |  |  |  |  |  | [[rbd_read_from_replica_policy](~/rbd/rbd.md#SP_rbd_read_from_replica_policy)] |  | rbd |  |  |  |
+| <span id="SP_rbd_localize_parent_reads">rbd_localize_parent_reads</span> |  localize parent requests to closest OSD | Advanced | Bool | False |  |  |  |  |  | [[rbd_read_from_replica_policy](./rbd/rbd.md#SP_rbd_read_from_replica_policy)] |  | rbd |  |  |  |
+| <span id="SP_rbd_localize_snap_reads">rbd_localize_snap_reads</span> |  localize snap read requests to closest OSD | Advanced | Bool | False |  |  |  |  |  | [[rbd_read_from_replica_policy](./rbd/rbd.md#SP_rbd_read_from_replica_policy)] |  | rbd |  |  |  |
 | <span id="SP_rbd_mirroring_delete_delay">rbd_mirroring_delete_delay</span> |  time-delay in seconds for rbd-mirror delete propagation | Advanced | Uint | 0 |  |  |  |  |  |  |  | rbd |  |  |  |
 | <span id="SP_rbd_mirroring_max_mirroring_snapshots">rbd_mirroring_max_mirroring_snapshots</span> |  mirroring snapshots limit | Advanced | Uint | 3 |  | 3 |  |  |  |  |  | rbd |  |  |  |
 | <span id="SP_rbd_mirroring_replay_delay">rbd_mirroring_replay_delay</span> |  time-delay in seconds for rbd-mirror asynchronous replication | Advanced | Uint | 0 |  |  |  |  |  |  |  | rbd |  |  |  |

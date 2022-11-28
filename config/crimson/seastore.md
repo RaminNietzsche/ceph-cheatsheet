@@ -1,6 +1,6 @@
 | Name | Desc | Level | Type | non-Daemon Default | Daemon Default | Min | Max | Valid Values | verbatim | See also | Flags | Services | Validator | Long Desc | Tags |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| <span id="SP_seastore_block_create">seastore_block_create</span> |  Create SegmentManager file if it doesn't exist | Dev | Bool | True |  |  |  |  |  | [[seastore_device_size](~/crimson/seastore.md#SP_seastore_device_size)] |  |  |  |  |  |
+| <span id="SP_seastore_block_create">seastore_block_create</span> |  Create SegmentManager file if it doesn't exist | Dev | Bool | True |  |  |  |  |  | [[seastore_device_size](./crimson/seastore.md#SP_seastore_device_size)] |  |  |  |  |  |
 | <span id="SP_seastore_cache_lru_size">seastore_cache_lru_size</span> |  Size in bytes of extents to keep in cache. | Advanced | Size | 64_M |  |  |  |  |  |  |  |  |  |  |  |
 | <span id="SP_seastore_default_max_object_size">seastore_default_max_object_size</span> |  default logical address space reservation for seastore objects' data | Dev | Uint | 16 M (uint) |  |  |  |  |  |  |  |  |  |  |  |
 | <span id="SP_seastore_default_object_metadata_reservation">seastore_default_object_metadata_reservation</span> |  default logical address space reservation for seastore objects' metadata | Dev | Uint | 16 M (uint) |  |  |  |  |  |  |  |  |  |  |  |
