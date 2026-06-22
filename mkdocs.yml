@@ -1,0 +1,83 @@
+site_name: Ceph Cheatsheet
+site_description: Offline Ceph CLI and configuration reference
+site_url: https://RaminNietzsche.github.io/ceph-cheatsheet/
+repo_url: https://github.com/RaminNietzsche/ceph-cheatsheet
+repo_name: RaminNietzsche/ceph-cheatsheet
+
+docs_dir: docs
+site_dir: site
+
+exclude_docs: |
+  /scripts/
+  /site/
+  /.git/
+  /.github/
+
+theme:
+  name: material
+  language: en
+  palette:
+    - scheme: default
+      primary: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Dark mode
+    - scheme: slate
+      primary: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+
+plugins:
+  - search
+
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Home: index.md
+  - Guides:
+    - Quick start: guides/quickstart.md
+    - Config lookup: guides/config-lookup.md
+  - CLI:
+    - Overview: cli/OVERVIEW.md
+    - Cluster: cli/cluster.md
+    - Config: cli/config.md
+    - OSD & pools: cli/osd-pool.md
+    - RADOS: cli/rados.md
+    - RBD: cli/rbd.md
+    - RGW: cli/rgw.md
+    - CephFS: cli/cephfs.md
+    - Cephadm: cli/cephadm.md
+    - Troubleshooting: cli/troubleshooting.md
+  - Config:
+    - Overview: config/OVERVIEW.md
+    - Global: config/global/INDEX.md
+    - OSD: config/osd/INDEX.md
+    - MON: config/mon/INDEX.md
+    - MGR: config/mgr/INDEX.md
+    - MDS: config/mds/INDEX.md
+    - MDS client: config/mds-client/INDEX.md
+    - RGW: config/rgw/INDEX.md
+    - RBD: config/rbd/INDEX.md
+    - RBD mirror: config/rbd-mirror/INDEX.md
+    - CephFS mirror: config/cephfs-mirror/INDEX.md
+    - Crimson: config/crimson/INDEX.md
+    - Immutable cache: config/immutable-object-cache/INDEX.md
+    - Ceph exporter: config/ceph-exporter/INDEX.md
+  - About: README.md

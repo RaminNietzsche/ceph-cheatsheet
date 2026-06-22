@@ -1,0 +1,28 @@
+# rbd-mirror
+
+
+## Rbd
+ - [rbd_mirror_concurrent_image_deletions](/config/rbd-mirror/rbd.md#SP_rbd_mirror_concurrent_image_deletions)
+ - [rbd_mirror_concurrent_image_syncs](/config/rbd-mirror/rbd.md#SP_rbd_mirror_concurrent_image_syncs)
+ - [rbd_mirror_delete_retry_interval](/config/rbd-mirror/rbd.md#SP_rbd_mirror_delete_retry_interval)
+ - [rbd_mirror_image_perf_stats_prio](/config/rbd-mirror/rbd.md#SP_rbd_mirror_image_perf_stats_prio)
+ - [rbd_mirror_image_policy_migration_throttle](/config/rbd-mirror/rbd.md#SP_rbd_mirror_image_policy_migration_throttle)
+ - [rbd_mirror_image_policy_rebalance_timeout](/config/rbd-mirror/rbd.md#SP_rbd_mirror_image_policy_rebalance_timeout)
+ - [rbd_mirror_image_policy_type](/config/rbd-mirror/rbd.md#SP_rbd_mirror_image_policy_type)
+ - [rbd_mirror_image_policy_update_throttle_interval](/config/rbd-mirror/rbd.md#SP_rbd_mirror_image_policy_update_throttle_interval)
+ - [rbd_mirror_image_state_check_interval](/config/rbd-mirror/rbd.md#SP_rbd_mirror_image_state_check_interval)
+ - [rbd_mirror_journal_commit_age](/config/rbd-mirror/rbd.md#SP_rbd_mirror_journal_commit_age)
+ - [rbd_mirror_journal_poll_age](/config/rbd-mirror/rbd.md#SP_rbd_mirror_journal_poll_age)
+ - [rbd_mirror_leader_heartbeat_interval](/config/rbd-mirror/rbd.md#SP_rbd_mirror_leader_heartbeat_interval)
+ - [rbd_mirror_leader_max_acquire_attempts_before_break](/config/rbd-mirror/rbd.md#SP_rbd_mirror_leader_max_acquire_attempts_before_break)
+ - [rbd_mirror_leader_max_missed_heartbeats](/config/rbd-mirror/rbd.md#SP_rbd_mirror_leader_max_missed_heartbeats)
+ - [rbd_mirror_memory_autotune](/config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
+ - [rbd_mirror_memory_base](/config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_base)
+ - [rbd_mirror_memory_cache_autotune_interval](/config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_cache_autotune_interval)
+ - [rbd_mirror_memory_cache_min](/config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_cache_min)
+ - [rbd_mirror_memory_cache_resize_interval](/config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_cache_resize_interval)
+ - [rbd_mirror_memory_expected_fragmentation](/config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_expected_fragmentation)
+ - [rbd_mirror_memory_target](/config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_target)
+ - [rbd_mirror_perf_stats_prio](/config/rbd-mirror/rbd.md#SP_rbd_mirror_perf_stats_prio)
+ - [rbd_mirror_pool_replayers_refresh_interval](/config/rbd-mirror/rbd.md#SP_rbd_mirror_pool_replayers_refresh_interval)
+ - [rbd_mirror_sync_point_update_age](/config/rbd-mirror/rbd.md#SP_rbd_mirror_sync_point_update_age)
