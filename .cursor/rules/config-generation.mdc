@@ -1,0 +1,37 @@
+---
+description: Rules for regenerating Ceph config reference from upstream YAML
+globs: "scripts/generate-config.py,scripts/upstream/**,config/**"
+alwaysApply: false
+---
+
+# Config Generation
+
+## Source of truth
+
+Upstream: `https://github.com/ceph/ceph` → `src/common/options/*.yaml.in`
+
+## Regenerate workflow
+
+```bash
+pip install -r scripts/requirements.txt
+python3 scripts/generate-config.py --ref main   # or reef, squid, …
+python3 scripts/split-index.py                  # only if readme.md edited manually
+python3 scripts/sync-docs-index.py              # if REFERENCE.md changed
+```
+
+## File layout (do not change without updating generate-config.py)
+
+- `config/<subsystem>/*.md` — option tables grouped by name prefix
+- `config/readme.md` — master index (auto-generated)
+- `config/<subsystem>/INDEX.md` — split index (via split-index.py)
+- `VERSION` — records upstream ref and timestamp
+
+## Table format
+
+Keep 16-column table schema used by `generate-config.py` and `lookup-config.sh`.
+
+## Adding a new upstream subsystem
+
+1. Add to `SUBSYSTEMS` in `generate-config.py` and `split-index.py`
+2. Add row to `config/OVERVIEW.md` and `mkdocs.yml` nav
+3. Regenerate

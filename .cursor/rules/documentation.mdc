@@ -1,0 +1,48 @@
+---
+description: Documentation standards for cli, guides, and reference markdown
+globs: "{cli,guides,docs}/**/*.md,REFERENCE.md,README.md"
+alwaysApply: false
+---
+
+# Documentation Standards
+
+## Language and tone
+
+- Write in English for all reference content (CLI, config, guides).
+- Use complete sentences; avoid telegraphic bullet chains.
+- Commands must be copy-paste ready — no `...` omissions in code blocks.
+
+## Structure
+
+| Directory | Purpose | Edit manually? |
+|-----------|---------|--------------|
+| `cli/` | Command cheatsheets by topic | Yes |
+| `guides/roles/` | Workflows by operator role | Yes |
+| `guides/scales/` | Recommendations by cluster size | Yes |
+| `config/` | Option tables from upstream YAML | No — run `scripts/generate-config.py` |
+| `REFERENCE.md` | Main hub — sync to `docs/index.md` after edits |
+
+## Linking
+
+- Link to config options: `../config/<subsystem>/INDEX.md` or use `./scripts/lookup-config.sh`
+- Link back to hub: `[← Reference](../REFERENCE.md)` or `../index.md` inside `docs/`
+- Cross-link CLI ↔ config ↔ guides; do not duplicate large option tables in guides
+
+## CLI pages
+
+- Group by task, not alphabetically
+- One command per line in fenced `bash` blocks
+- Include `<placeholder>` for required args; `[optional]` for optional flags
+- Add a “See also” line pointing to related config INDEX when relevant
+
+## After editing REFERENCE.md
+
+```bash
+python3 scripts/sync-docs-index.py
+```
+
+## Do not
+
+- Hand-edit generated files under `config/` except via regenerate script
+- Add `Co-authored-by: Cursor` to commits
+- Create duplicate README/OVERVIEW content — extend REFERENCE.md instead

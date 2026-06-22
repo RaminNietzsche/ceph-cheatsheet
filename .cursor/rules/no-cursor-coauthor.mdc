@@ -1,0 +1,22 @@
+---
+description: Never add Co-authored-by Cursor to git commits
+alwaysApply: true
+---
+
+# No Cursor Co-Author Trailer
+
+Never include `Co-authored-by: Cursor` in git commit messages — not when writing commits, amending, squashing, or preparing PRs.
+
+Forbidden (never add):
+
+```
+Co-authored-by: Cursor <cursoragent@cursor.com>
+```
+
+Also avoid any variant (`Co-authored-by: cursor`, `@cursor.com`, etc.).
+
+When committing:
+
+- Write commit messages with only the human author's attribution (e.g. `Signed-off-by` when the project requires DCO).
+- After `git commit` or `git commit --amend`, check the message; if a hook or tool injected `Co-authored-by: Cursor`, remove it and amend again (or use `git commit-tree` if amend keeps re-adding it).
+- When squashing commits, strip this trailer from the final message.

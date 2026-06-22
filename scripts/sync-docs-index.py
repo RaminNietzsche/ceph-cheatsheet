@@ -9,7 +9,10 @@ INDEX = ROOT / "docs" / "index.md"
 
 SUBSTITUTIONS = [
     ("[`VERSION`](VERSION)", "[VERSION](../VERSION)"),
-    ("[README](README.md) · [License](LICENSE)", "[README](../README.md) · [License](../LICENSE)"),
+    (
+        "[README](https://github.com/RaminNietzsche/ceph-cheatsheet) · [License](LICENSE)",
+        "[README](https://github.com/RaminNietzsche/ceph-cheatsheet) · [License](../LICENSE)",
+    ),
 ]
 
 

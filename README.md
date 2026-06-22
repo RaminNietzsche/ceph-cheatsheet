@@ -1,66 +1,40 @@
 # ceph-cheatsheet
 
-**Simple, complete offline reference** for Ceph administrators — CLI commands, configuration options, and guides.
+**Simple, complete offline reference** for Ceph — organized by **role**, **scale**, CLI, and config.
 
 → **[Open the reference (REFERENCE.md)](REFERENCE.md)**
 
-| Section | Content |
-|---------|---------|
-| [CLI](cli/OVERVIEW.md) | Essential `ceph`, `rbd`, `rados`, `radosgw-admin`, `cephadm` commands |
-| [Config](config/OVERVIEW.md) | **2122** options from upstream Ceph YAML (auto-generated) |
-| [Guides](guides/quickstart.md) | Daily workflow, config lookup how-to |
+| Layer | Content |
+|-------|---------|
+| [Roles](guides/OVERVIEW.md#by-role) | Cluster admin, storage operator, RGW, CephFS |
+| [Scales](guides/OVERVIEW.md#by-scale) | Lab, small/large production, multisite |
+| [CLI](cli/OVERVIEW.md) | `ceph`, `rbd`, `rados`, `radosgw-admin`, `cephadm` |
+| [Config](config/OVERVIEW.md) | **2122** options from upstream Ceph YAML |
 
-**Browse online:** [blog.raminnietzsche.ir/ceph-cheatsheet](https://blog.raminnietzsche.ir/ceph-cheatsheet/) — or run `mkdocs serve` locally.
+**Online:** [blog.raminnietzsche.ir/ceph-cheatsheet](https://blog.raminnietzsche.ir/ceph-cheatsheet/)
 
 ## Quick tools
 
 ```bash
-# Look up one config option (readable summary)
 ./scripts/lookup-config.sh osd_max_scrubs
-
-# Search everything
 ./scripts/search-all.sh scrub
-
-# Search config only
-./scripts/search-config.sh -s rgw cache
 ```
 
-## Project layout
+## For contributors / agents
 
-```
-ceph-cheatsheet/
-├── REFERENCE.md            ← main entry point
-├── cli/                    ← command reference
-├── config/                 ← config option tables (generated)
-├── guides/                 ← how-to guides
-├── scripts/                ← search, lookup, regenerate
-├── mkdocs.yml              ← static site config
-└── VERSION                 ← upstream Ceph ref + date
-```
+- Rules: `.cursor/rules/`
+- Skill: `.cursor/skills/ceph-cheatsheet/SKILL.md`
+- [Contributing guide](guides/contributing.md)
+- [AGENTS.md](AGENTS.md)
 
-## Regenerate config from upstream
+## Regenerate config
 
 ```bash
 pip install -r scripts/requirements.txt
-python3 scripts/generate-config.py --ref main   # or reef, squid, …
+python3 scripts/generate-config.py --ref main
+python3 scripts/sync-docs-index.py   # after REFERENCE.md edits
+mkdocs serve
 ```
-
-After editing [`REFERENCE.md`](REFERENCE.md), sync the MkDocs home page:
-
-```bash
-python3 scripts/sync-docs-index.py
-```
-
-```bash
-pip install -r scripts/requirements.txt
-mkdocs serve          # http://127.0.0.1:8000
-mkdocs build          # output in site/
-```
-
-## Source
-
-Config options are generated from [ceph/ceph](https://github.com/ceph/ceph) `src/common/options/*.yaml.in`.  
-CLI content is curated for common admin tasks. See [`VERSION`](VERSION) for the current upstream ref.
 
 ## License
 

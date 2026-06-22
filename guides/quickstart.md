@@ -75,4 +75,8 @@ ceph orch upgrade status              # cephadm path
 ./scripts/search-config.sh -s rgw cache
 ```
 
+## Next steps
+
+- Pick your [role](OVERVIEW.md#by-role) or [scale](OVERVIEW.md#by-scale) for focused workflows.
+
 [← Main reference](../index.md)

@@ -1,6 +1,6 @@
 # Ceph Reference
 
-Simple, offline-friendly reference for Ceph administrators.
+Simple, offline-friendly reference for Ceph administrators — organized by **role**, **scale**, **CLI**, and **config**.
 
 **Source:** [ceph/ceph](https://github.com/ceph/ceph) `main` — see [VERSION](../VERSION) for generation date.
 
@@ -10,11 +10,35 @@ Simple, offline-friendly reference for Ceph administrators.
 
 | I want to… | Go to |
 |------------|-------|
+| Find docs for my job | [Guides by role](guides/OVERVIEW.md#by-role) |
+| Size-specific advice | [Guides by scale](guides/OVERVIEW.md#by-scale) |
 | Run cluster commands | [CLI reference](cli/OVERVIEW.md) |
 | Look up a config option | [Config reference](config/OVERVIEW.md) |
-| Do common daily tasks | [Quick start guide](guides/quickstart.md) |
-| Search everything locally | `./scripts/search-all.sh <term>` |
-| Look up one config option | `./scripts/lookup-config.sh <option>` |
+| Daily checklist | [Quick start](guides/quickstart.md) |
+| Search locally | `./scripts/search-all.sh <term>` |
+| One config option | `./scripts/lookup-config.sh <option>` |
+
+---
+
+## By role
+
+| Role | Guide | CLI | Config |
+|------|-------|-----|--------|
+| Cluster admin | [guide](guides/roles/cluster-admin.md) | [cluster](cli/cluster.md), [cephadm](cli/cephadm.md) | [mon](config/mon/INDEX.md), [mgr](config/mgr/INDEX.md) |
+| Storage operator | [guide](guides/roles/storage-operator.md) | [osd-pool](cli/osd-pool.md) | [osd](config/osd/INDEX.md) |
+| RGW admin | [guide](guides/roles/rgw-admin.md) | [rgw](cli/rgw.md) | [rgw config](config/rgw/INDEX.md) |
+| CephFS admin | [guide](guides/roles/cephfs-admin.md) | [cephfs](cli/cephfs.md) | [mds](config/mds/INDEX.md) |
+
+---
+
+## By scale
+
+| Scale | Guide |
+|-------|-------|
+| Lab / dev (1–3 nodes) | [lab](guides/scales/lab.md) |
+| Small production (3–12 nodes) | [small production](guides/scales/small-production.md) |
+| Large production (12+ nodes) | [large production](guides/scales/large-production.md) |
+| Multisite | [multisite](guides/scales/multisite.md) |
 
 ---
 
@@ -50,20 +74,15 @@ Simple, offline-friendly reference for Ceph administrators.
 | [rbd](config/rbd/INDEX.md) | Block device client |
 | … | [Full list →](config/OVERVIEW.md) |
 
-Each option includes type, default, valid values, flags (`RUNTIME`, `STARTUP`), and cross-links.
-
 ---
 
-## Guides
+## Maintaining this reference
 
-- [Quick start](guides/quickstart.md) — daily admin workflow
-- [Using the config reference](guides/config-lookup.md) — how to read option tables
+Rules: `.cursor/rules/` · Skill: `.cursor/skills/ceph-cheatsheet/` · [Contributing guide](guides/contributing.md)
 
 ---
 
 ## Browse online
-
-Build the static site locally:
 
 ```bash
 pip install -r scripts/requirements.txt
@@ -77,10 +96,13 @@ Open https://blog.raminnietzsche.ir/ceph-cheatsheet/ (or http://127.0.0.1:8000 l
 ## Project layout
 
 ```
-cli/          Command reference
-config/       Config option tables (auto-generated)
-guides/       How-to guides
-scripts/      Search, lookup, regenerate tools
+cli/              Command reference
+config/           Config tables (auto-generated)
+guides/roles/     By operator role
+guides/scales/    By cluster size
+.cursor/rules/    Documentation conventions
+.cursor/skills/   Agent maintenance workflows
+scripts/          Search, lookup, regenerate
 ```
 
-[README](../README.md) · [License](../LICENSE)
+[README](https://github.com/RaminNietzsche/ceph-cheatsheet) · [License](../LICENSE)
