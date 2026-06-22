@@ -10,7 +10,7 @@
 | [Config](config/OVERVIEW.md) | **2122** options from upstream Ceph YAML (auto-generated) |
 | [Guides](guides/quickstart.md) | Daily workflow, config lookup how-to |
 
-**Browse online:** enable GitHub Pages (Settings → Pages → GitHub Actions), or run `mkdocs serve` locally.
+**Browse online:** [blog.raminnietzsche.ir/ceph-cheatsheet](https://blog.raminnietzsche.ir/ceph-cheatsheet/) — or run `mkdocs serve` locally.
 
 ## Quick tools
 

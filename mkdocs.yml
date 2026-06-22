@@ -1,6 +1,6 @@
 site_name: Ceph Cheatsheet
 site_description: Offline Ceph CLI and configuration reference
-site_url: https://RaminNietzsche.github.io/ceph-cheatsheet/
+site_url: https://blog.raminnietzsche.ir/ceph-cheatsheet/
 repo_url: https://github.com/RaminNietzsche/ceph-cheatsheet
 repo_name: RaminNietzsche/ceph-cheatsheet
 

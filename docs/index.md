@@ -70,7 +70,7 @@ pip install -r scripts/requirements.txt
 mkdocs serve
 ```
 
-Open http://127.0.0.1:8000
+Open https://blog.raminnietzsche.ir/ceph-cheatsheet/ (or http://127.0.0.1:8000 locally).
 
 ---
 
