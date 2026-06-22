@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
@@ -208,7 +209,27 @@ def fmt_enum(values) -> str:
     return json.dumps([str(v) for v in values])
 
 
-def fmt_see_also(names: list[str], option_locations: dict[str, tuple[str, str]]) -> str:
+def option_href(
+    from_subsystem: str,
+    from_filename: str,
+    to_name: str,
+    option_locations: dict[str, tuple[str, str]],
+) -> str:
+    to_subsystem, to_filename = option_locations[to_name]
+    if to_subsystem == from_subsystem and to_filename == from_filename:
+        return f"#SP_{to_name}"
+    from_dir = CONFIG / from_subsystem
+    to_path = CONFIG / to_subsystem / to_filename
+    rel = Path(os.path.relpath(to_path, from_dir)).as_posix()
+    return f"{rel}#SP_{to_name}"
+
+
+def fmt_see_also(
+    names: list[str],
+    from_subsystem: str,
+    from_filename: str,
+    option_locations: dict[str, tuple[str, str]],
+) -> str:
     if not names:
         return ""
     links = []
@@ -216,8 +237,8 @@ def fmt_see_also(names: list[str], option_locations: dict[str, tuple[str, str]])
         if name not in option_locations:
             links.append(name)
             continue
-        subsystem, filename = option_locations[name]
-        links.append(f"[{name}](/config/{subsystem}/{filename}#SP_{name})")
+        href = option_href(from_subsystem, from_filename, name, option_locations)
+        links.append(f"[{name}]({href})")
     return f"[{', '.join(links)}]"
 
 
@@ -246,7 +267,9 @@ def option_row(
     max_val = fmt_default(opt.get("max"), typ) if opt.get("max") is not None else ""
     enum_values = fmt_enum(opt.get("enum_values"))
     verbatim = clean_cell(str(opt.get("verbatim", "") or ""))
-    see_also = fmt_see_also(opt.get("see_also") or [], option_locations)
+    see_also = fmt_see_also(
+        opt.get("see_also") or [], subsystem, filename, option_locations
+    )
     flags = fmt_flags(opt.get("flags"))
     services = fmt_services(opt.get("services"))
     validator = clean_cell(str(opt.get("validator") or ""))
@@ -323,7 +346,7 @@ def write_master_index(all_options: dict[str, list[dict]]) -> None:
             filename = f"{key}.md"
             name = opt["name"]
             groups[key].append(
-                f" - [{name}](/config/{subsystem}/{filename}#SP_{name})"
+                f" - [{name}]({subsystem}/{filename}#SP_{name})"
             )
         for key in sorted(groups, key=lambda k: group_title(k).lower()):
             lines.append(f"## {group_title(key)}")

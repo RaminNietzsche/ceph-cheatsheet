@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Split config/readme.md into per-subsystem INDEX.md files."""
 
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -22,6 +23,30 @@ SUBSYSTEMS = {
     "mgr": "Manager (MGR)",
     "ceph-exporter": "Ceph Exporter",
 }
+
+# [name](/config/sub/file.md#SP_x) or [name](sub/file.md#SP_x)
+LINK_RE = re.compile(
+    r"\[(?P<label>[^\]]+)\]\((?P<href>(?:/config/)?(?P<sub>[^/]+)/(?P<file>[^#\)]+)#(?P<anchor>SP_[^)]+))\)"
+)
+
+
+def rel_href(from_sub: str, to_sub: str, to_file: str, anchor: str) -> str:
+    if from_sub == to_sub:
+        return f"{to_file}#{anchor}"
+    return f"../{to_sub}/{to_file}#{anchor}"
+
+
+def rewrite_index_links(text: str, subsystem: str) -> str:
+    def repl(match: re.Match[str]) -> str:
+        href = rel_href(
+            subsystem,
+            match.group("sub"),
+            match.group("file"),
+            match.group("anchor"),
+        )
+        return f"[{match.group('label')}]({href})"
+
+    return LINK_RE.sub(repl, text)
 
 
 def split_index() -> None:
@@ -48,7 +73,8 @@ def split_index() -> None:
         target_dir = CONFIG / name
         target_dir.mkdir(parents=True, exist_ok=True)
         index_path = target_dir / "INDEX.md"
-        index_path.write_text("".join(body).rstrip() + "\n", encoding="utf-8")
+        index_text = rewrite_index_links("".join(body).rstrip() + "\n", name)
+        index_path.write_text(index_text, encoding="utf-8")
 
         readme_path = target_dir / "README.md"
         title = SUBSYSTEMS[name]
