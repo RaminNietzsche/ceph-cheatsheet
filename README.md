@@ -28,14 +28,16 @@
 - [Contributing guide](guides/contributing.md)
 - [AGENTS.md](AGENTS.md)
 
-## Regenerate config
+## Regenerate config & docs (en + fa + zh)
 
 ```bash
 pip install -r scripts/requirements.txt
 python3 scripts/generate-config.py --ref main
-python3 scripts/sync-docs-index.py   # after REFERENCE.md edits
+python3 scripts/regenerate-docs.py
 mkdocs serve
 ```
+
+The site uses **mkdocs-static-i18n**: English (`.md`), Persian (`.fa.md`, RTL), Chinese (`.zh.md`). Generators and `sync-i18n-*.py` keep all three in sync on every run.
 
 ## License
 

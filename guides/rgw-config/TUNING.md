@@ -2,7 +2,7 @@
 
 All **441** RGW options with tuning model and one-line guidance. Each topic page has step-by-step **Finding optimal value** sections.
 
-[← RGW config overview](OVERVIEW.md) · [Tuning quick reference](TUNING.md)
+[← RGW config overview](../OVERVIEW.md) · - [Tuning quick reference](TUNING.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -448,4 +448,4 @@ All **441** RGW options with tuning model and one-line guidance. Each topic page
 | [`rgwlc_auto_session_clear`](buckets-lifecycle/lifecycle.md#rgwlc_auto_session_clear) | `True` | Policy | Upstream default (`True`) unless client/compliance requires change | [Lifecycle (LC)](buckets-lifecycle/lifecycle.md) |
 | [`rgwlc_skip_bucket_step`](buckets-lifecycle/lifecycle.md#rgwlc_skip_bucket_step) | `False` | Policy | Upstream default (`False`) unless client/compliance requires change | [Lifecycle (LC)](buckets-lifecycle/lifecycle.md) |
 
-[← RGW config overview](OVERVIEW.md)
+[← RGW config overview](../OVERVIEW.md)

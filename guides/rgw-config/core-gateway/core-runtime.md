@@ -156,7 +156,7 @@ ceph config get client.rgw rgw_dedup_split_obj_head
 
 **What it does:** Send Bucket HTTP header with the response
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -212,7 +212,7 @@ ceph config get client.rgw rgw_filter
 
 **What it does:** Delay the shutdown until all outstanding requests have completed
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -375,7 +375,7 @@ ceph orch restart rgw
 
 **What it does:** Enables LTTng-UST operator tracepoints.
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -521,7 +521,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** Enables LTTng-UST tracepoints.
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

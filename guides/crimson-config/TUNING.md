@@ -2,7 +2,7 @@
 
 All **42** options with tuning model and one-line guidance.
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -49,4 +49,4 @@ All **42** options with tuning model and one-line guidance.
 | [`seastore_segment_cleaner_gc_formula`](topics/seastore.md#seastore_segment_cleaner_gc_formula) | `cost_benefit` | Performance | Baseline → adjust → validate under load | [Seastore](topics/seastore.md) |
 | [`seastore_segment_size`](topics/seastore.md#seastore_segment_size) | `64_M` | Performance | Baseline → adjust → validate under load | [Seastore](topics/seastore.md) |
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)

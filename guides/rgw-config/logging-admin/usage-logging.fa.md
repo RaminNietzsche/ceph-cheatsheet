@@ -1,0 +1,159 @@
+# Usage logging
+
+deep dive پیکربندی RGW — 4 گزینه. [← نمای کلی پیکربندی RGW](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/rgw/INDEX.md)
+
+| گزینه | پیش‌فرض | سطح | تنظیم |
+|--------|---------|-------|--------|
+| [rgw_usage_log_flush_threshold](#rgw_usage_log_flush_threshold) | `1024` | Advanced | Performance |
+| [rgw_usage_log_key_transition](#rgw_usage_log_key_transition) | `True` | Advanced | Policy |
+| [rgw_usage_max_shards](#rgw_usage_max_shards) | `32` | Advanced | Policy |
+| [rgw_usage_max_user_shards](#rgw_usage_max_user_shards) | `1` | Advanced | Policy |
+
+## یافتن مقادیر بهینه
+
+| مدل | نحوه انتخاب |
+|-------|---------------|
+| **Policy** | امنیت، سازگاری API، محدودیت tenant |
+| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
+| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
+| **Architecture** | backend، توپولوژی multisite — نه sweep عددی |
+| **Dev** | پیش‌فرض upstream در production |
+
+**ابزارهای مشترک:**
+
+```bash
+ceph config get client.rgw <option>
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
+```
+
+---
+
+### rgw_usage_log_flush_threshold
+
+| | |
+|---|---|
+| نوع | Int · default `1024` · **Advanced** |
+| جدول | [rgw.md#SP_rgw_usage_log_flush_threshold](../../../config/rgw/rgw.md#SP_rgw_usage_log_flush_threshold) |
+
+**کارکرد:** Number of entries in usage log before flushing
+
+**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+
+**مثال:**
+
+```bash
+ceph config set client.rgw rgw_usage_log_flush_threshold 1024
+ceph config get client.rgw rgw_usage_log_flush_threshold
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Performance
+
+1. Baseline at upstream default `1024`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**سیگنال‌ها:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_usage_log_flush_threshold
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph -s  # cluster health, slow ops
+```
+
+---
+
+### rgw_usage_log_key_transition
+
+| | |
+|---|---|
+| نوع | Bool · default `True` · **Advanced** |
+| جدول | [rgw.md#SP_rgw_usage_log_key_transition](../../../config/rgw/rgw.md#SP_rgw_usage_log_key_transition) |
+
+**کارکرد:** Handle the co-existence of both old and new name-by-user keys
+
+**زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**مثال:**
+
+```bash
+ceph config set client.rgw rgw_usage_log_key_transition false
+ceph config get client.rgw rgw_usage_log_key_transition
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Policy
+
+1. Not tuned numerically — supply from your secrets manager.
+2. Rotate on schedule; never store in git or plain `ceph.conf`.
+3. Use `ceph config set` at runtime or cephadm secrets where supported.
+
+---
+
+### rgw_usage_max_shards
+
+| | |
+|---|---|
+| نوع | Int · default `32` · **Advanced** |
+| جدول | [rgw.md#SP_rgw_usage_max_shards](../../../config/rgw/rgw.md#SP_rgw_usage_max_shards) |
+
+**کارکرد:** Number of shards for usage log.
+
+**زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه/concurrency می‌رسند یا برای محافظت از منابع کلاستر.
+
+**مثال:**
+
+```bash
+ceph config set global rgw_usage_max_shards 32
+ceph config get global rgw_usage_max_shards
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Policy
+
+1. Start at `32` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
+
+---
+
+### rgw_usage_max_user_shards
+
+| | |
+|---|---|
+| نوع | Int · default `1` · **Advanced** |
+| جدول | [rgw.md#SP_rgw_usage_max_user_shards](../../../config/rgw/rgw.md#SP_rgw_usage_max_user_shards) |
+
+**کارکرد:** Number of shards for single user in usage log
+
+**زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه/concurrency می‌رسند یا برای محافظت از منابع کلاستر.
+
+**مثال:**
+
+```bash
+ceph config set client.rgw rgw_usage_max_user_shards 1
+ceph config get client.rgw rgw_usage_max_user_shards
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Policy
+
+1. Start at `1` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
+
+**محدوده:** min `1`, max `—`.
+
+---
+
+
+[← نمای کلی پیکربندی RGW](../OVERVIEW.md)

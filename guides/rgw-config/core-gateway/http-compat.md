@@ -53,7 +53,7 @@ ceph pg stat
 
 **What it does:** Multiple content length headers compatibility
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -223,7 +223,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** Treat invalid (e.g., negative) range request as full
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -279,7 +279,7 @@ ceph config get client.rgw rgw_print_continue
 
 **What it does:** RGW RFC-7230 compatibility
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -307,7 +307,7 @@ ceph config get client.rgw rgw_print_prohibited_content_length
 
 **What it does:** Disable region constraint enforcement
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -335,7 +335,7 @@ ceph config get client.rgw rgw_relaxed_region_enforcement
 
 **What it does:** RGW enable relaxed S3 bucket names
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -363,7 +363,7 @@ ceph config get client.rgw rgw_relaxed_s3_bucket_names
 
 **What it does:** RGW enable relaxed topic names
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -465,7 +465,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** Support vanity domain names via CNAME
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -531,7 +531,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** Trust Forwarded and X-Forwarded-Proto headers
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

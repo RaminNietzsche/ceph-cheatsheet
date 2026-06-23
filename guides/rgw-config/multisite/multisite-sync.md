@@ -767,7 +767,7 @@ ceph config get client.rgw rgw_sync_meta_inject_err_probability
 
 **What it does:** Verify if the object copied from remote is identical to its source
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -953,7 +953,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** Should sync idle users quota
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

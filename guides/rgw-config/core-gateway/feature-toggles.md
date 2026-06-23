@@ -46,7 +46,7 @@ ceph pg stat
 
 **What it does:** disable the s3select operation; RGW will report an error and will return ERR_INVALID_REQUEST.
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -140,7 +140,7 @@ ceph config get client.rgw rgw_enable_gc_threads
 
 **What it does:** Enable JWKS url verification for AWS compliance
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -224,7 +224,7 @@ ceph config get client.rgw rgw_enable_mdsearch
 
 **What it does:** Enable ops log
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -280,7 +280,7 @@ ceph config get client.rgw rgw_enable_restore_threads
 
 **What it does:** Enable static website APIs
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -308,7 +308,7 @@ ceph config get client.rgw rgw_enable_static_website
 
 **What it does:** Enable the usage log
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

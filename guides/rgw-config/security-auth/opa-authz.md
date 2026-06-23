@@ -134,7 +134,7 @@ ceph config get client.rgw rgw_opa_verify_ssl
 
 **What it does:** Should OPA be used to authorize client requests.
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

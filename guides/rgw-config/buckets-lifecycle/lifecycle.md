@@ -93,7 +93,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** Enable per-bucket lifecycle performance counters cache
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -583,7 +583,7 @@ ceph config get client.rgw rgwlc_auto_session_clear
 
 **What it does:** Conditionally skip the processing (but not the scheduling) of bucket lifecycle
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

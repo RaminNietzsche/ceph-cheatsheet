@@ -2,7 +2,7 @@
 
 All **24** options with tuning model and one-line guidance.
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -31,4 +31,4 @@ All **24** options with tuning model and one-line guidance.
 | [`rbd_mirror_pool_replayers_refresh_interval`](topics/mirror.md#rbd_mirror_pool_replayers_refresh_interval) | `30` | Performance | Baseline → adjust → validate under load | [RBD mirror](topics/mirror.md) |
 | [`rbd_mirror_sync_point_update_age`](topics/mirror.md#rbd_mirror_sync_point_update_age) | `30` | Performance | Baseline → adjust → validate under load | [RBD mirror](topics/mirror.md) |
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)

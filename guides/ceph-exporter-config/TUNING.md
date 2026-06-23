@@ -2,7 +2,7 @@
 
 All **8** options with tuning model and one-line guidance.
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -15,4 +15,4 @@ All **8** options with tuning model and one-line guidance.
 | [`exporter_sort_metrics`](topics/exporter.md#exporter_sort_metrics) | `True` | Performance | Enable/disable based on measured need | [ceph-exporter](topics/exporter.md) |
 | [`exporter_stats_period`](topics/exporter.md#exporter_stats_period) | `5` | Performance | Baseline → adjust → validate under load | [ceph-exporter](topics/exporter.md) |
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)

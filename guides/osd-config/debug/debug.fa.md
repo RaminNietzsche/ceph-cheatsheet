@@ -1,0 +1,150 @@
+# Debug & injection
+
+deep dive پیکربندی OSD — 4 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/osd/INDEX.md)
+
+| گزینه | پیش‌فرض | سطح | تنظیم |
+|--------|---------|-------|--------|
+| [osd_debug_feed_pullee](#osd_debug_feed_pullee) | `-1` | Dev | Dev |
+| [osd_debug_trim_objects](#osd_debug_trim_objects) | `False` | Advanced | Performance |
+| [osd_inject_bad_map_crc_probability](#osd_inject_bad_map_crc_probability) | `0` | Dev | Dev |
+| [osd_inject_failure_on_pg_removal](#osd_inject_failure_on_pg_removal) | `False` | Dev | Dev |
+
+## یافتن مقادیر بهینه
+
+| مدل | نحوه انتخاب |
+|-------|---------------|
+| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
+| **Dev** | پیش‌فرض upstream در production |
+
+**ابزارهای مشترک:**
+
+```bash
+ceph config get <daemon> <option>  # e.g. osd
+ceph -s
+./scripts/lookup-config.sh <option-name>
+```
+
+---
+
+### osd_debug_feed_pullee
+
+| | |
+|---|---|
+| نوع | Int · default `-1` · **Dev** |
+| جدول | [osd.md#SP_osd_debug_feed_pullee](../../../config/osd/osd.md#SP_osd_debug_feed_pullee) |
+
+**کارکرد:** Feed a pullee, and force primary to pull a currently missing object from it
+
+**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+
+**مثال:**
+
+```bash
+ceph config set osd osd_debug_feed_pullee 128
+ceph config get osd osd_debug_feed_pullee
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Dev
+
+1. پیش‌فرض upstream (`-1`) را در production نگه دارید.
+2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
+3. قبل از بازگرداندن نود به pool production برگردانید.
+
+---
+
+### osd_debug_trim_objects
+
+| | |
+|---|---|
+| نوع | Bool · default `False` · **Advanced** |
+| جدول | [osd.md#SP_osd_debug_trim_objects](../../../config/osd/osd.md#SP_osd_debug_trim_objects) |
+
+**کارکرد:** Asserts that no clone-objects were added to a snap after we start trimming it
+
+**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+
+**مثال:**
+
+```bash
+ceph config set osd osd_debug_trim_objects true
+ceph config get osd osd_debug_trim_objects
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Performance
+
+1. خط پایه روی پیش‌فرض upstream `False`.
+2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
+3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
+4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+
+```bash
+ceph config get osd osd_debug_trim_objects
+ceph -s
+ceph daemon osd.<id> perf dump | head
+ceph pg stat
+```
+
+---
+
+### osd_inject_bad_map_crc_probability
+
+| | |
+|---|---|
+| نوع | Float · default `0` · **Dev** |
+| جدول | [osd.md#SP_osd_inject_bad_map_crc_probability](../../../config/osd/osd.md#SP_osd_inject_bad_map_crc_probability) |
+
+**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+
+**مثال:**
+
+```bash
+ceph config set osd osd_inject_bad_map_crc_probability 0
+ceph config get osd osd_inject_bad_map_crc_probability
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Dev
+
+1. پیش‌فرض upstream (`0`) را در production نگه دارید.
+2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
+3. قبل از بازگرداندن نود به pool production برگردانید.
+
+---
+
+### osd_inject_failure_on_pg_removal
+
+| | |
+|---|---|
+| نوع | Bool · default `False` · **Dev** |
+| جدول | [osd.md#SP_osd_inject_failure_on_pg_removal](../../../config/osd/osd.md#SP_osd_inject_failure_on_pg_removal) |
+
+**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+
+**مثال:**
+
+```bash
+ceph config set osd osd_inject_failure_on_pg_removal true
+ceph config get osd osd_inject_failure_on_pg_removal
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Dev
+
+1. پیش‌فرض upstream (`False`) را در production نگه دارید.
+2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
+3. قبل از بازگرداندن نود به pool production برگردانید.
+
+---
+
+
+[← نمای کلی](../OVERVIEW.md)

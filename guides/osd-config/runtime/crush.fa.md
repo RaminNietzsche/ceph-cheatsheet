@@ -1,0 +1,105 @@
+# CRUSH & weight
+
+deep dive پیکربندی OSD — 2 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/osd/INDEX.md)
+
+| گزینه | پیش‌فرض | سطح | تنظیم |
+|--------|---------|-------|--------|
+| [osd_crush_initial_weight](#osd_crush_initial_weight) | `-1` | Advanced | Performance |
+| [osd_crush_update_on_start](#osd_crush_update_on_start) | `True` | Advanced | Performance |
+
+## یافتن مقادیر بهینه
+
+| مدل | نحوه انتخاب |
+|-------|---------------|
+| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
+| **Dev** | پیش‌فرض upstream در production |
+
+**ابزارهای مشترک:**
+
+```bash
+ceph config get <daemon> <option>  # e.g. osd
+ceph -s
+./scripts/lookup-config.sh <option-name>
+```
+
+---
+
+### osd_crush_initial_weight
+
+| | |
+|---|---|
+| نوع | Float · default `-1` · **Advanced** |
+| جدول | [osd.md#SP_osd_crush_initial_weight](../../../config/osd/osd.md#SP_osd_crush_initial_weight) |
+
+**کارکرد:** if >= 0, initial CRUSH weight for newly created OSDs
+
+**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+
+**مثال:**
+
+```bash
+ceph config set osd osd_crush_initial_weight -1
+ceph config get osd osd_crush_initial_weight
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Performance
+
+1. خط پایه روی پیش‌فرض upstream `-1`.
+2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
+3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
+4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+
+```bash
+ceph config get osd osd_crush_initial_weight
+ceph -s
+ceph daemon osd.<id> perf dump | head
+ceph pg stat
+```
+
+---
+
+### osd_crush_update_on_start
+
+| | |
+|---|---|
+| نوع | Bool · default `True` · **Advanced** |
+| جدول | [osd.md#SP_osd_crush_update_on_start](../../../config/osd/osd.md#SP_osd_crush_update_on_start) |
+
+**کارکرد:** update OSD CRUSH location on startup
+
+**زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**مثال:**
+
+```bash
+ceph config set osd osd_crush_update_on_start false
+ceph config get osd osd_crush_update_on_start
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Performance
+
+1. خط پایه روی پیش‌فرض upstream `True`.
+2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
+3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
+4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+
+```bash
+ceph config get osd osd_crush_update_on_start
+ceph -s
+ceph daemon osd.<id> perf dump | head
+ceph pg stat
+```
+
+---
+
+
+[← نمای کلی](../OVERVIEW.md)

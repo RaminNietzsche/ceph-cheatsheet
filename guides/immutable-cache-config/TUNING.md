@@ -2,7 +2,7 @@
 
 All **13** options with tuning model and one-line guidance.
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -20,4 +20,4 @@ All **13** options with tuning model and one-line guidance.
 | [`immutable_object_cache_sock`](topics/immutable.md#immutable_object_cache_sock) | `/var/run/ceph/immutable_object_cache_sock` | Performance | Baseline → adjust → validate under load | [Immutable object cache](topics/immutable.md) |
 | [`immutable_object_cache_watermark`](topics/immutable.md#immutable_object_cache_watermark) | `0.9` | Performance | Baseline → adjust → validate under load | [Immutable object cache](topics/immutable.md) |
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)

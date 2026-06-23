@@ -1,6 +1,6 @@
 # RGW Config Deep Dive — All Options
 
-Extended reference for all **441** RADOS Gateway options with **Finding optimal value** tuning guidance (one section per option). Generated from [config/rgw/INDEX.md](../../config/rgw/INDEX.md).
+Extended reference for all **441** RGW options with **Finding optimal value** guidance. Generated from [config/rgw/INDEX.md](../../config/rgw/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>
@@ -11,7 +11,7 @@ python3 scripts/generate-rgw-guide.py  # regenerate after config sync
 
 - [Tuning quick reference](TUNING.md) — all options, model, one-line answer
 
-## Tuning models
+## Finding optimal values
 
 | Model | How to choose |
 |-------|---------------|
@@ -19,8 +19,8 @@ python3 scripts/generate-rgw-guide.py  # regenerate after config sync
 | **Capacity** | Disk layout, paths, pool sizing |
 | **Performance** | Baseline → incremental change → monitor OSD/RGW |
 | **Connectivity** | Nearest stable external endpoint |
-| **Architecture** | Backend, multisite topology |
-| **Dev** | Upstream default only in production |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
 
 ## Topics by category
 
@@ -118,4 +118,4 @@ python3 scripts/generate-rgw-guide.py  # regenerate after config sync
 | [D4N / D3N cache](experimental-debug/d4n-cache.md) | 22 |
 | [Debug & fault injection](experimental-debug/debug-inject.md) | 7 |
 
-[← Guides overview](../OVERVIEW.md)
+[← Guides overview](../../guides/OVERVIEW.md)

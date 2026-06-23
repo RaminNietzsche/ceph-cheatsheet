@@ -37,7 +37,7 @@ ceph pg stat
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_rest_conn_connect_to_resolved_ips](../../../config/rgw/rgw.md#SP_rgw_rest_conn_connect_to_resolved_ips) |
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -102,7 +102,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** REST GetUsage request backward compatibility
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

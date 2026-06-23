@@ -1,0 +1,518 @@
+# Template strings for generated documentation (en / fa / zh).
+# CLI command blocks stay in English across all locales.
+
+upstream_table_note:
+  en: ""
+  fa: "> **یادداشت:** توضیحات گزینه‌ها در جدول از upstream Ceph (انگلیسی) است."
+  zh: "> **说明：** 下表中的选项说明来自 upstream Ceph（英文）。"
+
+label_what_it_does:
+  en: "**What it does:**"
+  fa: "**کارکرد:**"
+  zh: "**作用：**"
+
+label_when_to_use:
+  en: "**When to use:**"
+  fa: "**زمان استفاده:**"
+  zh: "**何时使用：**"
+
+label_example:
+  en: "**Example:**"
+  fa: "**مثال:**"
+  zh: "**示例：**"
+
+label_finding_optimal:
+  en: "**Finding optimal value:**"
+  fa: "**یافتن مقدار بهینه:**"
+  zh: "**寻找最优值：**"
+
+label_related_options:
+  en: "**Related options:**"
+  fa: "**گزینه‌های مرتبط:**"
+  zh: "**相关选项：**"
+
+label_tuning_model:
+  en: "**Tuning model:**"
+  fa: "**مدل تنظیم:**"
+  zh: "**调优模型：**"
+
+label_signals:
+  en: "**Signals:**"
+  fa: "**سیگنال‌ها:**"
+  zh: "**观测信号：**"
+
+label_shared_tooling:
+  en: "**Shared tooling:**"
+  fa: "**ابزارهای مشترک:**"
+  zh: "**常用工具：**"
+
+label_bounds:
+  en: "**Bounds:**"
+  fa: "**محدوده:**"
+  zh: "**边界：**"
+
+label_bounds_line:
+  en: "**Bounds:** min `{min_val}`, max `{max_val}`."
+  fa: "**محدوده:** حداقل `{min_val}`، حداکثر `{max_val}`."
+  zh: "**边界：** 最小 `{min_val}`，最大 `{max_val}`。"
+
+label_startup:
+  en: " · **STARTUP** (restart required)"
+  fa: " · **STARTUP** (نیاز به راه‌اندازی مجدد)"
+  zh: " · **STARTUP**（需重启）"
+
+label_type:
+  en: "| Type |"
+  fa: "| نوع |"
+  zh: "| 类型 |"
+
+label_table:
+  en: "| Table |"
+  fa: "| جدول |"
+  zh: "| 表格 |"
+
+label_option:
+  en: "| Option |"
+  fa: "| گزینه |"
+  zh: "| 选项 |"
+
+label_default:
+  en: "| Default |"
+  fa: "| پیش‌فرض |"
+  zh: "| 默认值 |"
+
+label_level:
+  en: "| Level |"
+  fa: "| سطح |"
+  zh: "| 级别 |"
+
+label_tuning:
+  en: "| Tuning |"
+  fa: "| تنظیم |"
+  zh: "| 调优 |"
+
+label_model:
+  en: "| Model |"
+  fa: "| مدل |"
+  zh: "| 模型 |"
+
+label_quick_answer:
+  en: "| Quick answer |"
+  fa: "| پاسخ سریع |"
+  zh: "| 快速建议 |"
+
+label_topic:
+  en: "| Topic |"
+  fa: "| موضوع |"
+  zh: "| 主题 |"
+
+label_options_count:
+  en: "| Options |"
+  fa: "| گزینه‌ها |"
+  zh: "| 选项数 |"
+
+option_summary_header:
+  en: "| Option | Default | Level | Tuning |"
+  fa: "| گزینه | پیش‌فرض | سطح | تنظیم |"
+  zh: "| 选项 | 默认值 | 级别 | 调优 |"
+
+tuning_summary_header:
+  en: "| Option | Default | Model | Quick answer | Topic |"
+  fa: "| گزینه | پیش‌فرض | مدل | پاسخ سریع | موضوع |"
+  zh: "| 选项 | 默认值 | 模型 | 快速建议 | 主题 |"
+
+topic_summary_header:
+  en: "| Topic | Options |"
+  fa: "| موضوع | گزینه‌ها |"
+  zh: "| 主题 | 选项数 |"
+
+label_how_to_choose:
+  en: "| How to choose |"
+  fa: "| نحوه انتخاب |"
+  zh: "| 如何选择 |"
+
+finding_intro_title:
+  en: "## Finding optimal values"
+  fa: "## یافتن مقادیر بهینه"
+  zh: "## 寻找最优值"
+
+finding_intro_table:
+  en: "| Model | How to choose |"
+  fa: "| مدل | نحوه انتخاب |"
+  zh: "| 模型 | 如何选择 |"
+
+finding_policy_row:
+  en: "| **Policy** | Security, compatibility, operational defaults |"
+  fa: "| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |"
+  zh: "| **Policy** | 安全、兼容性、运维默认值 |"
+
+finding_capacity_row:
+  en: "| **Capacity** | Disk layout, paths, sizing |"
+  fa: "| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |"
+  zh: "| **Capacity** | 磁盘布局、路径、容量规划 |"
+
+finding_performance_row:
+  en: "| **Performance** | Baseline → incremental change → monitor cluster |"
+  fa: "| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |"
+  zh: "| **Performance** | 基线 → 逐步调整 → 监控集群 |"
+
+finding_connectivity_row:
+  en: "| **Connectivity** | Nearest stable external endpoint |"
+  fa: "| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |"
+  zh: "| **Connectivity** | 最近且稳定的外部端点 |"
+
+finding_dev_row:
+  en: "| **Dev** | Keep upstream default in production |"
+  fa: "| **Dev** | پیش‌فرض upstream در production |"
+  zh: "| **Dev** | 生产环境保持 upstream 默认值 |"
+
+finding_architecture_row:
+  en: "| **Architecture** | Backend, multisite topology — not numeric sweeps |"
+  fa: "| **Architecture** | backend، توپولوژی multisite — نه sweep عددی |"
+  zh: "| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |"
+
+model_policy:
+  en: "Policy"
+  fa: "Policy"
+  zh: "Policy"
+
+model_capacity:
+  en: "Capacity"
+  fa: "Capacity"
+  zh: "Capacity"
+
+model_performance:
+  en: "Performance"
+  fa: "Performance"
+  zh: "Performance"
+
+model_connectivity:
+  en: "Connectivity"
+  fa: "Connectivity"
+  zh: "Connectivity"
+
+model_dev:
+  en: "Dev"
+  fa: "Dev"
+  zh: "Dev"
+
+model_architecture:
+  en: "Architecture"
+  fa: "Architecture"
+  zh: "Architecture"
+
+signals_default:
+  en: "**Signals:** `ceph -s`, slow ops, daemon perf counters, recovery/scrub backlog."
+  fa: "**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub."
+  zh: "**观测信号：** `ceph -s`、slow ops、守护进程 perf 计数器、恢复/scrub 积压。"
+
+client_monitor_comment:
+  en: "# client options: set on client section or ceph.conf"
+  fa: "# گزینه‌های client: در بخش client یا ceph.conf تنظیم کنید"
+  zh: "# client 选项：在 client 段或 ceph.conf 中设置"
+
+back_overview:
+  en: "[← Overview](../OVERVIEW.md)"
+  fa: "[← نمای کلی](../OVERVIEW.md)"
+  zh: "[← 概览](../OVERVIEW.md)"
+
+back_guides_overview:
+  en: "[← Guides overview](../../guides/OVERVIEW.md)"
+  fa: "[← نمای کلی راهنما](../../guides/OVERVIEW.md)"
+  zh: "[← 指南概览](../../guides/OVERVIEW.md)"
+
+back_rgw_overview:
+  en: "[← RGW config overview](../OVERVIEW.md)"
+  fa: "[← نمای کلی پیکربندی RGW](../OVERVIEW.md)"
+  zh: "[← RGW 配置概览](../OVERVIEW.md)"
+
+tuning_index_link:
+  en: "[Tuning index](../TUNING.md)"
+  fa: "[فهرست تنظیم](../TUNING.md)"
+  zh: "[调优索引](../TUNING.md)"
+
+group_intro:
+  en: "{title} config deep dive — {count} options. {overview} · {tuning} · {index}"
+  fa: "deep dive پیکربندی {title} — {count} گزینه. {overview} · {tuning} · {index}"
+  zh: "{title} 配置深度指南 — {count} 个选项。{overview} · {tuning} · {index}"
+
+overview_title:
+  en: "# {title} Config Deep Dive — All Options"
+  fa: "# Deep Dive پیکربندی {title} — همه گزینه‌ها"
+  zh: "# {title} 配置深度指南 — 全部选项"
+
+overview_blurb:
+  en: "Extended reference for all **{count}** {title} options with **Finding optimal value** guidance (one section per option). Generated from [config/{subdir}/INDEX.md]({href})."
+  fa: "مرجع گسترده برای **{count}** گزینه {title} با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/{subdir}/INDEX.md]({href})."
+  zh: "全部 **{count}** 个 {title} 选项的扩展参考，含 **寻找最优值** 指南（每个选项一节）。由 [config/{subdir}/INDEX.md]({href}) 生成。"
+
+topics_by_category:
+  en: "## Topics by category"
+  fa: "## موضوعات بر اساس دسته"
+  zh: "## 按类别浏览"
+
+tuning_title:
+  en: "# {title} Config — Tuning Quick Reference"
+  fa: "# پیکربندی {title} — مرجع سریع تنظیم"
+  zh: "# {title} 配置 — 调优快速参考"
+
+tuning_blurb:
+  en: "All **{count}** options with tuning model and one-line guidance."
+  fa: "هر **{count}** گزینه با مدل تنظیم و راهنمای یک‌خطی."
+  zh: "全部 **{count}** 个选项的调优模型与一行建议。"
+
+tuning_quick_link:
+  en: "- [Tuning quick reference](TUNING.md)"
+  fa: "- [مرجع سریع تنظیم](TUNING.md)"
+  zh: "- [调优快速参考](TUNING.md)"
+
+when_use_dev:
+  en: "Development, testing, or upstream debugging only — not for production tuning."
+  fa: "فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production."
+  zh: "仅用于开发、测试或 upstream 调试 — 不可用于生产调优。"
+
+when_use_bool_true:
+  en: "Enabled by default; disable only when troubleshooting the related feature."
+  fa: "به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید."
+  zh: "默认启用；仅在排查相关功能问题时禁用。"
+
+when_use_bool_false:
+  en: "Disabled by default; enable when you need the feature and accept its trade-offs."
+  fa: "به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید."
+  zh: "默认禁用；需要该功能并接受其权衡时启用。"
+
+when_use_external_url:
+  en: "Set when integrating with an external service; leave empty if unused."
+  fa: "هنگام یکپارچه‌سازی با سرویس خارجی تنظیم کنید؛ اگر استفاده نمی‌شود خالی بگذارید."
+  zh: "与外部服务集成时设置；未使用时留空。"
+
+when_use_limits:
+  en: "Adjust when hitting resource limits or protecting cluster capacity."
+  fa: "وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید."
+  zh: "触及资源限制或保护集群容量时调整。"
+
+when_use_intervals:
+  en: "Tune background work timing — balance freshness vs cluster load."
+  fa: "زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر."
+  zh: "调整后台任务时序 — 在新鲜度与集群负载间平衡。"
+
+when_use_basic:
+  en: "Core {title} behavior — review before changing in production."
+  fa: "رفتار اصلی {title} — قبل از تغییر در production بررسی کنید."
+  zh: "核心 {title} 行为 — 生产环境变更前请审阅。"
+
+when_use_advanced:
+  en: "Advanced tuning — change from upstream default only with a measured workload and rollback plan."
+  fa: "تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید."
+  zh: "高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。"
+
+when_use_motr:
+  en: "Experimental Motr/POSIX RGW backends — use only in specialized PoC deployments."
+  fa: "backendهای آزمایشی Motr/POSIX RGW — فقط در استقرار PoC تخصصی."
+  zh: "实验性 Motr/POSIX RGW 后端 — 仅用于专用 PoC 部署。"
+
+when_use_rgw_external:
+  en: "Set when integrating with an external service; leave empty if the feature is unused."
+  fa: "هنگام یکپارچه‌سازی با سرویس خارجی تنظیم کنید؛ اگر قابلیت استفاده نمی‌شود خالی بگذارید."
+  zh: "与外部服务集成时设置；未使用该功能时留空。"
+
+when_use_quota:
+  en: "Set tenant or platform default limits for new users, accounts, or buckets."
+  fa: "محدودیت پیش‌فرض tenant یا پلتفرم برای کاربران، account یا bucket جدید."
+  zh: "为新用户、账户或 bucket 设置租户/平台默认限制。"
+
+when_use_max_limit:
+  en: "Adjust when clients hit request-size or concurrency limits, or to protect cluster resources."
+  fa: "وقتی کلاینت‌ها به محدودیت اندازه/concurrency می‌رسند یا برای محافظت از منابع کلاستر."
+  zh: "客户端触及请求大小/并发限制，或保护集群资源时调整。"
+
+when_use_cache:
+  en: "Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure."
+  fa: "وقتی cache متادیتا/quota/token روی lag صحت یا فشار حافظه RGW اثر می‌گذارد."
+  zh: "元数据/quota/令牌缓存影响正确性延迟或 RGW 内存压力时调整。"
+
+when_use_sync:
+  en: "Multisite replication and sync tuning — adjust when lag or sync load is problematic."
+  fa: "تنظیم replication و sync در multisite — وقتی lag یا بار sync مشکل‌ساز است."
+  zh: "多站点复制与同步调优 — 延迟或同步负载异常时调整。"
+
+when_use_rgw_basic:
+  en: "Core RGW behavior — review before changing in production."
+  fa: "رفتار اصلی RGW — قبل از تغییر در production بررسی کنید."
+  zh: "核心 RGW 行为 — 生产环境变更前请审阅。"
+
+tune_quick_dev:
+  en: "Keep upstream default in production"
+  fa: "پیش‌فرض upstream در production"
+  zh: "生产环境保持 upstream 默认值"
+
+tune_quick_capacity:
+  en: "Match filesystem layout and capacity plan"
+  fa: "مطابق چیدمان filesystem و برنامه ظرفیت"
+  zh: "匹配文件系统布局与容量规划"
+
+tune_quick_connectivity:
+  en: "Use nearest stable endpoint"
+  fa: "نزدیک‌ترین endpoint پایدار"
+  zh: "使用最近且稳定的端点"
+
+tune_quick_policy:
+  en: "Align with security and compatibility policy"
+  fa: "مطابق سیاست امنیت و سازگاری"
+  zh: "符合安全与兼容性策略"
+
+tune_quick_bool:
+  en: "Enable/disable based on measured need"
+  fa: "فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده"
+  zh: "按实测需求启用/禁用"
+
+tune_quick_bounds:
+  en: "Stay within documented bounds"
+  fa: "در محدوده مستند بمانید"
+  zh: "保持在文档边界内"
+
+tune_quick_default:
+  en: "Baseline → adjust → validate under load"
+  fa: "خط پایه → تنظیم → اعتبارسنجی تحت بار"
+  zh: "基线 → 调整 → 负载下验证"
+
+find_dev_1:
+  en: "1. Keep the upstream default (`{default}`) in production."
+  fa: "1. پیش‌فرض upstream (`{default}`) را در production نگه دارید."
+  zh: "1. 生产环境保持 upstream 默认值（`{default}`）。"
+
+find_dev_2:
+  en: "2. Change only in a lab while reproducing a specific issue."
+  fa: "2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید."
+  zh: "2. 仅在实验室复现特定问题时修改。"
+
+find_dev_3:
+  en: "3. Revert before returning the node to the production pool."
+  fa: "3. قبل از بازگرداندن نود به pool production برگردانید."
+  zh: "3. 节点回到生产池前请还原。"
+
+find_cap_1:
+  en: "1. Baseline at `{default}`."
+  fa: "1. خط پایه روی `{default}`."
+  zh: "1. 以 `{default}` 为基线。"
+
+find_cap_2:
+  en: "2. Plan capacity and filesystem layout before changing paths."
+  fa: "2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید."
+  zh: "2. 变更路径前规划容量与文件系统布局。"
+
+find_cap_3:
+  en: "3. Ensure all daemons that must share the path see the same mount."
+  fa: "3. مطمئن شوید همه دیمن‌هایی که باید مسیر را share کنند mount یکسان دارند."
+  zh: "3. 确保需共享路径的守护进程使用相同挂载。"
+
+find_conn_1:
+  en: "1. List candidate endpoints from your environment."
+  fa: "1. endpointهای کاندید را از محیط خود فهرست کنید."
+  zh: "1. 列出环境中的候选端点。"
+
+find_conn_2:
+  en: "2. Verify reachability from every node running the daemon."
+  fa: "2. دسترسی‌پذیری از هر نودی که دیمن روی آن اجرا می‌شود را بررسی کنید."
+  zh: "2. 从运行守护进程的每个节点验证可达性。"
+
+find_conn_3:
+  en: "3. Pick the lowest-latency stable endpoint."
+  fa: "3. endpoint پایدار با کمترین latency را انتخاب کنید."
+  zh: "3. 选择延迟最低且稳定的端点。"
+
+find_conn_4:
+  en: "4. Leave empty (`{default}`) if the integration is disabled."
+  fa: "4. اگر یکپارچه‌سازی غیرفعال است خالی (`{default}`) بگذارید."
+  zh: "4. 未启用集成时留空（`{default}`）。"
+
+find_policy_1:
+  en: "1. Document why `{default}` is correct for your policy."
+  fa: "1. مستند کنید چرا `{default}` برای سیاست شما درست است."
+  zh: "1. 记录 `{default}` 为何符合您的策略。"
+
+find_policy_2:
+  en: "2. Change only for compatibility or security requirements."
+  fa: "2. فقط برای الزامات سازگاری یا امنیت تغییر دهید."
+  zh: "2. 仅为兼容性或安全要求而变更。"
+
+find_policy_3:
+  en: "3. Test client and admin workflows after changes."
+  fa: "3. پس از تغییرات workflow کلاینت و admin را تست کنید."
+  zh: "3. 变更后测试客户端与管理流程。"
+
+find_perf_1:
+  en: "1. Baseline at upstream default `{default}`."
+  fa: "1. خط پایه روی پیش‌فرض upstream `{default}`."
+  zh: "1. 以 upstream 默认值 `{default}` 为基线。"
+
+find_perf_2:
+  en: "2. Change **one** option per test window under representative load."
+  fa: "2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید."
+  zh: "2. 在代表性负载下每个测试窗口只改 **一个** 选项。"
+
+find_perf_3:
+  en: "3. Compare latency, throughput, and background work before/after."
+  fa: "3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید."
+  zh: "3. 对比变更前后的延迟、吞吐与后台任务。"
+
+find_perf_4:
+  en: "4. Roll back if health degrades or slow ops increase."
+  fa: "4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید."
+  zh: "4. 健康度下降或 slow ops 增加时回滚。"
+
+config_overview_intro:
+  en: "All Ceph configuration options parsed from upstream YAML. Option descriptions remain in English (upstream source)."
+  fa: "همه گزینه‌های پیکربندی Ceph از YAML upstream. توضیحات گزینه‌ها به انگلیسی (منبع upstream) باقی می‌مانند."
+  zh: "从 upstream YAML 解析的全部 Ceph 配置选项。选项说明保持英文（upstream 来源）。"
+
+rgw_group_intro:
+  en: "RGW config deep dive — {count} options. {overview} · {tuning} · {index}"
+  fa: "deep dive پیکربندی RGW — {count} گزینه. {overview} · {tuning} · {index}"
+  zh: "RGW 配置深度指南 — {count} 个选项。{overview} · {tuning} · {index}"
+
+rgw_quota_note:
+  en: "Quota enforcement also requires `rgw_enable_quota_threads` on at least one RGW per zone. See [rgw_enable_quota_threads]({href})."
+  fa: "اعمال quota همچنین به `rgw_enable_quota_threads` روی حداقل یک RGW در هر zone نیاز دارد. [rgw_enable_quota_threads]({href}) را ببینید."
+  zh: "配额 enforcement 还需每个 zone 至少一个 RGW 启用 `rgw_enable_quota_threads`。见 [rgw_enable_quota_threads]({href})。"
+
+finding_policy_rgw_row:
+  en: "| **Policy** | Security, API compatibility, tenant limits |"
+  fa: "| **Policy** | امنیت، سازگاری API، محدودیت tenant |"
+  zh: "| **Policy** | 安全、API 兼容性、租户限制 |"
+
+finding_capacity_rgw_row:
+  en: "| **Capacity** | Disk layout, paths, pool sizing |"
+  fa: "| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |"
+  zh: "| **Capacity** | 磁盘布局、路径、池容量 |"
+
+finding_performance_rgw_row:
+  en: "| **Performance** | Baseline → incremental change → monitor OSD/RGW |"
+  fa: "| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |"
+  zh: "| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |"
+
+rgw_overview_title:
+  en: "# RGW Config Deep Dive — All Options"
+  fa: "# Deep Dive پیکربندی RGW — همه گزینه‌ها"
+  zh: "# RGW 配置深度指南 — 全部选项"
+
+rgw_overview_blurb:
+  en: "Extended reference for all **{count}** RGW options with **Finding optimal value** guidance. Generated from [config/rgw/INDEX.md]({href})."
+  fa: "مرجع گسترده برای **{count}** گزینه RGW با راهنمای **یافتن مقدار بهینه**. تولید شده از [config/rgw/INDEX.md]({href})."
+  zh: "全部 **{count}** 个 RGW 选项的扩展参考，含 **寻找最优值** 指南。由 [config/rgw/INDEX.md]({href}) 生成。"
+
+rgw_tuning_title:
+  en: "# RGW Config — Tuning Quick Reference"
+  fa: "# پیکربندی RGW — مرجع سریع تنظیم"
+  zh: "# RGW 配置 — 调优快速参考"
+
+rgw_tuning_blurb:
+  en: "All **{count}** RGW options with tuning model and one-line guidance. Each topic page has step-by-step **Finding optimal value** sections."
+  fa: "هر **{count}** گزینه RGW با مدل تنظیم و راهنمای یک‌خطی. هر صفحه موضوع بخش‌های گام‌به‌گام **یافتن مقدار بهینه** دارد."
+  zh: "全部 **{count}** 个 RGW 选项的调优模型与一行建议。每个主题页含分步 **寻找最优值** 章节。"
+
+rgw_overview_tuning_section:
+  en: "## Tuning"
+  fa: "## تنظیم"
+  zh: "## 调优"
+

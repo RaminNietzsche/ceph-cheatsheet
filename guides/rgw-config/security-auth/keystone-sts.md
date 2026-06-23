@@ -644,7 +644,7 @@ ceph config get client.rgw rgw_keystone_implicit_tenants
 
 **What it does:** Enable logging of Keystone scope information in ops log
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -700,7 +700,7 @@ ceph config get client.rgw rgw_keystone_scope_include_roles
 
 **What it does:** Include human-readable identity names in Keystone scope logs
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -756,7 +756,7 @@ ceph config get client.rgw rgw_keystone_service_token_accepted_roles
 
 **What it does:** Service tokens allowing the usage of expired Keystone auth tokens
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

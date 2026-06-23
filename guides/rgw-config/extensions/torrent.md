@@ -158,7 +158,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** When true, uploaded objects will calculate and store a SHA256 hash of object data so the object can be retrieved as a torrent file
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

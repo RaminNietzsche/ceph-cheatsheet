@@ -41,6 +41,12 @@ jobs:
       - name: Generate other subsystem config guides
         run: python3 scripts/generate-config-guide.py all
 
+      - name: Sync i18n config tables
+        run: python3 scripts/sync-i18n-config.py
+
+      - name: Sync i18n hand-written pages
+        run: python3 scripts/sync-i18n-pages.py
+
       - name: Build MkDocs site
         run: |
           python3 scripts/fix-html-hrefs.py

@@ -259,7 +259,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** Enable datacenter-scale dataset delivery local cache
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

@@ -2,7 +2,7 @@
 
 All **158** options with tuning model and one-line guidance.
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -165,4 +165,4 @@ All **158** options with tuning model and one-line guidance.
 | [`osd_uuid`](runtime/general.md#osd_uuid) | `(empty)` | Performance | Baseline → adjust → validate under load | [General runtime](runtime/general.md) |
 | [`set_keepcaps`](limits-intervals/limits.md#set_keepcaps) | `False` | Performance | Enable/disable based on measured need | [Limits & caps](limits-intervals/limits.md) |
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)

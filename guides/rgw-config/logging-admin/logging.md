@@ -78,7 +78,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** Should RGW log operations on bucket that does not exist
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -144,7 +144,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** Should ops log object name based on UTC
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

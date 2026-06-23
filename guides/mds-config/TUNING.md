@@ -2,7 +2,7 @@
 
 All **194** options with tuning model and one-line guidance.
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -201,4 +201,4 @@ All **194** options with tuning model and one-line guidance.
 | [`mds_wipe_sessions`](mds-core/mds-core.md#mds_wipe_sessions) | `False` | Dev | Keep upstream default in production | [Metadata server core](mds-core/mds-core.md) |
 | [`subv_metrics_window_interval`](ops/intervals.md#subv_metrics_window_interval) | `30` | Dev | Keep upstream default in production | [Intervals](ops/intervals.md) |
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)

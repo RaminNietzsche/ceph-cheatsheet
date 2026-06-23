@@ -12,11 +12,35 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from i18n import (  # noqa: E402
+    LOCALES,
+    apply_inline_labels,
+    cleanup_stale_markdown,
+    get_locale,
+    locale_path,
+    model_label,
+    render_all_locales,
+    set_locale,
+    t,
+    write_localized,
+)
+
 ROW_RE = re.compile(
     r'^\| <span id="SP_([^"]+)">([^<]+)</span> \|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|'
 )
 SEE_ALSO_RE = re.compile(r"\[\[([^\]]+)\]\(#SP_([^)]+)\)\]")
 INDEX_LINK_RE = re.compile(r"^ - \[([^\]]+)\]\(([^)]+)\)")
+
+
+def is_source_config_md(path: Path) -> bool:
+    """English config tables only — skip INDEX/README and i18n suffix files."""
+    name = path.name
+    if name in ("INDEX.md", "README.md"):
+        return False
+    if name.endswith(".fa.md") or name.endswith(".zh.md"):
+        return False
+    return name.endswith(".md")
 
 
 @dataclass
@@ -158,21 +182,21 @@ def infer_config_target(profile: SubsystemProfile, opt: Option) -> str:
 def when_to_use(opt: Option, profile: SubsystemProfile) -> str:
     name, level, typ = opt.name, opt.level, opt.typ
     if level == "Dev" or "inject" in name or "debug" in name:
-        return "Development, testing, or upstream debugging only — not for production tuning."
+        return t("when_use_dev")
     if typ == "Bool":
         default = opt.effective_default.lower()
         if default == "true":
-            return "Enabled by default; disable only when troubleshooting the related feature."
-        return "Disabled by default; enable when you need the feature and accept its trade-offs."
+            return t("when_use_bool_true")
+        return t("when_use_bool_false")
     if name.endswith(("_url", "_uri", "_addr")):
-        return "Set when integrating with an external service; leave empty if unused."
+        return t("when_use_external_url")
     if any(x in name for x in ("max_", "min_", "limit", "cap")):
-        return "Adjust when hitting resource limits or protecting cluster capacity."
+        return t("when_use_limits")
     if any(x in name for x in ("interval", "sleep", "timeout", "period")):
-        return "Tune background work timing — balance freshness vs cluster load."
+        return t("when_use_intervals")
     if level == "Basic":
-        return f"Core {profile.title} behavior — review before changing in production."
-    return "Advanced tuning — change from upstream default only with a measured workload and rollback plan."
+        return t("when_use_basic", title=profile.title)
+    return t("when_use_advanced")
 
 
 def tuning_model(opt: Option) -> str:
@@ -212,18 +236,18 @@ def tuning_model(opt: Option) -> str:
 def tuning_quick_answer(opt: Option) -> str:
     model = tuning_model(opt)
     if model == "Dev":
-        return "Keep upstream default in production"
+        return t("tune_quick_dev")
     if model == "Capacity":
-        return "Match filesystem layout and capacity plan"
+        return t("tune_quick_capacity")
     if model == "Connectivity":
-        return "Use nearest stable endpoint"
+        return t("tune_quick_connectivity")
     if model == "Policy":
-        return "Align with security and compatibility policy"
+        return t("tune_quick_policy")
     if opt.typ == "Bool":
-        return "Enable/disable based on measured need"
+        return t("tune_quick_bool")
     if opt.min_val or opt.max_val:
-        return "Stay within documented bounds"
-    return "Baseline → adjust → validate under load"
+        return t("tune_quick_bounds")
+    return t("tune_quick_default")
 
 
 def related_options(opt: Option) -> list[str]:
@@ -294,7 +318,7 @@ def monitor_block(profile: SubsystemProfile, opt: Option) -> str:
     target = infer_config_target(profile, opt)
     lines = [
         "",
-        "**Signals:** `ceph -s`, slow ops, daemon perf counters, recovery/scrub backlog.",
+        t("signals_default"),
         "",
         "```bash",
         f"ceph config get {target} {opt.name}",
@@ -311,7 +335,7 @@ def monitor_block(profile: SubsystemProfile, opt: Option) -> str:
         lines.append("ceph fs status")
         lines.append("ceph mds stat")
     elif target == "client":
-        lines.append("# client options: set on client section or ceph.conf")
+        lines.append(t("client_monitor_comment"))
     lines.append("```")
     return "\n".join(lines)
 
@@ -319,14 +343,14 @@ def monitor_block(profile: SubsystemProfile, opt: Option) -> str:
 def render_finding_optimal_value(profile: SubsystemProfile, opt: Option) -> str:
     model = tuning_model(opt)
     default = opt.effective_default
-    lines = [f"**Tuning model:** {model}", ""]
+    lines = [f"{t('label_tuning_model')} {model_label(model)}", ""]
 
     if model == "Dev":
         lines.extend(
             [
-                f"1. Keep the upstream default (`{default}`) in production.",
-                "2. Change only in a lab while reproducing a specific issue.",
-                "3. Revert before returning the node to the production pool.",
+                t("find_dev_1", default=default),
+                t("find_dev_2"),
+                t("find_dev_3"),
             ]
         )
         return "\n".join(lines)
@@ -334,9 +358,9 @@ def render_finding_optimal_value(profile: SubsystemProfile, opt: Option) -> str:
     if model == "Capacity":
         lines.extend(
             [
-                f"1. Baseline at `{default}`.",
-                "2. Plan capacity and filesystem layout before changing paths.",
-                "3. Ensure all daemons that must share the path see the same mount.",
+                t("find_cap_1", default=default),
+                t("find_cap_2"),
+                t("find_cap_3"),
             ]
         )
         return "\n".join(lines) + monitor_block(profile, opt)
@@ -344,10 +368,10 @@ def render_finding_optimal_value(profile: SubsystemProfile, opt: Option) -> str:
     if model == "Connectivity":
         lines.extend(
             [
-                "1. List candidate endpoints from your environment.",
-                "2. Verify reachability from every node running the daemon.",
-                "3. Pick the lowest-latency stable endpoint.",
-                f"4. Leave empty (`{default}`) if the integration is disabled.",
+                t("find_conn_1"),
+                t("find_conn_2"),
+                t("find_conn_3"),
+                t("find_conn_4", default=default),
             ]
         )
         return "\n".join(lines) + monitor_block(profile, opt)
@@ -355,24 +379,29 @@ def render_finding_optimal_value(profile: SubsystemProfile, opt: Option) -> str:
     if model == "Policy":
         lines.extend(
             [
-                f"1. Document why `{default}` is correct for your policy.",
-                "2. Change only for compatibility or security requirements.",
-                "3. Test client and admin workflows after changes.",
+                t("find_policy_1", default=default),
+                t("find_policy_2"),
+                t("find_policy_3"),
             ]
         )
         return "\n".join(lines) + monitor_block(profile, opt)
 
     lines.extend(
         [
-            f"1. Baseline at upstream default `{default}`.",
-            "2. Change **one** option per test window under representative load.",
-            "3. Compare latency, throughput, and background work before/after.",
-            "4. Roll back if health degrades or slow ops increase.",
+            t("find_perf_1", default=default),
+            t("find_perf_2"),
+            t("find_perf_3"),
+            t("find_perf_4"),
         ]
     )
     if opt.min_val or opt.max_val:
         lines.append(
-            f"\n**Bounds:** min `{opt.min_val or '—'}`, max `{opt.max_val or '—'}`."
+            "\n"
+            + t(
+                "label_bounds_line",
+                min_val=opt.min_val or "—",
+                max_val=opt.max_val or "—",
+            )
         )
     return "\n".join(lines) + monitor_block(profile, opt)
 
@@ -381,7 +410,7 @@ def format_see_also(profile: SubsystemProfile, opt: Option) -> str:
     refs = related_options(opt)
     if not refs:
         return ""
-    lines = ["**Related options:**", ""]
+    lines = [t("label_related_options"), ""]
     for ref in refs:
         lines.append(
             f"- [`{ref}`]({profile.config_href_from_topic}/{opt.source_file}#SP_{ref})"
@@ -393,7 +422,7 @@ def format_see_also(profile: SubsystemProfile, opt: Option) -> str:
 def render_option(profile: SubsystemProfile, opt: Option) -> str:
     enrich = profile.enrichments.get(opt.name, {})
     table_link = f"{profile.config_href_from_topic}/{opt.source_file}#SP_{opt.name}"
-    startup = " · **STARTUP** (restart required)" if opt.flags and "STARTUP" in opt.flags else ""
+    startup = t("label_startup") if opt.flags and "STARTUP" in opt.flags else ""
     type_bits = [opt.typ, f"default `{opt.effective_default}`", f"**{opt.level}**"]
     if opt.valid_values:
         type_bits.insert(1, f"enum: {opt.valid_values}")
@@ -402,27 +431,27 @@ def render_option(profile: SubsystemProfile, opt: Option) -> str:
         "",
         "| | |",
         "|---|---|",
-        f"| Type | {' · '.join(type_bits)}{startup} |",
-        f"| Table | [{opt.source_file}#SP_{opt.name}]({table_link}) |",
+        f"{t('label_type')} {' · '.join(type_bits)}{startup} |",
+        f"{t('label_table')} [{opt.source_file}#SP_{opt.name}]({table_link}) |",
         "",
     ]
     what = enrich.get("what") or opt.full_desc
     if what:
-        parts.extend([f"**What it does:** {what}", ""])
+        parts.extend([f"{t('label_what_it_does')} {what}", ""])
     if enrich.get("when_to_use"):
-        parts.extend([f"**When to use:** {enrich['when_to_use']}", ""])
+        parts.extend([f"{t('label_when_to_use')} {enrich['when_to_use']}", ""])
     else:
-        parts.extend([f"**When to use:** {when_to_use(opt, profile)}", ""])
+        parts.extend([f"{t('label_when_to_use')} {when_to_use(opt, profile)}", ""])
     see = format_see_also(profile, opt)
     if see:
         parts.append(see)
     parts.extend(
         [
-            "**Example:**",
+            t("label_example"),
             "",
             render_example(profile, opt),
             "",
-            "**Finding optimal value:**",
+            t("label_finding_optimal"),
             "",
             render_finding_optimal_value(profile, opt),
             "",
@@ -437,17 +466,17 @@ def render_option(profile: SubsystemProfile, opt: Option) -> str:
 def tuning_intro(profile: SubsystemProfile) -> str:
     return "\n".join(
         [
-            "## Finding optimal values",
+            t("finding_intro_title"),
             "",
-            "| Model | How to choose |",
+            t("finding_intro_table"),
             "|-------|---------------|",
-            "| **Policy** | Security, compatibility, operational defaults |",
-            "| **Capacity** | Disk layout, paths, sizing |",
-            "| **Performance** | Baseline → incremental change → monitor cluster |",
-            "| **Connectivity** | Nearest stable external endpoint |",
-            "| **Dev** | Keep upstream default in production |",
+            t("finding_policy_row"),
+            t("finding_capacity_row"),
+            t("finding_performance_row"),
+            t("finding_connectivity_row"),
+            t("finding_dev_row"),
             "",
-            "**Shared tooling:**",
+            t("label_shared_tooling"),
             "",
             "```bash",
             f"ceph config get <daemon> <option>  # e.g. {profile.id}",
@@ -485,23 +514,27 @@ def render_group(profile: SubsystemProfile, slug: str, options: list[Option]) ->
     lines = [
         f"# {title}",
         "",
-        f"{profile.title} config deep dive — {len(options)} options. "
-        f"[← Overview](../OVERVIEW.md) · "
-        f"[Tuning index](../TUNING.md) · "
-        f"[INDEX]({profile.config_href_from_topic}/INDEX.md)",
+        t(
+            "group_intro",
+            title=profile.title,
+            count=len(options),
+            overview=t("back_overview"),
+            tuning=t("tuning_index_link"),
+            index=f"[INDEX]({profile.config_href_from_topic}/INDEX.md)",
+        ),
         "",
-        "| Option | Default | Level | Tuning |",
+        t("option_summary_header"),
         "|--------|---------|-------|--------|",
     ]
     for opt in options:
         lines.append(
             f"| [{opt.name}](#{opt.name}) | `{opt.effective_default}` | {opt.level} | "
-            f"{tuning_model(opt)} |"
+            f"{model_label(tuning_model(opt))} |"
         )
     lines.extend(["", tuning_intro(profile)])
     for opt in options:
         lines.append(render_option(profile, opt))
-    lines.extend(["", "[← Overview](../OVERVIEW.md)", ""])
+    lines.extend(["", t("back_overview"), ""])
     return "\n".join(lines)
 
 
@@ -528,21 +561,24 @@ def section_title_for_slug(profile: SubsystemProfile, slug: str) -> str:
 
 def render_overview(profile: SubsystemProfile, groups: dict[str, list[Option]], total: int) -> str:
     lines = [
-        f"# {profile.title} Config Deep Dive — All Options",
+        t("overview_title", title=profile.title),
         "",
-        f"Extended reference for all **{total}** {profile.title} options with "
-        "**Finding optimal value** guidance (one section per option). "
-        f"Generated from [config/{profile.config_subdir}/INDEX.md]"
-        f"({profile.config_href_from_root}/INDEX.md).",
+        t(
+            "overview_blurb",
+            count=total,
+            title=profile.title,
+            subdir=profile.config_subdir,
+            href=f"{profile.config_href_from_root}/INDEX.md",
+        ),
         "",
         "```bash",
         "./scripts/lookup-config.sh <option-name>",
         f"python3 scripts/generate-config-guide.py {profile.id}",
         "```",
         "",
-        "- [Tuning quick reference](TUNING.md)",
+        t("tuning_quick_link"),
         "",
-        "## Topics by category",
+        t("topics_by_category"),
         "",
     ]
     current_section = ""
@@ -550,21 +586,21 @@ def render_overview(profile: SubsystemProfile, groups: dict[str, list[Option]], 
         section = section_title_for_slug(profile, slug)
         if section != current_section:
             current_section = section
-            lines.extend(["", f"### {section}", "", "| Topic | Options |", "|-------|---------|"])
+            lines.extend(["", f"### {section}", "", t("topic_summary_header"), "|-------|---------|"])
         lines.append(f"| [{group_title(profile, slug)}]({topic_href(profile, slug)}) | {len(groups[slug])} |")
-    lines.extend(["", "[← Guides overview](../../guides/OVERVIEW.md)", ""])
+    lines.extend(["", t("back_guides_overview"), ""])
     return "\n".join(lines)
 
 
 def render_tuning_index(profile: SubsystemProfile, all_options: list[Option]) -> str:
     lines = [
-        f"# {profile.title} Config — Tuning Quick Reference",
+        t("tuning_title", title=profile.title),
         "",
-        f"All **{len(all_options)}** options with tuning model and one-line guidance.",
+        t("tuning_blurb", count=len(all_options)),
         "",
-        "[← Overview](OVERVIEW.md)",
+        t("back_overview"),
         "",
-        "| Option | Default | Model | Quick answer | Topic |",
+        t("tuning_summary_header"),
         "|--------|---------|-------|--------------|-------|",
     ]
     for opt in all_options:
@@ -572,10 +608,10 @@ def render_tuning_index(profile: SubsystemProfile, all_options: list[Option]) ->
         title = group_title(profile, slug)
         lines.append(
             f"| [`{opt.name}`]({topic_href(profile, slug)}#{opt.name}) | "
-            f"`{opt.effective_default}` | {tuning_model(opt)} | "
+            f"`{opt.effective_default}` | {model_label(tuning_model(opt))} | "
             f"{tuning_quick_answer(opt)} | [{title}]({topic_href(profile, slug)}) |"
         )
-    lines.extend(["", "[← Overview](OVERVIEW.md)", ""])
+    lines.extend(["", t("back_overview"), ""])
     return "\n".join(lines)
 
 
@@ -637,7 +673,7 @@ def patch_mkdocs_nav(profile: SubsystemProfile, groups: dict[str, list[Option]],
 def generate_subsystem(profile: SubsystemProfile, *, patch_nav: bool = True) -> int:
     by_name: dict[str, Option] = {}
     for md in sorted(profile.config_dir.glob("*.md")):
-        if md.name in ("INDEX.md", "README.md"):
+        if not is_source_config_md(md):
             continue
         for opt in parse_table(md):
             by_name[opt.name] = opt
@@ -655,28 +691,20 @@ def generate_subsystem(profile: SubsystemProfile, *, patch_nav: bool = True) -> 
         groups[profile.group_for(opt.name)].append(opt)
 
     profile.guides_dir.mkdir(parents=True, exist_ok=True)
-    (profile.guides_dir / "OVERVIEW.md").write_text(
-        render_overview(profile, groups, len(all_options)), encoding="utf-8"
-    )
-    (profile.guides_dir / "TUNING.md").write_text(
-        render_tuning_index(profile, all_options), encoding="utf-8"
-    )
-    for slug, options in sorted(groups.items()):
-        path = topic_path(profile, slug)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(render_group(profile, slug, options), encoding="utf-8")
 
-    keep = {topic_path(profile, slug) for slug in groups} | {
-        profile.guides_dir / "OVERVIEW.md",
-        profile.guides_dir / "TUNING.md",
-    }
-    for path in profile.guides_dir.rglob("*.md"):
-        if path not in keep:
-            path.unlink()
-            print(f"Removed stale {path.relative_to(ROOT)}")
-    for path in sorted(profile.guides_dir.iterdir(), reverse=True):
-        if path.is_dir() and not any(path.iterdir()):
-            path.rmdir()
+    overview_base = profile.guides_dir / "OVERVIEW.md"
+    tuning_base = profile.guides_dir / "TUNING.md"
+    write_localized(overview_base, render_all_locales(render_overview, profile, groups, len(all_options)))
+    write_localized(tuning_base, render_all_locales(render_tuning_index, profile, all_options))
+
+    topic_bases: set[Path] = {overview_base, tuning_base}
+    for slug, options in sorted(groups.items()):
+        base = topic_path(profile, slug)
+        base.parent.mkdir(parents=True, exist_ok=True)
+        write_localized(base, render_all_locales(render_group, profile, slug, options))
+        topic_bases.add(base)
+
+    cleanup_stale_markdown(profile.guides_dir, topic_bases)
 
     if patch_nav and profile.nav_marker:
         patch_mkdocs_nav(profile, groups, ROOT / "mkdocs.yml")

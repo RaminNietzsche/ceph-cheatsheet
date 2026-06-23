@@ -536,6 +536,7 @@ def generate_global(patch_nav: bool = True) -> int:
     from config_guide_lib import (
         Option,
         generate_subsystem,
+        is_source_config_md,
         parse_index_order,
         parse_table,
         slug_title,
@@ -544,7 +545,7 @@ def generate_global(patch_nav: bool = True) -> int:
     profile = GLOBAL_PROFILE
     by_name: dict[str, Option] = {}
     for md in sorted(profile.config_dir.glob("*.md")):
-        if md.name in ("INDEX.md", "README.md"):
+        if not is_source_config_md(md):
             continue
         for opt in parse_table(md):
             by_name[opt.name] = opt
@@ -593,28 +594,21 @@ def generate_global(patch_nav: bool = True) -> int:
         topic_path,
         patch_mkdocs_nav,
     )
+    from i18n import cleanup_stale_markdown, render_all_locales, write_localized
 
-    (profile.guides_dir / "OVERVIEW.md").write_text(
-        render_overview(profile, groups, len(all_options)), encoding="utf-8"
-    )
-    (profile.guides_dir / "TUNING.md").write_text(
-        render_tuning_index(profile, all_options), encoding="utf-8"
-    )
+    overview_base = profile.guides_dir / "OVERVIEW.md"
+    tuning_base = profile.guides_dir / "TUNING.md"
+    write_localized(overview_base, render_all_locales(render_overview, profile, groups, len(all_options)))
+    write_localized(tuning_base, render_all_locales(render_tuning_index, profile, all_options))
+
+    keep_bases: set[Path] = {overview_base, tuning_base}
     for slug, options in sorted(groups.items()):
-        path = topic_path(profile, slug)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(render_group(profile, slug, options), encoding="utf-8")
+        base = topic_path(profile, slug)
+        base.parent.mkdir(parents=True, exist_ok=True)
+        write_localized(base, render_all_locales(render_group, profile, slug, options))
+        keep_bases.add(base)
 
-    keep = {topic_path(profile, slug) for slug in groups} | {
-        profile.guides_dir / "OVERVIEW.md",
-        profile.guides_dir / "TUNING.md",
-    }
-    for path in profile.guides_dir.rglob("*.md"):
-        if path not in keep:
-            path.unlink()
-    for path in sorted(profile.guides_dir.iterdir(), reverse=True):
-        if path.is_dir() and not any(path.iterdir()):
-            path.rmdir()
+    cleanup_stale_markdown(profile.guides_dir, keep_bases)
 
     if patch_nav:
         patch_mkdocs_nav(profile, groups, ROOT / "mkdocs.yml")
@@ -626,13 +620,14 @@ def generate_global(patch_nav: bool = True) -> int:
 
 def generate_rbd(patch_nav: bool = True) -> int:
     profile = RBD_PROFILE
-    from config_guide_lib import parse_table
+    from config_guide_lib import is_source_config_md, parse_table
 
     stems: set[str] = set()
     for md in profile.config_dir.glob("*.md"):
-        if md.name not in ("INDEX.md", "README.md"):
-            for opt in parse_table(md):
-                stems.add(_rbd_group(opt.name))
+        if not is_source_config_md(md):
+            continue
+        for opt in parse_table(md):
+            stems.add(_rbd_group(opt.name))
 
     titles = {s: profile.group_titles.get(s, slug_title(s)) for s in stems}
     profile.group_titles = titles

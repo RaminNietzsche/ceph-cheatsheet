@@ -2,7 +2,7 @@
 
 All **97** options with tuning model and one-line guidance.
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -104,4 +104,4 @@ All **97** options with tuning model and one-line guidance.
 | [`rbd_validate_names`](misc/validate.md#rbd_validate_names) | `True` | Performance | Enable/disable based on measured need | [Validate](misc/validate.md) |
 | [`rbd_validate_pool`](misc/validate.md#rbd_validate_pool) | `True` | Dev | Keep upstream default in production | [Validate](misc/validate.md) |
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)

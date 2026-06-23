@@ -46,7 +46,46 @@ extra_css:
   - stylesheets/extra.css
 
 plugins:
-  - search
+  - search:
+      lang:
+        - en
+        - zh
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: fa
+          name: فارسی
+          build: true
+          direction: rtl
+          nav_translations:
+            Home: خانه
+            Guides: راهنما
+            CLI: خط فرمان
+            Config: پیکربندی
+            Overview: نمای کلی
+            "Quick start": شروع سریع
+            "Config lookup": جستجوی پیکربندی
+            Contributing: مشارکت
+            "Config deep dives": deep dive پیکربندی
+        - locale: zh
+          name: 中文
+          build: true
+          nav_translations:
+            Home: 首页
+            Guides: 指南
+            CLI: 命令行
+            Config: 配置
+            Overview: 概览
+            "Quick start": 快速入门
+            "Config lookup": 配置查找
+            Contributing: 贡献
+            "Config deep dives": 配置深度指南
   - redirects:
       redirect_maps:
         # rgw-redirects:start

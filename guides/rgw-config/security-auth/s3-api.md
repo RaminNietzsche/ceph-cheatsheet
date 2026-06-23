@@ -44,7 +44,7 @@ ceph pg stat
 
 **What it does:** Should authentication with presigned URLs be disabled
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -120,7 +120,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** Specify whether S3 authentication uses Keystone
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -148,7 +148,7 @@ ceph config get client.rgw rgw_s3_auth_use_keystone
 
 **What it does:** Should S3 authentication use LDAP.
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -204,7 +204,7 @@ ceph config get client.rgw rgw_s3_auth_use_rados
 
 **What it does:** Should S3 authentication use STS.
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

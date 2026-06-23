@@ -37,13 +37,13 @@ REFERENCE.md            Hub — sync to docs/index.md
 ```bash
 python3 scripts/generate-config.py --ref main
 python3 scripts/generate-rgw-guide.py
+python3 scripts/generate-config-guide.py all   # OSD, MON, MGR, MDS, global, …
+python3 scripts/sync-i18n-config.py            # fa/zh config tables
+python3 scripts/sync-i18n-pages.py             # fa/zh hand-written pages
+python3 scripts/sync-docs-index.py
 ```
 
-```bash
-python3 scripts/generate-config.py --ref main
-python3 scripts/generate-rgw-guide.py
-python3 scripts/generate-config-guide.py all   # OSD, MON, MGR, MDS, global, …
-```
+All generators write **English** (`.md`) plus **Persian** (`.fa.md`) and **Chinese** (`.zh.md`) variants. Template strings live in `scripts/locales/strings.yaml`; hand-page translations in `scripts/locales/pages/`.
 
 The RGW guide generator reads `config/rgw/*.md`, writes topic files under
 `guides/rgw-config/<category>/`, and patches `mkdocs.yml` between `# rgw-nav:start` /

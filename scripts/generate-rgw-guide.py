@@ -10,6 +10,16 @@ from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from i18n import (  # noqa: E402
+    LOCALES,
+    apply_inline_labels,
+    cleanup_stale_markdown,
+    model_label,
+    set_locale,
+    t,
+    write_localized,
+)
 CONFIG_RGW = ROOT / "config" / "rgw"
 GUIDES = ROOT / "guides" / "rgw-config"
 
@@ -752,27 +762,27 @@ def group_for(name: str) -> str:
 def when_to_use(opt: Option) -> str:
     name, level, typ = opt.name, opt.level, opt.typ
     if level == "Dev" or "inject" in name or "debug" in name:
-        return "Development, testing, or upstream debugging only — not for production tuning."
+        return t("when_use_dev")
     if name.startswith("motr_") or name.startswith("rgw_posix"):
-        return "Experimental Motr/POSIX RGW backends — use only in specialized PoC deployments."
+        return t("when_use_motr")
     if typ == "Bool" and opt.effective_default.lower() in ("true", "false"):
         default = opt.effective_default.lower()
         if default == "true":
-            return "Enabled by default; disable only when troubleshooting the related feature."
-        return "Disabled by default; enable when you need the related feature and accept its trade-offs."
+            return t("when_use_bool_true")
+        return t("when_use_bool_false")
     if "_url" in name or "_uri" in name or name.endswith("_addr"):
-        return "Set when integrating with an external service; leave empty if the feature is unused."
+        return t("when_use_rgw_external")
     if "quota" in name and "max" in name:
-        return "Set tenant or platform default limits for new users, accounts, or buckets."
+        return t("when_use_quota")
     if "max_" in name or "limit" in name:
-        return "Adjust when clients hit request-size or concurrency limits, or to protect cluster resources."
+        return t("when_use_max_limit")
     if "cache" in name or "ttl" in name:
-        return "Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure."
+        return t("when_use_cache")
     if "sync" in name or "multisite" in opt.full_desc.lower():
-        return "Multisite replication and sync tuning — adjust when lag or sync load is problematic."
+        return t("when_use_sync")
     if level == "Basic":
-        return "Core RGW behavior — review before changing in production."
-    return "Advanced tuning — change from upstream default only with a measured workload and rollback plan."
+        return t("when_use_rgw_basic")
+    return t("when_use_advanced")
 
 
 def related_options(opt: Option) -> list[str]:
@@ -1461,7 +1471,7 @@ def format_related_extra(opt: Option, extra: str) -> str:
 
 def render_option(opt: Option) -> str:
     enrich = ENRICHMENTS.get(opt.name, {})
-    startup = " · **STARTUP** (restart required)" if opt.flags and "STARTUP" in opt.flags else ""
+    startup = t("label_startup") if opt.flags and "STARTUP" in opt.flags else ""
     table_link = f"{CONFIG_RGW_FROM_TOPIC}/{opt.source_file}#SP_{opt.name}"
     type_bits = [opt.typ, f"default `{opt.effective_default}`", f"**{opt.level}**"]
     if opt.valid_values:
@@ -1471,53 +1481,53 @@ def render_option(opt: Option) -> str:
         "",
         "| | |",
         "|---|---|",
-        f"| Type | {' · '.join(type_bits)}{startup} |",
-        f"| Table | [{opt.source_file}#SP_{opt.name}]({table_link}) |",
+        f"{t('label_type')} {' · '.join(type_bits)}{startup} |",
+        f"{t('label_table')} [{opt.source_file}#SP_{opt.name}]({table_link}) |",
         "",
     ]
     what = enrich.get("what") or opt.full_desc
     if what:
-        parts.extend([f"**What it does:** {what}", ""])
+        parts.extend([f"{t('label_what_it_does')} {what}", ""])
     if enrich.get("extra_body"):
         parts.extend([enrich["extra_body"], ""])
     if enrich.get("important"):
         parts.extend([enrich["important"], ""])
     bullets = when_to_use_bullets(opt)
     if enrich.get("when_to_use"):
-        parts.extend([f"**When to use:** {enrich['when_to_use']}", ""])
+        parts.extend([f"{t('label_when_to_use')} {enrich['when_to_use']}", ""])
     elif bullets:
-        parts.extend(["**When to use:**", "", bullets, ""])
+        parts.extend([t("label_when_to_use"), "", bullets, ""])
     else:
-        parts.extend([f"**When to use:** {when_to_use(opt)}", ""])
+        parts.extend([f"{t('label_when_to_use')} {when_to_use(opt)}", ""])
     if enrich.get("related_extra"):
         parts.append(format_related_extra(opt, enrich["related_extra"]))
     else:
         see = format_see_also(opt)
         if see:
             parts.append(see)
-    parts.extend(["**Example:**", "", render_example(opt), ""])
+    parts.extend([t("label_example"), "", render_example(opt), ""])
     finding = render_finding_optimal_value(opt)
     if enrich.get("finding_note"):
         finding = f"{finding}\n\n{enrich['finding_note']}"
-    parts.extend(["**Finding optimal value:**", "", finding, "", "---", ""])
+    parts.extend([t("label_finding_optimal"), "", finding, "", "---", ""])
     return "\n".join(parts)
 
 
 def tuning_intro() -> str:
     return "\n".join(
         [
-            "## Finding optimal values",
+            t("finding_intro_title"),
             "",
-            "| Model | How to choose |",
+            t("finding_intro_table"),
             "|-------|---------------|",
-            "| **Policy** | Security, API compatibility, tenant limits |",
-            "| **Capacity** | Disk layout, paths, pool sizing |",
-            "| **Performance** | Baseline → incremental change → monitor OSD/RGW |",
-            "| **Connectivity** | Nearest stable external endpoint |",
-            "| **Architecture** | Backend, multisite topology — not numeric sweeps |",
-            "| **Dev** | Keep upstream default in production |",
+            t("finding_policy_rgw_row"),
+            t("finding_capacity_rgw_row"),
+            t("finding_performance_rgw_row"),
+            t("finding_connectivity_row"),
+            t("finding_architecture_row"),
+            t("finding_dev_row"),
             "",
-            "**Shared tooling:**",
+            t("label_shared_tooling"),
             "",
             "```bash",
             "ceph config get client.rgw <option>",
@@ -1537,50 +1547,52 @@ def render_group(slug: str, options: list[Option]) -> str:
     lines = [
         f"# {title}",
         "",
-        f"RGW config deep dive — {len(options)} options. "
-        f"[← RGW config overview](../OVERVIEW.md) · "
-        f"[Tuning index](../TUNING.md) · "
-        f"[INDEX]({CONFIG_RGW_FROM_TOPIC}/INDEX.md)",
+        t(
+            "rgw_group_intro",
+            count=len(options),
+            overview=t("back_rgw_overview"),
+            tuning=t("tuning_index_link"),
+            index=f"[INDEX]({CONFIG_RGW_FROM_TOPIC}/INDEX.md)",
+        ),
         "",
     ]
     if slug == "quotas":
         lines.extend(
             [
-                "Quota enforcement also requires `rgw_enable_quota_threads` on at least one "
-                "RGW per zone. See "
-                "[rgw_enable_quota_threads]"
-                f"({CONFIG_RGW_FROM_TOPIC}/rgw.md#SP_rgw_enable_quota_threads).",
+                t(
+                    "rgw_quota_note",
+                    href=f"{CONFIG_RGW_FROM_TOPIC}/rgw.md#SP_rgw_enable_quota_threads",
+                ),
                 "",
             ]
         )
     lines.extend(
         [
-        "| Option | Default | Level | Tuning |",
-        "|--------|---------|-------|--------|",
+            t("option_summary_header"),
+            "|--------|---------|-------|--------|",
         ]
     )
     for opt in options:
         lines.append(
             f"| [{opt.name}](#{opt.name}) | `{opt.effective_default}` | {opt.level} | "
-            f"{tuning_model(opt)} |"
+            f"{model_label(tuning_model(opt))} |"
         )
     lines.extend(["", tuning_intro()])
     for opt in options:
         lines.append(render_option(opt))
-    lines.extend(["", "[← RGW config overview](../OVERVIEW.md)", ""])
+    lines.extend(["", t("back_rgw_overview"), ""])
     return "\n".join(lines)
 
 
 def render_tuning_index(all_options: list[Option]) -> str:
     lines = [
-        "# RGW Config — Tuning Quick Reference",
+        t("rgw_tuning_title"),
         "",
-        f"All **{len(all_options)}** RGW options with tuning model and one-line guidance. "
-        "Each topic page has step-by-step **Finding optimal value** sections.",
+        t("rgw_tuning_blurb", count=len(all_options)),
         "",
-        "[← RGW config overview](OVERVIEW.md) · [Tuning quick reference](TUNING.md)",
+        f"{t('back_rgw_overview')} · {t('tuning_quick_link')}",
         "",
-        "| Option | Default | Model | Quick answer | Topic |",
+        t("tuning_summary_header"),
         "|--------|---------|-------|--------------|-------|",
     ]
     for opt in all_options:
@@ -1588,9 +1600,9 @@ def render_tuning_index(all_options: list[Option]) -> str:
         title = GROUP_TITLES.get(slug, slug)
         lines.append(
             f"| [`{opt.name}`]({topic_href(slug)}#{opt.name}) | `{opt.effective_default}` | "
-            f"{tuning_model(opt)} | {tuning_quick_answer(opt)} | [{title}]({topic_href(slug)}) |"
+            f"{model_label(tuning_model(opt))} | {tuning_quick_answer(opt)} | [{title}]({topic_href(slug)}) |"
         )
-    lines.extend(["", "[← RGW config overview](OVERVIEW.md)", ""])
+    lines.extend(["", t("back_rgw_overview"), ""])
     return "\n".join(lines)
 
 
@@ -1631,34 +1643,31 @@ def nav_slugs_in_order(groups: dict[str, list[Option]]) -> list[str]:
 
 def render_overview(groups: dict[str, list[Option]], total: int) -> str:
     lines = [
-        "# RGW Config Deep Dive — All Options",
+        t("rgw_overview_title"),
         "",
-        f"Extended reference for all **{total}** RADOS Gateway options with "
-        "**Finding optimal value** tuning guidance (one section per option). "
-        "Generated from "
-        f"[config/rgw/INDEX.md]({CONFIG_RGW_FROM_ROOT}/INDEX.md).",
+        t("rgw_overview_blurb", count=total, href=f"{CONFIG_RGW_FROM_ROOT}/INDEX.md"),
         "",
         "```bash",
         "./scripts/lookup-config.sh <option-name>",
         "python3 scripts/generate-rgw-guide.py  # regenerate after config sync",
         "```",
         "",
-        "## Tuning",
+        t("rgw_overview_tuning_section"),
         "",
-        "- [Tuning quick reference](TUNING.md) — all options, model, one-line answer",
+        t("tuning_quick_link") + " — all options, model, one-line answer",
         "",
-        "## Tuning models",
+        t("finding_intro_title"),
         "",
-        "| Model | How to choose |",
+        t("finding_intro_table"),
         "|-------|---------------|",
-        "| **Policy** | Security, API compatibility, tenant limits |",
-        "| **Capacity** | Disk layout, paths, pool sizing |",
-        "| **Performance** | Baseline → incremental change → monitor OSD/RGW |",
-        "| **Connectivity** | Nearest stable external endpoint |",
-        "| **Architecture** | Backend, multisite topology |",
-        "| **Dev** | Upstream default only in production |",
+        t("finding_policy_rgw_row"),
+        t("finding_capacity_rgw_row"),
+        t("finding_performance_rgw_row"),
+        t("finding_connectivity_row"),
+        t("finding_architecture_row"),
+        t("finding_dev_row"),
         "",
-        "## Topics by category",
+        t("topics_by_category"),
         "",
     ]
     current_section = ""
@@ -1666,17 +1675,20 @@ def render_overview(groups: dict[str, list[Option]], total: int) -> str:
         section = section_for_slug(slug)
         if section != current_section:
             current_section = section
-            lines.extend(["", f"### {section}", "", "| Topic | Options |", "|-------|---------|"])
+            lines.extend(["", f"### {section}", "", t("topic_summary_header"), "|-------|---------|"])
         title = GROUP_TITLES.get(slug, slug)
         lines.append(f"| [{title}]({topic_href(slug)}) | {len(groups[slug])} |")
-    lines.extend(
-        [
-            "",
-            "[← Guides overview](../OVERVIEW.md)",
-            "",
-        ]
-    )
+    lines.extend(["", t("back_guides_overview"), ""])
     return "\n".join(lines)
+
+
+def render_all_locales_rgw(fn, *args, **kwargs) -> dict[str, str]:
+    out: dict[str, str] = {}
+    for locale in LOCALES:
+        set_locale(locale)
+        out[locale] = apply_inline_labels(fn(*args, **kwargs), locale)
+    set_locale("en")
+    return out
 
 
 def build_mkdocs_nav_yaml(groups: dict[str, list[Option]]) -> str:
@@ -1768,7 +1780,7 @@ def patch_mkdocs_nav(groups: dict[str, list[Option]]) -> None:
 def main() -> int:
     by_name: dict[str, Option] = {}
     for md in sorted(CONFIG_RGW.glob("*.md")):
-        if md.name in ("INDEX.md", "README.md"):
+        if md.name in ("INDEX.md", "README.md") or md.name.endswith((".fa.md", ".zh.md")):
             continue
         for opt in parse_table(md):
             by_name[opt.name] = opt
@@ -1786,29 +1798,20 @@ def main() -> int:
         groups[group_for(opt.name)].append(opt)
 
     GUIDES.mkdir(parents=True, exist_ok=True)
-    (GUIDES / "OVERVIEW.md").write_text(
-        render_overview(groups, len(all_options)), encoding="utf-8"
-    )
-    (GUIDES / "TUNING.md").write_text(
-        render_tuning_index(all_options), encoding="utf-8"
-    )
-    for slug, options in sorted(groups.items()):
-        path = topic_path(slug)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(render_group(slug, options), encoding="utf-8")
 
-    keep = {topic_path(slug) for slug in groups} | {
-        GUIDES / "OVERVIEW.md",
-        GUIDES / "TUNING.md",
-    }
-    for path in GUIDES.rglob("*.md"):
-        if path not in keep:
-            path.unlink()
-            print(f"Removed stale {path.relative_to(ROOT)}")
-    for path in sorted(GUIDES.iterdir(), reverse=True):
-        if path.is_dir() and not any(path.iterdir()):
-            path.rmdir()
-            print(f"Removed empty {path.relative_to(ROOT)}")
+    overview_base = GUIDES / "OVERVIEW.md"
+    tuning_base = GUIDES / "TUNING.md"
+    write_localized(overview_base, render_all_locales_rgw(render_overview, groups, len(all_options)))
+    write_localized(tuning_base, render_all_locales_rgw(render_tuning_index, all_options))
+
+    keep_bases: set[Path] = {overview_base, tuning_base}
+    for slug, options in sorted(groups.items()):
+        base = topic_path(slug)
+        base.parent.mkdir(parents=True, exist_ok=True)
+        write_localized(base, render_all_locales_rgw(render_group, slug, options))
+        keep_bases.add(base)
+
+    cleanup_stale_markdown(GUIDES, keep_bases)
 
     patch_mkdocs_nav(groups)
 

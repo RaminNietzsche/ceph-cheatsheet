@@ -112,7 +112,7 @@ iostat -x 5  # disk saturation
 
 **What it does:** Use RADOS for ops log
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

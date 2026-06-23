@@ -47,7 +47,7 @@ ceph pg stat
 
 **What it does:** Swift account encoded in URL
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -189,7 +189,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** Send content length when listing containers (Swift)
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -397,7 +397,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** Enable Swift versioning
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

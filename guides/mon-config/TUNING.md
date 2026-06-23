@@ -2,7 +2,7 @@
 
 All **156** options with tuning model and one-line guidance.
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -163,4 +163,4 @@ All **156** options with tuning model and one-line guidance.
 | [`paxos_trim_max`](quorum/quorum-paxos.md#paxos_trim_max) | `500` | Performance | Baseline → adjust → validate under load | [Quorum & Paxos](quorum/quorum-paxos.md) |
 | [`paxos_trim_min`](quorum/quorum-paxos.md#paxos_trim_min) | `250` | Performance | Baseline → adjust → validate under load | [Quorum & Paxos](quorum/quorum-paxos.md) |
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)

@@ -2,7 +2,7 @@
 
 All **70** options with tuning model and one-line guidance.
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -77,4 +77,4 @@ All **70** options with tuning model and one-line guidance.
 | [`fuse_use_invalidate_cb`](clients/fuse.md#fuse_use_invalidate_cb) | `True` | Performance | Enable/disable based on measured need | [FUSE client](clients/fuse.md) |
 | [`osd_client_watch_timeout`](clients/client.md#osd_client_watch_timeout) | `30` | Dev | Keep upstream default in production | [CephFS client](clients/client.md) |
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)

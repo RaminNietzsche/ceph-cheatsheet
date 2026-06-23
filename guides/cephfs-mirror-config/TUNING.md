@@ -2,7 +2,7 @@
 
 All **15** options with tuning model and one-line guidance.
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -22,4 +22,4 @@ All **15** options with tuning model and one-line guidance.
 | [`cephfs_mirror_retry_failed_directories_interval`](topics/mirror.md#cephfs_mirror_retry_failed_directories_interval) | `60` | Performance | Stay within documented bounds | [CephFS mirror](topics/mirror.md) |
 | [`cephfs_mirror_tick_interval`](topics/mirror.md#cephfs_mirror_tick_interval) | `5` | Performance | Stay within documented bounds | [CephFS mirror](topics/mirror.md) |
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)

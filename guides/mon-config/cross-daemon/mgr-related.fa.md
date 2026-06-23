@@ -1,0 +1,227 @@
+# MGR-related settings
+
+deep dive پیکربندی MON — 6 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/mon/INDEX.md)
+
+| گزینه | پیش‌فرض | سطح | تنظیم |
+|--------|---------|-------|--------|
+| [mon_mgr_beacon_grace](#mon_mgr_beacon_grace) | `30` | Advanced | Performance |
+| [mon_mgr_blocklist_interval](#mon_mgr_blocklist_interval) | `1_day` | Dev | Dev |
+| [mon_mgr_digest_period](#mon_mgr_digest_period) | `5` | Dev | Dev |
+| [mon_mgr_inactive_grace](#mon_mgr_inactive_grace) | `1_min` | Advanced | Performance |
+| [mon_mgr_mkfs_grace](#mon_mgr_mkfs_grace) | `2_min` | Advanced | Performance |
+| [mon_mgr_proxy_client_bytes_ratio](#mon_mgr_proxy_client_bytes_ratio) | `0.3` | Dev | Dev |
+
+## یافتن مقادیر بهینه
+
+| مدل | نحوه انتخاب |
+|-------|---------------|
+| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
+| **Dev** | پیش‌فرض upstream در production |
+
+**ابزارهای مشترک:**
+
+```bash
+ceph config get <daemon> <option>  # e.g. mon
+ceph -s
+./scripts/lookup-config.sh <option-name>
+```
+
+---
+
+### mon_mgr_beacon_grace
+
+| | |
+|---|---|
+| نوع | Secs · default `30` · **Advanced** |
+| جدول | [mon.md#SP_mon_mgr_beacon_grace](../../../config/mon/mon.md#SP_mon_mgr_beacon_grace) |
+
+**کارکرد:** Period in seconds from last beacon to monitor marking a manager daemon as failed
+
+**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+
+**مثال:**
+
+```bash
+ceph config set mon mon_mgr_beacon_grace 30
+ceph config get mon mon_mgr_beacon_grace
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Performance
+
+1. خط پایه روی پیش‌فرض upstream `30`.
+2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
+3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
+4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+
+```bash
+ceph config get mon mon_mgr_beacon_grace
+ceph -s
+ceph mon stat
+```
+
+---
+
+### mon_mgr_blocklist_interval
+
+| | |
+|---|---|
+| نوع | Float · default `1_day` · **Dev** |
+| جدول | [mon.md#SP_mon_mgr_blocklist_interval](../../../config/mon/mon.md#SP_mon_mgr_blocklist_interval) |
+
+**کارکرد:** Duration in seconds that blocklist entries for mgr daemons remain in the OSD map
+
+**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+
+**مثال:**
+
+```bash
+ceph config set mon mon_mgr_blocklist_interval 1_day
+ceph config get mon mon_mgr_blocklist_interval
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Dev
+
+1. پیش‌فرض upstream (`1_day`) را در production نگه دارید.
+2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
+3. قبل از بازگرداندن نود به pool production برگردانید.
+
+---
+
+### mon_mgr_digest_period
+
+| | |
+|---|---|
+| نوع | Int · default `5` · **Dev** |
+| جدول | [mon.md#SP_mon_mgr_digest_period](../../../config/mon/mon.md#SP_mon_mgr_digest_period) |
+
+**کارکرد:** Period in seconds between monitor-to-manager health/status updates
+
+**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+
+**مثال:**
+
+```bash
+ceph config set mon mon_mgr_digest_period 5
+ceph config get mon mon_mgr_digest_period
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Dev
+
+1. پیش‌فرض upstream (`5`) را در production نگه دارید.
+2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
+3. قبل از بازگرداندن نود به pool production برگردانید.
+
+---
+
+### mon_mgr_inactive_grace
+
+| | |
+|---|---|
+| نوع | Int · default `1_min` · **Advanced** |
+| جدول | [mon.md#SP_mon_mgr_inactive_grace](../../../config/mon/mon.md#SP_mon_mgr_inactive_grace) |
+
+**کارکرد:** Period in seconds after cluster creation during which cluster may have no active manager
+
+**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+
+**مثال:**
+
+```bash
+ceph config set mon mon_mgr_inactive_grace 1_min
+ceph config get mon mon_mgr_inactive_grace
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Performance
+
+1. خط پایه روی پیش‌فرض upstream `1_min`.
+2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
+3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
+4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+
+```bash
+ceph config get mon mon_mgr_inactive_grace
+ceph -s
+ceph mon stat
+```
+
+---
+
+### mon_mgr_mkfs_grace
+
+| | |
+|---|---|
+| نوع | Int · default `2_min` · **Advanced** |
+| جدول | [mon.md#SP_mon_mgr_mkfs_grace](../../../config/mon/mon.md#SP_mon_mgr_mkfs_grace) |
+
+**کارکرد:** Period in seconds that the cluster may have no active manager before this is reported as an ERR rather than a WARN
+
+**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+
+**مثال:**
+
+```bash
+ceph config set mon mon_mgr_mkfs_grace 2_min
+ceph config get mon mon_mgr_mkfs_grace
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Performance
+
+1. خط پایه روی پیش‌فرض upstream `2_min`.
+2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
+3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
+4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+
+```bash
+ceph config get mon mon_mgr_mkfs_grace
+ceph -s
+ceph mon stat
+```
+
+---
+
+### mon_mgr_proxy_client_bytes_ratio
+
+| | |
+|---|---|
+| نوع | Float · default `0.3` · **Dev** |
+| جدول | [mon.md#SP_mon_mgr_proxy_client_bytes_ratio](../../../config/mon/mon.md#SP_mon_mgr_proxy_client_bytes_ratio) |
+
+**کارکرد:** ratio of mon_client_bytes that can be consumed by proxied mgr commands before we error out to client
+
+**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+
+**مثال:**
+
+```bash
+ceph config set mon mon_mgr_proxy_client_bytes_ratio 0.3
+ceph config get mon mon_mgr_proxy_client_bytes_ratio
+```
+
+**یافتن مقدار بهینه:**
+
+**مدل تنظیم:** Dev
+
+1. پیش‌فرض upstream (`0.3`) را در production نگه دارید.
+2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
+3. قبل از بازگرداندن نود به pool production برگردانید.
+
+---
+
+
+[← نمای کلی](../OVERVIEW.md)

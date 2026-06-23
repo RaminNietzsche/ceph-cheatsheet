@@ -2,7 +2,7 @@
 
 All **852** options with tuning model and one-line guidance.
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -859,4 +859,4 @@ All **852** options with tuning model and one-line guidance.
 | [`uadk_compressor_enabled`](storage/uadk.md#uadk_compressor_enabled) | `False` | Policy | Align with security and compatibility policy | [Uadk](storage/uadk.md) |
 | [`uadk_wd_sync_ctx_num`](storage/uadk.md#uadk_wd_sync_ctx_num) | `2` | Performance | Stay within documented bounds | [Uadk](storage/uadk.md) |
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)

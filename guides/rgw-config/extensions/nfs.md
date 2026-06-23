@@ -302,7 +302,7 @@ ceph -s  # cluster health, slow ops
 
 **What it does:** run GC threads in librgw (default off)
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -330,7 +330,7 @@ ceph config get client.rgw rgw_nfs_run_gc_threads
 
 **What it does:** run lifecycle threads in librgw (default off)
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -386,7 +386,7 @@ ceph config get client.rgw rgw_nfs_run_quota_threads
 
 **What it does:** run objects' restore threads in librgw (default off)
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -414,7 +414,7 @@ ceph config get client.rgw rgw_nfs_run_restore_threads
 
 **What it does:** run sync thread in librgw (default off)
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 
@@ -442,7 +442,7 @@ ceph config get client.rgw rgw_nfs_run_sync_thread
 
 **What it does:** use fast S3 attrs from bucket index (immutable only)
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
 **Example:**
 

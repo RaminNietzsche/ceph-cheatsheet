@@ -31,6 +31,16 @@
   border-bottom-color: var(--section-accent);
 }
 
+[dir="rtl"] .md-typeset {
+  text-align: right;
+}
+
+[dir="rtl"] .md-typeset pre,
+[dir="rtl"] .md-typeset code {
+  direction: ltr;
+  text-align: left;
+}
+
 .md-typeset h2 {
   color: var(--ceph-teal);
   font-weight: 600;

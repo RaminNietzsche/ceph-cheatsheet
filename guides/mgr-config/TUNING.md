@@ -2,7 +2,7 @@
 
 All **52** options with tuning model and one-line guidance.
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|
@@ -59,4 +59,4 @@ All **52** options with tuning model and one-line guidance.
 | [`mon_warn_on_pool_no_app_grace`](cluster/pg-pool.md#mon_warn_on_pool_no_app_grace) | `5_min` | Dev | Keep upstream default in production | [PG & pool settings](cluster/pg-pool.md) |
 | [`mon_warn_on_too_few_osds`](cluster/general.md#mon_warn_on_too_few_osds) | `True` | Performance | Enable/disable based on measured need | [General manager](cluster/general.md) |
 
-[← Overview](OVERVIEW.md)
+[← Overview](../OVERVIEW.md)
