@@ -1,6 +1,6 @@
 # Metadata server core
 
-deep dive پیکربندی MDS — 138 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/mds/INDEX.md)
+راهنمای عمیق پیکربندی MDS — 138 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/mds/INDEX.md)
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
@@ -150,8 +150,8 @@ deep dive پیکربندی MDS — 138 گزینه. [← نمای کلی](../OVER
 | **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
 | **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
 | **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
-| **Dev** | پیش‌فرض upstream در production |
+| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -185,9 +185,9 @@ ceph config get mds mds_abort_on_newly_corrupt_dentry
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_abort_on_newly_corrupt_dentry
@@ -207,7 +207,7 @@ ceph mds stat
 
 **کارکرد:** action to take when MDS cannot write to RADOS (0:ignore, 1:read-only, 2:suicide)
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -222,9 +222,9 @@ ceph config get mds mds_action_on_write_error
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_action_on_write_error
@@ -257,8 +257,8 @@ ceph config get mds mds_allow_async_dirops
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_allow_async_dirops
@@ -293,8 +293,8 @@ ceph config get mds mds_allow_batched_ops
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_allow_batched_ops
@@ -314,7 +314,7 @@ ceph mds stat
 
 **کارکرد:** Set the maximum length of alternate names for dentries
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -329,9 +329,9 @@ ceph config get mds mds_alternate_name_max
 
 1. خط پایه روی پیش‌فرض upstream `8_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_alternate_name_max
@@ -351,7 +351,7 @@ ceph mds stat
 
 **کارکرد:** Size of thread pool for ASIO completions
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -366,11 +366,11 @@ ceph config get mds mds_asio_thread_count
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
 
 **محدوده:** حداقل `1`، حداکثر `—`.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_asio_thread_count
@@ -405,9 +405,9 @@ ceph config get mds mds_bal_export_pin
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_export_pin
@@ -442,9 +442,9 @@ ceph config get mds mds_bal_fragment_dirs
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_fragment_dirs
@@ -464,7 +464,7 @@ ceph mds stat
 
 **کارکرد:** ratio of mds_bal_split_size at which fast fragment splitting occurs
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -479,9 +479,9 @@ ceph config get mds mds_bal_fragment_fast_factor
 
 1. خط پایه روی پیش‌فرض upstream `1.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_fragment_fast_factor
@@ -501,7 +501,7 @@ ceph mds stat
 
 **کارکرد:** maximum size of a directory fragment before new creat/links fail
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -516,9 +516,9 @@ ceph config get mds mds_bal_fragment_size_max
 
 1. خط پایه روی پیش‌فرض upstream `100000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_fragment_size_max
@@ -538,7 +538,7 @@ ceph mds stat
 
 **کارکرد:** idle metadata popularity threshold before rebalancing
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -553,9 +553,9 @@ ceph config get mds mds_bal_idle_threshold
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_idle_threshold
@@ -573,7 +573,7 @@ ceph mds stat
 | نوع | Int · default `-1` · **Dev** |
 | جدول | [mds.md#SP_mds_bal_max](../../../config/mds/mds.md#SP_mds_bal_max) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -586,9 +586,9 @@ ceph config get mds mds_bal_max
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`-1`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`-1`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -599,7 +599,7 @@ ceph config get mds mds_bal_max
 | نوع | Int · default `-1` · **Dev** |
 | جدول | [mds.md#SP_mds_bal_max_until](../../../config/mds/mds.md#SP_mds_bal_max_until) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -612,9 +612,9 @@ ceph config get mds mds_bal_max_until
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`-1`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`-1`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -627,7 +627,7 @@ ceph config get mds mds_bal_max_until
 
 **کارکرد:** size of fragments where merging should occur
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -642,9 +642,9 @@ ceph config get mds mds_bal_merge_size
 
 1. خط پایه روی پیش‌فرض upstream `50`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_merge_size
@@ -662,7 +662,7 @@ ceph mds stat
 | نوع | Float · default `0.3` · **Dev** |
 | جدول | [mds.md#SP_mds_bal_midchunk](../../../config/mds/mds.md#SP_mds_bal_midchunk) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -675,9 +675,9 @@ ceph config get mds mds_bal_midchunk
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0.3`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0.3`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -690,7 +690,7 @@ ceph config get mds mds_bal_midchunk
 
 **کارکرد:** amount overloaded over internal target before balancer begins offloading
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -703,9 +703,9 @@ ceph config get mds mds_bal_min_rebalance
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0.1`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0.1`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -716,7 +716,7 @@ ceph config get mds mds_bal_min_rebalance
 | نوع | Float · default `0.2` · **Dev** |
 | جدول | [mds.md#SP_mds_bal_min_start](../../../config/mds/mds.md#SP_mds_bal_min_start) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -729,9 +729,9 @@ ceph config get mds mds_bal_min_start
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0.2`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0.2`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -742,7 +742,7 @@ ceph config get mds mds_bal_min_start
 | نوع | Float · default `0.001` · **Dev** |
 | جدول | [mds.md#SP_mds_bal_minchunk](../../../config/mds/mds.md#SP_mds_bal_minchunk) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -755,9 +755,9 @@ ceph config get mds mds_bal_minchunk
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0.001`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0.001`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -783,9 +783,9 @@ ceph fs status
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -796,7 +796,7 @@ ceph fs status
 | نوع | Float · default `1.2` · **Dev** |
 | جدول | [mds.md#SP_mds_bal_need_max](../../../config/mds/mds.md#SP_mds_bal_need_max) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -809,9 +809,9 @@ ceph config get mds mds_bal_need_max
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`1.2`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`1.2`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -822,7 +822,7 @@ ceph config get mds mds_bal_need_max
 | نوع | Float · default `0.8` · **Dev** |
 | جدول | [mds.md#SP_mds_bal_need_min](../../../config/mds/mds.md#SP_mds_bal_need_min) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -835,9 +835,9 @@ ceph config get mds mds_bal_need_min
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0.8`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0.8`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -848,7 +848,7 @@ ceph config get mds mds_bal_need_min
 | نوع | Int · default `2` · **Dev** |
 | جدول | [mds.md#SP_mds_bal_overload_epochs](../../../config/mds/mds.md#SP_mds_bal_overload_epochs) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -861,9 +861,9 @@ ceph config get mds mds_bal_overload_epochs
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`2`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`2`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -876,7 +876,7 @@ ceph config get mds mds_bal_overload_epochs
 
 **کارکرد:** hot popularity threshold to replicate a subtree
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -891,9 +891,9 @@ ceph config get mds mds_bal_replicate_threshold
 
 1. خط پایه روی پیش‌فرض upstream `8000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_replicate_threshold
@@ -913,7 +913,7 @@ ceph mds stat
 
 **کارکرد:** power of two child fragments for a fragment on split
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -928,11 +928,11 @@ ceph config get mds mds_bal_split_bits
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
 
 **محدوده:** حداقل `1`، حداکثر `24`.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_split_bits
@@ -952,7 +952,7 @@ ceph mds stat
 
 **کارکرد:** hot read popularity threshold for splitting a directory fragment
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -967,9 +967,9 @@ ceph config get mds mds_bal_split_rd
 
 1. خط پایه روی پیش‌فرض upstream `25000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_split_rd
@@ -989,7 +989,7 @@ ceph mds stat
 
 **کارکرد:** minimum size of directory fragment before splitting
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1004,9 +1004,9 @@ ceph config get mds mds_bal_split_size
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_split_size
@@ -1026,7 +1026,7 @@ ceph mds stat
 
 **کارکرد:** hot write popularity threshold for splitting a directory fragment
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1041,9 +1041,9 @@ ceph config get mds mds_bal_split_wr
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_split_wr
@@ -1063,7 +1063,7 @@ ceph mds stat
 
 **کارکرد:** rate of decay for export targets communicated to clients
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1078,9 +1078,9 @@ ceph config get mds mds_bal_target_decay
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_target_decay
@@ -1100,7 +1100,7 @@ ceph mds stat
 
 **کارکرد:** cold popularity threshold to merge subtrees
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1115,9 +1115,9 @@ ceph config get mds mds_bal_unreplicate_threshold
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_bal_unreplicate_threshold
@@ -1152,9 +1152,9 @@ ceph config get mds mds_beacon_grace
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_beacon_grace
@@ -1189,9 +1189,9 @@ ceph config get mds mds_cache_memory_limit
 
 1. خط پایه روی پیش‌فرض upstream `4_G`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_cache_memory_limit
@@ -1213,7 +1213,7 @@ Watch `ceph fs status`, slow requests, and `mds_cache_trim_*` counters. Size MDS
 
 **کارکرد:** Midpoint for MDS cache LRU
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1228,9 +1228,9 @@ ceph config get mds mds_cache_mid
 
 1. خط پایه روی پیش‌فرض upstream `0.7`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_cache_mid
@@ -1250,7 +1250,7 @@ ceph mds stat
 
 **کارکرد:** Decay rate for quiescing inodes throttle
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1265,9 +1265,9 @@ ceph config get mds mds_cache_quiesce_decay_rate
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_cache_quiesce_decay_rate
@@ -1287,7 +1287,7 @@ ceph mds stat
 
 **کارکرد:** Delay before starting recursive quiesce inode operations
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1300,9 +1300,9 @@ ceph config get mds mds_cache_quiesce_delay
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1330,9 +1330,9 @@ ceph config get mds mds_cache_quiesce_sleep
 
 1. خط پایه روی پیش‌فرض upstream `200`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_cache_quiesce_sleep
@@ -1352,7 +1352,7 @@ ceph mds stat
 
 **کارکرد:** Threshold for number of inodes that can be quiesced
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1367,9 +1367,9 @@ ceph config get mds mds_cache_quiesce_threshold
 
 1. خط پایه روی پیش‌فرض upstream `512_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_cache_quiesce_threshold
@@ -1389,7 +1389,7 @@ ceph mds stat
 
 **کارکرد:** Amount of memory to reserve for future cached objects
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1404,9 +1404,9 @@ ceph config get mds mds_cache_reservation
 
 1. خط پایه روی پیش‌فرض upstream `0.05`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_cache_reservation
@@ -1426,7 +1426,7 @@ ceph mds stat
 
 **کارکرد:** Decay rate for trimming MDS cache throttle
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1441,9 +1441,9 @@ ceph config get mds mds_cache_trim_decay_rate
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_cache_trim_decay_rate
@@ -1463,7 +1463,7 @@ ceph mds stat
 
 **کارکرد:** Threshold for number of dentries that can be trimmed
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1478,9 +1478,9 @@ ceph config get mds mds_cache_trim_threshold
 
 1. خط پایه روی پیش‌فرض upstream `256_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_cache_trim_threshold
@@ -1500,7 +1500,7 @@ ceph mds stat
 
 **کارکرد:** percentage of preallocated inos to delegate to client
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1515,9 +1515,9 @@ ceph config get mds mds_client_delegate_inos_pct
 
 1. خط پایه روی پیش‌فرض upstream `50`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_client_delegate_inos_pct
@@ -1537,7 +1537,7 @@ ceph mds stat
 
 **کارکرد:** number of unused inodes to pre-allocate to clients for file creation
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1552,9 +1552,9 @@ ceph config get mds mds_client_prealloc_inos
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_client_prealloc_inos
@@ -1589,9 +1589,9 @@ ceph config get mds mds_client_writeable_range_max_inc_objs
 
 1. خط پایه روی پیش‌فرض upstream `1_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_client_writeable_range_max_inc_objs
@@ -1609,7 +1609,7 @@ ceph mds stat
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [mds.md#SP_mds_connect_bootstrapping](../../../config/mds/mds.md#SP_mds_connect_bootstrapping) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1622,9 +1622,9 @@ ceph config get mds mds_connect_bootstrapping
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1652,9 +1652,9 @@ ceph config get mds mds_damage_table_max_entries
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_damage_table_max_entries
@@ -1674,7 +1674,7 @@ ceph mds stat
 
 **کارکرد:** Path to MDS data and keyring
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1689,9 +1689,9 @@ ceph config get mds mds_data
 
 1. خط پایه روی پیش‌فرض upstream `/var/lib/ceph/mds/$cluster-$id`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_data
@@ -1711,7 +1711,7 @@ ceph mds stat
 
 **کارکرد:** Rate of decay for temperature counters on each directory for balancing
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1726,9 +1726,9 @@ ceph config get mds mds_decay_halflife
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_decay_halflife
@@ -1748,7 +1748,7 @@ ceph mds stat
 
 **کارکرد:** hash function to select directory fragment for dentry name
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1763,9 +1763,9 @@ ceph config get mds mds_default_dir_hash
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_default_dir_hash
@@ -1783,7 +1783,7 @@ ceph mds stat
 | نوع | Bool · default `True` · **Dev** |
 | جدول | [mds.md#SP_mds_defer_session_stale](../../../config/mds/mds.md#SP_mds_defer_session_stale) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1796,9 +1796,9 @@ ceph config get mds mds_defer_session_stale
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`True`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1811,7 +1811,7 @@ ceph config get mds mds_defer_session_stale
 
 **کارکرد:** Delay the journal replay to verify the replay time estimate
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1824,9 +1824,9 @@ ceph config get mds mds_delay_journal_replay_for_testing
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1839,7 +1839,7 @@ ceph config get mds mds_delay_journal_replay_for_testing
 
 **کارکرد:** flag to deny all client reconnects during failover
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -1854,9 +1854,9 @@ ceph config get mds mds_deny_all_reconnect
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_deny_all_reconnect
@@ -1876,7 +1876,7 @@ ceph mds stat
 
 **کارکرد:** Number of directory entries to read in one RADOS operation
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1891,9 +1891,9 @@ ceph config get mds mds_dir_keys_per_op
 
 1. خط پایه روی پیش‌فرض upstream `16384`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_dir_keys_per_op
@@ -1928,9 +1928,9 @@ ceph config get mds mds_dir_max_commit_size
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_dir_max_commit_size
@@ -1965,9 +1965,9 @@ ceph config get mds mds_dir_max_entries
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_dir_max_entries
@@ -2002,9 +2002,9 @@ ceph config get mds mds_dir_prefetch
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_dir_prefetch
@@ -2022,7 +2022,7 @@ ceph mds stat
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [mds.md#SP_mds_dump_cache_after_rejoin](../../../config/mds/mds.md#SP_mds_dump_cache_after_rejoin) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2035,9 +2035,9 @@ ceph config get mds mds_dump_cache_after_rejoin
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2048,7 +2048,7 @@ ceph config get mds mds_dump_cache_after_rejoin
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [mds.md#SP_mds_dump_cache_on_map](../../../config/mds/mds.md#SP_mds_dump_cache_on_map) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2061,9 +2061,9 @@ ceph config get mds mds_dump_cache_on_map
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2076,7 +2076,7 @@ ceph config get mds mds_dump_cache_on_map
 
 **کارکرد:** threshold for cache usage to disallow "dump cache" operation to file
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2089,9 +2089,9 @@ ceph config get mds mds_dump_cache_threshold_file
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2104,7 +2104,7 @@ ceph config get mds mds_dump_cache_threshold_file
 
 **کارکرد:** threshold for cache usage to disallow "dump cache" operation to formatter
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2117,9 +2117,9 @@ ceph config get mds mds_dump_cache_threshold_formatter
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`1_G`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`1_G`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2147,9 +2147,9 @@ ceph config get mds mds_early_reply
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_early_reply
@@ -2184,8 +2184,8 @@ ceph config get mds mds_enable_op_tracker
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_enable_op_tracker
@@ -2220,8 +2220,8 @@ ceph config get mds mds_enforce_unique_name
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_enforce_unique_name
@@ -2256,9 +2256,9 @@ ceph config get mds mds_export_ephemeral_distributed
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_export_ephemeral_distributed
@@ -2278,7 +2278,7 @@ ceph mds stat
 
 **کارکرد:** multiple of max_mds for splitting and distributing directory
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2293,11 +2293,11 @@ ceph config get mds mds_export_ephemeral_distributed_factor
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
 
 **محدوده:** حداقل `1`، حداکثر `100`.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_export_ephemeral_distributed_factor
@@ -2332,9 +2332,9 @@ ceph config get mds mds_export_ephemeral_random
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_export_ephemeral_random
@@ -2354,7 +2354,7 @@ ceph mds stat
 
 **کارکرد:** the maximum percent permitted for random ephemeral pin policy
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2369,11 +2369,11 @@ ceph config get mds mds_export_ephemeral_random_max
 
 1. خط پایه روی پیش‌فرض upstream `0.01`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
 
 **محدوده:** حداقل `0`، حداکثر `1`.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_export_ephemeral_random_max
@@ -2408,11 +2408,11 @@ ceph config get mds mds_file_blockdiff_max_concurrent_object_scans
 
 1. خط پایه روی پیش‌فرض upstream `16`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
 
 **محدوده:** حداقل `1`، حداکثر `—`.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_file_blockdiff_max_concurrent_object_scans
@@ -2447,9 +2447,9 @@ ceph config get mds mds_fscrypt_last_block_max_size
 
 1. خط پایه روی پیش‌فرض upstream `4_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_fscrypt_last_block_max_size
@@ -2482,9 +2482,9 @@ ceph config get mds mds_go_bad_corrupt_dentry
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_go_bad_corrupt_dentry
@@ -2504,7 +2504,7 @@ ceph mds stat
 
 **کارکرد:** INTENTIONALLY CAUSE DATA LOSS by bypasing checks for invalid metadata on disk. Allows testing repair tools.
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -2519,8 +2519,8 @@ ceph config get mds mds_hack_allow_loading_invalid_metadata
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_hack_allow_loading_invalid_metadata
@@ -2540,7 +2540,7 @@ ceph mds stat
 
 **کارکرد:** Threshold for cache size to generate health warning
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2555,9 +2555,9 @@ ceph config get mds mds_health_cache_threshold
 
 1. خط پایه روی پیش‌فرض upstream `1.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_health_cache_threshold
@@ -2577,7 +2577,7 @@ ceph mds stat
 
 **کارکرد:** Threshold number of clients to summarize late client recall
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2592,9 +2592,9 @@ ceph config get mds mds_health_summarize_threshold
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_health_summarize_threshold
@@ -2614,7 +2614,7 @@ ceph mds stat
 
 **کارکرد:** Tolerance in seconds for MDS internal heartbeats
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2629,9 +2629,9 @@ ceph config get mds mds_heartbeat_grace
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_heartbeat_grace
@@ -2651,7 +2651,7 @@ ceph mds stat
 
 **کارکرد:** Tolerance in seconds for long-running MDS operations which do not periodically reset the heartbeat timeout.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2666,9 +2666,9 @@ ceph config get mds mds_heartbeat_reset_grace
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_heartbeat_reset_grace
@@ -2688,7 +2688,7 @@ ceph mds stat
 
 **کارکرد:** File system MDS prefers to join
 
-**زمان استفاده:** رفتار اصلی MDS — قبل از تغییر در production بررسی کنید.
+**زمان استفاده:** رفتار اصلی MDS — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
 **مثال:**
 
@@ -2703,8 +2703,8 @@ ceph config get mds mds_join_fs
 
 1. مستند کنید چرا `(empty)` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_join_fs
@@ -2722,7 +2722,7 @@ ceph mds stat
 | نوع | Uint · default `1` · **Dev** |
 | جدول | [mds.md#SP_mds_journal_format](../../../config/mds/mds.md#SP_mds_journal_format) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2735,9 +2735,9 @@ ceph config get mds mds_journal_format
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`1`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2748,7 +2748,7 @@ ceph config get mds mds_journal_format
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_kill_create_at](../../../config/mds/mds.md#SP_mds_kill_create_at) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2761,9 +2761,9 @@ ceph config get mds mds_kill_create_at
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2774,7 +2774,7 @@ ceph config get mds mds_kill_create_at
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_kill_dirfrag_at](../../../config/mds/mds.md#SP_mds_kill_dirfrag_at) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2787,9 +2787,9 @@ ceph config get mds mds_kill_dirfrag_at
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2800,7 +2800,7 @@ ceph config get mds mds_kill_dirfrag_at
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_kill_export_at](../../../config/mds/mds.md#SP_mds_kill_export_at) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2813,9 +2813,9 @@ ceph config get mds mds_kill_export_at
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2826,7 +2826,7 @@ ceph config get mds mds_kill_export_at
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_kill_import_at](../../../config/mds/mds.md#SP_mds_kill_import_at) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2839,9 +2839,9 @@ ceph config get mds mds_kill_import_at
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2852,7 +2852,7 @@ ceph config get mds mds_kill_import_at
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_kill_journal_at](../../../config/mds/mds.md#SP_mds_kill_journal_at) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2865,9 +2865,9 @@ ceph config get mds mds_kill_journal_at
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2878,7 +2878,7 @@ ceph config get mds mds_kill_journal_at
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_kill_journal_expire_at](../../../config/mds/mds.md#SP_mds_kill_journal_expire_at) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2891,9 +2891,9 @@ ceph config get mds mds_kill_journal_expire_at
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2904,7 +2904,7 @@ ceph config get mds mds_kill_journal_expire_at
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_kill_journal_replay_at](../../../config/mds/mds.md#SP_mds_kill_journal_replay_at) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2917,9 +2917,9 @@ ceph config get mds mds_kill_journal_replay_at
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2930,7 +2930,7 @@ ceph config get mds mds_kill_journal_replay_at
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_kill_link_at](../../../config/mds/mds.md#SP_mds_kill_link_at) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2943,9 +2943,9 @@ ceph config get mds mds_kill_link_at
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2956,7 +2956,7 @@ ceph config get mds mds_kill_link_at
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_kill_mdstable_at](../../../config/mds/mds.md#SP_mds_kill_mdstable_at) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2969,9 +2969,9 @@ ceph config get mds mds_kill_mdstable_at
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2982,7 +2982,7 @@ ceph config get mds mds_kill_mdstable_at
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_kill_openc_at](../../../config/mds/mds.md#SP_mds_kill_openc_at) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2995,9 +2995,9 @@ ceph config get mds mds_kill_openc_at
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -3008,7 +3008,7 @@ ceph config get mds mds_kill_openc_at
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_kill_rename_at](../../../config/mds/mds.md#SP_mds_kill_rename_at) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -3021,9 +3021,9 @@ ceph config get mds mds_kill_rename_at
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -3034,7 +3034,7 @@ ceph config get mds mds_kill_rename_at
 | نوع | Uint · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_kill_shutdown_at](../../../config/mds/mds.md#SP_mds_kill_shutdown_at) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -3047,9 +3047,9 @@ ceph config get mds mds_kill_shutdown_at
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -3060,7 +3060,7 @@ ceph config get mds mds_kill_shutdown_at
 | نوع | Uint · default `100000` · **Dev** |
 | جدول | [mds.md#SP_mds_max_completed_flushes](../../../config/mds/mds.md#SP_mds_max_completed_flushes) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -3073,9 +3073,9 @@ ceph config get mds mds_max_completed_flushes
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`100000`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`100000`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -3086,7 +3086,7 @@ ceph config get mds mds_max_completed_flushes
 | نوع | Uint · default `100000` · **Dev** |
 | جدول | [mds.md#SP_mds_max_completed_requests](../../../config/mds/mds.md#SP_mds_max_completed_requests) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -3099,9 +3099,9 @@ ceph config get mds mds_max_completed_requests
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`100000`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`100000`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -3127,9 +3127,9 @@ ceph config get mds mds_max_export_size
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`20_M`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`20_M`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -3157,9 +3157,9 @@ ceph config get mds mds_max_file_recover
 
 1. خط پایه روی پیش‌فرض upstream `32`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_max_file_recover
@@ -3194,9 +3194,9 @@ ceph config get mds mds_max_purge_files
 
 1. خط پایه روی پیش‌فرض upstream `64`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_max_purge_files
@@ -3231,9 +3231,9 @@ ceph config get mds mds_max_purge_ops
 
 1. خط پایه روی پیش‌فرض upstream `8_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_max_purge_ops
@@ -3268,9 +3268,9 @@ ceph config get mds mds_max_purge_ops_per_pg
 
 1. خط پایه روی پیش‌فرض upstream `0.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_max_purge_ops_per_pg
@@ -3305,9 +3305,9 @@ ceph config get mds mds_max_scrub_ops_in_progress
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_max_scrub_ops_in_progress
@@ -3343,7 +3343,7 @@ ceph config get mds mds_max_snaps_per_dir
 1. خط پایه روی `100`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
 3. مطمئن شوید همه دیمن‌هایی که باید مسیر را share کنند mount یکسان دارند.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_max_snaps_per_dir
@@ -3363,7 +3363,7 @@ ceph mds stat
 
 **کارکرد:** Set MDS CPU affinity to a NUMA node (-1 for none)
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3379,9 +3379,9 @@ ceph orch restart mds
 
 1. خط پایه روی پیش‌فرض upstream `-1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_numa_node
@@ -3401,7 +3401,7 @@ ceph mds stat
 
 **کارکرد:** prefetch dirfrags recorded in open file table on startup
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -3417,9 +3417,9 @@ ceph orch restart mds
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_oft_prefetch_dirfrags
@@ -3439,7 +3439,7 @@ ceph mds stat
 
 **کارکرد:** time in seconds to consider an operation blocked after no updates
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3454,9 +3454,9 @@ ceph config get mds mds_op_complaint_time
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_op_complaint_time
@@ -3476,7 +3476,7 @@ ceph mds stat
 
 **کارکرد:** expiration time in seconds of historical operations
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3491,9 +3491,9 @@ ceph config get mds mds_op_history_duration
 
 1. خط پایه روی پیش‌فرض upstream `600`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_op_history_duration
@@ -3513,7 +3513,7 @@ ceph mds stat
 
 **کارکرد:** maximum size for list of historical operations
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3528,9 +3528,9 @@ ceph config get mds mds_op_history_size
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_op_history_size
@@ -3550,7 +3550,7 @@ ceph mds stat
 
 **کارکرد:** maximum size for list of historical slow operations
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3565,9 +3565,9 @@ ceph config get mds mds_op_history_slow_op_size
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_op_history_slow_op_size
@@ -3587,7 +3587,7 @@ ceph mds stat
 
 **کارکرد:** track the op if over this threshold
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3602,9 +3602,9 @@ ceph config get mds mds_op_history_slow_op_threshold
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_op_history_slow_op_threshold
@@ -3624,7 +3624,7 @@ ceph mds stat
 
 **کارکرد:** timeout after which an MDS is considered laggy by rank 0 MDS.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3639,9 +3639,9 @@ ceph config get mds mds_ping_grace
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_ping_grace
@@ -3659,7 +3659,7 @@ ceph mds stat
 | نوع | Float · default `1` · **Dev** |
 | جدول | [mds.md#SP_mds_purge_queue_busy_flush_period](../../../config/mds/mds.md#SP_mds_purge_queue_busy_flush_period) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -3672,9 +3672,9 @@ ceph config get mds mds_purge_queue_busy_flush_period
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`1`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -3702,9 +3702,9 @@ ceph config get mds mds_recall_global_max_decay_threshold
 
 1. خط پایه روی پیش‌فرض upstream `128_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_recall_global_max_decay_threshold
@@ -3739,9 +3739,9 @@ ceph config get mds mds_recall_max_decay_rate
 
 1. خط پایه روی پیش‌فرض upstream `1.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_recall_max_decay_rate
@@ -3776,9 +3776,9 @@ ceph config get mds mds_recall_max_decay_threshold
 
 1. خط پایه روی پیش‌فرض upstream `128_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_recall_max_decay_threshold
@@ -3798,7 +3798,7 @@ ceph mds stat
 
 **کارکرد:** Decay rate for warning on slow session cap recall
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3813,9 +3813,9 @@ ceph config get mds mds_recall_warning_decay_rate
 
 1. خط پایه روی پیش‌فرض upstream `60`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_recall_warning_decay_rate
@@ -3835,7 +3835,7 @@ ceph mds stat
 
 **کارکرد:** Decay threshold for warning on slow session cap recall
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3850,9 +3850,9 @@ ceph config get mds mds_recall_warning_threshold
 
 1. خط پایه روی پیش‌فرض upstream `256_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_recall_warning_threshold
@@ -3872,7 +3872,7 @@ ceph mds stat
 
 **کارکرد:** complete all the replay request when mds is restarted, no matter the session is closed or not
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -3888,9 +3888,9 @@ ceph orch restart mds
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_replay_unsafe_with_closed_session
@@ -3910,7 +3910,7 @@ ceph mds stat
 
 **کارکرد:** rate of decay in seconds for calculating request load average
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3925,9 +3925,9 @@ ceph config get mds mds_request_load_average_decay_rate
 
 1. خط پایه روی پیش‌فرض upstream `1_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_request_load_average_decay_rate
@@ -3947,7 +3947,7 @@ ceph mds stat
 
 **کارکرد:** default gid for new root directory
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3962,9 +3962,9 @@ ceph config get mds mds_root_ino_gid
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_root_ino_gid
@@ -3984,7 +3984,7 @@ ceph mds stat
 
 **کارکرد:** default uid for new root directory
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3999,9 +3999,9 @@ ceph config get mds mds_root_ino_uid
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_root_ino_uid
@@ -4036,11 +4036,11 @@ ceph config get mds mds_scrub_stats_review_period
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
 
 **محدوده:** حداقل `1`، حداکثر `60`.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_scrub_stats_review_period
@@ -4058,7 +4058,7 @@ ceph mds stat
 | نوع | Millisecs · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_server_dispatch_client_request_delay](../../../config/mds/mds.md#SP_mds_server_dispatch_client_request_delay) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4071,9 +4071,9 @@ ceph config get mds mds_server_dispatch_client_request_delay
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -4084,7 +4084,7 @@ ceph config get mds mds_server_dispatch_client_request_delay
 | نوع | Float · default `0.0` · **Dev** |
 | جدول | [mds.md#SP_mds_server_dispatch_killpoint_random](../../../config/mds/mds.md#SP_mds_server_dispatch_killpoint_random) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4097,9 +4097,9 @@ ceph config get mds mds_server_dispatch_killpoint_random
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0.0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0.0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -4127,9 +4127,9 @@ ceph config get mds mds_session_blocklist_on_evict
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_session_blocklist_on_evict
@@ -4149,7 +4149,7 @@ ceph mds stat
 
 **کارکرد:** Decay rate for session liveness leading to preemptive cap recall
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -4164,9 +4164,9 @@ ceph config get mds mds_session_cache_liveness_decay_rate
 
 1. خط پایه روی پیش‌فرض upstream `5_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_session_cache_liveness_decay_rate
@@ -4186,7 +4186,7 @@ ceph mds stat
 
 **کارکرد:** Decay magnitude for preemptively recalling caps on quiet client
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -4201,9 +4201,9 @@ ceph config get mds mds_session_cache_liveness_magnitude
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_session_cache_liveness_magnitude
@@ -4223,7 +4223,7 @@ ceph mds stat
 
 **کارکرد:** Evict non-advancing client-tid sessions exceeding the config size.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -4238,9 +4238,9 @@ ceph config get mds mds_session_metadata_threshold
 
 1. خط پایه روی پیش‌فرض upstream `16_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_session_metadata_threshold
@@ -4260,7 +4260,7 @@ ceph mds stat
 
 **کارکرد:** Number of omap keys to read from the SessionMap in one operation
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -4275,9 +4275,9 @@ ceph config get mds mds_sessionmap_keys_per_op
 
 1. خط پایه روی پیش‌فرض upstream `1_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_sessionmap_keys_per_op
@@ -4295,7 +4295,7 @@ ceph mds stat
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_shutdown_check](../../../config/mds/mds.md#SP_mds_shutdown_check) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4308,9 +4308,9 @@ ceph config get mds mds_shutdown_check
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -4321,7 +4321,7 @@ ceph config get mds mds_shutdown_check
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_skip_ino](../../../config/mds/mds.md#SP_mds_skip_ino) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4334,9 +4334,9 @@ ceph config get mds mds_skip_ino
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -4347,7 +4347,7 @@ ceph config get mds mds_skip_ino
 | نوع | Float · default `0.0` · **Dev** |
 | جدول | [mds.md#SP_mds_sleep_rank_change](../../../config/mds/mds.md#SP_mds_sleep_rank_change) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4360,9 +4360,9 @@ ceph config get mds mds_sleep_rank_change
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0.0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0.0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -4390,9 +4390,9 @@ ceph config get mds mds_snap_max_uid
 
 1. خط پایه روی پیش‌فرض upstream `4294967294`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_snap_max_uid
@@ -4427,9 +4427,9 @@ ceph config get mds mds_snap_min_uid
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_snap_min_uid
@@ -4449,7 +4449,7 @@ ceph mds stat
 
 **کارکرد:** enabled nested rstat for snapshots
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -4464,9 +4464,9 @@ ceph config get mds mds_snap_rstat
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_snap_rstat
@@ -4484,7 +4484,7 @@ ceph mds stat
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [mds.md#SP_mds_standby_replay_damaged](../../../config/mds/mds.md#SP_mds_standby_replay_damaged) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4497,9 +4497,9 @@ ceph config get mds mds_standby_replay_damaged
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -4527,9 +4527,9 @@ ceph config get mds mds_symlink_recovery
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_symlink_recovery
@@ -4547,7 +4547,7 @@ ceph mds stat
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_thrash_exports](../../../config/mds/mds.md#SP_mds_thrash_exports) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4560,9 +4560,9 @@ ceph config get mds mds_thrash_exports
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -4573,7 +4573,7 @@ ceph config get mds mds_thrash_exports
 | نوع | Int · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_thrash_fragments](../../../config/mds/mds.md#SP_mds_thrash_fragments) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4586,9 +4586,9 @@ ceph config get mds mds_thrash_fragments
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -4614,9 +4614,9 @@ ceph config get mds mds_use_global_snaprealm_seq_for_subvol
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get mds mds_use_global_snaprealm_seq_for_subvol
@@ -4634,7 +4634,7 @@ ceph mds stat
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [mds.md#SP_mds_valgrind_exit](../../../config/mds/mds.md#SP_mds_valgrind_exit) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4647,9 +4647,9 @@ ceph config get mds mds_valgrind_exit
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -4660,7 +4660,7 @@ ceph config get mds mds_valgrind_exit
 | نوع | Uint · default `1` · **Dev** |
 | جدول | [mds.md#SP_mds_verify_backtrace](../../../config/mds/mds.md#SP_mds_verify_backtrace) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4673,9 +4673,9 @@ ceph config get mds mds_verify_backtrace
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`1`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -4686,7 +4686,7 @@ ceph config get mds mds_verify_backtrace
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [mds.md#SP_mds_verify_scatter](../../../config/mds/mds.md#SP_mds_verify_scatter) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4699,9 +4699,9 @@ ceph config get mds mds_verify_scatter
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -4712,7 +4712,7 @@ ceph config get mds mds_verify_scatter
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [mds.md#SP_mds_wipe_ino_prealloc](../../../config/mds/mds.md#SP_mds_wipe_ino_prealloc) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4725,9 +4725,9 @@ ceph config get mds mds_wipe_ino_prealloc
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -4738,7 +4738,7 @@ ceph config get mds mds_wipe_ino_prealloc
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [mds.md#SP_mds_wipe_sessions](../../../config/mds/mds.md#SP_mds_wipe_sessions) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -4751,9 +4751,9 @@ ceph config get mds mds_wipe_sessions
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 

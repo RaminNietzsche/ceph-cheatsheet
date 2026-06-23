@@ -1,6 +1,6 @@
 # Bdev
 
-deep dive پیکربندی Global — 31 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/global/INDEX.md)
+راهنمای عمیق پیکربندی Global — 31 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/global/INDEX.md)
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
@@ -43,8 +43,8 @@ deep dive پیکربندی Global — 31 گزینه. [← نمای کلی](../OV
 | **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
 | **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
 | **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
-| **Dev** | پیش‌فرض upstream در production |
+| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -78,9 +78,9 @@ ceph config get global bdev_aio
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_aio
@@ -111,9 +111,9 @@ ceph config get global bdev_aio_max_queue_depth
 
 1. خط پایه روی پیش‌فرض upstream `1024`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_aio_max_queue_depth
@@ -129,7 +129,7 @@ ceph -s
 | نوع | Int · default `250` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_aio_poll_ms](../../../config/global/bdev.md#SP_bdev_aio_poll_ms) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -144,9 +144,9 @@ ceph config get global bdev_aio_poll_ms
 
 1. خط پایه روی پیش‌فرض upstream `250`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_aio_poll_ms
@@ -162,7 +162,7 @@ ceph -s
 | نوع | Int · default `16` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_aio_reap_max](../../../config/global/bdev.md#SP_bdev_aio_reap_max) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -177,9 +177,9 @@ ceph config get global bdev_aio_reap_max
 
 1. خط پایه روی پیش‌فرض upstream `16`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_aio_reap_max
@@ -195,7 +195,7 @@ ceph -s
 | نوع | Int · default `125` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_aio_submit_retry_initial_delay_us](../../../config/global/bdev.md#SP_bdev_aio_submit_retry_initial_delay_us) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -210,9 +210,9 @@ ceph config get global bdev_aio_submit_retry_initial_delay_us
 
 1. خط پایه روی پیش‌فرض upstream `125`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_aio_submit_retry_initial_delay_us
@@ -228,7 +228,7 @@ ceph -s
 | نوع | Int · default `16` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_aio_submit_retry_max](../../../config/global/bdev.md#SP_bdev_aio_submit_retry_max) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -243,9 +243,9 @@ ceph config get global bdev_aio_submit_retry_max
 
 1. خط پایه روی پیش‌فرض upstream `16`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_aio_submit_retry_max
@@ -261,7 +261,7 @@ ceph -s
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_async_discard](../../../config/global/bdev.md#SP_bdev_async_discard) |
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -276,9 +276,9 @@ ceph config get global bdev_async_discard
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_async_discard
@@ -311,11 +311,11 @@ ceph config get global bdev_async_discard_max_pending
 
 1. خط پایه روی پیش‌فرض upstream `1000000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
 
 **محدوده:** حداقل `0`، حداکثر `—`.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_async_discard_max_pending
@@ -333,7 +333,7 @@ ceph -s
 
 **کارکرد:** Number of discard threads used to issue discards to the device
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -348,11 +348,11 @@ ceph config get global bdev_async_discard_threads
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
 
 **محدوده:** حداقل `0`، حداکثر `—`.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_async_discard_threads
@@ -368,7 +368,7 @@ ceph -s
 | نوع | Size · default `4_K` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_block_size](../../../config/global/bdev.md#SP_bdev_block_size) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -383,9 +383,9 @@ ceph config get global bdev_block_size
 
 1. خط پایه روی پیش‌فرض upstream `4_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_block_size
@@ -401,7 +401,7 @@ ceph -s
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [bdev.md#SP_bdev_debug_aio](../../../config/global/bdev.md#SP_bdev_debug_aio) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -414,9 +414,9 @@ ceph config get global bdev_debug_aio
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -427,7 +427,7 @@ ceph config get global bdev_debug_aio
 | نوع | Float · default `5` · **Dev** |
 | جدول | [bdev.md#SP_bdev_debug_aio_log_age](../../../config/global/bdev.md#SP_bdev_debug_aio_log_age) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -440,9 +440,9 @@ ceph config get global bdev_debug_aio_log_age
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`5`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`5`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -453,7 +453,7 @@ ceph config get global bdev_debug_aio_log_age
 | نوع | Float · default `1_min` · **Dev** |
 | جدول | [bdev.md#SP_bdev_debug_aio_suicide_timeout](../../../config/global/bdev.md#SP_bdev_debug_aio_suicide_timeout) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -466,9 +466,9 @@ ceph config get global bdev_debug_aio_suicide_timeout
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`1_min`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`1_min`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -481,7 +481,7 @@ ceph config get global bdev_debug_aio_suicide_timeout
 
 **کارکرد:** A debugging tool to simulate slow discard operations by introducing a delay of `bdev_debug_discard_sleep` milliseconds
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -494,9 +494,9 @@ ceph config get global bdev_debug_discard_sleep
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -507,7 +507,7 @@ ceph config get global bdev_debug_discard_sleep
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [bdev.md#SP_bdev_debug_inflight_ios](../../../config/global/bdev.md#SP_bdev_debug_inflight_ios) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -520,9 +520,9 @@ ceph config get global bdev_debug_inflight_ios
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -550,9 +550,9 @@ ceph config get global bdev_discard_max_bytes
 
 1. خط پایه روی پیش‌فرض upstream `10_G`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_discard_max_bytes
@@ -570,7 +570,7 @@ ceph -s
 
 **کارکرد:** Enable OSD devices trimming during in runtime
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -585,8 +585,8 @@ ceph config get global bdev_enable_discard
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_enable_discard
@@ -604,7 +604,7 @@ ceph -s
 
 **کارکرد:** times to retry the flock
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -619,9 +619,9 @@ ceph config get global bdev_flock_retry
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_flock_retry
@@ -654,9 +654,9 @@ ceph config get global bdev_flock_retry_interval
 
 1. خط پایه روی پیش‌فرض upstream `0.1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_flock_retry_interval
@@ -672,7 +672,7 @@ ceph -s
 | نوع | Int · default `0` · **Dev** |
 | جدول | [bdev.md#SP_bdev_inject_crash](../../../config/global/bdev.md#SP_bdev_inject_crash) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -685,9 +685,9 @@ ceph config get global bdev_inject_crash
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -698,7 +698,7 @@ ceph config get global bdev_inject_crash
 | نوع | Int · default `2` · **Dev** |
 | جدول | [bdev.md#SP_bdev_inject_crash_flush_delay](../../../config/global/bdev.md#SP_bdev_inject_crash_flush_delay) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -711,9 +711,9 @@ ceph config get global bdev_inject_crash_flush_delay
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`2`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`2`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -726,7 +726,7 @@ ceph config get global bdev_inject_crash_flush_delay
 
 **کارکرد:** Enables the Linux io_uring API instead of libaio
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -741,9 +741,9 @@ ceph config get global bdev_ioring
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_ioring
@@ -761,7 +761,7 @@ ceph -s
 
 **کارکرد:** Enables Linux io_uring API Use polled IO completions
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -776,9 +776,9 @@ ceph config get global bdev_ioring_hipri
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_ioring_hipri
@@ -796,7 +796,7 @@ ceph -s
 
 **کارکرد:** Enables Linux io_uring API Offload submission/completion to kernel thread
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -811,9 +811,9 @@ ceph config get global bdev_ioring_sqthread_poll
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_ioring_sqthread_poll
@@ -846,9 +846,9 @@ ceph config get global bdev_max_discard_length
 
 1. خط پایه روی پیش‌فرض upstream `2147483648`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_max_discard_length
@@ -864,7 +864,7 @@ ceph -s
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_nvme_unbind_from_kernel](../../../config/global/bdev.md#SP_bdev_nvme_unbind_from_kernel) |
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -879,9 +879,9 @@ ceph config get global bdev_nvme_unbind_from_kernel
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_nvme_unbind_from_kernel
@@ -897,7 +897,7 @@ ceph -s
 | نوع | Size · default `4_K` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_read_buffer_alignment](../../../config/global/bdev.md#SP_bdev_read_buffer_alignment) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -912,9 +912,9 @@ ceph config get global bdev_read_buffer_alignment
 
 1. خط پایه روی پیش‌فرض upstream `4_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_read_buffer_alignment
@@ -932,7 +932,7 @@ ceph -s
 
 **کارکرد:** description of pools arrangement for huge page-based read buffers
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -947,9 +947,9 @@ ceph config get global bdev_read_preallocated_huge_buffers
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_read_preallocated_huge_buffers
@@ -967,7 +967,7 @@ ceph -s
 
 **کارکرد:** A configurable duration for a stalled read warning to be raised when the number of stalled reads passes the `bdev_stalled_read_warn_threshold` in `bdev_stalled_read_warn_lifetime` seconds
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -982,9 +982,9 @@ ceph config get global bdev_stalled_read_warn_lifetime
 
 1. خط پایه روی پیش‌فرض upstream `86400`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_stalled_read_warn_lifetime
@@ -1002,7 +1002,7 @@ ceph -s
 
 **کارکرد:** A configurable number for stalled read warnings to be raised if the number of stalled reads passes the `bdev_stalled_read_warn_threshold` in `bdev_stalled_read_warn_lifetime` seconds
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1017,9 +1017,9 @@ ceph config get global bdev_stalled_read_warn_threshold
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_stalled_read_warn_threshold
@@ -1037,7 +1037,7 @@ ceph -s
 
 **کارکرد:** Explicitly set the device type to select the driver if needed
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1052,9 +1052,9 @@ ceph config get global bdev_type
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bdev_type

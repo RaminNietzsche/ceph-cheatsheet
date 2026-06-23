@@ -1,6 +1,6 @@
 # Bluefs
 
-deep dive پیکربندی Global — 24 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/global/INDEX.md)
+راهنمای عمیق پیکربندی Global — 24 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/global/INDEX.md)
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
@@ -36,8 +36,8 @@ deep dive پیکربندی Global — 24 گزینه. [← نمای کلی](../OV
 | **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
 | **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
 | **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
-| **Dev** | پیش‌فرض upstream در production |
+| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -58,7 +58,7 @@ ceph -s
 
 **کارکرد:** Allocation unit size for DB and WAL devices
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -73,9 +73,9 @@ ceph config get global bluefs_alloc_size
 
 1. خط پایه روی پیش‌فرض upstream `1_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_alloc_size
@@ -91,7 +91,7 @@ ceph -s
 | نوع | Str · enum: ["bitmap", "stupid", "avl", "btree", "hybrid", "hybrid_btree2"] · default `hybrid` · **Dev** |
 | جدول | [bluefs.md#SP_bluefs_allocator](../../../config/global/bluefs.md#SP_bluefs_allocator) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -104,9 +104,9 @@ ceph config get global bluefs_allocator
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`hybrid`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`hybrid`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -134,9 +134,9 @@ ceph config get global bluefs_buffered_io
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_buffered_io
@@ -154,7 +154,7 @@ ceph -s
 
 **کارکرد:** Check data read for suspicious pages
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -167,9 +167,9 @@ ceph config get global bluefs_check_for_zeros
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -182,7 +182,7 @@ ceph config get global bluefs_check_for_zeros
 
 **کارکرد:** Periodically check validity of volume selector
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -195,9 +195,9 @@ ceph config get global bluefs_check_volume_selector_often
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -210,7 +210,7 @@ ceph config get global bluefs_check_volume_selector_often
 
 **کارکرد:** Check validity of volume selector on mount/umount
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -223,9 +223,9 @@ ceph config get global bluefs_check_volume_selector_on_mount
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -236,7 +236,7 @@ ceph config get global bluefs_check_volume_selector_on_mount
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [bluefs.md#SP_bluefs_compact_log_sync](../../../config/global/bluefs.md#SP_bluefs_compact_log_sync) |
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -251,9 +251,9 @@ ceph config get global bluefs_compact_log_sync
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_compact_log_sync
@@ -271,7 +271,7 @@ ceph -s
 
 **کارکرد:** For testing. Force BlueFS to allocate files on slow device.
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -284,9 +284,9 @@ ceph config get global bluefs_debug_force_slow
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -299,7 +299,7 @@ ceph config get global bluefs_debug_force_slow
 
 **کارکرد:** duration(in seconds) untill the next attempt to use 'bluefs_shared_alloc_size' after facing ENOSPC failure.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -314,9 +314,9 @@ ceph config get global bluefs_failed_shared_alloc_cooldown
 
 1. خط پایه روی پیش‌فرض upstream `600`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_failed_shared_alloc_cooldown
@@ -347,9 +347,9 @@ ceph config get global bluefs_log_compact_min_ratio
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_log_compact_min_ratio
@@ -380,9 +380,9 @@ ceph config get global bluefs_log_compact_min_size
 
 1. خط پایه روی پیش‌فرض upstream `16_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_log_compact_min_size
@@ -415,9 +415,9 @@ ceph config get global bluefs_log_replay_check_allocations
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_log_replay_check_allocations
@@ -448,9 +448,9 @@ ceph config get global bluefs_max_log_runway
 
 1. خط پایه روی پیش‌فرض upstream `4_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_max_log_runway
@@ -481,9 +481,9 @@ ceph config get global bluefs_max_prefetch
 
 1. خط پایه روی پیش‌فرض upstream `1_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_max_prefetch
@@ -514,9 +514,9 @@ ceph config get global bluefs_min_flush_size
 
 1. خط پایه روی پیش‌فرض upstream `512_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_min_flush_size
@@ -547,9 +547,9 @@ ceph config get global bluefs_min_log_runway
 
 1. خط پایه روی پیش‌فرض upstream `1_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_min_log_runway
@@ -567,7 +567,7 @@ ceph -s
 
 **کارکرد:** Attempt to read bluefs log so large that it became unreadable.
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -580,9 +580,9 @@ ceph config get global bluefs_replay_recovery
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -593,7 +593,7 @@ ceph config get global bluefs_replay_recovery
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [bluefs.md#SP_bluefs_replay_recovery_disable_compact](../../../config/global/bluefs.md#SP_bluefs_replay_recovery_disable_compact) |
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -608,8 +608,8 @@ ceph config get global bluefs_replay_recovery_disable_compact
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_replay_recovery_disable_compact
@@ -627,7 +627,7 @@ ceph -s
 
 **کارکرد:** Allocation unit size for primary/shared device
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -642,9 +642,9 @@ ceph config get global bluefs_shared_alloc_size
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_shared_alloc_size
@@ -662,7 +662,7 @@ ceph -s
 
 **کارکرد:** Enable Background BlueFS Spillover cleaner thread
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -677,9 +677,9 @@ ceph config get global bluefs_spillover_cleaner
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_spillover_cleaner
@@ -697,7 +697,7 @@ ceph -s
 
 **کارکرد:** Fraction of time the BlueFS spillover cleaner spends performing work.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -712,9 +712,9 @@ ceph config get global bluefs_spillover_cleaner_work_ratio
 
 1. خط پایه روی پیش‌فرض upstream `0.1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_spillover_cleaner_work_ratio
@@ -732,7 +732,7 @@ ceph -s
 
 **کارکرد:** Idle time in seconds before the BlueFS spillover cleaner wakes up for the next scan cycle.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -747,9 +747,9 @@ ceph config get global bluefs_spillover_idle_time
 
 1. خط پایه روی پیش‌فرض upstream `1200`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_spillover_idle_time
@@ -765,7 +765,7 @@ ceph -s
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [bluefs.md#SP_bluefs_sync_write](../../../config/global/bluefs.md#SP_bluefs_sync_write) |
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -780,9 +780,9 @@ ceph config get global bluefs_sync_write
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_sync_write
@@ -815,9 +815,9 @@ ceph config get global bluefs_wal_envelope_mode
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global bluefs_wal_envelope_mode

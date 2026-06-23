@@ -1,6 +1,6 @@
 # Crimson OSD
 
-deep dive پیکربندی Crimson — 14 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/crimson/INDEX.md)
+راهنمای عمیق پیکربندی Crimson — 14 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/crimson/INDEX.md)
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
@@ -26,8 +26,8 @@ deep dive پیکربندی Crimson — 14 گزینه. [← نمای کلی](../O
 | **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
 | **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
 | **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
-| **Dev** | پیش‌فرض upstream در production |
+| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -63,8 +63,8 @@ ceph config get osd crimson_allow_pg_split
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_allow_pg_split
@@ -84,7 +84,7 @@ ceph pg stat
 
 **کارکرد:** CPU cores on which POSIX threads alienized to seastar will run in cpuset(7) format
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -100,9 +100,9 @@ ceph orch restart osd
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_bluestore_cpu_set
@@ -122,7 +122,7 @@ ceph pg stat
 
 **کارکرد:** The number of POSIX threads alienized to seastar for serving Bluestore
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -138,9 +138,9 @@ ceph orch restart osd
 
 1. خط پایه روی پیش‌فرض upstream `6`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_bluestore_num_threads
@@ -160,7 +160,7 @@ ceph pg stat
 
 **کارکرد:** The number of CPUs to use for serving seastar reactors per OSD without CPU pinning.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -176,11 +176,11 @@ ceph orch restart osd
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
 
 **محدوده:** حداقل `0`، حداکثر `32`.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_cpu_num
@@ -200,7 +200,7 @@ ceph pg stat
 
 **کارکرد:** CPU cores on which seastar reactor threads will run in cpuset(7) format per OSD with pinning.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -216,9 +216,9 @@ ceph orch restart osd
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_cpu_set
@@ -238,7 +238,7 @@ ceph pg stat
 
 **کارکرد:** Total memory to use for the seastar allocator per OSD.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -254,9 +254,9 @@ ceph orch restart osd
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_memory
@@ -276,7 +276,7 @@ ceph pg stat
 
 **کارکرد:** Number of obcs to cache
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -291,9 +291,9 @@ ceph config get osd crimson_osd_obc_lru_size
 
 1. خط پایه روی پیش‌فرض upstream `512`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_osd_obc_lru_size
@@ -313,7 +313,7 @@ ceph pg stat
 
 **کارکرد:** The maximum number concurrent IO operations, 0 for unlimited
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -328,9 +328,9 @@ ceph config get osd crimson_osd_scheduler_concurrency
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_osd_scheduler_concurrency
@@ -365,9 +365,9 @@ ceph config get osd crimson_osd_stat_interval
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_osd_stat_interval
@@ -387,7 +387,7 @@ ceph pg stat
 
 **کارکرد:** Let the seastar reactor poll continuously without sleeping at the expense of 100% cpu usage.
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -403,9 +403,9 @@ ceph orch restart osd
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_poll_mode
@@ -425,7 +425,7 @@ ceph pg stat
 
 **کارکرد:** Select which Seastar's internal reactor implementation
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -441,9 +441,9 @@ ceph orch restart osd
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_reactor_backend
@@ -463,7 +463,7 @@ ceph pg stat
 
 **کارکرد:** Seastar's reactor idle polling time (ms) before going back to sleep.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -479,9 +479,9 @@ ceph orch restart osd
 
 1. خط پایه روی پیش‌فرض upstream `200`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_reactor_idle_poll_time_us
@@ -501,7 +501,7 @@ ceph pg stat
 
 **کارکرد:** The maximum time (ms) Seastar's reactor IO operations must take. If not set(0 mean not set), defaults to 1.5 * crimson_reactor_task_quota_ms
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -517,9 +517,9 @@ ceph orch restart osd
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_reactor_io_latency_goal_ms
@@ -539,7 +539,7 @@ ceph pg stat
 
 **کارکرد:** The maximum time (ms) Seastar reactors will wait between polls.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -555,9 +555,9 @@ ceph orch restart osd
 
 1. خط پایه روی پیش‌فرض upstream `0.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get osd crimson_reactor_task_quota_ms

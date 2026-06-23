@@ -1,6 +1,6 @@
 # مقیاس Large Production
 
-<span class="badge badge-scale-large">Large production</span> **۱۲+ نود**، OSD زیاد، SLA سخت، شبکه جدا، تنظیم performance.
+<span class="badge badge-scale-large">محیط عملیاتی بزرگ</span> **۱۲+ نود**، OSD زیاد، SLA سخت‌گیرانه، شبکه جدا، تنظیم عملکرد.
 
 ## حوزه‌های تمرکز
 

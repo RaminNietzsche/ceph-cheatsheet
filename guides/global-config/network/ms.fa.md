@@ -1,6 +1,6 @@
 # Ms
 
-deep dive پیکربندی Global — 91 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/global/INDEX.md)
+راهنمای عمیق پیکربندی Global — 91 گزینه. [← نمای کلی](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/global/INDEX.md)
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
@@ -103,8 +103,8 @@ deep dive پیکربندی Global — 91 گزینه. [← نمای کلی](../OV
 | **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
 | **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
 | **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
-| **Dev** | پیش‌فرض upstream در production |
+| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -125,7 +125,7 @@ ceph -s
 
 **کارکرد:** Threadpool size for AsyncMessenger (ms_type=async)
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -140,11 +140,11 @@ ceph config get global ms_async_op_threads
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
 
 **محدوده:** حداقل `1`، حداکثر `24`.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_op_threads
@@ -160,7 +160,7 @@ ceph -s
 | نوع | Size · default `128_K` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_buffer_size](../../../config/global/ms.md#SP_ms_async_rdma_buffer_size) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -175,9 +175,9 @@ ceph config get global ms_async_rdma_buffer_size
 
 1. خط پایه روی پیش‌فرض upstream `128_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_buffer_size
@@ -193,7 +193,7 @@ ceph -s
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_cm](../../../config/global/ms.md#SP_ms_async_rdma_cm) |
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -208,9 +208,9 @@ ceph config get global ms_async_rdma_cm
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_cm
@@ -226,7 +226,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_device_name](../../../config/global/ms.md#SP_ms_async_rdma_device_name) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -241,9 +241,9 @@ ceph config get global ms_async_rdma_device_name
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_device_name
@@ -259,7 +259,7 @@ ceph -s
 | نوع | Int · default `96` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_dscp](../../../config/global/ms.md#SP_ms_async_rdma_dscp) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -274,9 +274,9 @@ ceph config get global ms_async_rdma_dscp
 
 1. خط پایه روی پیش‌فرض upstream `96`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_dscp
@@ -292,7 +292,7 @@ ceph -s
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_enable_hugepage](../../../config/global/ms.md#SP_ms_async_rdma_enable_hugepage) |
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -307,8 +307,8 @@ ceph config get global ms_async_rdma_enable_hugepage
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_enable_hugepage
@@ -326,7 +326,7 @@ ceph -s
 
 **کارکرد:** use gid_idx to select GID for choosing RoCEv1 or RoCEv2
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -341,9 +341,9 @@ ceph config get global ms_async_rdma_gid_idx
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_gid_idx
@@ -359,7 +359,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_local_gid](../../../config/global/ms.md#SP_ms_async_rdma_local_gid) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -374,9 +374,9 @@ ceph config get global ms_async_rdma_local_gid
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_local_gid
@@ -392,7 +392,7 @@ ceph -s
 | نوع | Uint · default `1000` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_polling_us](../../../config/global/ms.md#SP_ms_async_rdma_polling_us) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -407,9 +407,9 @@ ceph config get global ms_async_rdma_polling_us
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_polling_us
@@ -425,7 +425,7 @@ ceph -s
 | نوع | Uint · default `1` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_port_num](../../../config/global/ms.md#SP_ms_async_rdma_port_num) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -440,9 +440,9 @@ ceph config get global ms_async_rdma_port_num
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_port_num
@@ -458,7 +458,7 @@ ceph -s
 | نوع | Uint · default `32_K` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_receive_buffers](../../../config/global/ms.md#SP_ms_async_rdma_receive_buffers) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -473,9 +473,9 @@ ceph config get global ms_async_rdma_receive_buffers
 
 1. خط پایه روی پیش‌فرض upstream `32_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_receive_buffers
@@ -491,7 +491,7 @@ ceph -s
 | نوع | Uint · default `4_K` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_receive_queue_len](../../../config/global/ms.md#SP_ms_async_rdma_receive_queue_len) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -506,9 +506,9 @@ ceph config get global ms_async_rdma_receive_queue_len
 
 1. خط پایه روی پیش‌فرض upstream `4_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_receive_queue_len
@@ -524,7 +524,7 @@ ceph -s
 | نوع | Int · default `1` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_roce_ver](../../../config/global/ms.md#SP_ms_async_rdma_roce_ver) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -539,9 +539,9 @@ ceph config get global ms_async_rdma_roce_ver
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_roce_ver
@@ -557,7 +557,7 @@ ceph -s
 | نوع | Uint · default `1_K` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_send_buffers](../../../config/global/ms.md#SP_ms_async_rdma_send_buffers) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -572,9 +572,9 @@ ceph config get global ms_async_rdma_send_buffers
 
 1. خط پایه روی پیش‌فرض upstream `1_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_send_buffers
@@ -590,7 +590,7 @@ ceph -s
 | نوع | Int · default `3` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_sl](../../../config/global/ms.md#SP_ms_async_rdma_sl) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -605,9 +605,9 @@ ceph config get global ms_async_rdma_sl
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_sl
@@ -638,9 +638,9 @@ ceph config get global ms_async_rdma_support_srq
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_support_srq
@@ -656,7 +656,7 @@ ceph -s
 | نوع | Str · default `ib` · **Advanced** |
 | جدول | [ms.md#SP_ms_async_rdma_type](../../../config/global/ms.md#SP_ms_async_rdma_type) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -671,9 +671,9 @@ ceph config get global ms_async_rdma_type
 
 1. خط پایه روی پیش‌فرض upstream `ib`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_async_rdma_type
@@ -691,7 +691,7 @@ ceph -s
 
 **کارکرد:** number of deleted connections before we reap
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -704,9 +704,9 @@ ceph config get global ms_async_reap_threshold
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`5`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`5`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -719,7 +719,7 @@ ceph config get global ms_async_reap_threshold
 
 **کارکرد:** Call bind(2) on client sockets
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -734,9 +734,9 @@ ceph config get global ms_bind_before_connect
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_bind_before_connect
@@ -769,9 +769,9 @@ ceph config get global ms_bind_ipv4
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_bind_ipv4
@@ -789,7 +789,7 @@ ceph -s
 
 **کارکرد:** Bind servers to IPv6 address(es)
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -804,9 +804,9 @@ ceph config get global ms_bind_ipv6
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_bind_ipv6
@@ -839,9 +839,9 @@ ceph config get global ms_bind_msgr1
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_bind_msgr1
@@ -874,9 +874,9 @@ ceph config get global ms_bind_msgr2
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_bind_msgr2
@@ -894,7 +894,7 @@ ceph -s
 
 **کارکرد:** Highest port number to bind daemon(s) to
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -909,9 +909,9 @@ ceph config get global ms_bind_port_max
 
 1. خط پایه روی پیش‌فرض upstream `7568`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_bind_port_max
@@ -929,7 +929,7 @@ ceph -s
 
 **کارکرد:** Lowest port number to bind daemon(s) to
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -944,9 +944,9 @@ ceph config get global ms_bind_port_min
 
 1. خط پایه روی پیش‌فرض upstream `6800`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_bind_port_min
@@ -964,7 +964,7 @@ ceph -s
 
 **کارکرد:** Prefer IPV4 over IPV6 address(es)
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -979,9 +979,9 @@ ceph config get global ms_bind_prefer_ipv4
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_bind_prefer_ipv4
@@ -999,7 +999,7 @@ ceph -s
 
 **کارکرد:** Number of attempts to make while bind(2)ing to a port
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1014,9 +1014,9 @@ ceph config get global ms_bind_retry_count
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_bind_retry_count
@@ -1034,7 +1034,7 @@ ceph -s
 
 **کارکرد:** Delay between bind(2) attempts (seconds)
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1049,9 +1049,9 @@ ceph config get global ms_bind_retry_delay
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_bind_retry_delay
@@ -1067,7 +1067,7 @@ ceph -s
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [ms.md#SP_ms_blackhole_client](../../../config/global/ms.md#SP_ms_blackhole_client) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1080,9 +1080,9 @@ ceph config get global ms_blackhole_client
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1093,7 +1093,7 @@ ceph config get global ms_blackhole_client
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [ms.md#SP_ms_blackhole_mds](../../../config/global/ms.md#SP_ms_blackhole_mds) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1106,9 +1106,9 @@ ceph config get global ms_blackhole_mds
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1119,7 +1119,7 @@ ceph config get global ms_blackhole_mds
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [ms.md#SP_ms_blackhole_mgr](../../../config/global/ms.md#SP_ms_blackhole_mgr) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1132,9 +1132,9 @@ ceph config get global ms_blackhole_mgr
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1145,7 +1145,7 @@ ceph config get global ms_blackhole_mgr
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [ms.md#SP_ms_blackhole_mon](../../../config/global/ms.md#SP_ms_blackhole_mon) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1158,9 +1158,9 @@ ceph config get global ms_blackhole_mon
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1171,7 +1171,7 @@ ceph config get global ms_blackhole_mon
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [ms.md#SP_ms_blackhole_osd](../../../config/global/ms.md#SP_ms_blackhole_osd) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1184,9 +1184,9 @@ ceph config get global ms_blackhole_osd
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1199,7 +1199,7 @@ ceph config get global ms_blackhole_osd
 
 **کارکرد:** Connection modes (crc, secure) for connections from clients in order of preference
 
-**زمان استفاده:** رفتار اصلی Global — قبل از تغییر در production بررسی کنید.
+**زمان استفاده:** رفتار اصلی Global — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
 **مثال:**
 
@@ -1214,8 +1214,8 @@ ceph config get global ms_client_mode
 
 1. مستند کنید چرا `crc secure` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_client_mode
@@ -1233,7 +1233,7 @@ ceph -s
 
 **کارکرد:** In microseconds, user client, the time interval between the next retry when the throttle get_or_fail.
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1246,9 +1246,9 @@ ceph config get global ms_client_throttle_retry_time_interval
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`5000`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`5000`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1261,7 +1261,7 @@ ceph config get global ms_client_throttle_retry_time_interval
 
 **کارکرد:** Connection modes (crc, secure) for intra-cluster connections in order of preference
 
-**زمان استفاده:** رفتار اصلی Global — قبل از تغییر در production بررسی کنید.
+**زمان استفاده:** رفتار اصلی Global — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
 **مثال:**
 
@@ -1276,8 +1276,8 @@ ceph config get global ms_cluster_mode
 
 1. مستند کنید چرا `crc secure` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_cluster_mode
@@ -1295,7 +1295,7 @@ ceph -s
 
 **کارکرد:** Messenger implementation to use for the internal cluster network
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1310,9 +1310,9 @@ ceph config get global ms_cluster_type
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_cluster_type
@@ -1330,7 +1330,7 @@ ceph -s
 
 **کارکرد:** Allowing compression when on-wire encryption is enabled
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -1345,9 +1345,9 @@ ceph config get global ms_compress_secure
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_compress_secure
@@ -1380,9 +1380,9 @@ ceph config get global ms_connection_idle_timeout
 
 1. خط پایه روی پیش‌فرض upstream `900`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_connection_idle_timeout
@@ -1415,9 +1415,9 @@ ceph config get global ms_connection_ready_timeout
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_connection_ready_timeout
@@ -1435,7 +1435,7 @@ ceph -s
 
 **کارکرد:** Set and/or verify crc32c checksum on data payload sent over network
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1448,9 +1448,9 @@ ceph config get global ms_crc_data
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`True`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1463,7 +1463,7 @@ ceph config get global ms_crc_data
 
 **کارکرد:** Set and/or verify crc32c checksum on header payload sent over network
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1476,9 +1476,9 @@ ceph config get global ms_crc_header
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`True`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1491,7 +1491,7 @@ ceph config get global ms_crc_header
 
 **کارکرد:** Induce a daemon crash/exit when a bad network message is received
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1504,9 +1504,9 @@ ceph config get global ms_die_on_bad_msg
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1519,7 +1519,7 @@ ceph config get global ms_die_on_bad_msg
 
 **کارکرد:** Induce a crash/exit on various bugs (for testing purposes)
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1532,9 +1532,9 @@ ceph config get global ms_die_on_bug
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1547,7 +1547,7 @@ ceph config get global ms_die_on_bug
 
 **کارکرد:** Induce a daemon crash/exit when a old, undecodable message is received
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1560,9 +1560,9 @@ ceph config get global ms_die_on_old_message
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1575,7 +1575,7 @@ ceph config get global ms_die_on_old_message
 
 **کارکرد:** Induce a daemon crash/exit if sender skips a message sequence number
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1588,9 +1588,9 @@ ceph config get global ms_die_on_skipped_message
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1603,7 +1603,7 @@ ceph config get global ms_die_on_skipped_message
 
 **کارکرد:** Induce a daemon crash/exit when an unrecognized message is received
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1616,9 +1616,9 @@ ceph config get global ms_die_on_unhandled_msg
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1631,7 +1631,7 @@ ceph config get global ms_die_on_unhandled_msg
 
 **کارکرد:** Limit messages that are read off the network but still being processed
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1646,9 +1646,9 @@ ceph config get global ms_dispatch_throttle_bytes
 
 1. خط پایه روی پیش‌فرض upstream `100_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dispatch_throttle_bytes
@@ -1664,7 +1664,7 @@ ceph -s
 | نوع | Str · default `0xF` · **Advanced** |
 | جدول | [ms.md#SP_ms_dpdk_coremask](../../../config/global/ms.md#SP_ms_dpdk_coremask) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1679,9 +1679,9 @@ ceph config get global ms_dpdk_coremask
 
 1. خط پایه روی پیش‌فرض upstream `0xF`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_coremask
@@ -1697,7 +1697,7 @@ ceph -s
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [ms.md#SP_ms_dpdk_debug_allow_loopback](../../../config/global/ms.md#SP_ms_dpdk_debug_allow_loopback) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -1710,9 +1710,9 @@ ceph config get global ms_dpdk_debug_allow_loopback
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`False`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -1725,7 +1725,7 @@ ceph config get global ms_dpdk_debug_allow_loopback
 
 **کارکرد:** NIC's PCIe address are allowed to use
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1740,9 +1740,9 @@ ceph config get global ms_dpdk_devs_allowlist
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_devs_allowlist
@@ -1773,8 +1773,8 @@ ceph config get global ms_dpdk_enable_tso
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_enable_tso
@@ -1803,11 +1803,11 @@ ceph config get global ms_dpdk_gateway_ipv4_addr
 
 **مدل تنظیم:** Connectivity
 
-1. endpointهای کاندید را از محیط خود فهرست کنید.
+1. نقاط پایانی (endpoint) کاندید را از محیط خود فهرست کنید.
 2. دسترسی‌پذیری از هر نودی که دیمن روی آن اجرا می‌شود را بررسی کنید.
-3. endpoint پایدار با کمترین latency را انتخاب کنید.
+3. پایدارترین نقطهٔ پایانی با کمترین تأخیر (latency) را انتخاب کنید.
 4. اگر یکپارچه‌سازی غیرفعال است خالی (`(empty)`) بگذارید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_gateway_ipv4_addr
@@ -1836,11 +1836,11 @@ ceph config get global ms_dpdk_host_ipv4_addr
 
 **مدل تنظیم:** Connectivity
 
-1. endpointهای کاندید را از محیط خود فهرست کنید.
+1. نقاط پایانی (endpoint) کاندید را از محیط خود فهرست کنید.
 2. دسترسی‌پذیری از هر نودی که دیمن روی آن اجرا می‌شود را بررسی کنید.
-3. endpoint پایدار با کمترین latency را انتخاب کنید.
+3. پایدارترین نقطهٔ پایانی با کمترین تأخیر (latency) را انتخاب کنید.
 4. اگر یکپارچه‌سازی غیرفعال است خالی (`(empty)`) بگذارید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_host_ipv4_addr
@@ -1856,7 +1856,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [ms.md#SP_ms_dpdk_hugepages](../../../config/global/ms.md#SP_ms_dpdk_hugepages) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1871,9 +1871,9 @@ ceph config get global ms_dpdk_hugepages
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_hugepages
@@ -1904,9 +1904,9 @@ ceph config get global ms_dpdk_hw_flow_control
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_hw_flow_control
@@ -1922,7 +1922,7 @@ ceph -s
 | نوع | Float · default `1` · **Advanced** |
 | جدول | [ms.md#SP_ms_dpdk_hw_queue_weight](../../../config/global/ms.md#SP_ms_dpdk_hw_queue_weight) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -1937,9 +1937,9 @@ ceph config get global ms_dpdk_hw_queue_weight
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_hw_queue_weight
@@ -1970,9 +1970,9 @@ ceph config get global ms_dpdk_lro
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_lro
@@ -1988,7 +1988,7 @@ ceph -s
 | نوع | Str · default `4` · **Advanced** |
 | جدول | [ms.md#SP_ms_dpdk_memory_channel](../../../config/global/ms.md#SP_ms_dpdk_memory_channel) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2003,9 +2003,9 @@ ceph config get global ms_dpdk_memory_channel
 
 1. خط پایه روی پیش‌فرض upstream `4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_memory_channel
@@ -2034,11 +2034,11 @@ ceph config get global ms_dpdk_netmask_ipv4_addr
 
 **مدل تنظیم:** Connectivity
 
-1. endpointهای کاندید را از محیط خود فهرست کنید.
+1. نقاط پایانی (endpoint) کاندید را از محیط خود فهرست کنید.
 2. دسترسی‌پذیری از هر نودی که دیمن روی آن اجرا می‌شود را بررسی کنید.
-3. endpoint پایدار با کمترین latency را انتخاب کنید.
+3. پایدارترین نقطهٔ پایانی با کمترین تأخیر (latency) را انتخاب کنید.
 4. اگر یکپارچه‌سازی غیرفعال است خالی (`(empty)`) بگذارید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_netmask_ipv4_addr
@@ -2054,7 +2054,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [ms.md#SP_ms_dpdk_pmd](../../../config/global/ms.md#SP_ms_dpdk_pmd) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2069,9 +2069,9 @@ ceph config get global ms_dpdk_pmd
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_pmd
@@ -2087,7 +2087,7 @@ ceph -s
 | نوع | Int · default `0` · **Advanced** |
 | جدول | [ms.md#SP_ms_dpdk_port_id](../../../config/global/ms.md#SP_ms_dpdk_port_id) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2102,9 +2102,9 @@ ceph config get global ms_dpdk_port_id
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_port_id
@@ -2120,7 +2120,7 @@ ceph -s
 | نوع | Int · default `8192` · **Advanced** |
 | جدول | [ms.md#SP_ms_dpdk_rx_buffer_count_per_core](../../../config/global/ms.md#SP_ms_dpdk_rx_buffer_count_per_core) |
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2135,9 +2135,9 @@ ceph config get global ms_dpdk_rx_buffer_count_per_core
 
 1. خط پایه روی پیش‌فرض upstream `8192`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dpdk_rx_buffer_count_per_core
@@ -2155,7 +2155,7 @@ ceph -s
 
 **کارکرد:** Log level at which to hexdump corrupt messages we receive
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2170,9 +2170,9 @@ ceph config get global ms_dump_corrupt_message_level
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dump_corrupt_message_level
@@ -2190,7 +2190,7 @@ ceph -s
 
 **کارکرد:** Hexdump message to debug log on message send
 
-**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید.
+**زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
 
@@ -2205,9 +2205,9 @@ ceph config get global ms_dump_on_send
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_dump_on_send
@@ -2225,7 +2225,7 @@ ceph -s
 
 **کارکرد:** Initial backoff after a network error is detected (seconds)
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2240,9 +2240,9 @@ ceph config get global ms_initial_backoff
 
 1. خط پایه روی پیش‌فرض upstream `0.2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_initial_backoff
@@ -2260,7 +2260,7 @@ ceph -s
 
 **کارکرد:** Max delay to inject
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2273,9 +2273,9 @@ ceph config get global ms_inject_delay_max
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`1`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2286,7 +2286,7 @@ ceph config get global ms_inject_delay_max
 | نوع | Float · default `0` · **Dev** |
 | جدول | [ms.md#SP_ms_inject_delay_probability](../../../config/global/ms.md#SP_ms_inject_delay_probability) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2299,9 +2299,9 @@ ceph config get global ms_inject_delay_probability
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2314,7 +2314,7 @@ ceph config get global ms_inject_delay_probability
 
 **کارکرد:** Entity type to inject delays for
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2327,9 +2327,9 @@ ceph config get global ms_inject_delay_type
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`(empty)`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`(empty)`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2342,7 +2342,7 @@ ceph config get global ms_inject_delay_type
 
 **کارکرد:** Inject various internal delays to induce races (seconds)
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2355,9 +2355,9 @@ ceph config get global ms_inject_internal_delays
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2370,7 +2370,7 @@ ceph config get global ms_inject_internal_delays
 
 **کارکرد:** Inject a network congestions that stuck with N times operations
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2383,9 +2383,9 @@ ceph config get global ms_inject_network_congestion
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2398,7 +2398,7 @@ ceph config get global ms_inject_network_congestion
 
 **کارکرد:** Inject a socket failure every Nth socket operation
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2411,9 +2411,9 @@ ceph config get global ms_inject_socket_failures
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`0`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2441,9 +2441,9 @@ ceph config get global ms_learn_addr_from_peer
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_learn_addr_from_peer
@@ -2476,9 +2476,9 @@ ceph config get global ms_max_accept_failures
 
 1. خط پایه روی پیش‌فرض upstream `4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_max_accept_failures
@@ -2511,9 +2511,9 @@ ceph config get global ms_max_backoff
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_max_backoff
@@ -2531,7 +2531,7 @@ ceph -s
 
 **کارکرد:** Connection modes (crc, secure) for connections from clients to monitors in order of preference
 
-**زمان استفاده:** رفتار اصلی Global — قبل از تغییر در production بررسی کنید.
+**زمان استفاده:** رفتار اصلی Global — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
 **مثال:**
 
@@ -2546,8 +2546,8 @@ ceph config get global ms_mon_client_mode
 
 1. مستند کنید چرا `secure crc` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_mon_client_mode
@@ -2565,7 +2565,7 @@ ceph -s
 
 **کارکرد:** Connection modes (crc, secure) for intra-mon connections in order of preference
 
-**زمان استفاده:** رفتار اصلی Global — قبل از تغییر در production بررسی کنید.
+**زمان استفاده:** رفتار اصلی Global — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
 **مثال:**
 
@@ -2580,8 +2580,8 @@ ceph config get global ms_mon_cluster_mode
 
 1. مستند کنید چرا `secure crc` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_mon_cluster_mode
@@ -2599,7 +2599,7 @@ ceph -s
 
 **کارکرد:** Allowed connection modes (crc, secure) for connections to mons
 
-**زمان استفاده:** رفتار اصلی Global — قبل از تغییر در production بررسی کنید.
+**زمان استفاده:** رفتار اصلی Global — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
 **مثال:**
 
@@ -2614,8 +2614,8 @@ ceph config get global ms_mon_service_mode
 
 1. مستند کنید چرا `secure crc` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_mon_service_mode
@@ -2648,9 +2648,9 @@ ceph config get global ms_osd_compress_min_size
 
 1. خط پایه روی پیش‌فرض upstream `1_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_osd_compress_min_size
@@ -2668,7 +2668,7 @@ ceph -s
 
 **کارکرد:** Compression policy to use in Messenger for communicating with OSD
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2683,9 +2683,9 @@ ceph config get global ms_osd_compress_mode
 
 1. خط پایه روی پیش‌فرض upstream `none`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_osd_compress_mode
@@ -2703,7 +2703,7 @@ ceph -s
 
 **کارکرد:** Compression algorithm to use in Messenger when communicating with OSD
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2718,9 +2718,9 @@ ceph config get global ms_osd_compression_algorithm
 
 1. خط پایه روی پیش‌فرض upstream `snappy`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_osd_compression_algorithm
@@ -2736,7 +2736,7 @@ ceph -s
 | نوع | Uint · default `16_M` · **Dev** |
 | جدول | [ms.md#SP_ms_pq_max_tokens_per_priority](../../../config/global/ms.md#SP_ms_pq_max_tokens_per_priority) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2749,9 +2749,9 @@ ceph config get global ms_pq_max_tokens_per_priority
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`16_M`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`16_M`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2762,7 +2762,7 @@ ceph config get global ms_pq_max_tokens_per_priority
 | نوع | Size · default `64_K` · **Dev** |
 | جدول | [ms.md#SP_ms_pq_min_cost](../../../config/global/ms.md#SP_ms_pq_min_cost) |
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -2775,9 +2775,9 @@ ceph config get global ms_pq_min_cost
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`64_K`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`64_K`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -2790,7 +2790,7 @@ ceph config get global ms_pq_min_cost
 
 **کارکرد:** Messenger implementation to use for the public network
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2805,9 +2805,9 @@ ceph config get global ms_public_type
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_public_type
@@ -2825,7 +2825,7 @@ ceph -s
 
 **کارکرد:** Allowed connection modes (crc, secure) for connections to daemons
 
-**زمان استفاده:** رفتار اصلی Global — قبل از تغییر در production بررسی کنید.
+**زمان استفاده:** رفتار اصلی Global — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
 **مثال:**
 
@@ -2840,8 +2840,8 @@ ceph config get global ms_service_mode
 
 1. مستند کنید چرا `crc secure` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
-3. پس از تغییرات workflow کلاینت و admin را تست کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_service_mode
@@ -2859,7 +2859,7 @@ ceph -s
 
 **کارکرد:** Size of queue of incoming connections for accept(2)
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2874,9 +2874,9 @@ ceph config get global ms_tcp_listen_backlog
 
 1. خط پایه روی پیش‌فرض upstream `512`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_tcp_listen_backlog
@@ -2909,9 +2909,9 @@ ceph config get global ms_tcp_nodelay
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_tcp_nodelay
@@ -2944,9 +2944,9 @@ ceph config get global ms_tcp_prefetch_max_size
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_tcp_prefetch_max_size
@@ -2964,7 +2964,7 @@ ceph -s
 
 **کارکرد:** Size of TCP socket receive buffer
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -2979,9 +2979,9 @@ ceph config get global ms_tcp_rcvbuf
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_tcp_rcvbuf
@@ -2999,7 +2999,7 @@ ceph -s
 
 **کارکرد:** In microseconds, msgr-worker's time_events min wait time for epoll_wait timeout
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -3012,9 +3012,9 @@ ceph config get global ms_time_events_min_wait_interval
 
 **مدل تنظیم:** Dev
 
-1. پیش‌فرض upstream (`1000`) را در production نگه دارید.
-2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید.
-3. قبل از بازگرداندن نود به pool production برگردانید.
+1. پیش‌فرض upstream (`1000`) را در محیط عملیاتی نگه دارید.
+2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
+3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید.
 
 ---
 
@@ -3027,7 +3027,7 @@ ceph config get global ms_time_events_min_wait_interval
 
 **کارکرد:** Messenger implementation to use for network communication
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -3042,9 +3042,9 @@ ceph config get global ms_type
 
 1. خط پایه روی پیش‌فرض upstream `async+posix`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
-3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید.
-4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید.
-**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub.
+3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید.
+4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید.
+**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub.
 
 ```bash
 ceph config get global ms_type

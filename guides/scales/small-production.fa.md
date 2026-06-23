@@ -1,6 +1,6 @@
 # مقیاس Small Production
 
-<span class="badge badge-scale-small">Small production</span> معمولاً **۳–۱۲ نود**، یک datacenter، replica **3**، cephadm.
+<span class="badge badge-scale-small">محیط عملیاتی کوچک</span> معمولاً **۳–۱۲ نود**، یک مرکز داده، replica **3**، cephadm.
 
 ## چک‌لیست معماری
 

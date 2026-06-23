@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی OSD — همه گزینه‌ها
+# راهنمای عمیق پیکربندی OSD — همهٔ گزینه‌ها
 
-مرجع گسترده برای **158** گزینه OSD با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/osd/INDEX.md](../../config/osd/INDEX.md).
+مرجع کامل **158** گزینهٔ OSD با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/osd/INDEX.md](../../config/osd/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>

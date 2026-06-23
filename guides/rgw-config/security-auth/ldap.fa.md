@@ -1,6 +1,6 @@
 # LDAP
 
-deep dive پیکربندی RGW — 6 گزینه. [← نمای کلی پیکربندی RGW](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/rgw/INDEX.md)
+راهنمای عمیق پیکربندی RGW — 6 گزینه. [← نمای کلی پیکربندی RGW](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/rgw/INDEX.md)
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
@@ -18,9 +18,9 @@ deep dive پیکربندی RGW — 6 گزینه. [← نمای کلی پیکرب
 | **Policy** | امنیت، سازگاری API، محدودیت tenant |
 | **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
 | **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
-| **Architecture** | backend، توپولوژی multisite — نه sweep عددی |
-| **Dev** | پیش‌فرض upstream در production |
+| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -42,7 +42,7 @@ ceph pg stat
 
 **کارکرد:** LDAP entry RGW will bind with (user match).
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -71,7 +71,7 @@ ceph config set client.rgw rgw_s3_auth_use_ldap true
 
 **کارکرد:** LDAP attribute containing RGW user names (to form binddns).
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -110,7 +110,7 @@ ceph -s  # cluster health, slow ops
 
 **کارکرد:** LDAP search base (basedn).
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -149,7 +149,7 @@ ceph -s  # cluster health, slow ops
 
 **کارکرد:** LDAP search filter.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -188,7 +188,7 @@ ceph -s  # cluster health, slow ops
 
 **کارکرد:** Path to file containing credentials for rgw_ldap_binddn.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 

@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی Ceph exporter — همه گزینه‌ها
+# راهنمای عمیق پیکربندی Ceph exporter — همهٔ گزینه‌ها
 
-مرجع گسترده برای **8** گزینه Ceph exporter با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/ceph-exporter/INDEX.md](../../config/ceph-exporter/INDEX.md).
+مرجع کامل **8** گزینهٔ Ceph exporter با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/ceph-exporter/INDEX.md](../../config/ceph-exporter/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>

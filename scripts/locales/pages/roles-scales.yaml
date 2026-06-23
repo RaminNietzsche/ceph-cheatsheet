@@ -74,7 +74,7 @@ guides/roles/cluster-admin:
   fa: |
     # مدیر کلاستر
 
-    <span class="badge badge-role-cluster">Cluster admin</span> مدیریت monitor، manager، orchestration، سلامت کلاستر، auth و upgrade.
+    <span class="badge badge-role-cluster">مدیر کلاستر</span> — مدیریت مانیتور، مدیر (MGR)، orchestration، سلامت کلاستر، احراز هویت و ارتقا.
 
     ## دستورات روزانه
 
@@ -94,14 +94,14 @@ guides/roles/cluster-admin:
     | کار | دستور / config |
     |------|----------------|
     | پیکربندی runtime | [cli/config.md](../../cli/config.md) — `ceph config set …` |
-    | گزینه‌های MON | [config/mon/INDEX.md](../../config/mon/INDEX.md) · [deep dive MON](../mon-config/OVERVIEW.md) |
-    | Manager / ماژول‌ها | [config/mgr/INDEX.md](../../config/mgr/INDEX.md) · [deep dive MGR](../mgr-config/OVERVIEW.md) |
-    | Auth و کلیدها | [config/global/auth.md](../../config/global/auth.md) · [deep dive Global](../global-config/OVERVIEW.md) |
+    | گزینه‌های MON | [config/mon/INDEX.md](../../config/mon/INDEX.md) · [راهنمای عمیق MON](../mon-config/OVERVIEW.md) |
+    | Manager / ماژول‌ها | [config/mgr/INDEX.md](../../config/mgr/INDEX.md) · [راهنمای عمیق MGR](../mgr-config/OVERVIEW.md) |
+    | Auth و کلیدها | [config/global/auth.md](../../config/global/auth.md) · [راهنمای عمیق Global](../global-config/OVERVIEW.md) |
     | مسیر cephadm | `cephadm_path` در [config/mgr/cephadm.md](../../config/mgr/cephadm.md) |
 
     گزینه‌های پرکاربرد: `mon_osd_down_out_interval`، `mgr_standby_modules`، `cephadm_path` — [MON](../mon-config/TUNING.md) و [MGR](../mgr-config/TUNING.md).
 
-    ## workflowهای رایج
+    ## روندهای کاری رایج
 
     **استقرار سرویس (cephadm):**
 
@@ -111,7 +111,7 @@ guides/roles/cluster-admin:
     ceph orch apply osd --all-available-devices
     ```
 
-    **Upgrade کلاستر:**
+    **ارتقای کلاستر:**
 
     ```bash
     ceph orch upgrade ls
@@ -119,7 +119,7 @@ guides/roles/cluster-admin:
     ceph orch upgrade status
     ```
 
-    **افزودن host / monitor:**
+    **افزودن میزبان / مانیتور:**
 
     ```bash
     ceph orch host add newhost --labels _admin
@@ -131,8 +131,8 @@ guides/roles/cluster-admin:
     | مقیاس | تمرکز |
     |-------|--------|
     | [Lab](../scales/lab.md) | یک mon، `--single-host-defaults` |
-    | [Small production](../scales/small-production.md) | ۳ mon، ۲ mgr، یک DC |
-    | [Large production](../scales/large-production.md) | stretch، شبکه جدا |
+    | [محیط عملیاتی کوچک](../scales/small-production.md) | ۳ mon، ۲ mgr، یک DC |
+    | [محیط عملیاتی بزرگ](../scales/large-production.md) | stretch، شبکه جدا |
     | [Multisite](../scales/multisite.md) | quorum هر سایت یا stretch |
 
     ## عیب‌یابی
@@ -288,9 +288,9 @@ guides/roles/storage-operator:
     [← Guides overview](../OVERVIEW.md)
 
   fa: |
-    # اپراتور Storage
+    # مسئول ذخیره‌سازی
 
-    <span class="badge badge-role-storage">Storage operator</span> مدیریت OSD، pool، PG، CRUSH، recovery و scrub.
+    <span class="badge badge-role-storage">مسئول ذخیره‌سازی</span> — مدیریت OSD، pool، PG، CRUSH، recovery و scrub.
 
     ## دستورات روزانه
 
@@ -309,7 +309,7 @@ guides/roles/storage-operator:
 
     | حوزه | INDEX |
     |------|-------|
-    | دیمن OSD | [config/osd/INDEX.md](../../config/osd/INDEX.md) · [deep dive OSD](../osd-config/OVERVIEW.md) |
+    | دیمن OSD | [config/osd/INDEX.md](../../config/osd/INDEX.md) · [راهنمای عمیق OSD](../osd-config/OVERVIEW.md) |
     | Global / bluestore | [osd.md](../../config/global/osd.md)، [bluestore.md](../../config/global/bluestore.md) |
     | Recovery و scrub | [recovery](../osd-config/recovery/recovery.md)، [scrub](../osd-config/scrub/scrub.md) |
     | mClock | [mclock](../osd-config/mclock/mclock.md) — `osd_mclock_profile` |
@@ -319,7 +319,7 @@ guides/roles/storage-operator:
     ./scripts/search-config.sh -s osd recovery
     ```
 
-    ## workflowهای رایج
+    ## روندهای کاری رایج
 
     **نگهداری OSD:**
 
@@ -349,8 +349,8 @@ guides/roles/storage-operator:
     | مقیاس | تمرکز |
     |-------|--------|
     | [Lab](../scales/lab.md) | `osd_memory_target` پایین‌تر |
-    | [Small production](../scales/small-production.md) | autoscale، replica 3 |
-    | [Large production](../scales/large-production.md) | mClock، device class |
+    | [محیط عملیاتی کوچک](../scales/small-production.md) | autoscale، replica 3 |
+    | [محیط عملیاتی بزرگ](../scales/large-production.md) | mClock، device class |
     | [Multisite](../scales/multisite.md) | CRUSH هر سایت |
 
     ## عیب‌یابی
@@ -519,9 +519,9 @@ guides/roles/rgw-admin:
 
     ## پیکربندی
 
-    INDEX: [config/rgw/INDEX.md](../../config/rgw/INDEX.md)
+    **فهرست:** [config/rgw/INDEX.md](../../config/rgw/INDEX.md)
 
-    | موضوع | deep dive |
+    | موضوع | راهنمای عمیق |
     |-------|-----------|
     | Frontends | [frontends.md](../rgw-config/core-gateway/frontends.md) |
     | Multisite | [multisite-zones.md](../rgw-config/multisite/multisite-zones.md) |
@@ -534,7 +534,7 @@ guides/roles/rgw-admin:
     ./scripts/search-config.sh -s rgw multisite
     ```
 
-    ## workflowهای رایج
+    ## روندهای کاری رایج
 
     ```bash
     radosgw-admin user create --uid=alice --display-name="Alice"
@@ -548,9 +548,9 @@ guides/roles/rgw-admin:
 
     | مقیاس | تمرکز |
     |-------|--------|
-    | [Small production](../scales/small-production.md) | یک zone |
+    | [محیط عملیاتی کوچک](../scales/small-production.md) | یک zone |
     | [Multisite](../scales/multisite.md) | realm/zone، lag |
-    | [Large production](../scales/large-production.md) | چند RGW، cache |
+    | [محیط عملیاتی بزرگ](../scales/large-production.md) | چند RGW، cache |
 
     [← نمای کلی راهنما](../OVERVIEW.md)
 
@@ -694,9 +694,9 @@ guides/roles/cephfs-admin:
 
     | حوزه | INDEX |
     |------|-------|
-    | MDS | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [deep dive](../mds-config/OVERVIEW.md) |
-    | Client | [mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [deep dive](../mds-client-config/OVERVIEW.md) |
-    | Mirror | [cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [deep dive](../cephfs-mirror-config/OVERVIEW.md) |
+    | MDS | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [راهنمای عمیق](../mds-config/OVERVIEW.md) |
+    | Client | [mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [راهنمای عمیق](../mds-client-config/OVERVIEW.md) |
+    | Mirror | [cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [راهنمای عمیق](../cephfs-mirror-config/OVERVIEW.md) |
 
     گزینه‌های کلیدی: `mds_cache_memory_limit` — [TUNING](../mds-config/TUNING.md)
 
@@ -704,7 +704,7 @@ guides/roles/cephfs-admin:
     ./scripts/lookup-config.sh mds_cache_memory_limit
     ```
 
-    ## workflowهای رایج
+    ## روندهای کاری رایج
 
     ```bash
     ceph osd pool create cephfs-metadata 32 32
@@ -720,7 +720,7 @@ guides/roles/cephfs-admin:
     | مقیاس | تمرکز |
     |-------|--------|
     | [Lab](../scales/lab.md) | ۱ MDS |
-    | [Small production](../scales/small-production.md) | ۲ MDS برای HA |
+    | [محیط عملیاتی کوچک](../scales/small-production.md) | ۲ MDS برای HA |
     | [Multisite](../scales/multisite.md) | cephfs-mirror |
 
     [← نمای کلی راهنما](../OVERVIEW.md)
@@ -829,7 +829,7 @@ guides/scales/lab:
   fa: |
     # مقیاس Lab / توسعه
 
-    <span class="badge badge-scale-lab">Lab / dev</span> ۱–۳ نود، تست و یادگیری — **نه برای داده production**.
+    <span class="badge badge-scale-lab">آزمایشگاه / توسعه</span> ۱–۳ نود، تست و یادگیری — **نه برای دادهٔ عملیاتی**.
 
     ## اهداف
 
@@ -963,7 +963,7 @@ guides/scales/small-production:
   fa: |
     # مقیاس Small Production
 
-    <span class="badge badge-scale-small">Small production</span> معمولاً **۳–۱۲ نود**، یک datacenter، replica **3**، cephadm.
+    <span class="badge badge-scale-small">محیط عملیاتی کوچک</span> معمولاً **۳–۱۲ نود**، یک مرکز داده، replica **3**، cephadm.
 
     ## چک‌لیست معماری
 
@@ -1103,7 +1103,7 @@ guides/scales/large-production:
   fa: |
     # مقیاس Large Production
 
-    <span class="badge badge-scale-large">Large production</span> **۱۲+ نود**، OSD زیاد، SLA سخت، شبکه جدا، تنظیم performance.
+    <span class="badge badge-scale-large">محیط عملیاتی بزرگ</span> **۱۲+ نود**، OSD زیاد، SLA سخت‌گیرانه، شبکه جدا، تنظیم عملکرد.
 
     ## حوزه‌های تمرکز
 

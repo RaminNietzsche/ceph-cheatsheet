@@ -36,5 +36,5 @@ global, osd, mon, mgr, mds, mds-client, rgw, rbd, rbd-mirror, cephfs-mirror, cri
 ## CI / Pages
 
 - Workflow: `.github/workflows/docs.yml`
-- Site URL: `https://blog.raminnietzsche.ir/ceph-cheatsheet/`
+- Site URL: `http://blog.ceph-s3.ir/cheatsheet/`
 - `mkdocs.yml` → `docs_dir: docs` (symlinks to cli, config, guides)

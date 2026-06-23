@@ -25,7 +25,7 @@
 | [`rbd_clone_copy_on_read`](misc/clone.md#rbd_clone_copy_on_read) | `False` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [Clone](misc/clone.md) |
 | [`rbd_compression_hint`](misc/compression.md#rbd_compression_hint) | `none` | Policy | مطابق سیاست امنیت و سازگاری | [Compression](misc/compression.md) |
 | [`rbd_concurrent_management_ops`](misc/concurrent.md#rbd_concurrent_management_ops) | `10` | Performance | در محدوده مستند بمانید | [Concurrent](misc/concurrent.md) |
-| [`rbd_config_pool_override_update_timestamp`](misc/config.md#rbd_config_pool_override_update_timestamp) | `0` | Dev | پیش‌فرض upstream در production | [Config](misc/config.md) |
+| [`rbd_config_pool_override_update_timestamp`](misc/config.md#rbd_config_pool_override_update_timestamp) | `0` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Config](misc/config.md) |
 | [`rbd_default_clone_format`](misc/default.md#rbd_default_clone_format) | `auto` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Defaults](misc/default.md) |
 | [`rbd_default_data_pool`](misc/default.md#rbd_default_data_pool) | `(empty)` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Defaults](misc/default.md) |
 | [`rbd_default_features`](misc/default.md#rbd_default_features) | `layering,exclusive-lock,object-map,fast-diff,deep-flatten` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Defaults](misc/default.md) |
@@ -40,7 +40,7 @@
 | [`rbd_discard_granularity_bytes`](misc/discard.md#rbd_discard_granularity_bytes) | `64_K` | Performance | در محدوده مستند بمانید | [Discard](misc/discard.md) |
 | [`rbd_discard_on_zeroed_write_same`](misc/discard.md#rbd_discard_on_zeroed_write_same) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [Discard](misc/discard.md) |
 | [`rbd_enable_alloc_hint`](misc/enable.md#rbd_enable_alloc_hint) | `True` | Policy | مطابق سیاست امنیت و سازگاری | [Enable](misc/enable.md) |
-| [`rbd_invalidate_object_map_on_timeout`](misc/invalidate.md#rbd_invalidate_object_map_on_timeout) | `True` | Dev | پیش‌فرض upstream در production | [Invalidate](misc/invalidate.md) |
+| [`rbd_invalidate_object_map_on_timeout`](misc/invalidate.md#rbd_invalidate_object_map_on_timeout) | `True` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Invalidate](misc/invalidate.md) |
 | [`rbd_io_scheduler`](performance/io.md#rbd_io_scheduler) | `simple` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Io](performance/io.md) |
 | [`rbd_io_scheduler_simple_max_delay`](performance/io.md#rbd_io_scheduler_simple_max_delay) | `0` | Performance | در محدوده مستند بمانید | [Io](performance/io.md) |
 | [`rbd_journal_commit_age`](mirror/journal.md#rbd_journal_commit_age) | `5` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Journal](mirror/journal.md) |
@@ -92,7 +92,7 @@
 | [`rbd_qos_write_iops_burst`](performance/qos.md#rbd_qos_write_iops_burst) | `0` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [QoS & throttling](performance/qos.md) |
 | [`rbd_qos_write_iops_burst_seconds`](performance/qos.md#rbd_qos_write_iops_burst_seconds) | `1` | Performance | در محدوده مستند بمانید | [QoS & throttling](performance/qos.md) |
 | [`rbd_qos_write_iops_limit`](performance/qos.md#rbd_qos_write_iops_limit) | `0` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [QoS & throttling](performance/qos.md) |
-| [`rbd_quiesce_notification_attempts`](misc/quiesce.md#rbd_quiesce_notification_attempts) | `10` | Dev | پیش‌فرض upstream در production | [Quiesce](misc/quiesce.md) |
+| [`rbd_quiesce_notification_attempts`](misc/quiesce.md#rbd_quiesce_notification_attempts) | `10` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Quiesce](misc/quiesce.md) |
 | [`rbd_read_from_replica_policy`](misc/read.md#rbd_read_from_replica_policy) | `default` | Policy | مطابق سیاست امنیت و سازگاری | [Read](misc/read.md) |
 | [`rbd_readahead_disable_after_bytes`](performance/readahead.md#rbd_readahead_disable_after_bytes) | `50_M` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Readahead](performance/readahead.md) |
 | [`rbd_readahead_max_bytes`](performance/readahead.md#rbd_readahead_max_bytes) | `512_K` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Readahead](performance/readahead.md) |
@@ -102,6 +102,6 @@
 | [`rbd_sparse_read_threshold_bytes`](misc/sparse.md#rbd_sparse_read_threshold_bytes) | `64_K` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Sparse](misc/sparse.md) |
 | [`rbd_tracing`](misc/general.md#rbd_tracing) | `False` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [General](misc/general.md) |
 | [`rbd_validate_names`](misc/validate.md#rbd_validate_names) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [Validate](misc/validate.md) |
-| [`rbd_validate_pool`](misc/validate.md#rbd_validate_pool) | `True` | Dev | پیش‌فرض upstream در production | [Validate](misc/validate.md) |
+| [`rbd_validate_pool`](misc/validate.md#rbd_validate_pool) | `True` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Validate](misc/validate.md) |
 
 [← نمای کلی](../OVERVIEW.md)

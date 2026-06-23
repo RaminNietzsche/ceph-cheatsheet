@@ -1,6 +1,6 @@
 # Timeouts & intervals
 
-deep dive پیکربندی RGW — 8 گزینه. [← نمای کلی پیکربندی RGW](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/rgw/INDEX.md)
+راهنمای عمیق پیکربندی RGW — 8 گزینه. [← نمای کلی پیکربندی RGW](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/rgw/INDEX.md)
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
@@ -20,9 +20,9 @@ deep dive پیکربندی RGW — 8 گزینه. [← نمای کلی پیکرب
 | **Policy** | امنیت، سازگاری API، محدودیت tenant |
 | **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
 | **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
-| **Architecture** | backend، توپولوژی multisite — نه sweep عددی |
-| **Dev** | پیش‌فرض upstream در production |
+| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -44,7 +44,7 @@ ceph pg stat
 
 **کارکرد:** RGW shutdown timeout
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -81,7 +81,7 @@ ceph -s  # cluster health, slow ops
 
 **کارکرد:** Initialization timeout
 
-**زمان استفاده:** رفتار اصلی RGW — قبل از تغییر در production بررسی کنید.
+**زمان استفاده:** رفتار اصلی RGW — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
 **مثال:**
 
@@ -158,7 +158,7 @@ ceph -s  # cluster health, slow ops
 
 **کارکرد:** Max time for pending OLH change to complete
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -238,7 +238,7 @@ ceph -s  # cluster health, slow ops
 
 **کارکرد:** Maximum time in milliseconds for read-through GET requests to wait for cloud object restore completion
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 

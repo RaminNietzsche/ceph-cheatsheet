@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی CephFS mirror — همه گزینه‌ها
+# راهنمای عمیق پیکربندی CephFS mirror — همهٔ گزینه‌ها
 
-مرجع گسترده برای **15** گزینه CephFS mirror با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md).
+مرجع کامل **15** گزینهٔ CephFS mirror با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>

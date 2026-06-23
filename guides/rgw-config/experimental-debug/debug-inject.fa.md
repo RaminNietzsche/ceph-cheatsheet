@@ -1,6 +1,6 @@
 # Debug & fault injection
 
-deep dive پیکربندی RGW — 7 گزینه. [← نمای کلی پیکربندی RGW](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/rgw/INDEX.md)
+راهنمای عمیق پیکربندی RGW — 7 گزینه. [← نمای کلی پیکربندی RGW](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/rgw/INDEX.md)
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
@@ -19,9 +19,9 @@ deep dive پیکربندی RGW — 7 گزینه. [← نمای کلی پیکرب
 | **Policy** | امنیت، سازگاری API، محدودیت tenant |
 | **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
 | **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
-| **Architecture** | backend، توپولوژی multisite — نه sweep عددی |
-| **Dev** | پیش‌فرض upstream در production |
+| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -43,7 +43,7 @@ ceph pg stat
 
 **کارکرد:** Latency (in seconds) injected before rgw bucket index unlink op calls to simulate queueing latency and validate behavior of simultaneous delete requests which target the same object.
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -73,7 +73,7 @@ ceph config get client.rgw rgw_debug_inject_latency_bi_unlink
 
 **کارکرد:** Whether to inject an error to simulate a failure to cancel olh modification. This exists for development and testing purposes.
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -103,7 +103,7 @@ ceph config get client.rgw rgw_debug_inject_olh_cancel_modification_err
 
 **کارکرد:** Whether to inject errors between rados olh modification initialization and bucket index instance linking. The value determines the error code. This exists for development and testing purposes to help simulate cases where bucket index entries aren't cleaned up by the request thread after an error scenario.
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -133,7 +133,7 @@ ceph config get client.rgw rgw_debug_inject_set_olh_err
 
 **کارکرد:** select which delay injection points are activated
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -163,7 +163,7 @@ ceph config get client.rgw rgw_inject_delay_pattern
 
 **کارکرد:** delay duration in seconds for test injection points
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -193,7 +193,7 @@ ceph config get client.rgw rgw_inject_delay_sec
 
 **کارکرد:** Injected delay after acquiring the multipart lock for renewal testing
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -223,7 +223,7 @@ ceph config get client.rgw rgw_mp_lock_inject_delay
 
 **کارکرد:** Injected error code for multipart lock renewal testing
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 

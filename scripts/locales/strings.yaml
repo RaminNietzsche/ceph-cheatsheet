@@ -3,8 +3,13 @@
 
 upstream_table_note:
   en: ""
-  fa: "> **یادداشت:** توضیحات گزینه‌ها در جدول از upstream Ceph (انگلیسی) است."
+  fa: "> **یادداشت:** توضیحات فنی گزینه‌ها در جدول از مستندات upstream Ceph (انگلیسی) است."
   zh: "> **说明：** 下表中的选项说明来自 upstream Ceph（英文）。"
+
+fallback_page_note:
+  en: ""
+  fa: "> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است."
+  zh: "> **说明：** 本页尚未提供中文翻译，以下为英文原文。"
 
 label_what_it_does:
   en: "**What it does:**"
@@ -158,17 +163,17 @@ finding_performance_row:
 
 finding_connectivity_row:
   en: "| **Connectivity** | Nearest stable external endpoint |"
-  fa: "| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |"
+  fa: "| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |"
   zh: "| **Connectivity** | 最近且稳定的外部端点 |"
 
 finding_dev_row:
   en: "| **Dev** | Keep upstream default in production |"
-  fa: "| **Dev** | پیش‌فرض upstream در production |"
+  fa: "| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |"
   zh: "| **Dev** | 生产环境保持 upstream 默认值 |"
 
 finding_architecture_row:
   en: "| **Architecture** | Backend, multisite topology — not numeric sweeps |"
-  fa: "| **Architecture** | backend، توپولوژی multisite — نه sweep عددی |"
+  fa: "| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |"
   zh: "| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |"
 
 model_policy:
@@ -203,12 +208,12 @@ model_architecture:
 
 signals_default:
   en: "**Signals:** `ceph -s`, slow ops, daemon perf counters, recovery/scrub backlog."
-  fa: "**سیگنال‌ها:** `ceph -s`، slow ops، شمارنده‌های perf دیمن، backlog بازیابی/scrub."
+  fa: "**شاخص‌های پایش:** `ceph -s`، slow ops، شمارنده‌های عملکرد دیمن، صف بازیابی و scrub."
   zh: "**观测信号：** `ceph -s`、slow ops、守护进程 perf 计数器、恢复/scrub 积压。"
 
 client_monitor_comment:
   en: "# client options: set on client section or ceph.conf"
-  fa: "# گزینه‌های client: در بخش client یا ceph.conf تنظیم کنید"
+  fa: "# گزینه‌های کلاینت: در بخش client یا ceph.conf تنظیم کنید"
   zh: "# client 选项：在 client 段或 ceph.conf 中设置"
 
 back_overview:
@@ -233,17 +238,17 @@ tuning_index_link:
 
 group_intro:
   en: "{title} config deep dive — {count} options. {overview} · {tuning} · {index}"
-  fa: "deep dive پیکربندی {title} — {count} گزینه. {overview} · {tuning} · {index}"
+  fa: "راهنمای عمیق پیکربندی {title} — {count} گزینه. {overview} · {tuning} · {index}"
   zh: "{title} 配置深度指南 — {count} 个选项。{overview} · {tuning} · {index}"
 
 overview_title:
   en: "# {title} Config Deep Dive — All Options"
-  fa: "# Deep Dive پیکربندی {title} — همه گزینه‌ها"
+  fa: "# راهنمای عمیق پیکربندی {title} — همهٔ گزینه‌ها"
   zh: "# {title} 配置深度指南 — 全部选项"
 
 overview_blurb:
   en: "Extended reference for all **{count}** {title} options with **Finding optimal value** guidance (one section per option). Generated from [config/{subdir}/INDEX.md]({href})."
-  fa: "مرجع گسترده برای **{count}** گزینه {title} با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/{subdir}/INDEX.md]({href})."
+  fa: "مرجع کامل **{count}** گزینهٔ {title} با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/{subdir}/INDEX.md]({href})."
   zh: "全部 **{count}** 个 {title} 选项的扩展参考，含 **寻找最优值** 指南（每个选项一节）。由 [config/{subdir}/INDEX.md]({href}) 生成。"
 
 topics_by_category:
@@ -268,7 +273,7 @@ tuning_quick_link:
 
 when_use_dev:
   en: "Development, testing, or upstream debugging only — not for production tuning."
-  fa: "فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production."
+  fa: "فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی."
   zh: "仅用于开发、测试或 upstream 调试 — 不可用于生产调优。"
 
 when_use_bool_true:
@@ -278,7 +283,7 @@ when_use_bool_true:
 
 when_use_bool_false:
   en: "Disabled by default; enable when you need the feature and accept its trade-offs."
-  fa: "به‌طور پیش‌فرض غیرفعال است؛ وقتی به قابلیت نیاز دارید و trade-off را می‌پذیرید فعال کنید."
+  fa: "به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید."
   zh: "默认禁用；需要该功能并接受其权衡时启用。"
 
 when_use_external_url:
@@ -298,12 +303,12 @@ when_use_intervals:
 
 when_use_basic:
   en: "Core {title} behavior — review before changing in production."
-  fa: "رفتار اصلی {title} — قبل از تغییر در production بررسی کنید."
+  fa: "رفتار اصلی {title} — پیش از تغییر در محیط عملیاتی بررسی کنید."
   zh: "核心 {title} 行为 — 生产环境变更前请审阅。"
 
 when_use_advanced:
   en: "Advanced tuning — change from upstream default only with a measured workload and rollback plan."
-  fa: "تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید."
+  fa: "تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید."
   zh: "高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。"
 
 when_use_motr:
@@ -323,27 +328,27 @@ when_use_quota:
 
 when_use_max_limit:
   en: "Adjust when clients hit request-size or concurrency limits, or to protect cluster resources."
-  fa: "وقتی کلاینت‌ها به محدودیت اندازه/concurrency می‌رسند یا برای محافظت از منابع کلاستر."
+  fa: "وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر."
   zh: "客户端触及请求大小/并发限制，或保护集群资源时调整。"
 
 when_use_cache:
   en: "Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure."
-  fa: "وقتی cache متادیتا/quota/token روی lag صحت یا فشار حافظه RGW اثر می‌گذارد."
+  fa: "وقتی کش (cache) متادیتا، سهمیه (quota) یا توکن روی تأخیر صحت یا فشار حافظهٔ RGW اثر می‌گذارد."
   zh: "元数据/quota/令牌缓存影响正确性延迟或 RGW 内存压力时调整。"
 
 when_use_sync:
   en: "Multisite replication and sync tuning — adjust when lag or sync load is problematic."
-  fa: "تنظیم replication و sync در multisite — وقتی lag یا بار sync مشکل‌ساز است."
+  fa: "تنظیم replication و sync در محیط چندسایته — وقتی تأخیر (lag) یا بار sync مشکل‌ساز است."
   zh: "多站点复制与同步调优 — 延迟或同步负载异常时调整。"
 
 when_use_rgw_basic:
   en: "Core RGW behavior — review before changing in production."
-  fa: "رفتار اصلی RGW — قبل از تغییر در production بررسی کنید."
+  fa: "رفتار اصلی RGW — پیش از تغییر در محیط عملیاتی بررسی کنید."
   zh: "核心 RGW 行为 — 生产环境变更前请审阅。"
 
 tune_quick_dev:
   en: "Keep upstream default in production"
-  fa: "پیش‌فرض upstream در production"
+  fa: "در محیط عملیاتی همان پیش‌فرض upstream"
   zh: "生产环境保持 upstream 默认值"
 
 tune_quick_capacity:
@@ -353,7 +358,7 @@ tune_quick_capacity:
 
 tune_quick_connectivity:
   en: "Use nearest stable endpoint"
-  fa: "نزدیک‌ترین endpoint پایدار"
+  fa: "نزدیک‌ترین نقطهٔ پایانی پایدار"
   zh: "使用最近且稳定的端点"
 
 tune_quick_policy:
@@ -378,17 +383,17 @@ tune_quick_default:
 
 find_dev_1:
   en: "1. Keep the upstream default (`{default}`) in production."
-  fa: "1. پیش‌فرض upstream (`{default}`) را در production نگه دارید."
+  fa: "1. پیش‌فرض upstream (`{default}`) را در محیط عملیاتی نگه دارید."
   zh: "1. 生产环境保持 upstream 默认值（`{default}`）。"
 
 find_dev_2:
   en: "2. Change only in a lab while reproducing a specific issue."
-  fa: "2. فقط در lab هنگام بازتولید issue مشخص تغییر دهید."
+  fa: "2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید."
   zh: "2. 仅在实验室复现特定问题时修改。"
 
 find_dev_3:
   en: "3. Revert before returning the node to the production pool."
-  fa: "3. قبل از بازگرداندن نود به pool production برگردانید."
+  fa: "3. پیش از بازگرداندن نود به مجموعهٔ عملیاتی، مقدار را برگردانید."
   zh: "3. 节点回到生产池前请还原。"
 
 find_cap_1:
@@ -408,7 +413,7 @@ find_cap_3:
 
 find_conn_1:
   en: "1. List candidate endpoints from your environment."
-  fa: "1. endpointهای کاندید را از محیط خود فهرست کنید."
+  fa: "1. نقاط پایانی (endpoint) کاندید را از محیط خود فهرست کنید."
   zh: "1. 列出环境中的候选端点。"
 
 find_conn_2:
@@ -418,7 +423,7 @@ find_conn_2:
 
 find_conn_3:
   en: "3. Pick the lowest-latency stable endpoint."
-  fa: "3. endpoint پایدار با کمترین latency را انتخاب کنید."
+  fa: "3. پایدارترین نقطهٔ پایانی با کمترین تأخیر (latency) را انتخاب کنید."
   zh: "3. 选择延迟最低且稳定的端点。"
 
 find_conn_4:
@@ -438,7 +443,7 @@ find_policy_2:
 
 find_policy_3:
   en: "3. Test client and admin workflows after changes."
-  fa: "3. پس از تغییرات workflow کلاینت و admin را تست کنید."
+  fa: "3. پس از تغییرات، روندهای کاری کلاینت و مدیر را آزمایش کنید."
   zh: "3. 变更后测试客户端与管理流程。"
 
 find_perf_1:
@@ -453,12 +458,12 @@ find_perf_2:
 
 find_perf_3:
   en: "3. Compare latency, throughput, and background work before/after."
-  fa: "3. latency، throughput و کار پس‌زمینه را قبل/بعد مقایسه کنید."
+  fa: "3. تأخیر (latency)، توان عملیاتی (throughput) و کار پس‌زمینه را قبل و بعد مقایسه کنید."
   zh: "3. 对比变更前后的延迟、吞吐与后台任务。"
 
 find_perf_4:
   en: "4. Roll back if health degrades or slow ops increase."
-  fa: "4. اگر health بدتر شد یا slow ops افزایش یافت rollback کنید."
+  fa: "4. اگر سلامت کلاستر بدتر شد یا slow ops افزایش یافت، بازگشت (rollback) کنید."
   zh: "4. 健康度下降或 slow ops 增加时回滚。"
 
 config_overview_intro:
@@ -468,7 +473,7 @@ config_overview_intro:
 
 rgw_group_intro:
   en: "RGW config deep dive — {count} options. {overview} · {tuning} · {index}"
-  fa: "deep dive پیکربندی RGW — {count} گزینه. {overview} · {tuning} · {index}"
+  fa: "راهنمای عمیق پیکربندی RGW — {count} گزینه. {overview} · {tuning} · {index}"
   zh: "RGW 配置深度指南 — {count} 个选项。{overview} · {tuning} · {index}"
 
 rgw_quota_note:
@@ -493,12 +498,12 @@ finding_performance_rgw_row:
 
 rgw_overview_title:
   en: "# RGW Config Deep Dive — All Options"
-  fa: "# Deep Dive پیکربندی RGW — همه گزینه‌ها"
+  fa: "# راهنمای عمیق پیکربندی RGW — همهٔ گزینه‌ها"
   zh: "# RGW 配置深度指南 — 全部选项"
 
 rgw_overview_blurb:
   en: "Extended reference for all **{count}** RGW options with **Finding optimal value** guidance. Generated from [config/rgw/INDEX.md]({href})."
-  fa: "مرجع گسترده برای **{count}** گزینه RGW با راهنمای **یافتن مقدار بهینه**. تولید شده از [config/rgw/INDEX.md]({href})."
+  fa: "مرجع کامل **{count}** گزینهٔ RGW با راهنمای **یافتن مقدار بهینه**. تولیدشده از [config/rgw/INDEX.md]({href})."
   zh: "全部 **{count}** 个 RGW 选项的扩展参考，含 **寻找最优值** 指南。由 [config/rgw/INDEX.md]({href}) 生成。"
 
 rgw_tuning_title:

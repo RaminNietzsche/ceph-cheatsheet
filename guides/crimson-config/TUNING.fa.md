@@ -20,24 +20,24 @@
 | [`crimson_reactor_idle_poll_time_us`](topics/crimson.md#crimson_reactor_idle_poll_time_us) | `200` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Crimson OSD](topics/crimson.md) |
 | [`crimson_reactor_io_latency_goal_ms`](topics/crimson.md#crimson_reactor_io_latency_goal_ms) | `0` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Crimson OSD](topics/crimson.md) |
 | [`crimson_reactor_task_quota_ms`](topics/crimson.md#crimson_reactor_task_quota_ms) | `0.5` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Crimson OSD](topics/crimson.md) |
-| [`seastore_block_create`](topics/seastore.md#seastore_block_create) | `True` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
+| [`seastore_block_create`](topics/seastore.md#seastore_block_create) | `True` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
 | [`seastore_cachepin_2q_in_ratio`](topics/seastore.md#seastore_cachepin_2q_in_ratio) | `0.5` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Seastore](topics/seastore.md) |
 | [`seastore_cachepin_2q_out_ratio`](topics/seastore.md#seastore_cachepin_2q_out_ratio) | `0.5` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Seastore](topics/seastore.md) |
 | [`seastore_cachepin_size_pershard`](topics/seastore.md#seastore_cachepin_size_pershard) | `2_G` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Seastore](topics/seastore.md) |
-| [`seastore_cachepin_type`](topics/seastore.md#seastore_cachepin_type) | `LRU` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
-| [`seastore_cbjournal_size`](topics/seastore.md#seastore_cbjournal_size) | `5_G` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
+| [`seastore_cachepin_type`](topics/seastore.md#seastore_cachepin_type) | `LRU` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
+| [`seastore_cbjournal_size`](topics/seastore.md#seastore_cbjournal_size) | `5_G` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
 | [`seastore_cold_tier_generations`](topics/seastore.md#seastore_cold_tier_generations) | `3` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Seastore](topics/seastore.md) |
-| [`seastore_data_delta_based_overwrite`](topics/seastore.md#seastore_data_delta_based_overwrite) | `0` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
-| [`seastore_default_max_object_size`](topics/seastore.md#seastore_default_max_object_size) | `16777216` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
-| [`seastore_device_size`](topics/seastore.md#seastore_device_size) | `50_G` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
-| [`seastore_disable_end_to_end_data_protection`](topics/seastore.md#seastore_disable_end_to_end_data_protection) | `True` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
-| [`seastore_full_integrity_check`](topics/seastore.md#seastore_full_integrity_check) | `False` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
+| [`seastore_data_delta_based_overwrite`](topics/seastore.md#seastore_data_delta_based_overwrite) | `0` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
+| [`seastore_default_max_object_size`](topics/seastore.md#seastore_default_max_object_size) | `16777216` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
+| [`seastore_device_size`](topics/seastore.md#seastore_device_size) | `50_G` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
+| [`seastore_disable_end_to_end_data_protection`](topics/seastore.md#seastore_disable_end_to_end_data_protection) | `True` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
+| [`seastore_full_integrity_check`](topics/seastore.md#seastore_full_integrity_check) | `False` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
 | [`seastore_hot_tier_generations`](topics/seastore.md#seastore_hot_tier_generations) | `5` | Performance | در محدوده مستند بمانید | [Seastore](topics/seastore.md) |
-| [`seastore_journal_batch_capacity`](topics/seastore.md#seastore_journal_batch_capacity) | `16` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
-| [`seastore_journal_batch_flush_size`](topics/seastore.md#seastore_journal_batch_flush_size) | `16_M` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
-| [`seastore_journal_batch_preferred_fullness`](topics/seastore.md#seastore_journal_batch_preferred_fullness) | `0.95` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
-| [`seastore_journal_iodepth_limit`](topics/seastore.md#seastore_journal_iodepth_limit) | `5` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
-| [`seastore_main_device_type`](topics/seastore.md#seastore_main_device_type) | `SSD` | Dev | پیش‌فرض upstream در production | [Seastore](topics/seastore.md) |
+| [`seastore_journal_batch_capacity`](topics/seastore.md#seastore_journal_batch_capacity) | `16` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
+| [`seastore_journal_batch_flush_size`](topics/seastore.md#seastore_journal_batch_flush_size) | `16_M` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
+| [`seastore_journal_batch_preferred_fullness`](topics/seastore.md#seastore_journal_batch_preferred_fullness) | `0.95` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
+| [`seastore_journal_iodepth_limit`](topics/seastore.md#seastore_journal_iodepth_limit) | `5` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
+| [`seastore_main_device_type`](topics/seastore.md#seastore_main_device_type) | `SSD` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Seastore](topics/seastore.md) |
 | [`seastore_max_concurrent_transactions`](topics/seastore.md#seastore_max_concurrent_transactions) | `128` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Seastore](topics/seastore.md) |
 | [`seastore_max_data_allocation_size`](topics/seastore.md#seastore_max_data_allocation_size) | `0` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Seastore](topics/seastore.md) |
 | [`seastore_multiple_tiers_default_evict_ratio`](topics/seastore.md#seastore_multiple_tiers_default_evict_ratio) | `0.6` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Seastore](topics/seastore.md) |

@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی Global — همه گزینه‌ها
+# راهنمای عمیق پیکربندی Global — همهٔ گزینه‌ها
 
-مرجع گسترده برای **852** گزینه Global با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/global/INDEX.md](../../config/global/INDEX.md).
+مرجع کامل **852** گزینهٔ Global با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/global/INDEX.md](../../config/global/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>

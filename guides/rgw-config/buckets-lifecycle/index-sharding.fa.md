@@ -1,6 +1,6 @@
 # Bucket index & sharding
 
-deep dive پیکربندی RGW — 4 گزینه. [← نمای کلی پیکربندی RGW](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/rgw/INDEX.md)
+راهنمای عمیق پیکربندی RGW — 4 گزینه. [← نمای کلی پیکربندی RGW](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/rgw/INDEX.md)
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
@@ -16,9 +16,9 @@ deep dive پیکربندی RGW — 4 گزینه. [← نمای کلی پیکرب
 | **Policy** | امنیت، سازگاری API، محدودیت tenant |
 | **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
 | **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
-| **Architecture** | backend، توپولوژی multisite — نه sweep عددی |
-| **Dev** | پیش‌فرض upstream در production |
+| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -40,7 +40,7 @@ ceph pg stat
 
 **کارکرد:** The default number of bucket index shards for newly-created buckets. This value overrides bucket_index_max_shards stored in the zone. Setting this value in the zone is preferred, because it applies globally to all radosgw daemons running in the zone.
 
-**زمان استفاده:** فقط برای توسعه، تست یا دیباگ upstream — نه برای تنظیم production.
+**زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
 **مثال:**
 
@@ -68,7 +68,7 @@ ceph config get client.rgw rgw_override_bucket_index_max_shards
 
 **کارکرد:** Number of seconds a pending operation can remain in bucket index shard.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -106,7 +106,7 @@ ceph -s  # cluster health, slow ops
 
 **کارکرد:** Safe number of objects per shard
 
-**زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه/concurrency می‌رسند یا برای محافظت از منابع کلاستر.
+**زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
 **مثال:**
 
@@ -134,7 +134,7 @@ ceph config get client.rgw rgw_safe_max_objects_per_shard
 
 **کارکرد:** Warn about max objects per shard
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 

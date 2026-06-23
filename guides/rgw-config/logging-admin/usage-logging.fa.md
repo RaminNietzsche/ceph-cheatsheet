@@ -1,6 +1,6 @@
 # Usage logging
 
-deep dive پیکربندی RGW — 4 گزینه. [← نمای کلی پیکربندی RGW](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/rgw/INDEX.md)
+راهنمای عمیق پیکربندی RGW — 4 گزینه. [← نمای کلی پیکربندی RGW](../OVERVIEW.md) · [فهرست تنظیم](../TUNING.md) · [INDEX](../../../config/rgw/INDEX.md)
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
@@ -16,9 +16,9 @@ deep dive پیکربندی RGW — 4 گزینه. [← نمای کلی پیکرب
 | **Policy** | امنیت، سازگاری API، محدودیت tenant |
 | **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
 | **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
-| **Architecture** | backend، توپولوژی multisite — نه sweep عددی |
-| **Dev** | پیش‌فرض upstream در production |
+| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -40,7 +40,7 @@ ceph pg stat
 
 **کارکرد:** Number of entries in usage log before flushing
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با workload اندازه‌گیری‌شده و برنامه rollback از پیش‌فرض upstream تغییر دهید.
+**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
 **مثال:**
 
@@ -106,7 +106,7 @@ ceph config get client.rgw rgw_usage_log_key_transition
 
 **کارکرد:** Number of shards for usage log.
 
-**زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه/concurrency می‌رسند یا برای محافظت از منابع کلاستر.
+**زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
 **مثال:**
 
@@ -134,7 +134,7 @@ ceph config get global rgw_usage_max_shards
 
 **کارکرد:** Number of shards for single user in usage log
 
-**زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه/concurrency می‌رسند یا برای محافظت از منابع کلاستر.
+**زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
 **مثال:**
 

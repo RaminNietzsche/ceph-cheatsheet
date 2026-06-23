@@ -70,7 +70,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: http://blog.ceph-s3.ir/cheatsheet/
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

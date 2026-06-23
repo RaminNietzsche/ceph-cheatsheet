@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی MDS — همه گزینه‌ها
+# راهنمای عمیق پیکربندی MDS — همهٔ گزینه‌ها
 
-مرجع گسترده برای **194** گزینه MDS با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/mds/INDEX.md](../../config/mds/INDEX.md).
+مرجع کامل **194** گزینهٔ MDS با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/mds/INDEX.md](../../config/mds/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>

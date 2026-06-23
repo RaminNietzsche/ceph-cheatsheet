@@ -12,7 +12,7 @@
 | [Config](config/OVERVIEW.md) | **2122** options from upstream Ceph YAML |
 | [Config deep dives](guides/OVERVIEW.md#general) | RGW, OSD, MON, MGR, MDS, Global — tuning + examples |
 
-**Online:** [blog.raminnietzsche.ir/ceph-cheatsheet](https://blog.raminnietzsche.ir/ceph-cheatsheet/)
+**Online:** [blog.ceph-s3.ir/cheatsheet](http://blog.ceph-s3.ir/cheatsheet/)
 
 ## Quick tools
 

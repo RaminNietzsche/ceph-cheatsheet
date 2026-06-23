@@ -1,6 +1,6 @@
 site_name: Ceph Cheatsheet
 site_description: Offline Ceph CLI and configuration reference
-site_url: https://blog.raminnietzsche.ir/ceph-cheatsheet/
+site_url: http://blog.ceph-s3.ir/cheatsheet/
 repo_url: https://github.com/RaminNietzsche/ceph-cheatsheet
 repo_name: RaminNietzsche/ceph-cheatsheet
 
@@ -63,6 +63,9 @@ plugins:
           name: فارسی
           build: true
           direction: rtl
+          theme:
+            font:
+              text: Vazirmatn
           nav_translations:
             Home: خانه
             Guides: راهنما
@@ -72,7 +75,18 @@ plugins:
             "Quick start": شروع سریع
             "Config lookup": جستجوی پیکربندی
             Contributing: مشارکت
-            "Config deep dives": deep dive پیکربندی
+            "Config deep dives": راهنمای عمیق پیکربندی
+            "By role": بر اساس نقش
+            "By scale": بر اساس مقیاس
+            Cluster: کلاستر
+            "Cluster admin": مدیر کلاستر
+            "Storage operator": مسئول ذخیره‌سازی
+            "RGW admin": مدیر RGW
+            "CephFS admin": مدیر CephFS
+            Lab: آزمایشگاه
+            "Small production": محیط عملیاتی کوچک
+            "Large production": محیط عملیاتی بزرگ
+            Multisite: چندسایته
         - locale: zh
           name: 中文
           build: true

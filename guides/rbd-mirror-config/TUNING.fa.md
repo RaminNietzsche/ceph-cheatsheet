@@ -20,12 +20,12 @@
 | [`rbd_mirror_leader_heartbeat_interval`](topics/mirror.md#rbd_mirror_leader_heartbeat_interval) | `5` | Performance | در محدوده مستند بمانید | [RBD mirror](topics/mirror.md) |
 | [`rbd_mirror_leader_max_acquire_attempts_before_break`](topics/mirror.md#rbd_mirror_leader_max_acquire_attempts_before_break) | `3` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [RBD mirror](topics/mirror.md) |
 | [`rbd_mirror_leader_max_missed_heartbeats`](topics/mirror.md#rbd_mirror_leader_max_missed_heartbeats) | `2` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [RBD mirror](topics/mirror.md) |
-| [`rbd_mirror_memory_autotune`](topics/mirror.md#rbd_mirror_memory_autotune) | `True` | Dev | پیش‌فرض upstream در production | [RBD mirror](topics/mirror.md) |
-| [`rbd_mirror_memory_base`](topics/mirror.md#rbd_mirror_memory_base) | `768_M` | Dev | پیش‌فرض upstream در production | [RBD mirror](topics/mirror.md) |
-| [`rbd_mirror_memory_cache_autotune_interval`](topics/mirror.md#rbd_mirror_memory_cache_autotune_interval) | `30` | Dev | پیش‌فرض upstream در production | [RBD mirror](topics/mirror.md) |
-| [`rbd_mirror_memory_cache_min`](topics/mirror.md#rbd_mirror_memory_cache_min) | `128_M` | Dev | پیش‌فرض upstream در production | [RBD mirror](topics/mirror.md) |
-| [`rbd_mirror_memory_cache_resize_interval`](topics/mirror.md#rbd_mirror_memory_cache_resize_interval) | `5` | Dev | پیش‌فرض upstream در production | [RBD mirror](topics/mirror.md) |
-| [`rbd_mirror_memory_expected_fragmentation`](topics/mirror.md#rbd_mirror_memory_expected_fragmentation) | `0.15` | Dev | پیش‌فرض upstream در production | [RBD mirror](topics/mirror.md) |
+| [`rbd_mirror_memory_autotune`](topics/mirror.md#rbd_mirror_memory_autotune) | `True` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [RBD mirror](topics/mirror.md) |
+| [`rbd_mirror_memory_base`](topics/mirror.md#rbd_mirror_memory_base) | `768_M` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [RBD mirror](topics/mirror.md) |
+| [`rbd_mirror_memory_cache_autotune_interval`](topics/mirror.md#rbd_mirror_memory_cache_autotune_interval) | `30` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [RBD mirror](topics/mirror.md) |
+| [`rbd_mirror_memory_cache_min`](topics/mirror.md#rbd_mirror_memory_cache_min) | `128_M` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [RBD mirror](topics/mirror.md) |
+| [`rbd_mirror_memory_cache_resize_interval`](topics/mirror.md#rbd_mirror_memory_cache_resize_interval) | `5` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [RBD mirror](topics/mirror.md) |
+| [`rbd_mirror_memory_expected_fragmentation`](topics/mirror.md#rbd_mirror_memory_expected_fragmentation) | `0.15` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [RBD mirror](topics/mirror.md) |
 | [`rbd_mirror_memory_target`](topics/mirror.md#rbd_mirror_memory_target) | `4_G` | Policy | مطابق سیاست امنیت و سازگاری | [RBD mirror](topics/mirror.md) |
 | [`rbd_mirror_perf_stats_prio`](topics/mirror.md#rbd_mirror_perf_stats_prio) | `5` | Performance | در محدوده مستند بمانید | [RBD mirror](topics/mirror.md) |
 | [`rbd_mirror_pool_replayers_refresh_interval`](topics/mirror.md#rbd_mirror_pool_replayers_refresh_interval) | `30` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [RBD mirror](topics/mirror.md) |

@@ -53,7 +53,7 @@ def load_page_translations() -> dict[str, dict[str, str]]:
 def fallback_translation(en_path: Path, locale: str) -> str:
     body = en_path.read_text(encoding="utf-8")
     set_locale(locale)
-    note = t("upstream_table_note") or ""
+    note = t("fallback_page_note") or t("upstream_table_note") or ""
     set_locale("en")
     if note:
         return f"{note}\n\n{body}"

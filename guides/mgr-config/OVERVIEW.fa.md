@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی MGR — همه گزینه‌ها
+# راهنمای عمیق پیکربندی MGR — همهٔ گزینه‌ها
 
-مرجع گسترده برای **52** گزینه MGR با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/mgr/INDEX.md](../../config/mgr/INDEX.md).
+مرجع کامل **52** گزینهٔ MGR با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/mgr/INDEX.md](../../config/mgr/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>

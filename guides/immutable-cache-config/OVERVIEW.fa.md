@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی Immutable cache — همه گزینه‌ها
+# راهنمای عمیق پیکربندی Immutable cache — همهٔ گزینه‌ها
 
-مرجع گسترده برای **13** گزینه Immutable cache با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/immutable-object-cache/INDEX.md](../../config/immutable-object-cache/INDEX.md).
+مرجع کامل **13** گزینهٔ Immutable cache با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/immutable-object-cache/INDEX.md](../../config/immutable-object-cache/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>

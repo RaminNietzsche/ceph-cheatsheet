@@ -33,4 +33,4 @@ python3 scripts/sync-docs-index.py
 ## Site
 
 - MkDocs: `mkdocs serve`
-- Live: https://blog.raminnietzsche.ir/ceph-cheatsheet/
+- Live: http://blog.ceph-s3.ir/cheatsheet/

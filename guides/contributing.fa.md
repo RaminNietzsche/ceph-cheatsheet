@@ -1,4 +1,4 @@
-> **یادداشت:** توضیحات گزینه‌ها در جدول از upstream Ceph (انگلیسی) است.
+> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
 
 # Contributing to the Reference
 
@@ -38,6 +38,7 @@ REFERENCE.md            Hub — sync to docs/index.md
 
 ```bash
 python3 scripts/generate-config.py --ref main
+python3 scripts/generate-role-scale-guides.py   # roles + scales (en/fa/zh)
 python3 scripts/generate-rgw-guide.py
 python3 scripts/generate-config-guide.py all   # OSD, MON, MGR, MDS, global, …
 python3 scripts/sync-i18n-config.py            # fa/zh config tables

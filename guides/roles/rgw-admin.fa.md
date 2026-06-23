@@ -17,9 +17,9 @@ ceph config show client.rgw.<instance>
 
 ## پیکربندی
 
-INDEX: [config/rgw/INDEX.md](../../config/rgw/INDEX.md)
+**فهرست:** [config/rgw/INDEX.md](../../config/rgw/INDEX.md)
 
-| موضوع | deep dive |
+| موضوع | راهنمای عمیق |
 |-------|-----------|
 | Frontends | [frontends.md](../rgw-config/core-gateway/frontends.md) |
 | Multisite | [multisite-zones.md](../rgw-config/multisite/multisite-zones.md) |
@@ -32,7 +32,7 @@ INDEX: [config/rgw/INDEX.md](../../config/rgw/INDEX.md)
 ./scripts/search-config.sh -s rgw multisite
 ```
 
-## workflowهای رایج
+## روندهای کاری رایج
 
 ```bash
 radosgw-admin user create --uid=alice --display-name="Alice"
@@ -46,8 +46,8 @@ ceph orch apply rgw myrgw --placement="2 host1 host2" --port=8080
 
 | مقیاس | تمرکز |
 |-------|--------|
-| [Small production](../scales/small-production.md) | یک zone |
+| [محیط عملیاتی کوچک](../scales/small-production.md) | یک zone |
 | [Multisite](../scales/multisite.md) | realm/zone، lag |
-| [Large production](../scales/large-production.md) | چند RGW، cache |
+| [محیط عملیاتی بزرگ](../scales/large-production.md) | چند RGW، cache |
 
 [← نمای کلی راهنما](../OVERVIEW.md)

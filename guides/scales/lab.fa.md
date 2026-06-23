@@ -1,6 +1,6 @@
 # مقیاس Lab / توسعه
 
-<span class="badge badge-scale-lab">Lab / dev</span> ۱–۳ نود، تست و یادگیری — **نه برای داده production**.
+<span class="badge badge-scale-lab">آزمایشگاه / توسعه</span> ۱–۳ نود، تست و یادگیری — **نه برای دادهٔ عملیاتی**.
 
 ## اهداف
 

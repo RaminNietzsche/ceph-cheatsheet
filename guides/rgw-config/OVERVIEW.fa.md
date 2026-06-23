@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی RGW — همه گزینه‌ها
+# راهنمای عمیق پیکربندی RGW — همهٔ گزینه‌ها
 
-مرجع گسترده برای **441** گزینه RGW با راهنمای **یافتن مقدار بهینه**. تولید شده از [config/rgw/INDEX.md](../../config/rgw/INDEX.md).
+مرجع کامل **441** گزینهٔ RGW با راهنمای **یافتن مقدار بهینه**. تولیدشده از [config/rgw/INDEX.md](../../config/rgw/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>
@@ -18,9 +18,9 @@ python3 scripts/generate-rgw-guide.py  # regenerate after config sync
 | **Policy** | امنیت، سازگاری API، محدودیت tenant |
 | **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
 | **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین endpoint پایدار خارجی |
-| **Architecture** | backend، توپولوژی multisite — نه sweep عددی |
-| **Dev** | پیش‌فرض upstream در production |
+| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 ## موضوعات بر اساس دسته
 

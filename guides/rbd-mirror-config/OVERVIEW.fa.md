@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی RBD mirror — همه گزینه‌ها
+# راهنمای عمیق پیکربندی RBD mirror — همهٔ گزینه‌ها
 
-مرجع گسترده برای **24** گزینه RBD mirror با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/rbd-mirror/INDEX.md](../../config/rbd-mirror/INDEX.md).
+مرجع کامل **24** گزینهٔ RBD mirror با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/rbd-mirror/INDEX.md](../../config/rbd-mirror/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>

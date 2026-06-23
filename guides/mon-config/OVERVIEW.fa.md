@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی MON — همه گزینه‌ها
+# راهنمای عمیق پیکربندی MON — همهٔ گزینه‌ها
 
-مرجع گسترده برای **156** گزینه MON با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/mon/INDEX.md](../../config/mon/INDEX.md).
+مرجع کامل **156** گزینهٔ MON با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/mon/INDEX.md](../../config/mon/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>

@@ -18,7 +18,7 @@
 | [`mon_backup_keep_last`](logging/backup.md#mon_backup_keep_last) | `6` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Monitor backup](logging/backup.md) |
 | [`mon_backup_min_avail`](logging/backup.md#mon_backup_min_avail) | `10` | Performance | در محدوده مستند بمانید | [Monitor backup](logging/backup.md) |
 | [`mon_backup_path`](logging/backup.md#mon_backup_path) | `/var/backups/ceph/mon/$cluster-$id` | Capacity | مطابق چیدمان filesystem و برنامه ظرفیت | [Monitor backup](logging/backup.md) |
-| [`mon_clean_pg_upmaps_per_chunk`](pg-pool/pg-pool.md#mon_clean_pg_upmaps_per_chunk) | `256` | Dev | پیش‌فرض upstream در production | [PG & pool health](pg-pool/pg-pool.md) |
+| [`mon_clean_pg_upmaps_per_chunk`](pg-pool/pg-pool.md#mon_clean_pg_upmaps_per_chunk) | `256` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [PG & pool health](pg-pool/pg-pool.md) |
 | [`mon_clock_drift_allowed`](runtime/general.md#mon_clock_drift_allowed) | `0.05` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General monitor](runtime/general.md) |
 | [`mon_clock_drift_warn_backoff`](runtime/general.md#mon_clock_drift_warn_backoff) | `5` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General monitor](runtime/general.md) |
 | [`mon_cluster_log_file`](logging/logging.md#mon_cluster_log_file) | `default=/var/log/ceph/$cluster.$channel.log cluster=/var/log/ceph/$cluster.log` | Capacity | مطابق چیدمان filesystem و برنامه ظرفیت | [Cluster logging](logging/logging.md) |
@@ -53,12 +53,12 @@
 | [`mon_elector_ping_timeout`](runtime/intervals.md#mon_elector_ping_timeout) | `2` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & timeouts](runtime/intervals.md) |
 | [`mon_enable_op_tracker`](runtime/general.md#mon_enable_op_tracker) | `True` | Policy | مطابق سیاست امنیت و سازگاری | [General monitor](runtime/general.md) |
 | [`mon_fsmap_prune_threshold`](runtime/general.md#mon_fsmap_prune_threshold) | `300` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General monitor](runtime/general.md) |
-| [`mon_health_detail_to_clog`](logging/logging.md#mon_health_detail_to_clog) | `True` | Dev | پیش‌فرض upstream در production | [Cluster logging](logging/logging.md) |
-| [`mon_health_log_update_period`](logging/logging.md#mon_health_log_update_period) | `5` | Dev | پیش‌فرض upstream در production | [Cluster logging](logging/logging.md) |
+| [`mon_health_detail_to_clog`](logging/logging.md#mon_health_detail_to_clog) | `True` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Cluster logging](logging/logging.md) |
+| [`mon_health_log_update_period`](logging/logging.md#mon_health_log_update_period) | `5` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Cluster logging](logging/logging.md) |
 | [`mon_health_max_detail`](runtime/general.md#mon_health_max_detail) | `50` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General monitor](runtime/general.md) |
 | [`mon_health_to_clog`](logging/logging.md#mon_health_to_clog) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [Cluster logging](logging/logging.md) |
 | [`mon_health_to_clog_interval`](logging/logging.md#mon_health_to_clog_interval) | `10_min` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Cluster logging](logging/logging.md) |
-| [`mon_health_to_clog_tick_interval`](logging/logging.md#mon_health_to_clog_tick_interval) | `1_min` | Dev | پیش‌فرض upstream در production | [Cluster logging](logging/logging.md) |
+| [`mon_health_to_clog_tick_interval`](logging/logging.md#mon_health_to_clog_tick_interval) | `1_min` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Cluster logging](logging/logging.md) |
 | [`mon_lease`](runtime/general.md#mon_lease) | `5` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General monitor](runtime/general.md) |
 | [`mon_lease_ack_timeout_factor`](runtime/intervals.md#mon_lease_ack_timeout_factor) | `2` | Performance | در محدوده مستند بمانید | [Intervals & timeouts](runtime/intervals.md) |
 | [`mon_lease_renew_interval_factor`](runtime/intervals.md#mon_lease_renew_interval_factor) | `0.6` | Performance | در محدوده مستند بمانید | [Intervals & timeouts](runtime/intervals.md) |
@@ -67,17 +67,17 @@
 | [`mon_log_max_summary`](logging/logging.md#mon_log_max_summary) | `50` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Cluster logging](logging/logging.md) |
 | [`mon_max_log_entries_per_event`](logging/logging.md#mon_max_log_entries_per_event) | `4096` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Cluster logging](logging/logging.md) |
 | [`mon_max_pool_pg_num`](pg-pool/pg-pool.md#mon_max_pool_pg_num) | `64_K` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [PG & pool health](pg-pool/pg-pool.md) |
-| [`mon_mds_blocklist_interval`](runtime/intervals.md#mon_mds_blocklist_interval) | `1_day` | Dev | پیش‌فرض upstream در production | [Intervals & timeouts](runtime/intervals.md) |
-| [`mon_mds_force_trim_to`](runtime/general.md#mon_mds_force_trim_to) | `0` | Dev | پیش‌فرض upstream در production | [General monitor](runtime/general.md) |
+| [`mon_mds_blocklist_interval`](runtime/intervals.md#mon_mds_blocklist_interval) | `1_day` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Intervals & timeouts](runtime/intervals.md) |
+| [`mon_mds_force_trim_to`](runtime/general.md#mon_mds_force_trim_to) | `0` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [General monitor](runtime/general.md) |
 | [`mon_mds_skip_sanity`](runtime/general.md#mon_mds_skip_sanity) | `False` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [General monitor](runtime/general.md) |
 | [`mon_memory_autotune`](runtime/general.md#mon_memory_autotune) | `True` | Policy | مطابق سیاست امنیت و سازگاری | [General monitor](runtime/general.md) |
 | [`mon_memory_target`](runtime/general.md#mon_memory_target) | `2_G` | Policy | مطابق سیاست امنیت و سازگاری | [General monitor](runtime/general.md) |
 | [`mon_mgr_beacon_grace`](cross-daemon/mgr-related.md#mon_mgr_beacon_grace) | `30` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [MGR-related settings](cross-daemon/mgr-related.md) |
-| [`mon_mgr_blocklist_interval`](cross-daemon/mgr-related.md#mon_mgr_blocklist_interval) | `1_day` | Dev | پیش‌فرض upstream در production | [MGR-related settings](cross-daemon/mgr-related.md) |
-| [`mon_mgr_digest_period`](cross-daemon/mgr-related.md#mon_mgr_digest_period) | `5` | Dev | پیش‌فرض upstream در production | [MGR-related settings](cross-daemon/mgr-related.md) |
+| [`mon_mgr_blocklist_interval`](cross-daemon/mgr-related.md#mon_mgr_blocklist_interval) | `1_day` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [MGR-related settings](cross-daemon/mgr-related.md) |
+| [`mon_mgr_digest_period`](cross-daemon/mgr-related.md#mon_mgr_digest_period) | `5` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [MGR-related settings](cross-daemon/mgr-related.md) |
 | [`mon_mgr_inactive_grace`](cross-daemon/mgr-related.md#mon_mgr_inactive_grace) | `1_min` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [MGR-related settings](cross-daemon/mgr-related.md) |
 | [`mon_mgr_mkfs_grace`](cross-daemon/mgr-related.md#mon_mgr_mkfs_grace) | `2_min` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [MGR-related settings](cross-daemon/mgr-related.md) |
-| [`mon_mgr_proxy_client_bytes_ratio`](cross-daemon/mgr-related.md#mon_mgr_proxy_client_bytes_ratio) | `0.3` | Dev | پیش‌فرض upstream در production | [MGR-related settings](cross-daemon/mgr-related.md) |
+| [`mon_mgr_proxy_client_bytes_ratio`](cross-daemon/mgr-related.md#mon_mgr_proxy_client_bytes_ratio) | `0.3` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [MGR-related settings](cross-daemon/mgr-related.md) |
 | [`mon_netsplit_grace_period`](runtime/intervals.md#mon_netsplit_grace_period) | `9` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & timeouts](runtime/intervals.md) |
 | [`mon_nvmeofgw_beacon_grace`](runtime/general.md#mon_nvmeofgw_beacon_grace) | `7` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General monitor](runtime/general.md) |
 | [`mon_nvmeofgw_beacons_till_ack`](runtime/general.md#mon_nvmeofgw_beacons_till_ack) | `15` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General monitor](runtime/general.md) |
@@ -107,13 +107,13 @@
 | [`mon_osd_laggy_halflife`](cross-daemon/osd-related.md#mon_osd_laggy_halflife) | `1_hr` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [OSD-related settings](cross-daemon/osd-related.md) |
 | [`mon_osd_laggy_max_interval`](cross-daemon/osd-related.md#mon_osd_laggy_max_interval) | `5_min` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [OSD-related settings](cross-daemon/osd-related.md) |
 | [`mon_osd_laggy_weight`](cross-daemon/osd-related.md#mon_osd_laggy_weight) | `0.3` | Performance | در محدوده مستند بمانید | [OSD-related settings](cross-daemon/osd-related.md) |
-| [`mon_osd_mapping_pgs_per_chunk`](cross-daemon/osd-related.md#mon_osd_mapping_pgs_per_chunk) | `4096` | Dev | پیش‌فرض upstream در production | [OSD-related settings](cross-daemon/osd-related.md) |
+| [`mon_osd_mapping_pgs_per_chunk`](cross-daemon/osd-related.md#mon_osd_mapping_pgs_per_chunk) | `4096` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [OSD-related settings](cross-daemon/osd-related.md) |
 | [`mon_osd_max_initial_pgs`](cross-daemon/osd-related.md#mon_osd_max_initial_pgs) | `1024` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [OSD-related settings](cross-daemon/osd-related.md) |
 | [`mon_osd_min_in_ratio`](cross-daemon/osd-related.md#mon_osd_min_in_ratio) | `0.75` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [OSD-related settings](cross-daemon/osd-related.md) |
 | [`mon_osd_min_up_ratio`](cross-daemon/osd-related.md#mon_osd_min_up_ratio) | `0.3` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [OSD-related settings](cross-daemon/osd-related.md) |
-| [`mon_osd_prime_pg_temp`](pg-pool/pg-pool.md#mon_osd_prime_pg_temp) | `True` | Dev | پیش‌فرض upstream در production | [PG & pool health](pg-pool/pg-pool.md) |
+| [`mon_osd_prime_pg_temp`](pg-pool/pg-pool.md#mon_osd_prime_pg_temp) | `True` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [PG & pool health](pg-pool/pg-pool.md) |
 | [`mon_osd_prime_pg_temp_max_estimate`](pg-pool/pg-pool.md#mon_osd_prime_pg_temp_max_estimate) | `0.25` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [PG & pool health](pg-pool/pg-pool.md) |
-| [`mon_osd_prime_pg_temp_max_time`](pg-pool/pg-pool.md#mon_osd_prime_pg_temp_max_time) | `0.5` | Dev | پیش‌فرض upstream در production | [PG & pool health](pg-pool/pg-pool.md) |
+| [`mon_osd_prime_pg_temp_max_time`](pg-pool/pg-pool.md#mon_osd_prime_pg_temp_max_time) | `0.5` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [PG & pool health](pg-pool/pg-pool.md) |
 | [`mon_osd_warn_num_repaired`](cross-daemon/osd-related.md#mon_osd_warn_num_repaired) | `10` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [OSD-related settings](cross-daemon/osd-related.md) |
 | [`mon_osd_warn_op_age`](cross-daemon/osd-related.md#mon_osd_warn_op_age) | `32` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [OSD-related settings](cross-daemon/osd-related.md) |
 | [`mon_osdmap_full_prune_enabled`](cross-daemon/osd-related.md#mon_osdmap_full_prune_enabled) | `True` | Policy | مطابق سیاست امنیت و سازگاری | [OSD-related settings](cross-daemon/osd-related.md) |
@@ -124,11 +124,11 @@
 | [`mon_session_timeout`](runtime/intervals.md#mon_session_timeout) | `5_min` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & timeouts](runtime/intervals.md) |
 | [`mon_smart_report_timeout`](runtime/intervals.md#mon_smart_report_timeout) | `5` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & timeouts](runtime/intervals.md) |
 | [`mon_stretch_cluster_recovery_ratio`](runtime/general.md#mon_stretch_cluster_recovery_ratio) | `0.6` | Performance | در محدوده مستند بمانید | [General monitor](runtime/general.md) |
-| [`mon_stretch_max_bucket_weight_delta`](runtime/general.md#mon_stretch_max_bucket_weight_delta) | `0.1` | Dev | پیش‌فرض upstream در production | [General monitor](runtime/general.md) |
-| [`mon_stretch_pool_min_size`](pg-pool/pg-pool.md#mon_stretch_pool_min_size) | `2` | Dev | پیش‌فرض upstream در production | [PG & pool health](pg-pool/pg-pool.md) |
-| [`mon_stretch_pool_size`](pg-pool/pg-pool.md#mon_stretch_pool_size) | `4` | Dev | پیش‌فرض upstream در production | [PG & pool health](pg-pool/pg-pool.md) |
+| [`mon_stretch_max_bucket_weight_delta`](runtime/general.md#mon_stretch_max_bucket_weight_delta) | `0.1` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [General monitor](runtime/general.md) |
+| [`mon_stretch_pool_min_size`](pg-pool/pg-pool.md#mon_stretch_pool_min_size) | `2` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [PG & pool health](pg-pool/pg-pool.md) |
+| [`mon_stretch_pool_size`](pg-pool/pg-pool.md#mon_stretch_pool_size) | `4` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [PG & pool health](pg-pool/pg-pool.md) |
 | [`mon_stretch_recovery_min_wait`](runtime/general.md#mon_stretch_recovery_min_wait) | `15` | Performance | در محدوده مستند بمانید | [General monitor](runtime/general.md) |
-| [`mon_subscribe_interval`](runtime/intervals.md#mon_subscribe_interval) | `1_day` | Dev | پیش‌فرض upstream در production | [Intervals & timeouts](runtime/intervals.md) |
+| [`mon_subscribe_interval`](runtime/intervals.md#mon_subscribe_interval) | `1_day` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Intervals & timeouts](runtime/intervals.md) |
 | [`mon_tick_interval`](runtime/intervals.md#mon_tick_interval) | `5` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & timeouts](runtime/intervals.md) |
 | [`mon_timecheck_interval`](runtime/intervals.md#mon_timecheck_interval) | `5_min` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & timeouts](runtime/intervals.md) |
 | [`mon_timecheck_skew_interval`](runtime/intervals.md#mon_timecheck_skew_interval) | `30` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & timeouts](runtime/intervals.md) |
@@ -138,12 +138,12 @@
 | [`mon_warn_on_colocated_monitors`](runtime/general.md#mon_warn_on_colocated_monitors) | `False` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [General monitor](runtime/general.md) |
 | [`mon_warn_on_crush_straw_calc_version_zero`](runtime/general.md#mon_warn_on_crush_straw_calc_version_zero) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [General monitor](runtime/general.md) |
 | [`mon_warn_on_degraded_stretch_mode`](runtime/general.md#mon_warn_on_degraded_stretch_mode) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [General monitor](runtime/general.md) |
-| [`mon_warn_on_filestore_osds`](cross-daemon/osd-related.md#mon_warn_on_filestore_osds) | `True` | Dev | پیش‌فرض upstream در production | [OSD-related settings](cross-daemon/osd-related.md) |
+| [`mon_warn_on_filestore_osds`](cross-daemon/osd-related.md#mon_warn_on_filestore_osds) | `True` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [OSD-related settings](cross-daemon/osd-related.md) |
 | [`mon_warn_on_legacy_crush_tunables`](runtime/general.md#mon_warn_on_legacy_crush_tunables) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [General monitor](runtime/general.md) |
 | [`mon_warn_on_older_version`](runtime/general.md#mon_warn_on_older_version) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [General monitor](runtime/general.md) |
 | [`mon_warn_on_osd_down_out_interval_zero`](cross-daemon/osd-related.md#mon_warn_on_osd_down_out_interval_zero) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [OSD-related settings](cross-daemon/osd-related.md) |
 | [`mon_warn_on_pool_no_redundancy`](pg-pool/pg-pool.md#mon_warn_on_pool_no_redundancy) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [PG & pool health](pg-pool/pg-pool.md) |
-| [`mon_warn_on_pool_pg_num_not_power_of_two`](pg-pool/pg-pool.md#mon_warn_on_pool_pg_num_not_power_of_two) | `True` | Dev | پیش‌فرض upstream در production | [PG & pool health](pg-pool/pg-pool.md) |
+| [`mon_warn_on_pool_pg_num_not_power_of_two`](pg-pool/pg-pool.md#mon_warn_on_pool_pg_num_not_power_of_two) | `True` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [PG & pool health](pg-pool/pg-pool.md) |
 | [`nvmeof_mon_client_connect_panic`](runtime/general.md#nvmeof_mon_client_connect_panic) | `30` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General monitor](runtime/general.md) |
 | [`nvmeof_mon_client_disconnect_panic`](runtime/general.md#nvmeof_mon_client_disconnect_panic) | `100` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General monitor](runtime/general.md) |
 | [`nvmeof_mon_client_tick_period`](runtime/intervals.md#nvmeof_mon_client_tick_period) | `1` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & timeouts](runtime/intervals.md) |
@@ -151,7 +151,7 @@
 | [`osd_crush_update_weight_set`](cross-daemon/osd-related.md#osd_crush_update_weight_set) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [OSD-related settings](cross-daemon/osd-related.md) |
 | [`osd_pool_default_crimson`](pg-pool/pg-pool.md#osd_pool_default_crimson) | `False` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [PG & pool health](pg-pool/pg-pool.md) |
 | [`osd_pool_erasure_code_stripe_unit`](pg-pool/pg-pool.md#osd_pool_erasure_code_stripe_unit) | `0` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [PG & pool health](pg-pool/pg-pool.md) |
-| [`paxos_kill_at`](quorum/quorum-paxos.md#paxos_kill_at) | `0` | Dev | پیش‌فرض upstream در production | [Quorum & Paxos](quorum/quorum-paxos.md) |
+| [`paxos_kill_at`](quorum/quorum-paxos.md#paxos_kill_at) | `0` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Quorum & Paxos](quorum/quorum-paxos.md) |
 | [`paxos_max_join_drift`](quorum/quorum-paxos.md#paxos_max_join_drift) | `10` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Quorum & Paxos](quorum/quorum-paxos.md) |
 | [`paxos_min`](quorum/quorum-paxos.md#paxos_min) | `500` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Quorum & Paxos](quorum/quorum-paxos.md) |
 | [`paxos_min_wait`](quorum/quorum-paxos.md#paxos_min_wait) | `0.05` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Quorum & Paxos](quorum/quorum-paxos.md) |

@@ -14,12 +14,12 @@
 | [`osd_agent_quantize_effort`](runtime/agent.md#osd_agent_quantize_effort) | `0.1` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Cache agent](runtime/agent.md) |
 | [`osd_agent_slop`](runtime/agent.md#osd_agent_slop) | `0.02` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Cache agent](runtime/agent.md) |
 | [`osd_aggregated_slow_ops_logging`](runtime/general.md#osd_aggregated_slow_ops_logging) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [General runtime](runtime/general.md) |
-| [`osd_allow_recovery_below_min_size`](recovery/recovery.md#osd_allow_recovery_below_min_size) | `True` | Dev | پیش‌فرض upstream در production | [Recovery & backfill](recovery/recovery.md) |
+| [`osd_allow_recovery_below_min_size`](recovery/recovery.md#osd_allow_recovery_below_min_size) | `True` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Recovery & backfill](recovery/recovery.md) |
 | [`osd_backfill_retry_interval`](recovery/recovery.md#osd_backfill_retry_interval) | `30` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Recovery & backfill](recovery/recovery.md) |
 | [`osd_backfill_scan_max`](recovery/recovery.md#osd_backfill_scan_max) | `512` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Recovery & backfill](recovery/recovery.md) |
 | [`osd_backfill_scan_min`](recovery/recovery.md#osd_backfill_scan_min) | `64` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Recovery & backfill](recovery/recovery.md) |
 | [`osd_blocked_scrub_grace_period`](scrub/scrub.md#osd_blocked_scrub_grace_period) | `120` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Scrub](scrub/scrub.md) |
-| [`osd_check_max_object_name_len_on_startup`](limits-intervals/limits.md#osd_check_max_object_name_len_on_startup) | `True` | Dev | پیش‌فرض upstream در production | [Limits & caps](limits-intervals/limits.md) |
+| [`osd_check_max_object_name_len_on_startup`](limits-intervals/limits.md#osd_check_max_object_name_len_on_startup) | `True` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Limits & caps](limits-intervals/limits.md) |
 | [`osd_class_default_list`](runtime/classes.md#osd_class_default_list) | `cephfs hello journal lock log numops otp rbd refcount rgw rgw_gc timeindex user version cas cmpomap queue 2pc_queue fifo sem_set` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Object classes](runtime/classes.md) |
 | [`osd_class_dir`](runtime/classes.md#osd_class_dir) | `0/rados-classes` | Capacity | مطابق چیدمان filesystem و برنامه ظرفیت | [Object classes](runtime/classes.md) |
 | [`osd_class_load_list`](runtime/classes.md#osd_class_load_list) | `cephfs hello journal lock log numops otp rbd refcount rgw rgw_gc timeindex user version cas cmpomap queue 2pc_queue fifo sem_set` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Object classes](runtime/classes.md) |
@@ -31,7 +31,7 @@
 | [`osd_crush_initial_weight`](runtime/crush.md#osd_crush_initial_weight) | `-1` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [CRUSH & weight](runtime/crush.md) |
 | [`osd_crush_update_on_start`](runtime/crush.md#osd_crush_update_on_start) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [CRUSH & weight](runtime/crush.md) |
 | [`osd_data`](runtime/paths.md#osd_data) | `/var/lib/ceph/osd/$cluster-$id` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Paths & data dirs](runtime/paths.md) |
-| [`osd_debug_feed_pullee`](debug/debug.md#osd_debug_feed_pullee) | `-1` | Dev | پیش‌فرض upstream در production | [Debug & injection](debug/debug.md) |
+| [`osd_debug_feed_pullee`](debug/debug.md#osd_debug_feed_pullee) | `-1` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Debug & injection](debug/debug.md) |
 | [`osd_debug_trim_objects`](debug/debug.md#osd_debug_trim_objects) | `False` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [Debug & injection](debug/debug.md) |
 | [`osd_deep_scrub_interval`](scrub/scrub.md#osd_deep_scrub_interval) | `7_day` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Scrub](scrub/scrub.md) |
 | [`osd_deep_scrub_interval_cv`](scrub/scrub.md#osd_deep_scrub_interval_cv) | `0.2` | Performance | در محدوده مستند بمانید | [Scrub](scrub/scrub.md) |
@@ -47,10 +47,10 @@
 | [`osd_delete_sleep_ssd`](limits-intervals/intervals.md#osd_delete_sleep_ssd) | `1` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & throttling](limits-intervals/intervals.md) |
 | [`osd_ec_partial_reads`](runtime/general.md#osd_ec_partial_reads) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [General runtime](runtime/general.md) |
 | [`osd_extblkdev_plugins`](runtime/general.md#osd_extblkdev_plugins) | `vdo fcm` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General runtime](runtime/general.md) |
-| [`osd_find_best_info_ignore_history_les`](runtime/general.md#osd_find_best_info_ignore_history_les) | `False` | Dev | پیش‌فرض upstream در production | [General runtime](runtime/general.md) |
+| [`osd_find_best_info_ignore_history_les`](runtime/general.md#osd_find_best_info_ignore_history_les) | `False` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [General runtime](runtime/general.md) |
 | [`osd_heartbeat_min_peers`](limits-intervals/limits.md#osd_heartbeat_min_peers) | `10` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Limits & caps](limits-intervals/limits.md) |
-| [`osd_inject_bad_map_crc_probability`](debug/debug.md#osd_inject_bad_map_crc_probability) | `0` | Dev | پیش‌فرض upstream در production | [Debug & injection](debug/debug.md) |
-| [`osd_inject_failure_on_pg_removal`](debug/debug.md#osd_inject_failure_on_pg_removal) | `False` | Dev | پیش‌فرض upstream در production | [Debug & injection](debug/debug.md) |
+| [`osd_inject_bad_map_crc_probability`](debug/debug.md#osd_inject_bad_map_crc_probability) | `0` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Debug & injection](debug/debug.md) |
+| [`osd_inject_failure_on_pg_removal`](debug/debug.md#osd_inject_failure_on_pg_removal) | `False` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Debug & injection](debug/debug.md) |
 | [`osd_journal`](runtime/general.md#osd_journal) | `/var/lib/ceph/osd/$cluster-$id/journal` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General runtime](runtime/general.md) |
 | [`osd_journal_flush_on_shutdown`](runtime/general.md#osd_journal_flush_on_shutdown) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [General runtime](runtime/general.md) |
 | [`osd_journal_size`](runtime/general.md#osd_journal_size) | `5_K` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General runtime](runtime/general.md) |
@@ -85,7 +85,7 @@
 | [`osd_mclock_scheduler_client_lim`](mclock/mclock.md#osd_mclock_scheduler_client_lim) | `0` | Performance | در محدوده مستند بمانید | [mClock scheduler](mclock/mclock.md) |
 | [`osd_mclock_scheduler_client_res`](mclock/mclock.md#osd_mclock_scheduler_client_res) | `0` | Performance | در محدوده مستند بمانید | [mClock scheduler](mclock/mclock.md) |
 | [`osd_mclock_scheduler_client_wgt`](mclock/mclock.md#osd_mclock_scheduler_client_wgt) | `1` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [mClock scheduler](mclock/mclock.md) |
-| [`osd_mclock_skip_benchmark`](mclock/mclock.md#osd_mclock_skip_benchmark) | `False` | Dev | پیش‌فرض upstream در production | [mClock scheduler](mclock/mclock.md) |
+| [`osd_mclock_skip_benchmark`](mclock/mclock.md#osd_mclock_skip_benchmark) | `False` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [mClock scheduler](mclock/mclock.md) |
 | [`osd_min_recovery_priority`](recovery/recovery.md#osd_min_recovery_priority) | `0` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Recovery & backfill](recovery/recovery.md) |
 | [`osd_num_cache_shards`](runtime/general.md#osd_num_cache_shards) | `32` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General runtime](runtime/general.md) |
 | [`osd_numa_auto_affinity`](runtime/general.md#osd_numa_auto_affinity) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [General runtime](runtime/general.md) |
@@ -104,7 +104,7 @@
 | [`osd_op_thread_suicide_timeout`](limits-intervals/intervals.md#osd_op_thread_suicide_timeout) | `150` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & throttling](limits-intervals/intervals.md) |
 | [`osd_op_thread_timeout`](limits-intervals/intervals.md#osd_op_thread_timeout) | `15` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & throttling](limits-intervals/intervals.md) |
 | [`osd_open_classes_on_start`](runtime/classes.md#osd_open_classes_on_start) | `True` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [Object classes](runtime/classes.md) |
-| [`osd_os_flags`](runtime/general.md#osd_os_flags) | `0` | Dev | پیش‌فرض upstream در production | [General runtime](runtime/general.md) |
+| [`osd_os_flags`](runtime/general.md#osd_os_flags) | `0` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [General runtime](runtime/general.md) |
 | [`osd_pg_epoch_max_lag_factor`](limits-intervals/limits.md#osd_pg_epoch_max_lag_factor) | `2` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Limits & caps](limits-intervals/limits.md) |
 | [`osd_push_per_object_cost`](runtime/general.md#osd_push_per_object_cost) | `1000` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [General runtime](runtime/general.md) |
 | [`osd_read_ec_check_for_errors`](runtime/general.md#osd_read_ec_check_for_errors) | `False` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [General runtime](runtime/general.md) |
@@ -126,10 +126,10 @@
 | [`osd_recovery_sleep_hdd`](recovery/recovery.md#osd_recovery_sleep_hdd) | `0.1` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Recovery & backfill](recovery/recovery.md) |
 | [`osd_recovery_sleep_hybrid`](recovery/recovery.md#osd_recovery_sleep_hybrid) | `0.025` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Recovery & backfill](recovery/recovery.md) |
 | [`osd_recovery_sleep_ssd`](recovery/recovery.md#osd_recovery_sleep_ssd) | `0` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Recovery & backfill](recovery/recovery.md) |
-| [`osd_rocksdb_iterator_bounds_enabled`](runtime/general.md#osd_rocksdb_iterator_bounds_enabled) | `True` | Dev | پیش‌فرض upstream در production | [General runtime](runtime/general.md) |
+| [`osd_rocksdb_iterator_bounds_enabled`](runtime/general.md#osd_rocksdb_iterator_bounds_enabled) | `True` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [General runtime](runtime/general.md) |
 | [`osd_scrub_auto_repair`](scrub/scrub.md#osd_scrub_auto_repair) | `False` | Performance | فعال/غیرفعال بر اساس نیاز اندازه‌گیری‌شده | [Scrub](scrub/scrub.md) |
 | [`osd_scrub_auto_repair_num_errors`](scrub/scrub.md#osd_scrub_auto_repair_num_errors) | `5` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Scrub](scrub/scrub.md) |
-| [`osd_scrub_backoff_ratio`](scrub/scrub.md#osd_scrub_backoff_ratio) | `0.66` | Dev | پیش‌فرض upstream در production | [Scrub](scrub/scrub.md) |
+| [`osd_scrub_backoff_ratio`](scrub/scrub.md#osd_scrub_backoff_ratio) | `0.66` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Scrub](scrub/scrub.md) |
 | [`osd_scrub_begin_hour`](scrub/scrub.md#osd_scrub_begin_hour) | `0` | Performance | در محدوده مستند بمانید | [Scrub](scrub/scrub.md) |
 | [`osd_scrub_begin_week_day`](scrub/scrub.md#osd_scrub_begin_week_day) | `0` | Performance | در محدوده مستند بمانید | [Scrub](scrub/scrub.md) |
 | [`osd_scrub_chunk_max`](scrub/scrub.md#osd_scrub_chunk_max) | `15` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Scrub](scrub/scrub.md) |
@@ -154,7 +154,7 @@
 | [`osd_scrub_sleep`](scrub/scrub.md#osd_scrub_sleep) | `0` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Scrub](scrub/scrub.md) |
 | [`osd_shallow_scrub_chunk_max`](scrub/scrub.md#osd_shallow_scrub_chunk_max) | `100` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Scrub](scrub/scrub.md) |
 | [`osd_shallow_scrub_chunk_min`](scrub/scrub.md#osd_shallow_scrub_chunk_min) | `50` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Scrub](scrub/scrub.md) |
-| [`osd_skip_data_digest`](runtime/paths.md#osd_skip_data_digest) | `False` | Dev | پیش‌فرض upstream در production | [Paths & data dirs](runtime/paths.md) |
+| [`osd_skip_data_digest`](runtime/paths.md#osd_skip_data_digest) | `False` | Dev | در محیط عملیاتی همان پیش‌فرض upstream | [Paths & data dirs](runtime/paths.md) |
 | [`osd_smart_report_timeout`](limits-intervals/intervals.md#osd_smart_report_timeout) | `5` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & throttling](limits-intervals/intervals.md) |
 | [`osd_snap_trim_sleep`](limits-intervals/intervals.md#osd_snap_trim_sleep) | `0` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & throttling](limits-intervals/intervals.md) |
 | [`osd_snap_trim_sleep_hdd`](limits-intervals/intervals.md#osd_snap_trim_sleep_hdd) | `5` | Performance | خط پایه → تنظیم → اعتبارسنجی تحت بار | [Intervals & throttling](limits-intervals/intervals.md) |

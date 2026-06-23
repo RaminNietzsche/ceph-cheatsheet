@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی RBD — همه گزینه‌ها
+# راهنمای عمیق پیکربندی RBD — همهٔ گزینه‌ها
 
-مرجع گسترده برای **97** گزینه RBD با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/rbd/INDEX.md](../../config/rbd/INDEX.md).
+مرجع کامل **97** گزینهٔ RBD با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/rbd/INDEX.md](../../config/rbd/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>

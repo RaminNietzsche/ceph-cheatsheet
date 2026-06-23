@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی Crimson — همه گزینه‌ها
+# راهنمای عمیق پیکربندی Crimson — همهٔ گزینه‌ها
 
-مرجع گسترده برای **42** گزینه Crimson با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/crimson/INDEX.md](../../config/crimson/INDEX.md).
+مرجع کامل **42** گزینهٔ Crimson با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/crimson/INDEX.md](../../config/crimson/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>

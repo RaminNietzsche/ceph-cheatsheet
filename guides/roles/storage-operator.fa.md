@@ -1,6 +1,6 @@
-# اپراتور Storage
+# مسئول ذخیره‌سازی
 
-<span class="badge badge-role-storage">Storage operator</span> مدیریت OSD، pool، PG، CRUSH، recovery و scrub.
+<span class="badge badge-role-storage">مسئول ذخیره‌سازی</span> — مدیریت OSD، pool، PG، CRUSH، recovery و scrub.
 
 ## دستورات روزانه
 
@@ -19,7 +19,7 @@ ceph df detail
 
 | حوزه | INDEX |
 |------|-------|
-| دیمن OSD | [config/osd/INDEX.md](../../config/osd/INDEX.md) · [deep dive OSD](../osd-config/OVERVIEW.md) |
+| دیمن OSD | [config/osd/INDEX.md](../../config/osd/INDEX.md) · [راهنمای عمیق OSD](../osd-config/OVERVIEW.md) |
 | Global / bluestore | [osd.md](../../config/global/osd.md)، [bluestore.md](../../config/global/bluestore.md) |
 | Recovery و scrub | [recovery](../osd-config/recovery/recovery.md)، [scrub](../osd-config/scrub/scrub.md) |
 | mClock | [mclock](../osd-config/mclock/mclock.md) — `osd_mclock_profile` |
@@ -29,7 +29,7 @@ ceph df detail
 ./scripts/search-config.sh -s osd recovery
 ```
 
-## workflowهای رایج
+## روندهای کاری رایج
 
 **نگهداری OSD:**
 
@@ -59,8 +59,8 @@ ceph osd crush reweight osd.5 0.95
 | مقیاس | تمرکز |
 |-------|--------|
 | [Lab](../scales/lab.md) | `osd_memory_target` پایین‌تر |
-| [Small production](../scales/small-production.md) | autoscale، replica 3 |
-| [Large production](../scales/large-production.md) | mClock، device class |
+| [محیط عملیاتی کوچک](../scales/small-production.md) | autoscale، replica 3 |
+| [محیط عملیاتی بزرگ](../scales/large-production.md) | mClock، device class |
 | [Multisite](../scales/multisite.md) | CRUSH هر سایت |
 
 ## عیب‌یابی

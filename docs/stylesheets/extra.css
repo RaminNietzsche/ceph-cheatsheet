@@ -1,3 +1,6 @@
+/* Persian / Arabic-friendly UI font (loaded for fa locale pages) */
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap");
+
 /* ── Theme tokens ───────────────────────────────────────────── */
 :root {
   --ceph-teal: #0e7490;
@@ -39,6 +42,84 @@
 [dir="rtl"] .md-typeset code {
   direction: ltr;
   text-align: left;
+}
+
+/* Persian typography — Vazirmatn */
+html[lang="fa"] body,
+html[lang="fa"] .md-typeset,
+html[lang="fa"] .md-nav,
+html[lang="fa"] .md-header,
+html[lang="fa"] .md-tabs,
+html[lang="fa"] .md-footer,
+[dir="rtl"] body,
+[dir="rtl"] .md-typeset,
+[dir="rtl"] .md-nav,
+[dir="rtl"] .md-header,
+[dir="rtl"] .md-tabs,
+[dir="rtl"] .md-footer {
+  font-family: "Vazirmatn", "Tahoma", "Segoe UI", sans-serif;
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html[lang="fa"] .md-typeset,
+[dir="rtl"] .md-typeset {
+  line-height: 1.85;
+  letter-spacing: 0;
+}
+
+html[lang="fa"] .md-typeset h1,
+html[lang="fa"] .md-typeset h2,
+html[lang="fa"] .md-typeset h3,
+[dir="rtl"] .md-typeset h1,
+[dir="rtl"] .md-typeset h2,
+[dir="rtl"] .md-typeset h3 {
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+[dir="rtl"] .md-typeset h2 {
+  border-left: none;
+  border-right: 4px solid var(--section-accent);
+  padding-left: 0;
+  padding-right: 0.65em;
+}
+
+[dir="rtl"] .level-legend {
+  border-left: none;
+  border-right: 4px solid var(--section-accent);
+}
+
+[dir="rtl"] .guide-table tbody tr td:first-child {
+  border-left: none !important;
+  border-right: 4px solid transparent;
+}
+
+[dir="rtl"] .guide-table tr.row-lab td:first-child,
+[dir="rtl"] .guide-table tr.row-global td:first-child { border-right-color: #10b981; }
+[dir="rtl"] .guide-table tr.row-small td:first-child,
+[dir="rtl"] .guide-table tr.row-mon td:first-child { border-right-color: #3b82f6; }
+[dir="rtl"] .guide-table tr.row-large td:first-child,
+[dir="rtl"] .guide-table tr.row-rbd td:first-child { border-right-color: #f97316; }
+[dir="rtl"] .guide-table tr.row-multi td:first-child,
+[dir="rtl"] .guide-table tr.row-rgw td:first-child { border-right-color: #a855f7; }
+[dir="rtl"] .guide-table tr.row-cluster td:first-child,
+[dir="rtl"] .guide-table tr.row-mgr td:first-child { border-right-color: #6366f1; }
+[dir="rtl"] .guide-table tr.row-storage td:first-child,
+[dir="rtl"] .guide-table tr.row-osd td:first-child { border-right-color: #14b8a6; }
+[dir="rtl"] .guide-table tr.row-cephfs td:first-child,
+[dir="rtl"] .guide-table tr.row-mds td:first-child { border-right-color: #8b5cf6; }
+
+[dir="rtl"] .md-typeset table:not([class]) th,
+[dir="rtl"] .md-typeset table:not([class]) td {
+  text-align: right;
+}
+
+[dir="rtl"] .md-typeset .admonition,
+[dir="rtl"] .md-typeset blockquote {
+  border-left: none;
+  border-right: 4px solid var(--section-accent);
 }
 
 .md-typeset h2 {

@@ -17,9 +17,9 @@ ceph orch ps --service-type mds
 
 | حوزه | INDEX |
 |------|-------|
-| MDS | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [deep dive](../mds-config/OVERVIEW.md) |
-| Client | [mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [deep dive](../mds-client-config/OVERVIEW.md) |
-| Mirror | [cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [deep dive](../cephfs-mirror-config/OVERVIEW.md) |
+| MDS | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [راهنمای عمیق](../mds-config/OVERVIEW.md) |
+| Client | [mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [راهنمای عمیق](../mds-client-config/OVERVIEW.md) |
+| Mirror | [cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [راهنمای عمیق](../cephfs-mirror-config/OVERVIEW.md) |
 
 گزینه‌های کلیدی: `mds_cache_memory_limit` — [TUNING](../mds-config/TUNING.md)
 
@@ -27,7 +27,7 @@ ceph orch ps --service-type mds
 ./scripts/lookup-config.sh mds_cache_memory_limit
 ```
 
-## workflowهای رایج
+## روندهای کاری رایج
 
 ```bash
 ceph osd pool create cephfs-metadata 32 32
@@ -43,7 +43,7 @@ ceph fs snapshot mirror enable myfs
 | مقیاس | تمرکز |
 |-------|--------|
 | [Lab](../scales/lab.md) | ۱ MDS |
-| [Small production](../scales/small-production.md) | ۲ MDS برای HA |
+| [محیط عملیاتی کوچک](../scales/small-production.md) | ۲ MDS برای HA |
 | [Multisite](../scales/multisite.md) | cephfs-mirror |
 
 [← نمای کلی راهنما](../OVERVIEW.md)

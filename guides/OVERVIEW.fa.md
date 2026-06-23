@@ -1,75 +1,73 @@
-> **یادداشت:** توضیحات گزینه‌ها در جدول از upstream Ceph (انگلیسی) است.
+# راهنما
 
-# Guides
+مستندات وظیفه‌محور بر اساس **نقش شما** و **اندازهٔ کلاستر**.
 
-Task-oriented documentation organized by **who you are** (role) and **how big the cluster is** (scale).
-
-## By role
+## بر اساس نقش
 
 <table class="guide-table">
 <thead>
-<tr><th>Role</th><th>You manage…</th><th>Start here</th></tr>
+<tr><th>نقش</th><th>مسئولیت شما…</th><th>شروع از اینجا</th></tr>
 </thead>
 <tbody>
 <tr class="row-cluster">
-  <td><span class="badge badge-role-cluster">Cluster admin</span> <a href="roles/cluster-admin/">→</a></td>
-  <td>Mon, MGR, cephadm, upgrades, auth</td>
-  <td>Daily health, orchestrator</td>
+  <td><span class="badge badge-role-cluster">مدیر کلاستر</span> <a href="roles/cluster-admin/">→</a></td>
+  <td>Mon، MGR، cephadm، ارتقا، احراز هویت</td>
+  <td>سلامت روزانه، orchestrator</td>
 </tr>
 <tr class="row-storage">
-  <td><span class="badge badge-role-storage">Storage operator</span> <a href="roles/storage-operator/">→</a></td>
-  <td>OSDs, pools, PGs, CRUSH, capacity</td>
-  <td>OSD/pool ops, recovery</td>
+  <td><span class="badge badge-role-storage">مسئول ذخیره‌سازی</span> <a href="roles/storage-operator/">→</a></td>
+  <td>OSD، pool، PG، CRUSH، ظرفیت</td>
+  <td>عملیات OSD/pool، بازیابی</td>
 </tr>
 <tr class="row-rgw">
-  <td><span class="badge badge-role-rgw">RGW admin</span> <a href="roles/rgw-admin/">→</a></td>
-  <td>S3 gateway, users, multisite</td>
-  <td>radosgw-admin, RGW config</td>
+  <td><span class="badge badge-role-rgw">مدیر RGW</span> <a href="roles/rgw-admin/">→</a></td>
+  <td>درگاه S3، کاربران، چندسایته</td>
+  <td>radosgw-admin، پیکربندی RGW</td>
 </tr>
 <tr class="row-cephfs">
-  <td><span class="badge badge-role-cephfs">CephFS admin</span> <a href="roles/cephfs-admin/">→</a></td>
-  <td>File systems, MDS, mounts</td>
-  <td>ceph fs, MDS config</td>
+  <td><span class="badge badge-role-cephfs">مدیر CephFS</span> <a href="roles/cephfs-admin/">→</a></td>
+  <td>فایل‌سیستم، MDS، mount</td>
+  <td>ceph fs، پیکربندی MDS</td>
 </tr>
 </tbody>
 </table>
 
-## By scale
+## بر اساس مقیاس
 
 <table class="guide-table">
 <thead>
-<tr><th>Scale</th><th>Typical size</th><th>Start here</th></tr>
+<tr><th>مقیاس</th><th>اندازهٔ معمول</th><th>شروع از اینجا</th></tr>
 </thead>
 <tbody>
 <tr class="row-lab">
-  <td><span class="badge badge-scale-lab">Lab / dev</span> <a href="scales/lab/">→</a></td>
-  <td>1–3 nodes, testing</td>
-  <td>Minimal setup, loose tuning</td>
+  <td><span class="badge badge-scale-lab">آزمایشگاه / توسعه</span> <a href="scales/lab/">→</a></td>
+  <td>۱–۳ نود، آزمایش</td>
+  <td>راه‌اندازی minimal، تنظیم آزاد</td>
 </tr>
 <tr class="row-small">
-  <td><span class="badge badge-scale-small">Small production</span> <a href="scales/small-production/">→</a></td>
-  <td>3–12 nodes</td>
-  <td>Replica 3, PG autoscale</td>
+  <td><span class="badge badge-scale-small">محیط عملیاتی کوچک</span> <a href="scales/small-production/">→</a></td>
+  <td>۳–۱۲ نود</td>
+  <td>Replica 3، autoscale PG</td>
 </tr>
 <tr class="row-large">
-  <td><span class="badge badge-scale-large">Large production</span> <a href="scales/large-production/">→</a></td>
-  <td>12+ nodes, many OSDs</td>
-  <td>mclock, scrub, capacity</td>
+  <td><span class="badge badge-scale-large">محیط عملیاتی بزرگ</span> <a href="scales/large-production/">→</a></td>
+  <td>۱۲+ نود، OSD زیاد</td>
+  <td>mclock، scrub، ظرفیت</td>
 </tr>
 <tr class="row-multi">
-  <td><span class="badge badge-scale-multi">Multisite</span> <a href="scales/multisite/">→</a></td>
-  <td>Multiple sites / regions</td>
-  <td>RGW zones, mirroring</td>
+  <td><span class="badge badge-scale-multi">چندسایته</span> <a href="scales/multisite/">→</a></td>
+  <td>چند سایت / منطقه</td>
+  <td>zoneهای RGW، mirroring</td>
 </tr>
 </tbody>
 </table>
 
-## General
+## عمومی
 
-- [Quick start](quickstart.md) — daily checklist (any role)
-- [Config lookup](config-lookup.md) — read option tables
-- **Config deep dives** (MkDocs: Guides → Config deep dives) — tuning + examples per subsystem:
+- [شروع سریع](quickstart.md) — چک‌لیست روزانه (هر نقش)
+- [جستجوی پیکربندی](config-lookup.md) — خواندن جداول گزینه‌ها
+- **راهنمای عمیق پیکربندی** (MkDocs: راهنما → راهنمای عمیق پیکربندی) — تنظیم و مثال برای هر زیرسیستم:
   RGW · [OSD](osd-config/OVERVIEW.md) · [MON](mon-config/OVERVIEW.md) · [MGR](mgr-config/OVERVIEW.md) · [MDS](mds-config/OVERVIEW.md) · [Global](global-config/OVERVIEW.md)
-- [Contributing](contributing.md) — rules, skills, regeneration
+- [مشارکت](contributing.md) — قوانین، مهارت‌ها، بازتولید
 
-[← Main reference](../index.md)
+[← مرجع اصلی](../index.md)

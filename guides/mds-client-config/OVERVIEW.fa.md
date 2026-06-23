@@ -1,6 +1,6 @@
-# Deep Dive پیکربندی MDS client — همه گزینه‌ها
+# راهنمای عمیق پیکربندی MDS client — همهٔ گزینه‌ها
 
-مرجع گسترده برای **70** گزینه MDS client با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولید شده از [config/mds-client/INDEX.md](../../config/mds-client/INDEX.md).
+مرجع کامل **70** گزینهٔ MDS client با راهنمای **یافتن مقدار بهینه** (یک بخش برای هر گزینه). تولیدشده از [config/mds-client/INDEX.md](../../config/mds-client/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>

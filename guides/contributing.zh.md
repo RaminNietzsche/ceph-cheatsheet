@@ -1,4 +1,4 @@
-> **说明：** 下表中的选项说明来自 upstream Ceph（英文）。
+> **说明：** 本页尚未提供中文翻译，以下为英文原文。
 
 # Contributing to the Reference
 
@@ -38,6 +38,7 @@ REFERENCE.md            Hub — sync to docs/index.md
 
 ```bash
 python3 scripts/generate-config.py --ref main
+python3 scripts/generate-role-scale-guides.py   # roles + scales (en/fa/zh)
 python3 scripts/generate-rgw-guide.py
 python3 scripts/generate-config-guide.py all   # OSD, MON, MGR, MDS, global, …
 python3 scripts/sync-i18n-config.py            # fa/zh config tables
