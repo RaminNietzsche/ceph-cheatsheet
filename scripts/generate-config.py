@@ -247,7 +247,10 @@ def clean_cell(value: str) -> str:
         return ""
     value = value.replace("\r", " ").replace("\n", " ")
     value = re.sub(r"\s+", " ", value).strip()
-    return value.replace("|", "\\|")
+    value = value.replace("|", "\\|")
+    # Prevent C++ validator snippets like "[](std::string …)" becoming markdown links.
+    value = value.replace("[", "&#91;").replace("]", "&#93;")
+    return value
 
 
 def option_row(

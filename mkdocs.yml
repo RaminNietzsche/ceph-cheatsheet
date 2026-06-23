@@ -12,6 +12,8 @@ exclude_docs: |
   /site/
   /.git/
   /.github/
+  /README.md
+  /REFERENCE.md
 
 theme:
   name: material

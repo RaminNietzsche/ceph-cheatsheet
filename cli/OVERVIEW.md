@@ -51,4 +51,4 @@ radosgw-admin user list
 ceph orch ps
 ```
 
-[← Back to main reference](../REFERENCE.md)
+[← Back to main reference](../index.md)

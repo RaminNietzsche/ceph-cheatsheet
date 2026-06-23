@@ -26,4 +26,4 @@ Task-oriented documentation organized by **who you are** (role) and **how big th
 - [Config lookup](config-lookup.md) — read option tables
 - [Contributing](contributing.md) — rules, skills, regeneration
 
-[← Main reference](../REFERENCE.md)
+[← Main reference](../index.md)
