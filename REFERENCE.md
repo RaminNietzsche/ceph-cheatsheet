@@ -29,27 +29,27 @@ Simple, offline-friendly reference for Ceph administrators — organized by **ro
 <tbody>
 <tr class="row-cluster">
   <td><span class="badge badge-role-cluster">Cluster admin</span></td>
-  <td><a href="guides/roles/cluster-admin.md">guide</a></td>
-  <td><a href="cli/cluster.md">cluster</a>, <a href="cli/cephadm.md">cephadm</a></td>
-  <td><a href="config/mon/INDEX.md">mon</a>, <a href="config/mgr/INDEX.md">mgr</a></td>
+  <td><a href="guides/roles/cluster-admin/">guide</a></td>
+  <td><a href="cli/cluster/">cluster</a>, <a href="cli/cephadm/">cephadm</a></td>
+  <td><a href="config/mon/INDEX/">mon</a>, <a href="config/mgr/INDEX/">mgr</a></td>
 </tr>
 <tr class="row-storage">
   <td><span class="badge badge-role-storage">Storage operator</span></td>
-  <td><a href="guides/roles/storage-operator.md">guide</a></td>
-  <td><a href="cli/osd-pool.md">osd-pool</a></td>
-  <td><a href="config/osd/INDEX.md">osd</a></td>
+  <td><a href="guides/roles/storage-operator/">guide</a></td>
+  <td><a href="cli/osd-pool/">osd-pool</a></td>
+  <td><a href="config/osd/INDEX/">osd</a></td>
 </tr>
 <tr class="row-rgw">
   <td><span class="badge badge-role-rgw">RGW admin</span></td>
-  <td><a href="guides/roles/rgw-admin.md">guide</a></td>
-  <td><a href="cli/rgw.md">rgw</a></td>
-  <td><a href="config/rgw/INDEX.md">rgw config</a></td>
+  <td><a href="guides/roles/rgw-admin/">guide</a></td>
+  <td><a href="cli/rgw/">rgw</a></td>
+  <td><a href="config/rgw/INDEX/">rgw config</a></td>
 </tr>
 <tr class="row-cephfs">
   <td><span class="badge badge-role-cephfs">CephFS admin</span></td>
-  <td><a href="guides/roles/cephfs-admin.md">guide</a></td>
-  <td><a href="cli/cephfs.md">cephfs</a></td>
-  <td><a href="config/mds/INDEX.md">mds</a></td>
+  <td><a href="guides/roles/cephfs-admin/">guide</a></td>
+  <td><a href="cli/cephfs/">cephfs</a></td>
+  <td><a href="config/mds/INDEX/">mds</a></td>
 </tr>
 </tbody>
 </table>
@@ -65,19 +65,19 @@ Simple, offline-friendly reference for Ceph administrators — organized by **ro
 <tbody>
 <tr class="row-lab">
   <td><span class="badge badge-scale-lab">Lab / dev</span> (1–3 nodes)</td>
-  <td><a href="guides/scales/lab.md">lab</a></td>
+  <td><a href="guides/scales/lab/">lab</a></td>
 </tr>
 <tr class="row-small">
   <td><span class="badge badge-scale-small">Small production</span> (3–12 nodes)</td>
-  <td><a href="guides/scales/small-production.md">small production</a></td>
+  <td><a href="guides/scales/small-production/">small production</a></td>
 </tr>
 <tr class="row-large">
   <td><span class="badge badge-scale-large">Large production</span> (12+ nodes)</td>
-  <td><a href="guides/scales/large-production.md">large production</a></td>
+  <td><a href="guides/scales/large-production/">large production</a></td>
 </tr>
 <tr class="row-multi">
   <td><span class="badge badge-scale-multi">Multisite</span></td>
-  <td><a href="guides/scales/multisite.md">multisite</a></td>
+  <td><a href="guides/scales/multisite/">multisite</a></td>
 </tr>
 </tbody>
 </table>
