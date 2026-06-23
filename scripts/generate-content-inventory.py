@@ -407,9 +407,16 @@ def write_markdown(path: Path, rows: list[PageRow]) -> None:
 
 
 def source_key_from_row(row: PageRow) -> str | None:
+    if row.source_key:
+        return row.source_key
     if not row.source_rel:
         return None
-    return str(Path(row.source_rel).with_suffix(""))
+    rel = Path(row.source_rel)
+    parts = rel.parts
+    if "en" in parts:
+        idx = parts.index("en")
+        return str(Path(*parts[idx + 1 :]).with_suffix(""))
+    return str(rel.with_suffix(""))
 
 
 def sync_review_manifest(rows: list[PageRow]) -> list[str]:
