@@ -284,6 +284,8 @@ nav:
     - Guides:
       - Overview: cheatsheet/guides/OVERVIEW.md
       - Quick start: cheatsheet/guides/quickstart.md
+      - Getting started: cheatsheet/guides/getting-started.md
+      - Troubleshooting guide: cheatsheet/guides/troubleshooting-guide.md
       - Config lookup: cheatsheet/guides/config-lookup.md
       # config-guides-nav:start
       - Config deep dives:
@@ -625,6 +627,13 @@ nav:
       - Troubleshooting: cheatsheet/cli/troubleshooting.md
     - Config:
       - Overview: cheatsheet/config/OVERVIEW.md
+      - Production examples:
+        - Overview: cheatsheet/config/examples/OVERVIEW.md
+        - Lab / dev: cheatsheet/config/examples/lab.md
+        - Small production: cheatsheet/config/examples/small-production.md
+        - Large production: cheatsheet/config/examples/large-production.md
+        - Multisite: cheatsheet/config/examples/multisite.md
+        - RGW optimized: cheatsheet/config/examples/rgw-optimized.md
       - Global: cheatsheet/config/global/INDEX.md
       - OSD: cheatsheet/config/osd/INDEX.md
       - MON: cheatsheet/config/mon/INDEX.md

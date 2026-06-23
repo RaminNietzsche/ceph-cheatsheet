@@ -465,3 +465,132 @@ guides/contributing:
     3. 同步 docs index 与 mkdocs nav
 
     [← 指南概览](OVERVIEW.md)
+
+guides/getting-started:
+  fa: |
+    # شروع کار
+
+    تازه با Ceph آشنا شده‌اید؟ قبل از جدول config یا درون‌ریزی RGW از اینجا شروع کنید.
+
+    ## Ceph چیست؟
+
+    پلتفرم ذخیره‌سازی یکپارچه — RBD (بلوک)، RGW (S3)، CephFS (فایل).
+
+    ## واژه‌نامه
+
+    | اصطلاح | معنی |
+    |--------|------|
+    | **MON** | مانیتور — نقشه کلاستر و quorum |
+    | **OSD** | دیمن ذخیره‌سازی شیء — داده روی دیسک |
+    | **PG** | گروه placement — واحد recovery |
+    | **RGW** | دروازه S3/Swift |
+    | **SAL** | لایه انتزاع store در RGW |
+
+    ## مسیر یادگیری
+
+    | نقش | شروع |
+    |-----|------|
+    | اپراتور کلاستر | [شروع سریع](quickstart.md) → [مدیر کلاستر](roles/cluster-admin.md) |
+    | مدیر RGW | [مدیر RGW](roles/rgw-admin.md) → [معماری RGW](../../arch/rgw/OVERVIEW.md) |
+    | توسعه‌دهنده | [بخش توسعه](../../dev/index.md) |
+
+    ## ابزارها
+
+    ```bash
+    ./scripts/search-all.sh scrub
+    ./scripts/search-fuzzy.sh    # نیاز به fzf
+    ```
+
+    [سازگاری نسخه](../../compatibility.md) · [← نمای کلی](OVERVIEW.md)
+  zh: |
+    # 入门
+
+    Ceph 新手从这里开始。
+
+    ## 核心概念
+
+    | 术语 | 含义 |
+    |------|------|
+    | **MON** | Monitor — 集群地图 |
+    | **OSD** | 对象存储守护进程 |
+    | **RGW** | S3/Swift 网关 |
+
+    ## 学习路径
+
+    | 角色 | 起点 |
+    |------|------|
+    | 集群运维 | [快速开始](quickstart.md) |
+    | RGW 管理 | [RGW 管理员](roles/rgw-admin.md) |
+    | 开发者 | [开发板块](../../dev/index.md) |
+
+    [版本兼容性](../../compatibility.md) · [← 概览](OVERVIEW.md)
+
+guides/troubleshooting-guide:
+  fa: |
+    # راهنمای عیب‌یابی
+
+    تشخیص ساخت‌یافته مشکلات رایج. مرجع سریع دستور: [CLI troubleshooting](../cli/troubleshooting.md).
+
+    ## PG گیر کرده / recovery
+
+    ```bash
+    ceph pg stat
+    ceph pg dump_stuck inactive
+    ceph osd blocked-by
+    ```
+
+    ## OSD flapping
+
+    بررسی دیسک، شبکه، `osd_heartbeat_grace`.
+
+    ## RGW
+
+    - **503/SlowDown** — rate limit / dmclock
+    - **sync lag** — `radosgw-admin sync status`
+
+    ## quorum مانیتور
+
+    ```bash
+    ceph mon stat
+    ceph quorum_status --format json-pretty
+    ```
+
+    [← نمای کلی](OVERVIEW.md)
+  zh: |
+    # 故障排查指南
+
+    结构化诊断。命令速查：[CLI troubleshooting](../cli/troubleshooting.md)。
+
+    ## PG 卡住
+
+    `ceph pg stat` · `ceph pg dump_stuck`
+
+    ## RGW 503 / 多站点滞后
+
+    `radosgw-admin sync status`
+
+    [← 概览](OVERVIEW.md)
+
+docs/compatibility:
+  fa: |
+    # سازگاری نسخه Ceph
+
+    این مخزن به‌طور پیش‌فرض **Ceph main** upstream را دنبال می‌کند.
+
+    | نسخه | نام | وضعیت |
+    |------|-----|--------|
+    | 19.x | Squid | پایدار فعلی |
+    | 18.x | Reef | پایدار |
+    | 17.x | Quincy | نگهداری |
+
+    قبل از اعمال config: `ceph versions`
+
+    [← خانه](index.md)
+  zh: |
+    # Ceph 版本兼容性
+
+    本仓库默认跟踪 **Ceph main** 上游。
+
+    应用配置前请运行 `ceph versions`。
+
+    [← 首页](index.md)

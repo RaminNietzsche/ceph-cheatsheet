@@ -64,7 +64,9 @@ Task-oriented documentation organized by **who you are** (role) and **how big th
 
 ## General
 
+- [Getting started](getting-started.md) — glossary and learning paths for newcomers
 - [Quick start](quickstart.md) — daily checklist (any role)
+- [Troubleshooting guide](troubleshooting-guide.md) — structured diagnosis
 - [Config lookup](config-lookup.md) — read option tables
 - **Config deep dives** (MkDocs: Guides → Config deep dives) — tuning + examples per subsystem:
   RGW · [OSD](osd-config/OVERVIEW.md) · [MON](mon-config/OVERVIEW.md) · [MGR](mgr-config/OVERVIEW.md) · [MDS](mds-config/OVERVIEW.md) · [Global](global-config/OVERVIEW.md)

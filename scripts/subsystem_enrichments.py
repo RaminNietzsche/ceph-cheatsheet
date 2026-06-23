@@ -277,4 +277,22 @@ SUBSYSTEM_ENRICHMENTS: dict[str, dict[str, dict[str, str]]] = {
     "mon": MON_ENRICHMENTS,
     "mgr": MGR_ENRICHMENTS,
     "mds": MDS_ENRICHMENTS,
+    "rgw": {
+        "rgw_enable_apis": {
+            "what": "Comma-separated list of enabled RGW APIs (s3, swift, admin, …).",
+            "when_to_use": "Production: enable only APIs you expose. Lab: broader set for testing.",
+            "important": "**Risk: High (security)** — exposing `admin` or unused APIs increases attack surface.",
+            "finding_note": "Pair with firewall/LB rules and `rgw frontends` binding.",
+        },
+        "rgw_enable_rate_limit": {
+            "what": "Enables per-user/bucket rate limiting in RGW.",
+            "when_to_use": "Enable on public multi-tenant clusters; tune after observing 503 SlowDown rates.",
+            "important": "**Risk: Medium** — misconfigured limits cause client-visible throttling.",
+        },
+        "rgw_cache_enabled": {
+            "what": "In-memory metadata cache for RGW (users, buckets, stats).",
+            "when_to_use": "Enable on most production RGW nodes; size with `rgw_cache_lru_size`.",
+            "important": "**Risk: Low–Medium** — stale cache rarely affects correctness; watch memory.",
+        },
+    },
 }

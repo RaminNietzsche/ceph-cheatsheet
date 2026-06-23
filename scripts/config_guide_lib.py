@@ -445,6 +445,8 @@ def render_option(profile: SubsystemProfile, opt: Option) -> str:
         parts.extend([f"{t('label_when_to_use')} {enrich['when_to_use']}", ""])
     else:
         parts.extend([f"{t('label_when_to_use')} {when_to_use(opt, profile)}", ""])
+    if enrich.get("important"):
+        parts.extend([enrich["important"], ""])
     see = format_see_also(profile, opt)
     if see:
         parts.append(see)

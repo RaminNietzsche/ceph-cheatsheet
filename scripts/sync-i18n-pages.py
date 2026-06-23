@@ -19,6 +19,7 @@ PAGES_DIR = Path(__file__).resolve().parent / "locales" / "pages"
 HAND_PAGES: tuple[str, ...] = (
     "docs/index",
     "docs/version",
+    "docs/compatibility",
     "docs/license",
     "cheatsheet/index",
     "dev/index",
@@ -36,6 +37,8 @@ HAND_PAGES: tuple[str, ...] = (
     "cli/troubleshooting",
     "guides/OVERVIEW",
     "guides/quickstart",
+    "guides/getting-started",
+    "guides/troubleshooting-guide",
     "guides/config-lookup",
     "guides/contributing",
 )
