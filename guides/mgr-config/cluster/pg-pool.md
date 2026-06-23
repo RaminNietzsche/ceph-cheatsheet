@@ -331,9 +331,9 @@ ceph mon stat
 | Type | Uint · default `200` · **Advanced** |
 | Table | [mon.md#SP_mon_target_pg_per_osd](../../../config/mgr/mon.md#SP_mon_target_pg_per_osd) |
 
-**What it does:** Target number of PG replicas per OSD
+**What it does:** Target PGs per OSD for autoscaler and PG health warnings (also listed under MON cross-daemon settings in mgr config tables).
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:** Adjust when autoscaler consistently over/under-shards pools for your OSD count.
 
 **Example:**
 

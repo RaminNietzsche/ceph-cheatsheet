@@ -756,13 +756,15 @@ ceph config get mds mds_bal_minchunk
 | Type | Int · default `0` · **Dev** |
 | Table | [mds.md#SP_mds_bal_mode](../../../config/mds/mds.md#SP_mds_bal_mode) |
 
-**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+**What it does:** MDS subtree balancer mode (`none`, `normal`, `aggressive`). Controls how aggressively metadata load is migrated between active MDS ranks.
+
+**When to use:** Use `normal` for multi-active CephFS; `none` for single-MDS or while debugging balance churn.
 
 **Example:**
 
 ```bash
-ceph config set mds mds_bal_mode 64
-ceph config get mds mds_bal_mode
+ceph config set mds mds_bal_mode normal
+ceph fs status
 ```
 
 **Finding optimal value:**
@@ -1114,9 +1116,9 @@ ceph fs status
 | Type | Float · default `15` · **Advanced** |
 | Table | [mds.md#SP_mds_beacon_grace](../../../config/mds/mds.md#SP_mds_beacon_grace) |
 
-**What it does:** Tolerance in seconds for missed MDS beacons to monitors
+**What it does:** Seconds the monitor waits after a missed MDS beacon before marking the rank laggy/failed.
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:** Increase during network maintenance; decrease for faster MDS failover at the cost of false positives on slow nodes.
 
 **Example:**
 
@@ -1150,9 +1152,9 @@ ceph fs status
 | Type | Size · default `4_G` · **Basic** |
 | Table | [mds.md#SP_mds_cache_memory_limit](../../../config/mds/mds.md#SP_mds_cache_memory_limit) |
 
-**What it does:** Target maximum memory usage of MDS cache
+**What it does:** Soft limit on MDS metadata cache memory (bytes). When exceeded, the MDS trims caps and may evict client sessions.
 
-**When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+**When to use:** Raise for large working sets and many files; lower if MDS RSS causes OOM on constrained nodes.
 
 **Example:**
 
@@ -1176,6 +1178,8 @@ ceph config get mds mds_cache_memory_limit
 ceph -s
 ceph fs status
 ```
+
+Watch `ceph fs status`, slow requests, and `mds_cache_trim_*` counters. Size MDS RAM ≥ 2× this limit in production.
 
 ---
 
@@ -3052,7 +3056,9 @@ ceph config get mds mds_max_completed_requests
 | Type | Size · default `20_M` · **Dev** |
 | Table | [mds.md#SP_mds_max_export_size](../../../config/mds/mds.md#SP_mds_max_export_size) |
 
-**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+**What it does:** Maximum size (bytes) of a single subtree export during MDS rebalancing.
+
+**When to use:** Lower to reduce latency spikes during balance; raise for faster migration on high-bandwidth networks.
 
 **Example:**
 

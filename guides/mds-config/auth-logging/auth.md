@@ -115,9 +115,9 @@ ceph fs status
 | Type | Float · default `0` · **Advanced** |
 | Table | [mds.md#SP_mds_cap_revoke_eviction_timeout](../../../config/mds/mds.md#SP_mds_cap_revoke_eviction_timeout) |
 
-**What it does:** number of seconds after which clients which have not responded to cap revoke messages by the MDS are evicted.
+**What it does:** Seconds to wait before evicting a client that holds caps after revoke.
 
-**When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+**When to use:** Increase for legacy clients that respond slowly to cap revokes; decrease to reclaim metadata cache faster.
 
 **Example:**
 
@@ -392,9 +392,9 @@ ceph fs status
 | Type | Uint · default `100000` · **Advanced** |
 | Table | [mds.md#SP_mds_session_cap_acquisition_throttle](../../../config/mds/mds.md#SP_mds_session_cap_acquisition_throttle) |
 
-**What it does:** Threshold at which the cap acquisition decay counter throttles
+**What it does:** Throttle cap acquisition rate per client session to protect the MDS.
 
-**When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+**When to use:** Tune when clients stampede caps after MDS restart or when many small files are opened concurrently.
 
 **Example:**
 

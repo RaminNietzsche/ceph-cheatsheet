@@ -52,8 +52,8 @@ The RGW guide generator reads `config/rgw/*.md`, writes topic files under
 `generate-config-guide.py` does the same for other subsystems (profiles in that
 script; nav markers `# osd-nav:start` / … inside `# config-guides-nav:start` in
 `mkdocs.yml`). Hand-tuned text for hot OSD/MON options lives in
-`scripts/subsystem_enrichments.py`. RGW flat URLs redirect via `mkdocs-redirects`
-(patched by `generate-rgw-guide.py`). Re-run both generators after config regeneration.
+`scripts/subsystem_enrichments.py`. RGW and global flat guide URLs redirect via
+`mkdocs-redirects` (patched by the generators). Re-run both generators after config regeneration.
 
 **Edit prose (CLI, guides, REFERENCE):**
 

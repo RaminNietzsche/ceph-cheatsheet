@@ -407,6 +407,40 @@ GLOBAL_NAV = [
     ("Runtime & host", "runtime", sorted(GLOBAL_RUNTIME)),
 ]
 
+MKDOCS = ROOT / "mkdocs.yml"
+GLOBAL_REDIRECT_BEGIN = "# global-redirects:start"
+GLOBAL_REDIRECT_END = "# global-redirects:end"
+
+
+def build_global_redirect_yaml(stem_to_section: dict[str, str]) -> str:
+    lines = []
+    for stem, section_dir in sorted(stem_to_section.items()):
+        if stem == section_dir:
+            continue
+        lines.append(
+            f"        'guides/global-config/{stem}.md': "
+            f"'guides/global-config/{section_dir}/{stem}.md'"
+        )
+    return "\n".join(lines)
+
+
+def patch_global_redirects(stem_to_section: dict[str, str]) -> None:
+    if not MKDOCS.exists():
+        return
+    text = MKDOCS.read_text(encoding="utf-8")
+    if GLOBAL_REDIRECT_BEGIN not in text or GLOBAL_REDIRECT_END not in text:
+        print(f"warning: {MKDOCS} missing global redirect markers", file=sys.stderr)
+        return
+    before, rest = text.split(GLOBAL_REDIRECT_BEGIN, 1)
+    _old, after = rest.split(GLOBAL_REDIRECT_END, 1)
+    block = build_global_redirect_yaml(stem_to_section)
+    MKDOCS.write_text(
+        f"{before}{GLOBAL_REDIRECT_BEGIN}\n{block}\n{GLOBAL_REDIRECT_END}{after}",
+        encoding="utf-8",
+    )
+    print(f"Patched global redirects in {MKDOCS.relative_to(ROOT)} ({len(stem_to_section)} topics)")
+
+
 # --- Smaller subsystems ---
 
 RBD_MIRROR_PROFILE = SubsystemProfile(
@@ -545,8 +579,12 @@ def generate_global(patch_nav: bool = True) -> int:
     profile.nav_sections = nav_sections
     profile.section_slugs = section_slugs
     profile.group_for = lambda name: Path(by_name[name].source_file).stem if name in by_name else "general"
+    profile.enrichments = SUBSYSTEM_ENRICHMENTS.get("global", {})
 
-    # Reuse generate_subsystem body with pre-built groups
+    stem_to_section: dict[str, str] = {}
+    for _title, section_dir, stems in nav_sections:
+        for stem in stems:
+            stem_to_section[stem] = section_dir
     profile.guides_dir.mkdir(parents=True, exist_ok=True)
     from config_guide_lib import (
         render_group,
@@ -580,6 +618,7 @@ def generate_global(patch_nav: bool = True) -> int:
 
     if patch_nav:
         patch_mkdocs_nav(profile, groups, ROOT / "mkdocs.yml")
+    patch_global_redirects(stem_to_section)
 
     print(f"global: {len(groups)} topics, {len(all_options)} options → guides/global-config/")
     return len(all_options)

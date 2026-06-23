@@ -159,9 +159,9 @@ ceph fs status
 | Type | Float · default `4` · **Advanced** |
 | Table | [mds.md#SP_mds_beacon_interval](../../../config/mds/mds.md#SP_mds_beacon_interval) |
 
-**What it does:** Interval in seconds between MDS beacon messages sent to Monitors
+**What it does:** How often (seconds) an MDS sends beacons to monitors.
 
-**When to use:** Tune background work timing — balance freshness vs cluster load.
+**When to use:** Rarely changed; must stay well below `mds_beacon_grace`.
 
 **Example:**
 

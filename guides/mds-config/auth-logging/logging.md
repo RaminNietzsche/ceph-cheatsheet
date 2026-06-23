@@ -147,9 +147,9 @@ ceph fs status
 | Type | Int · default `-1` · **Advanced** |
 | Table | [mds.md#SP_mds_log_max_events](../../../config/mds/mds.md#SP_mds_log_max_events) |
 
-**What it does:** maximum number of events in the MDS journal (-1 is unlimited)
+**What it does:** Maximum journal events before the MDS forces a segment rollover.
 
-**When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+**When to use:** Advanced — affects journal segmentation and recovery time after crash.
 
 **Example:**
 

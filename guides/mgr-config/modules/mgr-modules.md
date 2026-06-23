@@ -63,9 +63,9 @@ ceph -s
 | Type | Str · default `/usr/sbin/cephadm` · **Advanced** |
 | Table | [cephadm.md#SP_cephadm_path](../../../config/mgr/cephadm.md#SP_cephadm_path) |
 
-**What it does:** Path to cephadm utility
+**What it does:** Path to the `cephadm` binary used by the cephadm orchestrator module.
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:** Set when cephadm is not in `$PATH` for the mgr daemon user (common with custom installs).
 
 **Example:**
 
@@ -214,9 +214,9 @@ ceph config get mgr mgr_debug_aggressive_pg_num_changes
 | Type | Str · default `0` · **Advanced** · **STARTUP** (restart required) |
 | Table | [mgr.md#SP_mgr_disabled_modules](../../../config/mgr/mgr.md#SP_mgr_disabled_modules) |
 
-**What it does:** List of manager modules never get loaded
+**What it does:** Comma-separated list of manager modules that must not be loaded.
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:** Disable unused modules to reduce attack surface and MGR startup time.
 
 **Example:**
 
@@ -322,9 +322,9 @@ ceph mgr dump
 | Type | Int · default `128` · **Advanced** |
 | Table | [mgr.md#SP_mgr_max_pg_num_change](../../../config/mgr/mgr.md#SP_mgr_max_pg_num_change) |
 
-**What it does:** maximum change in pg_num
+**What it does:** Maximum PG count change the MGR balancer/autoscaler applies per iteration.
 
-**When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+**When to use:** Lower on busy clusters to avoid large placement churn; raise for faster PG convergence after expansion.
 
 **Example:**
 
@@ -532,9 +532,9 @@ ceph mgr dump
 | Type | Str · default `0/mgr` · **Advanced** |
 | Table | [mgr.md#SP_mgr_module_path](../../../config/mgr/mgr.md#SP_mgr_module_path) |
 
-**What it does:** Filesystem path to manager modules.
+**What it does:** Directory where Ceph manager modules are loaded from.
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:** Change only for custom module paths or non-packaged installs.
 
 **Example:**
 
@@ -774,9 +774,9 @@ ceph mgr dump
 | Type | Bool · default `True` · **Advanced** |
 | Table | [mgr.md#SP_mgr_standby_modules](../../../config/mgr/mgr.md#SP_mgr_standby_modules) |
 
-**What it does:** Start modules in standby (redirect) mode when mgr is standby
+**What it does:** When `true`, standby MGR daemons serve the dashboard/API via HTTP redirect to the active manager.
 
-**When to use:** Enabled by default; disable only when troubleshooting the related feature.
+**When to use:** Disable (`false`) when a load balancer fronts MGR endpoints — redirects often break behind LB private IPs.
 
 **Example:**
 
@@ -810,9 +810,9 @@ ceph mgr dump
 | Type | Int · default `5` · **Basic** |
 | Table | [mgr.md#SP_mgr_stats_period](../../../config/mgr/mgr.md#SP_mgr_stats_period) |
 
-**What it does:** Period in seconds of OSD/MDS stats reports to manager
+**What it does:** Interval (seconds) between MGR cluster stat refreshes.
 
-**When to use:** Tune background work timing — balance freshness vs cluster load.
+**When to use:** Shorten for fresher dashboard metrics; lengthen on very large clusters to reduce MGR CPU load.
 
 **Example:**
 
