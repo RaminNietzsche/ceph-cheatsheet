@@ -15,7 +15,7 @@ This repository is **ceph-cheatsheet** — an offline Ceph CLI and config refere
 | Hub | `REFERENCE.md` | Entry point |
 | CLI | `cli/` | By subsystem / tool |
 | Config | `config/` | By Ceph subsystem (generated) |
-| Guides | `guides/roles/`, `guides/scales/` | By operator role and cluster scale |
+| Guides | `guides/roles/`, `guides/scales/`, `guides/rgw-config/` | By operator role, cluster scale, RGW tuning |
 
 ## After changing REFERENCE.md
 

@@ -21,11 +21,13 @@ All rules live under `.cursor/rules/` in the repository root.
 ## Content types
 
 ```
-cli/              Manual — command cheatsheets
-guides/roles/     Manual — by operator role
-guides/scales/    Manual — by cluster size
-config/           Generated — do not hand-edit tables
-REFERENCE.md      Hub — sync to docs/index.md
+cli/                    Manual — command cheatsheets
+guides/roles/           Manual — by operator role
+guides/scales/          Manual — by cluster size
+guides/rgw-config/      Generated — RGW options by nav category (see below)
+config/                 Generated — do not hand-edit tables
+docs/                   MkDocs shell — sync index from REFERENCE.md
+REFERENCE.md            Hub — sync to docs/index.md
 ```
 
 ## Workflows
@@ -37,7 +39,10 @@ python3 scripts/generate-config.py --ref main
 python3 scripts/generate-rgw-guide.py
 ```
 
-The RGW guide generator reads `config/rgw/*.md`, writes `guides/rgw-config/` (441 options in topic files + `TUNING.md`), and patches the collapsible RGW nav in `mkdocs.yml` between `# rgw-nav:start` / `# rgw-nav:end`. Re-run after config regeneration.
+The RGW guide generator reads `config/rgw/*.md`, writes topic files under
+`guides/rgw-config/<category>/` (441 options + root `OVERVIEW.md` / `TUNING.md`),
+and patches the collapsible RGW nav in `mkdocs.yml` between `# rgw-nav:start` /
+`# rgw-nav:end`. Re-run after config regeneration.
 
 **Edit prose (CLI, guides, REFERENCE):**
 

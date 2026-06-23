@@ -14,6 +14,7 @@ exclude_docs: |
   /.github/
   /README.md
   /REFERENCE.md
+  /config/readme.md
 
 theme:
   name: material
@@ -73,58 +74,58 @@ nav:
         - Overview: guides/rgw-config/OVERVIEW.md
         - Tuning quick reference: guides/rgw-config/TUNING.md
       - Core gateway:
-        - Frontends & HTTP stack: guides/rgw-config/frontends.md
-        - Feature toggles: guides/rgw-config/feature-toggles.md
-        - Scheduler & dmclock: guides/rgw-config/scheduler-dmclock.md
-        - HTTP compatibility: guides/rgw-config/http-compat.md
-        - Core runtime: guides/rgw-config/core-runtime.md
+        - Frontends & HTTP stack: guides/rgw-config/core-gateway/frontends.md
+        - Feature toggles: guides/rgw-config/core-gateway/feature-toggles.md
+        - Scheduler & dmclock: guides/rgw-config/core-gateway/scheduler-dmclock.md
+        - HTTP compatibility: guides/rgw-config/core-gateway/http-compat.md
+        - Core runtime: guides/rgw-config/core-gateway/core-runtime.md
       - Performance & I/O:
-        - Concurrency & RADOS I/O: guides/rgw-config/performance-tuning.md
-        - Object read/write windows: guides/rgw-config/object-io.md
-        - Multipart & copy: guides/rgw-config/multipart-copy.md
-        - Metadata & object caches: guides/rgw-config/caching.md
-        - Timeouts & intervals: guides/rgw-config/timeouts-intervals.md
-        - Listing limits: guides/rgw-config/limits-listing.md
+        - Concurrency & RADOS I/O: guides/rgw-config/performance-io/performance-tuning.md
+        - Object read/write windows: guides/rgw-config/performance-io/object-io.md
+        - Multipart & copy: guides/rgw-config/performance-io/multipart-copy.md
+        - Metadata & object caches: guides/rgw-config/performance-io/caching.md
+        - Timeouts & intervals: guides/rgw-config/performance-io/timeouts-intervals.md
+        - Listing limits: guides/rgw-config/performance-io/limits-listing.md
       - Buckets & data lifecycle:
-        - Bucket operations: guides/rgw-config/bucket-ops.md
-        - Bucket index & sharding: guides/rgw-config/index-sharding.md
-        - Dynamic resharding: guides/rgw-config/resharding.md
-        - Object expiry hints: guides/rgw-config/object-expiry.md
-        - Garbage collection: guides/rgw-config/garbage-collection.md
-        - Lifecycle (LC): guides/rgw-config/lifecycle.md
+        - Bucket operations: guides/rgw-config/buckets-lifecycle/bucket-ops.md
+        - Bucket index & sharding: guides/rgw-config/buckets-lifecycle/index-sharding.md
+        - Dynamic resharding: guides/rgw-config/buckets-lifecycle/resharding.md
+        - Object expiry hints: guides/rgw-config/buckets-lifecycle/object-expiry.md
+        - Garbage collection: guides/rgw-config/buckets-lifecycle/garbage-collection.md
+        - Lifecycle (LC): guides/rgw-config/buckets-lifecycle/lifecycle.md
       - Tenants & quotas:
-        - Quota sync & defaults: guides/rgw-config/quotas.md
-        - Users & per-user settings: guides/rgw-config/users-quotas.md
+        - Quota sync & defaults: guides/rgw-config/tenants-quotas/quotas.md
+        - Users & per-user settings: guides/rgw-config/tenants-quotas/users-quotas.md
       - Multisite:
-        - Zones, realm & region: guides/rgw-config/multisite-zones.md
-        - Replication & sync: guides/rgw-config/multisite-sync.md
-        - REST connections: guides/rgw-config/rest-connections.md
+        - Zones, realm & region: guides/rgw-config/multisite/multisite-zones.md
+        - Replication & sync: guides/rgw-config/multisite/multisite-sync.md
+        - REST connections: guides/rgw-config/multisite/rest-connections.md
       - Security & authentication:
-        - Encryption & KMS: guides/rgw-config/encryption.md
-        - Keystone & STS: guides/rgw-config/keystone-sts.md
-        - LDAP: guides/rgw-config/ldap.md
-        - OPA authorization: guides/rgw-config/opa-authz.md
-        - Swift API: guides/rgw-config/swift.md
-        - S3 API & auth: guides/rgw-config/s3-api.md
+        - Encryption & KMS: guides/rgw-config/security-auth/encryption.md
+        - Keystone & STS: guides/rgw-config/security-auth/keystone-sts.md
+        - LDAP: guides/rgw-config/security-auth/ldap.md
+        - OPA authorization: guides/rgw-config/security-auth/opa-authz.md
+        - Swift API: guides/rgw-config/security-auth/swift.md
+        - S3 API & auth: guides/rgw-config/security-auth/s3-api.md
       - Notifications:
-        - Bucket notifications: guides/rgw-config/notifications.md
+        - Bucket notifications: guides/rgw-config/notifications/notifications.md
       - Logging & admin:
-        - Access & object logging: guides/rgw-config/logging.md
-        - Ops logging: guides/rgw-config/ops-logging.md
-        - Usage logging: guides/rgw-config/usage-logging.md
-        - Admin CORS: guides/rgw-config/admin-cors.md
-        - API limits & policies: guides/rgw-config/api-limits.md
+        - Access & object logging: guides/rgw-config/logging-admin/logging.md
+        - Ops logging: guides/rgw-config/logging-admin/ops-logging.md
+        - Usage logging: guides/rgw-config/logging-admin/usage-logging.md
+        - Admin CORS: guides/rgw-config/logging-admin/admin-cors.md
+        - API limits & policies: guides/rgw-config/logging-admin/api-limits.md
       - Extensions:
-        - NFS gateway: guides/rgw-config/nfs.md
-        - Lua scripting: guides/rgw-config/lua.md
-        - BitTorrent: guides/rgw-config/torrent.md
-        - HTTP / libcurl: guides/rgw-config/http-curl.md
+        - NFS gateway: guides/rgw-config/extensions/nfs.md
+        - Lua scripting: guides/rgw-config/extensions/lua.md
+        - BitTorrent: guides/rgw-config/extensions/torrent.md
+        - HTTP / libcurl: guides/rgw-config/extensions/http-curl.md
       - Experimental & debug:
-        - Experimental backends: guides/rgw-config/experimental-backends.md
-        - Motr backend: guides/rgw-config/motr-experimental.md
-        - POSIX backend: guides/rgw-config/posix-experimental.md
-        - D4N / D3N cache: guides/rgw-config/d4n-cache.md
-        - Debug & fault injection: guides/rgw-config/debug-inject.md
+        - Experimental backends: guides/rgw-config/experimental-debug/experimental-backends.md
+        - Motr backend: guides/rgw-config/experimental-debug/motr-experimental.md
+        - POSIX backend: guides/rgw-config/experimental-debug/posix-experimental.md
+        - D4N / D3N cache: guides/rgw-config/experimental-debug/d4n-cache.md
+        - Debug & fault injection: guides/rgw-config/experimental-debug/debug-inject.md
 # rgw-nav:end
     - Contributing: guides/contributing.md
     - By role:
@@ -163,4 +164,3 @@ nav:
     - Crimson: config/crimson/INDEX.md
     - Immutable cache: config/immutable-object-cache/INDEX.md
     - Ceph exporter: config/ceph-exporter/INDEX.md
-  - Contributing: guides/contributing.md

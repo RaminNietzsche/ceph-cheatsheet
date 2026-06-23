@@ -307,10 +307,10 @@ ENRICHMENTS: dict[str, dict[str, str]] = {
             "operations, index maintenance, multi-shard updates). Used in `svc_bi_rados.cc`."
         ),
         "related_extra": (
-            "- [`rgw_multi_obj_del_max_aio`](../../config/rgw/rgw.md#SP_rgw_multi_obj_del_max_aio) "
+            "- [`rgw_multi_obj_del_max_aio`](../../../config/rgw/rgw.md#SP_rgw_multi_obj_del_max_aio) "
             "(default 16)\n"
             "- [`rgw_override_bucket_index_max_shards`]"
-            "(../../config/rgw/rgw.md#SP_rgw_override_bucket_index_max_shards)"
+            "(../../../config/rgw/rgw.md#SP_rgw_override_bucket_index_max_shards)"
         ),
         "example": (
             "```bash\n"
@@ -431,6 +431,24 @@ NAV_SECTIONS: list[tuple[str, list[str]]] = [
         ],
     ),
 ]
+
+# Folder names under guides/rgw-config/ — mirror MkDocs nav sections.
+SECTION_SLUGS: dict[str, str] = {
+    "Core gateway": "core-gateway",
+    "Performance & I/O": "performance-io",
+    "Buckets & data lifecycle": "buckets-lifecycle",
+    "Tenants & quotas": "tenants-quotas",
+    "Multisite": "multisite",
+    "Security & authentication": "security-auth",
+    "Notifications": "notifications",
+    "Logging & admin": "logging-admin",
+    "Extensions": "extensions",
+    "Experimental & debug": "experimental-debug",
+    "Other": "other",
+}
+
+CONFIG_RGW_FROM_TOPIC = "../../../config/rgw"
+CONFIG_RGW_FROM_ROOT = "../../config/rgw"
 
 MKDOCS = ROOT / "mkdocs.yml"
 NAV_BEGIN = "# rgw-nav:start"
@@ -1194,7 +1212,7 @@ def format_see_also(opt: Option) -> str:
         return ""
     lines = ["**Related options:**", ""]
     for ref in refs:
-        lines.append(f"- [`{ref}`](../../config/rgw/{opt.source_file}#SP_{ref})")
+        lines.append(f"- [`{ref}`]({CONFIG_RGW_FROM_TOPIC}/{opt.source_file}#SP_{ref})")
     lines.append("")
     return "\n".join(lines)
 
@@ -1434,7 +1452,7 @@ def format_example(opt: Option) -> str:
 def format_related_extra(opt: Option, extra: str) -> str:
     lines = ["**Related options:**", "", extra]
     for ref in related_options(opt):
-        lines.append(f"- [`{ref}`](../../config/rgw/{opt.source_file}#SP_{ref})")
+        lines.append(f"- [`{ref}`]({CONFIG_RGW_FROM_TOPIC}/{opt.source_file}#SP_{ref})")
     lines.append("")
     return "\n".join(lines)
 
@@ -1442,7 +1460,7 @@ def format_related_extra(opt: Option, extra: str) -> str:
 def render_option(opt: Option) -> str:
     enrich = ENRICHMENTS.get(opt.name, {})
     startup = " · **STARTUP** (restart required)" if opt.flags and "STARTUP" in opt.flags else ""
-    table_link = f"../../config/rgw/{opt.source_file}#SP_{opt.name}"
+    table_link = f"{CONFIG_RGW_FROM_TOPIC}/{opt.source_file}#SP_{opt.name}"
     type_bits = [opt.typ, f"default `{opt.effective_default}`", f"**{opt.level}**"]
     if opt.valid_values:
         type_bits.insert(1, f"enum: {opt.valid_values}")
@@ -1518,9 +1536,9 @@ def render_group(slug: str, options: list[Option]) -> str:
         f"# {title}",
         "",
         f"RGW config deep dive — {len(options)} options. "
-        f"[← RGW config overview](OVERVIEW.md) · "
-        f"[Tuning index](TUNING.md) · "
-        f"[INDEX](../../config/rgw/INDEX.md)",
+        f"[← RGW config overview](../OVERVIEW.md) · "
+        f"[Tuning index](../TUNING.md) · "
+        f"[INDEX]({CONFIG_RGW_FROM_TOPIC}/INDEX.md)",
         "",
     ]
     if slug == "quotas":
@@ -1528,7 +1546,8 @@ def render_group(slug: str, options: list[Option]) -> str:
             [
                 "Quota enforcement also requires `rgw_enable_quota_threads` on at least one "
                 "RGW per zone. See "
-                "[rgw_enable_quota_threads](../../config/rgw/rgw.md#SP_rgw_enable_quota_threads).",
+                "[rgw_enable_quota_threads]"
+                f"({CONFIG_RGW_FROM_TOPIC}/rgw.md#SP_rgw_enable_quota_threads).",
                 "",
             ]
         )
@@ -1546,7 +1565,7 @@ def render_group(slug: str, options: list[Option]) -> str:
     lines.extend(["", tuning_intro()])
     for opt in options:
         lines.append(render_option(opt))
-    lines.extend(["", "[← RGW config overview](OVERVIEW.md)", ""])
+    lines.extend(["", "[← RGW config overview](../OVERVIEW.md)", ""])
     return "\n".join(lines)
 
 
@@ -1566,11 +1585,31 @@ def render_tuning_index(all_options: list[Option]) -> str:
         slug = group_for(opt.name)
         title = GROUP_TITLES.get(slug, slug)
         lines.append(
-            f"| [`{opt.name}`]({slug}.md#{opt.name}) | `{opt.effective_default}` | "
-            f"{tuning_model(opt)} | {tuning_quick_answer(opt)} | [{title}]({slug}.md) |"
+            f"| [`{opt.name}`]({topic_href(slug)}#{opt.name}) | `{opt.effective_default}` | "
+            f"{tuning_model(opt)} | {tuning_quick_answer(opt)} | [{title}]({topic_href(slug)}) |"
         )
     lines.extend(["", "[← RGW config overview](OVERVIEW.md)", ""])
     return "\n".join(lines)
+
+
+def section_for_slug(slug: str) -> str:
+    for title, slugs in NAV_SECTIONS:
+        if slug in slugs:
+            return title
+    return "Other"
+
+
+def section_dir_for_slug(slug: str) -> str:
+    return SECTION_SLUGS.get(section_for_slug(slug), "other")
+
+
+def topic_path(slug: str) -> Path:
+    return GUIDES / section_dir_for_slug(slug) / f"{slug}.md"
+
+
+def topic_href(slug: str) -> str:
+    """Relative link from OVERVIEW.md or TUNING.md at guides/rgw-config/."""
+    return f"{section_dir_for_slug(slug)}/{slug}.md"
 
 
 def nav_slugs_in_order(groups: dict[str, list[Option]]) -> list[str]:
@@ -1588,20 +1627,14 @@ def nav_slugs_in_order(groups: dict[str, list[Option]]) -> list[str]:
     return ordered
 
 
-def section_for_slug(slug: str) -> str:
-    for title, slugs in NAV_SECTIONS:
-        if slug in slugs:
-            return title
-    return "Other"
-
-
 def render_overview(groups: dict[str, list[Option]], total: int) -> str:
     lines = [
         "# RGW Config Deep Dive — All Options",
         "",
         f"Extended reference for all **{total}** RADOS Gateway options with "
         "**Finding optimal value** tuning guidance (one section per option). "
-        "Generated from [config/rgw/INDEX.md](../../config/rgw/INDEX.md).",
+        "Generated from "
+        f"[config/rgw/INDEX.md]({CONFIG_RGW_FROM_ROOT}/INDEX.md).",
         "",
         "```bash",
         "./scripts/lookup-config.sh <option-name>",
@@ -1633,7 +1666,7 @@ def render_overview(groups: dict[str, list[Option]], total: int) -> str:
             current_section = section
             lines.extend(["", f"### {section}", "", "| Topic | Options |", "|-------|---------|"])
         title = GROUP_TITLES.get(slug, slug)
-        lines.append(f"| [{title}]({slug}.md) | {len(groups[slug])} |")
+        lines.append(f"| [{title}]({topic_href(slug)}) | {len(groups[slug])} |")
     lines.extend(
         [
             "",
@@ -1658,13 +1691,17 @@ def build_mkdocs_nav_yaml(groups: dict[str, list[Option]]) -> str:
         lines.append(f"      - {section_title}:")
         for slug in present:
             title = GROUP_TITLES.get(slug, slug.replace("-", " ").title())
-            lines.append(f"        - {title}: guides/rgw-config/{slug}.md")
+            lines.append(
+                f"        - {title}: guides/rgw-config/{section_dir_for_slug(slug)}/{slug}.md"
+            )
     extra = [s for s in sorted(groups) if section_for_slug(s) == "Other"]
     if extra:
         lines.append("      - Other:")
         for slug in extra:
             title = GROUP_TITLES.get(slug, slug)
-            lines.append(f"        - {title}: guides/rgw-config/{slug}.md")
+            lines.append(
+                f"        - {title}: guides/rgw-config/{section_dir_for_slug(slug)}/{slug}.md"
+            )
     return "\n".join(lines)
 
 
@@ -1717,15 +1754,22 @@ def main() -> int:
         render_tuning_index(all_options), encoding="utf-8"
     )
     for slug, options in sorted(groups.items()):
-        (GUIDES / f"{slug}.md").write_text(
-            render_group(slug, options), encoding="utf-8"
-        )
+        path = topic_path(slug)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(render_group(slug, options), encoding="utf-8")
 
-    keep = {f"{slug}.md" for slug in groups} | {"OVERVIEW.md", "TUNING.md"}
-    for path in GUIDES.glob("*.md"):
-        if path.name not in keep:
+    keep = {topic_path(slug) for slug in groups} | {
+        GUIDES / "OVERVIEW.md",
+        GUIDES / "TUNING.md",
+    }
+    for path in GUIDES.rglob("*.md"):
+        if path not in keep:
             path.unlink()
             print(f"Removed stale {path.relative_to(ROOT)}")
+    for path in sorted(GUIDES.iterdir(), reverse=True):
+        if path.is_dir() and not any(path.iterdir()):
+            path.rmdir()
+            print(f"Removed empty {path.relative_to(ROOT)}")
 
     patch_mkdocs_nav(groups)
 

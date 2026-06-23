@@ -138,13 +138,15 @@ Open https://blog.raminnietzsche.ir/ceph-cheatsheet/ (or http://127.0.0.1:8000 l
 ## Project layout
 
 ```
-cli/              Command reference
-config/           Config tables (auto-generated)
-guides/roles/     By operator role
-guides/scales/    By cluster size
-.cursor/rules/    Documentation conventions
-.cursor/skills/   Agent maintenance workflows
-scripts/          Search, lookup, regenerate
+cli/                    Command reference
+config/                 Config tables (auto-generated)
+guides/roles/           By operator role
+guides/scales/          By cluster size
+guides/rgw-config/      RGW deep dive (generated, by nav category)
+docs/                   MkDocs shell (index, CSS; symlinks to content)
+scripts/                Search, lookup, regenerate
+.cursor/rules/          Documentation conventions
+.cursor/skills/         Agent maintenance workflows
 ```
 
 [README](https://github.com/RaminNietzsche/ceph-cheatsheet) · [License](license.md)
