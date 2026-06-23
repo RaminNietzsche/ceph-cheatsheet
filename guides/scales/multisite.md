@@ -14,13 +14,14 @@
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone list
-radosgw-admin period update --commit
 radosgw-admin sync status
+radosgw-admin period update --commit
+ceph config get client.rgw rgw_zone
 ```
 
 CLI: [cli/rgw.md](../../cli/rgw.md)  
-Config: [config/rgw/INDEX.md](../../config/rgw/INDEX.md) — search `rgw_zone`, `rgw_data_log`
+Config: [config/rgw/INDEX.md](../../config/rgw/INDEX.md)  
+Deep dives: [multisite-zones.md](../rgw-config/multisite/multisite-zones.md) · [multisite-sync.md](../rgw-config/multisite/multisite-sync.md)
 
 ```bash
 ./scripts/search-config.sh -s rgw zone
@@ -47,12 +48,16 @@ Config: [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md)
 
 ## Role guides
 
-[RGW admin](../roles/rgw-admin.md) · [CephFS admin](../roles/cephfs-admin.md)
+| Role | Guide |
+|------|-------|
+| RGW multisite | [rgw-admin.md](../roles/rgw-admin.md) |
+| CephFS DR | [cephfs-admin.md](../roles/cephfs-admin.md) |
+| Cluster / mon | [cluster-admin.md](../roles/cluster-admin.md) |
 
 ## Caveats
 
-- Latency between sites affects RGW metadata sync and RBD journal lag
+- Latency between sites affects RGW sync and RBD journal lag
 - Test failover (`promote`) in maintenance windows
-- Separate pools per site for erasure + multisite requires careful planning
+- Plan CRUSH and pools per site for erasure + multisite
 
 [← Guides overview](../OVERVIEW.md)

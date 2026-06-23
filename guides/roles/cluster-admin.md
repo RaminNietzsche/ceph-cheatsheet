@@ -20,10 +20,12 @@ See [cluster CLI](../../cli/cluster.md) and [cephadm CLI](../../cli/cephadm.md).
 | Task | Command / config |
 |------|------------------|
 | Runtime config | [cli/config.md](../../cli/config.md) — `ceph config set …` |
-| Monitor options | [config/mon/INDEX.md](../../config/mon/INDEX.md) · [deep dive](../mon-config/OVERVIEW.md) |
-| Manager / modules | [config/mgr/INDEX.md](../../config/mgr/INDEX.md) · [deep dive](../mgr-config/OVERVIEW.md) |
-| Auth | [config/global/auth.md](../../config/global/auth.md) · [global deep dive](../global-config/OVERVIEW.md) |
+| Monitor options | [config/mon/INDEX.md](../../config/mon/INDEX.md) · [MON deep dive](../mon-config/OVERVIEW.md) |
+| Manager / modules | [config/mgr/INDEX.md](../../config/mgr/INDEX.md) · [MGR deep dive](../mgr-config/OVERVIEW.md) |
+| Auth & keys | [config/global/auth.md](../../config/global/auth.md) · [Global deep dive](../global-config/OVERVIEW.md) |
 | cephadm path | `cephadm_path` in [config/mgr/cephadm.md](../../config/mgr/cephadm.md) |
+
+Hot options: `mon_osd_down_out_interval`, `mgr_standby_modules`, `cephadm_path` — see [MON](../mon-config/TUNING.md) and [MGR](../mgr-config/TUNING.md) tuning indexes.
 
 ## Common workflows
 
@@ -43,18 +45,21 @@ ceph orch upgrade start --image quay.io/ceph/ceph:v19
 ceph orch upgrade status
 ```
 
-**Add/remove monitor:**
+**Add host / monitor:**
 
 ```bash
-ceph orch apply mon --placement="host1 host2 host3"
 ceph orch host add newhost --labels _admin
+ceph orch apply mon --placement="host1 host2 host3"
 ```
 
 ## Scale notes
 
-- [Lab](../scales/lab.md) — single-node mon, `--single-host-defaults`
-- [Small production](../scales/small-production.md) — 3 mon, 2 mgr
-- [Large production](../scales/large-production.md) — stretch rules, separate networks
+| Scale | Focus |
+|-------|--------|
+| [Lab](../scales/lab.md) | Single mon, `--single-host-defaults` |
+| [Small production](../scales/small-production.md) | 3 mon, 2 mgr, one DC |
+| [Large production](../scales/large-production.md) | Stretch rules, separate networks |
+| [Multisite](../scales/multisite.md) | Mon quorum per site or stretch |
 
 ## Troubleshooting
 

@@ -1,10 +1,8 @@
-> **说明：** 下表中的选项说明来自 upstream Ceph（英文）。
+# 存储运维
 
-# Storage Operator
+<span class="badge badge-role-storage">Storage operator</span> 管理 OSD、池、PG、CRUSH、恢复与 scrub。
 
-<span class="badge badge-role-storage">Storage operator</span> Manage OSDs, pools, placement groups, CRUSH, recovery, and scrub.
-
-## Daily commands
+## 日常命令
 
 ```bash
 ceph osd stat
@@ -15,35 +13,33 @@ ceph pg dump_stuck
 ceph df detail
 ```
 
-See [OSD & pools CLI](../../cli/osd-pool.md) and [RADOS CLI](../../cli/rados.md).
+[OSD 与池 CLI](../../cli/osd-pool.md) · [RADOS CLI](../../cli/rados.md)
 
-## Configuration
+## 配置
 
-| Area | Config index |
-|------|--------------|
-| OSD daemon | [config/osd/INDEX.md](../../config/osd/INDEX.md) · [deep dive](../osd-config/OVERVIEW.md) |
-| Global OSD / bluestore | [config/global/osd.md](../../config/global/osd.md), [bluestore.md](../../config/global/bluestore.md) · [global deep dive](../global-config/OVERVIEW.md) |
-| PG autoscale | `osd_pool_default_pg_autoscale_mode`, `mon_target_pg_per_osd` |
-| Recovery / scrub | `osd_max_scrubs`, `osd_recovery_*`, `osd_deep_scrub_*` |
-
-Look up any option:
+| 领域 | 配置索引 |
+|------|----------|
+| OSD 守护进程 | [config/osd/INDEX.md](../../config/osd/INDEX.md) · [OSD 深度指南](../osd-config/OVERVIEW.md) |
+| Global / bluestore | [osd.md](../../config/global/osd.md)、[bluestore.md](../../config/global/bluestore.md) |
+| 恢复与 scrub | [recovery](../osd-config/recovery/recovery.md)、[scrub](../osd-config/scrub/scrub.md) |
+| mClock | [mclock](../osd-config/mclock/mclock.md) — `osd_mclock_profile` |
 
 ```bash
 ./scripts/lookup-config.sh osd_max_scrubs
+./scripts/search-config.sh -s osd recovery
 ```
 
-## Common workflows
+## 常见工作流
 
-**OSD maintenance:**
+**OSD 维护：**
 
 ```bash
 ceph osd safe-to-destroy 5
 ceph osd out 5
-# stop osd, replace disk, redeploy
 ceph osd in 5
 ```
 
-**Create replicated pool:**
+**创建副本池：**
 
 ```bash
 ceph osd pool create mypool 128 128 replicated
@@ -51,21 +47,24 @@ ceph osd pool application enable mypool rbd
 ceph osd pool autoscale-status
 ```
 
-**Rebalance:**
+**重平衡：**
 
 ```bash
 ceph osd reweight-by-utilization
 ceph osd crush reweight osd.5 0.95
 ```
 
-## Scale notes
+## 规模说明
 
-- [Small production](../scales/small-production.md) — autoscale on, 3x replication
-- [Large production](../scales/large-production.md) — mclock profiles, device classes
-- [Lab](../scales/lab.md) — lower osd memory, fewer PGs
+| 规模 | 重点 |
+|------|------|
+| [Lab](../scales/lab.md) | 较低 `osd_memory_target` |
+| [Small production](../scales/small-production.md) | 自动扩缩、三副本 |
+| [Large production](../scales/large-production.md) | mClock、设备类 |
+| [Multisite](../scales/multisite.md) | 各站点 CRUSH |
 
-## Troubleshooting
+## 故障排查
 
-Degraded PGs, backfill throttling, nearfull — [cli/troubleshooting.md](../../cli/troubleshooting.md)
+[cli/troubleshooting.md](../../cli/troubleshooting.md)
 
-[← Guides overview](../OVERVIEW.md)
+[← 指南概览](../OVERVIEW.md)

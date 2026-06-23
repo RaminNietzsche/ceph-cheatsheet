@@ -1,16 +1,14 @@
-> **یادداشت:** توضیحات گزینه‌ها در جدول از upstream Ceph (انگلیسی) است.
+# مقیاس Lab / توسعه
 
-# Lab / Development Scale
+<span class="badge badge-scale-lab">Lab / dev</span> ۱–۳ نود، تست و یادگیری — **نه برای داده production**.
 
-<span class="badge badge-scale-lab">Lab / dev</span> 1–3 nodes, testing, learning, CI — not for production data.
+## اهداف
 
-## Goals
+- حداقل منابع، تکرار سریع
+- پذیرش single point of failure
+- durability شل‌تر فقط در شبکه lab ایزوله
 
-- Minimal footprint, fast iteration
-- Accept single points of failure
-- Looser durability settings only in isolated lab networks
-
-## Suggested layout
+## چیدمان پیشنهادی
 
 ```bash
 cephadm bootstrap --mon-ip <ip> --single-host-defaults
@@ -19,29 +17,24 @@ ceph orch apply mgr --placement="1"
 ceph orch apply osd --all-available-devices
 ```
 
-## Tuning hints
+## تنظیم
 
-| Area | Lab approach |
-|------|--------------|
-| Replication | `size=2` acceptable on single host with `--single-host-defaults` |
-| PGs | Autoscale on; small pools |
-| OSD memory | Lower `osd_memory_target` if RAM constrained |
-| Scrub | Can increase intervals for less disk churn |
-
-Look up options:
+| حوزه | رویکرد lab |
+|------|------------|
+| Replication | `size=2` با `--single-host-defaults` |
+| PG | autoscale؛ pool کوچک |
+| حافظه OSD | `osd_memory_target` پایین‌تر |
+| Scrub | interval بلندتر |
 
 ```bash
 ./scripts/lookup-config.sh osd_memory_target
-./scripts/lookup-config.sh osd_pool_default_pg_autoscale_mode
 ```
 
-## Role guides
+## راهنمای نقش
 
-- [Cluster admin](../roles/cluster-admin.md) — bootstrap
-- [Storage operator](../roles/storage-operator.md) — first pool
+| نقش | راهنما |
+|------|--------|
+| Cluster | [cluster-admin.md](../roles/cluster-admin.md) |
+| Storage | [storage-operator.md](../roles/storage-operator.md) |
 
-## CLI quick ref
-
-[cli/cluster.md](../../cli/cluster.md) · [cli/osd-pool.md](../../cli/osd-pool.md)
-
-[← Guides overview](../OVERVIEW.md)
+[← نمای کلی راهنما](../OVERVIEW.md)

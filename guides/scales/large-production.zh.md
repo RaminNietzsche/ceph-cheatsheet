@@ -1,58 +1,41 @@
-> **说明：** 下表中的选项说明来自 upstream Ceph（英文）。
+# 大型生产规模
 
-# Large Production Scale
+<span class="badge badge-scale-large">Large production</span> **12+ 节点**、大量 OSD、严格 SLA、独立网络、性能调优。
 
-<span class="badge badge-scale-large">Large production</span> **12+ nodes**, many OSDs, strict SLAs, separate networks, performance tuning.
+## 重点领域
 
-## Focus areas
+| 领域 | 措施 |
+|------|------|
+| 调度 | `osd_mclock_profile`、设备类 |
+| PG | 自动扩缩 + `mon_target_pg_per_osd` |
+| Scrub | `osd_max_scrubs`、深度 scrub 窗口 |
+| 网络 | public / cluster — [public.md](../../config/global/public.md) |
+| CRUSH | 每机架/数据中心规则 |
 
-| Area | Actions |
-|------|---------|
-| Scheduling | `osd_mclock_profile`, device classes (ssd/hdd/nvme) |
-| PG balance | Autoscale + monitor `mon_target_pg_per_osd`, avoid hot OSDs |
-| Scrub | Tune `osd_max_scrubs`, deep-scrub windows, no overlap with peak I/O |
-| Networks | `public_network` / `cluster_network` — [config/global/public.md](../../config/global/public.md) |
-| Failure domains | CRUSH rules per rack/datacenter |
-
-## Commands
+## 命令
 
 ```bash
 ceph osd crush class ls
 ceph osd crush tree
 ceph osd perf
-ceph pg dump | awk '/active/ {print $1}' | sort | uniq -c
 ceph osd reweight-by-utilization 0.05
+ceph osd ok-to-stop osd.0 osd.1 osd.2
 ```
 
-## Config to review
+## 配置审查
 
 ```bash
-./scripts/search-config.sh -s osd mclock
 ./scripts/lookup-config.sh osd_mclock_profile
 ./scripts/lookup-config.sh osd_max_scrubs
-./scripts/lookup-config.sh mon_osd_full_ratio
 ```
 
-Indexes: [config/osd/INDEX.md](../../config/osd/INDEX.md), [config/global/bluestore.md](../../config/global/bluestore.md)
+深度指南：[OSD](../osd-config/OVERVIEW.md) · [recovery](../osd-config/recovery/recovery.md)
 
-## OSD maintenance at scale
-
-Always use safety checks before bulk operations:
-
-```bash
-ceph osd ok-to-stop osd.0 osd.1 osd.2
-ceph osd safe-to-destroy 12
-```
-
-Throttle recovery during business hours:
+## 限制恢复（业务时段）
 
 ```bash
 ceph config set osd osd_max_backfills 1
 ceph config set osd osd_recovery_max_active 3
 ```
 
-## Role guides
-
-[storage-operator.md](../roles/storage-operator.md) · [cluster-admin.md](../roles/cluster-admin.md)
-
-[← Guides overview](../OVERVIEW.md)
+[← 指南概览](../OVERVIEW.md)

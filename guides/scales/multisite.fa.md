@@ -1,28 +1,25 @@
-> **یادداشت:** توضیحات گزینه‌ها در جدول از upstream Ceph (انگلیسی) است.
+# مقیاس Multisite
 
-# Multisite Scale
+<span class="badge badge-scale-multi">Multisite</span> چند datacenter یا region — zoneهای RGW، mirroring اختیاری RBD / CephFS.
 
-<span class="badge badge-scale-multi">Multisite</span> Multiple datacenters or regions — RGW zones, optional RBD / CephFS mirroring.
+## الگوها
 
-## Patterns
-
-| Use case | Components |
-|----------|------------|
-| S3 geo-distribution | RGW realm → zonegroup → zones, `period update` |
-| Block DR | RBD mirroring (pool or image mode) |
-| CephFS DR | cephfs-mirror snapshot sync |
+| کاربرد | اجزا |
+|--------|------|
+| S3 چندسایته | realm → zonegroup → zone، `period update` |
+| DR بلوک | RBD mirroring |
+| DR CephFS | cephfs-mirror |
 
 ## RGW multisite
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone list
-radosgw-admin period update --commit
 radosgw-admin sync status
+radosgw-admin period update --commit
+ceph config get client.rgw rgw_zone
 ```
 
-CLI: [cli/rgw.md](../../cli/rgw.md)  
-Config: [config/rgw/INDEX.md](../../config/rgw/INDEX.md) — search `rgw_zone`, `rgw_data_log`
+[cli/rgw.md](../../cli/rgw.md) · [multisite-zones.md](../rgw-config/multisite/multisite-zones.md)
 
 ```bash
 ./scripts/search-config.sh -s rgw zone
@@ -36,8 +33,6 @@ rbd mirror pool status rbd
 rbd mirror image promote rbd/image --force
 ```
 
-Config: [config/rbd-mirror/INDEX.md](../../config/rbd-mirror/INDEX.md)
-
 ## CephFS mirror
 
 ```bash
@@ -45,16 +40,13 @@ ceph fs snapshot mirror enable myfs
 ceph fs snapshot mirror info myfs
 ```
 
-Config: [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md)
+## راهنمای نقش
 
-## Role guides
+[rgw-admin.md](../roles/rgw-admin.md) · [cephfs-admin.md](../roles/cephfs-admin.md)
 
-[RGW admin](../roles/rgw-admin.md) · [CephFS admin](../roles/cephfs-admin.md)
+## هشدار
 
-## Caveats
+- latency بین سایت‌ها روی sync RGW اثر دارد
+- failover را در پنجره نگهداری تست کنید
 
-- Latency between sites affects RGW metadata sync and RBD journal lag
-- Test failover (`promote`) in maintenance windows
-- Separate pools per site for erasure + multisite requires careful planning
-
-[← Guides overview](../OVERVIEW.md)
+[← نمای کلی راهنما](../OVERVIEW.md)

@@ -17,11 +17,11 @@ See [CephFS CLI](../../cli/cephfs.md).
 
 | Area | Config index |
 |------|--------------|
-| MDS daemon | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [deep dive](../mds-config/OVERVIEW.md) |
-| Client / FUSE | [config/mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [deep dive](../mds-client-config/OVERVIEW.md) |
-| CephFS mirror | [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [deep dive](../cephfs-mirror-config/OVERVIEW.md) |
+| MDS daemon | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [MDS deep dive](../mds-config/OVERVIEW.md) |
+| Client / FUSE | [config/mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [client deep dive](../mds-client-config/OVERVIEW.md) |
+| CephFS mirror | [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [mirror deep dive](../cephfs-mirror-config/OVERVIEW.md) |
 
-Key options: `mds_cache_memory_limit`, `mds_max_file_size`, client mount flags.
+Key options: `mds_cache_memory_limit`, `mds_max_file_size` — [MDS TUNING](../mds-config/TUNING.md)
 
 ```bash
 ./scripts/lookup-config.sh mds_cache_memory_limit
@@ -45,7 +45,7 @@ ceph fs subvolume create myfs vol1 --size 10737418240
 ceph fs subvolume info myfs vol1
 ```
 
-**Enable snapshot mirroring:**
+**Snapshot mirroring:**
 
 ```bash
 ceph fs snapshot mirror enable myfs
@@ -53,8 +53,10 @@ ceph fs snapshot mirror enable myfs
 
 ## Scale notes
 
-- [Lab](../scales/lab.md) — 1 MDS, small cache
-- [Small production](../scales/small-production.md) — 2 active MDS for HA
-- [Multisite](../scales/multisite.md) — cephfs-mirror
+| Scale | Focus |
+|-------|--------|
+| [Lab](../scales/lab.md) | 1 MDS, small cache |
+| [Small production](../scales/small-production.md) | 2 MDS for HA |
+| [Multisite](../scales/multisite.md) | cephfs-mirror DR |
 
 [← Guides overview](../OVERVIEW.md)

@@ -1,10 +1,8 @@
-> **یادداشت:** توضیحات گزینه‌ها در جدول از upstream Ceph (انگلیسی) است.
+# مدیر کلاستر
 
-# Cluster Admin
+<span class="badge badge-role-cluster">Cluster admin</span> مدیریت monitor، manager، orchestration، سلامت کلاستر، auth و upgrade.
 
-<span class="badge badge-role-cluster">Cluster admin</span> Manage monitors, managers, orchestration, cluster health, auth, and upgrades.
-
-## Daily commands
+## دستورات روزانه
 
 ```bash
 ceph -s
@@ -15,21 +13,23 @@ ceph mon stat
 ceph mgr stat
 ```
 
-See [cluster CLI](../../cli/cluster.md) and [cephadm CLI](../../cli/cephadm.md).
+[CLI کلاستر](../../cli/cluster.md) · [CLI cephadm](../../cli/cephadm.md)
 
-## Configuration
+## پیکربندی
 
-| Task | Command / config |
-|------|------------------|
-| Runtime config | [cli/config.md](../../cli/config.md) — `ceph config set …` |
-| Monitor options | [config/mon/INDEX.md](../../config/mon/INDEX.md) · [deep dive](../mon-config/OVERVIEW.md) |
-| Manager / modules | [config/mgr/INDEX.md](../../config/mgr/INDEX.md) · [deep dive](../mgr-config/OVERVIEW.md) |
-| Auth | [config/global/auth.md](../../config/global/auth.md) · [global deep dive](../global-config/OVERVIEW.md) |
-| cephadm path | `cephadm_path` in [config/mgr/cephadm.md](../../config/mgr/cephadm.md) |
+| کار | دستور / config |
+|------|----------------|
+| پیکربندی runtime | [cli/config.md](../../cli/config.md) — `ceph config set …` |
+| گزینه‌های MON | [config/mon/INDEX.md](../../config/mon/INDEX.md) · [deep dive MON](../mon-config/OVERVIEW.md) |
+| Manager / ماژول‌ها | [config/mgr/INDEX.md](../../config/mgr/INDEX.md) · [deep dive MGR](../mgr-config/OVERVIEW.md) |
+| Auth و کلیدها | [config/global/auth.md](../../config/global/auth.md) · [deep dive Global](../global-config/OVERVIEW.md) |
+| مسیر cephadm | `cephadm_path` در [config/mgr/cephadm.md](../../config/mgr/cephadm.md) |
 
-## Common workflows
+گزینه‌های پرکاربرد: `mon_osd_down_out_interval`، `mgr_standby_modules`، `cephadm_path` — [MON](../mon-config/TUNING.md) و [MGR](../mgr-config/TUNING.md).
 
-**Deploy services (cephadm):**
+## workflowهای رایج
+
+**استقرار سرویس (cephadm):**
 
 ```bash
 ceph orch apply mon --placement="3"
@@ -37,7 +37,7 @@ ceph orch apply mgr --placement="2"
 ceph orch apply osd --all-available-devices
 ```
 
-**Upgrade cluster:**
+**Upgrade کلاستر:**
 
 ```bash
 ceph orch upgrade ls
@@ -45,21 +45,24 @@ ceph orch upgrade start --image quay.io/ceph/ceph:v19
 ceph orch upgrade status
 ```
 
-**Add/remove monitor:**
+**افزودن host / monitor:**
 
 ```bash
-ceph orch apply mon --placement="host1 host2 host3"
 ceph orch host add newhost --labels _admin
+ceph orch apply mon --placement="host1 host2 host3"
 ```
 
-## Scale notes
+## یادداشت مقیاس
 
-- [Lab](../scales/lab.md) — single-node mon, `--single-host-defaults`
-- [Small production](../scales/small-production.md) — 3 mon, 2 mgr
-- [Large production](../scales/large-production.md) — stretch rules, separate networks
+| مقیاس | تمرکز |
+|-------|--------|
+| [Lab](../scales/lab.md) | یک mon، `--single-host-defaults` |
+| [Small production](../scales/small-production.md) | ۳ mon، ۲ mgr، یک DC |
+| [Large production](../scales/large-production.md) | stretch، شبکه جدا |
+| [Multisite](../scales/multisite.md) | quorum هر سایت یا stretch |
 
-## Troubleshooting
+## عیب‌یابی
 
-[cli/troubleshooting.md](../../cli/troubleshooting.md) — logs, mon quorum, upgrade stalls
+[cli/troubleshooting.md](../../cli/troubleshooting.md)
 
-[← Guides overview](../OVERVIEW.md)
+[← نمای کلی راهنما](../OVERVIEW.md)

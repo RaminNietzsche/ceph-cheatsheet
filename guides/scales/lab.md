@@ -1,12 +1,12 @@
 # Lab / Development Scale
 
-<span class="badge badge-scale-lab">Lab / dev</span> 1–3 nodes, testing, learning, CI — not for production data.
+<span class="badge badge-scale-lab">Lab / dev</span> 1–3 nodes, testing, learning, CI — **not for production data**.
 
 ## Goals
 
 - Minimal footprint, fast iteration
 - Accept single points of failure
-- Looser durability settings only in isolated lab networks
+- Looser durability only on isolated lab networks
 
 ## Suggested layout
 
@@ -21,12 +21,10 @@ ceph orch apply osd --all-available-devices
 
 | Area | Lab approach |
 |------|--------------|
-| Replication | `size=2` acceptable on single host with `--single-host-defaults` |
+| Replication | `size=2` with `--single-host-defaults` on one host |
 | PGs | Autoscale on; small pools |
 | OSD memory | Lower `osd_memory_target` if RAM constrained |
-| Scrub | Can increase intervals for less disk churn |
-
-Look up options:
+| Scrub | Longer intervals to reduce disk churn |
 
 ```bash
 ./scripts/lookup-config.sh osd_memory_target
@@ -35,8 +33,12 @@ Look up options:
 
 ## Role guides
 
-- [Cluster admin](../roles/cluster-admin.md) — bootstrap
-- [Storage operator](../roles/storage-operator.md) — first pool
+| Role | Guide |
+|------|-------|
+| Cluster | [cluster-admin.md](../roles/cluster-admin.md) |
+| Storage | [storage-operator.md](../roles/storage-operator.md) |
+| RGW (optional) | [rgw-admin.md](../roles/rgw-admin.md) |
+| CephFS (optional) | [cephfs-admin.md](../roles/cephfs-admin.md) |
 
 ## CLI quick ref
 

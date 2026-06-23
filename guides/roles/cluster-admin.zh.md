@@ -1,10 +1,8 @@
-> **说明：** 下表中的选项说明来自 upstream Ceph（英文）。
+# 集群管理员
 
-# Cluster Admin
+<span class="badge badge-role-cluster">Cluster admin</span> 管理 Monitor、Manager、编排、集群健康、认证与升级。
 
-<span class="badge badge-role-cluster">Cluster admin</span> Manage monitors, managers, orchestration, cluster health, auth, and upgrades.
-
-## Daily commands
+## 日常命令
 
 ```bash
 ceph -s
@@ -15,21 +13,23 @@ ceph mon stat
 ceph mgr stat
 ```
 
-See [cluster CLI](../../cli/cluster.md) and [cephadm CLI](../../cli/cephadm.md).
+[集群 CLI](../../cli/cluster.md) · [cephadm CLI](../../cli/cephadm.md)
 
-## Configuration
+## 配置
 
-| Task | Command / config |
-|------|------------------|
-| Runtime config | [cli/config.md](../../cli/config.md) — `ceph config set …` |
-| Monitor options | [config/mon/INDEX.md](../../config/mon/INDEX.md) · [deep dive](../mon-config/OVERVIEW.md) |
-| Manager / modules | [config/mgr/INDEX.md](../../config/mgr/INDEX.md) · [deep dive](../mgr-config/OVERVIEW.md) |
-| Auth | [config/global/auth.md](../../config/global/auth.md) · [global deep dive](../global-config/OVERVIEW.md) |
-| cephadm path | `cephadm_path` in [config/mgr/cephadm.md](../../config/mgr/cephadm.md) |
+| 任务 | 命令 / 配置 |
+|------|------------|
+| 运行时配置 | [cli/config.md](../../cli/config.md) — `ceph config set …` |
+| Monitor 选项 | [config/mon/INDEX.md](../../config/mon/INDEX.md) · [MON 深度指南](../mon-config/OVERVIEW.md) |
+| Manager / 模块 | [config/mgr/INDEX.md](../../config/mgr/INDEX.md) · [MGR 深度指南](../mgr-config/OVERVIEW.md) |
+| 认证与密钥 | [config/global/auth.md](../../config/global/auth.md) · [Global 深度指南](../global-config/OVERVIEW.md) |
+| cephadm 路径 | [config/mgr/cephadm.md](../../config/mgr/cephadm.md) 中的 `cephadm_path` |
 
-## Common workflows
+常用选项：`mon_osd_down_out_interval`、`mgr_standby_modules`、`cephadm_path` — 见 [MON](../mon-config/TUNING.md) 与 [MGR](../mgr-config/TUNING.md) 调优索引。
 
-**Deploy services (cephadm):**
+## 常见工作流
+
+**部署服务（cephadm）：**
 
 ```bash
 ceph orch apply mon --placement="3"
@@ -37,7 +37,7 @@ ceph orch apply mgr --placement="2"
 ceph orch apply osd --all-available-devices
 ```
 
-**Upgrade cluster:**
+**升级集群：**
 
 ```bash
 ceph orch upgrade ls
@@ -45,21 +45,24 @@ ceph orch upgrade start --image quay.io/ceph/ceph:v19
 ceph orch upgrade status
 ```
 
-**Add/remove monitor:**
+**添加主机 / Monitor：**
 
 ```bash
-ceph orch apply mon --placement="host1 host2 host3"
 ceph orch host add newhost --labels _admin
+ceph orch apply mon --placement="host1 host2 host3"
 ```
 
-## Scale notes
+## 规模说明
 
-- [Lab](../scales/lab.md) — single-node mon, `--single-host-defaults`
-- [Small production](../scales/small-production.md) — 3 mon, 2 mgr
-- [Large production](../scales/large-production.md) — stretch rules, separate networks
+| 规模 | 重点 |
+|------|------|
+| [Lab](../scales/lab.md) | 单 Mon、`--single-host-defaults` |
+| [Small production](../scales/small-production.md) | 3 Mon、2 MGR、单数据中心 |
+| [Large production](../scales/large-production.md) | Stretch、独立网络 |
+| [Multisite](../scales/multisite.md) | 每站点 quorum 或 stretch |
 
-## Troubleshooting
+## 故障排查
 
-[cli/troubleshooting.md](../../cli/troubleshooting.md) — logs, mon quorum, upgrade stalls
+[cli/troubleshooting.md](../../cli/troubleshooting.md)
 
-[← Guides overview](../OVERVIEW.md)
+[← 指南概览](../OVERVIEW.md)

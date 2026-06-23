@@ -35,14 +35,6 @@ HAND_PAGES: tuple[str, ...] = (
     "guides/quickstart",
     "guides/config-lookup",
     "guides/contributing",
-    "guides/roles/cluster-admin",
-    "guides/roles/storage-operator",
-    "guides/roles/rgw-admin",
-    "guides/roles/cephfs-admin",
-    "guides/scales/lab",
-    "guides/scales/small-production",
-    "guides/scales/large-production",
-    "guides/scales/multisite",
 )
 
 

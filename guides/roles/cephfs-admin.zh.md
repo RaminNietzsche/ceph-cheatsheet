@@ -1,10 +1,8 @@
-> **说明：** 下表中的选项说明来自 upstream Ceph（英文）。
+# CephFS 管理员
 
-# CephFS Admin
+<span class="badge badge-role-cephfs">CephFS admin</span> 管理 Ceph 文件系统、MDS、子卷与镜像。
 
-<span class="badge badge-role-cephfs">CephFS admin</span> Manage Ceph file systems, metadata servers (MDS), subvolumes, and mirroring.
-
-## Daily commands
+## 日常命令
 
 ```bash
 ceph fs ls
@@ -13,50 +11,39 @@ ceph mds stat
 ceph orch ps --service-type mds
 ```
 
-See [CephFS CLI](../../cli/cephfs.md).
+[CephFS CLI](../../cli/cephfs.md)
 
-## Configuration
+## 配置
 
-| Area | Config index |
-|------|--------------|
-| MDS daemon | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [deep dive](../mds-config/OVERVIEW.md) |
-| Client / FUSE | [config/mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [deep dive](../mds-client-config/OVERVIEW.md) |
-| CephFS mirror | [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [deep dive](../cephfs-mirror-config/OVERVIEW.md) |
+| 领域 | 配置索引 |
+|------|----------|
+| MDS | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [深度指南](../mds-config/OVERVIEW.md) |
+| Client | [mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [深度指南](../mds-client-config/OVERVIEW.md) |
+| Mirror | [cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [深度指南](../cephfs-mirror-config/OVERVIEW.md) |
 
-Key options: `mds_cache_memory_limit`, `mds_max_file_size`, client mount flags.
+关键选项：`mds_cache_memory_limit` — [TUNING](../mds-config/TUNING.md)
 
 ```bash
 ./scripts/lookup-config.sh mds_cache_memory_limit
 ```
 
-## Common workflows
-
-**Create file system:**
+## 常见工作流
 
 ```bash
 ceph osd pool create cephfs-metadata 32 32
 ceph osd pool create cephfs-data 128 128
 ceph fs new myfs cephfs-metadata cephfs-data
 ceph orch apply mds myfs --placement="2"
-```
-
-**Subvolume:**
-
-```bash
 ceph fs subvolume create myfs vol1 --size 10737418240
-ceph fs subvolume info myfs vol1
-```
-
-**Enable snapshot mirroring:**
-
-```bash
 ceph fs snapshot mirror enable myfs
 ```
 
-## Scale notes
+## 规模说明
 
-- [Lab](../scales/lab.md) — 1 MDS, small cache
-- [Small production](../scales/small-production.md) — 2 active MDS for HA
-- [Multisite](../scales/multisite.md) — cephfs-mirror
+| 规模 | 重点 |
+|------|------|
+| [Lab](../scales/lab.md) | 1 个 MDS |
+| [Small production](../scales/small-production.md) | 2 个 MDS 高可用 |
+| [Multisite](../scales/multisite.md) | cephfs-mirror |
 
-[← Guides overview](../OVERVIEW.md)
+[← 指南概览](../OVERVIEW.md)

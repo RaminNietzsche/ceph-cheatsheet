@@ -1,10 +1,8 @@
-> **یادداشت:** توضیحات گزینه‌ها در جدول از upstream Ceph (انگلیسی) است.
+# اپراتور Storage
 
-# Storage Operator
+<span class="badge badge-role-storage">Storage operator</span> مدیریت OSD، pool، PG، CRUSH، recovery و scrub.
 
-<span class="badge badge-role-storage">Storage operator</span> Manage OSDs, pools, placement groups, CRUSH, recovery, and scrub.
-
-## Daily commands
+## دستورات روزانه
 
 ```bash
 ceph osd stat
@@ -15,35 +13,33 @@ ceph pg dump_stuck
 ceph df detail
 ```
 
-See [OSD & pools CLI](../../cli/osd-pool.md) and [RADOS CLI](../../cli/rados.md).
+[CLI OSD و pool](../../cli/osd-pool.md) · [CLI RADOS](../../cli/rados.md)
 
-## Configuration
+## پیکربندی
 
-| Area | Config index |
-|------|--------------|
-| OSD daemon | [config/osd/INDEX.md](../../config/osd/INDEX.md) · [deep dive](../osd-config/OVERVIEW.md) |
-| Global OSD / bluestore | [config/global/osd.md](../../config/global/osd.md), [bluestore.md](../../config/global/bluestore.md) · [global deep dive](../global-config/OVERVIEW.md) |
-| PG autoscale | `osd_pool_default_pg_autoscale_mode`, `mon_target_pg_per_osd` |
-| Recovery / scrub | `osd_max_scrubs`, `osd_recovery_*`, `osd_deep_scrub_*` |
-
-Look up any option:
+| حوزه | INDEX |
+|------|-------|
+| دیمن OSD | [config/osd/INDEX.md](../../config/osd/INDEX.md) · [deep dive OSD](../osd-config/OVERVIEW.md) |
+| Global / bluestore | [osd.md](../../config/global/osd.md)، [bluestore.md](../../config/global/bluestore.md) |
+| Recovery و scrub | [recovery](../osd-config/recovery/recovery.md)، [scrub](../osd-config/scrub/scrub.md) |
+| mClock | [mclock](../osd-config/mclock/mclock.md) — `osd_mclock_profile` |
 
 ```bash
 ./scripts/lookup-config.sh osd_max_scrubs
+./scripts/search-config.sh -s osd recovery
 ```
 
-## Common workflows
+## workflowهای رایج
 
-**OSD maintenance:**
+**نگهداری OSD:**
 
 ```bash
 ceph osd safe-to-destroy 5
 ceph osd out 5
-# stop osd, replace disk, redeploy
 ceph osd in 5
 ```
 
-**Create replicated pool:**
+**ایجاد pool:**
 
 ```bash
 ceph osd pool create mypool 128 128 replicated
@@ -58,14 +54,17 @@ ceph osd reweight-by-utilization
 ceph osd crush reweight osd.5 0.95
 ```
 
-## Scale notes
+## یادداشت مقیاس
 
-- [Small production](../scales/small-production.md) — autoscale on, 3x replication
-- [Large production](../scales/large-production.md) — mclock profiles, device classes
-- [Lab](../scales/lab.md) — lower osd memory, fewer PGs
+| مقیاس | تمرکز |
+|-------|--------|
+| [Lab](../scales/lab.md) | `osd_memory_target` پایین‌تر |
+| [Small production](../scales/small-production.md) | autoscale، replica 3 |
+| [Large production](../scales/large-production.md) | mClock، device class |
+| [Multisite](../scales/multisite.md) | CRUSH هر سایت |
 
-## Troubleshooting
+## عیب‌یابی
 
-Degraded PGs, backfill throttling, nearfull — [cli/troubleshooting.md](../../cli/troubleshooting.md)
+[cli/troubleshooting.md](../../cli/troubleshooting.md)
 
-[← Guides overview](../OVERVIEW.md)
+[← نمای کلی راهنما](../OVERVIEW.md)

@@ -1,16 +1,14 @@
-> **说明：** 下表中的选项说明来自 upstream Ceph（英文）。
+# Lab / 开发规模
 
-# Lab / Development Scale
+<span class="badge badge-scale-lab">Lab / dev</span> 1–3 节点，测试与学习 — **不用于生产数据**。
 
-<span class="badge badge-scale-lab">Lab / dev</span> 1–3 nodes, testing, learning, CI — not for production data.
+## 目标
 
-## Goals
+- 最小 footprint、快速迭代
+- 可接受单点故障
+- 仅在隔离 lab 网络放宽 durability
 
-- Minimal footprint, fast iteration
-- Accept single points of failure
-- Looser durability settings only in isolated lab networks
-
-## Suggested layout
+## 建议布局
 
 ```bash
 cephadm bootstrap --mon-ip <ip> --single-host-defaults
@@ -19,29 +17,24 @@ ceph orch apply mgr --placement="1"
 ceph orch apply osd --all-available-devices
 ```
 
-## Tuning hints
+## 调优提示
 
-| Area | Lab approach |
-|------|--------------|
-| Replication | `size=2` acceptable on single host with `--single-host-defaults` |
-| PGs | Autoscale on; small pools |
-| OSD memory | Lower `osd_memory_target` if RAM constrained |
-| Scrub | Can increase intervals for less disk churn |
-
-Look up options:
+| 领域 | Lab 做法 |
+|------|----------|
+| 副本 | 单主机 `--single-host-defaults` 下 `size=2` |
+| PG | 自动扩缩；小池 |
+| OSD 内存 | 降低 `osd_memory_target` |
+| Scrub | 延长间隔 |
 
 ```bash
 ./scripts/lookup-config.sh osd_memory_target
-./scripts/lookup-config.sh osd_pool_default_pg_autoscale_mode
 ```
 
-## Role guides
+## 角色指南
 
-- [Cluster admin](../roles/cluster-admin.md) — bootstrap
-- [Storage operator](../roles/storage-operator.md) — first pool
+| 角色 | 指南 |
+|------|------|
+| 集群 | [cluster-admin.md](../roles/cluster-admin.md) |
+| 存储 | [storage-operator.md](../roles/storage-operator.md) |
 
-## CLI quick ref
-
-[cli/cluster.md](../../cli/cluster.md) · [cli/osd-pool.md](../../cli/osd-pool.md)
-
-[← Guides overview](../OVERVIEW.md)
+[← 指南概览](../OVERVIEW.md)

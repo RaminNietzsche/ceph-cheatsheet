@@ -35,6 +35,9 @@ jobs:
       - name: Sync MkDocs home page
         run: python3 scripts/sync-docs-index.py
 
+      - name: Generate role & scale guides
+        run: python3 scripts/generate-role-scale-guides.py
+
       - name: Generate RGW config guides
         run: python3 scripts/generate-rgw-guide.py
 

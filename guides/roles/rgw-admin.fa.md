@@ -1,64 +1,53 @@
-> **یادداشت:** توضیحات گزینه‌ها در جدول از upstream Ceph (انگلیسی) است.
+# مدیر RGW
 
-# RGW Admin
+<span class="badge badge-role-rgw">RGW admin</span> مدیریت RADOS Gateway — S3/Swift، کاربران، bucket، quota و multisite.
 
-<span class="badge badge-role-rgw">RGW admin</span> Manage RADOS Gateway — S3/Swift, users, buckets, quotas, and multisite.
-
-## Daily commands
+## دستورات روزانه
 
 ```bash
 radosgw-admin user list
 radosgw-admin bucket stats --bucket=mybucket
-radosgw-admin quota get --quota-scope=bucket --uid=user1
+radosgw-admin quota get --quota-scope=user --uid=user1
+radosgw-admin sync status
 ceph orch ps --service-type rgw
+ceph config show client.rgw.<instance>
 ```
 
-See [RGW CLI](../../cli/rgw.md).
+[CLI RGW](../../cli/rgw.md) · [عیب‌یابی RGW](../../cli/troubleshooting.md)
 
-## Configuration
+## پیکربندی
 
-Full index: [config/rgw/INDEX.md](../../config/rgw/INDEX.md)
+INDEX: [config/rgw/INDEX.md](../../config/rgw/INDEX.md)
 
-| Topic | Options (lookup) |
-|-------|------------------|
-| Frontends | `rgw_frontends`, `rgw_dns_name` |
-| Cache | `rgw_cache_enabled`, `rgw_cache_lru_size` |
-| Multisite | `rgw_zone`, `rgw_zonegroup`, realm/period OIDs |
-| Encryption | `rgw_crypt_*`, `rgw_crypt_s3_kms_backend` |
-| Deep dive | [rgw-config/OVERVIEW.md](../rgw-config/OVERVIEW.md) — all options by topic · [TUNING](../rgw-config/TUNING.md) |
-| Quota | `rgw_bucket_default_quota_*` |
+| موضوع | deep dive |
+|-------|-----------|
+| Frontends | [frontends.md](../rgw-config/core-gateway/frontends.md) |
+| Multisite | [multisite-zones.md](../rgw-config/multisite/multisite-zones.md) |
+| رمزنگاری | [encryption.md](../rgw-config/security-auth/encryption.md) |
+| Quota | [quotas.md](../rgw-config/tenants-quotas/quotas.md) |
+| همه گزینه‌ها | [OVERVIEW](../rgw-config/OVERVIEW.md) · [TUNING](../rgw-config/TUNING.md) |
 
 ```bash
 ./scripts/lookup-config.sh rgw_cache_enabled
 ./scripts/search-config.sh -s rgw multisite
 ```
 
-## Common workflows
-
-**Create user and bucket (admin):**
+## workflowهای رایج
 
 ```bash
 radosgw-admin user create --uid=alice --display-name="Alice"
 radosgw-admin key create --uid=alice --key-type=s3 --gen-access-key --gen-secret
-```
-
-**Multisite period update:**
-
-```bash
 radosgw-admin period update --commit
 radosgw-admin sync status
-```
-
-**Deploy RGW (cephadm):**
-
-```bash
 ceph orch apply rgw myrgw --placement="2 host1 host2" --port=8080
 ```
 
-## Scale notes
+## یادداشت مقیاس
 
-- [Small production](../scales/small-production.md) — single zone, local cache
-- [Multisite](../scales/multisite.md) — realms, zones, data sync
-- [Large production](../scales/large-production.md) — many RGW instances, cache tuning
+| مقیاس | تمرکز |
+|-------|--------|
+| [Small production](../scales/small-production.md) | یک zone |
+| [Multisite](../scales/multisite.md) | realm/zone، lag |
+| [Large production](../scales/large-production.md) | چند RGW، cache |
 
-[← Guides overview](../OVERVIEW.md)
+[← نمای کلی راهنما](../OVERVIEW.md)
