@@ -17,9 +17,9 @@ See [CephFS CLI](../../cli/cephfs.md).
 
 | Area | Config index |
 |------|--------------|
-| MDS daemon | [config/mds/INDEX.md](../../config/mds/INDEX.md) |
-| Client / FUSE | [config/mds-client/INDEX.md](../../config/mds-client/INDEX.md) |
-| CephFS mirror | [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) |
+| MDS daemon | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [deep dive](../mds-config/OVERVIEW.md) |
+| Client / FUSE | [config/mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [deep dive](../mds-client-config/OVERVIEW.md) |
+| CephFS mirror | [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [deep dive](../cephfs-mirror-config/OVERVIEW.md) |
 
 Key options: `mds_cache_memory_limit`, `mds_max_file_size`, client mount flags.
 

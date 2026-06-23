@@ -19,8 +19,8 @@ See [OSD & pools CLI](../../cli/osd-pool.md) and [RADOS CLI](../../cli/rados.md)
 
 | Area | Config index |
 |------|--------------|
-| OSD daemon | [config/osd/INDEX.md](../../config/osd/INDEX.md) |
-| Global OSD / bluestore | [config/global/osd.md](../../config/global/osd.md), [bluestore.md](../../config/global/bluestore.md) |
+| OSD daemon | [config/osd/INDEX.md](../../config/osd/INDEX.md) · [deep dive](../osd-config/OVERVIEW.md) |
+| Global OSD / bluestore | [config/global/osd.md](../../config/global/osd.md), [bluestore.md](../../config/global/bluestore.md) · [global deep dive](../global-config/OVERVIEW.md) |
 | PG autoscale | `osd_pool_default_pg_autoscale_mode`, `mon_target_pg_per_osd` |
 | Recovery / scrub | `osd_max_scrubs`, `osd_recovery_*`, `osd_deep_scrub_*` |
 

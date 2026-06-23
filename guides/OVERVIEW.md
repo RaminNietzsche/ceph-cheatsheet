@@ -66,7 +66,13 @@ Task-oriented documentation organized by **who you are** (role) and **how big th
 
 - [Quick start](quickstart.md) — daily checklist (any role)
 - [Config lookup](config-lookup.md) — read option tables
-- [RGW config deep dive](rgw-config/OVERVIEW.md) — all 441 options with tuning guidance · [quick reference](rgw-config/TUNING.md)
+- [RGW config deep dive](rgw-config/OVERVIEW.md) — 441 options · [TUNING](rgw-config/TUNING.md)
+- [OSD config deep dive](osd-config/OVERVIEW.md) — 158 options · [TUNING](osd-config/TUNING.md)
+- [MON config deep dive](mon-config/OVERVIEW.md) — 156 options · [TUNING](mon-config/TUNING.md)
+- [MGR config deep dive](mgr-config/OVERVIEW.md) — 52 options · [TUNING](mgr-config/TUNING.md)
+- [MDS config deep dive](mds-config/OVERVIEW.md) — 194 options · [TUNING](mds-config/TUNING.md)
+- [Global config deep dive](global-config/OVERVIEW.md) — 852 options · [TUNING](global-config/TUNING.md)
+- More: [RBD](rbd-config/OVERVIEW.md) · [MDS client](mds-client-config/OVERVIEW.md) · [Crimson](crimson-config/OVERVIEW.md)
 - [Contributing](contributing.md) — rules, skills, regeneration
 
 [← Main reference](../index.md)

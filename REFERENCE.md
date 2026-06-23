@@ -142,7 +142,13 @@ cli/                    Command reference
 config/                 Config tables (auto-generated)
 guides/roles/           By operator role
 guides/scales/          By cluster size
-guides/rgw-config/      RGW deep dive (generated, by nav category)
+guides/rgw-config/      Generated — RGW options (441)
+guides/osd-config/      Generated — OSD options (158)
+guides/mon-config/      Generated — MON options (156)
+guides/mgr-config/      Generated — MGR options (52)
+guides/mds-config/      Generated — MDS options (194)
+guides/global-config/   Generated — Global options (852)
+guides/*-config/        Other subsystems — see generate-config-guide.py
 docs/                   MkDocs shell (index, CSS; symlinks to content)
 scripts/                Search, lookup, regenerate
 .cursor/rules/          Documentation conventions

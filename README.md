@@ -10,6 +10,7 @@
 | [Scales](guides/OVERVIEW.md#by-scale) | Lab, small/large production, multisite |
 | [CLI](cli/OVERVIEW.md) | `ceph`, `rbd`, `rados`, `radosgw-admin`, `cephadm` |
 | [Config](config/OVERVIEW.md) | **2122** options from upstream Ceph YAML |
+| [Config deep dives](guides/OVERVIEW.md#general) | RGW, OSD, MON, MGR, MDS, Global — tuning + examples |
 
 **Online:** [blog.raminnietzsche.ir/ceph-cheatsheet](https://blog.raminnietzsche.ir/ceph-cheatsheet/)
 

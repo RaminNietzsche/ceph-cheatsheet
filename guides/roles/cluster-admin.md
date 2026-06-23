@@ -20,9 +20,9 @@ See [cluster CLI](../../cli/cluster.md) and [cephadm CLI](../../cli/cephadm.md).
 | Task | Command / config |
 |------|------------------|
 | Runtime config | [cli/config.md](../../cli/config.md) — `ceph config set …` |
-| Monitor options | [config/mon/INDEX.md](../../config/mon/INDEX.md) |
-| Manager / modules | [config/mgr/INDEX.md](../../config/mgr/INDEX.md) |
-| Auth | [config/global/auth.md](../../config/global/auth.md) |
+| Monitor options | [config/mon/INDEX.md](../../config/mon/INDEX.md) · [deep dive](../mon-config/OVERVIEW.md) |
+| Manager / modules | [config/mgr/INDEX.md](../../config/mgr/INDEX.md) · [deep dive](../mgr-config/OVERVIEW.md) |
+| Auth | [config/global/auth.md](../../config/global/auth.md) · [global deep dive](../global-config/OVERVIEW.md) |
 | cephadm path | `cephadm_path` in [config/mgr/cephadm.md](../../config/mgr/cephadm.md) |
 
 ## Common workflows

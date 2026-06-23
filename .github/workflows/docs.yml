@@ -38,6 +38,9 @@ jobs:
       - name: Generate RGW config guides
         run: python3 scripts/generate-rgw-guide.py
 
+      - name: Generate other subsystem config guides
+        run: python3 scripts/generate-config-guide.py all
+
       - name: Build MkDocs site
         run: |
           python3 scripts/fix-html-hrefs.py

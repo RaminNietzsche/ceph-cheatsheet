@@ -39,10 +39,19 @@ python3 scripts/generate-config.py --ref main
 python3 scripts/generate-rgw-guide.py
 ```
 
+```bash
+python3 scripts/generate-config.py --ref main
+python3 scripts/generate-rgw-guide.py
+python3 scripts/generate-config-guide.py all   # OSD, MON, MGR, MDS, global, …
+```
+
 The RGW guide generator reads `config/rgw/*.md`, writes topic files under
-`guides/rgw-config/<category>/` (441 options + root `OVERVIEW.md` / `TUNING.md`),
-and patches the collapsible RGW nav in `mkdocs.yml` between `# rgw-nav:start` /
-`# rgw-nav:end`. Re-run after config regeneration.
+`guides/rgw-config/<category>/`, and patches `mkdocs.yml` between `# rgw-nav:start` /
+`# rgw-nav:end`.
+
+`generate-config-guide.py` does the same for other subsystems (profiles in that
+script; nav markers `# osd-nav:start` / `# mon-nav:start` / … in `mkdocs.yml`).
+Re-run both generators after config regeneration.
 
 **Edit prose (CLI, guides, REFERENCE):**
 
