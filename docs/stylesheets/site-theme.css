@@ -3,16 +3,16 @@
 :root,
 [data-md-color-scheme="slate"],
 [data-md-color-scheme="default"] {
-  --hub-bg: #020617;
-  --hub-surface: #0f172a;
-  --hub-surface-2: #1e293b;
+  --hub-bg: #121214;
+  --hub-surface: #1a1c23;
+  --hub-surface-2: #232630;
   --hub-border: #334155;
-  --hub-text: #f1f5f9;
+  --hub-text: #e2e8f0;
   --hub-text-soft: #cbd5e1;
   --hub-muted: #94a3b8;
   --hub-cyan: #22d3ee;
   --hub-cyan-dim: #0891b2;
-  --hub-code-bg: #0a0f1c;
+  --hub-code-bg: #1a1c23;
   --hub-max: 80rem;
 
   --md-default-bg-color: var(--hub-bg);

@@ -14,7 +14,7 @@ body:not(:has(.hub-page)) .md-typeset .highlight code {
 
 /* ── Measure & line-height (#28) ─────────────────────────────── */
 body:not(:has(.hub-page)) .md-content__inner {
-  max-width: min(800px, 70ch);
+  max-width: min(800px, 75ch);
 }
 
 body:not(:has(.hub-page)) .md-typeset {
@@ -74,7 +74,7 @@ html[lang="fa"] body:not(:has(.hub-page)) .md-typeset pre,
 [dir="rtl"] body:not(:has(.hub-page)) .md-typeset pre {
   direction: ltr;
   text-align: left;
-  background: #0a0f1c !important;
+  background: #1a1c23 !important;
   border: 1px solid #334155;
   border-radius: 8px;
   box-shadow:

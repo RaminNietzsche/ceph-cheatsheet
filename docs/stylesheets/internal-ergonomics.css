@@ -1,0 +1,337 @@
+/* Internal page ergonomics — charcoal palette, RTL-friendly (MkDocs Material) */
+
+/* ── Charcoal tokens (anti-halation) ─────────────────────────── */
+:root,
+[data-md-color-scheme="slate"],
+[data-md-color-scheme="default"] {
+  --ergo-bg: #121214;
+  --ergo-surface: #1a1c23;
+  --ergo-surface-hover: #232630;
+  --ergo-border: #334155;
+  --ergo-text: #e2e8f0;
+  --ergo-text-soft: #cbd5e1;
+  --ergo-muted: #94a3b8;
+  --ergo-heading: #67e8f9;
+  --ergo-heading-2: #a5f3fc;
+  --ergo-code-bg: #1a1c23;
+  --ergo-code-border: #2e3039;
+  --ergo-accent: #22d3ee;
+}
+
+/* Shell surfaces */
+body:not(:has(.hub-page)),
+body:not(:has(.hub-page)) .md-container,
+body:not(:has(.hub-page)) .md-main {
+  background-color: var(--ergo-bg) !important;
+}
+
+body:not(:has(.hub-page)) .md-content {
+  background-color: var(--ergo-bg) !important;
+}
+
+body:not(:has(.hub-page)) .md-sidebar,
+body:not(:has(.hub-page)) .md-sidebar__scrollwrap {
+  background: var(--ergo-surface) !important;
+  border-color: var(--ergo-border);
+}
+
+[dir="rtl"] body:not(:has(.hub-page)) .md-sidebar--primary {
+  border-left: 1px solid var(--ergo-border);
+}
+
+body:not(:has(.hub-page)) .md-header {
+  background: rgba(18, 18, 20, 0.94) !important;
+  border-bottom: 1px solid var(--ergo-border);
+}
+
+body:not(:has(.hub-page)) .md-tabs {
+  background: var(--ergo-surface) !important;
+  border-bottom: 1px solid var(--ergo-border);
+}
+
+/* ── Typography (75ch measure aligned with template) ─────────── */
+body:not(:has(.hub-page)) .md-content__inner {
+  max-width: min(800px, 75ch);
+  padding: 2rem 1.5rem 3rem;
+}
+
+body:not(:has(.hub-page)) .md-typeset h1 {
+  color: var(--ergo-heading) !important;
+  font-size: 2.25rem;
+  font-weight: 700;
+  border-bottom: none !important;
+  margin: 1.2em 0 0.6em;
+}
+
+body:not(:has(.hub-page)) .md-typeset h2 {
+  color: var(--ergo-heading-2) !important;
+  font-size: 1.65rem;
+  font-weight: 600;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1px solid var(--ergo-border);
+  padding: 0 0 0.4rem !important;
+  margin: 2em 0 0.8em;
+}
+
+body:not(:has(.hub-page)) .md-typeset h3 {
+  color: var(--ergo-text) !important;
+  font-size: 1.25rem;
+  margin: 1.5em 0 0.6em;
+}
+
+body:not(:has(.hub-page)) .md-typeset p,
+body:not(:has(.hub-page)) .md-typeset li {
+  color: var(--ergo-text-soft);
+}
+
+body:not(:has(.hub-page)) .md-typeset strong {
+  color: #fff;
+}
+
+/* ── Inline & block code ─────────────────────────────────────── */
+body:not(:has(.hub-page)) .md-typeset :not(pre) > code {
+  direction: ltr;
+  display: inline-block;
+  unicode-bidi: embed;
+  font-family: var(--ceph-mono, "JetBrains Mono", monospace);
+  font-size: 0.85em;
+  padding: 2px 6px;
+  background: var(--ergo-code-bg);
+  color: var(--ergo-text);
+  border: 1px solid var(--ergo-code-border);
+  border-radius: 4px;
+  margin: 0 4px;
+}
+
+body:not(:has(.hub-page)) .md-typeset pre {
+  background: var(--ergo-code-bg) !important;
+  border: 1px solid var(--ergo-border);
+  border-radius: 8px;
+  padding: 1.3em;
+}
+
+body:not(:has(.hub-page)) .md-typeset pre > code {
+  display: block;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+/* ── Tables ──────────────────────────────────────────────────── */
+body:not(:has(.hub-page)) .md-typeset table:not([class]) {
+  background: var(--ergo-surface);
+  border: 1px solid var(--ergo-border);
+  border-radius: 8px;
+  margin: 1.8em 0;
+}
+
+body:not(:has(.hub-page)) .md-typeset table:not([class]) thead {
+  background: rgba(34, 211, 238, 0.06);
+}
+
+body:not(:has(.hub-page)) .md-typeset table:not([class]) th {
+  color: var(--ergo-heading) !important;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.95em;
+  padding: 14px 18px !important;
+}
+
+body:not(:has(.hub-page)) .md-typeset table:not([class]) td {
+  padding: 14px 18px !important;
+  color: var(--ergo-text-soft);
+  border-bottom: 1px solid var(--ergo-border);
+}
+
+body:not(:has(.hub-page)) .md-typeset table:not([class]) tbody tr:last-child td {
+  border-bottom: none;
+}
+
+[dir="rtl"] body:not(:has(.hub-page)) .md-typeset table:not([class]) th,
+[dir="rtl"] body:not(:has(.hub-page)) .md-typeset table:not([class]) td {
+  text-align: right;
+}
+
+/* ── RTL list bullets ────────────────────────────────────────── */
+[dir="rtl"] body:not(:has(.hub-page)) .md-typeset ul:not([class]),
+html[lang="fa"] body:not(:has(.hub-page)) .md-typeset ul:not([class]) {
+  list-style: none;
+  padding-right: 1.5rem;
+  margin: 1.2em 0;
+}
+
+[dir="rtl"] body:not(:has(.hub-page)) .md-typeset ul:not([class]) > li,
+html[lang="fa"] body:not(:has(.hub-page)) .md-typeset ul:not([class]) > li {
+  position: relative;
+  margin-bottom: 0.6rem;
+  color: var(--ergo-text-soft);
+}
+
+[dir="rtl"] body:not(:has(.hub-page)) .md-typeset ul:not([class]) > li::before,
+html[lang="fa"] body:not(:has(.hub-page)) .md-typeset ul:not([class]) > li::before {
+  content: "•";
+  color: var(--ergo-accent);
+  font-weight: bold;
+  position: absolute;
+  right: -1rem;
+}
+
+/* ── Admonitions (Material + template accents) ───────────────── */
+body:not(:has(.hub-page)) .md-typeset .admonition {
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem;
+  margin: 1.8em 0;
+  border: 1px solid var(--ergo-border);
+  background: var(--ergo-surface);
+}
+
+body:not(:has(.hub-page)) .md-typeset .admonition-title {
+  font-weight: 600;
+}
+
+body:not(:has(.hub-page)) .md-typeset .admonition.note {
+  border-right: 5px solid var(--ergo-accent);
+  background: #0f172a;
+}
+
+body:not(:has(.hub-page)) .md-typeset .admonition.warning {
+  border-right: 5px solid #fbbf24;
+  background: #2a210f;
+}
+
+body:not(:has(.hub-page)) .md-typeset .admonition.danger,
+body:not(:has(.hub-page)) .md-typeset .admonition.failure {
+  border-right: 5px solid #f87171;
+  background: #2a1616;
+}
+
+[dir="rtl"] body:not(:has(.hub-page)) .md-typeset .admonition.note,
+[dir="rtl"] body:not(:has(.hub-page)) .md-typeset .admonition.warning,
+[dir="rtl"] body:not(:has(.hub-page)) .md-typeset .admonition.danger,
+[dir="rtl"] body:not(:has(.hub-page)) .md-typeset .admonition.failure {
+  border-left: none;
+  border-right: 5px solid;
+}
+
+[dir="ltr"] body:not(:has(.hub-page)) .md-typeset .admonition.note {
+  border-right: none;
+  border-left: 5px solid var(--ergo-accent);
+}
+
+[dir="ltr"] body:not(:has(.hub-page)) .md-typeset .admonition.warning {
+  border-right: none;
+  border-left: 5px solid #fbbf24;
+}
+
+[dir="ltr"] body:not(:has(.hub-page)) .md-typeset .admonition.danger,
+[dir="ltr"] body:not(:has(.hub-page)) .md-typeset .admonition.failure {
+  border-right: none;
+  border-left: 5px solid #f87171;
+}
+
+/* Collapsible example blocks */
+body:not(:has(.hub-page)) .md-typeset details {
+  border: 1px solid var(--ergo-border);
+  border-radius: 12px;
+  background: var(--ergo-surface);
+  margin: 1.2em 0;
+  overflow: hidden;
+}
+
+body:not(:has(.hub-page)) .md-typeset details summary {
+  cursor: pointer;
+  padding: 1rem 1.25rem;
+  font-weight: 500;
+  color: var(--ergo-text);
+  transition: background 0.2s;
+}
+
+body:not(:has(.hub-page)) .md-typeset details summary:hover {
+  background: var(--ergo-surface-hover);
+}
+
+body:not(:has(.hub-page)) .md-typeset details[open] > summary {
+  border-bottom: 1px solid var(--ergo-border);
+}
+
+body:not(:has(.hub-page)) .md-typeset details > *:not(summary) {
+  padding: 0 1.25rem 1.25rem;
+}
+
+/* ── Content tabs (pymdownx tabbed) ──────────────────────────── */
+body:not(:has(.hub-page)) .md-typeset .tabbed-set {
+  border: 1px solid var(--ergo-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--ergo-surface);
+  margin: 1.8em 0;
+}
+
+body:not(:has(.hub-page)) .md-typeset .tabbed-labels {
+  background: #14151b;
+  border-bottom: 1px solid var(--ergo-border);
+}
+
+body:not(:has(.hub-page)) .md-typeset .tabbed-labels > label {
+  color: var(--ergo-muted);
+  font-size: 0.95rem;
+  padding: 0.8rem 1.5rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+body:not(:has(.hub-page)) .md-typeset .tabbed-labels > label:hover {
+  color: var(--ergo-text);
+}
+
+body:not(:has(.hub-page)) .md-typeset .tabbed-set > input:first-child:checked ~ .tabbed-labels > label:first-child,
+body:not(:has(.hub-page)) .md-typeset .tabbed-set > input:nth-child(2):checked ~ .tabbed-labels > label:nth-child(2),
+body:not(:has(.hub-page)) .md-typeset .tabbed-set > input:nth-child(3):checked ~ .tabbed-labels > label:nth-child(3),
+body:not(:has(.hub-page)) .md-typeset .tabbed-set > input:nth-child(4):checked ~ .tabbed-labels > label:nth-child(4) {
+  color: var(--ergo-heading);
+  font-weight: 500;
+  border-bottom-color: var(--ergo-accent);
+  background: var(--ergo-surface);
+}
+
+body:not(:has(.hub-page)) .md-typeset .tabbed-content {
+  padding: 1.5rem;
+  background: var(--ergo-surface);
+}
+
+/* ── Optional card grid (HTML in markdown) ─────────────────────── */
+body:not(:has(.hub-page)) .md-typeset .card {
+  background: var(--ergo-surface);
+  border: 1px solid var(--ergo-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body:not(:has(.hub-page)) .md-typeset .card:hover {
+  transform: translateY(-4px);
+  border-color: var(--ergo-accent);
+  box-shadow: 0 10px 20px -10px rgba(34, 211, 238, 0.1);
+}
+
+body:not(:has(.hub-page)) .md-typeset .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Pill badges (template style) */
+body:not(:has(.hub-page)) .md-typeset .badge.badge-pill {
+  border-radius: 9999px;
+  padding: 3px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
