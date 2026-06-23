@@ -26,8 +26,8 @@
   </div>
 </nav>
 
-<section class="hub-hero hub-hero--compact" id="top">
-  <div class="hub-hero__grid hub-hero__grid--single">
+<section class="hub-hero hub-hero--section" id="top">
+  <div class="hub-hero__grid">
     <div>
       <div class="hub-hero__badge">
         <span class="hub-hero__pulse"></span>
@@ -49,12 +49,40 @@
         <div><span class="hub-hero__stat-val">↑</span><span class="hub-hero__stat-label">Upstream sync</span></div>
       </div>
     </div>
+    <div class="hub-hero__visual">
+      <div class="hub-hero__glow hub-hero__glow--dev"></div>
+      <div class="hub-terminal-wrap">
+        <div class="hub-float-badge hub-float-badge--top"><i class="fab fa-git-alt"></i> Upstream sync</div>
+        <div class="hub-terminal hub-terminal--dev">
+          <div class="hub-terminal__prompt">$ python3 scripts/sync-rgw-from-docs-extended.py</div>
+          <div class="hub-terminal__line hub-terminal__ok">Synced 42 arch pages</div>
+          <div class="hub-terminal__prompt">$ python3 scripts/regenerate-docs.py</div>
+          <div class="hub-terminal__line">fa/zh variants updated</div>
+          <div class="hub-terminal__prompt">$ git diff --stat arch/rgw/</div>
+          <div class="hub-terminal__line hub-terminal__warn">learning-program/ + modules/</div>
+        </div>
+        <div class="hub-phase-track">
+          <a href="../arch/rgw/learning-program/00-prerequisites/" class="hub-phase-track__item hub-phase-track__item--done" title="Prerequisites">0</a>
+          <a href="../arch/rgw/learning-program/01-phase-0-request-path/" class="hub-phase-track__item hub-phase-track__item--active" title="Request path">1</a>
+          <a href="../arch/rgw/learning-program/" class="hub-phase-track__item" title="Full program">…</a>
+          <a href="../arch/rgw/learning-program/10-development-checklist/" class="hub-phase-track__item" title="Checklist">✓</a>
+        </div>
+        <div class="hub-float-badge hub-float-badge--bottom"><i class="fas fa-code-branch"></i> Contribute</div>
+      </div>
+    </div>
   </div>
-  <a href="#learn" class="hub-scroll-hint" aria-label="Scroll to learning section">
+  <a href="#quick" class="hub-scroll-hint" aria-label="Scroll to quick links">
     <span aria-hidden="true">↓</span>
     <span>Explore</span>
   </a>
 </section>
+
+<div class="hub-quick-links" id="quick">
+  <a href="../arch/rgw/learning-program/00-prerequisites/" class="hub-quick-links__item"><i class="fas fa-play"></i> Prerequisites</a>
+  <a href="../arch/rgw/learning-program/" class="hub-quick-links__item"><i class="fas fa-list-ol"></i> All phases</a>
+  <a href="../arch/rgw/guides/development-convention/" class="hub-quick-links__item"><i class="fas fa-file-code"></i> Conventions</a>
+  <a href="../cheatsheet/guides/contributing/" class="hub-quick-links__item"><i class="fas fa-hand-holding-heart"></i> Contributing</a>
+</div>
 
 <section class="hub-section" id="learn">
   <div class="hub-section__head">
@@ -119,7 +147,8 @@
       </div>
       <div class="hub-code-block">
         <pre>python3 scripts/sync-rgw-from-docs-extended.py
-python3 scripts/generate-role-scale-guides.py</pre>
+python3 scripts/generate-role-scale-guides.py
+python3 scripts/sync-i18n-pages.py</pre>
       </div>
     </div>
   </div>

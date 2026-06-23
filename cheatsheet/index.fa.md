@@ -27,8 +27,8 @@
   </div>
 </nav>
 
-<section class="hub-hero hub-hero--compact" id="top">
-  <div class="hub-hero__grid hub-hero__grid--single">
+<section class="hub-hero hub-hero--section" id="top">
+  <div class="hub-hero__grid">
     <div>
       <div class="hub-hero__badge">
         <span class="hub-hero__pulse"></span>
@@ -50,12 +50,35 @@
         <div><span class="hub-hero__stat-val">13</span><span class="hub-hero__stat-label">زیرسیستم</span></div>
       </div>
     </div>
+    <div class="hub-hero__visual">
+      <div class="hub-hero__glow"></div>
+      <div class="hub-terminal-wrap">
+        <div class="hub-float-badge hub-float-badge--top"><i class="fas fa-copy"></i> آماده کپی</div>
+        <div class="hub-terminal">
+          <div class="hub-terminal__prompt">$ ceph -s</div>
+          <div class="hub-terminal__line">health: HEALTH_OK</div>
+          <div class="hub-terminal__prompt">$ radosgw-admin user list</div>
+          <div class="hub-terminal__line">["admin", "s3user"]</div>
+          <div class="hub-terminal__prompt">$ ./scripts/lookup-config.sh rgw_cache_enabled</div>
+          <div class="hub-terminal__line hub-terminal__ok">rgw_cache_enabled = true</div>
+        </div>
+        <div class="hub-float-badge hub-float-badge--bottom"><i class="fas fa-bolt"></i> عملیات روزانه</div>
+      </div>
+    </div>
   </div>
-  <a href="#guides" class="hub-scroll-hint" aria-label="رفتن به بخش راهنما">
+  <a href="#quick" class="hub-scroll-hint" aria-label="رفتن به لینک‌های سریع">
     <span aria-hidden="true">↓</span>
     <span>ادامه</span>
   </a>
 </section>
+
+<div class="hub-quick-links" id="quick">
+  <a href="cli/OVERVIEW/" class="hub-quick-links__item"><i class="fas fa-terminal"></i> CLI</a>
+  <a href="config/OVERVIEW/" class="hub-quick-links__item"><i class="fas fa-sliders-h"></i> Config</a>
+  <a href="guides/quickstart/" class="hub-quick-links__item"><i class="fas fa-bolt"></i> شروع سریع</a>
+  <a href="guides/getting-started/" class="hub-quick-links__item"><i class="fas fa-seedling"></i> شروع کار</a>
+  <a href="guides/troubleshooting-guide/" class="hub-quick-links__item"><i class="fas fa-wrench"></i> عیب‌یابی</a>
+</div>
 
 <section class="hub-section" id="guides">
   <div class="hub-section__head">

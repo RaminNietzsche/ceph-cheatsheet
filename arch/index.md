@@ -27,8 +27,8 @@
   </div>
 </nav>
 
-<section class="hub-hero hub-hero--compact" id="top">
-  <div class="hub-hero__grid hub-hero__grid--single">
+<section class="hub-hero hub-hero--section" id="top">
+  <div class="hub-hero__grid">
     <div>
       <div class="hub-hero__badge">
         <span class="hub-hero__pulse"></span>
@@ -50,12 +50,46 @@
         <div><span class="hub-hero__stat-val">7</span><span class="hub-hero__stat-label">Core modules</span></div>
       </div>
     </div>
+    <div class="hub-hero__visual">
+      <div class="hub-hero__glow hub-hero__glow--arch"></div>
+      <div class="hub-pipeline">
+        <div class="hub-pipeline__title"><i class="fas fa-route"></i> RGW request path</div>
+        <div class="hub-pipeline__step hub-pipeline__step--active">
+          <span class="hub-pipeline__num">1</span>
+          <div><strong>HTTP Frontend</strong><span>Beast / Civetweb</span></div>
+        </div>
+        <div class="hub-pipeline__arrow"><i class="fas fa-chevron-down"></i></div>
+        <div class="hub-pipeline__step">
+          <span class="hub-pipeline__num">2</span>
+          <div><strong>REST → RGWOp</strong><span>Operation dispatch</span></div>
+        </div>
+        <div class="hub-pipeline__arrow"><i class="fas fa-chevron-down"></i></div>
+        <div class="hub-pipeline__step">
+          <span class="hub-pipeline__num">3</span>
+          <div><strong>SAL</strong><span>Store abstraction</span></div>
+        </div>
+        <div class="hub-pipeline__arrow"><i class="fas fa-chevron-down"></i></div>
+        <div class="hub-pipeline__step">
+          <span class="hub-pipeline__num">4</span>
+          <div><strong>RADOS</strong><span>Metadata + data</span></div>
+        </div>
+        <div class="hub-float-badge hub-float-badge--bottom"><i class="fas fa-microchip"></i> SAL architecture</div>
+      </div>
+    </div>
   </div>
-  <a href="#rgw" class="hub-scroll-hint" aria-label="Scroll to RGW section">
+  <a href="#quick" class="hub-scroll-hint" aria-label="Scroll to quick links">
     <span aria-hidden="true">↓</span>
     <span>Explore</span>
   </a>
 </section>
+
+<div class="hub-quick-links" id="quick">
+  <a href="rgw/OVERVIEW/" class="hub-quick-links__item"><i class="fas fa-book"></i> RGW overview</a>
+  <a href="rgw/learning-program/" class="hub-quick-links__item"><i class="fas fa-graduation-cap"></i> Learning program</a>
+  <a href="rgw/architecture/request-pipeline/" class="hub-quick-links__item"><i class="fas fa-route"></i> Request pipeline</a>
+  <a href="rgw/modules/core-request-path/" class="hub-quick-links__item"><i class="fas fa-puzzle-piece"></i> Core path</a>
+  <a href="rgw/modules/multisite/" class="hub-quick-links__item"><i class="fas fa-globe"></i> Multisite</a>
+</div>
 
 <section class="hub-section" id="rgw">
   <div class="hub-section__head">

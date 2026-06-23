@@ -26,8 +26,8 @@
   </div>
 </nav>
 
-<section class="hub-hero hub-hero--compact" id="top">
-  <div class="hub-hero__grid hub-hero__grid--single">
+<section class="hub-hero hub-hero--section" id="top">
+  <div class="hub-hero__grid">
     <div>
       <div class="hub-hero__badge">
         <span class="hub-hero__pulse"></span>
@@ -43,13 +43,44 @@
         <a href="../arch/rgw/learning-program/" class="hub-btn hub-btn--primary"><i class="fas fa-graduation-cap"></i> برنامه یادگیری</a>
         <a href="../arch/rgw/guides/development-convention/" class="hub-btn hub-btn--outline"><i class="fas fa-file-code"></i> قراردادها</a>
       </div>
+      <div class="hub-hero__stats">
+        <div><span class="hub-hero__stat-val">11</span><span class="hub-hero__stat-label">فاز</span></div>
+        <div><span class="hub-hero__stat-val">3</span><span class="hub-hero__stat-label">راهنما</span></div>
+        <div><span class="hub-hero__stat-val">↑</span><span class="hub-hero__stat-label">همگام upstream</span></div>
+      </div>
+    </div>
+    <div class="hub-hero__visual">
+      <div class="hub-hero__glow hub-hero__glow--dev"></div>
+      <div class="hub-terminal-wrap">
+        <div class="hub-float-badge hub-float-badge--top"><i class="fab fa-git-alt"></i> همگام upstream</div>
+        <div class="hub-terminal hub-terminal--dev">
+          <div class="hub-terminal__prompt">$ python3 scripts/sync-rgw-from-docs-extended.py</div>
+          <div class="hub-terminal__line hub-terminal__ok">Synced 42 arch pages</div>
+          <div class="hub-terminal__prompt">$ python3 scripts/regenerate-docs.py</div>
+          <div class="hub-terminal__line">fa/zh variants updated</div>
+        </div>
+        <div class="hub-phase-track">
+          <a href="../arch/rgw/learning-program/00-prerequisites/" class="hub-phase-track__item hub-phase-track__item--done" title="پیش‌نیاز">0</a>
+          <a href="../arch/rgw/learning-program/01-phase-0-request-path/" class="hub-phase-track__item hub-phase-track__item--active" title="مسیر درخواست">1</a>
+          <a href="../arch/rgw/learning-program/" class="hub-phase-track__item" title="برنامه">…</a>
+          <a href="../arch/rgw/learning-program/10-development-checklist/" class="hub-phase-track__item" title="چک‌لیست">✓</a>
+        </div>
+        <div class="hub-float-badge hub-float-badge--bottom"><i class="fas fa-code-branch"></i> مشارکت</div>
+      </div>
     </div>
   </div>
-  <a href="#learn" class="hub-scroll-hint" aria-label="رفتن به بخش یادگیری">
+  <a href="#quick" class="hub-scroll-hint" aria-label="رفتن به لینک‌های سریع">
     <span aria-hidden="true">↓</span>
     <span>ادامه</span>
   </a>
 </section>
+
+<div class="hub-quick-links" id="quick">
+  <a href="../arch/rgw/learning-program/00-prerequisites/" class="hub-quick-links__item"><i class="fas fa-play"></i> پیش‌نیاز</a>
+  <a href="../arch/rgw/learning-program/" class="hub-quick-links__item"><i class="fas fa-list-ol"></i> همه فازها</a>
+  <a href="../arch/rgw/guides/development-convention/" class="hub-quick-links__item"><i class="fas fa-file-code"></i> قراردادها</a>
+  <a href="../cheatsheet/guides/contributing/" class="hub-quick-links__item"><i class="fas fa-hand-holding-heart"></i> مشارکت</a>
+</div>
 
 <section class="hub-section" id="learn">
   <div class="hub-section__head">
