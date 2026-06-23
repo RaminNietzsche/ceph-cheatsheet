@@ -289,6 +289,7 @@ nav:
       - Overview: cheatsheet/guides/OVERVIEW.md
       - Quick start: cheatsheet/guides/quickstart.md
       - Getting started: cheatsheet/guides/getting-started.md
+      - Terminology glossary: cheatsheet/guides/i18n-glossary.md
       - Troubleshooting guide: cheatsheet/guides/troubleshooting-guide.md
       - Config lookup: cheatsheet/guides/config-lookup.md
       # config-guides-nav:start

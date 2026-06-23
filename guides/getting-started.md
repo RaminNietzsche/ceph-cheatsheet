@@ -13,6 +13,8 @@ Ceph is a unified, software-defined storage platform. One cluster can expose:
 | **RGW** | S3/Swift object storage |
 | **CephFS** | POSIX file system |
 
+See the full [terminology glossary](i18n-glossary.md) for consistent fa/zh translations.
+
 ## Core concepts (glossary)
 
 | Term | Meaning |

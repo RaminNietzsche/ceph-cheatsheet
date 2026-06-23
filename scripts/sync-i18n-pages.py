@@ -38,6 +38,7 @@ HAND_PAGES: tuple[str, ...] = (
     "guides/OVERVIEW",
     "guides/quickstart",
     "guides/getting-started",
+    "guides/i18n-glossary",
     "guides/troubleshooting-guide",
     "guides/config-lookup",
     "guides/contributing",

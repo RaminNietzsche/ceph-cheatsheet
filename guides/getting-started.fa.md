@@ -31,4 +31,4 @@
 ./scripts/search-fuzzy.sh    # نیاز به fzf
 ```
 
-[سازگاری نسخه](../../compatibility.md) · [← نمای کلی](OVERVIEW.md)
+[سازگاری نسخه](../../compatibility.md) · [واژه‌نامه](i18n-glossary.md) · [← نمای کلی](OVERVIEW.md)

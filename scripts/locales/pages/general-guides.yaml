@@ -501,7 +501,7 @@ guides/getting-started:
     ./scripts/search-fuzzy.sh    # نیاز به fzf
     ```
 
-    [سازگاری نسخه](../../compatibility.md) · [← نمای کلی](OVERVIEW.md)
+    [سازگاری نسخه](../../compatibility.md) · [واژه‌نامه](i18n-glossary.md) · [← نمای کلی](OVERVIEW.md)
   zh: |
     # 入门
 
@@ -523,7 +523,77 @@ guides/getting-started:
     | RGW 管理 | [RGW 管理员](roles/rgw-admin.md) |
     | 开发者 | [开发板块](../../dev/index.md) |
 
-    [版本兼容性](../../compatibility.md) · [← 概览](OVERVIEW.md)
+    [版本兼容性](../../compatibility.md) · [术语表](i18n-glossary.md) · [← 概览](OVERVIEW.md)
+
+guides/i18n-glossary:
+  fa: |
+    # واژه‌نامهٔ اصطلاحات Ceph
+
+    برای یکنواختی در صفحات فارسی از این معادل‌ها استفاده کنید. **دستورات CLI، کلید config و نام دیمن را ترجمه نکنید.**
+
+    ## دیمن‌ها و اجزا
+
+    | انگلیسی | فارسی | یادداشت |
+    |---------|-------|---------|
+    | Monitor (MON) | مانیتور | MON |
+    | OSD | دیمن ذخیره‌سازی شیء (OSD) | |
+    | MGR | Manager | نام ماژول انگلیسی |
+    | MDS | سرور متادیتا (MDS) | |
+    | RGW | دروازه RADOS (RGW) | |
+    | PG | گروه placement (PG) | |
+    | CRUSH | CRUSH | نام الگوریتم |
+
+    ## RGW
+
+    | انگلیسی | فارسی |
+    |---------|-------|
+    | Bucket | bucket |
+    | Quota | سهمیه (quota) |
+    | Realm / zone / zonegroup | realm / zone / zonegroup |
+    | Multisite | چندسایته |
+    | SAL | لایه انتزاع store (SAL) |
+
+    ## قوانین ترجمه
+
+    1. **متن** — عنوان، برچسب جدول و توضیح را ترجمه کنید.
+    2. **کد** — دستور، flag و نام گزینهٔ config انگلیسی بماند.
+    3. **Placeholder** — `<user_id>`، `<bucket_name>`؛ [راهنمای سبک CLI](cli-style-guide.md).
+
+    [← نمای کلی](OVERVIEW.md) · [شروع کار](getting-started.md)
+  zh: |
+    # Ceph 术语表
+
+    中文页面请统一使用下列译法。**不要翻译** CLI 命令、config 键名与守护进程标识。
+
+    ## 核心组件
+
+    | English | 中文 |
+    |---------|------|
+    | Monitor (MON) | Monitor |
+    | OSD | 对象存储守护进程 (OSD) |
+    | MGR | Manager |
+    | MDS | 元数据服务器 (MDS) |
+    | RGW | RADOS 网关 (RGW) |
+    | PG | 放置组 (PG) |
+    | CRUSH | CRUSH |
+
+    ## RGW
+
+    | English | 中文 |
+    |---------|------|
+    | Bucket | bucket |
+    | Quota | 配额 |
+    | Realm / zone | realm / zone |
+    | Multisite | 多站点 |
+    | SAL | 存储抽象层 (SAL) |
+
+    ## 翻译规则
+
+    1. **正文** — 翻译标题、表头与说明。
+    2. **代码** — 命令、flag、config 键保持英文。
+    3. **占位符** — 使用 `<user_id>`、`<bucket_name>`；见 [CLI 风格指南](cli-style-guide.md)。
+
+    [← 概览](OVERVIEW.md) · [入门](getting-started.md)
 
 guides/troubleshooting-guide:
   fa: |

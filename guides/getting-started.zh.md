@@ -18,4 +18,4 @@ Ceph 新手从这里开始。
 | RGW 管理 | [RGW 管理员](roles/rgw-admin.md) |
 | 开发者 | [开发板块](../../dev/index.md) |
 
-[版本兼容性](../../compatibility.md) · [← 概览](OVERVIEW.md)
+[版本兼容性](../../compatibility.md) · [术语表](i18n-glossary.md) · [← 概览](OVERVIEW.md)
