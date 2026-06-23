@@ -37,6 +37,46 @@ Extended reference for selected RADOS Gateway options. Generated tables live in 
 
 ---
 
+## Finding optimal values
+
+Most RGW options fall into one of three tuning models:
+
+| Model | Meaning | How to choose |
+|-------|---------|---------------|
+| **Policy** | Security or API compatibility | Upstream default or compliance requirement |
+| **Capacity** | Disk, tenant, or SLA limits | Arithmetic from cluster size and product plans |
+| **Performance** | Latency, throughput, OSD load | Baseline → incremental change → monitor → validate |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
+
+| Option | Tuning model | Quick answer |
+|--------|--------------|--------------|
+| `d4n_writecache_enabled` | Performance | Benchmark writes with/without cache; watch cache disk |
+| `daos_pool` | Capacity | Match a DAOS pool sized for your redundancy and S3 capacity |
+| `dbstore_*` | Capacity | Dedicated fast disk with enough free space for metadata growth |
+| Account/bucket default quotas | Policy | Cluster capacity ÷ tenant plan; verify with test users |
+| `rgw_acl_grants_max_num` | Policy | Default `100`; raise only if clients hit grant limits |
+| `rgw_admin_entry` | Policy | Keep `admin` (required for multisite) |
+| `rgw_allow_notification_secrets_in_cleartext` | Policy | `false` unless broker has no TLS on a trusted network |
+| `rgw_asio_assert_yielding` | Dev | `false` in production |
+| `rgw_backend_store` | Architecture | `rados` in production |
+| `rgw_barbican_url` | Connectivity | Nearest stable Barbican endpoint; enable KMS cache |
+| `rgw_beast_enable_async` | Performance | `true` in production |
+| `rgw_bucket_counters_cache*` | Performance | Enable only if per-bucket monitoring; size ≈ active buckets |
+| `rgw_bucket_eexist_override` | Policy | Match client API contract (AWS idempotent vs 409) |
+| `rgw_bucket_index_max_aio` | Performance | Sweep upward until OSD slow ops increase |
+
+Each option below includes a **Finding optimal value** subsection with step-by-step guidance.
+
+---
+
 ## Backend, cache, and experimental stores
 
 ### d4n_writecache_enabled
@@ -65,6 +105,8 @@ ceph config set client.rgw rgw_d4n_l1_datacache_persistent_path /var/cache/rgw_d
 ceph orch restart rgw
 ```
 
+**Finding optimal value:** Take a write-heavy baseline with `false` (p50/p99 latency, throughput). Enable D4N on a dedicated NVMe path, set `rgw_d4n_l1_datacache_disk_reserve` so the cache disk cannot fill, then repeat the same workload with `true`. The optimal setting is where write p99 drops without unacceptable cache eviction, flush errors, or consistency risk after restart. On standard RADOS-only clusters, `false` is usually optimal.
+
 ---
 
 ### daos_pool
@@ -89,6 +131,8 @@ daos pool = mypool
 ```
 
 Create the pool with `dmg pool create --size=<size> mypool`.
+
+**Finding optimal value:** There is no numeric sweep — pick a pool that meets redundancy and capacity targets. Query with `dmg pool list` and `dmg pool query <name>`; align engine/tier (NVMe vs HDD) with expected S3 throughput. The value must match an existing DAOS pool name exactly.
 
 ---
 
@@ -117,6 +161,8 @@ ceph config set client.rgw rgw_config_store dbstore
 ceph config set client.rgw dbstore_config_uri file:/var/lib/ceph/radosgw/dbstore-config.db
 ```
 
+**Finding optimal value:** Point the URI at a filesystem with low latency and enough space for config and metadata growth. Prefer a dedicated volume over the OS disk. Verify with `df` and startup time after RGW restart.
+
 ---
 
 ### dbstore_db_dir
@@ -138,6 +184,8 @@ ceph config set client.rgw dbstore_config_uri file:/var/lib/ceph/radosgw/dbstore
 ceph config set client.rgw dbstore_db_dir /data/rgw/dbstore
 ```
 
+**Finding optimal value:** Choose a path on fast local storage with headroom for SQLite growth (metadata + object index). Watch `iowait` and free space; if the OS disk is busy, move to a dedicated mount. All RGW instances sharing dbstore data must use the same path.
+
 ---
 
 ### dbstore_db_name_prefix
@@ -156,6 +204,8 @@ ceph config set client.rgw dbstore_db_dir /data/rgw/dbstore
 ```bash
 ceph config set client.rgw dbstore_db_name_prefix prod_rgw
 ```
+
+**Finding optimal value:** Use the default `dbstore` unless multiple dbstore instances on one host need separate SQLite files. The prefix must be unique per co-located instance to avoid filename collisions.
 
 ---
 
@@ -186,6 +236,8 @@ ceph config set client.rgw dbstore_db_name_prefix prod_rgw
 ceph config get client.rgw rgw_backend_store
 ```
 
+**Finding optimal value:** This is an architecture choice, not a performance knob. For production Ceph clusters, `rados` is optimal. Other values are for PoC or specialized builds only.
+
 ---
 
 ## Quotas (account and bucket defaults)
@@ -214,6 +266,8 @@ radosgw-admin account create --account-id=acme --account-name="ACME Corp"
 
 Set in `[client]` or global so `radosgw-admin` picks it up.
 
+**Finding optimal value:** Derive from business plans: total cluster usable capacity ÷ expected accounts, with 20–30% headroom for bursts and GC. Verify with `ceph df detail`, create a test account, and confirm limits via `radosgw-admin quota get`. Existing accounts are not affected — use per-account overrides for them.
+
 ---
 
 ### rgw_account_default_quota_max_size
@@ -231,6 +285,8 @@ Set in `[client]` or global so `radosgw-admin` picks it up.
 # 10 TiB
 ceph config set client rgw_account_default_quota_max_size $((10*1024*1024*1024*1024))
 ```
+
+**Finding optimal value:** Same as object quota — align with product tiers (e.g. 10 TiB per account). Size in bytes; `-1` is unlimited. Cross-check against `rgw_account_default_quota_max_objects` so neither cap binds unexpectedly under real object sizes.
 
 ---
 
@@ -254,6 +310,8 @@ ceph config set client rgw_bucket_default_quota_max_objects 500000
 radosgw-admin user create --uid=newuser --display-name="New User"
 ```
 
+**Finding optimal value:** Set from expected objects per bucket in your tenant model (e.g. 500k for a standard tier). Use `-1` only if user- or account-level quotas are sufficient. Confirm with a new test user and `radosgw-admin quota get --uid=...`.
+
 ---
 
 ### rgw_bucket_default_quota_max_size
@@ -275,6 +333,8 @@ radosgw-admin quota set --uid=alice --max-size=50G --max-objects=10000
 radosgw-admin quota enable --uid=alice
 ```
 
+**Finding optimal value:** Match your bucket size SLA (e.g. 100 GiB per bucket). Pair with `rgw_bucket_default_quota_max_objects` so average object size × max objects does not exceed max size unintentionally. Override existing users with `radosgw-admin quota set`.
+
 ---
 
 ## Security, admin API, and notifications
@@ -291,6 +351,8 @@ radosgw-admin quota enable --uid=alice
 **When to use:** Raise only if clients legitimately need more grants; lowering can harden against oversized ACL payloads.
 
 **Related options:** `rgw_cors_rules_max_num`, `rgw_user_policies_max_num`
+
+**Finding optimal value:** Default `100` matches S3/AWS limits and is optimal for most workloads. Raise only if clients return grant-limit errors in RGW logs; lowering hardens against oversized ACL payloads. Avoid raising without a documented client need.
 
 ---
 
@@ -314,6 +376,8 @@ curl -s -H "Authorization: AWS ..." \
   "https://rgw.example.com/admin/bucket?bucket=mybucket&format=json"
 ```
 
+**Finding optimal value:** Keep `admin` — optimal for multisite compatibility and existing automation. Changing this is a policy decision with replication risk, not a performance tune.
+
 ---
 
 ### rgw_allow_notification_secrets_in_cleartext
@@ -328,6 +392,8 @@ curl -s -H "Authorization: AWS ..." \
 **When to use:** Trusted private lab only — broker has no TLS and cannot use alternative auth. **Never** enable on internet-facing or untrusted networks.
 
 **Related options:** `rgw_trust_forwarded_https` (if TLS terminates at a proxy)
+
+**Finding optimal value:** Optimal production value is `false`. Enable `true` only when the notification broker has no TLS on a trusted private network and the security trade-off is accepted — this is not benchmarked.
 
 ---
 
@@ -357,6 +423,8 @@ ceph config set client.rgw rgw_barbican_url https://barbican.example.com:9311/
 
 See [Ceph RGW config ref — Barbican](https://docs.ceph.com/en/latest/radosgw/config-ref/#barbican-settings).
 
+**Finding optimal value:** Use the Barbican endpoint closest to RGW nodes with stable connectivity (`curl -k https://barbican:9311/` from each RGW host). Tune `rgw_crypt_s3_kms_cache_*` so KMS latency does not dominate PUT latency — the URL itself is not swept numerically.
+
 ---
 
 ## Performance and frontend behavior
@@ -373,6 +441,8 @@ See [Ceph RGW config ref — Barbican](https://docs.ceph.com/en/latest/radosgw/c
 **When to use:** RGW development/debugging only — keep `false` in production.
 
 **Related options:** `rgw_beast_enable_async`
+
+**Finding optimal value:** Keep `false` in production. Set `true` only while developing RGW to catch blocking calls on asio threads — it is a debug aid, not a throughput knob.
 
 ---
 
@@ -394,6 +464,8 @@ ceph config set client.rgw rgw_beast_enable_async false
 ceph orch restart rgw
 ```
 
+**Finding optimal value:** `true` is optimal for production throughput. Compare requests/sec only if debugging — async coroutines should outperform sync mode. Set `false` only when tracing call stacks during development.
+
 ---
 
 ### rgw_bucket_counters_cache
@@ -414,6 +486,8 @@ ceph config set client.rgw rgw_bucket_counters_cache true
 ceph config set client.rgw rgw_bucket_counters_cache_size 20000
 ```
 
+**Finding optimal value:** Leave `false` unless you consume per-bucket perf counters in monitoring. If enabled, start with default and watch RGW memory; enable only when dashboards need labeled bucket metrics.
+
 ---
 
 ### rgw_bucket_counters_cache_size
@@ -426,6 +500,8 @@ ceph config set client.rgw rgw_bucket_counters_cache_size 20000
 **What it does:** Maximum number of labeled per-bucket perf counter entries kept in the cache.
 
 **When to use:** Increase on clusters with many active buckets and bucket-level monitoring enabled.
+
+**Finding optimal value:** Size the cache to the number of **actively monitored** buckets, not total buckets in the cluster. Sweep 5000 → 10000 → 20000 while watching RGW RSS and counter lookup behavior (`ceph daemon rgw.<id> perf dump`). Use the smallest size that avoids repeated per-bucket counter misses.
 
 ---
 
@@ -451,6 +527,20 @@ ceph config set client.rgw rgw_bucket_counters_cache_size 20000
 ceph config set client.rgw rgw_bucket_index_max_aio 256
 ```
 
+**Finding optimal value:**
+
+1. Baseline at default `128` with real workloads (large bucket list, bulk delete, multipart).
+2. Watch list latency (`aws s3 ls` on sharded buckets), RGW CPU, and OSD slow ops.
+3. Increase gradually (192 → 256) until p99 list latency stops improving or OSD slow ops rise.
+4. Decrease (e.g. 64) if the cluster is under recovery pressure or bucket-index pools show sustained load spikes.
+
+```bash
+radosgw-admin bucket stats --bucket=BIG_BUCKET | jq '.num_shards'
+ceph config get client.rgw rgw_multi_obj_del_max_aio
+```
+
+More shards and faster OSDs tolerate higher values; during `nearfull` or heavy recovery, lower is safer.
+
 ---
 
 ## Bucket API behavior
@@ -474,6 +564,8 @@ ceph config set client.rgw rgw_bucket_index_max_aio 256
 ceph config set client.rgw rgw_bucket_eexist_override true
 # aws s3 mb s3://existing-bucket  →  409 BucketAlreadyExists
 ```
+
+**Finding optimal value:** Test with your S3 clients. AWS-compatible idempotent create → `false` (default). Automation that expects HTTP 409 on duplicate create → `true`. This is an API contract choice, not a performance measurement.
 
 ---
 
