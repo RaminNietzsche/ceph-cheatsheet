@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sync fa/zh markdown for hand-written docs (cli/, guides prose, docs/)."""
+"""Sync fa/zh markdown for hand-written docs under docs/{en,fa,zh}/."""
 
 from __future__ import annotations
 
@@ -10,35 +10,34 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from i18n import set_locale, t, write_localized  # noqa: E402
-
-ROOT = Path(__file__).resolve().parent.parent
+from repo_paths import DOCS_EN, docs_en_file  # noqa: E402
 
 PAGES_DIR = Path(__file__).resolve().parent / "locales" / "pages"
 
-# English sources relative to repo root (without .md suffix for pairing).
+# English sources relative to docs/en/ (without .md suffix).
 HAND_PAGES: tuple[str, ...] = (
-    "docs/index",
-    "docs/version",
-    "docs/compatibility",
-    "docs/license",
-    "config/OVERVIEW",
-    "cli/OVERVIEW",
-    "cli/cluster",
-    "cli/config",
-    "cli/osd-pool",
-    "cli/rados",
-    "cli/rbd",
-    "cli/rgw",
-    "cli/cephfs",
-    "cli/cephadm",
-    "cli/troubleshooting",
-    "guides/OVERVIEW",
-    "guides/quickstart",
-    "guides/getting-started",
-    "guides/i18n-glossary",
-    "guides/troubleshooting-guide",
-    "guides/config-lookup",
-    "guides/contributing",
+    "index",
+    "version",
+    "compatibility",
+    "license",
+    "cheatsheet/config/OVERVIEW",
+    "cheatsheet/cli/OVERVIEW",
+    "cheatsheet/cli/cluster",
+    "cheatsheet/cli/config",
+    "cheatsheet/cli/osd-pool",
+    "cheatsheet/cli/rados",
+    "cheatsheet/cli/rbd",
+    "cheatsheet/cli/rgw",
+    "cheatsheet/cli/cephfs",
+    "cheatsheet/cli/cephadm",
+    "cheatsheet/cli/troubleshooting",
+    "cheatsheet/guides/OVERVIEW",
+    "cheatsheet/guides/quickstart",
+    "cheatsheet/guides/getting-started",
+    "cheatsheet/guides/i18n-glossary",
+    "cheatsheet/guides/troubleshooting-guide",
+    "cheatsheet/guides/config-lookup",
+    "cheatsheet/guides/contributing",
 )
 
 
@@ -65,7 +64,7 @@ def fallback_translation(en_path: Path, locale: str) -> str:
 
 
 def sync_page(rel: str, translations: dict[str, dict[str, str]]) -> None:
-    en_path = ROOT / f"{rel}.md"
+    en_path = docs_en_file(rel)
     if not en_path.exists():
         print(f"warning: missing {en_path}", file=sys.stderr)
         return

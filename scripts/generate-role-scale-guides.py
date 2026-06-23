@@ -17,14 +17,14 @@ RGW_ENRICH_FILE = (
 )
 
 ROLE_SCALE_PAGES: tuple[str, ...] = (
-    "guides/roles/cluster-admin",
-    "guides/roles/storage-operator",
-    "guides/roles/rgw-admin",
-    "guides/roles/cephfs-admin",
-    "guides/scales/lab",
-    "guides/scales/small-production",
-    "guides/scales/large-production",
-    "guides/scales/multisite",
+    "cheatsheet/guides/roles/cluster-admin",
+    "cheatsheet/guides/roles/storage-operator",
+    "cheatsheet/guides/roles/rgw-admin",
+    "cheatsheet/guides/roles/cephfs-admin",
+    "cheatsheet/guides/scales/lab",
+    "cheatsheet/guides/scales/small-production",
+    "cheatsheet/guides/scales/large-production",
+    "cheatsheet/guides/scales/multisite",
 )
 
 

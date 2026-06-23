@@ -10,9 +10,9 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+from repo_paths import CONFIG, GUIDES, ROOT
 
-# MkDocs serves guides under /cheatsheet/guides/ (see docs/cheatsheet/guides symlink).
+# MkDocs serves guides under /cheatsheet/guides/
 GUIDES_NAV_PREFIX = "cheatsheet/guides"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -89,11 +89,11 @@ class SubsystemProfile:
 
     @property
     def config_dir(self) -> Path:
-        return ROOT / "config" / self.config_subdir
+        return CONFIG / self.config_subdir
 
     @property
     def guides_dir(self) -> Path:
-        return ROOT / "guides" / self.guides_subdir
+        return GUIDES / self.guides_subdir
 
     @property
     def config_href_from_topic(self) -> str:

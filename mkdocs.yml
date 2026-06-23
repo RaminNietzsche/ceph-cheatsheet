@@ -14,7 +14,7 @@ exclude_docs: |
   /.github/
   /README.md
   /REFERENCE.md
-  /config/readme.md
+  /en/cheatsheet/config/readme.md
 
 theme:
   name: material
@@ -48,6 +48,7 @@ extra_css:
   - stylesheets/readability.css
   - stylesheets/internal-ergonomics.css
   - stylesheets/hub.css
+  - stylesheets/page-trust.css
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css
 
 extra_javascript:
@@ -55,6 +56,8 @@ extra_javascript:
   - javascripts/hub.js
   - javascripts/site-theme.js
   - javascripts/copy-feedback.js
+  - javascripts/page-trust-data.js
+  - javascripts/page-trust.js
 
 plugins:
   - search:
@@ -62,7 +65,7 @@ plugins:
         - en
         - zh
   - i18n:
-      docs_structure: suffix
+      docs_structure: folder
       fallback_to_default: true
       reconfigure_material: true
       languages:
@@ -70,9 +73,11 @@ plugins:
           default: true
           name: English
           build: true
+          link: /en/
         - locale: fa
           name: فارسی
           build: true
+          link: /fa/
           direction: rtl
           theme:
             font:
@@ -111,6 +116,7 @@ plugins:
         - locale: zh
           name: 中文
           build: true
+          link: /zh/
           nav_translations:
             Home: 首页
             Cheatsheet: 速查表

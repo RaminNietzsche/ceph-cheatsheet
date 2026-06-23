@@ -1,0 +1,64 @@
+---
+description: MkDocs site layout, section hubs, CI build, and path validation
+globs: "{docs,mkdocs.yml,cheatsheet,arch,dev}/**/*,.github/workflows/docs.yml"
+alwaysApply: false
+---
+
+# MkDocs Site
+
+## Public URLs
+
+| Section | Path |
+|---------|------|
+| Root redirect | `/` → `/en/` |
+| English | `/en/` |
+| Persian | `/fa/` |
+| Chinese | `/zh/` |
+| Cheatsheet (EN) | `/en/cheatsheet/` |
+
+Live: `http://blog.ceph-s3.ir/` · `site_url` in `mkdocs.yml` must match.
+
+## docs/ layout (symlinks)
+
+```
+docs/
+├── index.md              # root hub (hand-written HTML)
+├── cheatsheet/ → ../cheatsheet   # cli, config, guides, index, OVERVIEW
+├── arch/ → ../arch
+└── dev/ → ../dev
+```
+
+Rebuild symlinks after clone or layout changes:
+
+```bash
+python3 scripts/setup-docs-layout.py
+```
+
+## Section homepages (do not overwrite)
+
+| Source | Served as |
+|--------|-----------|
+| `cheatsheet/index.md` (+ `.fa.md`, `.zh.md`) | `/cheatsheet/` |
+| `arch/index.md` (+ fa/zh) | `/arch/` |
+| `dev/index.md` (+ fa/zh) | `/dev/` |
+
+`sync-docs-index.py` syncs **only** `cheatsheet/OVERVIEW.md`, `docs/version.md`, `docs/license.md` — **never** section `index.md` files.
+
+Hub pages use `hub-page--{cheatsheet|arch|dev}` classes, `docs/stylesheets/hub.css`, `docs/javascripts/hub.js`. Locale links use **site-root absolute** paths (`/fa/cheatsheet/`, not `../fa/`).
+
+## Build & CI
+
+```bash
+python3 scripts/regenerate-docs.py   # includes mkdocs build + restructure
+python3 scripts/restructure-site-locales.py   # after mkdocs build alone
+python3 scripts/validate-docs-paths.py
+mkdocs serve   # dev preview (English still at / until restructure)
+```
+
+CI (`.github/workflows/docs.yml`): `setup-docs-layout` → generators → `fix-html-hrefs` → `validate-docs-paths` → `mkdocs build`.
+
+## Do not
+
+- Commit real files under `docs/cheatsheet/{cli,config,guides}` — use symlinks
+- Edit `docs/index.md` by running old sync that copied REFERENCE wholesale
+- Break nav paths in `mkdocs.yml` without running `validate-docs-paths.py`

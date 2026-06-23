@@ -1,6 +1,6 @@
 # CLI reference — fa / zh (command blocks stay English in all locales).
 
-cli/OVERVIEW:
+cheatsheet/cli/OVERVIEW:
   fa: |
     # مرجع دستورات CLI
 
@@ -122,7 +122,7 @@ cli/OVERVIEW:
 
     [← Cheatsheet](../index.md)
 
-cli/cluster:
+cheatsheet/cli/cluster:
   fa: |
     # دستورات کلاستر و مانیتور
 
@@ -272,7 +272,7 @@ cli/cluster:
 
     [← CLI 概览](OVERVIEW.md)
 
-cli/config:
+cheatsheet/cli/config:
   fa: |
     # دستورات پیکربندی
 
@@ -410,7 +410,7 @@ cli/config:
 
     [← CLI 概览](OVERVIEW.md) · [配置参考](../config/OVERVIEW.md)
 
-cli/osd-pool:
+cheatsheet/cli/osd-pool:
   fa: |
     # دستورات OSD، Pool و PG
 
@@ -600,7 +600,7 @@ cli/osd-pool:
 
     [← CLI 概览](OVERVIEW.md)
 
-cli/rados:
+cheatsheet/cli/rados:
   fa: |
     # دستورات RADOS
 
@@ -728,7 +728,7 @@ cli/rados:
 
     [← CLI 概览](OVERVIEW.md)
 
-cli/rbd:
+cheatsheet/cli/rbd:
   fa: |
     # دستورات RBD
 
@@ -896,7 +896,7 @@ cli/rbd:
 
     [← CLI 概览](OVERVIEW.md)
 
-cli/rgw:
+cheatsheet/cli/rgw:
   fa: |
     # دستورات RGW (S3)
 
@@ -1180,7 +1180,7 @@ cli/rgw:
 
     [← CLI 概览](OVERVIEW.md)
 
-cli/cephfs:
+cheatsheet/cli/cephfs:
   fa: |
     # دستورات CephFS
 
@@ -1322,7 +1322,7 @@ cli/cephfs:
 
     [← CLI 概览](OVERVIEW.md)
 
-cli/cephadm:
+cheatsheet/cli/cephadm:
   fa: |
     # دستورات Cephadm و Orchestrator
 
@@ -1462,7 +1462,7 @@ cli/cephadm:
 
     [← CLI 概览](OVERVIEW.md)
 
-cli/troubleshooting:
+cheatsheet/cli/troubleshooting:
   fa: |
     # دستورات عیب‌یابی
 

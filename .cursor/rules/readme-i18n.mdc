@@ -1,0 +1,38 @@
+---
+description: Keep root README.md, README.fa.md, README.zh.md in sync
+globs: "README.md,README.fa.md,README.zh.md,scripts/locales/pages/readme.yaml"
+alwaysApply: false
+---
+
+# README i18n (en / fa / zh)
+
+Three files at repo root must stay **content-equivalent**:
+
+| File | Locale |
+|------|--------|
+| `README.md` | English (canonical prose) |
+| `README.fa.md` | Persian |
+| `README.zh.md` | Chinese |
+
+## When editing README
+
+1. Update **English** body in `README.md` (language bar is auto-inserted by sync).
+2. Update matching **fa** and **zh** sections in `scripts/locales/pages/readme.yaml`.
+3. Run:
+
+```bash
+make readme
+```
+
+4. Commit all three README files + `readme.yaml` together.
+
+Do **not** hand-edit `README.fa.md` or `README.zh.md` without updating the YAML — the next sync overwrites them.
+
+## Validation
+
+- Same number of `##` sections in all three files.
+- CI runs `sync-readme-i18n.py` and fails if README trio is not committed.
+
+## Language switcher
+
+Each file links to the other two at the top (English / فارسی / 中文).

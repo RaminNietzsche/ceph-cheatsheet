@@ -54,10 +54,10 @@ search() {
 
 case "${mode}" in
   all)
-    search "${ROOT}/cli" "CLI"
-    search "${ROOT}/config" "Config"
-    search "${ROOT}/guides" "Guides"
+    search "${ROOT}/docs/en/cheatsheet/cli" "CLI"
+    search "${ROOT}/docs/en/cheatsheet/config" "Config"
+    search "${ROOT}/docs/en/cheatsheet/guides" "Guides"
     ;;
-  cli) search "${ROOT}/cli" "CLI" ;;
-  config) search "${ROOT}/config" "Config" ;;
+  cli) search "${ROOT}/docs/en/cheatsheet/cli" "CLI" ;;
+  config) search "${ROOT}/docs/en/cheatsheet/config" "Config" ;;
 esac

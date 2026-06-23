@@ -1,7 +1,7 @@
 # Supplemental sections for role/scale guides — sourced from dev-code/rgw/docs-extended.
 # Merged by generate-role-scale-guides.py before the back link.
 
-guides/roles/rgw-admin:
+cheatsheet/guides/roles/rgw-admin:
   en: |
     ## Architecture & deployment (from docs-extended)
 
@@ -62,7 +62,7 @@ guides/roles/rgw-admin:
 
     深度阅读：[部署架构](../../../arch/rgw/architecture/deployment-architecture.md) · [运行时拓扑](../../../arch/rgw/architecture/runtime-topology.md) · [部署实施指南](../../../arch/rgw/guides/deployment-implementation-guide.md)
 
-guides/scales/lab:
+cheatsheet/guides/scales/lab:
   en: |
     ## RGW on lab (docs-extended)
 
@@ -111,7 +111,7 @@ guides/scales/lab:
 
     内部学习：[学习程序](../../../arch/rgw/learning-program/index.md) · [请求流水线](../../../arch/rgw/architecture/request-pipeline.md)
 
-guides/scales/small-production:
+cheatsheet/guides/scales/small-production:
   en: |
     ## RGW at small production scale
 
@@ -160,7 +160,7 @@ guides/scales/small-production:
     ceph config set client.rgw rgw_enable_apis "s3"
     ```
 
-guides/scales/large-production:
+cheatsheet/guides/scales/large-production:
   en: |
     ## RGW at large production scale
 
@@ -203,7 +203,7 @@ guides/scales/large-production:
 
     关注：持续偏高的 `l_rgw_qlen`、`ERR_RATE_LIMITED`、多站点同步滞后、GC/reshard 失败。
 
-guides/scales/multisite:
+cheatsheet/guides/scales/multisite:
   en: |
     ## RGW multisite model (docs-extended)
 

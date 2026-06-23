@@ -1,0 +1,59 @@
+---
+description: en/fa/zh documentation parity, locale folders, and translation workflow
+globs: "{docs/**,scripts/locales/**,scripts/sync-i18n*.py,scripts/i18n.py,scripts/repo_paths.py}"
+alwaysApply: false
+---
+
+# Internationalization (en / fa / zh)
+
+## File layout (mkdocs-static-i18n folder mode)
+
+| Locale | Path |
+|--------|------|
+| English | `docs/en/.../page.md` |
+| Persian (RTL) | `docs/fa/.../page.md` |
+| Chinese | `docs/zh/.../page.md` |
+
+Logical keys (inventory, YAML) are **relative to `docs/en/`** — e.g. `cheatsheet/cli/rgw`.
+
+Use `scripts/i18n.py` helpers: `locale_path()`, `write_localized()` (English base must live under `docs/en/`).
+
+## Content tiers
+
+| Tier | Examples | FA/ZH strategy |
+|------|----------|----------------|
+| Hand-written | `docs/en/cheatsheet/cli/`, guides prose, `index.md` | Translate in `scripts/locales/pages/*.yaml` or edit `docs/fa/…` / `docs/zh/…` directly |
+| Generated guides | `guides/rgw-config/`, `guides/osd-config/` | `generate-*-guide.py` writes all locale trees |
+| Config tables | `config/<subsystem>/*.md` | English only under `docs/en/`; `config/OVERVIEW` gets fa/zh wrappers |
+| Architecture | `docs/en/arch/rgw/` | `sync-rgw-from-docs-extended.py` + locale YAML |
+
+## Section hub parity
+
+`docs/{en,fa,zh}/cheatsheet/index.md`, `arch/index.md`, `dev/index.md` must share **identical HTML structure**; only text and RTL arrow direction differ.
+
+Excluded from `sync-i18n-pages.py` `HAND_PAGES` (manual only).
+
+**Mandatory workflow when any locale file changes:** see `.cursor/rules/doc-locale-parity.mdc`.
+
+## Sync commands
+
+```bash
+python3 scripts/sync-i18n-pages.py    # HAND_PAGES prose
+python3 scripts/sync-i18n-config.py   # config/OVERVIEW fa/zh
+python3 scripts/regenerate-docs.py    # includes both + generators
+```
+
+## Inventory & human review
+
+```bash
+python3 scripts/generate-content-inventory.py
+```
+
+Mark human-reviewed pages in `scripts/data/content-review.yaml` (key = path under `docs/en/` without `.md`).
+
+## Do not
+
+- Re-add section `index` pages to `HAND_PAGES` (stale YAML in `home.yaml` would overwrite hubs)
+- Use `.fa.md` / `.zh.md` suffix files — folder layout only
+- Treat fa/zh with `fallback_page_note` or `upstream_table_note` as fully translated
+- Translate CLI flag names or `<placeholders>` — see `cheatsheet/guides/cli-style-guide.md`

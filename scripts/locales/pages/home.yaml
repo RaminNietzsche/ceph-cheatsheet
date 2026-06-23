@@ -1,6 +1,6 @@
 # Hand-written page translations (fa / zh). English source stays in *.md.
 
-docs/index:
+index:
   fa: |
     <div class="hub-page" dir="rtl" lang="fa">
 
@@ -23,9 +23,9 @@ docs/index:
         </div>
         <div class="hub-nav__actions">
           <div class="hub-lang" role="navigation" aria-label="زبان">
-            <a href="../" class="hub-lang__item" lang="en" hreflang="en" title="English">EN</a>
+            <a href="/en/" class="hub-lang__item" lang="en" hreflang="en" title="English">EN</a>
             <span class="hub-lang__item hub-lang__item--active" lang="fa">فا</span>
-            <a href="../zh/" class="hub-lang__item" lang="zh" hreflang="zh" title="中文">中文</a>
+            <a href="/zh/" class="hub-lang__item" lang="zh" hreflang="zh" title="中文">中文</a>
           </div>
           <a href="#get-started" class="hub-nav__cta"><i class="fas fa-rocket"></i> شروع کنید</a>
         </div>
@@ -190,8 +190,8 @@ docs/index:
         </div>
         <div class="hub-nav__actions">
           <div class="hub-lang" role="navigation" aria-label="语言">
-            <a href="../" class="hub-lang__item" lang="en" hreflang="en" title="English">EN</a>
-            <a href="../fa/" class="hub-lang__item" lang="fa" hreflang="fa" title="فارسی">فا</a>
+            <a href="/en/" class="hub-lang__item" lang="en" hreflang="en" title="English">EN</a>
+            <a href="/fa/" class="hub-lang__item" lang="fa" hreflang="fa" title="فارسی">فا</a>
             <span class="hub-lang__item hub-lang__item--active" lang="zh">中文</span>
           </div>
           <a href="#get-started" class="hub-nav__cta"><i class="fas fa-rocket"></i> 开始使用</a>
@@ -471,7 +471,7 @@ arch/index:
     |--------|------|
     | [RGW](rgw/OVERVIEW.md) | RADOS Gateway — 请求流水线、SAL、RADOS 驱动、认证、多站点 |
 
-guides/OVERVIEW:
+cheatsheet/guides/OVERVIEW:
   fa: |
     # راهنما
 

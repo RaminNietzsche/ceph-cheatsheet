@@ -20,7 +20,7 @@ preview_cmd='bat --color=always --line-range :300 {} 2>/dev/null || sed -n "1,20
 echo "Loading index…" >&2
 mapfile -t entries < <(
   rg -l --glob '*.md' --glob '!**/INDEX.md' --glob '!site/**' '' \
-    "${ROOT}/cli" "${ROOT}/guides" "${ROOT}/config" 2>/dev/null \
+    "${ROOT}/docs/en/cheatsheet/cli" "${ROOT}/docs/en/cheatsheet/guides" "${ROOT}/docs/en/cheatsheet/config" 2>/dev/null \
     | sort
 )
 

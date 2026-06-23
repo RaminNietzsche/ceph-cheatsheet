@@ -1,6 +1,6 @@
 # Role and scale guides — en / fa / zh (CLI blocks stay English in all locales).
 
-guides/roles/cluster-admin:
+cheatsheet/guides/roles/cluster-admin:
   en: |
     # Cluster Admin
 
@@ -211,7 +211,7 @@ guides/roles/cluster-admin:
 
     [← 指南概览](../OVERVIEW.md)
 
-guides/roles/storage-operator:
+cheatsheet/guides/roles/storage-operator:
   en: |
     # Storage Operator
 
@@ -433,7 +433,7 @@ guides/roles/storage-operator:
 
     [← 指南概览](../OVERVIEW.md)
 
-guides/roles/rgw-admin:
+cheatsheet/guides/roles/rgw-admin:
   en: |
     # RGW Admin
 
@@ -635,7 +635,7 @@ guides/roles/rgw-admin:
 
     [← 指南概览](../OVERVIEW.md)
 
-guides/roles/cephfs-admin:
+cheatsheet/guides/roles/cephfs-admin:
   en: |
     # CephFS Admin
 
@@ -828,7 +828,7 @@ guides/roles/cephfs-admin:
 
     [← 指南概览](../OVERVIEW.md)
 
-guides/scales/lab:
+cheatsheet/guides/scales/lab:
   en: |
     # Lab / Development Scale
 
@@ -976,7 +976,7 @@ guides/scales/lab:
 
     [← 指南概览](../OVERVIEW.md)
 
-guides/scales/small-production:
+cheatsheet/guides/scales/small-production:
   en: |
     # Small Production Scale
 
@@ -1124,7 +1124,7 @@ guides/scales/small-production:
 
     [← 指南概览](../OVERVIEW.md)
 
-guides/scales/large-production:
+cheatsheet/guides/scales/large-production:
   en: |
     # Large Production Scale
 
@@ -1272,7 +1272,7 @@ guides/scales/large-production:
 
     [← 指南概览](../OVERVIEW.md)
 
-guides/scales/multisite:
+cheatsheet/guides/scales/multisite:
   en: |
     # Multisite Scale
 

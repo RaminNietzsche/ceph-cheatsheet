@@ -10,11 +10,11 @@ from typing import Any
 
 import yaml
 
-ROOT = Path(__file__).resolve().parent.parent
+from repo_paths import DOCS_EN, LOCALES, ROOT, locale_file
+
 LOCALES_DIR = Path(__file__).resolve().parent / "locales"
 STRINGS_FILE = LOCALES_DIR / "strings.yaml"
 
-LOCALES: tuple[str, ...] = ("en", "fa", "zh")
 DEFAULT_LOCALE = "en"
 ALT_LOCALES: tuple[str, ...] = ("fa", "zh")
 
@@ -68,10 +68,14 @@ def model_label(model: str) -> str:
 
 
 def locale_path(base: Path, locale: str) -> Path:
-    """Map guides/foo/bar.md → bar.fa.md / bar.zh.md (English keeps bar.md)."""
+    """Map docs/en/…/page.md → docs/{locale}/…/page.md; root README uses suffix mode."""
     if locale == DEFAULT_LOCALE:
         return base
-    return base.parent / f"{base.stem}.{locale}.md"
+    try:
+        base.resolve().relative_to(DOCS_EN.resolve())
+    except ValueError:
+        return base.parent / f"{base.stem}.{locale}.md"
+    return locale_file(base, locale)
 
 
 def all_locale_paths(base: Path) -> list[Path]:
@@ -82,6 +86,7 @@ def write_localized(base: Path, contents: dict[str, str]) -> None:
     base.parent.mkdir(parents=True, exist_ok=True)
     for locale in LOCALES:
         path = locale_path(base, locale)
+        path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(contents[locale], encoding="utf-8")
 
 

@@ -3,7 +3,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-CONFIG_DIR="${ROOT}/config"
+CONFIG_DIR="${ROOT}/docs/en/cheatsheet/config"
 
 usage() {
   cat <<'EOF'

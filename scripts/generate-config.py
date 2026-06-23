@@ -14,14 +14,15 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from repo_paths import CONFIG, ROOT  # noqa: E402
+
 try:
     import yaml
 except ImportError:
     print("PyYAML is required: pip install pyyaml", file=sys.stderr)
     sys.exit(1)
 
-ROOT = Path(__file__).resolve().parent.parent
-CONFIG = ROOT / "config"
 UPSTREAM = Path(__file__).resolve().parent / "upstream"
 BASE_URL = "https://raw.githubusercontent.com/ceph/ceph/{ref}/src/common/options/{name}.yaml.in"
 

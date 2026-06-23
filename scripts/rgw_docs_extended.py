@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Shared helpers for syncing dev-code/rgw/docs-extended into arch/rgw/."""
+"""Shared helpers for syncing dev-code/rgw/docs-extended into docs/fa/arch/rgw/."""
 
 from __future__ import annotations
 
@@ -7,9 +7,10 @@ import os
 import re
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+from repo_paths import DOCS_EN, DOCS_FA, DOCS_ZH, ROOT
+
 DEFAULT_SRC = ROOT / "dev-code" / "rgw" / "docs-extended" / "pages"
-OUT = ROOT / "arch" / "rgw"
+OUT_FA = DOCS_FA / "arch" / "rgw"
 
 SKIP_PARTS = frozenset({"appendix", "assets"})
 
@@ -81,8 +82,8 @@ def should_skip(path: Path, src: Path) -> bool:
 
 def dest_for(src: Path, rel: Path) -> Path:
     if rel.as_posix() == "index.md":
-        return OUT / "OVERVIEW.fa.md"
-    return OUT / rel.with_name(f"{rel.stem}.fa.md")
+        return OUT_FA / "OVERVIEW.md"
+    return OUT_FA / rel
 
 
 def needs_locale_stubs(rel: Path) -> bool:
@@ -124,10 +125,8 @@ def write_locale_stubs(rel: Path, fa_body: str) -> None:
     fallback = rel.stem.replace("-", " ").replace("_", " ").title()
     title = title_from_fa(fa_body, fallback)
     back = back_link_for(rel)
-    parent = OUT / rel.parent
-    for locale in ("en", "zh"):
-        suffix = ".md" if locale == "en" else f".{locale}.md"
-        path = parent / f"{rel.stem}{suffix}"
+    for locale, root in (("en", DOCS_EN), ("zh", DOCS_ZH)):
+        path = root / "arch" / "rgw" / rel.parent / f"{rel.stem}.md"
         if path.exists():
             continue
         path.parent.mkdir(parents=True, exist_ok=True)

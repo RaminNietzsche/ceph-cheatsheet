@@ -1,64 +1,94 @@
 ---
 name: ceph-cheatsheet
-description: Maintain and extend the ceph-cheatsheet reference (CLI, guides by role/scale, config from upstream YAML, MkDocs site). Use when editing cli/, guides/, config/, running generate-config.py, lookup-config.sh, mkdocs, or GitHub Pages workflow.
+description: >-
+  Maintain ceph-cheatsheet: Ceph CLI/config reference, RGW architecture docs,
+  MkDocs hub (en/fa/zh), section homepages, generators, and CI. Use when editing
+  cli/, guides/, config/, arch/, dev/, docs/, mkdocs.yml, scripts/, i18n,
+  hub pages, content inventory, or GitHub Pages workflow.
 ---
 
 # ceph-cheatsheet Maintenance
 
-## Project map
+Read `.cursor/rules/` before editing. Extended detail: [reference.md](reference.md).
 
-| Path | Content | Update method |
-|------|---------|---------------|
-| `REFERENCE.md` | Main hub | Manual → run `sync-docs-index.py` |
-| `cli/` | CLI commands | Manual |
-| `guides/roles/` | By operator role | Manual |
-| `guides/scales/` | By cluster scale | Manual |
-| `config/` | 2122+ options | `generate-config.py` only |
-| `docs/` | MkDocs symlinks + `index.md` | Sync from REFERENCE |
+## Site structure
+
+| Section | Source | URL |
+|---------|--------|-----|
+| Hub | `docs/index.md` | `/` |
+| Cheatsheet | `cheatsheet/`, `cli/`, `config/`, `guides/` | `/cheatsheet/` |
+| Architecture | `arch/` | `/arch/` |
+| Develop | `dev/` | `/dev/` |
+
+`docs/` holds symlinks — run `setup-docs-layout.py` after clone.
+
+## One-command regen
+
+```bash
+pip install -r scripts/requirements.txt
+python3 scripts/regenerate-docs.py
+python3 scripts/validate-docs-paths.py
+mkdocs serve
+```
 
 ## Common tasks
 
-### Regenerate config from Ceph upstream
+### Config from upstream
 
 ```bash
 python3 scripts/generate-config.py --ref main
+python3 scripts/regenerate-docs.py
 ```
 
-### Look up / search
+### Search locally
 
 ```bash
 ./scripts/lookup-config.sh osd_max_scrubs
 ./scripts/search-all.sh scrub
-./scripts/search-config.sh -s rgw cache
+./scripts/search-fuzzy.sh
 ```
 
-### Preview site
+### Content inventory (en/fa/zh + human review)
 
 ```bash
-pip install -r scripts/requirements.txt
-python3 scripts/sync-docs-index.py
-mkdocs serve
+python3 scripts/generate-content-inventory.py
+# edit scripts/content-review.yaml for human-reviewed pages
 ```
 
-## Adding CLI content
+### Edit section hub homepage
 
-1. Edit or create `cli/<topic>.md` following `.cursor/rules/documentation.mdc`
-2. Add entry to `cli/OVERVIEW.md` and `mkdocs.yml` nav if new file
-3. Link related config: `../config/<subsystem>/INDEX.md`
+1. Edit `cheatsheet/index.md`, `arch/index.md`, or `dev/index.md` (+ `.fa.md`, `.zh.md`)
+2. Keep **same HTML skeleton** across all three locales
+3. Use site-root locale links (`/fa/cheatsheet/`, not `../fa/`)
+4. Run `fix-html-hrefs.py` and `validate-docs-paths.py`
 
-## Adding role or scale guides
+**Never** let `sync-docs-index.py` overwrite section `index.md` — it only syncs `cheatsheet/OVERVIEW.md`, `docs/version.md`, `docs/license.md`.
 
-1. Edit `guides/roles/*.md` or `guides/scales/*.md`
-2. Update `guides/OVERVIEW.md` and `REFERENCE.md`
-3. Run `sync-docs-index.py`; update `mkdocs.yml` nav if needed
+### Add CLI page
 
-## Rules
+1. Create `cli/<topic>.md` per `documentation.mdc`
+2. Add to `cli/OVERVIEW.md` and `mkdocs.yml` nav
+3. Add translation keys in `scripts/locales/pages/cli.yaml` if needed
+4. Run `sync-i18n-pages.py`
 
-Read before editing:
+### Add role/scale guide
 
-- `.cursor/rules/documentation.mdc` — prose and linking
-- `.cursor/rules/config-generation.mdc` — never hand-edit generated tables
+1. Edit `guides/roles/` or `guides/scales/` (or run `generate-role-scale-guides.py`)
+2. Update `guides/OVERVIEW.md` and `REFERENCE.md` if hub links change
+3. Run `sync-docs-index.py` for `cheatsheet/OVERVIEW.md` only
 
-## Details
+## Rules index
 
-See [reference.md](reference.md) for subsystem list, mkdocs layout, and CI workflow.
+| Rule | Scope |
+|------|-------|
+| `documentation.mdc` | Prose, linking, CLI style |
+| `config-generation.mdc` | `config/`, generators |
+| `mkdocs-site.mdc` | `docs/`, hubs, CI, symlinks |
+| `i18n.mdc` | `.fa.md`, `.zh.md`, locale YAML |
+| `no-cursor-coauthor.mdc` | Commits (workspace) |
+
+## CSS / JS for hubs
+
+- `docs/stylesheets/hub.css` — section accents (cyan / indigo / emerald)
+- `docs/stylesheets/internal-ergonomics.css` — inner doc pages
+- `docs/javascripts/hub.js` — scroll, reveal, pipeline step animation (arch)

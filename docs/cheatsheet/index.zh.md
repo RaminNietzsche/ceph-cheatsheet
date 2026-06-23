@@ -1,1 +1,0 @@
-../../cheatsheet/index.zh.md

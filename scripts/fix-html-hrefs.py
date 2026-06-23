@@ -7,14 +7,26 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from repo_paths import CHEATSHEET, DOCS_EN, LOCALES, ROOT, locale_file  # noqa: E402
+
 HREF_RE = re.compile(r'(<a\s[^>]*?)href="([^"]+)"', re.IGNORECASE)
 
+
+def locale_index_files(section: str) -> list[Path]:
+    base = DOCS_EN / section / "index.md" if section else DOCS_EN / "index.md"
+    return [locale_file(base, loc) for loc in LOCALES]
+
+
 FILES = [
-    ROOT / "config" / "OVERVIEW.md",
-    ROOT / "guides" / "OVERVIEW.md",
-    ROOT / "cli" / "OVERVIEW.md",
+    CHEATSHEET / "config" / "OVERVIEW.md",
+    CHEATSHEET / "guides" / "OVERVIEW.md",
+    CHEATSHEET / "cli" / "OVERVIEW.md",
     ROOT / "REFERENCE.md",
+    *locale_index_files(""),
+    *locale_index_files("cheatsheet"),
+    *locale_index_files("arch"),
+    *locale_index_files("dev"),
 ]
 
 

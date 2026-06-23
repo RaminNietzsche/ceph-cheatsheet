@@ -89,6 +89,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (reducedMotion) return;
 
+  var pipeline = hub.querySelector(".hub-pipeline");
+  if (pipeline) {
+    var steps = pipeline.querySelectorAll(".hub-pipeline__step");
+    if (steps.length > 1) {
+      var activeIdx = 0;
+      steps.forEach(function (step, i) {
+        if (step.classList.contains("hub-pipeline__step--active")) activeIdx = i;
+      });
+      setInterval(function () {
+        steps[activeIdx].classList.remove("hub-pipeline__step--active");
+        activeIdx = (activeIdx + 1) % steps.length;
+        steps[activeIdx].classList.add("hub-pipeline__step--active");
+      }, 2400);
+    }
+  }
+
   function animateCounter(el) {
     var text = el.textContent.trim();
     if (text === "\u221E" || text === "\u221e" || text.indexOf("\u221E") !== -1) return;

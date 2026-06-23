@@ -1,0 +1,66 @@
+---
+description: Require en/fa/zh doc parity — edit one locale, update the other two
+globs: "docs/**/*.md,scripts/locales/pages/**"
+alwaysApply: false
+---
+
+# Doc locale parity (en / fa / zh)
+
+Whenever you change a **hand-written** documentation page, the same path under all three locale trees must exist and stay **content-equivalent**.
+
+| Locale | Path |
+|--------|------|
+| English | `docs/en/{section}/…/page.md` |
+| Persian (RTL) | `docs/fa/{section}/…/page.md` |
+| Chinese | `docs/zh/{section}/…/page.md` |
+
+Root README uses `.cursor/rules/readme-i18n.mdc` instead.
+
+## Resolve the page trio
+
+From any edited file, derive the logical key (relative to `docs/en/`, no `.md`):
+
+- `docs/fa/cheatsheet/cli/rgw.md` → `cheatsheet/cli/rgw`
+- `docs/en/arch/index.md` → `arch/index`
+
+Required siblings: `docs/en/{key}.md`, `docs/fa/{key}.md`, `docs/zh/{key}.md`.
+
+## When you edit **any one** of the three
+
+1. Apply the **same structural change** to the other two (headings, lists, tables, bash blocks, internal links).
+2. Translate new/changed **prose** into fa and zh.
+3. Keep CLI flags, option names, and `<placeholders>` untranslated.
+4. Run the matching sync (see below) before finishing.
+5. Run `python3 scripts/generate-content-inventory.py`.
+
+## Where to put translations
+
+| Page kind | Update fa/zh in |
+|-----------|-----------------|
+| `HAND_PAGES` | `scripts/locales/pages/*.yaml` **or** `docs/fa/…` / `docs/zh/…` directly |
+| Section hubs | All three locale files directly (identical HTML structure) |
+| Root README | `scripts/locales/pages/readme.yaml` → `make readme` |
+| Generated guides / config | Re-run the generator — do not hand-edit one locale alone |
+| `arch/rgw/` | `sync-rgw-from-docs-extended.py` + locale YAML |
+
+## Sync commands
+
+```bash
+python3 scripts/sync-i18n-pages.py
+python3 scripts/sync-i18n-config.py
+make readme
+python3 scripts/regenerate-docs.py
+python3 scripts/validate-docs-paths.py
+```
+
+## Exceptions (English-only)
+
+- `docs/en/cheatsheet/config/<subsystem>/*.md` option tables (generated)
+- `reports/` — generated inventory
+- Files from `generate-config.py`, `generate-*-guide.py`, `sync-rgw-from-docs-extended.py`
+
+## Do not
+
+- Ship a nav page with only `docs/en/…` and no fa/zh siblings
+- Edit `docs/fa/…` without updating `docs/en/…` when structure changed
+- Reintroduce `.fa.md` / `.zh.md` suffix files

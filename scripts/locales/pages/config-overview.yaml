@@ -1,6 +1,6 @@
 # config/OVERVIEW — fa / zh (option tables stay English upstream).
 
-config/OVERVIEW:
+cheatsheet/config/OVERVIEW:
   fa: |
     # مرجع پیکربندی Ceph
 

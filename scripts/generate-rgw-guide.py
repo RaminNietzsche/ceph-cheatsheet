@@ -21,8 +21,10 @@ from i18n import (  # noqa: E402
     write_localized,
 )
 from config_guide_lib import GUIDES_NAV_PREFIX  # noqa: E402
-CONFIG_RGW = ROOT / "config" / "rgw"
-GUIDES = ROOT / "guides" / "rgw-config"
+from repo_paths import CONFIG, GUIDES  # noqa: E402
+
+CONFIG_RGW = CONFIG / "rgw"
+GUIDES_RGW = GUIDES / "rgw-config"
 
 # Extra narrative merged from the former batch-1 guide into per-option sections.
 ENRICHMENTS: dict[str, dict[str, str]] = {
@@ -1619,7 +1621,7 @@ def section_dir_for_slug(slug: str) -> str:
 
 
 def topic_path(slug: str) -> Path:
-    return GUIDES / section_dir_for_slug(slug) / f"{slug}.md"
+    return GUIDES_RGW / section_dir_for_slug(slug) / f"{slug}.md"
 
 
 def topic_href(slug: str) -> str:
@@ -1800,10 +1802,10 @@ def main() -> int:
     for opt in all_options:
         groups[group_for(opt.name)].append(opt)
 
-    GUIDES.mkdir(parents=True, exist_ok=True)
+    GUIDES_RGW.mkdir(parents=True, exist_ok=True)
 
-    overview_base = GUIDES / "OVERVIEW.md"
-    tuning_base = GUIDES / "TUNING.md"
+    overview_base = GUIDES_RGW / "OVERVIEW.md"
+    tuning_base = GUIDES_RGW / "TUNING.md"
     write_localized(overview_base, render_all_locales_rgw(render_overview, groups, len(all_options)))
     write_localized(tuning_base, render_all_locales_rgw(render_tuning_index, all_options))
 
@@ -1814,7 +1816,7 @@ def main() -> int:
         write_localized(base, render_all_locales_rgw(render_group, slug, options))
         keep_bases.add(base)
 
-    cleanup_stale_markdown(GUIDES, keep_bases)
+    cleanup_stale_markdown(GUIDES_RGW, keep_bases)
 
     patch_mkdocs_nav(groups)
 

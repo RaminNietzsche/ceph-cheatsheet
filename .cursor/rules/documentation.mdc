@@ -1,48 +1,58 @@
 ---
-description: Documentation standards for cli, guides, and reference markdown
-globs: "{cli,guides,docs}/**/*.md,REFERENCE.md,README.md"
+description: Documentation standards for cli, guides, arch, and reference markdown
+globs: "docs/**/*.md,REFERENCE.md,README.md,README.fa.md,README.zh.md"
 alwaysApply: false
 ---
 
 # Documentation Standards
 
-## Language and tone
+## Language
 
-- Write in English for all reference content (CLI, config, guides).
-- Use complete sentences; avoid telegraphic bullet chains.
-- Commands must be copy-paste ready — no `...` omissions in code blocks.
+- **English** is the source for CLI, config tables, and generated guides.
+- **Persian** and **Chinese** live under `docs/fa/` and `docs/zh/` (folder i18n) — see `.cursor/rules/i18n.mdc` and **`.cursor/rules/doc-locale-parity.mdc`**.
+- Complete sentences; commands copy-paste ready (no `...` in code blocks).
 
-## Structure
+## Repository map
 
-| Directory | Purpose | Edit manually? |
-|-----------|---------|--------------|
-| `cli/` | Command cheatsheets by topic | Yes |
-| `guides/roles/` | Workflows by operator role | Yes |
-| `guides/scales/` | Recommendations by cluster size | Yes |
-| `config/` | Option tables from upstream YAML | No — run `scripts/generate-config.py` |
-| `REFERENCE.md` | Main hub — sync to `docs/index.md` after edits |
+| Path | Purpose | Edit manually? |
+|------|---------|----------------|
+| `docs/en/index.md` | Root hub (HTML) | Yes |
+| `docs/en/cheatsheet/index.md` | Cheatsheet section home | Yes |
+| `docs/en/arch/index.md` | Architecture section home | Yes |
+| `docs/en/dev/index.md` | Develop section home | Yes |
+| `docs/en/cheatsheet/cli/` | CLI by topic | Yes |
+| `docs/en/cheatsheet/guides/` | Roles, scales, config deep dives | Mixed (see generators) |
+| `docs/en/arch/rgw/` | RGW architecture & learning | Sync + manual |
+| `docs/en/cheatsheet/config/` | Upstream option tables | **No** — `generate-config.py` |
+| `reports/` | Generated content-inventory | **No** — `generate-content-inventory.py` |
+| `REFERENCE.md` | Legacy reference table → `cheatsheet/OVERVIEW.md` | Yes, then `sync-docs-index.py` |
+
+Layout reference: `scripts/LAYOUT.md` · path constants: `scripts/repo_paths.py`
 
 ## Linking
 
-- Link to config options: `../config/<subsystem>/INDEX.md` or use `./scripts/lookup-config.sh`
-- Link back to hub: `[← Reference](../REFERENCE.md)` or `../index.md` inside `docs/`
+- Inside MkDocs: prefer directory URLs (`guides/quickstart/`) in hub HTML after `fix-html-hrefs.py`
+- Config: `../config/<subsystem>/INDEX.md` or `./scripts/lookup-config.sh`
 - Cross-link CLI ↔ config ↔ guides; do not duplicate large option tables in guides
+- From `guides/`: readability guide at `../../readability-guide.md`
 
 ## CLI pages
 
-- Group by task, not alphabetically
-- One command per line in fenced `bash` blocks
-- Include `<placeholder>` for required args; `[optional]` for optional flags
-- Add a “See also” line pointing to related config INDEX when relevant
+- Group by task; one command per `bash` block
+- `<placeholder>` for args; `[optional]` for flags
+- “See also” → related config INDEX
 
-## After editing REFERENCE.md
+## After prose edits
 
 ```bash
-python3 scripts/sync-docs-index.py
+python3 scripts/setup-docs-layout.py
+python3 scripts/sync-i18n-pages.py      # if HAND_PAGES source changed
+python3 scripts/fix-html-hrefs.py       # if hub HTML edited
+python3 scripts/validate-docs-paths.py
 ```
 
 ## Do not
 
-- Hand-edit generated files under `config/` except via regenerate script
+- Hand-edit generated `config/` tables
 - Add `Co-authored-by: Cursor` to commits
-- Create duplicate README/OVERVIEW content — extend REFERENCE.md instead
+- Overwrite section hub `index.md` via `sync-docs-index.py`

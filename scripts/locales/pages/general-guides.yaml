@@ -1,6 +1,6 @@
 # General guide pages — fa / zh (CLI blocks stay English).
 
-guides/quickstart:
+cheatsheet/guides/quickstart:
   fa: |
     # شروع سریع — روند کاری روزانهٔ مدیر
 
@@ -168,7 +168,7 @@ guides/quickstart:
 
     [← Cheatsheet](../index.md)
 
-guides/config-lookup:
+cheatsheet/guides/config-lookup:
   fa: |
     # استفاده از مرجع Config
 
@@ -316,7 +316,7 @@ guides/config-lookup:
 
     [← Cheatsheet](../index.md)
 
-guides/contributing:
+cheatsheet/guides/contributing:
   fa: |
     # مشارکت در مرجع
 
@@ -466,7 +466,7 @@ guides/contributing:
 
     [← 指南概览](OVERVIEW.md)
 
-guides/getting-started:
+cheatsheet/guides/getting-started:
   fa: |
     # شروع کار
 
@@ -525,7 +525,7 @@ guides/getting-started:
 
     [版本兼容性](../../compatibility.md) · [术语表](i18n-glossary.md) · [← 概览](OVERVIEW.md)
 
-guides/i18n-glossary:
+cheatsheet/guides/i18n-glossary:
   fa: |
     # واژه‌نامهٔ اصطلاحات Ceph
 
@@ -595,7 +595,7 @@ guides/i18n-glossary:
 
     [← 概览](OVERVIEW.md) · [入门](getting-started.md)
 
-guides/troubleshooting-guide:
+cheatsheet/guides/troubleshooting-guide:
   fa: |
     # راهنمای عیب‌یابی
 
@@ -641,7 +641,7 @@ guides/troubleshooting-guide:
 
     [← 概览](OVERVIEW.md)
 
-docs/compatibility:
+compatibility:
   fa: |
     # سازگاری نسخه Ceph
 

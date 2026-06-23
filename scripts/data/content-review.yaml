@@ -1,0 +1,34 @@
+# Human content review manifest (optional).
+#
+# Keys: repo-relative path without .md suffix (same as resolved source file).
+# Values:
+#   reviewed: true|false          — whole page reviewed
+#   en / fa / zh: true|false      — per-locale override
+#
+# Pages not listed are reported as Unknown in the inventory.
+# reviewed: true also enables the "Human reviewed" badge + toast on the live site.
+# New nav pages: run generate-content-inventory.py --sync-review to append
+# entries with reviewed: false below the auto-added marker.
+#
+# Example:
+# cheatsheet/guides/quickstart:
+#   reviewed: true
+# arch/rgw/OVERVIEW:
+#   en: true
+#   fa: false
+#   zh: false
+
+cheatsheet/index:
+  reviewed: true
+arch/index:
+  reviewed: true
+dev/index:
+  reviewed: true
+index:
+  reviewed: true
+cheatsheet/guides/quickstart:
+  reviewed: true
+cheatsheet/guides/getting-started:
+  reviewed: true
+cheatsheet/guides/OVERVIEW:
+  reviewed: true

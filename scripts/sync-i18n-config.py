@@ -8,9 +8,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from i18n import set_locale, t, write_localized  # noqa: E402
+from repo_paths import CONFIG, ROOT  # noqa: E402
 
-ROOT = Path(__file__).resolve().parent.parent
-OVERVIEW = ROOT / "config" / "OVERVIEW.md"
+OVERVIEW = CONFIG / "OVERVIEW.md"
 
 
 def main() -> None:

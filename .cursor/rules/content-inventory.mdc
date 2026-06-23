@@ -1,0 +1,61 @@
+---
+description: Regenerate content-inventory when nav or documentation pages change
+globs: "mkdocs.yml,reports/content-inventory.{csv,md},scripts/data/content-review.yaml,{cheatsheet,arch,dev,docs}/**/*.{md,yml,yaml}"
+alwaysApply: false
+---
+
+# Content inventory (auto-update)
+
+The repo tracks every MkDocs nav page in `content-inventory.csv` and `content-inventory.md` (6 columns: title, content status, en/fa/zh complete, human review).
+
+## When this rule applies
+
+Run the generator after **any** change that can affect the inventory:
+
+- Edit `mkdocs.yml` nav (add / remove / rename / reorder pages)
+- Add, remove, or rename a `.md` page linked from nav
+- Add or update locale variants (`.fa.md`, `.zh.md`)
+- Change `scripts/content-review.yaml` (human-review flags)
+- Run doc generators that create or sync markdown (`generate-config-guide.py`, `sync-i18n-pages.py`, etc.)
+
+## Required step before finishing
+
+Always run:
+
+```bash
+python3 scripts/generate-content-inventory.py
+```
+
+When adding or renaming nav pages, also pass `--sync-review` so new entries land in `scripts/data/content-review.yaml`.
+
+Also regenerate the live-site trust UI:
+
+```bash
+python3 scripts/generate-page-trust-manifest.py
+```
+
+This command:
+
+1. Scans all nav entries in `mkdocs.yml`
+2. Writes `content-inventory.csv` and `content-inventory.md`
+3. With `--sync-review`: appends **new** pages to `scripts/data/content-review.yaml` with `reviewed: false`
+
+## Include in the same change set
+
+When the user asks for a commit, stage together:
+
+- The doc / nav change
+- `reports/content-inventory.csv`
+- `reports/content-inventory.md`
+- `scripts/data/content-review.yaml` (if new pages were appended)
+
+Do **not** hand-edit the CSV or markdown table — regenerate instead.
+
+## Human review column
+
+- Set `reviewed: true` (or per-locale `en` / `fa` / `zh`) in `scripts/data/content-review.yaml`, then re-run the generator.
+- Pages not listed show **Unknown**; auto-added pages show **No** until reviewed.
+
+## CI
+
+Pull requests fail if inventory files are stale. If CI reports an out-of-date inventory, run the command above and commit the outputs.
