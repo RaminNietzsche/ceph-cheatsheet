@@ -144,14 +144,12 @@ body:not(:has(.hub-page)) .md-nav--secondary .md-nav__link--active {
 
 body:not(:has(.hub-page)) .md-content__inner {
   padding-top: 1.5rem;
-  max-width: 52rem;
 }
 
 /* Typography — high contrast body, accent headings */
 body:not(:has(.hub-page)) .md-typeset {
   color: var(--hub-text);
   font-size: 1rem;
-  line-height: 1.8;
 }
 
 body:not(:has(.hub-page)) .md-typeset p,
@@ -338,7 +336,6 @@ html[lang="fa"] body:not(:has(.hub-page)),
 html[lang="fa"] body:not(:has(.hub-page)) .md-typeset,
 [dir="rtl"] body:not(:has(.hub-page)) .md-typeset {
   font-size: 1.05rem;
-  line-height: 1.9;
 }
 
 /* Shared components */

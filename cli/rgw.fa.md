@@ -1,70 +1,78 @@
 # دستورات RGW (S3)
 
-مدیریت RGW با `radosgw-admin` انجام می‌شود. دیمن gateway از cephadm (`ceph orch …`) یا unit file مدیریت می‌شود.
+**ابزار:** `radosgw-admin` · دیمن gateway: cephadm (`ceph orch …`) یا unit file.
 
-## کاربر و کلید
+Placeholderها با `<>` — نام flagها را ترجمه نکنید. [راهنمای سبک CLI](../guides/cli-style-guide.md)
+
+## کاربر و کلید <span class="badge badge-action-create">ایجاد</span> <span class="badge badge-action-read">خواندن</span>
+
+| دستور / flag | کاربرد | مثال |
+| --- | --- | --- |
+| `user list` | فهرست کاربران | `radosgw-admin user list` |
+| `user info --uid=<user_id>` | اطلاعات یک کاربر | `--uid=john_doe` |
+| `user create` | ایجاد کاربر S3 | `--uid=<user_id> --display-name="<display_name>"` |
+| `user suspend` | تعلیق دسترسی | `--uid=<user_id>` |
 
 ```bash
 radosgw-admin user list
-radosgw-admin user info --uid=<uid>
-radosgw-admin user create --uid=<uid> --display-name="Name"
-radosgw-admin user rm --uid=<uid>
-radosgw-admin user modify --uid=<uid> --email=… --max-buckets=…
-radosgw-admin user suspend --uid=<uid>
-radosgw-admin user enable --uid=<uid>
-
-radosgw-admin key create --uid=<uid> --key-type=s3 --access-key=… --secret-key=…
-radosgw-admin key rm --uid=<uid> --access-key=…
+radosgw-admin user info --uid=<user_id>
+radosgw-admin user create \
+  --uid="<user_id>" \
+  --display-name="<display_name>"
+radosgw-admin user suspend --uid=<user_id>
+radosgw-admin user enable --uid=<user_id>
 ```
 
-## Bucket و quota
+??? example "نمونه خروجی JSON — user info"
+    ```json
+    {
+      "user_id": "john_doe",
+      "display_name": "John Doe",
+      "suspended": 0
+    }
+    ```
+
+## Bucket و quota <span class="badge badge-action-quota">Quota</span>
+
+| دستور / flag | کاربرد | مثال |
+| --- | --- | --- |
+| `bucket stats --bucket=<bucket_name>` | آمار bucket | `--bucket=my-data` |
+| `quota set --quota-scope=user` | تنظیم سقف | `--max-size=<bytes>` |
 
 ```bash
 radosgw-admin bucket list
-radosgw-admin bucket stats --bucket=<name>
-radosgw-admin bucket rm --bucket=<name>
-radosgw-admin bucket link --bucket=<name> --uid=<uid>
-radosgw-admin bucket unlink --bucket=<name> --uid=<uid>
-
-radosgw-admin quota set --quota-scope=user|bucket --uid=<uid> [--max-size=…] [--max-objects=…]
-radosgw-admin quota get --quota-scope=user|bucket --uid=<uid>
-radosgw-admin quota enable --quota-scope=user|bucket --uid=<uid>
+radosgw-admin bucket stats --bucket=<bucket_name>
+radosgw-admin quota set \
+  --quota-scope=user \
+  --uid=<user_id> \
+  --max-size=<bytes>
 ```
 
-## چندسایته (realm / zone / zonegroup)
+## چندسایته <span class="badge badge-action-sync">Sync</span>
 
 ```bash
 radosgw-admin realm list
-radosgw-admin realm create --rgw-realm=<name> --default
-radosgw-admin zonegroup create --rgw-zonegroup=<name> --master --default
-radosgw-admin zone create --rgw-zonegroup=<zg> --rgw-zone=<zone> --master --default
 radosgw-admin period update --commit
-radosgw-admin period pull --url=http://<master>:80 --access-key=… --secret-key=…
 radosgw-admin sync status
-radosgw-admin metadata sync status
-radosgw-admin data sync status
 ```
 
 ## عملیات gateway
 
 ```bash
 radosgw-admin gc list|process
-radosgw-admin bi list --bucket=<name>
-radosgw-admin log list|show|rm
-radosgw-admin datalog list|trim
-radosgw-admin mdlog list|status
+radosgw-admin bi list --bucket=<bucket_name>
 ```
 
-## مثال S3 CLI (awscli / s3cmd)
+## مثال S3 CLI
 
 ```bash
-aws s3 ls --endpoint-url http://rgw.example.com
-aws s3 mb s3://mybucket --endpoint-url http://rgw.example.com
-aws s3 cp file s3://mybucket/key --endpoint-url http://rgw.example.com
+aws s3 ls --endpoint-url http://<rgw_host>
+aws s3 cp <local_file> s3://<bucket_name>/<key> \
+  --endpoint-url http://<rgw_host>
 ```
 
-## گزینه‌های config پرکاربرد
+## گزینه‌های config
 
-[config/rgw](../config/rgw/INDEX.md): `rgw_frontends`، `rgw_dns_name`، `rgw_zone`، `rgw_cache_enabled`، `rgw_crypt_s3_kms_backend`.
+[config/rgw](../config/rgw/INDEX.md): `rgw_frontends`, `rgw_dns_name`, `rgw_zone`.
 
 [← نمای کلی CLI](OVERVIEW.md)

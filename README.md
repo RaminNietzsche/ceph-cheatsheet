@@ -32,6 +32,7 @@
 - Rules: `.cursor/rules/`
 - Skill: `.cursor/skills/ceph-cheatsheet/SKILL.md`
 - [Contributing guide](guides/contributing.md)
+- [CLI style guide](guides/cli-style-guide.md) · [Readability guide](docs/readability-guide.md)
 - [AGENTS.md](AGENTS.md)
 
 ## Regenerate config & docs (en + fa + zh)

@@ -45,6 +45,7 @@ theme:
 extra_css:
   - stylesheets/extra.css
   - stylesheets/site-theme.css
+  - stylesheets/readability.css
   - stylesheets/hub.css
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css
 
@@ -52,6 +53,7 @@ extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
   - javascripts/hub.js
   - javascripts/site-theme.js
+  - javascripts/copy-feedback.js
 
 plugins:
   - search:

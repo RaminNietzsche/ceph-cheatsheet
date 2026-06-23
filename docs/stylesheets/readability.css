@@ -1,0 +1,142 @@
+/* Readability enhancements — issues #22, #25–#31 */
+
+/* ── Monospace stack (#22) ───────────────────────────────────── */
+:root {
+  --ceph-mono: "JetBrains Mono", "Fira Code", ui-monospace, "Cascadia Code", monospace;
+}
+
+body:not(:has(.hub-page)) .md-typeset code,
+body:not(:has(.hub-page)) .md-typeset pre,
+body:not(:has(.hub-page)) .md-typeset pre > code,
+body:not(:has(.hub-page)) .md-typeset .highlight code {
+  font-family: var(--ceph-mono);
+}
+
+/* ── Measure & line-height (#28) ─────────────────────────────── */
+body:not(:has(.hub-page)) .md-content__inner {
+  max-width: min(800px, 70ch);
+}
+
+body:not(:has(.hub-page)) .md-typeset {
+  line-height: 1.55;
+}
+
+html[lang="fa"] body:not(:has(.hub-page)) .md-typeset,
+[dir="rtl"] body:not(:has(.hub-page)) .md-typeset {
+  line-height: 1.8;
+}
+
+/* ── WCAG-friendly tokens (#29) — avoid pure #000/#fff halation */
+:root,
+[data-md-color-scheme="slate"] {
+  --hub-muted: #a8b4c4;
+  --hub-link: #5eead4;
+}
+
+body:not(:has(.hub-page)) .md-nav__link {
+  color: var(--hub-text-soft);
+}
+
+body:not(:has(.hub-page)) .md-typeset a {
+  color: var(--hub-link);
+}
+
+/* ── Vertical rhythm / Gestalt proximity (#26) ───────────────── */
+body:not(:has(.hub-page)) .md-typeset p + pre,
+body:not(:has(.hub-page)) .md-typeset li + pre,
+body:not(:has(.hub-page)) .md-typeset table + pre {
+  margin-top: 0.5rem;
+}
+
+body:not(:has(.hub-page)) .md-typeset h2 {
+  margin-top: 3rem;
+  padding-top: 0.75rem;
+}
+
+body:not(:has(.hub-page)) .md-typeset h2 + p,
+body:not(:has(.hub-page)) .md-typeset h2 + ul,
+body:not(:has(.hub-page)) .md-typeset h2 + table,
+body:not(:has(.hub-page)) .md-typeset h2 + pre {
+  margin-top: 1rem;
+}
+
+body:not(:has(.hub-page)) .md-typeset p {
+  margin-bottom: 1.15em;
+}
+
+body:not(:has(.hub-page)) .md-typeset pre {
+  margin: 1.5rem 0 2.5rem;
+  padding: 1rem 1.25rem;
+}
+
+/* ── RTL code sanctuaries (#30) ──────────────────────────────── */
+html[lang="fa"] body:not(:has(.hub-page)) .md-typeset pre,
+[dir="rtl"] body:not(:has(.hub-page)) .md-typeset pre {
+  direction: ltr;
+  text-align: left;
+  background: #0a0f1c !important;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+  border-left: 3px solid var(--hub-cyan-dim, #0891b2);
+}
+
+[dir="rtl"] body:not(:has(.hub-page)) .md-typeset pre {
+  border-left: 1px solid #334155;
+  border-right: 3px solid var(--hub-cyan-dim, #0891b2);
+}
+
+/* ── Sticky ToC (#25) ────────────────────────────────────────── */
+@media (min-width: 1220px) {
+  body:not(:has(.hub-page)) .md-sidebar--secondary {
+    position: sticky;
+    top: 4.5rem;
+    align-self: flex-start;
+    max-height: calc(100vh - 5rem);
+  }
+
+  body:not(:has(.hub-page)) .md-sidebar--secondary .md-sidebar__scrollwrap {
+    max-height: calc(100vh - 5.5rem);
+    overflow-y: auto;
+  }
+
+  body:not(:has(.hub-page)) .md-nav--secondary .md-nav__link--active {
+    color: var(--hub-cyan) !important;
+    font-weight: 600;
+    border-left: 2px solid var(--hub-cyan);
+    padding-left: 0.5rem;
+    margin-left: -0.5rem;
+  }
+
+  [dir="rtl"] body:not(:has(.hub-page)) .md-nav--secondary .md-nav__link--active {
+    border-left: none;
+    border-right: 2px solid var(--hub-cyan);
+    padding-right: 0.5rem;
+    margin-right: -0.5rem;
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+
+/* ── Copy button UX (#31) ────────────────────────────────────── */
+body:not(:has(.hub-page)) .md-clipboard {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.35rem;
+  transition: color 0.2s, background 0.2s;
+}
+
+body:not(:has(.hub-page)) .md-clipboard:hover {
+  color: var(--hub-cyan);
+}
+
+body:not(:has(.hub-page)) .md-clipboard.md-clipboard--active,
+body:not(:has(.hub-page)) .md-clipboard.copy-success {
+  color: #34d399 !important;
+}
+
+body:not(:has(.hub-page)) .md-code__nav {
+  padding: 0.35rem 0.5rem;
+}

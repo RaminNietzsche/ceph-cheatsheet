@@ -1,5 +1,6 @@
 /* Persian / Arabic-friendly UI font (loaded for fa locale pages) */
 @import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
 
 /* ── Theme tokens (aligned with hub homepage) ─────────────────── */
 :root {
@@ -26,10 +27,26 @@
   text-align: right;
 }
 
-[dir="rtl"] .md-typeset pre,
-[dir="rtl"] .md-typeset code {
+[dir="rtl"] .md-typeset pre {
   direction: ltr;
   text-align: left;
+}
+
+/* Inline code in RTL prose — bidi isolation (#18) */
+html[lang="fa"] .md-typeset :not(pre) > code,
+[dir="rtl"] .md-typeset :not(pre) > code {
+  direction: ltr;
+  display: inline-block;
+  unicode-bidi: embed;
+  text-align: left;
+  vertical-align: baseline;
+}
+
+html[lang="fa"] .md-typeset pre > code,
+[dir="rtl"] .md-typeset pre > code {
+  direction: ltr;
+  display: block;
+  unicode-bidi: normal;
 }
 
 /* Persian typography — Vazirmatn */
@@ -188,6 +205,21 @@ html[lang="fa"] .md-typeset h3,
 /* CLI sections */
 .badge-cli { background: #cffafe; color: #0e7490; border-color: #67e8f9; }
 [data-md-color-scheme="slate"] .badge-cli { background: rgba(14,116,144,.4); color: #67e8f9; }
+
+/* RGW CLI action badges (#23) */
+.badge-action-create { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+.badge-action-delete { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
+.badge-action-suspend { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+.badge-action-read { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
+.badge-action-quota { background: #f3e8ff; color: #6b21a8; border-color: #d8b4fe; }
+.badge-action-sync { background: #cffafe; color: #0e7490; border-color: #67e8f9; }
+
+[data-md-color-scheme="slate"] .badge-action-create { background: rgba(6,95,70,.45); color: #6ee7b7; }
+[data-md-color-scheme="slate"] .badge-action-delete { background: rgba(153,27,27,.45); color: #fca5a5; }
+[data-md-color-scheme="slate"] .badge-action-suspend { background: rgba(146,64,14,.45); color: #fcd34d; }
+[data-md-color-scheme="slate"] .badge-action-read { background: rgba(30,64,175,.45); color: #93c5fd; }
+[data-md-color-scheme="slate"] .badge-action-quota { background: rgba(107,33,168,.45); color: #d8b4fe; }
+[data-md-color-scheme="slate"] .badge-action-sync { background: rgba(14,116,144,.45); color: #67e8f9; }
 
 /* Config subsystems — distinct hues */
 .badge-cfg-global { background: #e0e7ff; color: #3730a3; border-color: #a5b4fc; }
