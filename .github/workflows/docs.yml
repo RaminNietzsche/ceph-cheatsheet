@@ -1,5 +1,12 @@
 name: Docs
 
+# Publish MkDocs to GitHub Pages (project site), then serve publicly at
+# http://blog.ceph-s3.ir/cheatsheet/ via Cloudflare reverse proxy to
+# https://raminnietzsche.github.io/ceph-cheatsheet/
+#
+# Do not set a custom domain on this repository — blog.ceph-s3.ir is proxied
+# at the /cheatsheet/ path only. MkDocs site_url matches the public URL.
+
 on:
   push:
     branches: [main, master]
@@ -15,6 +22,9 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  PUBLIC_SITE_URL: http://blog.ceph-s3.ir/cheatsheet/
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,8 +39,6 @@ jobs:
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
@@ -58,6 +66,10 @@ jobs:
           python3 scripts/fix-html-hrefs.py
           mkdocs build
 
+      - name: Verify site artifact
+        if: github.event_name != 'pull_request'
+        run: test -f site/index.html
+
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
@@ -70,7 +82,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ env.PUBLIC_SITE_URL }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
