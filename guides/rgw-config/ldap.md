@@ -1,15 +1,35 @@
 # LDAP authentication
 
-RGW config deep dive — 6 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 6 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_ldap_binddn](#rgw_ldap_binddn) | `uid=admin,cn=users,dc=example,dc=com` | Advanced |
-| [rgw_ldap_dnattr](#rgw_ldap_dnattr) | `uid` | Advanced |
-| [rgw_ldap_searchdn](#rgw_ldap_searchdn) | `cn=users,cn=accounts,dc=example,dc=com` | Advanced |
-| [rgw_ldap_searchfilter](#rgw_ldap_searchfilter) | `(empty)` | Advanced |
-| [rgw_ldap_secret](#rgw_ldap_secret) | `/etc/openldap/secret` | Advanced |
-| [rgw_ldap_uri](#rgw_ldap_uri) | `(empty)` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_ldap_binddn](#rgw_ldap_binddn) | `uid=admin,cn=users,dc=example,dc=com` | Advanced | Policy |
+| [rgw_ldap_dnattr](#rgw_ldap_dnattr) | `uid` | Advanced | Performance |
+| [rgw_ldap_searchdn](#rgw_ldap_searchdn) | `cn=users,cn=accounts,dc=example,dc=com` | Advanced | Performance |
+| [rgw_ldap_searchfilter](#rgw_ldap_searchfilter) | `(empty)` | Advanced | Performance |
+| [rgw_ldap_secret](#rgw_ldap_secret) | `/etc/openldap/secret` | Advanced | Policy |
+| [rgw_ldap_uri](#rgw_ldap_uri) | `(empty)` | Advanced | Connectivity |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -31,7 +51,13 @@ ceph config set client.rgw rgw_ldap_binddn uid=admin,cn=users,dc=example,dc=com
 ceph config get client.rgw rgw_ldap_binddn
 ```
 
-**Finding optimal value:** Start from upstream default (`uid=admin,cn=users,dc=example,dc=com`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Upstream default (`uid=admin,cn=users,dc=example,dc=com`) is the compatibility baseline.
+2. Change only for documented client or compliance requirements.
+3. Multisite: verify `rgw_admin_entry` and similar IDs stay at required values.
 
 ---
 
@@ -53,7 +79,23 @@ ceph config set client.rgw rgw_ldap_dnattr uid
 ceph config get client.rgw rgw_ldap_dnattr
 ```
 
-**Finding optimal value:** Start from upstream default (`uid`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `uid`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_ldap_dnattr
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -75,7 +117,23 @@ ceph config set client.rgw rgw_ldap_searchdn cn=users,cn=accounts,dc=example,dc=
 ceph config get client.rgw rgw_ldap_searchdn
 ```
 
-**Finding optimal value:** Start from upstream default (`cn=users,cn=accounts,dc=example,dc=com`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `cn=users,cn=accounts,dc=example,dc=com`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_ldap_searchdn
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -97,7 +155,23 @@ ceph config set client.rgw rgw_ldap_searchfilter <value>
 ceph config get client.rgw rgw_ldap_searchfilter
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_ldap_searchfilter
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -119,7 +193,13 @@ ceph config set client.rgw rgw_ldap_secret "/etc/openldap/secret"
 ceph config get client.rgw rgw_ldap_secret
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Not tuned numerically — supply from your secrets manager.
+2. Rotate on schedule; never store in git or plain `ceph.conf`.
+3. Use `ceph config set` at runtime or cephadm secrets where supported.
 
 ---
 
@@ -141,7 +221,22 @@ ceph config set client.rgw rgw_ldap_uri <value>
 ceph config get client.rgw rgw_ldap_uri
 ```
 
-**Finding optimal value:** Use the nearest stable endpoint reachable from every RGW node. Verify with curl from each host; measure p99 latency of dependent operations and keep the default (`(empty)`) if the integration is unused.
+**Finding optimal value:**
+
+**Tuning model:** Connectivity
+
+1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).
+2. From **each** RGW node: `curl -k <url>` or vendor health check.
+3. Pick the lowest-latency endpoint that stays healthy over 24h.
+4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).
+5. Leave empty (`(empty)`) if the integration is disabled.
+
+```bash
+ceph config get client.rgw rgw_ldap_uri
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 

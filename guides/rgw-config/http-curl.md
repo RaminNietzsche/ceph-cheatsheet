@@ -1,14 +1,34 @@
 # HTTP / libcurl
 
-RGW config deep dive — 5 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 5 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_curl_buffersize](#rgw_curl_buffersize) | `524288` | Dev |
-| [rgw_curl_low_speed_limit](#rgw_curl_low_speed_limit) | `1024` | Advanced |
-| [rgw_curl_low_speed_time](#rgw_curl_low_speed_time) | `5_min` | Advanced |
-| [rgw_curl_tcp_keepalive](#rgw_curl_tcp_keepalive) | `0` | Advanced |
-| [rgw_curl_wait_timeout_ms](#rgw_curl_wait_timeout_ms) | `1000` | Dev |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_curl_buffersize](#rgw_curl_buffersize) | `524288` | Dev | Performance |
+| [rgw_curl_low_speed_limit](#rgw_curl_low_speed_limit) | `1024` | Advanced | Policy |
+| [rgw_curl_low_speed_time](#rgw_curl_low_speed_time) | `5_min` | Advanced | Performance |
+| [rgw_curl_tcp_keepalive](#rgw_curl_tcp_keepalive) | `0` | Advanced | Architecture |
+| [rgw_curl_wait_timeout_ms](#rgw_curl_wait_timeout_ms) | `1000` | Dev | Performance |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -28,7 +48,25 @@ ceph config set client.rgw rgw_curl_buffersize 524288
 ceph config get client.rgw rgw_curl_buffersize
 ```
 
-**Finding optimal value:** Keep the upstream default (`524288`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `524288`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_curl_buffersize
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+**Bounds:** min `1024`, max `524288`.
 
 ---
 
@@ -48,7 +86,13 @@ ceph config set client.rgw rgw_curl_low_speed_limit 1024
 ceph config get client.rgw rgw_curl_low_speed_limit
 ```
 
-**Finding optimal value:** Start from upstream default (`1024`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Upstream default (`1024`) is the compatibility baseline.
+2. Change only for documented client or compliance requirements.
+3. Multisite: verify `rgw_admin_entry` and similar IDs stay at required values.
 
 ---
 
@@ -68,7 +112,23 @@ ceph config set client.rgw rgw_curl_low_speed_time 5_min
 ceph config get client.rgw rgw_curl_low_speed_time
 ```
 
-**Finding optimal value:** Start from upstream default (`5_min`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `5_min`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_curl_low_speed_time
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -88,7 +148,13 @@ ceph config set client.rgw rgw_curl_tcp_keepalive 0
 ceph config get client.rgw rgw_curl_tcp_keepalive
 ```
 
-**Finding optimal value:** Choose from valid values ["0", "1"]. Default `0` is optimal unless your backend or integration requires another value.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Valid values: ["0", "1"].
+2. Default `0` matches standard Ceph packaging.
+3. Change only when your integration or backend explicitly requires another value.
 
 ---
 
@@ -108,7 +174,22 @@ ceph config set client.rgw rgw_curl_wait_timeout_ms 1000
 ceph config get client.rgw rgw_curl_wait_timeout_ms
 ```
 
-**Finding optimal value:** Keep the upstream default (`1000`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `1000` suits LAN RTT; WAN needs higher values.
+2. **Increase** when logs show client/broker timeouts under load.
+3. **Decrease** to fail fast and trigger retries upstream.
+
+**Signals:** `curl`/`aws` timeout errors, Kafka/HTTP notification failures.
+
+```bash
+ceph config get client.rgw rgw_curl_wait_timeout_ms
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 

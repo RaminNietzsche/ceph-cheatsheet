@@ -1,21 +1,41 @@
 # Lifecycle (LC) workers
 
-RGW config deep dive — 12 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 12 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_lc_counters_batch_size](#rgw_lc_counters_batch_size) | `5000` | Advanced |
-| [rgw_lc_counters_cache](#rgw_lc_counters_cache) | `False` | Advanced |
-| [rgw_lc_counters_cache_size](#rgw_lc_counters_cache_size) | `10000` | Advanced |
-| [rgw_lc_debug_interval](#rgw_lc_debug_interval) | `-1` | Dev |
-| [rgw_lc_list_cnt](#rgw_lc_list_cnt) | `1000` | Dev |
-| [rgw_lc_lock_max_time](#rgw_lc_lock_max_time) | `90` | Dev |
-| [rgw_lc_max_objs](#rgw_lc_max_objs) | `32` | Advanced |
-| [rgw_lc_max_rules](#rgw_lc_max_rules) | `1000` | Advanced |
-| [rgw_lc_max_worker](#rgw_lc_max_worker) | `3` | Advanced |
-| [rgw_lc_max_wp_worker](#rgw_lc_max_wp_worker) | `128` | Advanced |
-| [rgw_lc_ordered_list_threshold](#rgw_lc_ordered_list_threshold) | `500` | Dev |
-| [rgw_lc_thread_delay](#rgw_lc_thread_delay) | `0` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_lc_counters_batch_size](#rgw_lc_counters_batch_size) | `5000` | Advanced | Performance |
+| [rgw_lc_counters_cache](#rgw_lc_counters_cache) | `False` | Advanced | Performance |
+| [rgw_lc_counters_cache_size](#rgw_lc_counters_cache_size) | `10000` | Advanced | Performance |
+| [rgw_lc_debug_interval](#rgw_lc_debug_interval) | `-1` | Dev | Dev |
+| [rgw_lc_list_cnt](#rgw_lc_list_cnt) | `1000` | Dev | Performance |
+| [rgw_lc_lock_max_time](#rgw_lc_lock_max_time) | `90` | Dev | Policy |
+| [rgw_lc_max_objs](#rgw_lc_max_objs) | `32` | Advanced | Policy |
+| [rgw_lc_max_rules](#rgw_lc_max_rules) | `1000` | Advanced | Policy |
+| [rgw_lc_max_worker](#rgw_lc_max_worker) | `3` | Advanced | Performance |
+| [rgw_lc_max_wp_worker](#rgw_lc_max_wp_worker) | `128` | Advanced | Policy |
+| [rgw_lc_ordered_list_threshold](#rgw_lc_ordered_list_threshold) | `500` | Dev | Performance |
+| [rgw_lc_thread_delay](#rgw_lc_thread_delay) | `0` | Advanced | Performance |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -37,7 +57,25 @@ ceph config set client.rgw rgw_lc_counters_batch_size 5000
 ceph config get client.rgw rgw_lc_counters_batch_size
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`5000`) matches S3 compatibility for most workloads. Valid range: min=1, max=—.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `5000`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_lc_counters_batch_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+**Bounds:** min `1`, max `—`.
 
 ---
 
@@ -59,7 +97,13 @@ ceph config set client.rgw rgw_lc_counters_cache False
 ceph config get client.rgw rgw_lc_counters_cache
 ```
 
-**Finding optimal value:** Enable only when the related metrics or correctness path needs it. Default (`False`) is usually optimal for standard deployments.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `False` — enable only when you consume the related per-label metrics.
+2. If enabling, set the paired `*_cache_size` to match monitored entities.
+3. Disable if memory is constrained and metrics are unused.
 
 ---
 
@@ -72,7 +116,10 @@ ceph config get client.rgw rgw_lc_counters_cache
 
 **What it does:** Target size for lifecycle counters cache
 
-**When to use:** Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure.
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
 
 **Example:**
 
@@ -81,7 +128,22 @@ ceph config set client.rgw rgw_lc_counters_cache_size 10000
 ceph config get client.rgw rgw_lc_counters_cache_size
 ```
 
-**Finding optimal value:** Size to active working set (accounts, buckets, or keys you monitor). Sweep around default (`10000`) while watching RGW RSS.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Size to the **active** working set (monitored buckets/users/tokens), not total catalog size.
+2. Start at `10000`; sweep upward in ~2× steps.
+3. Watch RGW RSS and cache hit behavior; use smallest size that avoids hot-path misses.
+
+**Signals:** rising RGW memory, repeated metadata lookups in logs.
+
+```bash
+ceph config get client.rgw rgw_lc_counters_cache_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -94,7 +156,10 @@ ceph config get client.rgw rgw_lc_counters_cache_size
 
 **What it does:** The number of seconds that simulate one "day" in order to debug RGW LifeCycle. Do *not* modify for a production cluster.
 
-**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+**When to use:**
+
+- **Shorten** for fresher stats or faster enforcement.
+- **Lengthen** to reduce background sync or GC cost.
 
 **Example:**
 
@@ -103,7 +168,15 @@ ceph config set client.rgw rgw_lc_debug_interval -1
 ceph config get client.rgw rgw_lc_debug_interval
 ```
 
-**Finding optimal value:** Keep the upstream default (`-1`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`-1`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 
@@ -125,7 +198,25 @@ ceph config set client.rgw rgw_lc_list_cnt 1000
 ceph config get client.rgw rgw_lc_list_cnt
 ```
 
-**Finding optimal value:** Keep the upstream default (`1000`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `1000`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_lc_list_cnt
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+**Bounds:** min `100`, max `—`.
 
 ---
 
@@ -145,7 +236,13 @@ ceph config set client.rgw rgw_lc_lock_max_time 90
 ceph config get client.rgw rgw_lc_lock_max_time
 ```
 
-**Finding optimal value:** Keep the upstream default (`90`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `90` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -167,7 +264,13 @@ ceph config set client.rgw rgw_lc_max_objs 32
 ceph config get client.rgw rgw_lc_max_objs
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`32`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `32` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -189,7 +292,13 @@ ceph config set client.rgw rgw_lc_max_rules 1000
 ceph config get client.rgw rgw_lc_max_rules
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`1000`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `1000` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -211,7 +320,23 @@ ceph config set client.rgw rgw_lc_max_worker 3
 ceph config get client.rgw rgw_lc_max_worker
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`3`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `3`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_lc_max_worker
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -233,7 +358,13 @@ ceph config set client.rgw rgw_lc_max_wp_worker 128
 ceph config get client.rgw rgw_lc_max_wp_worker
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`128`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `128` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -255,7 +386,25 @@ ceph config set client.rgw rgw_lc_ordered_list_threshold 500
 ceph config get client.rgw rgw_lc_ordered_list_threshold
 ```
 
-**Finding optimal value:** Keep the upstream default (`500`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `500`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_lc_ordered_list_threshold
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+**Bounds:** min `0`, max `—`.
 
 ---
 
@@ -277,7 +426,23 @@ ceph config set client.rgw rgw_lc_thread_delay 0
 ceph config get client.rgw rgw_lc_thread_delay
 ```
 
-**Finding optimal value:** Start from upstream default (`0`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `0`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_lc_thread_delay
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 

@@ -1,10 +1,30 @@
 # Object expiry hints
 
-RGW config deep dive — 1 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 1 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_objexp_hints_num_shards](#rgw_objexp_hints_num_shards) | `127` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_objexp_hints_num_shards](#rgw_objexp_hints_num_shards) | `127` | Advanced | Policy |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -26,7 +46,13 @@ ceph config set client.rgw rgw_objexp_hints_num_shards 127
 ceph config get client.rgw rgw_objexp_hints_num_shards
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`127`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `127` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 

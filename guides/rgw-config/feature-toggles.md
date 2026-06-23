@@ -1,19 +1,39 @@
 # Feature toggles
 
-RGW config deep dive — 10 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 10 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_disable_s3select](#rgw_disable_s3select) | `False` | Advanced |
-| [rgw_enable_apis](#rgw_enable_apis) | `s3, s3control, s3website, swift, swift_auth, admin, sts, iam, notifications` | Advanced |
-| [rgw_enable_gc_threads](#rgw_enable_gc_threads) | `True` | Advanced |
-| [rgw_enable_jwks_url_verification](#rgw_enable_jwks_url_verification) | `False` | Advanced |
-| [rgw_enable_lc_threads](#rgw_enable_lc_threads) | `True` | Advanced |
-| [rgw_enable_mdsearch](#rgw_enable_mdsearch) | `True` | Basic |
-| [rgw_enable_ops_log](#rgw_enable_ops_log) | `False` | Advanced |
-| [rgw_enable_restore_threads](#rgw_enable_restore_threads) | `True` | Advanced |
-| [rgw_enable_static_website](#rgw_enable_static_website) | `False` | Basic |
-| [rgw_enable_usage_log](#rgw_enable_usage_log) | `False` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_disable_s3select](#rgw_disable_s3select) | `False` | Advanced | Policy |
+| [rgw_enable_apis](#rgw_enable_apis) | `s3, s3control, s3website, swift, swift_auth, admin, sts, iam, notifications` | Advanced | Performance |
+| [rgw_enable_gc_threads](#rgw_enable_gc_threads) | `True` | Advanced | Policy |
+| [rgw_enable_jwks_url_verification](#rgw_enable_jwks_url_verification) | `False` | Advanced | Policy |
+| [rgw_enable_lc_threads](#rgw_enable_lc_threads) | `True` | Advanced | Policy |
+| [rgw_enable_mdsearch](#rgw_enable_mdsearch) | `True` | Basic | Policy |
+| [rgw_enable_ops_log](#rgw_enable_ops_log) | `False` | Advanced | Policy |
+| [rgw_enable_restore_threads](#rgw_enable_restore_threads) | `True` | Advanced | Policy |
+| [rgw_enable_static_website](#rgw_enable_static_website) | `False` | Basic | Policy |
+| [rgw_enable_usage_log](#rgw_enable_usage_log) | `False` | Advanced | Policy |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -35,7 +55,13 @@ ceph config set client.rgw rgw_disable_s3select False
 ceph config get client.rgw rgw_disable_s3select
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -57,7 +83,23 @@ ceph config set client.rgw rgw_enable_apis "s3, s3control, s3website, swift, swi
 ceph config get client.rgw rgw_enable_apis
 ```
 
-**Finding optimal value:** Start from upstream default (`s3, s3control, s3website, swift, swift_auth, admin, sts, iam, notifications`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `s3, s3control, s3website, swift, swift_auth, admin, sts, iam, notifications`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_enable_apis
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -79,7 +121,13 @@ ceph config set client.rgw rgw_enable_gc_threads True
 ceph config get client.rgw rgw_enable_gc_threads
 ```
 
-**Finding optimal value:** Enable when the feature is required; otherwise keep default (`True`) to minimize background threads and memory.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -101,7 +149,13 @@ ceph config set client.rgw rgw_enable_jwks_url_verification False
 ceph config get client.rgw rgw_enable_jwks_url_verification
 ```
 
-**Finding optimal value:** Enable when the feature is required; otherwise keep default (`False`) to minimize background threads and memory.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -123,7 +177,13 @@ ceph config set client.rgw rgw_enable_lc_threads True
 ceph config get client.rgw rgw_enable_lc_threads
 ```
 
-**Finding optimal value:** Enable when the feature is required; otherwise keep default (`True`) to minimize background threads and memory.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -145,7 +205,13 @@ ceph config set client.rgw rgw_enable_mdsearch True
 ceph config get client.rgw rgw_enable_mdsearch
 ```
 
-**Finding optimal value:** Enable when the feature is required; otherwise keep default (`True`) to minimize background threads and memory.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -167,7 +233,13 @@ ceph config set client.rgw rgw_enable_ops_log False
 ceph config get client.rgw rgw_enable_ops_log
 ```
 
-**Finding optimal value:** Enable when the feature is required; otherwise keep default (`False`) to minimize background threads and memory.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -189,7 +261,13 @@ ceph config set client.rgw rgw_enable_restore_threads True
 ceph config get client.rgw rgw_enable_restore_threads
 ```
 
-**Finding optimal value:** Enable when the feature is required; otherwise keep default (`True`) to minimize background threads and memory.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -211,7 +289,13 @@ ceph config set client.rgw rgw_enable_static_website False
 ceph config get client.rgw rgw_enable_static_website
 ```
 
-**Finding optimal value:** Enable when the feature is required; otherwise keep default (`False`) to minimize background threads and memory.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -233,7 +317,13 @@ ceph config set client.rgw rgw_enable_usage_log False
 ceph config get client.rgw rgw_enable_usage_log
 ```
 
-**Finding optimal value:** Enable when the feature is required; otherwise keep default (`False`) to minimize background threads and memory.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 

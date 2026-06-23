@@ -1,81 +1,234 @@
 # General RGW options
 
-RGW config deep dive — 50 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 54 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_config_store](#rgw_config_store) | `rados` | Advanced |
-| [rgw_content_length_compat](#rgw_content_length_compat) | `False` | Advanced |
-| [rgw_cors_rules_max_num](#rgw_cors_rules_max_num) | `100` | Advanced |
-| [rgw_cross_domain_policy](#rgw_cross_domain_policy) | `<allow-access-from domain="*" secure="false" />` | Advanced |
-| [rgw_data](#rgw_data) | `/var/lib/ceph/radosgw/$cluster-$id` | Advanced |
-| [rgw_dedup_min_obj_size_for_dedup](#rgw_dedup_min_obj_size_for_dedup) | `64_K` | Advanced |
-| [rgw_dedup_split_obj_head](#rgw_dedup_split_obj_head) | `True` | Advanced |
-| [rgw_default_realm_info_oid](#rgw_default_realm_info_oid) | `default.realm` | Advanced |
-| [rgw_default_region_info_oid](#rgw_default_region_info_oid) | `default.region` | Advanced |
-| [rgw_default_zone_info_oid](#rgw_default_zone_info_oid) | `default.zone` | Advanced |
-| [rgw_default_zonegroup_info_oid](#rgw_default_zonegroup_info_oid) | `default.zonegroup` | Advanced |
-| [rgw_defer_to_bucket_acls](#rgw_defer_to_bucket_acls) | `(empty)` | Advanced |
-| [rgw_enforce_swift_acls](#rgw_enforce_swift_acls) | `True` | Advanced |
-| [rgw_expose_bucket](#rgw_expose_bucket) | `False` | Advanced |
-| [rgw_extended_http_attrs](#rgw_extended_http_attrs) | `(empty)` | Advanced |
-| [rgw_filter](#rgw_filter) | `none` | Advanced |
-| [rgw_graceful_stop](#rgw_graceful_stop) | `False` | Advanced |
-| [rgw_healthcheck_disabling_path](#rgw_healthcheck_disabling_path) | `(empty)` | Dev |
-| [rgw_ignore_get_invalid_range](#rgw_ignore_get_invalid_range) | `False` | Advanced |
-| [rgw_json_config](#rgw_json_config) | `/var/lib/ceph/radosgw/config.json` | Advanced |
-| [rgw_lifecycle_work_time](#rgw_lifecycle_work_time) | `00:00-06:00` | Advanced |
-| [rgw_mime_types_file](#rgw_mime_types_file) | `/etc/mime.types` | Basic |
-| [rgw_mp_lock_max_time](#rgw_mp_lock_max_time) | `10_min` | Advanced |
-| [rgw_numa_node](#rgw_numa_node) | `-1` | Advanced |
-| [rgw_op_tracing](#rgw_op_tracing) | `False` | Advanced |
-| [rgw_override_bucket_index_max_shards](#rgw_override_bucket_index_max_shards) | `0` | Dev |
-| [rgw_parquet_buffer_size](#rgw_parquet_buffer_size) | `16_M` | Advanced |
-| [rgw_pending_bucket_index_op_expiration](#rgw_pending_bucket_index_op_expiration) | `120` | Advanced |
-| [rgw_policy_reject_invalid_principals](#rgw_policy_reject_invalid_principals) | `True` | Basic |
-| [rgw_print_continue](#rgw_print_continue) | `True` | Advanced |
-| [rgw_print_prohibited_content_length](#rgw_print_prohibited_content_length) | `False` | Advanced |
-| [rgw_rados_pool_autoscale_bias](#rgw_rados_pool_autoscale_bias) | `4` | Advanced |
-| [rgw_rados_pool_recovery_priority](#rgw_rados_pool_recovery_priority) | `5` | Advanced |
-| [rgw_rados_tracing](#rgw_rados_tracing) | `False` | Advanced |
-| [rgw_relaxed_region_enforcement](#rgw_relaxed_region_enforcement) | `False` | Advanced |
-| [rgw_relaxed_s3_bucket_names](#rgw_relaxed_s3_bucket_names) | `False` | Advanced |
-| [rgw_relaxed_topic_names](#rgw_relaxed_topic_names) | `False` | Advanced |
-| [rgw_remote_addr_param](#rgw_remote_addr_param) | `REMOTE_ADDR` | Advanced |
-| [rgw_request_uri](#rgw_request_uri) | `(empty)` | Dev |
-| [rgw_resolve_cname](#rgw_resolve_cname) | `False` | Advanced |
-| [rgw_restore_lock_max_time](#rgw_restore_lock_max_time) | `90` | Dev |
-| [rgw_safe_max_objects_per_shard](#rgw_safe_max_objects_per_shard) | `102400` | Advanced |
-| [rgw_script_uri](#rgw_script_uri) | `(empty)` | Dev |
-| [rgw_service_provider_name](#rgw_service_provider_name) | `(empty)` | Advanced |
-| [rgw_shard_warning_threshold](#rgw_shard_warning_threshold) | `90` | Advanced |
-| [rgw_topic_require_publish_policy](#rgw_topic_require_publish_policy) | `False` | Basic |
-| [rgw_trust_forwarded_https](#rgw_trust_forwarded_https) | `False` | Advanced |
-| [rgw_use_opa_authz](#rgw_use_opa_authz) | `False` | Advanced |
-| [rgw_verify_ssl](#rgw_verify_ssl) | `True` | Advanced |
-| [rgw_website_routing_rules_max_num](#rgw_website_routing_rules_max_num) | `50` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_acl_grants_max_num](#rgw_acl_grants_max_num) | `100` | Advanced | Policy |
+| [rgw_admin_entry](#rgw_admin_entry) | `admin` | Advanced | Policy |
+| [rgw_asio_assert_yielding](#rgw_asio_assert_yielding) | `False` | Dev | Dev |
+| [rgw_barbican_url](#rgw_barbican_url) | `(empty)` | Advanced | Connectivity |
+| [rgw_beast_enable_async](#rgw_beast_enable_async) | `True` | Dev | Policy |
+| [rgw_content_length_compat](#rgw_content_length_compat) | `False` | Advanced | Policy |
+| [rgw_cors_rules_max_num](#rgw_cors_rules_max_num) | `100` | Advanced | Policy |
+| [rgw_cross_domain_policy](#rgw_cross_domain_policy) | `<allow-access-from domain="*" secure="false" />` | Advanced | Performance |
+| [rgw_data](#rgw_data) | `/var/lib/ceph/radosgw/$cluster-$id` | Advanced | Performance |
+| [rgw_dedup_min_obj_size_for_dedup](#rgw_dedup_min_obj_size_for_dedup) | `64_K` | Advanced | Performance |
+| [rgw_dedup_split_obj_head](#rgw_dedup_split_obj_head) | `True` | Advanced | Policy |
+| [rgw_default_realm_info_oid](#rgw_default_realm_info_oid) | `default.realm` | Advanced | Performance |
+| [rgw_default_region_info_oid](#rgw_default_region_info_oid) | `default.region` | Advanced | Performance |
+| [rgw_default_zone_info_oid](#rgw_default_zone_info_oid) | `default.zone` | Advanced | Performance |
+| [rgw_default_zonegroup_info_oid](#rgw_default_zonegroup_info_oid) | `default.zonegroup` | Advanced | Performance |
+| [rgw_defer_to_bucket_acls](#rgw_defer_to_bucket_acls) | `(empty)` | Advanced | Performance |
+| [rgw_enforce_swift_acls](#rgw_enforce_swift_acls) | `True` | Advanced | Policy |
+| [rgw_expose_bucket](#rgw_expose_bucket) | `False` | Advanced | Policy |
+| [rgw_extended_http_attrs](#rgw_extended_http_attrs) | `(empty)` | Advanced | Performance |
+| [rgw_filter](#rgw_filter) | `none` | Advanced | Architecture |
+| [rgw_graceful_stop](#rgw_graceful_stop) | `False` | Advanced | Policy |
+| [rgw_healthcheck_disabling_path](#rgw_healthcheck_disabling_path) | `(empty)` | Dev | Capacity |
+| [rgw_ignore_get_invalid_range](#rgw_ignore_get_invalid_range) | `False` | Advanced | Policy |
+| [rgw_json_config](#rgw_json_config) | `/var/lib/ceph/radosgw/config.json` | Advanced | Performance |
+| [rgw_lifecycle_work_time](#rgw_lifecycle_work_time) | `00:00-06:00` | Advanced | Performance |
+| [rgw_mime_types_file](#rgw_mime_types_file) | `/etc/mime.types` | Basic | Capacity |
+| [rgw_mp_lock_max_time](#rgw_mp_lock_max_time) | `10_min` | Advanced | Policy |
+| [rgw_numa_node](#rgw_numa_node) | `-1` | Advanced | Policy |
+| [rgw_op_tracing](#rgw_op_tracing) | `False` | Advanced | Policy |
+| [rgw_override_bucket_index_max_shards](#rgw_override_bucket_index_max_shards) | `0` | Dev | Policy |
+| [rgw_parquet_buffer_size](#rgw_parquet_buffer_size) | `16_M` | Advanced | Performance |
+| [rgw_pending_bucket_index_op_expiration](#rgw_pending_bucket_index_op_expiration) | `120` | Advanced | Performance |
+| [rgw_policy_reject_invalid_principals](#rgw_policy_reject_invalid_principals) | `True` | Basic | Policy |
+| [rgw_print_continue](#rgw_print_continue) | `True` | Advanced | Policy |
+| [rgw_print_prohibited_content_length](#rgw_print_prohibited_content_length) | `False` | Advanced | Policy |
+| [rgw_rados_pool_autoscale_bias](#rgw_rados_pool_autoscale_bias) | `4` | Advanced | Performance |
+| [rgw_rados_pool_recovery_priority](#rgw_rados_pool_recovery_priority) | `5` | Advanced | Performance |
+| [rgw_rados_tracing](#rgw_rados_tracing) | `False` | Advanced | Policy |
+| [rgw_relaxed_region_enforcement](#rgw_relaxed_region_enforcement) | `False` | Advanced | Policy |
+| [rgw_relaxed_s3_bucket_names](#rgw_relaxed_s3_bucket_names) | `False` | Advanced | Policy |
+| [rgw_relaxed_topic_names](#rgw_relaxed_topic_names) | `False` | Advanced | Policy |
+| [rgw_remote_addr_param](#rgw_remote_addr_param) | `REMOTE_ADDR` | Advanced | Performance |
+| [rgw_request_uri](#rgw_request_uri) | `(empty)` | Dev | Connectivity |
+| [rgw_resolve_cname](#rgw_resolve_cname) | `False` | Advanced | Policy |
+| [rgw_restore_lock_max_time](#rgw_restore_lock_max_time) | `90` | Dev | Policy |
+| [rgw_safe_max_objects_per_shard](#rgw_safe_max_objects_per_shard) | `102400` | Advanced | Policy |
+| [rgw_script_uri](#rgw_script_uri) | `(empty)` | Dev | Connectivity |
+| [rgw_service_provider_name](#rgw_service_provider_name) | `(empty)` | Advanced | Performance |
+| [rgw_shard_warning_threshold](#rgw_shard_warning_threshold) | `90` | Advanced | Performance |
+| [rgw_topic_require_publish_policy](#rgw_topic_require_publish_policy) | `False` | Basic | Policy |
+| [rgw_trust_forwarded_https](#rgw_trust_forwarded_https) | `False` | Advanced | Policy |
+| [rgw_use_opa_authz](#rgw_use_opa_authz) | `False` | Advanced | Policy |
+| [rgw_verify_ssl](#rgw_verify_ssl) | `True` | Advanced | Policy |
+| [rgw_website_routing_rules_max_num](#rgw_website_routing_rules_max_num) | `50` | Advanced | Policy |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
-### rgw_config_store
+### rgw_acl_grants_max_num
 
 | | |
 |---|---|
-| Type | Str · default `rados` · **Advanced** |
-| Table | [rgw.md#SP_rgw_config_store](../../config/rgw/rgw.md#SP_rgw_config_store) |
+| Type | Int · default `100` · **Advanced** |
+| Table | [rgw.md#SP_rgw_acl_grants_max_num](../../config/rgw/rgw.md#SP_rgw_acl_grants_max_num) |
 
-**What it does:** Configuration storage backend
+**What it does:** The maximum number of ACL grants in a single request.
+
+**When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_acl_grants_max_num 100
+ceph config get client.rgw rgw_acl_grants_max_num
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `100` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
+
+---
+
+### rgw_admin_entry
+
+| | |
+|---|---|
+| Type | Str · default `admin` · **Advanced** |
+| Table | [rgw.md#SP_rgw_admin_entry](../../config/rgw/rgw.md#SP_rgw_admin_entry) |
+
+**What it does:** Path prefix to be used for accessing RGW RESTful admin API.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_config_store rados
-ceph config get client.rgw rgw_config_store
+ceph config set client.rgw rgw_admin_entry admin
+ceph config get client.rgw rgw_admin_entry
 ```
 
-**Finding optimal value:** Choose from valid values ["rados", "dbstore", "json"]. Default `rados` is optimal unless your backend or integration requires another value.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Upstream default (`admin`) is the compatibility baseline.
+2. Change only for documented client or compliance requirements.
+3. Multisite: verify `rgw_admin_entry` and similar IDs stay at required values.
+
+---
+
+### rgw_asio_assert_yielding
+
+| | |
+|---|---|
+| Type | Bool · default `False` · **Dev** |
+| Table | [rgw.md#SP_rgw_asio_assert_yielding](../../config/rgw/rgw.md#SP_rgw_asio_assert_yielding) |
+
+**What it does:** Trigger an assertion failure if an operation would block an asio thread
+
+**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_asio_assert_yielding False
+ceph config get client.rgw rgw_asio_assert_yielding
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`False`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
+
+---
+
+### rgw_barbican_url
+
+| | |
+|---|---|
+| Type | Str · default `(empty)` · **Advanced** |
+| Table | [rgw.md#SP_rgw_barbican_url](../../config/rgw/rgw.md#SP_rgw_barbican_url) |
+
+**What it does:** URL to barbican server.
+
+**When to use:** Set when integrating with an external service; leave empty if the feature is unused.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_barbican_url <value>
+ceph config get client.rgw rgw_barbican_url
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Connectivity
+
+1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).
+2. From **each** RGW node: `curl -k <url>` or vendor health check.
+3. Pick the lowest-latency endpoint that stays healthy over 24h.
+4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).
+5. Leave empty (`(empty)`) if the integration is disabled.
+
+```bash
+ceph config get client.rgw rgw_barbican_url
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+---
+
+### rgw_beast_enable_async
+
+| | |
+|---|---|
+| Type | Bool · default `True` · **Dev** |
+| Table | [rgw.md#SP_rgw_beast_enable_async](../../config/rgw/rgw.md#SP_rgw_beast_enable_async) |
+
+**What it does:** Enable async request processing under beast using coroutines
+
+**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_beast_enable_async True
+ceph config get client.rgw rgw_beast_enable_async
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -97,7 +250,13 @@ ceph config set client.rgw rgw_content_length_compat False
 ceph config get client.rgw rgw_content_length_compat
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -119,7 +278,13 @@ ceph config set client.rgw rgw_cors_rules_max_num 100
 ceph config get client.rgw rgw_cors_rules_max_num
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`100`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `100` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -141,7 +306,23 @@ ceph config set client.rgw rgw_cross_domain_policy "<allow-access-from domain="*
 ceph config get client.rgw rgw_cross_domain_policy
 ```
 
-**Finding optimal value:** Start from upstream default (`<allow-access-from domain="*" secure="false" />`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `<allow-access-from domain="*" secure="false" />`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_cross_domain_policy
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -163,7 +344,23 @@ ceph config set client.rgw rgw_data "/var/lib/ceph/radosgw/$cluster-$id"
 ceph config get client.rgw rgw_data
 ```
 
-**Finding optimal value:** Start from upstream default (`/var/lib/ceph/radosgw/$cluster-$id`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `/var/lib/ceph/radosgw/$cluster-$id`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_data
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -185,7 +382,23 @@ ceph config set client.rgw rgw_dedup_min_obj_size_for_dedup 64_K
 ceph config get client.rgw rgw_dedup_min_obj_size_for_dedup
 ```
 
-**Finding optimal value:** Start from upstream default (`64_K`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `64_K`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_dedup_min_obj_size_for_dedup
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -207,7 +420,13 @@ ceph config set client.rgw rgw_dedup_split_obj_head True
 ceph config get client.rgw rgw_dedup_split_obj_head
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`True`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -227,7 +446,23 @@ ceph config set client.rgw rgw_default_realm_info_oid default.realm
 ceph config get client.rgw rgw_default_realm_info_oid
 ```
 
-**Finding optimal value:** Start from upstream default (`default.realm`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `default.realm`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_default_realm_info_oid
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -249,7 +484,23 @@ ceph config set client.rgw rgw_default_region_info_oid default.region
 ceph config get client.rgw rgw_default_region_info_oid
 ```
 
-**Finding optimal value:** Start from upstream default (`default.region`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `default.region`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_default_region_info_oid
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -271,7 +522,23 @@ ceph config set client.rgw rgw_default_zone_info_oid default.zone
 ceph config get client.rgw rgw_default_zone_info_oid
 ```
 
-**Finding optimal value:** Start from upstream default (`default.zone`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `default.zone`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_default_zone_info_oid
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -291,7 +558,23 @@ ceph config set client.rgw rgw_default_zonegroup_info_oid default.zonegroup
 ceph config get client.rgw rgw_default_zonegroup_info_oid
 ```
 
-**Finding optimal value:** Start from upstream default (`default.zonegroup`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `default.zonegroup`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_default_zonegroup_info_oid
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -313,7 +596,23 @@ ceph config set client.rgw rgw_defer_to_bucket_acls <value>
 ceph config get client.rgw rgw_defer_to_bucket_acls
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_defer_to_bucket_acls
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -335,7 +634,13 @@ ceph config set client.rgw rgw_enforce_swift_acls True
 ceph config get client.rgw rgw_enforce_swift_acls
 ```
 
-**Finding optimal value:** Security/compliance setting — prefer `true` in production unless a trusted lab requires `True`.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -357,7 +662,13 @@ ceph config set client.rgw rgw_expose_bucket False
 ceph config get client.rgw rgw_expose_bucket
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -379,7 +690,23 @@ ceph config set client.rgw rgw_extended_http_attrs <value>
 ceph config get client.rgw rgw_extended_http_attrs
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_extended_http_attrs
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -401,7 +728,13 @@ ceph config set client.rgw rgw_filter none
 ceph config get client.rgw rgw_filter
 ```
 
-**Finding optimal value:** Choose from valid values ["none", "base", "d4n"]. Default `none` is optimal unless your backend or integration requires another value.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Valid values: ["none", "base", "d4n"].
+2. Default `none` matches standard Ceph packaging.
+3. Change only when your integration or backend explicitly requires another value.
 
 ---
 
@@ -423,7 +756,13 @@ ceph config set client.rgw rgw_graceful_stop False
 ceph config get client.rgw rgw_graceful_stop
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -445,7 +784,19 @@ ceph config set client.rgw rgw_healthcheck_disabling_path <value>
 ceph config get client.rgw rgw_healthcheck_disabling_path
 ```
 
-**Finding optimal value:** Keep the upstream default (`(empty)`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Capacity
+
+1. Prefer a dedicated volume (NVMe/SSD) — not the root filesystem.
+2. Size for metadata growth + 30% free space (`df -h`, `iowait`).
+3. Default path (`(empty)`) is fine when it already sits on fast storage.
+4. dbstore/POSIX: all RGW instances sharing data must see the same path.
+
+```bash
+df -h $(ceph config get client.rgw rgw_healthcheck_disabling_path)
+iostat -x 5  # disk saturation
+```
 
 ---
 
@@ -467,7 +818,13 @@ ceph config set client.rgw rgw_ignore_get_invalid_range False
 ceph config get client.rgw rgw_ignore_get_invalid_range
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -489,7 +846,23 @@ ceph config set client.rgw rgw_json_config "/var/lib/ceph/radosgw/config.json"
 ceph config get client.rgw rgw_json_config
 ```
 
-**Finding optimal value:** Start from upstream default (`/var/lib/ceph/radosgw/config.json`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `/var/lib/ceph/radosgw/config.json`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_json_config
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -511,7 +884,23 @@ ceph config set client.rgw rgw_lifecycle_work_time 00:00-06:00
 ceph config get client.rgw rgw_lifecycle_work_time
 ```
 
-**Finding optimal value:** Start from upstream default (`00:00-06:00`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `00:00-06:00`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_lifecycle_work_time
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -533,7 +922,19 @@ ceph config set client.rgw rgw_mime_types_file "/etc/mime.types"
 ceph config get client.rgw rgw_mime_types_file
 ```
 
-**Finding optimal value:** Place on fast, dedicated storage with sufficient free space. Default (`/etc/mime.types`) is fine when that path is on a separate volume.
+**Finding optimal value:**
+
+**Tuning model:** Capacity
+
+1. Prefer a dedicated volume (NVMe/SSD) — not the root filesystem.
+2. Size for metadata growth + 30% free space (`df -h`, `iowait`).
+3. Default path (`/etc/mime.types`) is fine when it already sits on fast storage.
+4. dbstore/POSIX: all RGW instances sharing data must see the same path.
+
+```bash
+df -h $(ceph config get client.rgw rgw_mime_types_file)
+iostat -x 5  # disk saturation
+```
 
 ---
 
@@ -555,7 +956,15 @@ ceph config set client.rgw rgw_mp_lock_max_time 10_min
 ceph config get client.rgw rgw_mp_lock_max_time
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`10_min`) matches S3 compatibility for most workloads. Valid range: min=2_min, max=—.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `10_min` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
+
+**Bounds:** min `2_min`, max `—`.
 
 ---
 
@@ -578,7 +987,13 @@ ceph config get client.rgw rgw_numa_node
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`-1`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `-1` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -600,7 +1015,13 @@ ceph config set client.rgw rgw_op_tracing False
 ceph config get client.rgw rgw_op_tracing
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -622,7 +1043,13 @@ ceph config set client.rgw rgw_override_bucket_index_max_shards 0
 ceph config get client.rgw rgw_override_bucket_index_max_shards
 ```
 
-**Finding optimal value:** Keep the upstream default (`0`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `0` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -644,7 +1071,23 @@ ceph config set client.rgw rgw_parquet_buffer_size 16_M
 ceph config get client.rgw rgw_parquet_buffer_size
 ```
 
-**Finding optimal value:** Start from upstream default (`16_M`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `16_M`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_parquet_buffer_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -666,7 +1109,23 @@ ceph config set client.rgw rgw_pending_bucket_index_op_expiration 120
 ceph config get client.rgw rgw_pending_bucket_index_op_expiration
 ```
 
-**Finding optimal value:** Start from upstream default (`120`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `120`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_pending_bucket_index_op_expiration
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -688,7 +1147,13 @@ ceph config set client.rgw rgw_policy_reject_invalid_principals True
 ceph config get client.rgw rgw_policy_reject_invalid_principals
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`True`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -710,7 +1175,13 @@ ceph config set client.rgw rgw_print_continue True
 ceph config get client.rgw rgw_print_continue
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`True`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -732,7 +1203,13 @@ ceph config set client.rgw rgw_print_prohibited_content_length False
 ceph config get client.rgw rgw_print_prohibited_content_length
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -754,7 +1231,25 @@ ceph config set client.rgw rgw_rados_pool_autoscale_bias 4
 ceph config get client.rgw rgw_rados_pool_autoscale_bias
 ```
 
-**Finding optimal value:** Start from upstream default (`4`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `4`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_rados_pool_autoscale_bias
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+**Bounds:** min `0.01`, max `100000`.
 
 ---
 
@@ -776,7 +1271,25 @@ ceph config set client.rgw rgw_rados_pool_recovery_priority 5
 ceph config get client.rgw rgw_rados_pool_recovery_priority
 ```
 
-**Finding optimal value:** Start from upstream default (`5`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `5`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_rados_pool_recovery_priority
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+**Bounds:** min `-10`, max `10`.
 
 ---
 
@@ -798,7 +1311,13 @@ ceph config set client.rgw rgw_rados_tracing False
 ceph config get client.rgw rgw_rados_tracing
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -820,7 +1339,13 @@ ceph config set client.rgw rgw_relaxed_region_enforcement False
 ceph config get client.rgw rgw_relaxed_region_enforcement
 ```
 
-**Finding optimal value:** Security/compliance setting — prefer `true` in production unless a trusted lab requires `False`.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -842,7 +1367,13 @@ ceph config set client.rgw rgw_relaxed_s3_bucket_names False
 ceph config get client.rgw rgw_relaxed_s3_bucket_names
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -864,7 +1395,13 @@ ceph config set client.rgw rgw_relaxed_topic_names False
 ceph config get client.rgw rgw_relaxed_topic_names
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -886,7 +1423,23 @@ ceph config set client.rgw rgw_remote_addr_param REMOTE_ADDR
 ceph config get client.rgw rgw_remote_addr_param
 ```
 
-**Finding optimal value:** Start from upstream default (`REMOTE_ADDR`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `REMOTE_ADDR`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_remote_addr_param
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -906,7 +1459,22 @@ ceph config set client.rgw rgw_request_uri <value>
 ceph config get client.rgw rgw_request_uri
 ```
 
-**Finding optimal value:** Keep the upstream default (`(empty)`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Connectivity
+
+1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).
+2. From **each** RGW node: `curl -k <url>` or vendor health check.
+3. Pick the lowest-latency endpoint that stays healthy over 24h.
+4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).
+5. Leave empty (`(empty)`) if the integration is disabled.
+
+```bash
+ceph config get client.rgw rgw_request_uri
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -928,7 +1496,13 @@ ceph config set client.rgw rgw_resolve_cname False
 ceph config get client.rgw rgw_resolve_cname
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -948,7 +1522,13 @@ ceph config set client.rgw rgw_restore_lock_max_time 90
 ceph config get client.rgw rgw_restore_lock_max_time
 ```
 
-**Finding optimal value:** Keep the upstream default (`90`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `90` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -970,7 +1550,13 @@ ceph config set client.rgw rgw_safe_max_objects_per_shard 102400
 ceph config get client.rgw rgw_safe_max_objects_per_shard
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`102400`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `102400` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -990,7 +1576,22 @@ ceph config set client.rgw rgw_script_uri <value>
 ceph config get client.rgw rgw_script_uri
 ```
 
-**Finding optimal value:** Keep the upstream default (`(empty)`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Connectivity
+
+1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).
+2. From **each** RGW node: `curl -k <url>` or vendor health check.
+3. Pick the lowest-latency endpoint that stays healthy over 24h.
+4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).
+5. Leave empty (`(empty)`) if the integration is disabled.
+
+```bash
+ceph config get client.rgw rgw_script_uri
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -1012,7 +1613,23 @@ ceph config set client.rgw rgw_service_provider_name <value>
 ceph config get client.rgw rgw_service_provider_name
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_service_provider_name
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -1034,7 +1651,23 @@ ceph config set client.rgw rgw_shard_warning_threshold 90
 ceph config get client.rgw rgw_shard_warning_threshold
 ```
 
-**Finding optimal value:** Start from upstream default (`90`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `90`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_shard_warning_threshold
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -1056,7 +1689,13 @@ ceph config set client.rgw rgw_topic_require_publish_policy False
 ceph config get client.rgw rgw_topic_require_publish_policy
 ```
 
-**Finding optimal value:** Security/compliance setting — prefer `true` in production unless a trusted lab requires `False`.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Production: prefer secure default (`False` for most security options).
+2. Relax only on trusted private networks with documented risk acceptance.
+3. Test client behavior (HTTPS redirects, presigned URLs) after changes.
 
 ---
 
@@ -1078,7 +1717,13 @@ ceph config set client.rgw rgw_trust_forwarded_https False
 ceph config get client.rgw rgw_trust_forwarded_https
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -1100,7 +1745,13 @@ ceph config set client.rgw rgw_use_opa_authz False
 ceph config get client.rgw rgw_use_opa_authz
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -1122,7 +1773,13 @@ ceph config set client.rgw rgw_verify_ssl True
 ceph config get client.rgw rgw_verify_ssl
 ```
 
-**Finding optimal value:** Security/compliance setting — prefer `true` in production unless a trusted lab requires `True`.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Production: prefer secure default (`True` for most security options).
+2. Relax only on trusted private networks with documented risk acceptance.
+3. Test client behavior (HTTPS redirects, presigned URLs) after changes.
 
 ---
 
@@ -1144,7 +1801,13 @@ ceph config set client.rgw rgw_website_routing_rules_max_num 50
 ceph config get client.rgw rgw_website_routing_rules_max_num
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`50`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `50` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 

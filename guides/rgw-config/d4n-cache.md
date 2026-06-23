@@ -1,30 +1,80 @@
 # D4N / D3N cache
 
-RGW config deep dive — 21 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 22 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_d3n_l1_datacache_persistent_path](#rgw_d3n_l1_datacache_persistent_path) | `/tmp/rgw_datacache/` | Advanced |
-| [rgw_d3n_l1_datacache_size](#rgw_d3n_l1_datacache_size) | `1_G` | Advanced |
-| [rgw_d3n_l1_evict_cache_on_start](#rgw_d3n_l1_evict_cache_on_start) | `True` | Advanced |
-| [rgw_d3n_l1_eviction_policy](#rgw_d3n_l1_eviction_policy) | `lru` | Advanced |
-| [rgw_d3n_l1_fadvise](#rgw_d3n_l1_fadvise) | `4` | Advanced |
-| [rgw_d3n_l1_local_datacache_enabled](#rgw_d3n_l1_local_datacache_enabled) | `False` | Advanced |
-| [rgw_d3n_libaio_aio_num](#rgw_d3n_libaio_aio_num) | `64` | Advanced |
-| [rgw_d3n_libaio_aio_threads](#rgw_d3n_libaio_aio_threads) | `20` | Advanced |
-| [rgw_d4n_address](#rgw_d4n_address) | `127.0.0.1:6379` | Advanced |
-| [rgw_d4n_backend_address](#rgw_d4n_backend_address) | `127.0.0.1:6379` | Advanced |
-| [rgw_d4n_cache_cleaning_interval](#rgw_d4n_cache_cleaning_interval) | `1000` | Advanced |
-| [rgw_d4n_l1_datacache_address](#rgw_d4n_l1_datacache_address) | `127.0.0.1:6379` | Advanced |
-| [rgw_d4n_l1_datacache_disk_reserve](#rgw_d4n_l1_datacache_disk_reserve) | `1_G` | Advanced |
-| [rgw_d4n_l1_datacache_persistent_path](#rgw_d4n_l1_datacache_persistent_path) | `/tmp/rgw_d4n_datacache/` | Advanced |
-| [rgw_d4n_l1_evict_cache_on_start](#rgw_d4n_l1_evict_cache_on_start) | `True` | Advanced |
-| [rgw_d4n_l1_fadvise](#rgw_d4n_l1_fadvise) | `4` | Advanced |
-| [rgw_d4n_l1_write_open_flags](#rgw_d4n_l1_write_open_flags) | `4096` | Advanced |
-| [rgw_d4n_libaio_aio_num](#rgw_d4n_libaio_aio_num) | `64` | Advanced |
-| [rgw_d4n_libaio_aio_threads](#rgw_d4n_libaio_aio_threads) | `20` | Advanced |
-| [rgw_d4n_local_rgw_address](#rgw_d4n_local_rgw_address) | `127.0.0.1:8000` | Advanced |
-| [rgw_d4n_localweight_processing_interval](#rgw_d4n_localweight_processing_interval) | `3600` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [d4n_writecache_enabled](#d4n_writecache_enabled) | `False` | Advanced | Performance |
+| [rgw_d3n_l1_datacache_persistent_path](#rgw_d3n_l1_datacache_persistent_path) | `/tmp/rgw_datacache/` | Advanced | Capacity |
+| [rgw_d3n_l1_datacache_size](#rgw_d3n_l1_datacache_size) | `1_G` | Advanced | Performance |
+| [rgw_d3n_l1_evict_cache_on_start](#rgw_d3n_l1_evict_cache_on_start) | `True` | Advanced | Performance |
+| [rgw_d3n_l1_eviction_policy](#rgw_d3n_l1_eviction_policy) | `lru` | Advanced | Architecture |
+| [rgw_d3n_l1_fadvise](#rgw_d3n_l1_fadvise) | `4` | Advanced | Performance |
+| [rgw_d3n_l1_local_datacache_enabled](#rgw_d3n_l1_local_datacache_enabled) | `False` | Advanced | Performance |
+| [rgw_d3n_libaio_aio_num](#rgw_d3n_libaio_aio_num) | `64` | Advanced | Policy |
+| [rgw_d3n_libaio_aio_threads](#rgw_d3n_libaio_aio_threads) | `20` | Advanced | Performance |
+| [rgw_d4n_address](#rgw_d4n_address) | `127.0.0.1:6379` | Advanced | Performance |
+| [rgw_d4n_backend_address](#rgw_d4n_backend_address) | `127.0.0.1:6379` | Advanced | Performance |
+| [rgw_d4n_cache_cleaning_interval](#rgw_d4n_cache_cleaning_interval) | `1000` | Advanced | Performance |
+| [rgw_d4n_l1_datacache_address](#rgw_d4n_l1_datacache_address) | `127.0.0.1:6379` | Advanced | Performance |
+| [rgw_d4n_l1_datacache_disk_reserve](#rgw_d4n_l1_datacache_disk_reserve) | `1_G` | Advanced | Performance |
+| [rgw_d4n_l1_datacache_persistent_path](#rgw_d4n_l1_datacache_persistent_path) | `/tmp/rgw_d4n_datacache/` | Advanced | Capacity |
+| [rgw_d4n_l1_evict_cache_on_start](#rgw_d4n_l1_evict_cache_on_start) | `True` | Advanced | Performance |
+| [rgw_d4n_l1_fadvise](#rgw_d4n_l1_fadvise) | `4` | Advanced | Performance |
+| [rgw_d4n_l1_write_open_flags](#rgw_d4n_l1_write_open_flags) | `4096` | Advanced | Performance |
+| [rgw_d4n_libaio_aio_num](#rgw_d4n_libaio_aio_num) | `64` | Advanced | Policy |
+| [rgw_d4n_libaio_aio_threads](#rgw_d4n_libaio_aio_threads) | `20` | Advanced | Performance |
+| [rgw_d4n_local_rgw_address](#rgw_d4n_local_rgw_address) | `127.0.0.1:8000` | Advanced | Performance |
+| [rgw_d4n_localweight_processing_interval](#rgw_d4n_localweight_processing_interval) | `3600` | Advanced | Performance |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
+
+---
+
+### d4n_writecache_enabled
+
+| | |
+|---|---|
+| Type | Bool · default `False` · **Advanced** · **STARTUP** (restart required) |
+| Table | [rgw.md#SP_d4n_writecache_enabled](../../config/rgw/rgw.md#SP_d4n_writecache_enabled) |
+
+**What it does:** The d4n write cache
+
+**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+
+**Example:**
+
+```bash
+ceph config set client.rgw d4n_writecache_enabled False
+ceph config get client.rgw d4n_writecache_enabled
+ceph orch restart rgw
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `False` — enable only when you consume the related per-label metrics.
+2. If enabling, set the paired `*_cache_size` to match monitored entities.
+3. Disable if memory is constrained and metrics are unused.
 
 ---
 
@@ -46,7 +96,19 @@ ceph config set client.rgw rgw_d3n_l1_datacache_persistent_path "/tmp/rgw_dataca
 ceph config get client.rgw rgw_d3n_l1_datacache_persistent_path
 ```
 
-**Finding optimal value:** Place on fast, dedicated storage with sufficient free space. Default (`/tmp/rgw_datacache/`) is fine when that path is on a separate volume.
+**Finding optimal value:**
+
+**Tuning model:** Capacity
+
+1. Prefer a dedicated volume (NVMe/SSD) — not the root filesystem.
+2. Size for metadata growth + 30% free space (`df -h`, `iowait`).
+3. Default path (`/tmp/rgw_datacache/`) is fine when it already sits on fast storage.
+4. dbstore/POSIX: all RGW instances sharing data must see the same path.
+
+```bash
+df -h $(ceph config get client.rgw rgw_d3n_l1_datacache_persistent_path)
+iostat -x 5  # disk saturation
+```
 
 ---
 
@@ -68,7 +130,23 @@ ceph config set client.rgw rgw_d3n_l1_datacache_size 1_G
 ceph config get client.rgw rgw_d3n_l1_datacache_size
 ```
 
-**Finding optimal value:** Start from upstream default (`1_G`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `1_G`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_d3n_l1_datacache_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -90,7 +168,13 @@ ceph config set client.rgw rgw_d3n_l1_evict_cache_on_start True
 ceph config get client.rgw rgw_d3n_l1_evict_cache_on_start
 ```
 
-**Finding optimal value:** Enable only when the related metrics or correctness path needs it. Default (`True`) is usually optimal for standard deployments.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `True` — enable only when you consume the related per-label metrics.
+2. If enabling, set the paired `*_cache_size` to match monitored entities.
+3. Disable if memory is constrained and metrics are unused.
 
 ---
 
@@ -112,7 +196,13 @@ ceph config set client.rgw rgw_d3n_l1_eviction_policy lru
 ceph config get client.rgw rgw_d3n_l1_eviction_policy
 ```
 
-**Finding optimal value:** Choose from valid values ["lru", "random"]. Default `lru` is optimal unless your backend or integration requires another value.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Valid values: ["lru", "random"].
+2. Default `lru` matches standard Ceph packaging.
+3. Change only when your integration or backend explicitly requires another value.
 
 ---
 
@@ -134,7 +224,23 @@ ceph config set client.rgw rgw_d3n_l1_fadvise 4
 ceph config get client.rgw rgw_d3n_l1_fadvise
 ```
 
-**Finding optimal value:** Start from upstream default (`4`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `4`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_d3n_l1_fadvise
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -156,7 +262,13 @@ ceph config set client.rgw rgw_d3n_l1_local_datacache_enabled False
 ceph config get client.rgw rgw_d3n_l1_local_datacache_enabled
 ```
 
-**Finding optimal value:** Enable only when the related metrics or correctness path needs it. Default (`False`) is usually optimal for standard deployments.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `False` — enable only when you consume the related per-label metrics.
+2. If enabling, set the paired `*_cache_size` to match monitored entities.
+3. Disable if memory is constrained and metrics are unused.
 
 ---
 
@@ -178,7 +290,13 @@ ceph config set client.rgw rgw_d3n_libaio_aio_num 64
 ceph config get client.rgw rgw_d3n_libaio_aio_num
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`64`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `64` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -200,7 +318,23 @@ ceph config set client.rgw rgw_d3n_libaio_aio_threads 20
 ceph config get client.rgw rgw_d3n_libaio_aio_threads
 ```
 
-**Finding optimal value:** Start from upstream default (`20`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `20`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_d3n_libaio_aio_threads
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -223,7 +357,23 @@ ceph config get client.rgw rgw_d4n_address
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Start from upstream default (`127.0.0.1:6379`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `127.0.0.1:6379`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_d4n_address
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -246,7 +396,23 @@ ceph config get client.rgw rgw_d4n_backend_address
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Start from upstream default (`127.0.0.1:6379`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `127.0.0.1:6379`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_d4n_backend_address
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -259,7 +425,10 @@ ceph orch restart rgw
 
 **What it does:** This is the interval in seconds for invoking write cache cleaning process
 
-**When to use:** Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure.
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
 
 **Example:**
 
@@ -269,7 +438,22 @@ ceph config get client.rgw rgw_d4n_cache_cleaning_interval
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Size to active working set (accounts, buckets, or keys you monitor). Sweep around default (`1000`) while watching RGW RSS.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Size to the **active** working set (monitored buckets/users/tokens), not total catalog size.
+2. Start at `1000`; sweep upward in ~2× steps.
+3. Watch RGW RSS and cache hit behavior; use smallest size that avoids hot-path misses.
+
+**Signals:** rising RGW memory, repeated metadata lookups in logs.
+
+```bash
+ceph config get client.rgw rgw_d4n_cache_cleaning_interval
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -292,7 +476,23 @@ ceph config get client.rgw rgw_d4n_l1_datacache_address
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Start from upstream default (`127.0.0.1:6379`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `127.0.0.1:6379`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_d4n_l1_datacache_address
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -314,7 +514,23 @@ ceph config set client.rgw rgw_d4n_l1_datacache_disk_reserve 1_G
 ceph config get client.rgw rgw_d4n_l1_datacache_disk_reserve
 ```
 
-**Finding optimal value:** Start from upstream default (`1_G`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `1_G`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_d4n_l1_datacache_disk_reserve
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -336,7 +552,19 @@ ceph config set client.rgw rgw_d4n_l1_datacache_persistent_path "/tmp/rgw_d4n_da
 ceph config get client.rgw rgw_d4n_l1_datacache_persistent_path
 ```
 
-**Finding optimal value:** Place on fast, dedicated storage with sufficient free space. Default (`/tmp/rgw_d4n_datacache/`) is fine when that path is on a separate volume.
+**Finding optimal value:**
+
+**Tuning model:** Capacity
+
+1. Prefer a dedicated volume (NVMe/SSD) — not the root filesystem.
+2. Size for metadata growth + 30% free space (`df -h`, `iowait`).
+3. Default path (`/tmp/rgw_d4n_datacache/`) is fine when it already sits on fast storage.
+4. dbstore/POSIX: all RGW instances sharing data must see the same path.
+
+```bash
+df -h $(ceph config get client.rgw rgw_d4n_l1_datacache_persistent_path)
+iostat -x 5  # disk saturation
+```
 
 ---
 
@@ -358,7 +586,13 @@ ceph config set client.rgw rgw_d4n_l1_evict_cache_on_start True
 ceph config get client.rgw rgw_d4n_l1_evict_cache_on_start
 ```
 
-**Finding optimal value:** Enable only when the related metrics or correctness path needs it. Default (`True`) is usually optimal for standard deployments.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `True` — enable only when you consume the related per-label metrics.
+2. If enabling, set the paired `*_cache_size` to match monitored entities.
+3. Disable if memory is constrained and metrics are unused.
 
 ---
 
@@ -380,7 +614,23 @@ ceph config set client.rgw rgw_d4n_l1_fadvise 4
 ceph config get client.rgw rgw_d4n_l1_fadvise
 ```
 
-**Finding optimal value:** Start from upstream default (`4`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `4`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_d4n_l1_fadvise
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -402,7 +652,23 @@ ceph config set client.rgw rgw_d4n_l1_write_open_flags 4096
 ceph config get client.rgw rgw_d4n_l1_write_open_flags
 ```
 
-**Finding optimal value:** Start from upstream default (`4096`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `4096`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_d4n_l1_write_open_flags
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -424,7 +690,13 @@ ceph config set client.rgw rgw_d4n_libaio_aio_num 64
 ceph config get client.rgw rgw_d4n_libaio_aio_num
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`64`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `64` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -446,7 +718,23 @@ ceph config set client.rgw rgw_d4n_libaio_aio_threads 20
 ceph config get client.rgw rgw_d4n_libaio_aio_threads
 ```
 
-**Finding optimal value:** Start from upstream default (`20`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `20`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_d4n_libaio_aio_threads
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -469,7 +757,23 @@ ceph config get client.rgw rgw_d4n_local_rgw_address
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Start from upstream default (`127.0.0.1:8000`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `127.0.0.1:8000`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_d4n_local_rgw_address
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -482,7 +786,10 @@ ceph orch restart rgw
 
 **What it does:** This is the interval in seconds for invoking local weight writer thread
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:**
+
+- **Shorten** for fresher stats or faster enforcement.
+- **Lengthen** to reduce background sync or GC cost.
 
 **Example:**
 
@@ -492,7 +799,22 @@ ceph config get client.rgw rgw_d4n_localweight_processing_interval
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Lower for fresher behavior / faster reaction; higher to reduce background load. Adjust from default (`3600`) only when logs show sync, cache, or timeout issues.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `3600` balances freshness vs background CPU/network.
+2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.
+3. **Lengthen** if background sync/GC/LC dominates RGW CPU.
+
+**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.
+
+```bash
+ceph config get client.rgw rgw_d4n_localweight_processing_interval
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 

@@ -1,21 +1,41 @@
 # dmclock scheduler
 
-RGW config deep dive — 12 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 12 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_dmclock_admin_lim](#rgw_dmclock_admin_lim) | `0` | Advanced |
-| [rgw_dmclock_admin_res](#rgw_dmclock_admin_res) | `100` | Advanced |
-| [rgw_dmclock_admin_wgt](#rgw_dmclock_admin_wgt) | `100` | Advanced |
-| [rgw_dmclock_auth_lim](#rgw_dmclock_auth_lim) | `0` | Advanced |
-| [rgw_dmclock_auth_res](#rgw_dmclock_auth_res) | `200` | Advanced |
-| [rgw_dmclock_auth_wgt](#rgw_dmclock_auth_wgt) | `100` | Advanced |
-| [rgw_dmclock_data_lim](#rgw_dmclock_data_lim) | `0` | Advanced |
-| [rgw_dmclock_data_res](#rgw_dmclock_data_res) | `500` | Advanced |
-| [rgw_dmclock_data_wgt](#rgw_dmclock_data_wgt) | `500` | Advanced |
-| [rgw_dmclock_metadata_lim](#rgw_dmclock_metadata_lim) | `0` | Advanced |
-| [rgw_dmclock_metadata_res](#rgw_dmclock_metadata_res) | `500` | Advanced |
-| [rgw_dmclock_metadata_wgt](#rgw_dmclock_metadata_wgt) | `500` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_dmclock_admin_lim](#rgw_dmclock_admin_lim) | `0` | Advanced | Performance |
+| [rgw_dmclock_admin_res](#rgw_dmclock_admin_res) | `100` | Advanced | Performance |
+| [rgw_dmclock_admin_wgt](#rgw_dmclock_admin_wgt) | `100` | Advanced | Performance |
+| [rgw_dmclock_auth_lim](#rgw_dmclock_auth_lim) | `0` | Advanced | Performance |
+| [rgw_dmclock_auth_res](#rgw_dmclock_auth_res) | `200` | Advanced | Performance |
+| [rgw_dmclock_auth_wgt](#rgw_dmclock_auth_wgt) | `100` | Advanced | Performance |
+| [rgw_dmclock_data_lim](#rgw_dmclock_data_lim) | `0` | Advanced | Performance |
+| [rgw_dmclock_data_res](#rgw_dmclock_data_res) | `500` | Advanced | Performance |
+| [rgw_dmclock_data_wgt](#rgw_dmclock_data_wgt) | `500` | Advanced | Performance |
+| [rgw_dmclock_metadata_lim](#rgw_dmclock_metadata_lim) | `0` | Advanced | Performance |
+| [rgw_dmclock_metadata_res](#rgw_dmclock_metadata_res) | `500` | Advanced | Performance |
+| [rgw_dmclock_metadata_wgt](#rgw_dmclock_metadata_wgt) | `500` | Advanced | Performance |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -37,7 +57,23 @@ ceph config set client.rgw rgw_dmclock_admin_lim 0
 ceph config get client.rgw rgw_dmclock_admin_lim
 ```
 
-**Finding optimal value:** Tune reservation/limit/weight together per queue (admin, auth, data, metadata). Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`0`).
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.
+2. Start from defaults (`0`); identify saturated queue (admin/auth/data/metadata).
+3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.
+
+**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.
+
+```bash
+ceph config get client.rgw rgw_dmclock_admin_lim
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
+```
 
 ---
 
@@ -59,7 +95,23 @@ ceph config set client.rgw rgw_dmclock_admin_res 100
 ceph config get client.rgw rgw_dmclock_admin_res
 ```
 
-**Finding optimal value:** Tune reservation/limit/weight together per queue (admin, auth, data, metadata). Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`100`).
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.
+2. Start from defaults (`100`); identify saturated queue (admin/auth/data/metadata).
+3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.
+
+**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.
+
+```bash
+ceph config get client.rgw rgw_dmclock_admin_res
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
+```
 
 ---
 
@@ -81,7 +133,23 @@ ceph config set client.rgw rgw_dmclock_admin_wgt 100
 ceph config get client.rgw rgw_dmclock_admin_wgt
 ```
 
-**Finding optimal value:** Tune reservation/limit/weight together per queue (admin, auth, data, metadata). Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`100`).
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.
+2. Start from defaults (`100`); identify saturated queue (admin/auth/data/metadata).
+3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.
+
+**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.
+
+```bash
+ceph config get client.rgw rgw_dmclock_admin_wgt
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
+```
 
 ---
 
@@ -103,7 +171,23 @@ ceph config set client.rgw rgw_dmclock_auth_lim 0
 ceph config get client.rgw rgw_dmclock_auth_lim
 ```
 
-**Finding optimal value:** Tune reservation/limit/weight together per queue (admin, auth, data, metadata). Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`0`).
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.
+2. Start from defaults (`0`); identify saturated queue (admin/auth/data/metadata).
+3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.
+
+**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.
+
+```bash
+ceph config get client.rgw rgw_dmclock_auth_lim
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
+```
 
 ---
 
@@ -125,7 +209,23 @@ ceph config set client.rgw rgw_dmclock_auth_res 200
 ceph config get client.rgw rgw_dmclock_auth_res
 ```
 
-**Finding optimal value:** Tune reservation/limit/weight together per queue (admin, auth, data, metadata). Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`200`).
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.
+2. Start from defaults (`200`); identify saturated queue (admin/auth/data/metadata).
+3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.
+
+**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.
+
+```bash
+ceph config get client.rgw rgw_dmclock_auth_res
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
+```
 
 ---
 
@@ -147,7 +247,23 @@ ceph config set client.rgw rgw_dmclock_auth_wgt 100
 ceph config get client.rgw rgw_dmclock_auth_wgt
 ```
 
-**Finding optimal value:** Tune reservation/limit/weight together per queue (admin, auth, data, metadata). Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`100`).
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.
+2. Start from defaults (`100`); identify saturated queue (admin/auth/data/metadata).
+3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.
+
+**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.
+
+```bash
+ceph config get client.rgw rgw_dmclock_auth_wgt
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
+```
 
 ---
 
@@ -169,7 +285,23 @@ ceph config set client.rgw rgw_dmclock_data_lim 0
 ceph config get client.rgw rgw_dmclock_data_lim
 ```
 
-**Finding optimal value:** Tune reservation/limit/weight together per queue (admin, auth, data, metadata). Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`0`).
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.
+2. Start from defaults (`0`); identify saturated queue (admin/auth/data/metadata).
+3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.
+
+**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.
+
+```bash
+ceph config get client.rgw rgw_dmclock_data_lim
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
+```
 
 ---
 
@@ -191,7 +323,23 @@ ceph config set client.rgw rgw_dmclock_data_res 500
 ceph config get client.rgw rgw_dmclock_data_res
 ```
 
-**Finding optimal value:** Tune reservation/limit/weight together per queue (admin, auth, data, metadata). Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`500`).
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.
+2. Start from defaults (`500`); identify saturated queue (admin/auth/data/metadata).
+3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.
+
+**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.
+
+```bash
+ceph config get client.rgw rgw_dmclock_data_res
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
+```
 
 ---
 
@@ -213,7 +361,23 @@ ceph config set client.rgw rgw_dmclock_data_wgt 500
 ceph config get client.rgw rgw_dmclock_data_wgt
 ```
 
-**Finding optimal value:** Tune reservation/limit/weight together per queue (admin, auth, data, metadata). Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`500`).
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.
+2. Start from defaults (`500`); identify saturated queue (admin/auth/data/metadata).
+3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.
+
+**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.
+
+```bash
+ceph config get client.rgw rgw_dmclock_data_wgt
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
+```
 
 ---
 
@@ -235,7 +399,23 @@ ceph config set client.rgw rgw_dmclock_metadata_lim 0
 ceph config get client.rgw rgw_dmclock_metadata_lim
 ```
 
-**Finding optimal value:** Tune reservation/limit/weight together per queue (admin, auth, data, metadata). Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`0`).
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.
+2. Start from defaults (`0`); identify saturated queue (admin/auth/data/metadata).
+3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.
+
+**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.
+
+```bash
+ceph config get client.rgw rgw_dmclock_metadata_lim
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
+```
 
 ---
 
@@ -257,7 +437,23 @@ ceph config set client.rgw rgw_dmclock_metadata_res 500
 ceph config get client.rgw rgw_dmclock_metadata_res
 ```
 
-**Finding optimal value:** Tune reservation/limit/weight together per queue (admin, auth, data, metadata). Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`500`).
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.
+2. Start from defaults (`500`); identify saturated queue (admin/auth/data/metadata).
+3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.
+
+**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.
+
+```bash
+ceph config get client.rgw rgw_dmclock_metadata_res
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
+```
 
 ---
 
@@ -279,7 +475,23 @@ ceph config set client.rgw rgw_dmclock_metadata_wgt 500
 ceph config get client.rgw rgw_dmclock_metadata_wgt
 ```
 
-**Finding optimal value:** Tune reservation/limit/weight together per queue (admin, auth, data, metadata). Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`500`).
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.
+2. Start from defaults (`500`); identify saturated queue (admin/auth/data/metadata).
+3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.
+
+**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.
+
+```bash
+ceph config get client.rgw rgw_dmclock_metadata_wgt
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
+```
 
 ---
 

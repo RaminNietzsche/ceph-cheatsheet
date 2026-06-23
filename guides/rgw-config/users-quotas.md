@@ -1,12 +1,32 @@
 # Users and per-user settings
 
-RGW config deep dive — 3 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 3 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_user_max_buckets](#rgw_user_max_buckets) | `1000` | Basic |
-| [rgw_user_policies_max_num](#rgw_user_policies_max_num) | `100` | Advanced |
-| [rgw_user_unique_email](#rgw_user_unique_email) | `True` | Basic |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_user_max_buckets](#rgw_user_max_buckets) | `1000` | Basic | Policy |
+| [rgw_user_policies_max_num](#rgw_user_policies_max_num) | `100` | Advanced | Policy |
+| [rgw_user_unique_email](#rgw_user_unique_email) | `True` | Basic | Policy |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -28,7 +48,13 @@ ceph config set client.rgw rgw_user_max_buckets 1000
 ceph config get client.rgw rgw_user_max_buckets
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`1000`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `1000` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -50,7 +76,13 @@ ceph config set client.rgw rgw_user_policies_max_num 100
 ceph config get client.rgw rgw_user_policies_max_num
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`100`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `100` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -72,7 +104,13 @@ ceph config set client.rgw rgw_user_unique_email True
 ceph config get client.rgw rgw_user_unique_email
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`True`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 

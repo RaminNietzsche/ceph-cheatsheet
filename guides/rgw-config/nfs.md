@@ -1,23 +1,43 @@
 # NFS gateway
 
-RGW config deep dive — 14 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 14 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_nfs_fhcache_partitions](#rgw_nfs_fhcache_partitions) | `3` | Advanced |
-| [rgw_nfs_fhcache_size](#rgw_nfs_fhcache_size) | `2017` | Advanced |
-| [rgw_nfs_frontends](#rgw_nfs_frontends) | `rgw-nfs` | Basic |
-| [rgw_nfs_lru_lane_hiwat](#rgw_nfs_lru_lane_hiwat) | `911` | Advanced |
-| [rgw_nfs_lru_lanes](#rgw_nfs_lru_lanes) | `5` | Advanced |
-| [rgw_nfs_max_gc](#rgw_nfs_max_gc) | `5_min` | Advanced |
-| [rgw_nfs_namespace_expire_secs](#rgw_nfs_namespace_expire_secs) | `5_min` | Advanced |
-| [rgw_nfs_run_gc_threads](#rgw_nfs_run_gc_threads) | `False` | Advanced |
-| [rgw_nfs_run_lc_threads](#rgw_nfs_run_lc_threads) | `False` | Advanced |
-| [rgw_nfs_run_quota_threads](#rgw_nfs_run_quota_threads) | `True` | Advanced |
-| [rgw_nfs_run_restore_threads](#rgw_nfs_run_restore_threads) | `False` | Advanced |
-| [rgw_nfs_run_sync_thread](#rgw_nfs_run_sync_thread) | `False` | Advanced |
-| [rgw_nfs_s3_fast_attrs](#rgw_nfs_s3_fast_attrs) | `False` | Advanced |
-| [rgw_nfs_write_completion_interval_s](#rgw_nfs_write_completion_interval_s) | `10` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_nfs_fhcache_partitions](#rgw_nfs_fhcache_partitions) | `3` | Advanced | Performance |
+| [rgw_nfs_fhcache_size](#rgw_nfs_fhcache_size) | `2017` | Advanced | Performance |
+| [rgw_nfs_frontends](#rgw_nfs_frontends) | `rgw-nfs` | Basic | Performance |
+| [rgw_nfs_lru_lane_hiwat](#rgw_nfs_lru_lane_hiwat) | `911` | Advanced | Performance |
+| [rgw_nfs_lru_lanes](#rgw_nfs_lru_lanes) | `5` | Advanced | Performance |
+| [rgw_nfs_max_gc](#rgw_nfs_max_gc) | `5_min` | Advanced | Policy |
+| [rgw_nfs_namespace_expire_secs](#rgw_nfs_namespace_expire_secs) | `5_min` | Advanced | Performance |
+| [rgw_nfs_run_gc_threads](#rgw_nfs_run_gc_threads) | `False` | Advanced | Policy |
+| [rgw_nfs_run_lc_threads](#rgw_nfs_run_lc_threads) | `False` | Advanced | Policy |
+| [rgw_nfs_run_quota_threads](#rgw_nfs_run_quota_threads) | `True` | Advanced | Policy |
+| [rgw_nfs_run_restore_threads](#rgw_nfs_run_restore_threads) | `False` | Advanced | Policy |
+| [rgw_nfs_run_sync_thread](#rgw_nfs_run_sync_thread) | `False` | Advanced | Policy |
+| [rgw_nfs_s3_fast_attrs](#rgw_nfs_s3_fast_attrs) | `False` | Advanced | Policy |
+| [rgw_nfs_write_completion_interval_s](#rgw_nfs_write_completion_interval_s) | `10` | Advanced | Performance |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -28,7 +48,10 @@ RGW config deep dive — 14 options. [← RGW config overview](OVERVIEW.md) · [
 | Type | Int · default `3` · **Advanced** |
 | Table | [rgw.md#SP_rgw_nfs_fhcache_partitions](../../config/rgw/rgw.md#SP_rgw_nfs_fhcache_partitions) |
 
-**When to use:** Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure.
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
 
 **Example:**
 
@@ -37,7 +60,22 @@ ceph config set client.rgw rgw_nfs_fhcache_partitions 3
 ceph config get client.rgw rgw_nfs_fhcache_partitions
 ```
 
-**Finding optimal value:** Size to active working set (accounts, buckets, or keys you monitor). Sweep around default (`3`) while watching RGW RSS.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Size to the **active** working set (monitored buckets/users/tokens), not total catalog size.
+2. Start at `3`; sweep upward in ~2× steps.
+3. Watch RGW RSS and cache hit behavior; use smallest size that avoids hot-path misses.
+
+**Signals:** rising RGW memory, repeated metadata lookups in logs.
+
+```bash
+ceph config get client.rgw rgw_nfs_fhcache_partitions
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -48,7 +86,10 @@ ceph config get client.rgw rgw_nfs_fhcache_partitions
 | Type | Int · default `2017` · **Advanced** |
 | Table | [rgw.md#SP_rgw_nfs_fhcache_size](../../config/rgw/rgw.md#SP_rgw_nfs_fhcache_size) |
 
-**When to use:** Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure.
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
 
 **Example:**
 
@@ -57,7 +98,22 @@ ceph config set client.rgw rgw_nfs_fhcache_size 2017
 ceph config get client.rgw rgw_nfs_fhcache_size
 ```
 
-**Finding optimal value:** Size to active working set (accounts, buckets, or keys you monitor). Sweep around default (`2017`) while watching RGW RSS.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Size to the **active** working set (monitored buckets/users/tokens), not total catalog size.
+2. Start at `2017`; sweep upward in ~2× steps.
+3. Watch RGW RSS and cache hit behavior; use smallest size that avoids hot-path misses.
+
+**Signals:** rising RGW memory, repeated metadata lookups in logs.
+
+```bash
+ceph config get client.rgw rgw_nfs_fhcache_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -79,7 +135,23 @@ ceph config set client.rgw rgw_nfs_frontends rgw-nfs
 ceph config get client.rgw rgw_nfs_frontends
 ```
 
-**Finding optimal value:** Start from upstream default (`rgw-nfs`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `rgw-nfs`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_nfs_frontends
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -99,7 +171,23 @@ ceph config set client.rgw rgw_nfs_lru_lane_hiwat 911
 ceph config get client.rgw rgw_nfs_lru_lane_hiwat
 ```
 
-**Finding optimal value:** Start from upstream default (`911`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `911`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_nfs_lru_lane_hiwat
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -119,7 +207,23 @@ ceph config set client.rgw rgw_nfs_lru_lanes 5
 ceph config get client.rgw rgw_nfs_lru_lanes
 ```
 
-**Finding optimal value:** Start from upstream default (`5`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `5`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_nfs_lru_lanes
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -139,7 +243,15 @@ ceph config set client.rgw rgw_nfs_max_gc 5_min
 ceph config get client.rgw rgw_nfs_max_gc
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`5_min`) matches S3 compatibility for most workloads. Valid range: min=1, max=—.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `5_min` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
+
+**Bounds:** min `1`, max `—`.
 
 ---
 
@@ -159,7 +271,25 @@ ceph config set client.rgw rgw_nfs_namespace_expire_secs 5_min
 ceph config get client.rgw rgw_nfs_namespace_expire_secs
 ```
 
-**Finding optimal value:** Start from upstream default (`5_min`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `5_min`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_nfs_namespace_expire_secs
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+**Bounds:** min `1`, max `—`.
 
 ---
 
@@ -181,7 +311,13 @@ ceph config set client.rgw rgw_nfs_run_gc_threads False
 ceph config get client.rgw rgw_nfs_run_gc_threads
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -203,7 +339,13 @@ ceph config set client.rgw rgw_nfs_run_lc_threads False
 ceph config get client.rgw rgw_nfs_run_lc_threads
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -225,7 +367,13 @@ ceph config set client.rgw rgw_nfs_run_quota_threads True
 ceph config get client.rgw rgw_nfs_run_quota_threads
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`True`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -247,7 +395,13 @@ ceph config set client.rgw rgw_nfs_run_restore_threads False
 ceph config get client.rgw rgw_nfs_run_restore_threads
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -269,7 +423,13 @@ ceph config set client.rgw rgw_nfs_run_sync_thread False
 ceph config get client.rgw rgw_nfs_run_sync_thread
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -291,7 +451,13 @@ ceph config set client.rgw rgw_nfs_s3_fast_attrs False
 ceph config get client.rgw rgw_nfs_s3_fast_attrs
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -302,7 +468,10 @@ ceph config get client.rgw rgw_nfs_s3_fast_attrs
 | Type | Int · default `10` · **Advanced** |
 | Table | [rgw.md#SP_rgw_nfs_write_completion_interval_s](../../config/rgw/rgw.md#SP_rgw_nfs_write_completion_interval_s) |
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:**
+
+- **Shorten** for fresher stats or faster enforcement.
+- **Lengthen** to reduce background sync or GC cost.
 
 **Example:**
 
@@ -311,7 +480,22 @@ ceph config set client.rgw rgw_nfs_write_completion_interval_s 10
 ceph config get client.rgw rgw_nfs_write_completion_interval_s
 ```
 
-**Finding optimal value:** Lower for fresher behavior / faster reaction; higher to reduce background load. Adjust from default (`10`) only when logs show sync, cache, or timeout issues.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `10` balances freshness vs background CPU/network.
+2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.
+3. **Lengthen** if background sync/GC/LC dominates RGW CPU.
+
+**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.
+
+```bash
+ceph config get client.rgw rgw_nfs_write_completion_interval_s
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 

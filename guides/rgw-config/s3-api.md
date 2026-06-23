@@ -1,17 +1,37 @@
 # S3 API behavior
 
-RGW config deep dive — 8 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 8 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_s3_auth_disable_signature_url](#rgw_s3_auth_disable_signature_url) | `False` | Advanced |
-| [rgw_s3_auth_order](#rgw_s3_auth_order) | `sts, external, local` | Advanced |
-| [rgw_s3_auth_use_keystone](#rgw_s3_auth_use_keystone) | `False` | Advanced |
-| [rgw_s3_auth_use_ldap](#rgw_s3_auth_use_ldap) | `False` | Advanced |
-| [rgw_s3_auth_use_rados](#rgw_s3_auth_use_rados) | `True` | Advanced |
-| [rgw_s3_auth_use_sts](#rgw_s3_auth_use_sts) | `False` | Advanced |
-| [rgw_s3_client_max_sig_ver](#rgw_s3_client_max_sig_ver) | `-1` | Advanced |
-| [rgw_s3_success_create_obj_status](#rgw_s3_success_create_obj_status) | `0` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_s3_auth_disable_signature_url](#rgw_s3_auth_disable_signature_url) | `False` | Advanced | Connectivity |
+| [rgw_s3_auth_order](#rgw_s3_auth_order) | `sts, external, local` | Advanced | Performance |
+| [rgw_s3_auth_use_keystone](#rgw_s3_auth_use_keystone) | `False` | Advanced | Policy |
+| [rgw_s3_auth_use_ldap](#rgw_s3_auth_use_ldap) | `False` | Advanced | Policy |
+| [rgw_s3_auth_use_rados](#rgw_s3_auth_use_rados) | `True` | Advanced | Policy |
+| [rgw_s3_auth_use_sts](#rgw_s3_auth_use_sts) | `False` | Advanced | Policy |
+| [rgw_s3_client_max_sig_ver](#rgw_s3_client_max_sig_ver) | `-1` | Advanced | Policy |
+| [rgw_s3_success_create_obj_status](#rgw_s3_success_create_obj_status) | `0` | Advanced | Performance |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -33,7 +53,22 @@ ceph config set client.rgw rgw_s3_auth_disable_signature_url False
 ceph config get client.rgw rgw_s3_auth_disable_signature_url
 ```
 
-**Finding optimal value:** Use the nearest stable endpoint reachable from every RGW node. Verify with curl from each host; measure p99 latency of dependent operations and keep the default (`False`) if the integration is unused.
+**Finding optimal value:**
+
+**Tuning model:** Connectivity
+
+1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).
+2. From **each** RGW node: `curl -k <url>` or vendor health check.
+3. Pick the lowest-latency endpoint that stays healthy over 24h.
+4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).
+5. Leave empty (`False`) if the integration is disabled.
+
+```bash
+ceph config get client.rgw rgw_s3_auth_disable_signature_url
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -55,7 +90,23 @@ ceph config set client.rgw rgw_s3_auth_order "sts, external, local"
 ceph config get client.rgw rgw_s3_auth_order
 ```
 
-**Finding optimal value:** Start from upstream default (`sts, external, local`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `sts, external, local`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_s3_auth_order
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -77,7 +128,13 @@ ceph config set client.rgw rgw_s3_auth_use_keystone False
 ceph config get client.rgw rgw_s3_auth_use_keystone
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Not tuned numerically — supply from your secrets manager.
+2. Rotate on schedule; never store in git or plain `ceph.conf`.
+3. Use `ceph config set` at runtime or cephadm secrets where supported.
 
 ---
 
@@ -99,7 +156,13 @@ ceph config set client.rgw rgw_s3_auth_use_ldap False
 ceph config get client.rgw rgw_s3_auth_use_ldap
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -121,7 +184,13 @@ ceph config set client.rgw rgw_s3_auth_use_rados True
 ceph config get client.rgw rgw_s3_auth_use_rados
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`True`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -143,7 +212,13 @@ ceph config set client.rgw rgw_s3_auth_use_sts False
 ceph config get client.rgw rgw_s3_auth_use_sts
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -165,7 +240,13 @@ ceph config set client.rgw rgw_s3_client_max_sig_ver -1
 ceph config get client.rgw rgw_s3_client_max_sig_ver
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`-1`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `-1` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -187,7 +268,23 @@ ceph config set client.rgw rgw_s3_success_create_obj_status 0
 ceph config get client.rgw rgw_s3_success_create_obj_status
 ```
 
-**Finding optimal value:** Start from upstream default (`0`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `0`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_s3_success_create_obj_status
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 

@@ -1,16 +1,36 @@
 # Debug and fault injection
 
-RGW config deep dive — 7 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 7 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_debug_inject_latency_bi_unlink](#rgw_debug_inject_latency_bi_unlink) | `0` | Dev |
-| [rgw_debug_inject_olh_cancel_modification_err](#rgw_debug_inject_olh_cancel_modification_err) | `False` | Dev |
-| [rgw_debug_inject_set_olh_err](#rgw_debug_inject_set_olh_err) | `0` | Dev |
-| [rgw_inject_delay_pattern](#rgw_inject_delay_pattern) | `(empty)` | Dev |
-| [rgw_inject_delay_sec](#rgw_inject_delay_sec) | `0` | Dev |
-| [rgw_mp_lock_inject_delay](#rgw_mp_lock_inject_delay) | `0` | Dev |
-| [rgw_mp_lock_inject_renewal_error](#rgw_mp_lock_inject_renewal_error) | `0` | Dev |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_debug_inject_latency_bi_unlink](#rgw_debug_inject_latency_bi_unlink) | `0` | Dev | Dev |
+| [rgw_debug_inject_olh_cancel_modification_err](#rgw_debug_inject_olh_cancel_modification_err) | `False` | Dev | Dev |
+| [rgw_debug_inject_set_olh_err](#rgw_debug_inject_set_olh_err) | `0` | Dev | Dev |
+| [rgw_inject_delay_pattern](#rgw_inject_delay_pattern) | `(empty)` | Dev | Dev |
+| [rgw_inject_delay_sec](#rgw_inject_delay_sec) | `0` | Dev | Dev |
+| [rgw_mp_lock_inject_delay](#rgw_mp_lock_inject_delay) | `0` | Dev | Dev |
+| [rgw_mp_lock_inject_renewal_error](#rgw_mp_lock_inject_renewal_error) | `0` | Dev | Dev |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -32,7 +52,15 @@ ceph config set client.rgw rgw_debug_inject_latency_bi_unlink 0
 ceph config get client.rgw rgw_debug_inject_latency_bi_unlink
 ```
 
-**Finding optimal value:** Keep the upstream default (`0`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`0`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 
@@ -54,7 +82,15 @@ ceph config set client.rgw rgw_debug_inject_olh_cancel_modification_err False
 ceph config get client.rgw rgw_debug_inject_olh_cancel_modification_err
 ```
 
-**Finding optimal value:** Keep the upstream default (`False`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`False`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 
@@ -76,7 +112,15 @@ ceph config set client.rgw rgw_debug_inject_set_olh_err 0
 ceph config get client.rgw rgw_debug_inject_set_olh_err
 ```
 
-**Finding optimal value:** Keep the upstream default (`0`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`0`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 
@@ -98,7 +142,15 @@ ceph config set client.rgw rgw_inject_delay_pattern <value>
 ceph config get client.rgw rgw_inject_delay_pattern
 ```
 
-**Finding optimal value:** Keep the upstream default (`(empty)`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`(empty)`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 
@@ -120,7 +172,15 @@ ceph config set client.rgw rgw_inject_delay_sec 0
 ceph config get client.rgw rgw_inject_delay_sec
 ```
 
-**Finding optimal value:** Keep the upstream default (`0`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`0`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 
@@ -142,7 +202,15 @@ ceph config set client.rgw rgw_mp_lock_inject_delay 0
 ceph config get client.rgw rgw_mp_lock_inject_delay
 ```
 
-**Finding optimal value:** Keep the upstream default (`0`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`0`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 
@@ -164,7 +232,15 @@ ceph config set client.rgw rgw_mp_lock_inject_renewal_error 0
 ceph config get client.rgw rgw_mp_lock_inject_renewal_error
 ```
 
-**Finding optimal value:** Keep the upstream default (`0`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`0`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 

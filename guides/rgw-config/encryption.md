@@ -1,51 +1,71 @@
 # Encryption and KMS
 
-RGW config deep dive — 42 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 42 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_crypt_default_encryption_key](#rgw_crypt_default_encryption_key) | `(empty)` | Dev |
-| [rgw_crypt_kmip_addr](#rgw_crypt_kmip_addr) | `(empty)` | Advanced |
-| [rgw_crypt_kmip_ca_path](#rgw_crypt_kmip_ca_path) | `(empty)` | Advanced |
-| [rgw_crypt_kmip_client_cert](#rgw_crypt_kmip_client_cert) | `(empty)` | Advanced |
-| [rgw_crypt_kmip_client_key](#rgw_crypt_kmip_client_key) | `(empty)` | Advanced |
-| [rgw_crypt_kmip_kms_key_template](#rgw_crypt_kmip_kms_key_template) | `(empty)` | Advanced |
-| [rgw_crypt_kmip_password](#rgw_crypt_kmip_password) | `(empty)` | Advanced |
-| [rgw_crypt_kmip_s3_key_template](#rgw_crypt_kmip_s3_key_template) | `$keyid` | Advanced |
-| [rgw_crypt_kmip_username](#rgw_crypt_kmip_username) | `(empty)` | Advanced |
-| [rgw_crypt_require_ssl](#rgw_crypt_require_ssl) | `True` | Advanced |
-| [rgw_crypt_s3_kms_backend](#rgw_crypt_s3_kms_backend) | `barbican` | Advanced |
-| [rgw_crypt_s3_kms_cache_enabled](#rgw_crypt_s3_kms_cache_enabled) | `True` | Advanced |
-| [rgw_crypt_s3_kms_cache_max_size](#rgw_crypt_s3_kms_cache_max_size) | `128` | Advanced |
-| [rgw_crypt_s3_kms_cache_negative_ttl](#rgw_crypt_s3_kms_cache_negative_ttl) | `120` | Advanced |
-| [rgw_crypt_s3_kms_cache_positive_ttl](#rgw_crypt_s3_kms_cache_positive_ttl) | `60` | Advanced |
-| [rgw_crypt_s3_kms_cache_transient_error_ttl](#rgw_crypt_s3_kms_cache_transient_error_ttl) | `10` | Advanced |
-| [rgw_crypt_s3_kms_encryption_keys](#rgw_crypt_s3_kms_encryption_keys) | `(empty)` | Dev |
-| [rgw_crypt_s3_kms_testing_delay](#rgw_crypt_s3_kms_testing_delay) | `0` | Dev |
-| [rgw_crypt_sse_algorithm](#rgw_crypt_sse_algorithm) | `aes-256-cbc` | Advanced |
-| [rgw_crypt_sse_s3_backend](#rgw_crypt_sse_s3_backend) | `vault` | Advanced |
-| [rgw_crypt_sse_s3_key_template](#rgw_crypt_sse_s3_key_template) | `%bucket_id` | Advanced |
-| [rgw_crypt_sse_s3_vault_addr](#rgw_crypt_sse_s3_vault_addr) | `(empty)` | Advanced |
-| [rgw_crypt_sse_s3_vault_auth](#rgw_crypt_sse_s3_vault_auth) | `token` | Advanced |
-| [rgw_crypt_sse_s3_vault_namespace](#rgw_crypt_sse_s3_vault_namespace) | `(empty)` | Advanced |
-| [rgw_crypt_sse_s3_vault_prefix](#rgw_crypt_sse_s3_vault_prefix) | `(empty)` | Advanced |
-| [rgw_crypt_sse_s3_vault_secret_engine](#rgw_crypt_sse_s3_vault_secret_engine) | `transit` | Advanced |
-| [rgw_crypt_sse_s3_vault_ssl_cacert](#rgw_crypt_sse_s3_vault_ssl_cacert) | `(empty)` | Advanced |
-| [rgw_crypt_sse_s3_vault_ssl_clientcert](#rgw_crypt_sse_s3_vault_ssl_clientcert) | `(empty)` | Advanced |
-| [rgw_crypt_sse_s3_vault_ssl_clientkey](#rgw_crypt_sse_s3_vault_ssl_clientkey) | `(empty)` | Advanced |
-| [rgw_crypt_sse_s3_vault_token_file](#rgw_crypt_sse_s3_vault_token_file) | `(empty)` | Advanced |
-| [rgw_crypt_sse_s3_vault_verify_ssl](#rgw_crypt_sse_s3_vault_verify_ssl) | `True` | Advanced |
-| [rgw_crypt_suppress_logs](#rgw_crypt_suppress_logs) | `True` | Advanced |
-| [rgw_crypt_vault_addr](#rgw_crypt_vault_addr) | `(empty)` | Advanced |
-| [rgw_crypt_vault_auth](#rgw_crypt_vault_auth) | `token` | Advanced |
-| [rgw_crypt_vault_namespace](#rgw_crypt_vault_namespace) | `(empty)` | Advanced |
-| [rgw_crypt_vault_prefix](#rgw_crypt_vault_prefix) | `(empty)` | Advanced |
-| [rgw_crypt_vault_secret_engine](#rgw_crypt_vault_secret_engine) | `transit` | Advanced |
-| [rgw_crypt_vault_ssl_cacert](#rgw_crypt_vault_ssl_cacert) | `(empty)` | Advanced |
-| [rgw_crypt_vault_ssl_clientcert](#rgw_crypt_vault_ssl_clientcert) | `(empty)` | Advanced |
-| [rgw_crypt_vault_ssl_clientkey](#rgw_crypt_vault_ssl_clientkey) | `(empty)` | Advanced |
-| [rgw_crypt_vault_token_file](#rgw_crypt_vault_token_file) | `(empty)` | Advanced |
-| [rgw_crypt_vault_verify_ssl](#rgw_crypt_vault_verify_ssl) | `True` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_crypt_default_encryption_key](#rgw_crypt_default_encryption_key) | `(empty)` | Dev | Performance |
+| [rgw_crypt_kmip_addr](#rgw_crypt_kmip_addr) | `(empty)` | Advanced | Connectivity |
+| [rgw_crypt_kmip_ca_path](#rgw_crypt_kmip_ca_path) | `(empty)` | Advanced | Capacity |
+| [rgw_crypt_kmip_client_cert](#rgw_crypt_kmip_client_cert) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_kmip_client_key](#rgw_crypt_kmip_client_key) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_kmip_kms_key_template](#rgw_crypt_kmip_kms_key_template) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_kmip_password](#rgw_crypt_kmip_password) | `(empty)` | Advanced | Policy |
+| [rgw_crypt_kmip_s3_key_template](#rgw_crypt_kmip_s3_key_template) | `$keyid` | Advanced | Performance |
+| [rgw_crypt_kmip_username](#rgw_crypt_kmip_username) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_require_ssl](#rgw_crypt_require_ssl) | `True` | Advanced | Policy |
+| [rgw_crypt_s3_kms_backend](#rgw_crypt_s3_kms_backend) | `barbican` | Advanced | Architecture |
+| [rgw_crypt_s3_kms_cache_enabled](#rgw_crypt_s3_kms_cache_enabled) | `True` | Advanced | Policy |
+| [rgw_crypt_s3_kms_cache_max_size](#rgw_crypt_s3_kms_cache_max_size) | `128` | Advanced | Policy |
+| [rgw_crypt_s3_kms_cache_negative_ttl](#rgw_crypt_s3_kms_cache_negative_ttl) | `120` | Advanced | Performance |
+| [rgw_crypt_s3_kms_cache_positive_ttl](#rgw_crypt_s3_kms_cache_positive_ttl) | `60` | Advanced | Performance |
+| [rgw_crypt_s3_kms_cache_transient_error_ttl](#rgw_crypt_s3_kms_cache_transient_error_ttl) | `10` | Advanced | Performance |
+| [rgw_crypt_s3_kms_encryption_keys](#rgw_crypt_s3_kms_encryption_keys) | `(empty)` | Dev | Performance |
+| [rgw_crypt_s3_kms_testing_delay](#rgw_crypt_s3_kms_testing_delay) | `0` | Dev | Performance |
+| [rgw_crypt_sse_algorithm](#rgw_crypt_sse_algorithm) | `aes-256-cbc` | Advanced | Architecture |
+| [rgw_crypt_sse_s3_backend](#rgw_crypt_sse_s3_backend) | `vault` | Advanced | Architecture |
+| [rgw_crypt_sse_s3_key_template](#rgw_crypt_sse_s3_key_template) | `%bucket_id` | Advanced | Performance |
+| [rgw_crypt_sse_s3_vault_addr](#rgw_crypt_sse_s3_vault_addr) | `(empty)` | Advanced | Connectivity |
+| [rgw_crypt_sse_s3_vault_auth](#rgw_crypt_sse_s3_vault_auth) | `token` | Advanced | Architecture |
+| [rgw_crypt_sse_s3_vault_namespace](#rgw_crypt_sse_s3_vault_namespace) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_sse_s3_vault_prefix](#rgw_crypt_sse_s3_vault_prefix) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_sse_s3_vault_secret_engine](#rgw_crypt_sse_s3_vault_secret_engine) | `transit` | Advanced | Policy |
+| [rgw_crypt_sse_s3_vault_ssl_cacert](#rgw_crypt_sse_s3_vault_ssl_cacert) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_sse_s3_vault_ssl_clientcert](#rgw_crypt_sse_s3_vault_ssl_clientcert) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_sse_s3_vault_ssl_clientkey](#rgw_crypt_sse_s3_vault_ssl_clientkey) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_sse_s3_vault_token_file](#rgw_crypt_sse_s3_vault_token_file) | `(empty)` | Advanced | Capacity |
+| [rgw_crypt_sse_s3_vault_verify_ssl](#rgw_crypt_sse_s3_vault_verify_ssl) | `True` | Advanced | Policy |
+| [rgw_crypt_suppress_logs](#rgw_crypt_suppress_logs) | `True` | Advanced | Policy |
+| [rgw_crypt_vault_addr](#rgw_crypt_vault_addr) | `(empty)` | Advanced | Connectivity |
+| [rgw_crypt_vault_auth](#rgw_crypt_vault_auth) | `token` | Advanced | Architecture |
+| [rgw_crypt_vault_namespace](#rgw_crypt_vault_namespace) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_vault_prefix](#rgw_crypt_vault_prefix) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_vault_secret_engine](#rgw_crypt_vault_secret_engine) | `transit` | Advanced | Policy |
+| [rgw_crypt_vault_ssl_cacert](#rgw_crypt_vault_ssl_cacert) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_vault_ssl_clientcert](#rgw_crypt_vault_ssl_clientcert) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_vault_ssl_clientkey](#rgw_crypt_vault_ssl_clientkey) | `(empty)` | Advanced | Performance |
+| [rgw_crypt_vault_token_file](#rgw_crypt_vault_token_file) | `(empty)` | Advanced | Capacity |
+| [rgw_crypt_vault_verify_ssl](#rgw_crypt_vault_verify_ssl) | `True` | Advanced | Policy |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -65,7 +85,23 @@ ceph config set client.rgw rgw_crypt_default_encryption_key <value>
 ceph config get client.rgw rgw_crypt_default_encryption_key
 ```
 
-**Finding optimal value:** Keep the upstream default (`(empty)`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_default_encryption_key
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -87,7 +123,22 @@ ceph config set client.rgw rgw_crypt_kmip_addr <value>
 ceph config get client.rgw rgw_crypt_kmip_addr
 ```
 
-**Finding optimal value:** Use the nearest stable endpoint reachable from every RGW node. Verify with curl from each host; measure p99 latency of dependent operations and keep the default (`(empty)`) if the integration is unused.
+**Finding optimal value:**
+
+**Tuning model:** Connectivity
+
+1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).
+2. From **each** RGW node: `curl -k <url>` or vendor health check.
+3. Pick the lowest-latency endpoint that stays healthy over 24h.
+4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).
+5. Leave empty (`(empty)`) if the integration is disabled.
+
+```bash
+ceph config get client.rgw rgw_crypt_kmip_addr
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -109,7 +160,19 @@ ceph config set client.rgw rgw_crypt_kmip_ca_path <value>
 ceph config get client.rgw rgw_crypt_kmip_ca_path
 ```
 
-**Finding optimal value:** Place on fast, dedicated storage with sufficient free space. Default (`(empty)`) is fine when that path is on a separate volume.
+**Finding optimal value:**
+
+**Tuning model:** Capacity
+
+1. Prefer a dedicated volume (NVMe/SSD) — not the root filesystem.
+2. Size for metadata growth + 30% free space (`df -h`, `iowait`).
+3. Default path (`(empty)`) is fine when it already sits on fast storage.
+4. dbstore/POSIX: all RGW instances sharing data must see the same path.
+
+```bash
+df -h $(ceph config get client.rgw rgw_crypt_kmip_ca_path)
+iostat -x 5  # disk saturation
+```
 
 ---
 
@@ -131,7 +194,23 @@ ceph config set client.rgw rgw_crypt_kmip_client_cert <value>
 ceph config get client.rgw rgw_crypt_kmip_client_cert
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_kmip_client_cert
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -153,7 +232,23 @@ ceph config set client.rgw rgw_crypt_kmip_client_key <value>
 ceph config get client.rgw rgw_crypt_kmip_client_key
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_kmip_client_key
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -175,7 +270,23 @@ ceph config set client.rgw rgw_crypt_kmip_kms_key_template <value>
 ceph config get client.rgw rgw_crypt_kmip_kms_key_template
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_kmip_kms_key_template
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -197,7 +308,13 @@ ceph config set client.rgw rgw_crypt_kmip_password <value>
 ceph config get client.rgw rgw_crypt_kmip_password
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Not tuned numerically — supply from your secrets manager.
+2. Rotate on schedule; never store in git or plain `ceph.conf`.
+3. Use `ceph config set` at runtime or cephadm secrets where supported.
 
 ---
 
@@ -219,7 +336,23 @@ ceph config set client.rgw rgw_crypt_kmip_s3_key_template $keyid
 ceph config get client.rgw rgw_crypt_kmip_s3_key_template
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `$keyid`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_kmip_s3_key_template
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -241,7 +374,23 @@ ceph config set client.rgw rgw_crypt_kmip_username <value>
 ceph config get client.rgw rgw_crypt_kmip_username
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_kmip_username
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -263,7 +412,13 @@ ceph config set client.rgw rgw_crypt_require_ssl True
 ceph config get client.rgw rgw_crypt_require_ssl
 ```
 
-**Finding optimal value:** Security/compliance setting — prefer `true` in production unless a trusted lab requires `True`.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Production: prefer secure default (`True` for most security options).
+2. Relax only on trusted private networks with documented risk acceptance.
+3. Test client behavior (HTTPS redirects, presigned URLs) after changes.
 
 ---
 
@@ -285,7 +440,13 @@ ceph config set client.rgw rgw_crypt_s3_kms_backend barbican
 ceph config get client.rgw rgw_crypt_s3_kms_backend
 ```
 
-**Finding optimal value:** Choose from valid values ["barbican", "vault", "testing", "kmip"]. Default `barbican` is optimal unless your backend or integration requires another value.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Valid values: ["barbican", "vault", "testing", "kmip"].
+2. Default `barbican` matches standard Ceph packaging.
+3. Change only when your integration or backend explicitly requires another value.
 
 ---
 
@@ -307,7 +468,13 @@ ceph config set client.rgw rgw_crypt_s3_kms_cache_enabled True
 ceph config get client.rgw rgw_crypt_s3_kms_cache_enabled
 ```
 
-**Finding optimal value:** Enable only when the related metrics or correctness path needs it. Default (`True`) is usually optimal for standard deployments.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -320,7 +487,10 @@ ceph config get client.rgw rgw_crypt_s3_kms_cache_enabled
 
 **What it does:** Maximum number of SSE-KMS secrets cached. Each key consumes 32 byte (AES-256) + overhead in memory
 
-**When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
 
 **Example:**
 
@@ -329,7 +499,13 @@ ceph config set client.rgw rgw_crypt_s3_kms_cache_max_size 128
 ceph config get client.rgw rgw_crypt_s3_kms_cache_max_size
 ```
 
-**Finding optimal value:** Size to active working set (accounts, buckets, or keys you monitor). Sweep around default (`128`) while watching RGW RSS.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `128` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -342,7 +518,10 @@ ceph config get client.rgw rgw_crypt_s3_kms_cache_max_size
 
 **What it does:** Time in seconds after which the KMS cache evicts permanent look-up errors (e.g key does not exist).
 
-**When to use:** Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure.
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
 
 **Example:**
 
@@ -351,7 +530,24 @@ ceph config set client.rgw rgw_crypt_s3_kms_cache_negative_ttl 120
 ceph config get client.rgw rgw_crypt_s3_kms_cache_negative_ttl
 ```
 
-**Finding optimal value:** Size to active working set (accounts, buckets, or keys you monitor). Sweep around default (`120`) while watching RGW RSS. Valid range: min=0, max=3600.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Size to the **active** working set (monitored buckets/users/tokens), not total catalog size.
+2. Start at `120`; sweep upward in ~2× steps.
+3. Watch RGW RSS and cache hit behavior; use smallest size that avoids hot-path misses.
+
+**Signals:** rising RGW memory, repeated metadata lookups in logs.
+
+```bash
+ceph config get client.rgw rgw_crypt_s3_kms_cache_negative_ttl
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+**Bounds:** min `0`, max `3600`.
 
 ---
 
@@ -364,7 +560,10 @@ ceph config get client.rgw rgw_crypt_s3_kms_cache_negative_ttl
 
 **What it does:** Time in seconds after which the KMS cache evicts successful lookups.
 
-**When to use:** Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure.
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
 
 **Example:**
 
@@ -373,7 +572,24 @@ ceph config set client.rgw rgw_crypt_s3_kms_cache_positive_ttl 60
 ceph config get client.rgw rgw_crypt_s3_kms_cache_positive_ttl
 ```
 
-**Finding optimal value:** Size to active working set (accounts, buckets, or keys you monitor). Sweep around default (`60`) while watching RGW RSS. Valid range: min=10, max=3600.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Size to the **active** working set (monitored buckets/users/tokens), not total catalog size.
+2. Start at `60`; sweep upward in ~2× steps.
+3. Watch RGW RSS and cache hit behavior; use smallest size that avoids hot-path misses.
+
+**Signals:** rising RGW memory, repeated metadata lookups in logs.
+
+```bash
+ceph config get client.rgw rgw_crypt_s3_kms_cache_positive_ttl
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+**Bounds:** min `10`, max `3600`.
 
 ---
 
@@ -386,7 +602,10 @@ ceph config get client.rgw rgw_crypt_s3_kms_cache_positive_ttl
 
 **What it does:** Time in seconds after which the KMS cache evicts entries representing transient errors (timeouts, temporary outages, misconfiguration, etc).
 
-**When to use:** Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure.
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
 
 **Example:**
 
@@ -395,7 +614,24 @@ ceph config set client.rgw rgw_crypt_s3_kms_cache_transient_error_ttl 10
 ceph config get client.rgw rgw_crypt_s3_kms_cache_transient_error_ttl
 ```
 
-**Finding optimal value:** Size to active working set (accounts, buckets, or keys you monitor). Sweep around default (`10`) while watching RGW RSS. Valid range: min=0, max=3600.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Size to the **active** working set (monitored buckets/users/tokens), not total catalog size.
+2. Start at `10`; sweep upward in ~2× steps.
+3. Watch RGW RSS and cache hit behavior; use smallest size that avoids hot-path misses.
+
+**Signals:** rising RGW memory, repeated metadata lookups in logs.
+
+```bash
+ceph config get client.rgw rgw_crypt_s3_kms_cache_transient_error_ttl
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+**Bounds:** min `0`, max `3600`.
 
 ---
 
@@ -415,7 +651,23 @@ ceph config set client.rgw rgw_crypt_s3_kms_encryption_keys <value>
 ceph config get client.rgw rgw_crypt_s3_kms_encryption_keys
 ```
 
-**Finding optimal value:** Keep the upstream default (`(empty)`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_s3_kms_encryption_keys
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -437,7 +689,23 @@ ceph config set client.rgw rgw_crypt_s3_kms_testing_delay 0
 ceph config get client.rgw rgw_crypt_s3_kms_testing_delay
 ```
 
-**Finding optimal value:** Keep the upstream default (`0`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `0`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_s3_kms_testing_delay
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -459,7 +727,13 @@ ceph config set client.rgw rgw_crypt_sse_algorithm aes-256-cbc
 ceph config get client.rgw rgw_crypt_sse_algorithm
 ```
 
-**Finding optimal value:** Choose from valid values ["aes-256-cbc", "aes-256-gcm"]. Default `aes-256-cbc` is optimal unless your backend or integration requires another value.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Valid values: ["aes-256-cbc", "aes-256-gcm"].
+2. Default `aes-256-cbc` matches standard Ceph packaging.
+3. Change only when your integration or backend explicitly requires another value.
 
 ---
 
@@ -481,7 +755,13 @@ ceph config set client.rgw rgw_crypt_sse_s3_backend vault
 ceph config get client.rgw rgw_crypt_sse_s3_backend
 ```
 
-**Finding optimal value:** Choose from valid values ["vault"]. Default `vault` is optimal unless your backend or integration requires another value.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Valid values: ["vault"].
+2. Default `vault` matches standard Ceph packaging.
+3. Change only when your integration or backend explicitly requires another value.
 
 ---
 
@@ -503,7 +783,23 @@ ceph config set client.rgw rgw_crypt_sse_s3_key_template %bucket_id
 ceph config get client.rgw rgw_crypt_sse_s3_key_template
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `%bucket_id`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_sse_s3_key_template
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -525,7 +821,22 @@ ceph config set client.rgw rgw_crypt_sse_s3_vault_addr <value>
 ceph config get client.rgw rgw_crypt_sse_s3_vault_addr
 ```
 
-**Finding optimal value:** Use the nearest stable endpoint reachable from every RGW node. Verify with curl from each host; measure p99 latency of dependent operations and keep the default (`(empty)`) if the integration is unused.
+**Finding optimal value:**
+
+**Tuning model:** Connectivity
+
+1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).
+2. From **each** RGW node: `curl -k <url>` or vendor health check.
+3. Pick the lowest-latency endpoint that stays healthy over 24h.
+4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).
+5. Leave empty (`(empty)`) if the integration is disabled.
+
+```bash
+ceph config get client.rgw rgw_crypt_sse_s3_vault_addr
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -547,7 +858,13 @@ ceph config set client.rgw rgw_crypt_sse_s3_vault_auth token
 ceph config get client.rgw rgw_crypt_sse_s3_vault_auth
 ```
 
-**Finding optimal value:** Choose from valid values ["token", "agent"]. Default `token` is optimal unless your backend or integration requires another value.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Valid values: ["token", "agent"].
+2. Default `token` matches standard Ceph packaging.
+3. Change only when your integration or backend explicitly requires another value.
 
 ---
 
@@ -569,7 +886,23 @@ ceph config set client.rgw rgw_crypt_sse_s3_vault_namespace <value>
 ceph config get client.rgw rgw_crypt_sse_s3_vault_namespace
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_sse_s3_vault_namespace
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -591,7 +924,23 @@ ceph config set client.rgw rgw_crypt_sse_s3_vault_prefix <value>
 ceph config get client.rgw rgw_crypt_sse_s3_vault_prefix
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_sse_s3_vault_prefix
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -613,7 +962,13 @@ ceph config set client.rgw rgw_crypt_sse_s3_vault_secret_engine transit
 ceph config get client.rgw rgw_crypt_sse_s3_vault_secret_engine
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Not tuned numerically — supply from your secrets manager.
+2. Rotate on schedule; never store in git or plain `ceph.conf`.
+3. Use `ceph config set` at runtime or cephadm secrets where supported.
 
 ---
 
@@ -635,7 +990,23 @@ ceph config set client.rgw rgw_crypt_sse_s3_vault_ssl_cacert <value>
 ceph config get client.rgw rgw_crypt_sse_s3_vault_ssl_cacert
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_sse_s3_vault_ssl_cacert
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -657,7 +1028,23 @@ ceph config set client.rgw rgw_crypt_sse_s3_vault_ssl_clientcert <value>
 ceph config get client.rgw rgw_crypt_sse_s3_vault_ssl_clientcert
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_sse_s3_vault_ssl_clientcert
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -679,7 +1066,23 @@ ceph config set client.rgw rgw_crypt_sse_s3_vault_ssl_clientkey <value>
 ceph config get client.rgw rgw_crypt_sse_s3_vault_ssl_clientkey
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_sse_s3_vault_ssl_clientkey
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -701,7 +1104,19 @@ ceph config set client.rgw rgw_crypt_sse_s3_vault_token_file <value>
 ceph config get client.rgw rgw_crypt_sse_s3_vault_token_file
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Capacity
+
+1. Prefer a dedicated volume (NVMe/SSD) — not the root filesystem.
+2. Size for metadata growth + 30% free space (`df -h`, `iowait`).
+3. Default path (`(empty)`) is fine when it already sits on fast storage.
+4. dbstore/POSIX: all RGW instances sharing data must see the same path.
+
+```bash
+df -h $(ceph config get client.rgw rgw_crypt_sse_s3_vault_token_file)
+iostat -x 5  # disk saturation
+```
 
 ---
 
@@ -723,7 +1138,13 @@ ceph config set client.rgw rgw_crypt_sse_s3_vault_verify_ssl True
 ceph config get client.rgw rgw_crypt_sse_s3_vault_verify_ssl
 ```
 
-**Finding optimal value:** Security/compliance setting — prefer `true` in production unless a trusted lab requires `True`.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Production: prefer secure default (`True` for most security options).
+2. Relax only on trusted private networks with documented risk acceptance.
+3. Test client behavior (HTTPS redirects, presigned URLs) after changes.
 
 ---
 
@@ -745,7 +1166,13 @@ ceph config set client.rgw rgw_crypt_suppress_logs True
 ceph config get client.rgw rgw_crypt_suppress_logs
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`True`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -767,7 +1194,22 @@ ceph config set client.rgw rgw_crypt_vault_addr <value>
 ceph config get client.rgw rgw_crypt_vault_addr
 ```
 
-**Finding optimal value:** Use the nearest stable endpoint reachable from every RGW node. Verify with curl from each host; measure p99 latency of dependent operations and keep the default (`(empty)`) if the integration is unused.
+**Finding optimal value:**
+
+**Tuning model:** Connectivity
+
+1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).
+2. From **each** RGW node: `curl -k <url>` or vendor health check.
+3. Pick the lowest-latency endpoint that stays healthy over 24h.
+4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).
+5. Leave empty (`(empty)`) if the integration is disabled.
+
+```bash
+ceph config get client.rgw rgw_crypt_vault_addr
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -789,7 +1231,13 @@ ceph config set client.rgw rgw_crypt_vault_auth token
 ceph config get client.rgw rgw_crypt_vault_auth
 ```
 
-**Finding optimal value:** Choose from valid values ["token", "agent"]. Default `token` is optimal unless your backend or integration requires another value.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Valid values: ["token", "agent"].
+2. Default `token` matches standard Ceph packaging.
+3. Change only when your integration or backend explicitly requires another value.
 
 ---
 
@@ -811,7 +1259,23 @@ ceph config set client.rgw rgw_crypt_vault_namespace <value>
 ceph config get client.rgw rgw_crypt_vault_namespace
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_vault_namespace
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -833,7 +1297,23 @@ ceph config set client.rgw rgw_crypt_vault_prefix <value>
 ceph config get client.rgw rgw_crypt_vault_prefix
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_vault_prefix
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -855,7 +1335,13 @@ ceph config set client.rgw rgw_crypt_vault_secret_engine transit
 ceph config get client.rgw rgw_crypt_vault_secret_engine
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Not tuned numerically — supply from your secrets manager.
+2. Rotate on schedule; never store in git or plain `ceph.conf`.
+3. Use `ceph config set` at runtime or cephadm secrets where supported.
 
 ---
 
@@ -877,7 +1363,23 @@ ceph config set client.rgw rgw_crypt_vault_ssl_cacert <value>
 ceph config get client.rgw rgw_crypt_vault_ssl_cacert
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_vault_ssl_cacert
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -899,7 +1401,23 @@ ceph config set client.rgw rgw_crypt_vault_ssl_clientcert <value>
 ceph config get client.rgw rgw_crypt_vault_ssl_clientcert
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_vault_ssl_clientcert
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -921,7 +1439,23 @@ ceph config set client.rgw rgw_crypt_vault_ssl_clientkey <value>
 ceph config get client.rgw rgw_crypt_vault_ssl_clientkey
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_crypt_vault_ssl_clientkey
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -943,7 +1477,19 @@ ceph config set client.rgw rgw_crypt_vault_token_file <value>
 ceph config get client.rgw rgw_crypt_vault_token_file
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Capacity
+
+1. Prefer a dedicated volume (NVMe/SSD) — not the root filesystem.
+2. Size for metadata growth + 30% free space (`df -h`, `iowait`).
+3. Default path (`(empty)`) is fine when it already sits on fast storage.
+4. dbstore/POSIX: all RGW instances sharing data must see the same path.
+
+```bash
+df -h $(ceph config get client.rgw rgw_crypt_vault_token_file)
+iostat -x 5  # disk saturation
+```
 
 ---
 
@@ -965,7 +1511,13 @@ ceph config set client.rgw rgw_crypt_vault_verify_ssl True
 ceph config get client.rgw rgw_crypt_vault_verify_ssl
 ```
 
-**Finding optimal value:** Security/compliance setting — prefer `true` in production unless a trusted lab requires `True`.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Production: prefer secure default (`True` for most security options).
+2. Relax only on trusted private networks with documented risk acceptance.
+3. Test client behavior (HTTPS redirects, presigned URLs) after changes.
 
 ---
 

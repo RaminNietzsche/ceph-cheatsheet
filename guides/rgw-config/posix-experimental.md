@@ -1,16 +1,36 @@
 # POSIX backend (experimental)
 
-RGW config deep dive — 7 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 7 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_posix_base_path](#rgw_posix_base_path) | `/tmp/rgw_posix_driver` | Advanced |
-| [rgw_posix_cache_lanes](#rgw_posix_cache_lanes) | `3` | Advanced |
-| [rgw_posix_cache_lmdb_count](#rgw_posix_cache_lmdb_count) | `3` | Advanced |
-| [rgw_posix_cache_max_buckets](#rgw_posix_cache_max_buckets) | `100` | Advanced |
-| [rgw_posix_cache_partitions](#rgw_posix_cache_partitions) | `3` | Advanced |
-| [rgw_posix_database_root](#rgw_posix_database_root) | `/var/lib/ceph/radosgw` | Advanced |
-| [rgw_posix_userdb_dir](#rgw_posix_userdb_dir) | `/var/lib/ceph/radosgw` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_posix_base_path](#rgw_posix_base_path) | `/tmp/rgw_posix_driver` | Advanced | Architecture |
+| [rgw_posix_cache_lanes](#rgw_posix_cache_lanes) | `3` | Advanced | Architecture |
+| [rgw_posix_cache_lmdb_count](#rgw_posix_cache_lmdb_count) | `3` | Advanced | Architecture |
+| [rgw_posix_cache_max_buckets](#rgw_posix_cache_max_buckets) | `100` | Advanced | Architecture |
+| [rgw_posix_cache_partitions](#rgw_posix_cache_partitions) | `3` | Advanced | Architecture |
+| [rgw_posix_database_root](#rgw_posix_database_root) | `/var/lib/ceph/radosgw` | Advanced | Architecture |
+| [rgw_posix_userdb_dir](#rgw_posix_userdb_dir) | `/var/lib/ceph/radosgw` | Advanced | Architecture |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -32,7 +52,13 @@ ceph config set client.rgw rgw_posix_base_path "/tmp/rgw_posix_driver"
 ceph config get client.rgw rgw_posix_base_path
 ```
 
-**Finding optimal value:** Place on fast, dedicated storage with sufficient free space. Default (`/tmp/rgw_posix_driver`) is fine when that path is on a separate volume.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `/tmp/rgw_posix_driver` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 
@@ -45,7 +71,10 @@ ceph config get client.rgw rgw_posix_base_path
 
 **What it does:** experimental Number of lanes in cache LRU
 
-**When to use:** Experimental Motr/POSIX RGW backends — use only in specialized PoC deployments.
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
 
 **Example:**
 
@@ -54,7 +83,13 @@ ceph config set client.rgw rgw_posix_cache_lanes 3
 ceph config get client.rgw rgw_posix_cache_lanes
 ```
 
-**Finding optimal value:** Size to active working set (accounts, buckets, or keys you monitor). Sweep around default (`3`) while watching RGW RSS.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `3` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 
@@ -67,7 +102,10 @@ ceph config get client.rgw rgw_posix_cache_lanes
 
 **What it does:** experimental Number of lmdb partitions in the ordered listing cache
 
-**When to use:** Experimental Motr/POSIX RGW backends — use only in specialized PoC deployments.
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
 
 **Example:**
 
@@ -76,7 +114,13 @@ ceph config set client.rgw rgw_posix_cache_lmdb_count 3
 ceph config get client.rgw rgw_posix_cache_lmdb_count
 ```
 
-**Finding optimal value:** Size to active working set (accounts, buckets, or keys you monitor). Sweep around default (`3`) while watching RGW RSS.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `3` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 
@@ -89,7 +133,10 @@ ceph config get client.rgw rgw_posix_cache_lmdb_count
 
 **What it does:** experimental Number of buckets to maintain in the ordered listing cache
 
-**When to use:** Experimental Motr/POSIX RGW backends — use only in specialized PoC deployments.
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
 
 **Example:**
 
@@ -98,7 +145,13 @@ ceph config set client.rgw rgw_posix_cache_max_buckets 100
 ceph config get client.rgw rgw_posix_cache_max_buckets
 ```
 
-**Finding optimal value:** Size to active working set (accounts, buckets, or keys you monitor). Sweep around default (`100`) while watching RGW RSS.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `100` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 
@@ -111,7 +164,10 @@ ceph config get client.rgw rgw_posix_cache_max_buckets
 
 **What it does:** experimental Number of partitions in cache AVL
 
-**When to use:** Experimental Motr/POSIX RGW backends — use only in specialized PoC deployments.
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
 
 **Example:**
 
@@ -120,7 +176,13 @@ ceph config set client.rgw rgw_posix_cache_partitions 3
 ceph config get client.rgw rgw_posix_cache_partitions
 ```
 
-**Finding optimal value:** Size to active working set (accounts, buckets, or keys you monitor). Sweep around default (`3`) while watching RGW RSS.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `3` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 
@@ -142,7 +204,13 @@ ceph config set client.rgw rgw_posix_database_root "/var/lib/ceph/radosgw"
 ceph config get client.rgw rgw_posix_database_root
 ```
 
-**Finding optimal value:** Start from upstream default (`/var/lib/ceph/radosgw`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `/var/lib/ceph/radosgw` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 
@@ -164,7 +232,13 @@ ceph config set client.rgw rgw_posix_userdb_dir "/var/lib/ceph/radosgw"
 ceph config get client.rgw rgw_posix_userdb_dir
 ```
 
-**Finding optimal value:** Place on fast, dedicated storage with sufficient free space. Default (`/var/lib/ceph/radosgw`) is fine when that path is on a separate volume.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `/var/lib/ceph/radosgw` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 

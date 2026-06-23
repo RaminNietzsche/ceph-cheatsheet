@@ -1,20 +1,40 @@
 # Swift API
 
-RGW config deep dive — 11 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 11 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_swift_account_in_url](#rgw_swift_account_in_url) | `False` | Advanced |
-| [rgw_swift_auth_entry](#rgw_swift_auth_entry) | `auth` | Advanced |
-| [rgw_swift_auth_url](#rgw_swift_auth_url) | `(empty)` | Advanced |
-| [rgw_swift_custom_header](#rgw_swift_custom_header) | `(empty)` | Advanced |
-| [rgw_swift_enforce_content_length](#rgw_swift_enforce_content_length) | `False` | Advanced |
-| [rgw_swift_need_stats](#rgw_swift_need_stats) | `True` | Advanced |
-| [rgw_swift_tenant_name](#rgw_swift_tenant_name) | `(empty)` | Advanced |
-| [rgw_swift_token_expiration](#rgw_swift_token_expiration) | `1_day` | Advanced |
-| [rgw_swift_url](#rgw_swift_url) | `(empty)` | Advanced |
-| [rgw_swift_url_prefix](#rgw_swift_url_prefix) | `swift` | Advanced |
-| [rgw_swift_versioning_enabled](#rgw_swift_versioning_enabled) | `False` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_swift_account_in_url](#rgw_swift_account_in_url) | `False` | Advanced | Connectivity |
+| [rgw_swift_auth_entry](#rgw_swift_auth_entry) | `auth` | Advanced | Policy |
+| [rgw_swift_auth_url](#rgw_swift_auth_url) | `(empty)` | Advanced | Connectivity |
+| [rgw_swift_custom_header](#rgw_swift_custom_header) | `(empty)` | Advanced | Performance |
+| [rgw_swift_enforce_content_length](#rgw_swift_enforce_content_length) | `False` | Advanced | Policy |
+| [rgw_swift_need_stats](#rgw_swift_need_stats) | `True` | Advanced | Policy |
+| [rgw_swift_tenant_name](#rgw_swift_tenant_name) | `(empty)` | Advanced | Performance |
+| [rgw_swift_token_expiration](#rgw_swift_token_expiration) | `1_day` | Advanced | Performance |
+| [rgw_swift_url](#rgw_swift_url) | `(empty)` | Advanced | Connectivity |
+| [rgw_swift_url_prefix](#rgw_swift_url_prefix) | `swift` | Advanced | Performance |
+| [rgw_swift_versioning_enabled](#rgw_swift_versioning_enabled) | `False` | Advanced | Policy |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -36,7 +56,22 @@ ceph config set client.rgw rgw_swift_account_in_url False
 ceph config get client.rgw rgw_swift_account_in_url
 ```
 
-**Finding optimal value:** Use the nearest stable endpoint reachable from every RGW node. Verify with curl from each host; measure p99 latency of dependent operations and keep the default (`False`) if the integration is unused.
+**Finding optimal value:**
+
+**Tuning model:** Connectivity
+
+1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).
+2. From **each** RGW node: `curl -k <url>` or vendor health check.
+3. Pick the lowest-latency endpoint that stays healthy over 24h.
+4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).
+5. Leave empty (`False`) if the integration is disabled.
+
+```bash
+ceph config get client.rgw rgw_swift_account_in_url
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -58,7 +93,13 @@ ceph config set client.rgw rgw_swift_auth_entry auth
 ceph config get client.rgw rgw_swift_auth_entry
 ```
 
-**Finding optimal value:** Start from upstream default (`auth`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Upstream default (`auth`) is the compatibility baseline.
+2. Change only for documented client or compliance requirements.
+3. Multisite: verify `rgw_admin_entry` and similar IDs stay at required values.
 
 ---
 
@@ -80,7 +121,22 @@ ceph config set client.rgw rgw_swift_auth_url <value>
 ceph config get client.rgw rgw_swift_auth_url
 ```
 
-**Finding optimal value:** Use the nearest stable endpoint reachable from every RGW node. Verify with curl from each host; measure p99 latency of dependent operations and keep the default (`(empty)`) if the integration is unused.
+**Finding optimal value:**
+
+**Tuning model:** Connectivity
+
+1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).
+2. From **each** RGW node: `curl -k <url>` or vendor health check.
+3. Pick the lowest-latency endpoint that stays healthy over 24h.
+4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).
+5. Leave empty (`(empty)`) if the integration is disabled.
+
+```bash
+ceph config get client.rgw rgw_swift_auth_url
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -102,7 +158,23 @@ ceph config set client.rgw rgw_swift_custom_header <value>
 ceph config get client.rgw rgw_swift_custom_header
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_swift_custom_header
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -124,7 +196,13 @@ ceph config set client.rgw rgw_swift_enforce_content_length False
 ceph config get client.rgw rgw_swift_enforce_content_length
 ```
 
-**Finding optimal value:** Security/compliance setting — prefer `true` in production unless a trusted lab requires `False`.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -146,7 +224,13 @@ ceph config set client.rgw rgw_swift_need_stats True
 ceph config get client.rgw rgw_swift_need_stats
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`True`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -168,7 +252,23 @@ ceph config set client.rgw rgw_swift_tenant_name <value>
 ceph config get client.rgw rgw_swift_tenant_name
 ```
 
-**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `(empty)`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_swift_tenant_name
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -190,7 +290,23 @@ ceph config set client.rgw rgw_swift_token_expiration 1_day
 ceph config get client.rgw rgw_swift_token_expiration
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `1_day`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_swift_token_expiration
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -212,7 +328,22 @@ ceph config set client.rgw rgw_swift_url <value>
 ceph config get client.rgw rgw_swift_url
 ```
 
-**Finding optimal value:** Use the nearest stable endpoint reachable from every RGW node. Verify with curl from each host; measure p99 latency of dependent operations and keep the default (`(empty)`) if the integration is unused.
+**Finding optimal value:**
+
+**Tuning model:** Connectivity
+
+1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).
+2. From **each** RGW node: `curl -k <url>` or vendor health check.
+3. Pick the lowest-latency endpoint that stays healthy over 24h.
+4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).
+5. Leave empty (`(empty)`) if the integration is disabled.
+
+```bash
+ceph config get client.rgw rgw_swift_url
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -234,7 +365,23 @@ ceph config set client.rgw rgw_swift_url_prefix swift
 ceph config get client.rgw rgw_swift_url_prefix
 ```
 
-**Finding optimal value:** Start from upstream default (`swift`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `swift`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_swift_url_prefix
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -256,7 +403,13 @@ ceph config set client.rgw rgw_swift_versioning_enabled False
 ceph config get client.rgw rgw_swift_versioning_enabled
 ```
 
-**Finding optimal value:** Enable when the feature is required; otherwise keep default (`False`) to minimize background threads and memory.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 

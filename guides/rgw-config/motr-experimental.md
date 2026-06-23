@@ -1,16 +1,36 @@
 # Motr (experimental backend)
 
-RGW config deep dive — 7 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 7 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [motr_admin_endpoint](#motr_admin_endpoint) | `192.168.180.182@tcp:12345:4:1` | Advanced |
-| [motr_admin_fid](#motr_admin_fid) | `0x7200000000000001:0x0` | Advanced |
-| [motr_ha_endpoint](#motr_ha_endpoint) | `192.168.180.182@tcp:12345:1:1` | Advanced |
-| [motr_my_endpoint](#motr_my_endpoint) | `192.168.180.182@tcp:12345:4:1` | Advanced |
-| [motr_my_fid](#motr_my_fid) | `0x7200000000000001:0x0` | Advanced |
-| [motr_profile_fid](#motr_profile_fid) | `0x7000000000000001:0x0` | Advanced |
-| [motr_tracing_enabled](#motr_tracing_enabled) | `False` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [motr_admin_endpoint](#motr_admin_endpoint) | `192.168.180.182@tcp:12345:4:1` | Advanced | Architecture |
+| [motr_admin_fid](#motr_admin_fid) | `0x7200000000000001:0x0` | Advanced | Architecture |
+| [motr_ha_endpoint](#motr_ha_endpoint) | `192.168.180.182@tcp:12345:1:1` | Advanced | Architecture |
+| [motr_my_endpoint](#motr_my_endpoint) | `192.168.180.182@tcp:12345:4:1` | Advanced | Architecture |
+| [motr_my_fid](#motr_my_fid) | `0x7200000000000001:0x0` | Advanced | Architecture |
+| [motr_profile_fid](#motr_profile_fid) | `0x7000000000000001:0x0` | Advanced | Architecture |
+| [motr_tracing_enabled](#motr_tracing_enabled) | `False` | Advanced | Dev |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -32,7 +52,13 @@ ceph config set client.rgw motr_admin_endpoint 192.168.180.182@tcp:12345:4:1
 ceph config get client.rgw motr_admin_endpoint
 ```
 
-**Finding optimal value:** Start from upstream default (`192.168.180.182@tcp:12345:4:1`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `192.168.180.182@tcp:12345:4:1` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 
@@ -54,7 +80,13 @@ ceph config set client.rgw motr_admin_fid 0x7200000000000001:0x0
 ceph config get client.rgw motr_admin_fid
 ```
 
-**Finding optimal value:** Start from upstream default (`0x7200000000000001:0x0`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `0x7200000000000001:0x0` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 
@@ -76,7 +108,13 @@ ceph config set client.rgw motr_ha_endpoint 192.168.180.182@tcp:12345:1:1
 ceph config get client.rgw motr_ha_endpoint
 ```
 
-**Finding optimal value:** Start from upstream default (`192.168.180.182@tcp:12345:1:1`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `192.168.180.182@tcp:12345:1:1` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 
@@ -98,7 +136,13 @@ ceph config set client.rgw motr_my_endpoint 192.168.180.182@tcp:12345:4:1
 ceph config get client.rgw motr_my_endpoint
 ```
 
-**Finding optimal value:** Start from upstream default (`192.168.180.182@tcp:12345:4:1`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `192.168.180.182@tcp:12345:4:1` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 
@@ -120,7 +164,13 @@ ceph config set client.rgw motr_my_fid 0x7200000000000001:0x0
 ceph config get client.rgw motr_my_fid
 ```
 
-**Finding optimal value:** Start from upstream default (`0x7200000000000001:0x0`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `0x7200000000000001:0x0` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 
@@ -142,7 +192,13 @@ ceph config set client.rgw motr_profile_fid 0x7000000000000001:0x0
 ceph config get client.rgw motr_profile_fid
 ```
 
-**Finding optimal value:** Start from upstream default (`0x7000000000000001:0x0`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Architecture
+
+1. Treat as deployment metadata, not a throughput knob.
+2. Keep `0x7000000000000001:0x0` unless documentation for your topology says otherwise.
+3. Document the chosen value in runbooks — changing it can break multisite or auth.
 
 ---
 
@@ -164,7 +220,15 @@ ceph config set client.rgw motr_tracing_enabled False
 ceph config get client.rgw motr_tracing_enabled
 ```
 
-**Finding optimal value:** Enable when the feature is required; otherwise keep default (`False`) to minimize background threads and memory.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`False`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 

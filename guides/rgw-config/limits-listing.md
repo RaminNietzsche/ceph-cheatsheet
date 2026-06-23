@@ -1,19 +1,39 @@
 # Limits and listing
 
-RGW config deep dive — 10 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 10 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_delete_multi_obj_max_num](#rgw_delete_multi_obj_max_num) | `1000` | Advanced |
-| [rgw_max_attr_name_len](#rgw_max_attr_name_len) | `0` | Advanced |
-| [rgw_max_attr_size](#rgw_max_attr_size) | `0` | Advanced |
-| [rgw_max_attrs_num_in_req](#rgw_max_attrs_num_in_req) | `0` | Advanced |
-| [rgw_max_control_aio](#rgw_max_control_aio) | `8` | Advanced |
-| [rgw_max_dynamic_shards](#rgw_max_dynamic_shards) | `1999` | Advanced |
-| [rgw_max_listing_results](#rgw_max_listing_results) | `5000` | Advanced |
-| [rgw_max_put_param_size](#rgw_max_put_param_size) | `1_M` | Advanced |
-| [rgw_max_put_size](#rgw_max_put_size) | `5_G` | Advanced |
-| [rgw_max_slo_entries](#rgw_max_slo_entries) | `1000` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_delete_multi_obj_max_num](#rgw_delete_multi_obj_max_num) | `1000` | Advanced | Policy |
+| [rgw_max_attr_name_len](#rgw_max_attr_name_len) | `0` | Advanced | Policy |
+| [rgw_max_attr_size](#rgw_max_attr_size) | `0` | Advanced | Policy |
+| [rgw_max_attrs_num_in_req](#rgw_max_attrs_num_in_req) | `0` | Advanced | Policy |
+| [rgw_max_control_aio](#rgw_max_control_aio) | `8` | Advanced | Policy |
+| [rgw_max_dynamic_shards](#rgw_max_dynamic_shards) | `1999` | Advanced | Policy |
+| [rgw_max_listing_results](#rgw_max_listing_results) | `5000` | Advanced | Policy |
+| [rgw_max_put_param_size](#rgw_max_put_param_size) | `1_M` | Advanced | Policy |
+| [rgw_max_put_size](#rgw_max_put_size) | `5_G` | Advanced | Policy |
+| [rgw_max_slo_entries](#rgw_max_slo_entries) | `1000` | Advanced | Policy |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -35,7 +55,13 @@ ceph config set client.rgw rgw_delete_multi_obj_max_num 1000
 ceph config get client.rgw rgw_delete_multi_obj_max_num
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`1000`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `1000` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -57,7 +83,13 @@ ceph config set client.rgw rgw_max_attr_name_len 0
 ceph config get client.rgw rgw_max_attr_name_len
 ```
 
-**Finding optimal value:** Start from upstream default (`0`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `0` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -79,7 +111,13 @@ ceph config set client.rgw rgw_max_attr_size 0
 ceph config get client.rgw rgw_max_attr_size
 ```
 
-**Finding optimal value:** Start from upstream default (`0`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `0` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -101,7 +139,13 @@ ceph config set client.rgw rgw_max_attrs_num_in_req 0
 ceph config get client.rgw rgw_max_attrs_num_in_req
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`0`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `0` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -123,7 +167,13 @@ ceph config set client.rgw rgw_max_control_aio 8
 ceph config get client.rgw rgw_max_control_aio
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`8`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `8` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -145,7 +195,15 @@ ceph config set client.rgw rgw_max_dynamic_shards 1999
 ceph config get client.rgw rgw_max_dynamic_shards
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`1999`) matches S3 compatibility for most workloads. Valid range: min=1, max=—.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `1999` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
+
+**Bounds:** min `1`, max `—`.
 
 ---
 
@@ -167,7 +225,15 @@ ceph config set client.rgw rgw_max_listing_results 5000
 ceph config get client.rgw rgw_max_listing_results
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`5000`) matches S3 compatibility for most workloads. Valid range: min=1, max=100000.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `5000` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
+
+**Bounds:** min `1`, max `100000`.
 
 ---
 
@@ -189,7 +255,13 @@ ceph config set client.rgw rgw_max_put_param_size 1_M
 ceph config get client.rgw rgw_max_put_param_size
 ```
 
-**Finding optimal value:** Start from upstream default (`1_M`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `1_M` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -211,7 +283,13 @@ ceph config set client.rgw rgw_max_put_size 5_G
 ceph config get client.rgw rgw_max_put_size
 ```
 
-**Finding optimal value:** Start from upstream default (`5_G`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `5_G` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -233,7 +311,13 @@ ceph config set client.rgw rgw_max_slo_entries 1000
 ceph config get client.rgw rgw_max_slo_entries
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`1000`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `1000` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 

@@ -1,21 +1,70 @@
 # Bucket notifications
 
-RGW config deep dive — 12 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 13 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_http_notif_connection_timeout](#rgw_http_notif_connection_timeout) | `5` | Advanced |
-| [rgw_http_notif_max_inflight](#rgw_http_notif_max_inflight) | `8192` | Advanced |
-| [rgw_http_notif_message_timeout](#rgw_http_notif_message_timeout) | `10` | Advanced |
-| [rgw_inject_notify_timeout_probability](#rgw_inject_notify_timeout_probability) | `0` | Dev |
-| [rgw_kafka_connection_idle](#rgw_kafka_connection_idle) | `300` | Advanced |
-| [rgw_kafka_max_batch_size](#rgw_kafka_max_batch_size) | `0` | Advanced |
-| [rgw_kafka_message_timeout](#rgw_kafka_message_timeout) | `5000` | Advanced |
-| [rgw_kafka_sleep_timeout](#rgw_kafka_sleep_timeout) | `10` | Advanced |
-| [rgw_max_notify_retries](#rgw_max_notify_retries) | `10` | Advanced |
-| [rgw_topic_persistency_max_retries](#rgw_topic_persistency_max_retries) | `0` | Advanced |
-| [rgw_topic_persistency_sleep_duration](#rgw_topic_persistency_sleep_duration) | `0` | Advanced |
-| [rgw_topic_persistency_time_to_live](#rgw_topic_persistency_time_to_live) | `0` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_allow_notification_secrets_in_cleartext](#rgw_allow_notification_secrets_in_cleartext) | `False` | Advanced | Policy |
+| [rgw_http_notif_connection_timeout](#rgw_http_notif_connection_timeout) | `5` | Advanced | Performance |
+| [rgw_http_notif_max_inflight](#rgw_http_notif_max_inflight) | `8192` | Advanced | Performance |
+| [rgw_http_notif_message_timeout](#rgw_http_notif_message_timeout) | `10` | Advanced | Performance |
+| [rgw_inject_notify_timeout_probability](#rgw_inject_notify_timeout_probability) | `0` | Dev | Dev |
+| [rgw_kafka_connection_idle](#rgw_kafka_connection_idle) | `300` | Advanced | Performance |
+| [rgw_kafka_max_batch_size](#rgw_kafka_max_batch_size) | `0` | Advanced | Performance |
+| [rgw_kafka_message_timeout](#rgw_kafka_message_timeout) | `5000` | Advanced | Performance |
+| [rgw_kafka_sleep_timeout](#rgw_kafka_sleep_timeout) | `10` | Advanced | Performance |
+| [rgw_max_notify_retries](#rgw_max_notify_retries) | `10` | Advanced | Policy |
+| [rgw_topic_persistency_max_retries](#rgw_topic_persistency_max_retries) | `0` | Advanced | Policy |
+| [rgw_topic_persistency_sleep_duration](#rgw_topic_persistency_sleep_duration) | `0` | Advanced | Performance |
+| [rgw_topic_persistency_time_to_live](#rgw_topic_persistency_time_to_live) | `0` | Advanced | Performance |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
+
+---
+
+### rgw_allow_notification_secrets_in_cleartext
+
+| | |
+|---|---|
+| Type | Bool · default `False` · **Advanced** |
+| Table | [rgw.md#SP_rgw_allow_notification_secrets_in_cleartext](../../config/rgw/rgw.md#SP_rgw_allow_notification_secrets_in_cleartext) |
+
+**What it does:** Allows sending secrets (e.g. passwords) over non encrypted HTTP messages.
+
+**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_allow_notification_secrets_in_cleartext False
+ceph config get client.rgw rgw_allow_notification_secrets_in_cleartext
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Not tuned numerically — supply from your secrets manager.
+2. Rotate on schedule; never store in git or plain `ceph.conf`.
+3. Use `ceph config set` at runtime or cephadm secrets where supported.
 
 ---
 
@@ -37,7 +86,22 @@ ceph config set client.rgw rgw_http_notif_connection_timeout 5
 ceph config get client.rgw rgw_http_notif_connection_timeout
 ```
 
-**Finding optimal value:** Increase if clients see timeouts under load; decrease to fail fast. Default (`5`) matches typical LAN latency.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `5` suits LAN RTT; WAN needs higher values.
+2. **Increase** when logs show client/broker timeouts under load.
+3. **Decrease** to fail fast and trigger retries upstream.
+
+**Signals:** `curl`/`aws` timeout errors, Kafka/HTTP notification failures.
+
+```bash
+ceph config get client.rgw rgw_http_notif_connection_timeout
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -59,7 +123,23 @@ ceph config set client.rgw rgw_http_notif_max_inflight 8192
 ceph config get client.rgw rgw_http_notif_max_inflight
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`8192`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `8192`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_http_notif_max_inflight
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -81,7 +161,22 @@ ceph config set client.rgw rgw_http_notif_message_timeout 10
 ceph config get client.rgw rgw_http_notif_message_timeout
 ```
 
-**Finding optimal value:** Increase if clients see timeouts under load; decrease to fail fast. Default (`10`) matches typical LAN latency.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `10` suits LAN RTT; WAN needs higher values.
+2. **Increase** when logs show client/broker timeouts under load.
+3. **Decrease** to fail fast and trigger retries upstream.
+
+**Signals:** `curl`/`aws` timeout errors, Kafka/HTTP notification failures.
+
+```bash
+ceph config get client.rgw rgw_http_notif_message_timeout
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -103,7 +198,15 @@ ceph config set client.rgw rgw_inject_notify_timeout_probability 0
 ceph config get client.rgw rgw_inject_notify_timeout_probability
 ```
 
-**Finding optimal value:** Keep the upstream default (`0`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`0`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 
@@ -125,7 +228,23 @@ ceph config set client.rgw rgw_kafka_connection_idle 300
 ceph config get client.rgw rgw_kafka_connection_idle
 ```
 
-**Finding optimal value:** Start from upstream default (`300`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `300`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_kafka_connection_idle
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -147,7 +266,23 @@ ceph config set client.rgw rgw_kafka_max_batch_size 0
 ceph config get client.rgw rgw_kafka_max_batch_size
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`0`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `0`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_kafka_max_batch_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -169,7 +304,22 @@ ceph config set client.rgw rgw_kafka_message_timeout 5000
 ceph config get client.rgw rgw_kafka_message_timeout
 ```
 
-**Finding optimal value:** Increase if clients see timeouts under load; decrease to fail fast. Default (`5000`) matches typical LAN latency.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `5000` suits LAN RTT; WAN needs higher values.
+2. **Increase** when logs show client/broker timeouts under load.
+3. **Decrease** to fail fast and trigger retries upstream.
+
+**Signals:** `curl`/`aws` timeout errors, Kafka/HTTP notification failures.
+
+```bash
+ceph config get client.rgw rgw_kafka_message_timeout
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -191,7 +341,22 @@ ceph config set client.rgw rgw_kafka_sleep_timeout 10
 ceph config get client.rgw rgw_kafka_sleep_timeout
 ```
 
-**Finding optimal value:** Increase if clients see timeouts under load; decrease to fail fast. Default (`10`) matches typical LAN latency.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `10` suits LAN RTT; WAN needs higher values.
+2. **Increase** when logs show client/broker timeouts under load.
+3. **Decrease** to fail fast and trigger retries upstream.
+
+**Signals:** `curl`/`aws` timeout errors, Kafka/HTTP notification failures.
+
+```bash
+ceph config get client.rgw rgw_kafka_sleep_timeout
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -213,7 +378,13 @@ ceph config set client.rgw rgw_max_notify_retries 10
 ceph config get client.rgw rgw_max_notify_retries
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`10`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `10` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -236,7 +407,13 @@ ceph config get client.rgw rgw_topic_persistency_max_retries
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`0`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `0` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -259,7 +436,23 @@ ceph config get client.rgw rgw_topic_persistency_sleep_duration
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Start from upstream default (`0`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `0`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_topic_persistency_sleep_duration
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -282,7 +475,23 @@ ceph config get client.rgw rgw_topic_persistency_time_to_live
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Start from upstream default (`0`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `0`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_topic_persistency_time_to_live
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 

@@ -1,10 +1,27 @@
 # RGW Config Deep Dive — All Options
 
-Extended reference for **421** RADOS Gateway options (plus [19 handwritten options](../rgw-config-options.md) with extra examples). Generated from [config/rgw/INDEX.md](../../config/rgw/INDEX.md).
+Extended reference for all **441** RADOS Gateway options with **Finding optimal value** tuning guidance (same format as [curated batch 1](../rgw-config-options.md)). Generated from [config/rgw/INDEX.md](../../config/rgw/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>
+python3 scripts/generate-rgw-guide.py  # regenerate after config sync
 ```
+
+## Tuning
+
+- [Tuning quick reference](TUNING.md) — all options, model, one-line answer
+- [Curated batch 1](../rgw-config-options.md) — first 19 options with extra narrative
+
+## Tuning models
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology |
+| **Dev** | Upstream default only in production |
 
 ## Topics
 
@@ -13,18 +30,19 @@ Extended reference for **421** RADOS Gateway options (plus [19 handwritten optio
 | [Access and object logging](logging.md) | 4 |
 | [Admin CORS](admin-cors.md) | 4 |
 | [BitTorrent](torrent.md) | 8 |
-| [Bucket notifications](notifications.md) | 12 |
-| [Bucket operations and index](bucket-ops.md) | 6 |
+| [Bucket notifications](notifications.md) | 13 |
+| [Bucket operations and index](bucket-ops.md) | 12 |
 | [Caches and TTL](caches-and-ttl.md) | 3 |
 | [Copy progress](copy-progress.md) | 2 |
-| [D4N / D3N cache](d4n-cache.md) | 21 |
+| [D4N / D3N cache](d4n-cache.md) | 22 |
 | [Debug and fault injection](debug-inject.md) | 7 |
 | [Dynamic resharding](resharding.md) | 12 |
 | [Encryption and KMS](encryption.md) | 42 |
+| [Experimental backends](experimental-backends.md) | 6 |
 | [Feature toggles](feature-toggles.md) | 10 |
 | [Frontends and DNS](frontends-dns.md) | 4 |
 | [Garbage collection](garbage-collection.md) | 7 |
-| [General RGW options](general.md) | 50 |
+| [General RGW options](general.md) | 54 |
 | [HTTP / libcurl](http-curl.md) | 5 |
 | [Keystone and STS](keystone-sts.md) | 32 |
 | [LDAP authentication](ldap.md) | 6 |
@@ -42,7 +60,7 @@ Extended reference for **421** RADOS Gateway options (plus [19 handwritten optio
 | [Ops logging](ops-logging.md) | 4 |
 | [POSIX backend (experimental)](posix-experimental.md) | 7 |
 | [Performance and concurrency](performance-tuning.md) | 17 |
-| [Quota sync and defaults](quotas.md) | 3 |
+| [Quota sync and defaults](quotas.md) | 5 |
 | [REST connections (multisite)](rest-connections.md) | 3 |
 | [RGW LC counters](lifecycle-counters.md) | 2 |
 | [RGW metadata cache](metadata-cache.md) | 3 |
@@ -54,12 +72,4 @@ Extended reference for **421** RADOS Gateway options (plus [19 handwritten optio
 | [Users and per-user settings](users-quotas.md) | 3 |
 | [dmclock scheduler](dmclock.md) | 12 |
 
-## Tuning models
-
-| Model | How to choose |
-|-------|---------------|
-| **Policy** | Security, API compatibility, compliance |
-| **Capacity** | Disk, tenant plans, cluster headroom |
-| **Performance** | Baseline → incremental change → monitor OSD/RGW |
-
-[← Guides overview](../OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md)
+[← Guides overview](../OVERVIEW.md)

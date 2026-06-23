@@ -1,13 +1,33 @@
 # Object read/write I/O
 
-RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_get_obj_max_req_size](#rgw_get_obj_max_req_size) | `4_M` | Advanced |
-| [rgw_get_obj_window_size](#rgw_get_obj_window_size) | `16_M` | Advanced |
-| [rgw_put_obj_max_window_size](#rgw_put_obj_max_window_size) | `64_M` | Advanced |
-| [rgw_put_obj_min_window_size](#rgw_put_obj_min_window_size) | `16_M` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_get_obj_max_req_size](#rgw_get_obj_max_req_size) | `4_M` | Advanced | Policy |
+| [rgw_get_obj_window_size](#rgw_get_obj_window_size) | `16_M` | Advanced | Performance |
+| [rgw_put_obj_max_window_size](#rgw_put_obj_max_window_size) | `64_M` | Advanced | Performance |
+| [rgw_put_obj_min_window_size](#rgw_put_obj_min_window_size) | `16_M` | Advanced | Performance |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -29,7 +49,13 @@ ceph config set client.rgw rgw_get_obj_max_req_size 4_M
 ceph config get client.rgw rgw_get_obj_max_req_size
 ```
 
-**Finding optimal value:** Start from upstream default (`4_M`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `4_M` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -51,7 +77,22 @@ ceph config set client.rgw rgw_get_obj_window_size 16_M
 ceph config get client.rgw rgw_get_obj_window_size
 ```
 
-**Finding optimal value:** Start from upstream default (`16_M`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline `16_M` with your object size distribution (small vs large objects).
+2. Larger windows/chunks improve throughput for big objects; may hurt small-object latency.
+3. Change one step at a time; rerun `cosbench` or `warp` with the same object mix.
+
+**Signals:** PUT/GET p99 by object size, RADOS op count per MB transferred.
+
+```bash
+ceph config get client.rgw rgw_get_obj_window_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -73,7 +114,22 @@ ceph config set client.rgw rgw_put_obj_max_window_size 64_M
 ceph config get client.rgw rgw_put_obj_max_window_size
 ```
 
-**Finding optimal value:** Start from upstream default (`64_M`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline `64_M` with your object size distribution (small vs large objects).
+2. Larger windows/chunks improve throughput for big objects; may hurt small-object latency.
+3. Change one step at a time; rerun `cosbench` or `warp` with the same object mix.
+
+**Signals:** PUT/GET p99 by object size, RADOS op count per MB transferred.
+
+```bash
+ceph config get client.rgw rgw_put_obj_max_window_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -95,7 +151,22 @@ ceph config set client.rgw rgw_put_obj_min_window_size 16_M
 ceph config get client.rgw rgw_put_obj_min_window_size
 ```
 
-**Finding optimal value:** Start from upstream default (`16_M`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline `16_M` with your object size distribution (small vs large objects).
+2. Larger windows/chunks improve throughput for big objects; may hurt small-object latency.
+3. Change one step at a time; rerun `cosbench` or `warp` with the same object mix.
+
+**Signals:** PUT/GET p99 by object size, RADOS op count per MB transferred.
+
+```bash
+ceph config get client.rgw rgw_put_obj_min_window_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 

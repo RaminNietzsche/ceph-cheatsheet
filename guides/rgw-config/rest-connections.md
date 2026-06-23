@@ -1,12 +1,32 @@
 # REST connections (multisite)
 
-RGW config deep dive — 3 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 3 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_rest_conn_connect_to_resolved_ips](#rgw_rest_conn_connect_to_resolved_ips) | `False` | Advanced |
-| [rgw_rest_conn_ip_fail_timeout_secs](#rgw_rest_conn_ip_fail_timeout_secs) | `2` | Advanced |
-| [rgw_rest_getusage_op_compat](#rgw_rest_getusage_op_compat) | `False` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_rest_conn_connect_to_resolved_ips](#rgw_rest_conn_connect_to_resolved_ips) | `False` | Advanced | Policy |
+| [rgw_rest_conn_ip_fail_timeout_secs](#rgw_rest_conn_ip_fail_timeout_secs) | `2` | Advanced | Performance |
+| [rgw_rest_getusage_op_compat](#rgw_rest_getusage_op_compat) | `False` | Advanced | Policy |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -26,7 +46,13 @@ ceph config set client.rgw rgw_rest_conn_connect_to_resolved_ips False
 ceph config get client.rgw rgw_rest_conn_connect_to_resolved_ips
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -48,7 +74,22 @@ ceph config set client.rgw rgw_rest_conn_ip_fail_timeout_secs 2
 ceph config get client.rgw rgw_rest_conn_ip_fail_timeout_secs
 ```
 
-**Finding optimal value:** Increase if clients see timeouts under load; decrease to fail fast. Default (`2`) matches typical LAN latency.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `2` suits LAN RTT; WAN needs higher values.
+2. **Increase** when logs show client/broker timeouts under load.
+3. **Decrease** to fail fast and trigger retries upstream.
+
+**Signals:** `curl`/`aws` timeout errors, Kafka/HTTP notification failures.
+
+```bash
+ceph config get client.rgw rgw_rest_conn_ip_fail_timeout_secs
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -70,7 +111,13 @@ ceph config set client.rgw rgw_rest_getusage_op_compat False
 ceph config get client.rgw rgw_rest_getusage_op_compat
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 

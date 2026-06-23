@@ -1,37 +1,57 @@
 # Multisite sync
 
-RGW config deep dive — 28 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 28 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_data_log_changes_size](#rgw_data_log_changes_size) | `1000` | Dev |
-| [rgw_data_log_num_shards](#rgw_data_log_num_shards) | `128` | Advanced |
-| [rgw_data_log_window](#rgw_data_log_window) | `30` | Advanced |
-| [rgw_data_notify_interval_msec](#rgw_data_notify_interval_msec) | `0` | Advanced |
-| [rgw_data_sync_poll_interval](#rgw_data_sync_poll_interval) | `20` | Dev |
-| [rgw_data_sync_spawn_window](#rgw_data_sync_spawn_window) | `20` | Dev |
-| [rgw_lfuda_sync_frequency](#rgw_lfuda_sync_frequency) | `60` | Advanced |
-| [rgw_md_log_max_shards](#rgw_md_log_max_shards) | `64` | Advanced |
-| [rgw_md_notify_interval_msec](#rgw_md_notify_interval_msec) | `200` | Advanced |
-| [rgw_meta_sync_poll_interval](#rgw_meta_sync_poll_interval) | `20` | Dev |
-| [rgw_meta_sync_spawn_window](#rgw_meta_sync_spawn_window) | `20` | Dev |
-| [rgw_run_sync_thread](#rgw_run_sync_thread) | `True` | Advanced |
-| [rgw_sync_data_full_inject_err_probability](#rgw_sync_data_full_inject_err_probability) | `0` | Dev |
-| [rgw_sync_data_inject_err_probability](#rgw_sync_data_inject_err_probability) | `0` | Dev |
-| [rgw_sync_lease_period](#rgw_sync_lease_period) | `2_min` | Dev |
-| [rgw_sync_log_trim_concurrent_buckets](#rgw_sync_log_trim_concurrent_buckets) | `4` | Advanced |
-| [rgw_sync_log_trim_interval](#rgw_sync_log_trim_interval) | `20_min` | Advanced |
-| [rgw_sync_log_trim_max_buckets](#rgw_sync_log_trim_max_buckets) | `16` | Advanced |
-| [rgw_sync_log_trim_min_cold_buckets](#rgw_sync_log_trim_min_cold_buckets) | `4` | Advanced |
-| [rgw_sync_meta_inject_err_probability](#rgw_sync_meta_inject_err_probability) | `0` | Dev |
-| [rgw_sync_obj_etag_verify](#rgw_sync_obj_etag_verify) | `False` | Advanced |
-| [rgw_sync_trace_history_size](#rgw_sync_trace_history_size) | `4_K` | Advanced |
-| [rgw_sync_trace_per_node_log_size](#rgw_sync_trace_per_node_log_size) | `32` | Advanced |
-| [rgw_sync_trace_servicemap_update_interval](#rgw_sync_trace_servicemap_update_interval) | `10` | Advanced |
-| [rgw_user_quota_bucket_sync_interval](#rgw_user_quota_bucket_sync_interval) | `3_min` | Advanced |
-| [rgw_user_quota_sync_idle_users](#rgw_user_quota_sync_idle_users) | `False` | Advanced |
-| [rgw_user_quota_sync_interval](#rgw_user_quota_sync_interval) | `1_day` | Advanced |
-| [rgw_user_quota_sync_wait_time](#rgw_user_quota_sync_wait_time) | `1_day` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_data_log_changes_size](#rgw_data_log_changes_size) | `1000` | Dev | Performance |
+| [rgw_data_log_num_shards](#rgw_data_log_num_shards) | `128` | Advanced | Policy |
+| [rgw_data_log_window](#rgw_data_log_window) | `30` | Advanced | Performance |
+| [rgw_data_notify_interval_msec](#rgw_data_notify_interval_msec) | `0` | Advanced | Performance |
+| [rgw_data_sync_poll_interval](#rgw_data_sync_poll_interval) | `20` | Dev | Performance |
+| [rgw_data_sync_spawn_window](#rgw_data_sync_spawn_window) | `20` | Dev | Performance |
+| [rgw_lfuda_sync_frequency](#rgw_lfuda_sync_frequency) | `60` | Advanced | Performance |
+| [rgw_md_log_max_shards](#rgw_md_log_max_shards) | `64` | Advanced | Policy |
+| [rgw_md_notify_interval_msec](#rgw_md_notify_interval_msec) | `200` | Advanced | Performance |
+| [rgw_meta_sync_poll_interval](#rgw_meta_sync_poll_interval) | `20` | Dev | Performance |
+| [rgw_meta_sync_spawn_window](#rgw_meta_sync_spawn_window) | `20` | Dev | Performance |
+| [rgw_run_sync_thread](#rgw_run_sync_thread) | `True` | Advanced | Policy |
+| [rgw_sync_data_full_inject_err_probability](#rgw_sync_data_full_inject_err_probability) | `0` | Dev | Dev |
+| [rgw_sync_data_inject_err_probability](#rgw_sync_data_inject_err_probability) | `0` | Dev | Dev |
+| [rgw_sync_lease_period](#rgw_sync_lease_period) | `2_min` | Dev | Performance |
+| [rgw_sync_log_trim_concurrent_buckets](#rgw_sync_log_trim_concurrent_buckets) | `4` | Advanced | Performance |
+| [rgw_sync_log_trim_interval](#rgw_sync_log_trim_interval) | `20_min` | Advanced | Performance |
+| [rgw_sync_log_trim_max_buckets](#rgw_sync_log_trim_max_buckets) | `16` | Advanced | Policy |
+| [rgw_sync_log_trim_min_cold_buckets](#rgw_sync_log_trim_min_cold_buckets) | `4` | Advanced | Performance |
+| [rgw_sync_meta_inject_err_probability](#rgw_sync_meta_inject_err_probability) | `0` | Dev | Dev |
+| [rgw_sync_obj_etag_verify](#rgw_sync_obj_etag_verify) | `False` | Advanced | Policy |
+| [rgw_sync_trace_history_size](#rgw_sync_trace_history_size) | `4_K` | Advanced | Performance |
+| [rgw_sync_trace_per_node_log_size](#rgw_sync_trace_per_node_log_size) | `32` | Advanced | Performance |
+| [rgw_sync_trace_servicemap_update_interval](#rgw_sync_trace_servicemap_update_interval) | `10` | Advanced | Performance |
+| [rgw_user_quota_bucket_sync_interval](#rgw_user_quota_bucket_sync_interval) | `3_min` | Advanced | Performance |
+| [rgw_user_quota_sync_idle_users](#rgw_user_quota_sync_idle_users) | `False` | Advanced | Policy |
+| [rgw_user_quota_sync_interval](#rgw_user_quota_sync_interval) | `1_day` | Advanced | Performance |
+| [rgw_user_quota_sync_wait_time](#rgw_user_quota_sync_wait_time) | `1_day` | Advanced | Performance |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -53,7 +73,23 @@ ceph config set client.rgw rgw_data_log_changes_size 1000
 ceph config get client.rgw rgw_data_log_changes_size
 ```
 
-**Finding optimal value:** Keep the upstream default (`1000`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `1000`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_data_log_changes_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -75,7 +111,13 @@ ceph config set client.rgw rgw_data_log_num_shards 128
 ceph config get client.rgw rgw_data_log_num_shards
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`128`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `128` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -97,7 +139,22 @@ ceph config set client.rgw rgw_data_log_window 30
 ceph config get client.rgw rgw_data_log_window
 ```
 
-**Finding optimal value:** Start from upstream default (`30`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline `30` with your object size distribution (small vs large objects).
+2. Larger windows/chunks improve throughput for big objects; may hurt small-object latency.
+3. Change one step at a time; rerun `cosbench` or `warp` with the same object mix.
+
+**Signals:** PUT/GET p99 by object size, RADOS op count per MB transferred.
+
+```bash
+ceph config get client.rgw rgw_data_log_window
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -110,7 +167,10 @@ ceph config get client.rgw rgw_data_log_window
 
 **What it does:** data changes notification interval to followers
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:**
+
+- **Shorten** for fresher stats or faster enforcement.
+- **Lengthen** to reduce background sync or GC cost.
 
 **Example:**
 
@@ -119,7 +179,22 @@ ceph config set client.rgw rgw_data_notify_interval_msec 0
 ceph config get client.rgw rgw_data_notify_interval_msec
 ```
 
-**Finding optimal value:** Lower for fresher behavior / faster reaction; higher to reduce background load. Adjust from default (`0`) only when logs show sync, cache, or timeout issues.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `0` balances freshness vs background CPU/network.
+2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.
+3. **Lengthen** if background sync/GC/LC dominates RGW CPU.
+
+**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.
+
+```bash
+ceph config get client.rgw rgw_data_notify_interval_msec
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -130,7 +205,10 @@ ceph config get client.rgw rgw_data_notify_interval_msec
 | Type | Int · default `20` · **Dev** |
 | Table | [rgw.md#SP_rgw_data_sync_poll_interval](../../config/rgw/rgw.md#SP_rgw_data_sync_poll_interval) |
 
-**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+**When to use:**
+
+- **Shorten** for fresher stats or faster enforcement.
+- **Lengthen** to reduce background sync or GC cost.
 
 **Example:**
 
@@ -139,7 +217,22 @@ ceph config set client.rgw rgw_data_sync_poll_interval 20
 ceph config get client.rgw rgw_data_sync_poll_interval
 ```
 
-**Finding optimal value:** Keep the upstream default (`20`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `20` balances freshness vs background CPU/network.
+2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.
+3. **Lengthen** if background sync/GC/LC dominates RGW CPU.
+
+**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.
+
+```bash
+ceph config get client.rgw rgw_data_sync_poll_interval
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -150,7 +243,10 @@ ceph config get client.rgw rgw_data_sync_poll_interval
 | Type | Int · default `20` · **Dev** |
 | Table | [rgw.md#SP_rgw_data_sync_spawn_window](../../config/rgw/rgw.md#SP_rgw_data_sync_spawn_window) |
 
-**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+**When to use:**
+
+- **Increase** when multisite replication lag grows.
+- **Decrease** when sync load competes with client I/O.
 
 **Example:**
 
@@ -159,7 +255,23 @@ ceph config set client.rgw rgw_data_sync_spawn_window 20
 ceph config get client.rgw rgw_data_sync_spawn_window
 ```
 
-**Finding optimal value:** Keep the upstream default (`20`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `20` limits parallel sync coroutines per bucket/zone.
+2. **Increase** when multisite lag grows and RGW CPU headroom exists.
+3. **Decrease** if sync threads starve client-facing requests or OSDs spike.
+
+**Signals:** `radosgw-admin sync status`, data/meta sync lag, RGW load average.
+
+```bash
+ceph config get client.rgw rgw_data_sync_spawn_window
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+radosgw-admin sync status
+```
 
 ---
 
@@ -182,7 +294,23 @@ ceph config get client.rgw rgw_lfuda_sync_frequency
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Start from upstream default (`60`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `60`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_lfuda_sync_frequency
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -204,7 +332,13 @@ ceph config set client.rgw rgw_md_log_max_shards 64
 ceph config get client.rgw rgw_md_log_max_shards
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`64`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `64` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -217,7 +351,10 @@ ceph config get client.rgw rgw_md_log_max_shards
 
 **What it does:** Length of time to aggregate metadata changes
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:**
+
+- **Shorten** for fresher stats or faster enforcement.
+- **Lengthen** to reduce background sync or GC cost.
 
 **Example:**
 
@@ -226,7 +363,22 @@ ceph config set client.rgw rgw_md_notify_interval_msec 200
 ceph config get client.rgw rgw_md_notify_interval_msec
 ```
 
-**Finding optimal value:** Lower for fresher behavior / faster reaction; higher to reduce background load. Adjust from default (`200`) only when logs show sync, cache, or timeout issues.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `200` balances freshness vs background CPU/network.
+2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.
+3. **Lengthen** if background sync/GC/LC dominates RGW CPU.
+
+**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.
+
+```bash
+ceph config get client.rgw rgw_md_notify_interval_msec
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -237,7 +389,10 @@ ceph config get client.rgw rgw_md_notify_interval_msec
 | Type | Int · default `20` · **Dev** |
 | Table | [rgw.md#SP_rgw_meta_sync_poll_interval](../../config/rgw/rgw.md#SP_rgw_meta_sync_poll_interval) |
 
-**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+**When to use:**
+
+- **Shorten** for fresher stats or faster enforcement.
+- **Lengthen** to reduce background sync or GC cost.
 
 **Example:**
 
@@ -246,7 +401,22 @@ ceph config set client.rgw rgw_meta_sync_poll_interval 20
 ceph config get client.rgw rgw_meta_sync_poll_interval
 ```
 
-**Finding optimal value:** Keep the upstream default (`20`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `20` balances freshness vs background CPU/network.
+2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.
+3. **Lengthen** if background sync/GC/LC dominates RGW CPU.
+
+**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.
+
+```bash
+ceph config get client.rgw rgw_meta_sync_poll_interval
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -257,7 +427,10 @@ ceph config get client.rgw rgw_meta_sync_poll_interval
 | Type | Int · default `20` · **Dev** |
 | Table | [rgw.md#SP_rgw_meta_sync_spawn_window](../../config/rgw/rgw.md#SP_rgw_meta_sync_spawn_window) |
 
-**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+**When to use:**
+
+- **Increase** when multisite replication lag grows.
+- **Decrease** when sync load competes with client I/O.
 
 **Example:**
 
@@ -266,7 +439,23 @@ ceph config set client.rgw rgw_meta_sync_spawn_window 20
 ceph config get client.rgw rgw_meta_sync_spawn_window
 ```
 
-**Finding optimal value:** Keep the upstream default (`20`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `20` limits parallel sync coroutines per bucket/zone.
+2. **Increase** when multisite lag grows and RGW CPU headroom exists.
+3. **Decrease** if sync threads starve client-facing requests or OSDs spike.
+
+**Signals:** `radosgw-admin sync status`, data/meta sync lag, RGW load average.
+
+```bash
+ceph config get client.rgw rgw_meta_sync_spawn_window
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+radosgw-admin sync status
+```
 
 ---
 
@@ -288,7 +477,13 @@ ceph config set client.rgw rgw_run_sync_thread True
 ceph config get client.rgw rgw_run_sync_thread
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`True`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -308,7 +503,15 @@ ceph config set client.rgw rgw_sync_data_full_inject_err_probability 0
 ceph config get client.rgw rgw_sync_data_full_inject_err_probability
 ```
 
-**Finding optimal value:** Keep the upstream default (`0`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`0`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 
@@ -328,7 +531,15 @@ ceph config set client.rgw rgw_sync_data_inject_err_probability 0
 ceph config get client.rgw rgw_sync_data_inject_err_probability
 ```
 
-**Finding optimal value:** Keep the upstream default (`0`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`0`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 
@@ -348,7 +559,22 @@ ceph config set client.rgw rgw_sync_lease_period 2_min
 ceph config get client.rgw rgw_sync_lease_period
 ```
 
-**Finding optimal value:** Keep the upstream default (`2_min`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `2_min` balances freshness vs background CPU/network.
+2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.
+3. **Lengthen** if background sync/GC/LC dominates RGW CPU.
+
+**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.
+
+```bash
+ceph config get client.rgw rgw_sync_lease_period
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -361,7 +587,10 @@ ceph config get client.rgw rgw_sync_lease_period
 
 **What it does:** Maximum number of buckets to trim in parallel
 
-**When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
+**When to use:**
+
+- **Increase** when RGW queues requests but CPU is not saturated.
+- **Decrease** when latency spikes or CPU context-switch overhead grows.
 
 **Example:**
 
@@ -370,7 +599,23 @@ ceph config set client.rgw rgw_sync_log_trim_concurrent_buckets 4
 ceph config get client.rgw rgw_sync_log_trim_concurrent_buckets
 ```
 
-**Finding optimal value:** Performance sweep: baseline at default, then increase in steps while watching RGW CPU, request p99, and OSD slow ops. Optimal is the highest value before OSD or network saturation. Default: `4`.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at `4` under peak concurrent clients.
+2. Monitor RGW CPU, `rgw_throttle` counters, and client p99.
+3. Increase if RGW CPU is low but requests queue; decrease if CPU saturates or latency spikes.
+4. Pair with `rgw_frontends` thread count — frontend and RADOS concurrency move together.
+
+**Signals:** 503/slowdown responses, high `active_requests` vs `max_concurrent`.
+
+```bash
+ceph config get client.rgw rgw_sync_log_trim_concurrent_buckets
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -383,7 +628,10 @@ ceph config get client.rgw rgw_sync_log_trim_concurrent_buckets
 
 **What it does:** Sync log trim interval
 
-**When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
+**When to use:**
+
+- **Shorten** for fresher stats or faster enforcement.
+- **Lengthen** to reduce background sync or GC cost.
 
 **Example:**
 
@@ -392,7 +640,22 @@ ceph config set client.rgw rgw_sync_log_trim_interval 20_min
 ceph config get client.rgw rgw_sync_log_trim_interval
 ```
 
-**Finding optimal value:** Lower for fresher behavior / faster reaction; higher to reduce background load. Adjust from default (`20_min`) only when logs show sync, cache, or timeout issues.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `20_min` balances freshness vs background CPU/network.
+2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.
+3. **Lengthen** if background sync/GC/LC dominates RGW CPU.
+
+**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.
+
+```bash
+ceph config get client.rgw rgw_sync_log_trim_interval
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -414,7 +677,13 @@ ceph config set client.rgw rgw_sync_log_trim_max_buckets 16
 ceph config get client.rgw rgw_sync_log_trim_max_buckets
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`16`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `16` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -436,7 +705,23 @@ ceph config set client.rgw rgw_sync_log_trim_min_cold_buckets 4
 ceph config get client.rgw rgw_sync_log_trim_min_cold_buckets
 ```
 
-**Finding optimal value:** Start from upstream default (`4`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `4`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_sync_log_trim_min_cold_buckets
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -456,7 +741,15 @@ ceph config set client.rgw rgw_sync_meta_inject_err_probability 0
 ceph config get client.rgw rgw_sync_meta_inject_err_probability
 ```
 
-**Finding optimal value:** Keep the upstream default (`0`) in production. Enable or change only during targeted debugging sessions.
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`0`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
 
 ---
 
@@ -478,7 +771,13 @@ ceph config set client.rgw rgw_sync_obj_etag_verify False
 ceph config get client.rgw rgw_sync_obj_etag_verify
 ```
 
-**Finding optimal value:** Security/compliance setting — prefer `true` in production unless a trusted lab requires `False`.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Production: prefer secure default (`False` for most security options).
+2. Relax only on trusted private networks with documented risk acceptance.
+3. Test client behavior (HTTPS redirects, presigned URLs) after changes.
 
 ---
 
@@ -500,7 +799,23 @@ ceph config set client.rgw rgw_sync_trace_history_size 4_K
 ceph config get client.rgw rgw_sync_trace_history_size
 ```
 
-**Finding optimal value:** Start from upstream default (`4_K`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `4_K`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_sync_trace_history_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -522,7 +837,23 @@ ceph config set client.rgw rgw_sync_trace_per_node_log_size 32
 ceph config get client.rgw rgw_sync_trace_per_node_log_size
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`32`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `32`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_sync_trace_per_node_log_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -535,7 +866,10 @@ ceph config get client.rgw rgw_sync_trace_per_node_log_size
 
 **What it does:** Sync-trace service-map update interval
 
-**When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
+**When to use:**
+
+- **Shorten** for fresher stats or faster enforcement.
+- **Lengthen** to reduce background sync or GC cost.
 
 **Example:**
 
@@ -544,7 +878,22 @@ ceph config set client.rgw rgw_sync_trace_servicemap_update_interval 10
 ceph config get client.rgw rgw_sync_trace_servicemap_update_interval
 ```
 
-**Finding optimal value:** Lower for fresher behavior / faster reaction; higher to reduce background load. Adjust from default (`10`) only when logs show sync, cache, or timeout issues.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `10` balances freshness vs background CPU/network.
+2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.
+3. **Lengthen** if background sync/GC/LC dominates RGW CPU.
+
+**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.
+
+```bash
+ceph config get client.rgw rgw_sync_trace_servicemap_update_interval
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -557,7 +906,10 @@ ceph config get client.rgw rgw_sync_trace_servicemap_update_interval
 
 **What it does:** User quota bucket sync interval
 
-**When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
+**When to use:**
+
+- **Shorten** for fresher stats or faster enforcement.
+- **Lengthen** to reduce background sync or GC cost.
 
 **Example:**
 
@@ -566,7 +918,22 @@ ceph config set client.rgw rgw_user_quota_bucket_sync_interval 3_min
 ceph config get client.rgw rgw_user_quota_bucket_sync_interval
 ```
 
-**Finding optimal value:** Balance quota enforcement freshness vs RGW/CLS load. Start at default (`3_min`); shorten if users exceed limits before stats catch up, lengthen if quota sync dominates CPU.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `3_min` balances freshness vs background CPU/network.
+2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.
+3. **Lengthen** if background sync/GC/LC dominates RGW CPU.
+
+**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.
+
+```bash
+ceph config get client.rgw rgw_user_quota_bucket_sync_interval
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -588,7 +955,13 @@ ceph config set client.rgw rgw_user_quota_sync_idle_users False
 ceph config get client.rgw rgw_user_quota_sync_idle_users
 ```
 
-**Finding optimal value:** Balance quota enforcement freshness vs RGW/CLS load. Start at default (`False`); shorten if users exceed limits before stats catch up, lengthen if quota sync dominates CPU.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -601,7 +974,10 @@ ceph config get client.rgw rgw_user_quota_sync_idle_users
 
 **What it does:** User quota sync interval
 
-**When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
+**When to use:**
+
+- **Shorten** for fresher stats or faster enforcement.
+- **Lengthen** to reduce background sync or GC cost.
 
 **Example:**
 
@@ -610,7 +986,22 @@ ceph config set client.rgw rgw_user_quota_sync_interval 1_day
 ceph config get client.rgw rgw_user_quota_sync_interval
 ```
 
-**Finding optimal value:** Balance quota enforcement freshness vs RGW/CLS load. Start at default (`1_day`); shorten if users exceed limits before stats catch up, lengthen if quota sync dominates CPU.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `1_day` balances freshness vs background CPU/network.
+2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.
+3. **Lengthen** if background sync/GC/LC dominates RGW CPU.
+
+**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.
+
+```bash
+ceph config get client.rgw rgw_user_quota_sync_interval
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -632,7 +1023,22 @@ ceph config set client.rgw rgw_user_quota_sync_wait_time 1_day
 ceph config get client.rgw rgw_user_quota_sync_wait_time
 ```
 
-**Finding optimal value:** Balance quota enforcement freshness vs RGW/CLS load. Start at default (`1_day`); shorten if users exceed limits before stats catch up, lengthen if quota sync dominates CPU.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `1_day` suits LAN RTT; WAN needs higher values.
+2. **Increase** when logs show client/broker timeouts under load.
+3. **Decrease** to fail fast and trigger retries upstream.
+
+**Signals:** `curl`/`aws` timeout errors, Kafka/HTTP notification failures.
+
+```bash
+ceph config get client.rgw rgw_user_quota_sync_wait_time
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 

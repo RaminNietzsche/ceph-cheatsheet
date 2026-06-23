@@ -1,13 +1,33 @@
 # Ops logging
 
-RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_ops_log_data_backlog](#rgw_ops_log_data_backlog) | `5_M` | Advanced |
-| [rgw_ops_log_file_path](#rgw_ops_log_file_path) | `/var/log/ceph/ops-log-$cluster-$name.log` | Advanced |
-| [rgw_ops_log_rados](#rgw_ops_log_rados) | `False` | Advanced |
-| [rgw_ops_log_socket_path](#rgw_ops_log_socket_path) | `(empty)` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_ops_log_data_backlog](#rgw_ops_log_data_backlog) | `5_M` | Advanced | Performance |
+| [rgw_ops_log_file_path](#rgw_ops_log_file_path) | `/var/log/ceph/ops-log-$cluster-$name.log` | Advanced | Capacity |
+| [rgw_ops_log_rados](#rgw_ops_log_rados) | `False` | Advanced | Policy |
+| [rgw_ops_log_socket_path](#rgw_ops_log_socket_path) | `(empty)` | Advanced | Capacity |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -29,7 +49,23 @@ ceph config set client.rgw rgw_ops_log_data_backlog 5_M
 ceph config get client.rgw rgw_ops_log_data_backlog
 ```
 
-**Finding optimal value:** Start from upstream default (`5_M`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `5_M`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_ops_log_data_backlog
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -51,7 +87,19 @@ ceph config set client.rgw rgw_ops_log_file_path "/var/log/ceph/ops-log-$cluster
 ceph config get client.rgw rgw_ops_log_file_path
 ```
 
-**Finding optimal value:** Place on fast, dedicated storage with sufficient free space. Default (`/var/log/ceph/ops-log-$cluster-$name.log`) is fine when that path is on a separate volume.
+**Finding optimal value:**
+
+**Tuning model:** Capacity
+
+1. Prefer a dedicated volume (NVMe/SSD) — not the root filesystem.
+2. Size for metadata growth + 30% free space (`df -h`, `iowait`).
+3. Default path (`/var/log/ceph/ops-log-$cluster-$name.log`) is fine when it already sits on fast storage.
+4. dbstore/POSIX: all RGW instances sharing data must see the same path.
+
+```bash
+df -h $(ceph config get client.rgw rgw_ops_log_file_path)
+iostat -x 5  # disk saturation
+```
 
 ---
 
@@ -73,7 +121,13 @@ ceph config set client.rgw rgw_ops_log_rados False
 ceph config get client.rgw rgw_ops_log_rados
 ```
 
-**Finding optimal value:** Policy choice aligned with client API expectations. Test with your S3/Swift clients; default (`False`) matches upstream.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -95,7 +149,19 @@ ceph config set client.rgw rgw_ops_log_socket_path <value>
 ceph config get client.rgw rgw_ops_log_socket_path
 ```
 
-**Finding optimal value:** Place on fast, dedicated storage with sufficient free space. Default (`(empty)`) is fine when that path is on a separate volume.
+**Finding optimal value:**
+
+**Tuning model:** Capacity
+
+1. Prefer a dedicated volume (NVMe/SSD) — not the root filesystem.
+2. Size for metadata growth + 30% free space (`df -h`, `iowait`).
+3. Default path (`(empty)`) is fine when it already sits on fast storage.
+4. dbstore/POSIX: all RGW instances sharing data must see the same path.
+
+```bash
+df -h $(ceph config get client.rgw rgw_ops_log_socket_path)
+iostat -x 5  # disk saturation
+```
 
 ---
 

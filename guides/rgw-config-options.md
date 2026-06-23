@@ -2,7 +2,7 @@
 
 Extended reference for selected RADOS Gateway options. Generated tables live in [config/rgw/INDEX.md](../config/rgw/INDEX.md); this guide adds behavior, use cases, related options, and examples from upstream Ceph `main`.
 
-**Full coverage:** [421 additional options](rgw-config/OVERVIEW.md) are documented by topic (with tuning guidance). Regenerate after config sync: `python3 scripts/generate-rgw-guide.py`.
+**Full coverage:** All [441 RGW options](rgw-config/OVERVIEW.md) include the same **Finding optimal value** format (tuning model, numbered steps, monitoring commands). This page is a curated batch with extra narrative — see also [Tuning quick reference](rgw-config/TUNING.md).
 
 **Lookup any option:**
 

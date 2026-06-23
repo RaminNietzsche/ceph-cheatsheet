@@ -1,16 +1,36 @@
 # Garbage collection
 
-RGW config deep dive — 7 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 7 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_gc_max_concurrent_io](#rgw_gc_max_concurrent_io) | `10` | Advanced |
-| [rgw_gc_max_objs](#rgw_gc_max_objs) | `32` | Advanced |
-| [rgw_gc_max_queue_size](#rgw_gc_max_queue_size) | `131071_K` | Advanced |
-| [rgw_gc_max_trim_chunk](#rgw_gc_max_trim_chunk) | `16` | Advanced |
-| [rgw_gc_obj_min_wait](#rgw_gc_obj_min_wait) | `2_hr` | Advanced |
-| [rgw_gc_processor_max_time](#rgw_gc_processor_max_time) | `1_hr` | Advanced |
-| [rgw_gc_processor_period](#rgw_gc_processor_period) | `1_hr` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_gc_max_concurrent_io](#rgw_gc_max_concurrent_io) | `10` | Advanced | Performance |
+| [rgw_gc_max_objs](#rgw_gc_max_objs) | `32` | Advanced | Policy |
+| [rgw_gc_max_queue_size](#rgw_gc_max_queue_size) | `131071_K` | Advanced | Policy |
+| [rgw_gc_max_trim_chunk](#rgw_gc_max_trim_chunk) | `16` | Advanced | Policy |
+| [rgw_gc_obj_min_wait](#rgw_gc_obj_min_wait) | `2_hr` | Advanced | Performance |
+| [rgw_gc_processor_max_time](#rgw_gc_processor_max_time) | `1_hr` | Advanced | Policy |
+| [rgw_gc_processor_period](#rgw_gc_processor_period) | `1_hr` | Advanced | Performance |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -23,7 +43,10 @@ RGW config deep dive — 7 options. [← RGW config overview](OVERVIEW.md) · [H
 
 **What it does:** Max concurrent RADOS IO operations for garbage collection
 
-**When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
+**When to use:**
+
+- **Increase** when RGW queues requests but CPU is not saturated.
+- **Decrease** when latency spikes or CPU context-switch overhead grows.
 
 **Example:**
 
@@ -32,7 +55,23 @@ ceph config set client.rgw rgw_gc_max_concurrent_io 10
 ceph config get client.rgw rgw_gc_max_concurrent_io
 ```
 
-**Finding optimal value:** Performance sweep: baseline at default, then increase in steps while watching RGW CPU, request p99, and OSD slow ops. Optimal is the highest value before OSD or network saturation. Default: `10`.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at `10` under peak concurrent clients.
+2. Monitor RGW CPU, `rgw_throttle` counters, and client p99.
+3. Increase if RGW CPU is low but requests queue; decrease if CPU saturates or latency spikes.
+4. Pair with `rgw_frontends` thread count — frontend and RADOS concurrency move together.
+
+**Signals:** 503/slowdown responses, high `active_requests` vs `max_concurrent`.
+
+```bash
+ceph config get client.rgw rgw_gc_max_concurrent_io
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -55,7 +94,13 @@ ceph config get client.rgw rgw_gc_max_objs
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`32`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `32` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -77,7 +122,13 @@ ceph config set client.rgw rgw_gc_max_queue_size 131071_K
 ceph config get client.rgw rgw_gc_max_queue_size
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`131071_K`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `131071_K` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -99,7 +150,13 @@ ceph config set client.rgw rgw_gc_max_trim_chunk 16
 ceph config get client.rgw rgw_gc_max_trim_chunk
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`16`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `16` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -121,7 +178,23 @@ ceph config set client.rgw rgw_gc_obj_min_wait 2_hr
 ceph config get client.rgw rgw_gc_obj_min_wait
 ```
 
-**Finding optimal value:** Start from upstream default (`2_hr`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `2_hr`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_gc_obj_min_wait
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -143,7 +216,13 @@ ceph config set client.rgw rgw_gc_processor_max_time 1_hr
 ceph config get client.rgw rgw_gc_processor_max_time
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`1_hr`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `1_hr` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -165,7 +244,22 @@ ceph config set client.rgw rgw_gc_processor_period 1_hr
 ceph config get client.rgw rgw_gc_processor_period
 ```
 
-**Finding optimal value:** Lower for fresher behavior / faster reaction; higher to reduce background load. Adjust from default (`1_hr`) only when logs show sync, cache, or timeout issues.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Default `1_hr` balances freshness vs background CPU/network.
+2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.
+3. **Lengthen** if background sync/GC/LC dominates RGW CPU.
+
+**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.
+
+```bash
+ceph config get client.rgw rgw_gc_processor_period
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 

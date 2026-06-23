@@ -12,8 +12,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_RGW = ROOT / "config" / "rgw"
 GUIDES = ROOT / "guides" / "rgw-config"
+BATCH1_GUIDE = ROOT / "guides" / "rgw-config-options.md"
 
-HANDWRITTEN = {
+# Curated batch-1 guide — same options also appear in topic files with identical tuning format.
+BATCH1_NAMES = {
     "d4n_writecache_enabled",
     "daos_pool",
     "dbstore_config_uri",
@@ -37,6 +39,7 @@ HANDWRITTEN = {
 }
 
 GROUP_TITLES = {
+    "experimental-backends": "Experimental backends",
     "motr-experimental": "Motr (experimental backend)",
     "lifecycle-counters": "RGW LC counters",
     "bucket-ops": "Bucket operations and index",
@@ -160,6 +163,15 @@ def parse_index_order() -> list[tuple[str, str]]:
 
 
 def group_for(name: str) -> str:
+    if name in (
+        "daos_pool",
+        "dbstore_config_uri",
+        "dbstore_db_dir",
+        "dbstore_db_name_prefix",
+        "rgw_backend_store",
+        "rgw_config_store",
+    ):
+        return "experimental-backends"
     if name.startswith("motr_"):
         return "motr-experimental"
     if name.startswith("rgwlc_"):
@@ -318,125 +330,430 @@ def related_options(opt: Option) -> list[str]:
     return refs
 
 
-def optimal_value(opt: Option) -> str:
+def tuning_model(opt: Option) -> str:
+    name, typ, level = opt.name, opt.typ, opt.level
+
+    if name.endswith("_tracing_enabled") or (
+        level == "Dev"
+        and "counters_cache" not in name
+        and not any(
+            x in name
+            for x in ("spawn_window", "beast_enable_async", "objexp_chunk", "roll_time")
+        )
+        and ("inject" in name or "debug" in name or name.startswith("rgw_debug") or "instrumentation" in name or "asio_assert" in name or "op_thread" in name)
+    ):
+        return "Dev"
+    if name in ("rgw_backend_store",) or name.startswith(("motr_", "rgw_posix")):
+        return "Architecture"
+    if name in ("daos_pool",) or name.endswith(("_path", "_dir", "_file", "_base_path")):
+        return "Capacity"
+    if name.endswith("_config_uri") or (name.endswith("_uri") and "file:" in opt.effective_default):
+        return "Capacity"
+    if name.endswith(("_url", "_uri", "_addr")) or name in ("rgw_barbican_url", "rgw_keystone_url"):
+        return "Connectivity"
+    if any(
+        x in name
+        for x in ("password", "secret", "token", "client_id", "client_secret", "binddn")
+    ) and typ == "Str" and "cache" not in name and "template" not in name:
+        return "Policy"
+    if name in ("rgw_admin_entry", "rgw_sts_entry", "rgw_swift_auth_entry") or (
+        typ == "Bool" and any(x in name for x in ("enforce", "override", "compat", "relaxed"))
+    ):
+        return "Policy"
+    if "quota" in name and ("max" in name or "default" in name):
+        return "Policy"
+    if name.startswith("rgw_dmclock"):
+        return "Performance"
+    if any(
+        x in name
+        for x in (
+            "max_aio",
+            "concurrent",
+            "spawn_window",
+            "thread_pool",
+            "async_rados",
+            "readahead",
+            "chunk_size",
+            "stripe_size",
+            "window_size",
+            "inflight",
+            "batch_size",
+            "max_worker",
+            "connection_pool",
+        )
+    ):
+        return "Performance"
+    if ("cache" in name or "ttl" in name or "lru" in name) and "crypt" not in name:
+        return "Performance"
+    if any(
+        x in name
+        for x in ("interval", "period", "timeout", "delay", "wait", "sleep", "tick", "roll_time")
+    ):
+        return "Performance"
+    if name.startswith(("rgw_zone", "rgw_realm", "rgw_region", "rgw_period")):
+        return "Architecture"
+    if typ == "Bool" and any(x in name for x in ("require", "verify", "ssl", "enable", "enabled")):
+        return "Policy"
+    if typ == "Bool":
+        return "Policy"
+    if opt.valid_values:
+        return "Architecture"
+    if typ in ("Int", "Uint", "Size") and ("max_" in name or "num" in name or "limit" in name):
+        return "Policy"
+    return "Performance"
+
+
+def tuning_quick_answer(opt: Option) -> str:
+    model = tuning_model(opt)
+    default = opt.effective_default
+    name = opt.name
+
+    if model == "Dev":
+        return f"Keep `{default}` in production"
+    if model == "Architecture":
+        if name == "rgw_backend_store":
+            return "`rados` in production"
+        return "Match deployment topology; use upstream default"
+    if model == "Connectivity":
+        return "Nearest stable endpoint from every RGW node"
+    if model == "Capacity":
+        return "Dedicated fast disk with growth headroom"
+    if model == "Policy" and "quota" in name and "max" in name:
+        return "Cluster capacity ÷ tenant plan; verify with test users"
+    if model == "Policy":
+        return f"Upstream default (`{default}`) unless client/compliance requires change"
+    if "max_aio" in name or "concurrent" in name:
+        return "Sweep up until OSD slow ops rise"
+    if "cache" in name and opt.typ in ("Int", "Uint"):
+        return "Size ≈ active working set; watch RGW memory"
+    if "ttl" in name or "interval" in name:
+        return "Balance freshness vs background load"
+    return "Baseline → adjust → validate under real workload"
+
+
+def _bounds_note(opt: Option) -> str:
+    if opt.min_val or opt.max_val:
+        return (
+            f"\n\n**Bounds:** min `{opt.min_val or '—'}`, max `{opt.max_val or '—'}`."
+        )
+    return ""
+
+
+def _monitor_commands(opt: Option, *extra: str) -> str:
+    lines = [
+        "",
+        "```bash",
+        f"ceph config get client.rgw {opt.name}",
+        "ceph daemon rgw.<id> perf dump | jq '.rgw' | head",
+        "radosgw-admin perf stats",
+        "ceph -s  # cluster health, slow ops",
+    ]
+    lines.extend(extra)
+    lines.append("```")
+    return "\n".join(lines)
+
+
+def render_finding_optimal_value(opt: Option) -> str:
     name, typ, level = opt.name, opt.typ, opt.level
     default = opt.effective_default
-    bounds = ""
-    if opt.min_val or opt.max_val:
-        bounds = f" Valid range: min={opt.min_val or '—'}, max={opt.max_val or '—'}."
+    model = tuning_model(opt)
+    lines = [f"**Tuning model:** {model}", ""]
 
-    if level == "Dev" or "inject" in name or ("debug" in name and "interval" in name):
-        return (
-            f"Keep the upstream default (`{default}`) in production. "
-            "Enable or change only during targeted debugging sessions."
+    if model == "Dev":
+        lines.extend(
+            [
+                f"1. Keep the upstream default (`{default}`) on every production RGW.",
+                "2. Enable or change only in a lab while reproducing a specific bug.",
+                "3. Revert before returning the node to the production pool.",
+                "",
+                "**Signals:** assertion failures, injected errors, or trace noise in logs.",
+            ]
         )
+        return "\n".join(lines)
 
-    if any(x in name for x in ("password", "secret", "token", "key", "client_id")):
-        return (
-            "Not a performance knob — use credentials from your identity/KMS provider. "
-            "Rotate via secrets management; never commit values to config repos."
-        )
-
-    if name.endswith("_url") or name.endswith("_uri") or name.endswith("_addr"):
-        return (
-            "Use the nearest stable endpoint reachable from every RGW node. "
-            "Verify with curl from each host; measure p99 latency of dependent operations "
-            f"and keep the default (`{default}`) if the integration is unused."
-        )
-
-    if name.endswith("_path") or name.endswith("_dir") or name.endswith("_file"):
-        return (
-            "Place on fast, dedicated storage with sufficient free space. "
-            f"Default (`{default}`) is fine when that path is on a separate volume."
-        )
-
-    if "quota" in name and ("max_" in name or "default" in name):
-        return (
-            "Derive from product tiers and cluster capacity (leave 20–30% headroom). "
-            f"`-1` means unlimited. Verify with test users via `radosgw-admin quota get`."
-        )
-
-    if "quota" in name and ("ttl" in name or "cache" in name or "sync" in name):
-        return (
-            "Balance quota enforcement freshness vs RGW/CLS load. "
-            f"Start at default (`{default}`); shorten if users exceed limits before stats catch up, "
-            "lengthen if quota sync dominates CPU."
-        )
-
-    if "max_aio" in name or "concurrent" in name or "spawn_window" in name:
-        return (
-            "Performance sweep: baseline at default, then increase in steps while watching "
-            "RGW CPU, request p99, and OSD slow ops. "
-            f"Optimal is the highest value before OSD or network saturation.{bounds} "
-            f"Default: `{default}`."
-        )
-
-    if "cache" in name and typ in ("Int", "Uint"):
-        return (
-            f"Size to active working set (accounts, buckets, or keys you monitor). "
-            f"Sweep around default (`{default}`) while watching RGW RSS.{bounds}"
-        )
-
-    if "cache" in name and typ == "Bool":
-        return (
-            f"Enable only when the related metrics or correctness path needs it. "
-            f"Default (`{default}`) is usually optimal for standard deployments."
-        )
-
-    if "ttl" in name or "interval" in name or "period" in name or name.endswith("_roll_time"):
-        return (
-            f"Lower for fresher behavior / faster reaction; higher to reduce background load. "
-            f"Adjust from default (`{default}`) only when logs show sync, cache, or timeout issues.{bounds}"
-        )
-
-    if "timeout" in name or name.endswith("_wait_time"):
-        return (
-            f"Increase if clients see timeouts under load; decrease to fail fast. "
-            f"Default (`{default}`) matches typical LAN latency.{bounds}"
-        )
-
-    if typ == "Bool":
-        if "require" in name or "verify" in name or "ssl" in name or "enforce" in name:
-            return f"Security/compliance setting — prefer `true` in production unless a trusted lab requires `{default}`."
-        if "enable" in name or "enabled" in name:
-            return (
-                f"Enable when the feature is required; otherwise keep default (`{default}`) "
-                "to minimize background threads and memory."
+    if model == "Architecture":
+        if name == "rgw_backend_store":
+            lines.extend(
+                [
+                    "1. Production Ceph clusters: `rados` (default).",
+                    "2. Other values (`dbstore`, `daos`, `motr`, `posix`) are experimental PoC only.",
+                    "3. Changing backend requires migration — not an in-place performance tune.",
+                ]
             )
-        return (
-            f"Policy choice aligned with client API expectations. "
-            f"Test with your S3/Swift clients; default (`{default}`) matches upstream."
+        elif name.startswith(("rgw_zone", "rgw_realm", "rgw_region")):
+            lines.extend(
+                [
+                    "1. Set via `radosgw-admin realm/zone/period` — do not hand-edit for tuning.",
+                    f"2. Value must match the active period object (`{default}` is the default OID/name).",
+                    "3. Multisite: keep consistent across all zones in the same realm.",
+                    "",
+                    "```bash",
+                    "radosgw-admin realm list",
+                    "radosgw-admin zone get --rgw-zone=<zone>",
+                    "```",
+                ]
+            )
+        elif opt.valid_values:
+            lines.extend(
+                [
+                    f"1. Valid values: {opt.valid_values}.",
+                    f"2. Default `{default}` matches standard Ceph packaging.",
+                    "3. Change only when your integration or backend explicitly requires another value.",
+                ]
+            )
+        else:
+            lines.extend(
+                [
+                    f"1. Treat as deployment metadata, not a throughput knob.",
+                    f"2. Keep `{default}` unless documentation for your topology says otherwise.",
+                    "3. Document the chosen value in runbooks — changing it can break multisite or auth.",
+                ]
+            )
+        return "\n".join(lines) + _bounds_note(opt)
+
+    if model == "Connectivity":
+        lines.extend(
+            [
+                f"1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).",
+                "2. From **each** RGW node: `curl -k <url>` or vendor health check.",
+                "3. Pick the lowest-latency endpoint that stays healthy over 24h.",
+                "4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).",
+                f"5. Leave empty (`{default}`) if the integration is disabled.",
+                _monitor_commands(opt),
+            ]
+        )
+        return "\n".join(lines)
+
+    if model == "Capacity":
+        lines.extend(
+            [
+                "1. Prefer a dedicated volume (NVMe/SSD) — not the root filesystem.",
+                "2. Size for metadata growth + 30% free space (`df -h`, `iowait`).",
+                f"3. Default path (`{default}`) is fine when it already sits on fast storage.",
+                "4. dbstore/POSIX: all RGW instances sharing data must see the same path.",
+                "",
+                "```bash",
+                "df -h $(ceph config get client.rgw " + name + ")",
+                "iostat -x 5  # disk saturation",
+                "```",
+            ]
+        )
+        return "\n".join(lines)
+
+    if model == "Policy":
+        if "quota" in name and ("max" in name or "default" in name):
+            lines.extend(
+                [
+                    "1. `ceph df detail` — usable cluster capacity.",
+                    "2. Divide by expected tenants/accounts; leave 20–30% headroom for GC and bursts.",
+                    f"3. Set limit; `-1` means unlimited. Default: `{default}`.",
+                    "4. Create a test user/account and confirm via `radosgw-admin quota get`.",
+                    "5. Existing users/accounts are **not** retroactively changed.",
+                    "",
+                    "```bash",
+                    "ceph df detail",
+                    "radosgw-admin quota get --uid=testuser",
+                    "radosgw-admin bucket stats --bucket=testbucket",
+                    "```",
+                ]
+            )
+        elif any(x in name for x in ("password", "secret", "token", "key")):
+            lines.extend(
+                [
+                    "1. Not tuned numerically — supply from your secrets manager.",
+                    "2. Rotate on schedule; never store in git or plain `ceph.conf`.",
+                    "3. Use `ceph config set` at runtime or cephadm secrets where supported.",
+                ]
+            )
+        elif typ == "Bool" and any(x in name for x in ("require", "verify", "ssl", "cleartext")):
+            lines.extend(
+                [
+                    f"1. Production: prefer secure default (`{default}` for most security options).",
+                    "2. Relax only on trusted private networks with documented risk acceptance.",
+                    "3. Test client behavior (HTTPS redirects, presigned URLs) after changes.",
+                ]
+            )
+        elif typ == "Bool":
+            lines.extend(
+                [
+                    f"1. Default `{default}` matches upstream/AWS-compatible behavior.",
+                    "2. Test with your S3/Swift SDKs and automation before changing.",
+                    "3. Optimal = contract your clients expect, not maximum throughput.",
+                ]
+            )
+        elif "max_" in name or "num" in name:
+            lines.extend(
+                [
+                    f"1. Start at `{default}` (S3/AWS-aligned for most limits).",
+                    "2. Raise only when clients return explicit limit errors in RGW logs.",
+                    "3. Lower to harden against oversized requests or DoS.",
+                ]
+            )
+        else:
+            lines.extend(
+                [
+                    f"1. Upstream default (`{default}`) is the compatibility baseline.",
+                    "2. Change only for documented client or compliance requirements.",
+                    "3. Multisite: verify `rgw_admin_entry` and similar IDs stay at required values.",
+                ]
+            )
+        return "\n".join(lines) + _bounds_note(opt)
+
+    # Performance (default for numeric tuning)
+    if "max_aio" in name:
+        workload = (
+            "large bucket LIST, bulk DELETE, multipart completion"
+            if "bucket" in name or "multi_obj" in name
+            else "the workload that triggers RADOS aio on this path"
+        )
+        lines.extend(
+            [
+                f"1. Baseline at `{default}` with {workload}.",
+                "2. Watch list/delete p99, RGW CPU, and OSD slow ops.",
+                "3. Increase in steps (~25%: e.g. 128 → 160 → 192 → 256) until latency stops improving.",
+                "4. **Decrease** under recovery pressure, `nearfull`, or sustained bucket-index pool load.",
+                "",
+                "**Signals:** OSD `slow requests`, rising `rgw` throttle counters, flat client throughput.",
+                _monitor_commands(
+                    opt,
+                    "radosgw-admin bucket stats --bucket=BIG_BUCKET | jq '.num_shards'",
+                ),
+            ]
+        )
+    elif "concurrent" in name or "thread_pool" in name or "async_rados" in name:
+        lines.extend(
+            [
+                f"1. Baseline at `{default}` under peak concurrent clients.",
+                "2. Monitor RGW CPU, `rgw_throttle` counters, and client p99.",
+                "3. Increase if RGW CPU is low but requests queue; decrease if CPU saturates or latency spikes.",
+                "4. Pair with `rgw_frontends` thread count — frontend and RADOS concurrency move together.",
+                "",
+                "**Signals:** 503/slowdown responses, high `active_requests` vs `max_concurrent`.",
+                _monitor_commands(opt),
+            ]
+        )
+    elif "spawn_window" in name:
+        lines.extend(
+            [
+                f"1. Default `{default}` limits parallel sync coroutines per bucket/zone.",
+                "2. **Increase** when multisite lag grows and RGW CPU headroom exists.",
+                "3. **Decrease** if sync threads starve client-facing requests or OSDs spike.",
+                "",
+                "**Signals:** `radosgw-admin sync status`, data/meta sync lag, RGW load average.",
+                _monitor_commands(opt, "radosgw-admin sync status"),
+            ]
+        )
+    elif "cache" in name and typ in ("Int", "Uint"):
+        lines.extend(
+            [
+                f"1. Size to the **active** working set (monitored buckets/users/tokens), not total catalog size.",
+                f"2. Start at `{default}`; sweep upward in ~2× steps.",
+                "3. Watch RGW RSS and cache hit behavior; use smallest size that avoids hot-path misses.",
+                "",
+                "**Signals:** rising RGW memory, repeated metadata lookups in logs.",
+                _monitor_commands(opt),
+            ]
+        )
+    elif "cache" in name and typ == "Bool":
+        lines.extend(
+            [
+                f"1. Default `{default}` — enable only when you consume the related per-label metrics.",
+                "2. If enabling, set the paired `*_cache_size` to match monitored entities.",
+                "3. Disable if memory is constrained and metrics are unused.",
+            ]
+        )
+    elif "ttl" in name or "interval" in name or "period" in name or name.endswith("_roll_time"):
+        lines.extend(
+            [
+                f"1. Default `{default}` balances freshness vs background CPU/network.",
+                "2. **Shorten** if stale stats cause late quota enforcement or visible sync lag.",
+                "3. **Lengthen** if background sync/GC/LC dominates RGW CPU.",
+                "",
+                "**Signals:** quota overshoot window, multisite lag dashboards, LC backlog.",
+                _monitor_commands(opt),
+            ]
+        )
+    elif "timeout" in name or name.endswith("_wait_time"):
+        lines.extend(
+            [
+                f"1. Default `{default}` suits LAN RTT; WAN needs higher values.",
+                "2. **Increase** when logs show client/broker timeouts under load.",
+                "3. **Decrease** to fail fast and trigger retries upstream.",
+                "",
+                "**Signals:** `curl`/`aws` timeout errors, Kafka/HTTP notification failures.",
+                _monitor_commands(opt),
+            ]
+        )
+    elif name.startswith("rgw_dmclock"):
+        lines.extend(
+            [
+                f"1. Tune reservation (`_res`), limit (`_lim`), and weight (`_wgt`) per queue as a set.",
+                f"2. Start from defaults (`{default}`); identify saturated queue (admin/auth/data/metadata).",
+                "3. Raise reservation for starved client traffic; lower limit if one queue monopolizes OSD I/O.",
+                "",
+                "**Signals:** dmclock perf counters, queue delay histograms, admin API slowdown.",
+                _monitor_commands(opt, "ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test(\"dmclock\"))'"),
+            ]
+        )
+    elif "chunk" in name or "stripe" in name or "window" in name:
+        lines.extend(
+            [
+                f"1. Baseline `{default}` with your object size distribution (small vs large objects).",
+                "2. Larger windows/chunks improve throughput for big objects; may hurt small-object latency.",
+                "3. Change one step at a time; rerun `cosbench` or `warp` with the same object mix.",
+                "",
+                "**Signals:** PUT/GET p99 by object size, RADOS op count per MB transferred.",
+                _monitor_commands(opt),
+            ]
+        )
+    else:
+        lines.extend(
+            [
+                f"1. Baseline at upstream default `{default}`.",
+                "2. Change **one** option per test window under representative load.",
+                "3. Compare p50/p99 latency and throughput before/after.",
+                "4. Roll back if OSD slow ops, recovery backlog, or error rate increases.",
+                "",
+                "**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.",
+                _monitor_commands(opt),
+            ]
         )
 
-    if opt.valid_values:
-        return (
-            f"Choose from valid values {opt.valid_values}. "
-            f"Default `{default}` is optimal unless your backend or integration requires another value."
-        )
+    return "\n".join(lines) + _bounds_note(opt)
 
-    if typ in ("Int", "Uint") and ("max_" in name or "num" in name or "size" in name):
-        return (
-            f"Raise only when clients hit documented limits; lower to protect RGW/OSD. "
-            f"Default (`{default}`) matches S3 compatibility for most workloads.{bounds}"
-        )
 
-    if name.startswith("rgw_dmclock"):
+def when_to_use_bullets(opt: Option) -> str | None:
+    name = opt.name
+    if "max_aio" in name:
         return (
-            "Tune reservation/limit/weight together per queue (admin, auth, data, metadata). "
-            f"Use `ceph daemon rgw.<id> perf dump` and dmclock stats; start from defaults (`{default}`)."
+            "- **Increase** when listings/deletes on sharded buckets are slow and OSDs have headroom.\n"
+            "- **Decrease** when bucket-index pools show sustained load spikes or slow ops."
         )
-
-    if name.startswith("rgw_zone") or name.startswith("rgw_realm"):
+    if "concurrent" in name or name == "rgw_thread_pool_size":
         return (
-            "Set by `radosgw-admin realm/zone` workflows — not hand-tuned numerically. "
-            f"Must match multisite period configuration; default OID/name: `{default}`."
+            "- **Increase** when RGW queues requests but CPU is not saturated.\n"
+            "- **Decrease** when latency spikes or CPU context-switch overhead grows."
         )
+    if "spawn_window" in name:
+        return (
+            "- **Increase** when multisite replication lag grows.\n"
+            "- **Decrease** when sync load competes with client I/O."
+        )
+    if "cache" in name and opt.typ in ("Int", "Uint"):
+        return (
+            "- **Increase** when monitoring many active buckets/users and cache misses are visible.\n"
+            "- **Decrease** when RGW memory is constrained."
+        )
+    if "ttl" in name or "interval" in name:
+        return (
+            "- **Shorten** for fresher stats or faster enforcement.\n"
+            "- **Lengthen** to reduce background sync or GC cost."
+        )
+    return None
 
-    return (
-        f"Start from upstream default (`{default}`). "
-        "Change one option at a time under representative load; "
-        "use `ceph config get client.rgw` and RGW perf counters to validate."
-    )
+
+def optimal_value(opt: Option) -> str:
+    return render_finding_optimal_value(opt)
 
 
 def format_see_also(opt: Option) -> str:
@@ -482,35 +799,97 @@ def render_option(opt: Option) -> str:
     ]
     if opt.full_desc:
         parts.extend([f"**What it does:** {opt.full_desc}", ""])
-    parts.extend([f"**When to use:** {when_to_use(opt)}", ""])
+    bullets = when_to_use_bullets(opt)
+    if bullets:
+        parts.extend(["**When to use:**", "", bullets, ""])
+    else:
+        parts.extend([f"**When to use:** {when_to_use(opt)}", ""])
     see = format_see_also(opt)
     if see:
         parts.append(see)
     parts.extend(["**Example:**", "", format_example(opt), ""])
-    parts.extend([f"**Finding optimal value:** {optimal_value(opt)}", "", "---", ""])
+    parts.extend(["**Finding optimal value:**", "", render_finding_optimal_value(opt), "", "---", ""])
     return "\n".join(parts)
+
+
+def tuning_intro() -> str:
+    return "\n".join(
+        [
+            "## Finding optimal values",
+            "",
+            "| Model | How to choose |",
+            "|-------|---------------|",
+            "| **Policy** | Security, API compatibility, tenant limits |",
+            "| **Capacity** | Disk layout, paths, pool sizing |",
+            "| **Performance** | Baseline → incremental change → monitor OSD/RGW |",
+            "| **Connectivity** | Nearest stable external endpoint |",
+            "| **Architecture** | Backend, multisite topology — not numeric sweeps |",
+            "| **Dev** | Keep upstream default in production |",
+            "",
+            "**Shared tooling:**",
+            "",
+            "```bash",
+            "ceph config get client.rgw <option>",
+            "ceph daemon rgw.<id> perf dump | jq '.rgw' | head",
+            "radosgw-admin perf stats",
+            "ceph osd pool stats",
+            "```",
+            "",
+            "---",
+            "",
+        ]
+    )
 
 
 def render_group(slug: str, options: list[Option]) -> str:
     title = GROUP_TITLES.get(slug, slug.replace("-", " ").title())
+    batch_note = (
+        " · [Curated batch 1](../rgw-config-options.md)"
+        if any(o.name in BATCH1_NAMES for o in options)
+        else ""
+    )
     lines = [
         f"# {title}",
         "",
         f"RGW config deep dive — {len(options)} options. "
-        f"[← RGW config overview](OVERVIEW.md) · "
-        f"[Handwritten batch](../rgw-config-options.md) · "
+        f"[← RGW config overview](OVERVIEW.md){batch_note} · "
+        f"[Tuning index](TUNING.md) · "
         f"[INDEX](../../config/rgw/INDEX.md)",
         "",
-        "| Option | Default | Level |",
-        "|--------|---------|-------|",
+        "| Option | Default | Level | Tuning |",
+        "|--------|---------|-------|--------|",
     ]
     for opt in options:
         lines.append(
-            f"| [{opt.name}](#{opt.name}) | `{opt.effective_default}` | {opt.level} |"
+            f"| [{opt.name}](#{opt.name}) | `{opt.effective_default}` | {opt.level} | "
+            f"{tuning_model(opt)} |"
         )
-    lines.extend(["", "---", ""])
+    lines.extend(["", tuning_intro()])
     for opt in options:
         lines.append(render_option(opt))
+    lines.extend(["", "[← RGW config overview](OVERVIEW.md)", ""])
+    return "\n".join(lines)
+
+
+def render_tuning_index(all_options: list[Option]) -> str:
+    lines = [
+        "# RGW Config — Tuning Quick Reference",
+        "",
+        f"All **{len(all_options)}** RGW options with tuning model and one-line guidance. "
+        "Each topic page has step-by-step **Finding optimal value** sections.",
+        "",
+        "[← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md)",
+        "",
+        "| Option | Default | Model | Quick answer | Topic |",
+        "|--------|---------|-------|--------------|-------|",
+    ]
+    for opt in all_options:
+        slug = group_for(opt.name)
+        title = GROUP_TITLES.get(slug, slug)
+        lines.append(
+            f"| [`{opt.name}`]({slug}.md#{opt.name}) | `{opt.effective_default}` | "
+            f"{tuning_model(opt)} | {tuning_quick_answer(opt)} | [{title}]({slug}.md) |"
+        )
     lines.extend(["", "[← RGW config overview](OVERVIEW.md)", ""])
     return "\n".join(lines)
 
@@ -519,13 +898,31 @@ def render_overview(groups: dict[str, list[Option]], total: int) -> str:
     lines = [
         "# RGW Config Deep Dive — All Options",
         "",
-        f"Extended reference for **{total}** RADOS Gateway options "
-        f"(plus [19 handwritten options](../rgw-config-options.md) with extra examples). "
+        f"Extended reference for all **{total}** RADOS Gateway options with "
+        "**Finding optimal value** tuning guidance (same format as "
+        f"[curated batch 1](../rgw-config-options.md)). "
         "Generated from [config/rgw/INDEX.md](../../config/rgw/INDEX.md).",
         "",
         "```bash",
         "./scripts/lookup-config.sh <option-name>",
+        "python3 scripts/generate-rgw-guide.py  # regenerate after config sync",
         "```",
+        "",
+        "## Tuning",
+        "",
+        "- [Tuning quick reference](TUNING.md) — all options, model, one-line answer",
+        "- [Curated batch 1](../rgw-config-options.md) — first 19 options with extra narrative",
+        "",
+        "## Tuning models",
+        "",
+        "| Model | How to choose |",
+        "|-------|---------------|",
+        "| **Policy** | Security, API compatibility, tenant limits |",
+        "| **Capacity** | Disk layout, paths, pool sizing |",
+        "| **Performance** | Baseline → incremental change → monitor OSD/RGW |",
+        "| **Connectivity** | Nearest stable external endpoint |",
+        "| **Architecture** | Backend, multisite topology |",
+        "| **Dev** | Upstream default only in production |",
         "",
         "## Topics",
         "",
@@ -538,15 +935,7 @@ def render_overview(groups: dict[str, list[Option]], total: int) -> str:
     lines.extend(
         [
             "",
-            "## Tuning models",
-            "",
-            "| Model | How to choose |",
-            "|-------|---------------|",
-            "| **Policy** | Security, API compatibility, compliance |",
-            "| **Capacity** | Disk, tenant plans, cluster headroom |",
-            "| **Performance** | Baseline → incremental change → monitor OSD/RGW |",
-            "",
-            "[← Guides overview](../OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md)",
+            "[← Guides overview](../OVERVIEW.md)",
             "",
         ]
     )
@@ -562,29 +951,32 @@ def main() -> int:
             by_name[opt.name] = opt
 
     index_order = parse_index_order()
-    remaining: list[Option] = []
+    all_options: list[Option] = []
     for name, _href in index_order:
-        if name in HANDWRITTEN:
-            continue
         if name not in by_name:
             print(f"warning: {name} in INDEX but not parsed", file=sys.stderr)
             continue
-        remaining.append(by_name[name])
+        all_options.append(by_name[name])
 
     groups: dict[str, list[Option]] = defaultdict(list)
-    for opt in remaining:
+    for opt in all_options:
         groups[group_for(opt.name)].append(opt)
 
     GUIDES.mkdir(parents=True, exist_ok=True)
     (GUIDES / "OVERVIEW.md").write_text(
-        render_overview(groups, len(remaining)), encoding="utf-8"
+        render_overview(groups, len(all_options)), encoding="utf-8"
+    )
+    (GUIDES / "TUNING.md").write_text(
+        render_tuning_index(all_options), encoding="utf-8"
     )
     for slug, options in sorted(groups.items()):
         (GUIDES / f"{slug}.md").write_text(
             render_group(slug, options), encoding="utf-8"
         )
 
-    print(f"Wrote {len(groups)} topic files + OVERVIEW ({len(remaining)} options)")
+    print(
+        f"Wrote {len(groups)} topic files + OVERVIEW + TUNING ({len(all_options)} options)"
+    )
     return 0
 
 

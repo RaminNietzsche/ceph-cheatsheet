@@ -70,7 +70,9 @@ nav:
     - Config lookup: guides/config-lookup.md
     - RGW config deep dive:
       - Overview: guides/rgw-config/OVERVIEW.md
-      - Handwritten (batch 1): guides/rgw-config-options.md
+      - Tuning quick reference: guides/rgw-config/TUNING.md
+      - Curated batch 1: guides/rgw-config-options.md
+      - Experimental backends: guides/rgw-config/experimental-backends.md
       - Access and object logging: guides/rgw-config/logging.md
       - Admin CORS: guides/rgw-config/admin-cors.md
       - BitTorrent: guides/rgw-config/torrent.md

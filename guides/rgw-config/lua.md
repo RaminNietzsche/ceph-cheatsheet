@@ -1,13 +1,33 @@
 # Lua scripting
 
-RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_lua_enable](#rgw_lua_enable) | `True` | Advanced |
-| [rgw_lua_max_memory_per_state](#rgw_lua_max_memory_per_state) | `128000` | Advanced |
-| [rgw_lua_max_runtime_per_state](#rgw_lua_max_runtime_per_state) | `1000` | Advanced |
-| [rgw_luarocks_location](#rgw_luarocks_location) | `/tmp/rgw_luarocks/$name` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_lua_enable](#rgw_lua_enable) | `True` | Advanced | Policy |
+| [rgw_lua_max_memory_per_state](#rgw_lua_max_memory_per_state) | `128000` | Advanced | Policy |
+| [rgw_lua_max_runtime_per_state](#rgw_lua_max_runtime_per_state) | `1000` | Advanced | Policy |
+| [rgw_luarocks_location](#rgw_luarocks_location) | `/tmp/rgw_luarocks/$name` | Advanced | Performance |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -30,7 +50,13 @@ ceph config get client.rgw rgw_lua_enable
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Enable when the feature is required; otherwise keep default (`True`) to minimize background threads and memory.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 
@@ -52,7 +78,13 @@ ceph config set client.rgw rgw_lua_max_memory_per_state 128000
 ceph config get client.rgw rgw_lua_max_memory_per_state
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`128000`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `128000` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -74,7 +106,13 @@ ceph config set client.rgw rgw_lua_max_runtime_per_state 1000
 ceph config get client.rgw rgw_lua_max_runtime_per_state
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`1000`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `1000` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -97,7 +135,23 @@ ceph config get client.rgw rgw_luarocks_location
 ceph orch restart rgw
 ```
 
-**Finding optimal value:** Start from upstream default (`/tmp/rgw_luarocks/$name`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `/tmp/rgw_luarocks/$name`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_luarocks_location
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 

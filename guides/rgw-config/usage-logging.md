@@ -1,13 +1,33 @@
 # Usage logging
 
-RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
-| Option | Default | Level |
-|--------|---------|-------|
-| [rgw_usage_log_flush_threshold](#rgw_usage_log_flush_threshold) | `1024` | Advanced |
-| [rgw_usage_log_key_transition](#rgw_usage_log_key_transition) | `True` | Advanced |
-| [rgw_usage_max_shards](#rgw_usage_max_shards) | `32` | Advanced |
-| [rgw_usage_max_user_shards](#rgw_usage_max_user_shards) | `1` | Advanced |
+| Option | Default | Level | Tuning |
+|--------|---------|-------|--------|
+| [rgw_usage_log_flush_threshold](#rgw_usage_log_flush_threshold) | `1024` | Advanced | Performance |
+| [rgw_usage_log_key_transition](#rgw_usage_log_key_transition) | `True` | Advanced | Policy |
+| [rgw_usage_max_shards](#rgw_usage_max_shards) | `32` | Advanced | Policy |
+| [rgw_usage_max_user_shards](#rgw_usage_max_user_shards) | `1` | Advanced | Policy |
+
+## Finding optimal values
+
+| Model | How to choose |
+|-------|---------------|
+| **Policy** | Security, API compatibility, tenant limits |
+| **Capacity** | Disk layout, paths, pool sizing |
+| **Performance** | Baseline → incremental change → monitor OSD/RGW |
+| **Connectivity** | Nearest stable external endpoint |
+| **Architecture** | Backend, multisite topology — not numeric sweeps |
+| **Dev** | Keep upstream default in production |
+
+**Shared tooling:**
+
+```bash
+ceph config get client.rgw <option>
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph osd pool stats
+```
 
 ---
 
@@ -29,7 +49,23 @@ ceph config set client.rgw rgw_usage_log_flush_threshold 1024
 ceph config get client.rgw rgw_usage_log_flush_threshold
 ```
 
-**Finding optimal value:** Start from upstream default (`1024`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `1024`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_usage_log_flush_threshold
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 
@@ -51,7 +87,13 @@ ceph config set client.rgw rgw_usage_log_key_transition True
 ceph config get client.rgw rgw_usage_log_key_transition
 ```
 
-**Finding optimal value:** Not a performance knob — use credentials from your identity/KMS provider. Rotate via secrets management; never commit values to config repos.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Not tuned numerically — supply from your secrets manager.
+2. Rotate on schedule; never store in git or plain `ceph.conf`.
+3. Use `ceph config set` at runtime or cephadm secrets where supported.
 
 ---
 
@@ -73,7 +115,13 @@ ceph config set client.rgw rgw_usage_max_shards 32
 ceph config get client.rgw rgw_usage_max_shards
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`32`) matches S3 compatibility for most workloads.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `32` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
 
 ---
 
@@ -95,7 +143,15 @@ ceph config set client.rgw rgw_usage_max_user_shards 1
 ceph config get client.rgw rgw_usage_max_user_shards
 ```
 
-**Finding optimal value:** Raise only when clients hit documented limits; lower to protect RGW/OSD. Default (`1`) matches S3 compatibility for most workloads. Valid range: min=1, max=—.
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `1` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
+
+**Bounds:** min `1`, max `—`.
 
 ---
 
