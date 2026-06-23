@@ -1,6 +1,6 @@
 # Storage Operator
 
-Manage OSDs, pools, placement groups, CRUSH, recovery, and scrub.
+<span class="badge badge-role-storage">Storage operator</span> Manage OSDs, pools, placement groups, CRUSH, recovery, and scrub.
 
 ## Daily commands
 

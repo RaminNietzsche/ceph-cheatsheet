@@ -1,6 +1,6 @@
 # Lab / Development Scale
 
-1–3 nodes, testing, learning, CI — not for production data.
+<span class="badge badge-scale-lab">Lab / dev</span> 1–3 nodes, testing, learning, CI — not for production data.
 
 ## Goals
 

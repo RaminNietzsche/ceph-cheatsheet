@@ -1,4 +1,6 @@
+<div class="level-legend"><span class="badge badge-level-basic">Basic</span><span class="badge badge-level-advanced">Advanced</span><span class="badge badge-level-dev">Dev</span></div>
+
 | Name | Desc | Level | Type | non-Daemon Default | Daemon Default | Min | Max | Valid Values | verbatim | See also | Flags | Services | Validator | Long Desc | Tags |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| <span id="SP_rgwlc_auto_session_clear">rgwlc_auto_session_clear</span> |  Automatically clear stale lifecycle sessions (i.e., after 2 idle processing cycles) | Advanced | Bool | True |  |  |  |  |  |  |  | rgw |  |  |  |
-| <span id="SP_rgwlc_skip_bucket_step">rgwlc_skip_bucket_step</span> |  Conditionally skip the processing (but not the scheduling) of bucket lifecycle | Advanced | Bool | False |  |  |  |  |  |  |  | rgw |  |  |  |
+| <span id="SP_rgwlc_auto_session_clear">rgwlc_auto_session_clear</span> |  Automatically clear stale lifecycle sessions (i.e., after 2 idle processing cycles) | <span class="badge badge-level-advanced">Advanced</span> | Bool | True |  |  |  |  |  |  |  | rgw |  |  |  |
+| <span id="SP_rgwlc_skip_bucket_step">rgwlc_skip_bucket_step</span> |  Conditionally skip the processing (but not the scheduling) of bucket lifecycle | <span class="badge badge-level-advanced">Advanced</span> | Bool | False |  |  |  |  |  |  |  | rgw |  |  |  |

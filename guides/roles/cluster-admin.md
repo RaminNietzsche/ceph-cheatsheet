@@ -1,6 +1,6 @@
 # Cluster Admin
 
-Manage monitors, managers, orchestration, cluster health, auth, and upgrades.
+<span class="badge badge-role-cluster">Cluster admin</span> Manage monitors, managers, orchestration, cluster health, auth, and upgrades.
 
 ## Daily commands
 

@@ -81,6 +81,14 @@ TABLE_HEADER = (
     "--- | --- | --- | --- | --- |\n"
 )
 
+LEVEL_LEGEND = (
+    '<div class="level-legend">'
+    '<span class="badge badge-level-basic">Basic</span>'
+    '<span class="badge badge-level-advanced">Advanced</span>'
+    '<span class="badge badge-level-dev">Dev</span>'
+    "</div>\n\n"
+)
+
 
 def group_key(subsystem: str, name: str) -> str:
     if subsystem == "global":
@@ -164,7 +172,13 @@ def fmt_type(value: str) -> str:
 
 
 def fmt_level(value: str) -> str:
-    return value[:1].upper() + value[1:].lower()
+    label = value[:1].upper() + value[1:].lower()
+    css = {
+        "basic": "badge-level-basic",
+        "advanced": "badge-level-advanced",
+        "dev": "badge-level-dev",
+    }.get(label.lower(), "badge-level-advanced")
+    return f'<span class="badge {css}">{label}</span>'
 
 
 def fmt_default(value, typ: str) -> str:
@@ -326,7 +340,7 @@ def write_markdown_files(
                 option_row(opt, subsystem, filename, option_locations)
                 for opt in sorted(opts, key=lambda o: o["name"])
             ]
-            path.write_text(TABLE_HEADER + "\n".join(rows) + "\n", encoding="utf-8")
+            path.write_text(LEVEL_LEGEND + TABLE_HEADER + "\n".join(rows) + "\n", encoding="utf-8")
 
         for stale in target_dir.glob("*.md"):
             if stale.name in keep_files or stale.name in {"README.md", "INDEX.md"}:

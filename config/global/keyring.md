@@ -1,3 +1,5 @@
+<div class="level-legend"><span class="badge badge-level-basic">Basic</span><span class="badge badge-level-advanced">Advanced</span><span class="badge badge-level-dev">Dev</span></div>
+
 | Name | Desc | Level | Type | non-Daemon Default | Daemon Default | Min | Max | Valid Values | verbatim | See also | Flags | Services | Validator | Long Desc | Tags |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| <span id="SP_keyring">keyring</span> |  Path to a keyring file. | Advanced | Str | 0 |  |  |  |  |  | [[key](key.md#SP_key), [keyfile](keyfile.md#SP_keyfile)] | NO_MON_UPDATE STARTUP |  |  |  A keyring file is an INI-style formatted file where the section names are client or daemon names (e.g., 'osd.0') and each section contains a 'key' property with CephX authentication key as the value. |  |
+| <span id="SP_keyring">keyring</span> |  Path to a keyring file. | <span class="badge badge-level-advanced">Advanced</span> | Str | 0 |  |  |  |  |  | [[key](key.md#SP_key), [keyfile](keyfile.md#SP_keyfile)] | NO_MON_UPDATE STARTUP |  |  |  A keyring file is an INI-style formatted file where the section names are client or daemon names (e.g., 'osd.0') and each section contains a 'key' property with CephX authentication key as the value. |  |

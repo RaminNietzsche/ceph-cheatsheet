@@ -1,6 +1,6 @@
 # RGW Admin
 
-Manage RADOS Gateway — S3/Swift, users, buckets, quotas, and multisite.
+<span class="badge badge-role-rgw">RGW admin</span> Manage RADOS Gateway — S3/Swift, users, buckets, quotas, and multisite.
 
 ## Daily commands
 

@@ -1,6 +1,6 @@
 # Small Production Scale
 
-Typically **3–12 nodes**, one datacenter, replica **3**, cephadm-managed.
+<span class="badge badge-scale-small">Small production</span> Typically **3–12 nodes**, one datacenter, replica **3**, cephadm-managed.
 
 ## Architecture checklist
 

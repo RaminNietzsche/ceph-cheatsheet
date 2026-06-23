@@ -37,12 +37,19 @@ theme:
     - search.highlight
     - content.code.copy
     - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+extra_css:
+  - stylesheets/extra.css
 
 plugins:
   - search
 
 markdown_extensions:
   - tables
+  - attr_list
+  - md_in_html
   - toc:
       permalink: true
   - admonition
@@ -50,6 +57,8 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 nav:
   - Home: index.md

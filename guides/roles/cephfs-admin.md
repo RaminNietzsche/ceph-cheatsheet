@@ -1,6 +1,6 @@
 # CephFS Admin
 
-Manage Ceph file systems, metadata servers (MDS), subvolumes, and mirroring.
+<span class="badge badge-role-cephfs">CephFS admin</span> Manage Ceph file systems, metadata servers (MDS), subvolumes, and mirroring.
 
 ## Daily commands
 

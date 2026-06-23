@@ -1,0 +1,223 @@
+/* Config option levels */
+.badge {
+  display: inline-block;
+  padding: 0.1em 0.55em;
+  border-radius: 0.25rem;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.badge-level-basic {
+  background: rgba(46, 125, 50, 0.15);
+  color: #2e7d32;
+}
+
+[data-md-color-scheme="slate"] .badge-level-basic {
+  background: rgba(102, 187, 106, 0.2);
+  color: #81c784;
+}
+
+.badge-level-advanced {
+  background: rgba(245, 124, 0, 0.15);
+  color: #ef6c00;
+}
+
+[data-md-color-scheme="slate"] .badge-level-advanced {
+  background: rgba(255, 183, 77, 0.2);
+  color: #ffb74d;
+}
+
+.badge-level-dev {
+  background: rgba(198, 40, 40, 0.15);
+  color: #c62828;
+}
+
+[data-md-color-scheme="slate"] .badge-level-dev {
+  background: rgba(229, 115, 115, 0.2);
+  color: #e57373;
+}
+
+/* Scale guides — reference palette */
+.badge-scale-lab {
+  background: rgba(67, 160, 71, 0.15);
+  color: #388e3c;
+}
+
+[data-md-color-scheme="slate"] .badge-scale-lab {
+  background: rgba(129, 199, 132, 0.2);
+  color: #a5d6a7;
+}
+
+.badge-scale-small {
+  background: rgba(30, 136, 229, 0.15);
+  color: #1565c0;
+}
+
+[data-md-color-scheme="slate"] .badge-scale-small {
+  background: rgba(100, 181, 246, 0.2);
+  color: #90caf9;
+}
+
+.badge-scale-large {
+  background: rgba(251, 140, 0, 0.15);
+  color: #ef6c00;
+}
+
+[data-md-color-scheme="slate"] .badge-scale-large {
+  background: rgba(255, 183, 77, 0.2);
+  color: #ffcc80;
+}
+
+.badge-scale-multi {
+  background: rgba(142, 36, 170, 0.15);
+  color: #7b1fa2;
+}
+
+[data-md-color-scheme="slate"] .badge-scale-multi {
+  background: rgba(186, 104, 200, 0.2);
+  color: #ce93d8;
+}
+
+/* Role guides — same badge style as scales */
+.badge-role-cluster {
+  background: rgba(57, 73, 171, 0.15);
+  color: #3949ab;
+}
+
+[data-md-color-scheme="slate"] .badge-role-cluster {
+  background: rgba(121, 134, 203, 0.2);
+  color: #9fa8da;
+}
+
+.badge-role-storage {
+  background: rgba(0, 137, 123, 0.15);
+  color: #00897b;
+}
+
+[data-md-color-scheme="slate"] .badge-role-storage {
+  background: rgba(77, 182, 172, 0.2);
+  color: #80cbc4;
+}
+
+.badge-role-rgw {
+  background: rgba(216, 27, 96, 0.15);
+  color: #c2185b;
+}
+
+[data-md-color-scheme="slate"] .badge-role-rgw {
+  background: rgba(240, 98, 146, 0.2);
+  color: #f48fb1;
+}
+
+.badge-role-cephfs {
+  background: rgba(94, 53, 177, 0.15);
+  color: #5e35b1;
+}
+
+[data-md-color-scheme="slate"] .badge-role-cephfs {
+  background: rgba(149, 117, 205, 0.2);
+  color: #b39ddb;
+}
+
+/* CLI sections */
+.badge-cli {
+  background: rgba(0, 131, 143, 0.15);
+  color: #00838f;
+}
+
+[data-md-color-scheme="slate"] .badge-cli {
+  background: rgba(77, 208, 225, 0.2);
+  color: #80deea;
+}
+
+/* Config subsystems */
+.badge-config {
+  background: rgba(109, 76, 65, 0.15);
+  color: #6d4c41;
+}
+
+[data-md-color-scheme="slate"] .badge-config {
+  background: rgba(161, 136, 127, 0.2);
+  color: #bcaaa4;
+}
+
+/* Overview tables — colored left accent on first column */
+.guide-table tbody tr td:first-child {
+  border-left: 4px solid transparent;
+}
+
+.guide-table tr.row-lab td:first-child {
+  border-left-color: #43a047;
+}
+
+.guide-table tr.row-small td:first-child {
+  border-left-color: #1e88e5;
+}
+
+.guide-table tr.row-large td:first-child {
+  border-left-color: #fb8c00;
+}
+
+.guide-table tr.row-multi td:first-child {
+  border-left-color: #8e24aa;
+}
+
+.guide-table tr.row-cluster td:first-child {
+  border-left-color: #3949ab;
+}
+
+.guide-table tr.row-storage td:first-child {
+  border-left-color: #00897b;
+}
+
+.guide-table tr.row-rgw td:first-child {
+  border-left-color: #d81b60;
+}
+
+.guide-table tr.row-cephfs td:first-child {
+  border-left-color: #5e35b1;
+}
+
+.guide-table tr.row-dev td:first-child {
+  border-left-color: #757575;
+}
+
+/* Config tables — zebra rows after level legend */
+.level-legend + table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-md-color-scheme="slate"] .level-legend + table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Legacy / optional HTML config-table wrapper */
+.md-typeset table.config-table {
+  font-size: 0.72rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.md-typeset table.config-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.md-typeset table.config-table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-md-color-scheme="slate"] .md-typeset table.config-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.level-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 0.5rem 0 1rem;
+}

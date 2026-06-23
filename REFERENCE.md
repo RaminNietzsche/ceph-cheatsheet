@@ -22,23 +22,65 @@ Simple, offline-friendly reference for Ceph administrators — organized by **ro
 
 ## By role
 
-| Role | Guide | CLI | Config |
-|------|-------|-----|--------|
-| Cluster admin | [guide](guides/roles/cluster-admin.md) | [cluster](cli/cluster.md), [cephadm](cli/cephadm.md) | [mon](config/mon/INDEX.md), [mgr](config/mgr/INDEX.md) |
-| Storage operator | [guide](guides/roles/storage-operator.md) | [osd-pool](cli/osd-pool.md) | [osd](config/osd/INDEX.md) |
-| RGW admin | [guide](guides/roles/rgw-admin.md) | [rgw](cli/rgw.md) | [rgw config](config/rgw/INDEX.md) |
-| CephFS admin | [guide](guides/roles/cephfs-admin.md) | [cephfs](cli/cephfs.md) | [mds](config/mds/INDEX.md) |
+<table class="guide-table">
+<thead>
+<tr><th>Role</th><th>Guide</th><th>CLI</th><th>Config</th></tr>
+</thead>
+<tbody>
+<tr class="row-cluster">
+  <td><span class="badge badge-role-cluster">Cluster admin</span></td>
+  <td><a href="guides/roles/cluster-admin.md">guide</a></td>
+  <td><a href="cli/cluster.md">cluster</a>, <a href="cli/cephadm.md">cephadm</a></td>
+  <td><a href="config/mon/INDEX.md">mon</a>, <a href="config/mgr/INDEX.md">mgr</a></td>
+</tr>
+<tr class="row-storage">
+  <td><span class="badge badge-role-storage">Storage operator</span></td>
+  <td><a href="guides/roles/storage-operator.md">guide</a></td>
+  <td><a href="cli/osd-pool.md">osd-pool</a></td>
+  <td><a href="config/osd/INDEX.md">osd</a></td>
+</tr>
+<tr class="row-rgw">
+  <td><span class="badge badge-role-rgw">RGW admin</span></td>
+  <td><a href="guides/roles/rgw-admin.md">guide</a></td>
+  <td><a href="cli/rgw.md">rgw</a></td>
+  <td><a href="config/rgw/INDEX.md">rgw config</a></td>
+</tr>
+<tr class="row-cephfs">
+  <td><span class="badge badge-role-cephfs">CephFS admin</span></td>
+  <td><a href="guides/roles/cephfs-admin.md">guide</a></td>
+  <td><a href="cli/cephfs.md">cephfs</a></td>
+  <td><a href="config/mds/INDEX.md">mds</a></td>
+</tr>
+</tbody>
+</table>
 
 ---
 
 ## By scale
 
-| Scale | Guide |
-|-------|-------|
-| Lab / dev (1–3 nodes) | [lab](guides/scales/lab.md) |
-| Small production (3–12 nodes) | [small production](guides/scales/small-production.md) |
-| Large production (12+ nodes) | [large production](guides/scales/large-production.md) |
-| Multisite | [multisite](guides/scales/multisite.md) |
+<table class="guide-table">
+<thead>
+<tr><th>Scale</th><th>Guide</th></tr>
+</thead>
+<tbody>
+<tr class="row-lab">
+  <td><span class="badge badge-scale-lab">Lab / dev</span> (1–3 nodes)</td>
+  <td><a href="guides/scales/lab.md">lab</a></td>
+</tr>
+<tr class="row-small">
+  <td><span class="badge badge-scale-small">Small production</span> (3–12 nodes)</td>
+  <td><a href="guides/scales/small-production.md">small production</a></td>
+</tr>
+<tr class="row-large">
+  <td><span class="badge badge-scale-large">Large production</span> (12+ nodes)</td>
+  <td><a href="guides/scales/large-production.md">large production</a></td>
+</tr>
+<tr class="row-multi">
+  <td><span class="badge badge-scale-multi">Multisite</span></td>
+  <td><a href="guides/scales/multisite.md">multisite</a></td>
+</tr>
+</tbody>
+</table>
 
 ---
 

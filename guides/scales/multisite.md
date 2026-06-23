@@ -1,6 +1,6 @@
 # Multisite Scale
 
-Multiple datacenters or regions — RGW zones, optional RBD / CephFS mirroring.
+<span class="badge badge-scale-multi">Multisite</span> Multiple datacenters or regions — RGW zones, optional RBD / CephFS mirroring.
 
 ## Patterns
 

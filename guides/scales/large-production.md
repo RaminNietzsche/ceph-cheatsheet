@@ -1,6 +1,6 @@
 # Large Production Scale
 
-**12+ nodes**, many OSDs, strict SLAs, separate networks, performance tuning.
+<span class="badge badge-scale-large">Large production</span> **12+ nodes**, many OSDs, strict SLAs, separate networks, performance tuning.
 
 ## Focus areas
 
