@@ -747,9 +747,9 @@ ceph osd pool stats
 | Type | Str · enum: ["wpq", "mclock_scheduler", "debug_random"] · default `mclock_scheduler` · **Advanced** |
 | Table | [osd.md#SP_osd_op_queue](../../../config/osd/osd.md#SP_osd_op_queue) |
 
-**What it does:** which operation priority queue algorithm to use
+**What it does:** OSD operation queue scheduler (`mclock_scheduler`, `wpq`, or `debug_random`). Production clusters should use mClock.
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:** Keep `mclock_scheduler` unless upstream support directs otherwise.
 
 **Example:**
 

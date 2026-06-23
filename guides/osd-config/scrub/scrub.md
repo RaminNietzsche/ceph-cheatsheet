@@ -108,9 +108,9 @@ ceph osd pool stats
 | Type | Float · default `7_day` · **Advanced** |
 | Table | [osd.md#SP_osd_deep_scrub_interval](../../../config/osd/osd.md#SP_osd_deep_scrub_interval) |
 
-**What it does:** Deep scrub each PG (i.e., verify data checksums) at least this often. Note that this option must be set at ``global`` scope, or for both ``mgr`` and``osd``.
+**What it does:** Interval (seconds) between deep scrubs that verify full object checksums.
 
-**When to use:** Tune background work timing — balance freshness vs cluster load.
+**When to use:** Shorten for compliance-heavy environments; lengthen on large HDD pools where deep scrub IO is costly.
 
 **Example:**
 
@@ -406,9 +406,9 @@ ceph osd pool stats
 | Type | Int · default `3` · **Advanced** |
 | Table | [osd.md#SP_osd_max_scrubs](../../../config/osd/osd.md#SP_osd_max_scrubs) |
 
-**What it does:** Maximum concurrent scrubs on a single OSD
+**What it does:** Maximum concurrent scrub operations per OSD. Scrub reads object data to verify checksums — too many scrubs compete with client I/O.
 
-**When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+**When to use:** Increase cautiously on fast media when scrubs lag behind the scrub interval. Decrease when `ceph -s` reports slow ops or OSD latency spikes during scrub windows.
 
 **Example:**
 
@@ -433,6 +433,8 @@ ceph -s
 ceph daemon osd.<id> perf dump | head
 ceph osd pool stats
 ```
+
+Pair with `osd_scrub_sleep` and deep-scrub intervals. HDD clusters often stay at 1; NVMe may tolerate 2–3 if load is low.
 
 ---
 
@@ -994,9 +996,9 @@ ceph osd pool stats
 | Type | Float · default `7_day` · **Advanced** |
 | Table | [osd.md#SP_osd_scrub_max_interval](../../../config/osd/osd.md#SP_osd_scrub_max_interval) |
 
-**What it does:** Scrub each PG no less often than this interval. Note that this option must be set at ``global`` scope, or for both ``mgr`` and``osd``.
+**What it does:** Maximum interval (seconds) between shallow scrubs for a PG.
 
-**When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+**When to use:** Align with maintenance policy. Monitor `mon_warn_pg_not_scrubbed_ratio` warnings.
 
 **Example:**
 

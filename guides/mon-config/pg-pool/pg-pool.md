@@ -46,9 +46,9 @@ ceph -s
 | Type | Bool · default `False` · **Advanced** |
 | Table | [mon.md#SP_mon_allow_pool_size_one](../../../config/mon/mon.md#SP_mon_allow_pool_size_one) |
 
-**What it does:** allow configuring pool with no replicas
+**What it does:** Allow pools with `size=1` (no redundancy).
 
-**When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
+**When to use:** Lab only. Keep `false` in production unless you accept data loss risk.
 
 **Example:**
 
@@ -323,9 +323,9 @@ ceph mon stat
 | Type | Bool · default `True` · **Advanced** |
 | Table | [mon.md#SP_mon_warn_on_pool_no_redundancy](../../../config/mon/mon.md#SP_mon_warn_on_pool_no_redundancy) |
 
-**What it does:** Issue a health warning if any pool is configured with no replicas
+**What it does:** Warn when any pool has no redundancy (`size=1` or `min_size=1`).
 
-**When to use:** Enabled by default; disable only when troubleshooting the related feature.
+**When to use:** Leave enabled in production.
 
 **Example:**
 

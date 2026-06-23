@@ -111,9 +111,9 @@ ceph mon stat
 | Type | Float · default `0.05` · **Advanced** |
 | Table | [mon.md#SP_mon_clock_drift_allowed](../../../config/mon/mon.md#SP_mon_clock_drift_allowed) |
 
-**What it does:** allowed clock drift (in seconds) between mons before issuing a health warning
+**What it does:** Maximum clock drift (seconds) between monitors before health warnings.
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:** Ensure NTP/chrony is stable first. Increase only as a temporary mitigation while fixing time sync.
 
 **Example:**
 

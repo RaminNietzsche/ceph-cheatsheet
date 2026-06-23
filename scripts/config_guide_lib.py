@@ -58,6 +58,7 @@ class SubsystemProfile:
     section_slugs: dict[str, str] = field(default_factory=dict)
     nav_marker: str = ""
     restart_service: str | None = None
+    enrichments: dict[str, dict[str, str]] = field(default_factory=dict)
 
     @property
     def config_dir(self) -> Path:
@@ -268,6 +269,10 @@ def numeric_example_value(opt: Option) -> str:
 
 
 def render_example(profile: SubsystemProfile, opt: Option) -> str:
+    enrich = profile.enrichments.get(opt.name, {})
+    if enrich.get("example"):
+        return enrich["example"]
+
     target = infer_config_target(profile, opt)
     restart = ""
     if profile.restart_service and opt.flags and "STARTUP" in opt.flags:
@@ -385,6 +390,7 @@ def format_see_also(profile: SubsystemProfile, opt: Option) -> str:
 
 
 def render_option(profile: SubsystemProfile, opt: Option) -> str:
+    enrich = profile.enrichments.get(opt.name, {})
     table_link = f"{profile.config_href_from_topic}/{opt.source_file}#SP_{opt.name}"
     startup = " · **STARTUP** (restart required)" if opt.flags and "STARTUP" in opt.flags else ""
     type_bits = [opt.typ, f"default `{opt.effective_default}`", f"**{opt.level}**"]
@@ -399,9 +405,13 @@ def render_option(profile: SubsystemProfile, opt: Option) -> str:
         f"| Table | [{opt.source_file}#SP_{opt.name}]({table_link}) |",
         "",
     ]
-    if opt.full_desc:
-        parts.extend([f"**What it does:** {opt.full_desc}", ""])
-    parts.extend([f"**When to use:** {when_to_use(opt, profile)}", ""])
+    what = enrich.get("what") or opt.full_desc
+    if what:
+        parts.extend([f"**What it does:** {what}", ""])
+    if enrich.get("when_to_use"):
+        parts.extend([f"**When to use:** {enrich['when_to_use']}", ""])
+    else:
+        parts.extend([f"**When to use:** {when_to_use(opt, profile)}", ""])
     see = format_see_also(profile, opt)
     if see:
         parts.append(see)
@@ -415,10 +425,11 @@ def render_option(profile: SubsystemProfile, opt: Option) -> str:
             "",
             render_finding_optimal_value(profile, opt),
             "",
-            "---",
-            "",
         ]
     )
+    if enrich.get("finding_note"):
+        parts.extend([enrich["finding_note"], ""])
+    parts.extend(["---", ""])
     return "\n".join(parts)
 
 
@@ -567,7 +578,16 @@ def render_tuning_index(profile: SubsystemProfile, all_options: list[Option]) ->
     return "\n".join(lines)
 
 
+def indent_nav_block(block: str) -> str:
+    """Indent subsystem nav by 2 spaces (under Config deep dives parent)."""
+    return "\n".join(f"  {line}" if line.strip() else line for line in block.splitlines())
+
+
 def build_mkdocs_nav_yaml(profile: SubsystemProfile, groups: dict[str, list[Option]]) -> str:
+    assigned: set[str] = set()
+    for _title, _section_dir, slugs in profile.nav_sections:
+        assigned.update(slugs)
+
     lines = [
         f"    - {profile.title} config deep dive:",
         "      - Start here:",
@@ -585,7 +605,7 @@ def build_mkdocs_nav_yaml(profile: SubsystemProfile, groups: dict[str, list[Opti
                 f"        - {title}: guides/{profile.guides_subdir}/"
                 f"{section_dir_for_slug(profile, slug)}/{slug}.md"
             )
-    extra = [s for s in sorted(groups) if section_title_for_slug(profile, s) == "Other"]
+    extra = [s for s in sorted(groups) if s not in assigned]
     if extra:
         lines.append("      - Other:")
         for slug in extra:
@@ -594,7 +614,7 @@ def build_mkdocs_nav_yaml(profile: SubsystemProfile, groups: dict[str, list[Opti
                 f"        - {title}: guides/{profile.guides_subdir}/"
                 f"{section_dir_for_slug(profile, slug)}/{slug}.md"
             )
-    return "\n".join(lines)
+    return indent_nav_block("\n".join(lines))
 
 
 def patch_mkdocs_nav(profile: SubsystemProfile, groups: dict[str, list[Option]], mkdocs: Path) -> None:

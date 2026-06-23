@@ -11,6 +11,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from config_guide_lib import SubsystemProfile, generate_subsystem, slug_title
 
+try:
+    from subsystem_enrichments import SUBSYSTEM_ENRICHMENTS
+except ImportError:
+    SUBSYSTEM_ENRICHMENTS = {}
+
 ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -619,6 +624,8 @@ def main() -> int:
 
     total = 0
     for sid in targets:
+        profile = PROFILES[sid]
+        profile.enrichments = SUBSYSTEM_ENRICHMENTS.get(sid, {})
         if sid == "global":
             total += generate_global(patch_nav=not args.no_nav)
         elif sid == "rbd":

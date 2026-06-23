@@ -420,9 +420,9 @@ ceph mon stat
 | Type | Int · default `10_min` · **Advanced** |
 | Table | [mon.md#SP_mon_osd_down_out_interval](../../../config/mon/mon.md#SP_mon_osd_down_out_interval) |
 
-**What it does:** mark any OSD 'out' that has been 'down' for this long (seconds)
+**What it does:** Seconds an OSD can stay `down` before the monitor marks it `out` and CRUSH begins rebalancing.
 
-**When to use:** Tune background work timing — balance freshness vs cluster load.
+**When to use:** Increase for flaky networks or long maintenance (avoid premature rebalance). Decrease when you want faster failover — at the cost of more data movement.
 
 **Example:**
 
@@ -446,6 +446,8 @@ ceph config get mon mon_osd_down_out_interval
 ceph -s
 ceph mon stat
 ```
+
+Common production range: 600–3600 s. Coordinate with `mon_osd_min_down_reporters`.
 
 ---
 

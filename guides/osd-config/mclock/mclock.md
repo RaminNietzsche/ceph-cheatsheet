@@ -384,15 +384,16 @@ ceph osd pool stats
 | Type | Str · enum: ["balanced", "high_recovery_ops", "high_client_ops", "custom"] · default `balanced` · **Advanced** |
 | Table | [osd.md#SP_osd_mclock_profile](../../../config/osd/osd.md#SP_osd_mclock_profile) |
 
-**What it does:** Which mclock profile to use
+**What it does:** Selects the mClock scheduler profile (`balanced`, `high_client_ops`, `high_recovery_ops`, or custom).
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:** Start with `balanced` on mixed workloads. Use `high_client_ops` when recovery dominates latency; `high_recovery_ops` for aggressive rebuild windows.
 
 **Example:**
 
 ```bash
-ceph config set osd osd_mclock_profile balanced
+ceph config set osd osd_mclock_profile high_client_ops
 ceph config get osd osd_mclock_profile
+ceph daemon osd.<id> config show | grep mclock
 ```
 
 **Finding optimal value:**

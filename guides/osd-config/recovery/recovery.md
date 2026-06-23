@@ -526,9 +526,9 @@ ceph osd pool stats
 | Type | Uint · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_recovery_max_active](../../../config/osd/osd.md#SP_osd_recovery_max_active) |
 
-**What it does:** Number of simultaneous active recovery operations per OSD (overrides _ssd and _hdd if non-zero)
+**What it does:** Cap on concurrent recovery/backfill operations per OSD (0 = derive from HDD/SSD/hybrid-specific settings).
 
-**When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+**When to use:** Raise temporarily after OSD replacement to rebuild faster; lower during production peaks to protect client latency.
 
 **Example:**
 
@@ -553,6 +553,8 @@ ceph -s
 ceph daemon osd.<id> perf dump | head
 ceph osd pool stats
 ```
+
+Watch `recovering`/`backfilling` PG count and client p99. See also `osd_recovery_max_active_hdd` / `_ssd` when set to 0.
 
 ---
 
@@ -779,9 +781,9 @@ ceph osd pool stats
 | Type | Float · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_recovery_sleep](../../../config/osd/osd.md#SP_osd_recovery_sleep) |
 
-**What it does:** Time in seconds to sleep before next recovery or backfill op. This setting overrides _ssd, _hdd, and _hybrid if non-zero.
+**What it does:** Pause between recovery/backfill chunks (seconds). Non-zero values throttle recovery to leave headroom for application I/O.
 
-**When to use:** Tune background work timing — balance freshness vs cluster load.
+**When to use:** Use on busy clusters during business hours; set to 0 for fastest rebuild in maintenance windows.
 
 **Example:**
 

@@ -1705,6 +1705,42 @@ def build_mkdocs_nav_yaml(groups: dict[str, list[Option]]) -> str:
     return "\n".join(lines)
 
 
+def indent_nav_block(block: str) -> str:
+    return "\n".join(f"  {line}" if line.strip() else line for line in block.splitlines())
+
+
+def build_rgw_redirect_yaml() -> str:
+    lines = [
+        "        'guides/rgw-config-options.md': 'guides/rgw-config/OVERVIEW.md'",
+    ]
+    for section_title, slugs in NAV_SECTIONS:
+        section_dir = SECTION_SLUGS.get(section_title, "other")
+        for slug in slugs:
+            lines.append(
+                f"        'guides/rgw-config/{slug}.md': "
+                f"'guides/rgw-config/{section_dir}/{slug}.md'"
+            )
+    return "\n".join(lines)
+
+
+REDIRECT_BEGIN = "# rgw-redirects:start"
+REDIRECT_END = "# rgw-redirects:end"
+
+
+def patch_mkdocs_redirects() -> None:
+    if not MKDOCS.exists():
+        return
+    text = MKDOCS.read_text(encoding="utf-8")
+    if REDIRECT_BEGIN not in text or REDIRECT_END not in text:
+        print(f"warning: {MKDOCS} missing redirect markers", file=sys.stderr)
+        return
+    before, rest = text.split(REDIRECT_BEGIN, 1)
+    _old, after = rest.split(REDIRECT_END, 1)
+    block = build_rgw_redirect_yaml()
+    MKDOCS.write_text(f"{before}{REDIRECT_BEGIN}\n{block}\n{REDIRECT_END}{after}", encoding="utf-8")
+    print(f"Patched RGW redirects in {MKDOCS.relative_to(ROOT)}")
+
+
 def patch_mkdocs_nav(groups: dict[str, list[Option]]) -> None:
     if not MKDOCS.exists():
         print(f"warning: {MKDOCS} not found, skipping nav patch", file=sys.stderr)
@@ -1718,12 +1754,13 @@ def patch_mkdocs_nav(groups: dict[str, list[Option]]) -> None:
         return
     before, rest = text.split(NAV_BEGIN, 1)
     _old, after = rest.split(NAV_END, 1)
-    nav_block = build_mkdocs_nav_yaml(groups)
+    nav_block = indent_nav_block(build_mkdocs_nav_yaml(groups))
     MKDOCS.write_text(
         f"{before}{NAV_BEGIN}\n{nav_block}\n{NAV_END}{after}",
         encoding="utf-8",
     )
     print(f"Patched RGW nav in {MKDOCS.relative_to(ROOT)}")
+    patch_mkdocs_redirects()
 
 
 def main() -> int:
