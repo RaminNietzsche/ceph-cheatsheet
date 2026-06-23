@@ -71,7 +71,10 @@
       </div>
     </div>
   </div>
-  <div class="hub-scroll-hint"><span>↓</span><span>了解更多</span></div>
+  <a href="#cheatsheet" class="hub-scroll-hint" aria-label="滚动到速查表部分">
+    <span aria-hidden="true">↓</span>
+    <span>了解更多</span>
+  </a>
 </section>
 
 <section class="hub-section" id="cheatsheet">

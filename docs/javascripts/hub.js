@@ -3,22 +3,36 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!hub) return;
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var nav = hub.querySelector(".hub-nav");
+
+  function getScrollY() {
+    return window.scrollY || document.documentElement.scrollTop || 0;
+  }
+
+  function scrollToTarget(target) {
+    if (!target) return;
+    var offset = nav ? nav.offsetHeight + 16 : 16;
+    var top = target.getBoundingClientRect().top + getScrollY() - offset;
+    window.scrollTo({ top: top, behavior: reducedMotion ? "auto" : "smooth" });
+  }
 
   hub.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener("click", function (e) {
       var id = this.getAttribute("href");
-      if (id.length <= 1) return;
-      var target = document.querySelector(id);
+      if (!id || id.length <= 1) return;
+      var target = hub.querySelector(id) || document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+      scrollToTarget(target);
+      if (history.replaceState) {
+        history.replaceState(null, "", id);
+      }
     });
   });
 
-  var nav = hub.querySelector(".hub-nav");
   if (nav) {
     var updateNav = function () {
-      nav.classList.toggle("hub-nav--scrolled", window.scrollY > 24);
+      nav.classList.toggle("hub-nav--scrolled", getScrollY() > 24);
     };
     updateNav();
     window.addEventListener("scroll", updateNav, { passive: true });
@@ -27,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var scrollHint = hub.querySelector(".hub-scroll-hint");
   if (scrollHint) {
     var updateHint = function () {
-      var hidden = window.scrollY > 120;
+      var hidden = getScrollY() > 120;
       scrollHint.style.opacity = hidden ? "0" : "1";
       scrollHint.style.pointerEvents = hidden ? "none" : "auto";
     };

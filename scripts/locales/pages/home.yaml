@@ -75,7 +75,10 @@ docs/index:
           </div>
         </div>
       </div>
-      <div class="hub-scroll-hint"><span>↓</span><span>بیشتر بدانید</span></div>
+      <a href="#cheatsheet" class="hub-scroll-hint" aria-label="رفتن به بخش Cheatsheet">
+        <span aria-hidden="true">↓</span>
+        <span>بیشتر بدانید</span>
+      </a>
     </section>
 
     <section class="hub-section" id="cheatsheet">
@@ -239,7 +242,10 @@ docs/index:
           </div>
         </div>
       </div>
-      <div class="hub-scroll-hint"><span>↓</span><span>了解更多</span></div>
+      <a href="#cheatsheet" class="hub-scroll-hint" aria-label="滚动到速查表部分">
+        <span aria-hidden="true">↓</span>
+        <span>了解更多</span>
+      </a>
     </section>
 
     <section class="hub-section" id="cheatsheet">

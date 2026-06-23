@@ -71,7 +71,10 @@
       </div>
     </div>
   </div>
-  <div class="hub-scroll-hint"><span>↓</span><span>Explore more</span></div>
+  <a href="#cheatsheet" class="hub-scroll-hint" aria-label="Scroll to Cheatsheet section">
+    <span aria-hidden="true">↓</span>
+    <span>Explore more</span>
+  </a>
 </section>
 
 <section class="hub-section" id="cheatsheet">

@@ -627,7 +627,19 @@ a.hub-lang__item:hover {
   font-size: 0.75rem;
   color: var(--hub-muted);
   opacity: 1;
-  transition: opacity 0.4s ease;
+  cursor: pointer;
+  transition: opacity 0.4s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.hub-scroll-hint:hover {
+  color: var(--hub-cyan);
+  transform: translateX(-50%) translateY(2px);
+}
+
+.hub-scroll-hint:focus-visible {
+  outline: 2px solid var(--hub-cyan);
+  outline-offset: 4px;
+  border-radius: 0.5rem;
 }
 
 .hub-scroll-hint span:first-child {
@@ -640,6 +652,11 @@ a.hub-lang__item:hover {
 }
 
 /* Sections */
+.hub-section,
+.hub-hero {
+  scroll-margin-top: 5.5rem;
+}
+
 .hub-section {
   max-width: var(--hub-max);
   margin: 0 auto;
