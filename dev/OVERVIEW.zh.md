@@ -15,6 +15,6 @@
 
 ## 暂时
 
-- [速查表](../cheatsheet/OVERVIEW.md) — 运维参考
-- [RGW 架构](../architecture/rgw/OVERVIEW.md) — 子系统原理
-- [贡献](../guides/contributing.md) — 维护本仓库
+- [速查表](../cheatsheet/index.md) — 运维参考
+- [RGW 架构](../arch/rgw/OVERVIEW.md) — 子系统原理
+- [贡献](../cheatsheet/guides/contributing.md) — 维护本仓库

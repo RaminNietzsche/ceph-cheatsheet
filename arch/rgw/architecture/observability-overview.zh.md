@@ -25,5 +25,5 @@ ceph orch logs rgw.<host>.<id> --follow
 
 ## 相关
 
-- [Cheatsheet: troubleshooting](../../../cli/troubleshooting.md)
+- [Cheatsheet: troubleshooting](../../../cheatsheet/cli/troubleshooting.md)
 - [Request pipeline](request-pipeline.md)

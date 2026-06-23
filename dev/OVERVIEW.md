@@ -15,6 +15,6 @@ This section will host the **Ceph developer guide**: build setup, coding convent
 
 ## Meanwhile
 
-- [Cheatsheet](../cheatsheet/OVERVIEW.md) — operations reference
-- [RGW architecture](../architecture/rgw/OVERVIEW.md) — how subsystems work
-- [Contributing](../guides/contributing.md) — maintaining this repository
+- [Cheatsheet](../cheatsheet/index.md) — operations reference
+- [RGW architecture](../arch/rgw/OVERVIEW.md) — how subsystems work
+- [Contributing](../cheatsheet/guides/contributing.md) — maintaining this repository

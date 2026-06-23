@@ -79,4 +79,4 @@ ceph orch upgrade status              # cephadm path
 
 - 按 [角色](OVERVIEW.md#by-role) 或 [规模](OVERVIEW.md#by-scale) 选择更聚焦的流程。
 
-[← Cheatsheet](../cheatsheet/OVERVIEW.md)
+[← Cheatsheet](../index.md)

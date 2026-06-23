@@ -45,4 +45,4 @@ From the repo root:
 The generator also writes `config/readme.md` (cross-subsystem TOC for scripts).  
 Browse options on the site via the subsystem indexes above, or run `python3 scripts/split-index.py` after editing `readme.md`.
 
-[← Cheatsheet](../cheatsheet/OVERVIEW.md)
+[← Cheatsheet](../index.md)

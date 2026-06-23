@@ -67,6 +67,6 @@ ceph config rm osd osd_max_scrubs
 python3 scripts/generate-config.py --ref reef    # or squid, main, …
 ```
 
-ref فعلی در [VERSION](../version.md).
+ref فعلی در [VERSION](../../version.md).
 
-[← Cheatsheet](../cheatsheet/OVERVIEW.md)
+[← Cheatsheet](../index.md)

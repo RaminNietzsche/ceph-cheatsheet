@@ -70,4 +70,4 @@
   RGW · [OSD](osd-config/OVERVIEW.md) · [MON](mon-config/OVERVIEW.md) · [MGR](mgr-config/OVERVIEW.md) · [MDS](mds-config/OVERVIEW.md) · [Global](global-config/OVERVIEW.md)
 - [مشارکت](contributing.md) — قوانین، مهارت‌ها، بازتولید
 
-[← Cheatsheet](../cheatsheet/OVERVIEW.md)
+[← Cheatsheet](../index.md)

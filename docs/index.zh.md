@@ -9,21 +9,21 @@
 
 <div class="splash-portals">
 
-<a class="portal-card portal-cheatsheet" href="cheatsheet/OVERVIEW/">
+<a class="portal-card portal-cheatsheet" href="/cheatsheet/">
   <span class="portal-icon">📋</span>
   <h2>速查表</h2>
   <p>CLI、配置、按角色与规模的指南 — 您一直在用的参考。</p>
   <span class="portal-cta">打开速查表 →</span>
 </a>
 
-<a class="portal-card portal-architecture" href="architecture/rgw/OVERVIEW/">
+<a class="portal-card portal-architecture" href="/arch/rgw/OVERVIEW/">
   <span class="portal-icon">🏗</span>
   <h2>架构</h2>
   <p>RGW 子系统原理：请求路径、SAL、RADOS 驱动、认证、多站点、调度。</p>
   <span class="portal-cta">探索 RGW 内部 →</span>
 </a>
 
-<a class="portal-card portal-develop portal-soon" href="develop/OVERVIEW/">
+<a class="portal-card portal-develop portal-soon" href="/dev/">
   <span class="portal-icon">🛠</span>
   <h2>开发</h2>
   <p>开发者指南 — 工作流、规范与构建说明。</p>

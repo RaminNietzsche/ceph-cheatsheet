@@ -9,21 +9,21 @@
 
 <div class="splash-portals">
 
-<a class="portal-card portal-cheatsheet" href="cheatsheet/OVERVIEW/">
+<a class="portal-card portal-cheatsheet" href="/cheatsheet/">
   <span class="portal-icon">📋</span>
   <h2>Cheatsheet</h2>
   <p>CLI commands, config options, role &amp; scale guides — the reference you already use.</p>
   <span class="portal-cta">Open cheatsheet →</span>
 </a>
 
-<a class="portal-card portal-architecture" href="architecture/rgw/OVERVIEW/">
+<a class="portal-card portal-architecture" href="/arch/rgw/OVERVIEW/">
   <span class="portal-icon">🏗</span>
   <h2>Architecture</h2>
   <p>How RGW subsystems work: request path, SAL, RADOS driver, auth, multisite, scheduling.</p>
   <span class="portal-cta">Explore RGW internals →</span>
 </a>
 
-<a class="portal-card portal-develop portal-soon" href="develop/OVERVIEW/">
+<a class="portal-card portal-develop portal-soon" href="/dev/">
   <span class="portal-icon">🛠</span>
   <h2>Develop</h2>
   <p>Contributor and developer guide — workflows, conventions, and build notes.</p>

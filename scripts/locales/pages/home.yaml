@@ -13,21 +13,21 @@ docs/index:
 
     <div class="splash-portals">
 
-    <a class="portal-card portal-cheatsheet" href="cheatsheet/OVERVIEW/">
+    <a class="portal-card portal-cheatsheet" href="/cheatsheet/">
       <span class="portal-icon">📋</span>
       <h2>Cheatsheet</h2>
       <p>CLI، پیکربندی، راهنما بر اساس نقش و مقیاس — همان مرجع قبلی.</p>
       <span class="portal-cta">باز کردن cheatsheet ←</span>
     </a>
 
-    <a class="portal-card portal-architecture" href="architecture/rgw/OVERVIEW/">
+    <a class="portal-card portal-architecture" href="/arch/rgw/OVERVIEW/">
       <span class="portal-icon">🏗</span>
       <h2>معماری</h2>
       <p>عملکرد زیربخش‌های RGW: مسیر درخواست، SAL، RADOS، auth، multisite، scheduling.</p>
       <span class="portal-cta">کاوش درون‌ریزی RGW ←</span>
     </a>
 
-    <a class="portal-card portal-develop portal-soon" href="develop/OVERVIEW/">
+    <a class="portal-card portal-develop portal-soon" href="/dev/">
       <span class="portal-icon">🛠</span>
       <h2>توسعه</h2>
       <p>راهنمای توسعه‌دهنده — workflow، قراردادها و build.</p>
@@ -56,21 +56,21 @@ docs/index:
 
     <div class="splash-portals">
 
-    <a class="portal-card portal-cheatsheet" href="cheatsheet/OVERVIEW/">
+    <a class="portal-card portal-cheatsheet" href="/cheatsheet/">
       <span class="portal-icon">📋</span>
       <h2>速查表</h2>
       <p>CLI、配置、按角色与规模的指南 — 您一直在用的参考。</p>
       <span class="portal-cta">打开速查表 →</span>
     </a>
 
-    <a class="portal-card portal-architecture" href="architecture/rgw/OVERVIEW/">
+    <a class="portal-card portal-architecture" href="/arch/rgw/OVERVIEW/">
       <span class="portal-icon">🏗</span>
       <h2>架构</h2>
       <p>RGW 子系统原理：请求路径、SAL、RADOS 驱动、认证、多站点、调度。</p>
       <span class="portal-cta">探索 RGW 内部 →</span>
     </a>
 
-    <a class="portal-card portal-develop portal-soon" href="develop/OVERVIEW/">
+    <a class="portal-card portal-develop portal-soon" href="/dev/">
       <span class="portal-icon">🛠</span>
       <h2>开发</h2>
       <p>开发者指南 — 工作流、规范与构建说明。</p>
@@ -88,7 +88,7 @@ docs/index:
       </p>
     </div>
 
-cheatsheet/OVERVIEW:
+cheatsheet/index:
   fa: |
     [← خانه](../index.md)
 
@@ -104,11 +104,11 @@ cheatsheet/OVERVIEW:
 
     | می‌خواهم… | برو به |
     |-----------|--------|
-    | مستندات متناسب با نقشم | [راهنما بر اساس نقش](../guides/OVERVIEW.md#by-role) |
-    | توصیه بر اساس اندازهٔ کلاستر | [راهنما بر اساس مقیاس](../guides/OVERVIEW.md#by-scale) |
-    | دستورات کلاستر | [مرجع CLI](../cli/OVERVIEW.md) |
-    | جستجوی گزینهٔ پیکربندی | [مرجع Config](../config/OVERVIEW.md) |
-    | چک‌لیست روزانه | [شروع سریع](../guides/quickstart.md) |
+    | مستندات متناسب با نقشم | [راهنما بر اساس نقش](guides/OVERVIEW.md#by-role) |
+    | توصیه بر اساس اندازهٔ کلاستر | [راهنما بر اساس مقیاس](guides/OVERVIEW.md#by-scale) |
+    | دستورات کلاستر | [مرجع CLI](cli/OVERVIEW.md) |
+    | جستجوی گزینهٔ پیکربندی | [مرجع Config](config/OVERVIEW.md) |
+    | چک‌لیست روزانه | [شروع سریع](guides/quickstart.md) |
     | جستجوی محلی | `./scripts/search-all.sh <term>` |
     | یک گزینهٔ پیکربندی | `./scripts/lookup-config.sh <option>` |
 
@@ -128,17 +128,17 @@ cheatsheet/OVERVIEW:
 
     | 我想… | 前往 |
     |-------|------|
-    | 按职责找文档 | [按角色指南](../guides/OVERVIEW.md#by-role) |
-    | 按集群规模找建议 | [按规模指南](../guides/OVERVIEW.md#by-scale) |
-    | 运行集群命令 | [CLI 参考](../cli/OVERVIEW.md) |
-    | 查找配置项 | [Config 参考](../config/OVERVIEW.md) |
-    | 日常检查清单 | [快速入门](../guides/quickstart.md) |
+    | 按职责找文档 | [按角色指南](guides/OVERVIEW.md#by-role) |
+    | 按集群规模找建议 | [按规模指南](guides/OVERVIEW.md#by-scale) |
+    | 运行集群命令 | [CLI 参考](cli/OVERVIEW.md) |
+    | 查找配置项 | [Config 参考](config/OVERVIEW.md) |
+    | 日常检查清单 | [快速入门](guides/quickstart.md) |
     | 本地搜索 | `./scripts/search-all.sh <term>` |
     | 单个配置项 | `./scripts/lookup-config.sh <option>` |
 
     [README](https://github.com/RaminNietzsche/ceph-cheatsheet) · [License](../license.md)
 
-develop/OVERVIEW:
+dev/OVERVIEW:
   fa: |
     # توسعه
 
@@ -157,9 +157,9 @@ develop/OVERVIEW:
 
     ## فعلاً
 
-    - [Cheatsheet](../cheatsheet/OVERVIEW.md) — مرجع عملیاتی
-    - [معماری RGW](../architecture/rgw/OVERVIEW.md) — عملکرد زیرسیستم‌ها
-    - [مشارکت](../guides/contributing.md) — نگهداری این مخزن
+    - [Cheatsheet](../cheatsheet/index.md) — مرجع عملیاتی
+    - [معماری RGW](../arch/rgw/OVERVIEW.md) — عملکرد زیرسیستم‌ها
+    - [مشارکت](../cheatsheet/guides/contributing.md) — نگهداری این مخزن
   zh: |
     # 开发
 
@@ -178,9 +178,9 @@ develop/OVERVIEW:
 
     ## 暂时
 
-    - [速查表](../cheatsheet/OVERVIEW.md) — 运维参考
-    - [RGW 架构](../architecture/rgw/OVERVIEW.md) — 子系统原理
-    - [贡献](../guides/contributing.md) — 维护本仓库
+    - [速查表](../cheatsheet/index.md) — 运维参考
+    - [RGW 架构](../arch/rgw/OVERVIEW.md) — 子系统原理
+    - [贡献](../cheatsheet/guides/contributing.md) — 维护本仓库
 
 guides/OVERVIEW:
   fa: |
@@ -256,7 +256,7 @@ guides/OVERVIEW:
       RGW · [OSD](osd-config/OVERVIEW.md) · [MON](mon-config/OVERVIEW.md) · [MGR](mgr-config/OVERVIEW.md) · [MDS](mds-config/OVERVIEW.md) · [Global](global-config/OVERVIEW.md)
     - [مشارکت](contributing.md) — قوانین، مهارت‌ها، بازتولید
 
-    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+    [← Cheatsheet](../index.md)
   zh: |
     # 指南
 
@@ -330,4 +330,4 @@ guides/OVERVIEW:
       RGW · [OSD](osd-config/OVERVIEW.md) · [MON](mon-config/OVERVIEW.md) · [MGR](mgr-config/OVERVIEW.md) · [MDS](mds-config/OVERVIEW.md) · [Global](global-config/OVERVIEW.md)
     - [贡献](contributing.md) — 规则、技能、重新生成
 
-    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+    [← Cheatsheet](../index.md)

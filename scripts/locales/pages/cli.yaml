@@ -60,7 +60,7 @@ cli/OVERVIEW:
     ceph orch ps
     ```
 
-    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+    [← Cheatsheet](../index.md)
   zh: |
     # CLI 命令参考
 
@@ -120,7 +120,7 @@ cli/OVERVIEW:
     ceph orch ps
     ```
 
-    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+    [← Cheatsheet](../index.md)
 
 cli/cluster:
   fa: |

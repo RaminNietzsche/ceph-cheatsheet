@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_SRC = ROOT / "dev-code" / "rgw" / "docs-extended" / "pages"
-OUT = ROOT / "architecture" / "rgw"
+OUT = ROOT / "arch" / "rgw"
 
 SNIPPET_BLOCK = re.compile(
     r'```(?:\w+ title="[^"]*")?\s*\n--8<-- "([^"]+)"\s*\n```',
@@ -54,9 +54,9 @@ def process(text: str) -> str:
         text,
     )
     replacements = [
-        ("../../cheatsheet/guides/roles/rgw-admin.md", "../../../guides/roles/rgw-admin.md"),
-        ("../../cheatsheet/cli/troubleshooting.md", "../../../cli/troubleshooting.md"),
-        ("../guides/deployment-implementation-guide.md", "../../../guides/roles/rgw-admin.md"),
+        ("../../cheatsheet/guides/roles/rgw-admin.md", "../../../cheatsheet/guides/roles/rgw-admin.md"),
+        ("../../cheatsheet/cli/troubleshooting.md", "../../../cheatsheet/cli/troubleshooting.md"),
+        ("../guides/deployment-implementation-guide.md", "../../../cheatsheet/guides/roles/rgw-admin.md"),
         ("../guides/source-code-in-docs.md", "https://github.com/ceph/ceph/tree/main/src/rgw"),
     ]
     for old, new in replacements:

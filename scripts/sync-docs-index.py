@@ -5,23 +5,21 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 REFERENCE = ROOT / "REFERENCE.md"
-CHEATSHEET_OVERVIEW = ROOT / "cheatsheet" / "OVERVIEW.md"
+CHEATSHEET_DIR = ROOT / "cheatsheet"
+CHEATSHEET_INDEX = CHEATSHEET_DIR / "index.md"
 DOCS = ROOT / "docs"
 VERSION_SRC = ROOT / "VERSION"
 LICENSE_SRC = ROOT / "LICENSE"
 
 
 def rewrite_cheatsheet_paths(text: str) -> str:
-    """Paths in REFERENCE assume docs root; cheatsheet hub lives one level deeper."""
+    """REFERENCE paths assume repo root; hub is served at /cheatsheet/."""
     replacements = [
         ("[`VERSION`](VERSION)", "[VERSION](../version.md)"),
         (
             "[README](https://github.com/RaminNietzsche/ceph-cheatsheet) · [License](LICENSE)",
             "[README](https://github.com/RaminNietzsche/ceph-cheatsheet) · [License](../license.md)",
         ),
-        ("](guides/", "](../guides/"),
-        ("](cli/", "](../cli/"),
-        ("](config/", "](../config/"),
     ]
     for old, new in replacements:
         text = text.replace(old, new)
@@ -30,13 +28,15 @@ def rewrite_cheatsheet_paths(text: str) -> str:
     return text
 
 
-def sync_cheatsheet_overview() -> None:
+def sync_cheatsheet_hub() -> None:
     if not REFERENCE.exists():
         raise SystemExit(f"Missing {REFERENCE}")
     text = rewrite_cheatsheet_paths(REFERENCE.read_text(encoding="utf-8"))
-    CHEATSHEET_OVERVIEW.parent.mkdir(parents=True, exist_ok=True)
-    CHEATSHEET_OVERVIEW.write_text(text, encoding="utf-8")
-    print(f"Synced {CHEATSHEET_OVERVIEW} from {REFERENCE}")
+    CHEATSHEET_DIR.mkdir(parents=True, exist_ok=True)
+    CHEATSHEET_INDEX.write_text(text, encoding="utf-8")
+    # Keep OVERVIEW as alias for older links.
+    (CHEATSHEET_DIR / "OVERVIEW.md").write_text(text, encoding="utf-8")
+    print(f"Synced {CHEATSHEET_INDEX} from {REFERENCE}")
 
 
 def sync_version_page() -> None:
@@ -68,7 +68,7 @@ def sync_license_page() -> None:
 
 
 def main() -> None:
-    sync_cheatsheet_overview()
+    sync_cheatsheet_hub()
     sync_version_page()
     sync_license_page()
 

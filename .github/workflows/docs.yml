@@ -1,11 +1,12 @@
 name: Docs
 
 # Publish MkDocs to GitHub Pages (project site), then serve publicly at
-# http://blog.ceph-s3.ir/cheatsheet/ via Cloudflare reverse proxy to
+# http://blog.ceph-s3.ir/ via Cloudflare reverse proxy to
 # https://raminnietzsche.github.io/ceph-cheatsheet/
 #
+# URL layout: / (home) · /cheatsheet/ · /arch/ · /dev/
 # Do not set a custom domain on this repository — blog.ceph-s3.ir is proxied
-# at the /cheatsheet/ path only. MkDocs site_url matches the public URL.
+# at the site root. MkDocs site_url matches the public URL.
 
 on:
   push:
@@ -23,7 +24,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  PUBLIC_SITE_URL: http://blog.ceph-s3.ir/cheatsheet/
+  PUBLIC_SITE_URL: http://blog.ceph-s3.ir/
 
 jobs:
   build:

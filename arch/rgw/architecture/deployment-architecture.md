@@ -20,7 +20,7 @@ flowchart TB
 ceph orch apply rgw <svc-id> --placement="3 host1 host2 host3" --port=8080
 ```
 
-See [Cheatsheet: RGW admin](../../../guides/roles/rgw-admin.md) for operations.
+See [Cheatsheet: RGW admin](../../../cheatsheet/guides/roles/rgw-admin.md) for operations.
 
 ## TLS and frontends
 

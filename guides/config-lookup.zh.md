@@ -67,6 +67,6 @@ Ceph 新版本发布后：
 python3 scripts/generate-config.py --ref reef    # or squid, main, …
 ```
 
-当前 ref 见 [VERSION](../version.md)。
+当前 ref 见 [VERSION](../../version.md)。
 
-[← Cheatsheet](../cheatsheet/OVERVIEW.md)
+[← Cheatsheet](../index.md)

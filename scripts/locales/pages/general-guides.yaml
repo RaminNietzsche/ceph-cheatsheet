@@ -83,7 +83,7 @@ guides/quickstart:
 
     - [نقش](OVERVIEW.md#by-role) یا [مقیاس](OVERVIEW.md#by-scale) خود را برای روندهای تخصصی‌تر انتخاب کنید.
 
-    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+    [← Cheatsheet](../index.md)
   zh: |
     # 快速入门 — 日常运维流程
 
@@ -166,7 +166,7 @@ guides/quickstart:
 
     - 按 [角色](OVERVIEW.md#by-role) 或 [规模](OVERVIEW.md#by-scale) 选择更聚焦的流程。
 
-    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+    [← Cheatsheet](../index.md)
 
 guides/config-lookup:
   fa: |
@@ -239,9 +239,9 @@ guides/config-lookup:
     python3 scripts/generate-config.py --ref reef    # or squid, main, …
     ```
 
-    ref فعلی در [VERSION](../version.md).
+    ref فعلی در [VERSION](../../version.md).
 
-    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+    [← Cheatsheet](../index.md)
   zh: |
     # 使用配置参考
 
@@ -312,9 +312,9 @@ guides/config-lookup:
     python3 scripts/generate-config.py --ref reef    # or squid, main, …
     ```
 
-    当前 ref 见 [VERSION](../version.md)。
+    当前 ref 见 [VERSION](../../version.md)。
 
-    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+    [← Cheatsheet](../index.md)
 
 guides/contributing:
   fa: |

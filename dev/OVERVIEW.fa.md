@@ -15,6 +15,6 @@
 
 ## فعلاً
 
-- [Cheatsheet](../cheatsheet/OVERVIEW.md) — مرجع عملیاتی
-- [معماری RGW](../architecture/rgw/OVERVIEW.md) — عملکرد زیرسیستم‌ها
-- [مشارکت](../guides/contributing.md) — نگهداری این مخزن
+- [Cheatsheet](../cheatsheet/index.md) — مرجع عملیاتی
+- [معماری RGW](../arch/rgw/OVERVIEW.md) — عملکرد زیرسیستم‌ها
+- [مشارکت](../cheatsheet/guides/contributing.md) — نگهداری این مخزن

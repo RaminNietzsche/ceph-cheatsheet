@@ -56,4 +56,4 @@ radosgw-admin user list
 ceph orch ps
 ```
 
-[← Cheatsheet](../cheatsheet/OVERVIEW.md)
+[← Cheatsheet](../index.md)

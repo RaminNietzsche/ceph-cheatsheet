@@ -79,4 +79,4 @@ ceph orch upgrade status              # cephadm path
 
 - [نقش](OVERVIEW.md#by-role) یا [مقیاس](OVERVIEW.md#by-scale) خود را برای روندهای تخصصی‌تر انتخاب کنید.
 
-[← Cheatsheet](../cheatsheet/OVERVIEW.md)
+[← Cheatsheet](../index.md)

@@ -67,6 +67,6 @@ When Ceph releases a new version:
 python3 scripts/generate-config.py --ref reef    # or squid, main, …
 ```
 
-See [VERSION](../version.md) for the current source ref.
+See [VERSION](../../version.md) for the current source ref.
 
-[← Cheatsheet](../cheatsheet/OVERVIEW.md)
+[← Cheatsheet](../index.md)

@@ -9,21 +9,21 @@
 
 <div class="splash-portals">
 
-<a class="portal-card portal-cheatsheet" href="cheatsheet/OVERVIEW/">
+<a class="portal-card portal-cheatsheet" href="/cheatsheet/">
   <span class="portal-icon">📋</span>
   <h2>Cheatsheet</h2>
   <p>CLI، پیکربندی، راهنما بر اساس نقش و مقیاس — همان مرجع قبلی.</p>
   <span class="portal-cta">باز کردن cheatsheet ←</span>
 </a>
 
-<a class="portal-card portal-architecture" href="architecture/rgw/OVERVIEW/">
+<a class="portal-card portal-architecture" href="/arch/rgw/OVERVIEW/">
   <span class="portal-icon">🏗</span>
   <h2>معماری</h2>
   <p>عملکرد زیربخش‌های RGW: مسیر درخواست، SAL، RADOS، auth، multisite، scheduling.</p>
   <span class="portal-cta">کاوش درون‌ریزی RGW ←</span>
 </a>
 
-<a class="portal-card portal-develop portal-soon" href="develop/OVERVIEW/">
+<a class="portal-card portal-develop portal-soon" href="/dev/">
   <span class="portal-icon">🛠</span>
   <h2>توسعه</h2>
   <p>راهنمای توسعه‌دهنده — workflow، قراردادها و build.</p>
