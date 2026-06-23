@@ -1,6 +1,6 @@
 # Encryption & KMS
 
-RGW config deep dive — 43 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 43 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
@@ -77,16 +77,23 @@ ceph osd pool stats
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_barbican_url](../../config/rgw/rgw.md#SP_rgw_barbican_url) |
 
-**What it does:** URL to barbican server.
+**What it does:** Base URL of the **OpenStack Barbican** key manager for **SSE-KMS** server-side encryption.
 
-**When to use:** Set when integrating with an external service; leave empty if the feature is unused.
+**When to use:** Store encryption keys in Barbican instead of on-cluster secrets. Requires Keystone credentials for Barbican access.
+
+**Related options:**
+
+- `rgw_crypt_s3_kms_backend` = `barbican`
+- `rgw_keystone_barbican_*`, `rgw_crypt_s3_kms_cache_*`
 
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_barbican_url <value>
-ceph config get client.rgw rgw_barbican_url
+ceph config set client.rgw rgw_crypt_s3_kms_backend barbican
+ceph config set client.rgw rgw_barbican_url https://barbican.example.com:9311/
 ```
+
+See [Ceph RGW config ref — Barbican](https://docs.ceph.com/en/latest/radosgw/config-ref/#barbican-settings).
 
 **Finding optimal value:**
 
@@ -464,7 +471,7 @@ ceph config get client.rgw rgw_crypt_require_ssl
 
 | | |
 |---|---|
-| Type | Str · default `barbican` · **Advanced** |
+| Type | Str · enum: ["barbican", "vault", "testing", "kmip"] · default `barbican` · **Advanced** |
 | Table | [rgw.md#SP_rgw_crypt_s3_kms_backend](../../config/rgw/rgw.md#SP_rgw_crypt_s3_kms_backend) |
 
 **What it does:** Where the SSE-KMS encryption keys are stored. Supported KMS systems are OpenStack Barbican ('barbican', the default) and HashiCorp Vault ('vault').
@@ -751,7 +758,7 @@ ceph -s  # cluster health, slow ops
 
 | | |
 |---|---|
-| Type | Str · default `aes-256-cbc` · **Advanced** |
+| Type | Str · enum: ["aes-256-cbc", "aes-256-gcm"] · default `aes-256-cbc` · **Advanced** |
 | Table | [rgw.md#SP_rgw_crypt_sse_algorithm](../../config/rgw/rgw.md#SP_rgw_crypt_sse_algorithm) |
 
 **What it does:** Default encryption algorithm for server-side encryption
@@ -779,7 +786,7 @@ ceph config get client.rgw rgw_crypt_sse_algorithm
 
 | | |
 |---|---|
-| Type | Str · default `vault` · **Advanced** |
+| Type | Str · enum: ["vault"] · default `vault` · **Advanced** |
 | Table | [rgw.md#SP_rgw_crypt_sse_s3_backend](../../config/rgw/rgw.md#SP_rgw_crypt_sse_s3_backend) |
 
 **What it does:** Where the SSE-S3 encryption keys are stored. The only valid choice here is HashiCorp Vault ('vault').
@@ -882,7 +889,7 @@ ceph -s  # cluster health, slow ops
 
 | | |
 |---|---|
-| Type | Str · default `token` · **Advanced** |
+| Type | Str · enum: ["token", "agent"] · default `token` · **Advanced** |
 | Table | [rgw.md#SP_rgw_crypt_sse_s3_vault_auth](../../config/rgw/rgw.md#SP_rgw_crypt_sse_s3_vault_auth) |
 
 **What it does:** Type of authentication method to be used with SSE-S3 and Vault.
@@ -1255,7 +1262,7 @@ ceph -s  # cluster health, slow ops
 
 | | |
 |---|---|
-| Type | Str · default `token` · **Advanced** |
+| Type | Str · enum: ["token", "agent"] · default `token` · **Advanced** |
 | Table | [rgw.md#SP_rgw_crypt_vault_auth](../../config/rgw/rgw.md#SP_rgw_crypt_vault_auth) |
 
 **What it does:** Type of authentication method to be used with Vault.

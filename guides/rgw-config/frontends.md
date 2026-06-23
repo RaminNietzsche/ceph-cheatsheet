@@ -1,6 +1,6 @@
 # Frontends & HTTP stack
 
-RGW config deep dive — 6 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 6 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
@@ -40,9 +40,13 @@ ceph osd pool stats
 | Type | Bool · default `False` · **Dev** |
 | Table | [rgw.md#SP_rgw_asio_assert_yielding](../../config/rgw/rgw.md#SP_rgw_asio_assert_yielding) |
 
-**What it does:** Trigger an assertion failure if an operation would block an asio thread
+**What it does:** Triggers an assertion if code on an asio/beast thread would block instead of yielding to coroutines. Development aid for finding blocking calls.
 
-**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+**When to use:** RGW development/debugging only — keep `false` in production.
+
+**Related options:**
+
+- `rgw_beast_enable_async`
 
 **Example:**
 
@@ -70,15 +74,15 @@ ceph config get client.rgw rgw_asio_assert_yielding
 | Type | Bool · default `True` · **Dev** |
 | Table | [rgw.md#SP_rgw_beast_enable_async](../../config/rgw/rgw.md#SP_rgw_beast_enable_async) |
 
-**What it does:** Enable async request processing under beast using coroutines
+**What it does:** When `true`, the Beast HTTP frontend processes requests with **coroutines**, allowing multiple concurrent requests per thread.
 
-**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+**When to use:** Leave `true` for production throughput. Set `false` only when debugging request flow.
 
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_beast_enable_async True
-ceph config get client.rgw rgw_beast_enable_async
+ceph config set client.rgw rgw_beast_enable_async false
+ceph orch restart rgw
 ```
 
 **Finding optimal value:**

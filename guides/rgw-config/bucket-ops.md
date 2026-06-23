@@ -1,6 +1,6 @@
 # Bucket operations
 
-RGW config deep dive — 12 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 12 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
@@ -46,15 +46,19 @@ ceph osd pool stats
 | Type | Bool · default `False` · **Dev** |
 | Table | [rgw.md#SP_rgw_bucket_counters_cache](../../config/rgw/rgw.md#SP_rgw_bucket_counters_cache) |
 
-**What it does:** enable a rgw perf counters cache for counters with bucket label
+**What it does:** Enables an in-memory cache for **perf counters** with a bucket label, so per-bucket metrics avoid repeated counter lookups.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- `rgw_bucket_counters_cache_size`
 
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_bucket_counters_cache False
-ceph config get client.rgw rgw_bucket_counters_cache
+ceph config set client.rgw rgw_bucket_counters_cache true
+ceph config set client.rgw rgw_bucket_counters_cache_size 20000
 ```
 
 **Finding optimal value:**
@@ -74,12 +78,9 @@ ceph config get client.rgw rgw_bucket_counters_cache
 | Type | Uint · default `10000` · **Advanced** |
 | Table | [rgw.md#SP_rgw_bucket_counters_cache_size](../../config/rgw/rgw.md#SP_rgw_bucket_counters_cache_size) |
 
-**What it does:** Number of labeled perf counters the bucket perf counters cache can store
+**What it does:** Maximum number of labeled per-bucket perf counter entries kept in the cache.
 
-**When to use:**
-
-- **Increase** when monitoring many active buckets/users and cache misses are visible.
-- **Decrease** when RGW memory is constrained.
+**When to use:** Increase on clusters with many active buckets and bucket-level monitoring enabled.
 
 **Example:**
 
@@ -114,15 +115,19 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `-1` · **Basic** |
 | Table | [rgw.md#SP_rgw_bucket_default_quota_max_objects](../../config/rgw/rgw.md#SP_rgw_bucket_default_quota_max_objects) |
 
-**What it does:** Default quota for max objects in a bucket
+**What it does:** Default maximum **objects per bucket** for **newly created users**. Does not retroactively change existing users.
 
-**When to use:** Set tenant or platform default limits for new users, accounts, or buckets.
+**When to use:** Enforce per-bucket object limits for every new tenant without per-user `radosgw-admin quota` calls.
+
+**Related options:**
+
+- `rgw_bucket_default_quota_max_size`, `rgw_user_default_quota_*`
 
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_bucket_default_quota_max_objects -1
-ceph config get client.rgw rgw_bucket_default_quota_max_objects
+ceph config set client rgw_bucket_default_quota_max_objects 500000
+radosgw-admin user create --uid=newuser --display-name="New User"
 ```
 
 **Finding optimal value:**
@@ -150,15 +155,17 @@ radosgw-admin bucket stats --bucket=testbucket
 | Type | Int · default `-1` · **Advanced** |
 | Table | [rgw.md#SP_rgw_bucket_default_quota_max_size](../../config/rgw/rgw.md#SP_rgw_bucket_default_quota_max_size) |
 
-**What it does:** Default quota for total size in a bucket
+**What it does:** Default maximum **bytes per bucket** for new users.
 
 **When to use:** Set tenant or platform default limits for new users, accounts, or buckets.
 
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_bucket_default_quota_max_size -1
-ceph config get client.rgw rgw_bucket_default_quota_max_size
+ceph config set client rgw_bucket_default_quota_max_size $((100*1024*1024*1024))
+
+radosgw-admin quota set --uid=alice --max-size=50G --max-objects=10000
+radosgw-admin quota enable --uid=alice
 ```
 
 **Finding optimal value:**
@@ -186,15 +193,17 @@ radosgw-admin bucket stats --bucket=testbucket
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_bucket_eexist_override](../../config/rgw/rgw.md#SP_rgw_bucket_eexist_override) |
 
-**What it does:** CreateBucket on an existing bucket of the same owner returns 409/EEXIST, regardless of region.
+**What it does:** When `true`, `CreateBucket` on an existing bucket (same owner) returns **HTTP 409 / EEXIST** instead of succeeding idempotently.
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**Default (`false`):** Matches AWS S3 — repeated CreateBucket by the same owner typically returns 200 OK.
+
+**When to use:** Clients or automation that expect an error on duplicate bucket creation.
 
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_bucket_eexist_override False
-ceph config get client.rgw rgw_bucket_eexist_override
+ceph config set client.rgw rgw_bucket_eexist_override true
+# aws s3 mb s3://existing-bucket  →  409 BucketAlreadyExists
 ```
 
 **Finding optimal value:**
@@ -214,18 +223,22 @@ ceph config get client.rgw rgw_bucket_eexist_override
 | Type | Uint · default `128` · **Advanced** |
 | Table | [rgw.md#SP_rgw_bucket_index_max_aio](../../config/rgw/rgw.md#SP_rgw_bucket_index_max_aio) |
 
-**What it does:** Max number of concurrent RADOS requests when handling bucket shards.
+**What it does:** Limits **concurrent RADOS requests** across **bucket index shards** (list operations, index maintenance, multi-shard updates). Used in `svc_bi_rados.cc`.
 
 **When to use:**
 
 - **Increase** when listings/deletes on sharded buckets are slow and OSDs have headroom.
 - **Decrease** when bucket-index pools show sustained load spikes or slow ops.
 
+**Related options:**
+
+- [`rgw_multi_obj_del_max_aio`](../../config/rgw/rgw.md#SP_rgw_multi_obj_del_max_aio) (default 16)
+- [`rgw_override_bucket_index_max_shards`](../../config/rgw/rgw.md#SP_rgw_override_bucket_index_max_shards)
+
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_bucket_index_max_aio 128
-ceph config get client.rgw rgw_bucket_index_max_aio
+ceph config set client.rgw rgw_bucket_index_max_aio 256
 ```
 
 **Finding optimal value:**
@@ -246,6 +259,8 @@ radosgw-admin perf stats
 ceph -s  # cluster health, slow ops
 radosgw-admin bucket stats --bucket=BIG_BUCKET | jq '.num_shards'
 ```
+
+More shards and faster OSDs tolerate higher values; during `nearfull` or heavy recovery, lower is safer.
 
 ---
 

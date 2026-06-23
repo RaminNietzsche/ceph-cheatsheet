@@ -611,7 +611,7 @@ ceph -s  # cluster health, slow ops
 
 | | |
 |---|---|
-| Type | Str · default `false` · **Advanced** |
+| Type | Str · enum: ["false", "true", "swift", "s3", "both", "0", "1", "none"] · default `false` · **Advanced** |
 | Table | [rgw.md#SP_rgw_keystone_implicit_tenants](../../config/rgw/rgw.md#SP_rgw_keystone_implicit_tenants) |
 
 **What it does:** RGW Keystone implicit tenants creation

@@ -136,7 +136,7 @@ ceph -s  # cluster health, slow ops
 
 | | |
 |---|---|
-| Type | Int · default `0` · **Advanced** |
+| Type | Int · enum: ["0", "1"] · default `0` · **Advanced** |
 | Table | [rgw.md#SP_rgw_curl_tcp_keepalive](../../config/rgw/rgw.md#SP_rgw_curl_tcp_keepalive) |
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.

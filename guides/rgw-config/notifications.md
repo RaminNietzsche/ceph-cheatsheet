@@ -1,6 +1,6 @@
 # Bucket notifications
 
-RGW config deep dive — 13 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 13 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
@@ -47,9 +47,13 @@ ceph osd pool stats
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_allow_notification_secrets_in_cleartext](../../config/rgw/rgw.md#SP_rgw_allow_notification_secrets_in_cleartext) |
 
-**What it does:** Allows sending secrets (e.g. passwords) over non encrypted HTTP messages.
+**What it does:** When `true`, allows bucket notification topics with broker passwords/secrets over plain HTTP. Default requires HTTPS for topics with secrets.
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Trusted private lab only. **Never** enable on internet-facing or untrusted networks.
+
+**Related options:**
+
+- `rgw_trust_forwarded_https` (if TLS terminates at a proxy)
 
 **Example:**
 

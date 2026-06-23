@@ -1,6 +1,6 @@
 # D4N / D3N cache
 
-RGW config deep dive — 22 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 22 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
@@ -56,15 +56,21 @@ ceph osd pool stats
 | Type | Bool · default `False` · **Advanced** · **STARTUP** (restart required) |
 | Table | [rgw.md#SP_d4n_writecache_enabled](../../config/rgw/rgw.md#SP_d4n_writecache_enabled) |
 
-**What it does:** The d4n write cache
+**What it does:** Enables the D4N (Data Delivery Network) **write-back cache**. When `true`, writes are staged in the local D4N cache layer (SSD path or Redis) before reaching the backend store.
 
-**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+**When to use:** Experimental edge/cache scenarios to reduce write latency. Requires `rgw_filter = d4n` — not for standard production RGW on RADOS alone.
+
+**Related options:**
+
+- `rgw_filter` = `d4n` (required)
+- `rgw_d4n_l1_datacache_persistent_path`, `rgw_d4n_address`, `rgw_d4n_l1_datacache_disk_reserve`, `rgw_d4n_cache_cleaning_interval`
 
 **Example:**
 
 ```bash
-ceph config set client.rgw d4n_writecache_enabled False
-ceph config get client.rgw d4n_writecache_enabled
+ceph config set client.rgw rgw_filter d4n
+ceph config set client.rgw d4n_writecache_enabled true
+ceph config set client.rgw rgw_d4n_l1_datacache_persistent_path /var/cache/rgw_d4n/
 ceph orch restart rgw
 ```
 
@@ -182,7 +188,7 @@ ceph config get client.rgw rgw_d3n_l1_evict_cache_on_start
 
 | | |
 |---|---|
-| Type | Str · default `lru` · **Advanced** |
+| Type | Str · enum: ["lru", "random"] · default `lru` · **Advanced** |
 | Table | [rgw.md#SP_rgw_d3n_l1_eviction_policy](../../config/rgw/rgw.md#SP_rgw_d3n_l1_eviction_policy) |
 
 **What it does:** select the d3n cache eviction policy

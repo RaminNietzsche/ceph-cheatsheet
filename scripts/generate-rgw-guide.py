@@ -12,30 +12,316 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_RGW = ROOT / "config" / "rgw"
 GUIDES = ROOT / "guides" / "rgw-config"
-BATCH1_GUIDE = ROOT / "guides" / "rgw-config-options.md"
 
-# Curated batch-1 guide — same options also appear in topic files with identical tuning format.
-BATCH1_NAMES = {
-    "d4n_writecache_enabled",
-    "daos_pool",
-    "dbstore_config_uri",
-    "dbstore_db_dir",
-    "dbstore_db_name_prefix",
-    "rgw_account_default_quota_max_objects",
-    "rgw_account_default_quota_max_size",
-    "rgw_acl_grants_max_num",
-    "rgw_admin_entry",
-    "rgw_allow_notification_secrets_in_cleartext",
-    "rgw_asio_assert_yielding",
-    "rgw_backend_store",
-    "rgw_barbican_url",
-    "rgw_beast_enable_async",
-    "rgw_bucket_counters_cache",
-    "rgw_bucket_counters_cache_size",
-    "rgw_bucket_default_quota_max_objects",
-    "rgw_bucket_default_quota_max_size",
-    "rgw_bucket_eexist_override",
-    "rgw_bucket_index_max_aio",
+# Extra narrative merged from the former batch-1 guide into per-option sections.
+ENRICHMENTS: dict[str, dict[str, str]] = {
+    "d4n_writecache_enabled": {
+        "what": (
+            "Enables the D4N (Data Delivery Network) **write-back cache**. When `true`, "
+            "writes are staged in the local D4N cache layer (SSD path or Redis) before "
+            "reaching the backend store."
+        ),
+        "when_to_use": (
+            "Experimental edge/cache scenarios to reduce write latency. Requires "
+            "`rgw_filter = d4n` — not for standard production RGW on RADOS alone."
+        ),
+        "related_extra": (
+            "- `rgw_filter` = `d4n` (required)\n"
+            "- `rgw_d4n_l1_datacache_persistent_path`, `rgw_d4n_address`, "
+            "`rgw_d4n_l1_datacache_disk_reserve`, `rgw_d4n_cache_cleaning_interval`"
+        ),
+        "example": (
+            "```bash\n"
+            "ceph config set client.rgw rgw_filter d4n\n"
+            "ceph config set client.rgw d4n_writecache_enabled true\n"
+            "ceph config set client.rgw rgw_d4n_l1_datacache_persistent_path /var/cache/rgw_d4n/\n"
+            "ceph orch restart rgw\n"
+            "```"
+        ),
+    },
+    "daos_pool": {
+        "what": (
+            "Name of the [DAOS](https://docs.daos.io/) pool RGW connects to when "
+            "`rgw_backend_store = daos`."
+        ),
+        "when_to_use": (
+            "Experimental DAOS-backed RGW (build with `-DWITH_RADOSGW_DAOS=ON`). "
+            "Not used in standard Ceph clusters on RADOS."
+        ),
+        "example": (
+            "```ini\n"
+            "[client.rgw]\n"
+            "rgw backend store = daos\n"
+            "daos pool = mypool\n"
+            "```\n\n"
+            "Create the pool with `dmg pool create --size=<size> mypool`."
+        ),
+    },
+    "dbstore_config_uri": {
+        "what": (
+            "URI for the **configuration database** when using the experimental "
+            "**dbstore** backend. URIs starting with `file:` point at a local SQLite file."
+        ),
+        "when_to_use": (
+            "Standalone RGW without MON/OSD. See "
+            "[dbstore README](https://github.com/ceph/ceph/blob/main/src/rgw/driver/dbstore/README.md)."
+        ),
+        "related_extra": (
+            "- `rgw_backend_store` = `dbstore`\n"
+            "- `rgw_config_store` = `dbstore`\n"
+            "- `dbstore_db_dir`, `dbstore_db_name_prefix`"
+        ),
+        "example": (
+            "```bash\n"
+            "ceph config set client.rgw rgw_backend_store dbstore\n"
+            "ceph config set client.rgw rgw_config_store dbstore\n"
+            "ceph config set client.rgw dbstore_config_uri file:/var/lib/ceph/radosgw/dbstore-config.db\n"
+            "```"
+        ),
+    },
+    "dbstore_db_dir": {
+        "what": (
+            "Directory where dbstore writes SQLite files for object and metadata storage. "
+            "Unlike `rados`, dbstore is **stateful** — every RGW instance must see the same files."
+        ),
+        "when_to_use": (
+            "Isolate dbstore data on a dedicated filesystem. cephadm cannot freely move "
+            "daemons without the data."
+        ),
+    },
+    "dbstore_db_name_prefix": {
+        "when_to_use": (
+            "Multiple dbstore instances or tenants on one host without filename collisions."
+        ),
+    },
+    "rgw_backend_store": {
+        "what": (
+            "Selects the **Storage Abstraction Layer (SAL)** — where RGW stores objects "
+            "and metadata."
+        ),
+        "extra_body": (
+            "| Value | Role |\n"
+            "|-------|------|\n"
+            "| `rados` | Production default — objects in RADOS pools |\n"
+            "| `dbstore` | Experimental standalone SQLite backend |\n"
+            "| `daos` | Experimental DAOS backend |\n"
+            "| `motr` | Experimental Motr backend |\n"
+            "| `posix` | Experimental POSIX filesystem backend |"
+        ),
+        "when_to_use": (
+            "Leave `rados` in production. Other values are for development, testing, "
+            "or specialized deployments."
+        ),
+        "related_extra": (
+            "- `daos_pool`, `dbstore_*`, `rgw_config_store`, `rgw_filter`"
+        ),
+    },
+    "rgw_account_default_quota_max_objects": {
+        "what": (
+            "Default cap on **total object count** across all buckets owned by a **new** "
+            "S3 account. `-1` means unlimited."
+        ),
+        "when_to_use": (
+            "Multi-tenant platforms using the account abstraction. Applies only when "
+            "accounts are created — existing accounts are unchanged."
+        ),
+        "related_extra": (
+            "- `rgw_account_default_quota_max_size`\n"
+            "- `rgw_enable_quota_threads` (required on at least one RGW per zone)"
+        ),
+        "example": (
+            "```bash\n"
+            "ceph config set client rgw_account_default_quota_max_objects 1000000\n"
+            "radosgw-admin account create --account-id=acme --account-name=\"ACME Corp\"\n"
+            "```\n\n"
+            "Set in `[client]` or global so `radosgw-admin` picks it up."
+        ),
+    },
+    "rgw_account_default_quota_max_size": {
+        "what": "Default cap on **total stored bytes** for a new account.",
+        "example": (
+            "```bash\n"
+            "# 10 TiB\n"
+            "ceph config set client rgw_account_default_quota_max_size "
+            "$((10*1024*1024*1024*1024))\n"
+            "```"
+        ),
+    },
+    "rgw_acl_grants_max_num": {
+        "what": (
+            "Maximum number of ACL grants in a single PutBucketAcl / PutObjectAcl request "
+            "(aligned with S3 limits)."
+        ),
+        "when_to_use": (
+            "Raise only if clients legitimately need more grants; lowering hardens against "
+            "oversized ACL payloads."
+        ),
+        "related_extra": "- `rgw_cors_rules_max_num`, `rgw_user_policies_max_num`",
+    },
+    "rgw_admin_entry": {
+        "what": (
+            "URL path prefix for the **RGW Admin Ops REST API** (bucket/user introspection, "
+            "usage, etc.). **Not runtime-updatable.**"
+        ),
+        "important": (
+            "**Important:** Multisite replication **requires** the value `admin`. "
+            "Do not change it on multisite clusters."
+        ),
+        "example": (
+            "```bash\n"
+            "# GET https://rgw.example.com/admin/bucket?bucket=mybucket&format=json\n"
+            "curl -s -H \"Authorization: AWS ...\" \\\n"
+            "  \"https://rgw.example.com/admin/bucket?bucket=mybucket&format=json\"\n"
+            "```"
+        ),
+    },
+    "rgw_allow_notification_secrets_in_cleartext": {
+        "what": (
+            "When `true`, allows bucket notification topics with broker passwords/secrets "
+            "over plain HTTP. Default requires HTTPS for topics with secrets."
+        ),
+        "when_to_use": (
+            "Trusted private lab only. **Never** enable on internet-facing or untrusted networks."
+        ),
+        "related_extra": "- `rgw_trust_forwarded_https` (if TLS terminates at a proxy)",
+    },
+    "rgw_barbican_url": {
+        "what": (
+            "Base URL of the **OpenStack Barbican** key manager for **SSE-KMS** server-side "
+            "encryption."
+        ),
+        "when_to_use": (
+            "Store encryption keys in Barbican instead of on-cluster secrets. Requires "
+            "Keystone credentials for Barbican access."
+        ),
+        "related_extra": (
+            "- `rgw_crypt_s3_kms_backend` = `barbican`\n"
+            "- `rgw_keystone_barbican_*`, `rgw_crypt_s3_kms_cache_*`"
+        ),
+        "example": (
+            "```bash\n"
+            "ceph config set client.rgw rgw_crypt_s3_kms_backend barbican\n"
+            "ceph config set client.rgw rgw_barbican_url https://barbican.example.com:9311/\n"
+            "```\n\n"
+            "See [Ceph RGW config ref — Barbican]"
+            "(https://docs.ceph.com/en/latest/radosgw/config-ref/#barbican-settings)."
+        ),
+    },
+    "rgw_asio_assert_yielding": {
+        "what": (
+            "Triggers an assertion if code on an asio/beast thread would block instead of "
+            "yielding to coroutines. Development aid for finding blocking calls."
+        ),
+        "when_to_use": "RGW development/debugging only — keep `false` in production.",
+        "related_extra": "- `rgw_beast_enable_async`",
+    },
+    "rgw_beast_enable_async": {
+        "what": (
+            "When `true`, the Beast HTTP frontend processes requests with **coroutines**, "
+            "allowing multiple concurrent requests per thread."
+        ),
+        "when_to_use": (
+            "Leave `true` for production throughput. Set `false` only when debugging "
+            "request flow."
+        ),
+        "example": (
+            "```bash\n"
+            "ceph config set client.rgw rgw_beast_enable_async false\n"
+            "ceph orch restart rgw\n"
+            "```"
+        ),
+    },
+    "rgw_bucket_counters_cache": {
+        "what": (
+            "Enables an in-memory cache for **perf counters** with a bucket label, so "
+            "per-bucket metrics avoid repeated counter lookups."
+        ),
+        "related_extra": "- `rgw_bucket_counters_cache_size`",
+        "example": (
+            "```bash\n"
+            "ceph config set client.rgw rgw_bucket_counters_cache true\n"
+            "ceph config set client.rgw rgw_bucket_counters_cache_size 20000\n"
+            "```"
+        ),
+    },
+    "rgw_bucket_counters_cache_size": {
+        "what": (
+            "Maximum number of labeled per-bucket perf counter entries kept in the cache."
+        ),
+        "when_to_use": (
+            "Increase on clusters with many active buckets and bucket-level monitoring enabled."
+        ),
+    },
+    "rgw_bucket_default_quota_max_objects": {
+        "what": (
+            "Default maximum **objects per bucket** for **newly created users**. Does not "
+            "retroactively change existing users."
+        ),
+        "when_to_use": (
+            "Enforce per-bucket object limits for every new tenant without per-user "
+            "`radosgw-admin quota` calls."
+        ),
+        "related_extra": (
+            "- `rgw_bucket_default_quota_max_size`, `rgw_user_default_quota_*`"
+        ),
+        "example": (
+            "```bash\n"
+            "ceph config set client rgw_bucket_default_quota_max_objects 500000\n"
+            "radosgw-admin user create --uid=newuser --display-name=\"New User\"\n"
+            "```"
+        ),
+    },
+    "rgw_bucket_default_quota_max_size": {
+        "what": "Default maximum **bytes per bucket** for new users.",
+        "example": (
+            "```bash\n"
+            "ceph config set client rgw_bucket_default_quota_max_size "
+            "$((100*1024*1024*1024))\n\n"
+            "radosgw-admin quota set --uid=alice --max-size=50G --max-objects=10000\n"
+            "radosgw-admin quota enable --uid=alice\n"
+            "```"
+        ),
+    },
+    "rgw_bucket_eexist_override": {
+        "what": (
+            "When `true`, `CreateBucket` on an existing bucket (same owner) returns "
+            "**HTTP 409 / EEXIST** instead of succeeding idempotently."
+        ),
+        "extra_body": (
+            "**Default (`false`):** Matches AWS S3 — repeated CreateBucket by the same owner "
+            "typically returns 200 OK."
+        ),
+        "when_to_use": (
+            "Clients or automation that expect an error on duplicate bucket creation."
+        ),
+        "example": (
+            "```bash\n"
+            "ceph config set client.rgw rgw_bucket_eexist_override true\n"
+            "# aws s3 mb s3://existing-bucket  →  409 BucketAlreadyExists\n"
+            "```"
+        ),
+    },
+    "rgw_bucket_index_max_aio": {
+        "what": (
+            "Limits **concurrent RADOS requests** across **bucket index shards** (list "
+            "operations, index maintenance, multi-shard updates). Used in `svc_bi_rados.cc`."
+        ),
+        "related_extra": (
+            "- [`rgw_multi_obj_del_max_aio`](../../config/rgw/rgw.md#SP_rgw_multi_obj_del_max_aio) "
+            "(default 16)\n"
+            "- [`rgw_override_bucket_index_max_shards`]"
+            "(../../config/rgw/rgw.md#SP_rgw_override_bucket_index_max_shards)"
+        ),
+        "example": (
+            "```bash\n"
+            "ceph config set client.rgw rgw_bucket_index_max_aio 256\n"
+            "```"
+        ),
+        "finding_note": (
+            "More shards and faster OSDs tolerate higher values; during `nearfull` or heavy "
+            "recovery, lower is safer."
+        ),
+    },
 }
 
 GROUP_TITLES = {
@@ -931,30 +1217,55 @@ def format_example(opt: Option) -> str:
     )
 
 
+def format_related_extra(opt: Option, extra: str) -> str:
+    lines = ["**Related options:**", "", extra]
+    for ref in related_options(opt):
+        lines.append(f"- [`{ref}`](../../config/rgw/{opt.source_file}#SP_{ref})")
+    lines.append("")
+    return "\n".join(lines)
+
+
 def render_option(opt: Option) -> str:
+    enrich = ENRICHMENTS.get(opt.name, {})
     startup = " · **STARTUP** (restart required)" if opt.flags and "STARTUP" in opt.flags else ""
     table_link = f"../../config/rgw/{opt.source_file}#SP_{opt.name}"
+    type_bits = [opt.typ, f"default `{opt.effective_default}`", f"**{opt.level}**"]
+    if opt.valid_values:
+        type_bits.insert(1, f"enum: {opt.valid_values}")
     parts = [
         f"### {opt.name}",
         "",
         "| | |",
         "|---|---|",
-        f"| Type | {opt.typ} · default `{opt.effective_default}` · **{opt.level}**{startup} |",
+        f"| Type | {' · '.join(type_bits)}{startup} |",
         f"| Table | [{opt.source_file}#SP_{opt.name}]({table_link}) |",
         "",
     ]
-    if opt.full_desc:
-        parts.extend([f"**What it does:** {opt.full_desc}", ""])
+    what = enrich.get("what") or opt.full_desc
+    if what:
+        parts.extend([f"**What it does:** {what}", ""])
+    if enrich.get("extra_body"):
+        parts.extend([enrich["extra_body"], ""])
+    if enrich.get("important"):
+        parts.extend([enrich["important"], ""])
     bullets = when_to_use_bullets(opt)
-    if bullets:
+    if enrich.get("when_to_use"):
+        parts.extend([f"**When to use:** {enrich['when_to_use']}", ""])
+    elif bullets:
         parts.extend(["**When to use:**", "", bullets, ""])
     else:
         parts.extend([f"**When to use:** {when_to_use(opt)}", ""])
-    see = format_see_also(opt)
-    if see:
-        parts.append(see)
-    parts.extend(["**Example:**", "", format_example(opt), ""])
-    parts.extend(["**Finding optimal value:**", "", render_finding_optimal_value(opt), "", "---", ""])
+    if enrich.get("related_extra"):
+        parts.append(format_related_extra(opt, enrich["related_extra"]))
+    else:
+        see = format_see_also(opt)
+        if see:
+            parts.append(see)
+    parts.extend(["**Example:**", "", enrich.get("example") or format_example(opt), ""])
+    finding = render_finding_optimal_value(opt)
+    if enrich.get("finding_note"):
+        finding = f"{finding}\n\n{enrich['finding_note']}"
+    parts.extend(["**Finding optimal value:**", "", finding, "", "---", ""])
     return "\n".join(parts)
 
 
@@ -989,22 +1300,30 @@ def tuning_intro() -> str:
 
 def render_group(slug: str, options: list[Option]) -> str:
     title = GROUP_TITLES.get(slug, slug.replace("-", " ").title())
-    batch_note = (
-        " · [Curated batch 1](../rgw-config-options.md)"
-        if any(o.name in BATCH1_NAMES for o in options)
-        else ""
-    )
     lines = [
         f"# {title}",
         "",
         f"RGW config deep dive — {len(options)} options. "
-        f"[← RGW config overview](OVERVIEW.md){batch_note} · "
+        f"[← RGW config overview](OVERVIEW.md) · "
         f"[Tuning index](TUNING.md) · "
         f"[INDEX](../../config/rgw/INDEX.md)",
         "",
+    ]
+    if slug == "quotas":
+        lines.extend(
+            [
+                "Quota enforcement also requires `rgw_enable_quota_threads` on at least one "
+                "RGW per zone. See "
+                "[rgw_enable_quota_threads](../../config/rgw/rgw.md#SP_rgw_enable_quota_threads).",
+                "",
+            ]
+        )
+    lines.extend(
+        [
         "| Option | Default | Level | Tuning |",
         "|--------|---------|-------|--------|",
-    ]
+        ]
+    )
     for opt in options:
         lines.append(
             f"| [{opt.name}](#{opt.name}) | `{opt.effective_default}` | {opt.level} | "
@@ -1024,7 +1343,7 @@ def render_tuning_index(all_options: list[Option]) -> str:
         f"All **{len(all_options)}** RGW options with tuning model and one-line guidance. "
         "Each topic page has step-by-step **Finding optimal value** sections.",
         "",
-        "[← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md)",
+        "[← RGW config overview](OVERVIEW.md) · [Tuning quick reference](TUNING.md)",
         "",
         "| Option | Default | Model | Quick answer | Topic |",
         "|--------|---------|-------|--------------|-------|",
@@ -1067,8 +1386,7 @@ def render_overview(groups: dict[str, list[Option]], total: int) -> str:
         "# RGW Config Deep Dive — All Options",
         "",
         f"Extended reference for all **{total}** RADOS Gateway options with "
-        "**Finding optimal value** tuning guidance (same format as "
-        f"[curated batch 1](../rgw-config-options.md)). "
+        "**Finding optimal value** tuning guidance (one section per option). "
         "Generated from [config/rgw/INDEX.md](../../config/rgw/INDEX.md).",
         "",
         "```bash",
@@ -1079,7 +1397,6 @@ def render_overview(groups: dict[str, list[Option]], total: int) -> str:
         "## Tuning",
         "",
         "- [Tuning quick reference](TUNING.md) — all options, model, one-line answer",
-        "- [Curated batch 1](../rgw-config-options.md) — first 19 options with extra narrative",
         "",
         "## Tuning models",
         "",
@@ -1119,7 +1436,6 @@ def build_mkdocs_nav_yaml(groups: dict[str, list[Option]]) -> str:
         "      - Start here:",
         "        - Overview: guides/rgw-config/OVERVIEW.md",
         "        - Tuning quick reference: guides/rgw-config/TUNING.md",
-        "        - Curated examples: guides/rgw-config-options.md",
     ]
     for section_title, slugs in NAV_SECTIONS:
         present = [s for s in slugs if s in groups]

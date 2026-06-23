@@ -1,6 +1,8 @@
 # Quota sync & defaults
 
-RGW config deep dive — 5 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 5 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+
+Quota enforcement also requires `rgw_enable_quota_threads` on at least one RGW per zone. See [rgw_enable_quota_threads](../../config/rgw/rgw.md#SP_rgw_enable_quota_threads).
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
@@ -39,16 +41,23 @@ ceph osd pool stats
 | Type | Int · default `-1` · **Basic** |
 | Table | [rgw.md#SP_rgw_account_default_quota_max_objects](../../config/rgw/rgw.md#SP_rgw_account_default_quota_max_objects) |
 
-**What it does:** Account quota max objects
+**What it does:** Default cap on **total object count** across all buckets owned by a **new** S3 account. `-1` means unlimited.
 
-**When to use:** Set tenant or platform default limits for new users, accounts, or buckets.
+**When to use:** Multi-tenant platforms using the account abstraction. Applies only when accounts are created — existing accounts are unchanged.
+
+**Related options:**
+
+- `rgw_account_default_quota_max_size`
+- `rgw_enable_quota_threads` (required on at least one RGW per zone)
 
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_account_default_quota_max_objects -1
-ceph config get client.rgw rgw_account_default_quota_max_objects
+ceph config set client rgw_account_default_quota_max_objects 1000000
+radosgw-admin account create --account-id=acme --account-name="ACME Corp"
 ```
+
+Set in `[client]` or global so `radosgw-admin` picks it up.
 
 **Finding optimal value:**
 
@@ -75,15 +84,15 @@ radosgw-admin bucket stats --bucket=testbucket
 | Type | Int · default `-1` · **Basic** |
 | Table | [rgw.md#SP_rgw_account_default_quota_max_size](../../config/rgw/rgw.md#SP_rgw_account_default_quota_max_size) |
 
-**What it does:** Account quota max size
+**What it does:** Default cap on **total stored bytes** for a new account.
 
 **When to use:** Set tenant or platform default limits for new users, accounts, or buckets.
 
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_account_default_quota_max_size -1
-ceph config get client.rgw rgw_account_default_quota_max_size
+# 10 TiB
+ceph config set client rgw_account_default_quota_max_size $((10*1024*1024*1024*1024))
 ```
 
 **Finding optimal value:**

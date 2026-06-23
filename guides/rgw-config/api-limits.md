@@ -1,6 +1,6 @@
 # API limits & policies
 
-RGW config deep dive — 6 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 6 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
@@ -40,9 +40,13 @@ ceph osd pool stats
 | Type | Int · default `100` · **Advanced** |
 | Table | [rgw.md#SP_rgw_acl_grants_max_num](../../config/rgw/rgw.md#SP_rgw_acl_grants_max_num) |
 
-**What it does:** The maximum number of ACL grants in a single request.
+**What it does:** Maximum number of ACL grants in a single PutBucketAcl / PutObjectAcl request (aligned with S3 limits).
 
-**When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
+**When to use:** Raise only if clients legitimately need more grants; lowering hardens against oversized ACL payloads.
+
+**Related options:**
+
+- `rgw_cors_rules_max_num`, `rgw_user_policies_max_num`
 
 **Example:**
 
@@ -68,15 +72,18 @@ ceph config get client.rgw rgw_acl_grants_max_num
 | Type | Str · default `admin` · **Advanced** |
 | Table | [rgw.md#SP_rgw_admin_entry](../../config/rgw/rgw.md#SP_rgw_admin_entry) |
 
-**What it does:** Path prefix to be used for accessing RGW RESTful admin API.
+**What it does:** URL path prefix for the **RGW Admin Ops REST API** (bucket/user introspection, usage, etc.). **Not runtime-updatable.**
+
+**Important:** Multisite replication **requires** the value `admin`. Do not change it on multisite clusters.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_admin_entry admin
-ceph config get client.rgw rgw_admin_entry
+# GET https://rgw.example.com/admin/bucket?bucket=mybucket&format=json
+curl -s -H "Authorization: AWS ..." \
+  "https://rgw.example.com/admin/bucket?bucket=mybucket&format=json"
 ```
 
 **Finding optimal value:**

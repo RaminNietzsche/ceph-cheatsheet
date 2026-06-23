@@ -179,7 +179,7 @@ ceph config get client.rgw rgw_expose_bucket
 
 | | |
 |---|---|
-| Type | Str · default `none` · **Advanced** |
+| Type | Str · enum: ["none", "base", "d4n"] · default `none` · **Advanced** |
 | Table | [rgw.md#SP_rgw_filter](../../config/rgw/rgw.md#SP_rgw_filter) |
 
 **What it does:** experimental Option to set a filter

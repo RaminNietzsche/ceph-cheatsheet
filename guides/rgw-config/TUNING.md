@@ -2,7 +2,7 @@
 
 All **441** RGW options with tuning model and one-line guidance. Each topic page has step-by-step **Finding optimal value** sections.
 
-[← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md)
+[← RGW config overview](OVERVIEW.md) · [Tuning quick reference](TUNING.md)
 
 | Option | Default | Model | Quick answer | Topic |
 |--------|---------|-------|--------------|-------|

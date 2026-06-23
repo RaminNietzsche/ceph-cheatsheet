@@ -23,7 +23,7 @@ Full index: [config/rgw/INDEX.md](../../config/rgw/INDEX.md)
 | Cache | `rgw_cache_enabled`, `rgw_cache_lru_size` |
 | Multisite | `rgw_zone`, `rgw_zonegroup`, realm/period OIDs |
 | Encryption | `rgw_crypt_*`, `rgw_crypt_s3_kms_backend` |
-| Deep dive | [rgw-config/OVERVIEW.md](../rgw-config/OVERVIEW.md) — all options by topic; [batch 1](../rgw-config-options.md) — backend, quota, Barbican |
+| Deep dive | [rgw-config/OVERVIEW.md](../rgw-config/OVERVIEW.md) — all options by topic · [TUNING](../rgw-config/TUNING.md) |
 | Quota | `rgw_bucket_default_quota_*` |
 
 ```bash

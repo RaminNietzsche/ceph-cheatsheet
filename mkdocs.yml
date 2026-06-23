@@ -72,7 +72,6 @@ nav:
       - Start here:
         - Overview: guides/rgw-config/OVERVIEW.md
         - Tuning quick reference: guides/rgw-config/TUNING.md
-        - Curated examples: guides/rgw-config-options.md
       - Core gateway:
         - Frontends & HTTP stack: guides/rgw-config/frontends.md
         - Feature toggles: guides/rgw-config/feature-toggles.md

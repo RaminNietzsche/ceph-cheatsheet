@@ -1,6 +1,6 @@
 # RGW Config Deep Dive — All Options
 
-Extended reference for all **441** RADOS Gateway options with **Finding optimal value** tuning guidance (same format as [curated batch 1](../rgw-config-options.md)). Generated from [config/rgw/INDEX.md](../../config/rgw/INDEX.md).
+Extended reference for all **441** RADOS Gateway options with **Finding optimal value** tuning guidance (one section per option). Generated from [config/rgw/INDEX.md](../../config/rgw/INDEX.md).
 
 ```bash
 ./scripts/lookup-config.sh <option-name>
@@ -10,7 +10,6 @@ python3 scripts/generate-rgw-guide.py  # regenerate after config sync
 ## Tuning
 
 - [Tuning quick reference](TUNING.md) — all options, model, one-line answer
-- [Curated batch 1](../rgw-config-options.md) — first 19 options with extra narrative
 
 ## Tuning models
 

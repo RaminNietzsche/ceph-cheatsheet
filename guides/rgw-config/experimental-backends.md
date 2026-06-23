@@ -1,6 +1,6 @@
 # Experimental backends
 
-RGW config deep dive — 6 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 6 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
@@ -40,16 +40,19 @@ ceph osd pool stats
 | Type | Str · default `tank` · **Advanced** |
 | Table | [rgw.md#SP_daos_pool](../../config/rgw/rgw.md#SP_daos_pool) |
 
-**What it does:** DAOS Pool to use
+**What it does:** Name of the [DAOS](https://docs.daos.io/) pool RGW connects to when `rgw_backend_store = daos`.
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:** Experimental DAOS-backed RGW (build with `-DWITH_RADOSGW_DAOS=ON`). Not used in standard Ceph clusters on RADOS.
 
 **Example:**
 
-```bash
-ceph config set client.rgw daos_pool tank
-ceph config get client.rgw daos_pool
+```ini
+[client.rgw]
+rgw backend store = daos
+daos pool = mypool
 ```
+
+Create the pool with `dmg pool create --size=<size> mypool`.
 
 **Finding optimal value:**
 
@@ -74,15 +77,22 @@ iostat -x 5  # disk saturation
 | Type | Str · default `file:/var/lib/ceph/radosgw/dbstore-config.db` · **Advanced** |
 | Table | [rgw.md#SP_dbstore_config_uri](../../config/rgw/rgw.md#SP_dbstore_config_uri) |
 
-**What it does:** Config database URI. URIs beginning with file: refer to local files opened with SQLite.
+**What it does:** URI for the **configuration database** when using the experimental **dbstore** backend. URIs starting with `file:` point at a local SQLite file.
 
-**When to use:** Set when integrating with an external service; leave empty if the feature is unused.
+**When to use:** Standalone RGW without MON/OSD. See [dbstore README](https://github.com/ceph/ceph/blob/main/src/rgw/driver/dbstore/README.md).
+
+**Related options:**
+
+- `rgw_backend_store` = `dbstore`
+- `rgw_config_store` = `dbstore`
+- `dbstore_db_dir`, `dbstore_db_name_prefix`
 
 **Example:**
 
 ```bash
-ceph config set client.rgw dbstore_config_uri "file:/var/lib/ceph/radosgw/dbstore-config.db"
-ceph config get client.rgw dbstore_config_uri
+ceph config set client.rgw rgw_backend_store dbstore
+ceph config set client.rgw rgw_config_store dbstore
+ceph config set client.rgw dbstore_config_uri file:/var/lib/ceph/radosgw/dbstore-config.db
 ```
 
 **Finding optimal value:**
@@ -108,9 +118,9 @@ iostat -x 5  # disk saturation
 | Type | Str · default `/var/lib/ceph/radosgw` · **Advanced** |
 | Table | [rgw.md#SP_dbstore_db_dir](../../config/rgw/rgw.md#SP_dbstore_db_dir) |
 
-**What it does:** path for the directory for storing the db backend store data
+**What it does:** Directory where dbstore writes SQLite files for object and metadata storage. Unlike `rados`, dbstore is **stateful** — every RGW instance must see the same files.
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:** Isolate dbstore data on a dedicated filesystem. cephadm cannot freely move daemons without the data.
 
 **Example:**
 
@@ -144,7 +154,7 @@ iostat -x 5  # disk saturation
 
 **What it does:** prefix to the file names created by db backend store
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:** Multiple dbstore instances or tenants on one host without filename collisions.
 
 **Example:**
 
@@ -177,12 +187,24 @@ ceph -s  # cluster health, slow ops
 
 | | |
 |---|---|
-| Type | Str · default `rados` · **Advanced** |
+| Type | Str · enum: ["rados", "dbstore", "motr", "daos", "posix"] · default `rados` · **Advanced** |
 | Table | [rgw.md#SP_rgw_backend_store](../../config/rgw/rgw.md#SP_rgw_backend_store) |
 
-**What it does:** experimental Option to set backend store type
+**What it does:** Selects the **Storage Abstraction Layer (SAL)** — where RGW stores objects and metadata.
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+| Value | Role |
+|-------|------|
+| `rados` | Production default — objects in RADOS pools |
+| `dbstore` | Experimental standalone SQLite backend |
+| `daos` | Experimental DAOS backend |
+| `motr` | Experimental Motr backend |
+| `posix` | Experimental POSIX filesystem backend |
+
+**When to use:** Leave `rados` in production. Other values are for development, testing, or specialized deployments.
+
+**Related options:**
+
+- `daos_pool`, `dbstore_*`, `rgw_config_store`, `rgw_filter`
 
 **Example:**
 
@@ -205,7 +227,7 @@ ceph config get client.rgw rgw_backend_store
 
 | | |
 |---|---|
-| Type | Str · default `rados` · **Advanced** |
+| Type | Str · enum: ["rados", "dbstore", "json"] · default `rados` · **Advanced** |
 | Table | [rgw.md#SP_rgw_config_store](../../config/rgw/rgw.md#SP_rgw_config_store) |
 
 **What it does:** Configuration storage backend
