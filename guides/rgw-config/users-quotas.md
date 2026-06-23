@@ -46,8 +46,9 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_user_counters_cache False
+ceph config set client.rgw rgw_user_counters_cache true
 ceph config get client.rgw rgw_user_counters_cache
+ceph config set client.rgw rgw_user_counters_cache_size 20000
 ```
 
 **Finding optimal value:**
@@ -116,6 +117,7 @@ ceph -s  # cluster health, slow ops
 ```bash
 ceph config set client.rgw rgw_user_max_buckets 1000
 ceph config get client.rgw rgw_user_max_buckets
+radosgw-admin user create --uid=newuser --display-name="New User"
 ```
 
 **Finding optimal value:**
@@ -170,7 +172,7 @@ ceph config get client.rgw rgw_user_policies_max_num
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_user_unique_email True
+ceph config set client.rgw rgw_user_unique_email false
 ceph config get client.rgw rgw_user_unique_email
 ```
 

@@ -78,7 +78,7 @@ ceph config get client.rgw rgw_debug_inject_latency_bi_unlink
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_debug_inject_olh_cancel_modification_err False
+ceph config set client.rgw rgw_debug_inject_olh_cancel_modification_err true
 ceph config get client.rgw rgw_debug_inject_olh_cancel_modification_err
 ```
 

@@ -51,7 +51,7 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_disable_s3select False
+ceph config set client.rgw rgw_disable_s3select true
 ceph config get client.rgw rgw_disable_s3select
 ```
 
@@ -117,7 +117,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_enable_gc_threads True
+ceph config set client.rgw rgw_enable_gc_threads false
 ceph config get client.rgw rgw_enable_gc_threads
 ```
 
@@ -145,7 +145,7 @@ ceph config get client.rgw rgw_enable_gc_threads
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_enable_jwks_url_verification False
+ceph config set client.rgw rgw_enable_jwks_url_verification true
 ceph config get client.rgw rgw_enable_jwks_url_verification
 ```
 
@@ -173,7 +173,7 @@ ceph config get client.rgw rgw_enable_jwks_url_verification
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_enable_lc_threads True
+ceph config set client.rgw rgw_enable_lc_threads false
 ceph config get client.rgw rgw_enable_lc_threads
 ```
 
@@ -201,7 +201,7 @@ ceph config get client.rgw rgw_enable_lc_threads
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_enable_mdsearch True
+ceph config set client.rgw rgw_enable_mdsearch false
 ceph config get client.rgw rgw_enable_mdsearch
 ```
 
@@ -229,7 +229,7 @@ ceph config get client.rgw rgw_enable_mdsearch
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_enable_ops_log False
+ceph config set client.rgw rgw_enable_ops_log true
 ceph config get client.rgw rgw_enable_ops_log
 ```
 
@@ -257,7 +257,7 @@ ceph config get client.rgw rgw_enable_ops_log
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_enable_restore_threads True
+ceph config set client.rgw rgw_enable_restore_threads false
 ceph config get client.rgw rgw_enable_restore_threads
 ```
 
@@ -285,7 +285,7 @@ ceph config get client.rgw rgw_enable_restore_threads
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_enable_static_website False
+ceph config set client.rgw rgw_enable_static_website true
 ceph config get client.rgw rgw_enable_static_website
 ```
 
@@ -313,7 +313,7 @@ ceph config get client.rgw rgw_enable_static_website
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_enable_usage_log False
+ceph config set client.rgw rgw_enable_usage_log true
 ceph config get client.rgw rgw_enable_usage_log
 ```
 

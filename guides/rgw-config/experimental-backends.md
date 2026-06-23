@@ -211,6 +211,7 @@ ceph -s  # cluster health, slow ops
 ```bash
 ceph config set client.rgw rgw_backend_store rados
 ceph config get client.rgw rgw_backend_store
+# Production: keep rados; PoC only: dbstore | daos | motr | posix
 ```
 
 **Finding optimal value:**

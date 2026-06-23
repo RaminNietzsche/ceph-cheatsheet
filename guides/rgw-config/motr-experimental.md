@@ -48,7 +48,7 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw motr_admin_endpoint 192.168.180.182@tcp:12345:4:1
+ceph config set client.rgw motr_admin_endpoint "192.168.180.182@tcp:12345:4:1"
 ceph config get client.rgw motr_admin_endpoint
 ```
 
@@ -76,7 +76,7 @@ ceph config get client.rgw motr_admin_endpoint
 **Example:**
 
 ```bash
-ceph config set client.rgw motr_admin_fid 0x7200000000000001:0x0
+ceph config set client.rgw motr_admin_fid "0x7200000000000001:0x0"
 ceph config get client.rgw motr_admin_fid
 ```
 
@@ -104,7 +104,7 @@ ceph config get client.rgw motr_admin_fid
 **Example:**
 
 ```bash
-ceph config set client.rgw motr_ha_endpoint 192.168.180.182@tcp:12345:1:1
+ceph config set client.rgw motr_ha_endpoint "192.168.180.182@tcp:12345:1:1"
 ceph config get client.rgw motr_ha_endpoint
 ```
 
@@ -132,7 +132,7 @@ ceph config get client.rgw motr_ha_endpoint
 **Example:**
 
 ```bash
-ceph config set client.rgw motr_my_endpoint 192.168.180.182@tcp:12345:4:1
+ceph config set client.rgw motr_my_endpoint "192.168.180.182@tcp:12345:4:1"
 ceph config get client.rgw motr_my_endpoint
 ```
 
@@ -160,7 +160,7 @@ ceph config get client.rgw motr_my_endpoint
 **Example:**
 
 ```bash
-ceph config set client.rgw motr_my_fid 0x7200000000000001:0x0
+ceph config set client.rgw motr_my_fid "0x7200000000000001:0x0"
 ceph config get client.rgw motr_my_fid
 ```
 
@@ -188,7 +188,7 @@ ceph config get client.rgw motr_my_fid
 **Example:**
 
 ```bash
-ceph config set client.rgw motr_profile_fid 0x7000000000000001:0x0
+ceph config set client.rgw motr_profile_fid "0x7000000000000001:0x0"
 ceph config get client.rgw motr_profile_fid
 ```
 
@@ -216,7 +216,7 @@ ceph config get client.rgw motr_profile_fid
 **Example:**
 
 ```bash
-ceph config set client.rgw motr_tracing_enabled False
+ceph config set client.rgw motr_tracing_enabled true
 ceph config get client.rgw motr_tracing_enabled
 ```
 

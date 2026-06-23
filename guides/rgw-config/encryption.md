@@ -126,7 +126,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_default_encryption_key <value>
+ceph config set client.rgw rgw_crypt_default_encryption_key "<from-secrets-manager>"
 ceph config get client.rgw rgw_crypt_default_encryption_key
 ```
 
@@ -164,8 +164,9 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_kmip_addr <value>
+ceph config set client.rgw rgw_crypt_kmip_addr "kmip.example.com:5696"
 ceph config get client.rgw rgw_crypt_kmip_addr
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**
@@ -201,7 +202,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_kmip_ca_path <value>
+ceph config set client.rgw rgw_crypt_kmip_ca_path "/var/lib/ceph/radosgw"
 ceph config get client.rgw rgw_crypt_kmip_ca_path
 ```
 
@@ -273,7 +274,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_kmip_client_key <value>
+ceph config set client.rgw rgw_crypt_kmip_client_key "<from-secrets-manager>"
 ceph config get client.rgw rgw_crypt_kmip_client_key
 ```
 
@@ -349,7 +350,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_kmip_password <value>
+ceph config set client.rgw rgw_crypt_kmip_password "<from-secrets-manager>"
 ceph config get client.rgw rgw_crypt_kmip_password
 ```
 
@@ -453,7 +454,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_require_ssl True
+ceph config set client.rgw rgw_crypt_require_ssl false
 ceph config get client.rgw rgw_crypt_require_ssl
 ```
 
@@ -483,6 +484,7 @@ ceph config get client.rgw rgw_crypt_require_ssl
 ```bash
 ceph config set client.rgw rgw_crypt_s3_kms_backend barbican
 ceph config get client.rgw rgw_crypt_s3_kms_backend
+ceph config set client.rgw rgw_barbican_url https://barbican.example.com:9311/
 ```
 
 **Finding optimal value:**
@@ -509,7 +511,7 @@ ceph config get client.rgw rgw_crypt_s3_kms_backend
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_s3_kms_cache_enabled True
+ceph config set client.rgw rgw_crypt_s3_kms_cache_enabled false
 ceph config get client.rgw rgw_crypt_s3_kms_cache_enabled
 ```
 
@@ -768,7 +770,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_sse_algorithm aes-256-cbc
+ceph config set client.rgw rgw_crypt_sse_algorithm "aes-256-cbc"
 ceph config get client.rgw rgw_crypt_sse_algorithm
 ```
 
@@ -862,8 +864,9 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_sse_s3_vault_addr <value>
+ceph config set client.rgw rgw_crypt_sse_s3_vault_addr "192.0.2.10:7480"
 ceph config get client.rgw rgw_crypt_sse_s3_vault_addr
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**
@@ -1145,7 +1148,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_sse_s3_vault_token_file <value>
+ceph config set client.rgw rgw_crypt_sse_s3_vault_token_file "/etc/ceph/rgw-vault-token"
 ceph config get client.rgw rgw_crypt_sse_s3_vault_token_file
 ```
 
@@ -1179,7 +1182,7 @@ iostat -x 5  # disk saturation
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_sse_s3_vault_verify_ssl True
+ceph config set client.rgw rgw_crypt_sse_s3_vault_verify_ssl false
 ceph config get client.rgw rgw_crypt_sse_s3_vault_verify_ssl
 ```
 
@@ -1207,7 +1210,7 @@ ceph config get client.rgw rgw_crypt_sse_s3_vault_verify_ssl
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_suppress_logs True
+ceph config set client.rgw rgw_crypt_suppress_logs false
 ceph config get client.rgw rgw_crypt_suppress_logs
 ```
 
@@ -1235,8 +1238,9 @@ ceph config get client.rgw rgw_crypt_suppress_logs
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_vault_addr <value>
+ceph config set client.rgw rgw_crypt_vault_addr "192.0.2.10:7480"
 ceph config get client.rgw rgw_crypt_vault_addr
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**
@@ -1518,7 +1522,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_vault_token_file <value>
+ceph config set client.rgw rgw_crypt_vault_token_file "/etc/ceph/rgw-vault-token"
 ceph config get client.rgw rgw_crypt_vault_token_file
 ```
 
@@ -1552,7 +1556,7 @@ iostat -x 5  # disk saturation
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_crypt_vault_verify_ssl True
+ceph config set client.rgw rgw_crypt_vault_verify_ssl false
 ceph config get client.rgw rgw_crypt_vault_verify_ssl
 ```
 

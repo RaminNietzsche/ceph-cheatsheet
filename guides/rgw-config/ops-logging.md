@@ -117,7 +117,7 @@ iostat -x 5  # disk saturation
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_ops_log_rados False
+ceph config set client.rgw rgw_ops_log_rados true
 ceph config get client.rgw rgw_ops_log_rados
 ```
 
@@ -145,7 +145,7 @@ ceph config get client.rgw rgw_ops_log_rados
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_ops_log_socket_path <value>
+ceph config set client.rgw rgw_ops_log_socket_path "/var/lib/ceph/radosgw"
 ceph config get client.rgw rgw_ops_log_socket_path
 ```
 

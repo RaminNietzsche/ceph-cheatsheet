@@ -52,8 +52,9 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_swift_account_in_url False
+ceph config set client.rgw rgw_swift_account_in_url true
 ceph config get client.rgw rgw_swift_account_in_url
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**
@@ -117,8 +118,9 @@ ceph config get client.rgw rgw_swift_auth_entry
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_swift_auth_url <value>
+ceph config set client.rgw rgw_swift_auth_url "https://swift.example.com/auth/v1.0"
 ceph config get client.rgw rgw_swift_auth_url
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**
@@ -192,7 +194,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_swift_enforce_content_length False
+ceph config set client.rgw rgw_swift_enforce_content_length true
 ceph config get client.rgw rgw_swift_enforce_content_length
 ```
 
@@ -220,7 +222,7 @@ ceph config get client.rgw rgw_swift_enforce_content_length
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_swift_need_stats True
+ceph config set client.rgw rgw_swift_need_stats false
 ceph config get client.rgw rgw_swift_need_stats
 ```
 
@@ -324,8 +326,9 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_swift_url <value>
+ceph config set client.rgw rgw_swift_url "https://swift.example.com/auth/v1.0"
 ceph config get client.rgw rgw_swift_url
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**
@@ -399,7 +402,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_swift_versioning_enabled False
+ceph config set client.rgw rgw_swift_versioning_enabled true
 ceph config get client.rgw rgw_swift_versioning_enabled
 ```
 

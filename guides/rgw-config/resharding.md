@@ -53,7 +53,7 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_dynamic_resharding True
+ceph config set client.rgw rgw_dynamic_resharding false
 ceph config get client.rgw rgw_dynamic_resharding
 ```
 
@@ -81,7 +81,7 @@ ceph config get client.rgw rgw_dynamic_resharding
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_dynamic_resharding_may_reduce True
+ceph config set client.rgw rgw_dynamic_resharding_may_reduce false
 ceph config get client.rgw rgw_dynamic_resharding_may_reduce
 ```
 

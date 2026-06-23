@@ -170,7 +170,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_d3n_l1_evict_cache_on_start True
+ceph config set client.rgw rgw_d3n_l1_evict_cache_on_start false
 ceph config get client.rgw rgw_d3n_l1_evict_cache_on_start
 ```
 
@@ -264,7 +264,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_d3n_l1_local_datacache_enabled False
+ceph config set client.rgw rgw_d3n_l1_local_datacache_enabled true
 ceph config get client.rgw rgw_d3n_l1_local_datacache_enabled
 ```
 
@@ -358,7 +358,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_d4n_address 127.0.0.1:6379
+ceph config set client.rgw rgw_d4n_address "127.0.0.1:6379"
 ceph config get client.rgw rgw_d4n_address
 ceph orch restart rgw
 ```
@@ -397,7 +397,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_d4n_backend_address 127.0.0.1:6379
+ceph config set client.rgw rgw_d4n_backend_address "127.0.0.1:6379"
 ceph config get client.rgw rgw_d4n_backend_address
 ceph orch restart rgw
 ```
@@ -477,7 +477,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_d4n_l1_datacache_address 127.0.0.1:6379
+ceph config set client.rgw rgw_d4n_l1_datacache_address "127.0.0.1:6379"
 ceph config get client.rgw rgw_d4n_l1_datacache_address
 ceph orch restart rgw
 ```
@@ -588,7 +588,7 @@ iostat -x 5  # disk saturation
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_d4n_l1_evict_cache_on_start True
+ceph config set client.rgw rgw_d4n_l1_evict_cache_on_start false
 ceph config get client.rgw rgw_d4n_l1_evict_cache_on_start
 ```
 
@@ -758,7 +758,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_d4n_local_rgw_address 127.0.0.1:8000
+ceph config set client.rgw rgw_d4n_local_rgw_address "127.0.0.1:8000"
 ceph config get client.rgw rgw_d4n_local_rgw_address
 ceph orch restart rgw
 ```

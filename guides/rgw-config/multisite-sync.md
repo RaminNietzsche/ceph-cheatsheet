@@ -175,7 +175,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_data_notify_interval_msec 0
+ceph config set client.rgw rgw_data_notify_interval_msec 60
 ceph config get client.rgw rgw_data_notify_interval_msec
 ```
 
@@ -215,6 +215,7 @@ ceph -s  # cluster health, slow ops
 ```bash
 ceph config set client.rgw rgw_data_sync_poll_interval 20
 ceph config get client.rgw rgw_data_sync_poll_interval
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -253,6 +254,7 @@ ceph -s  # cluster health, slow ops
 ```bash
 ceph config set client.rgw rgw_data_sync_spawn_window 20
 ceph config get client.rgw rgw_data_sync_spawn_window
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -399,6 +401,7 @@ ceph -s  # cluster health, slow ops
 ```bash
 ceph config set client.rgw rgw_meta_sync_poll_interval 20
 ceph config get client.rgw rgw_meta_sync_poll_interval
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -437,6 +440,7 @@ ceph -s  # cluster health, slow ops
 ```bash
 ceph config set client.rgw rgw_meta_sync_spawn_window 20
 ceph config get client.rgw rgw_meta_sync_spawn_window
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -473,7 +477,7 @@ radosgw-admin sync status
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_run_sync_thread True
+ceph config set client.rgw rgw_run_sync_thread false
 ceph config get client.rgw rgw_run_sync_thread
 ```
 
@@ -638,6 +642,7 @@ ceph -s  # cluster health, slow ops
 ```bash
 ceph config set client.rgw rgw_sync_log_trim_interval 20_min
 ceph config get client.rgw rgw_sync_log_trim_interval
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -767,7 +772,7 @@ ceph config get client.rgw rgw_sync_meta_inject_err_probability
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_sync_obj_etag_verify False
+ceph config set client.rgw rgw_sync_obj_etag_verify true
 ceph config get client.rgw rgw_sync_obj_etag_verify
 ```
 
@@ -876,6 +881,7 @@ ceph -s  # cluster health, slow ops
 ```bash
 ceph config set client.rgw rgw_sync_trace_servicemap_update_interval 10
 ceph config get client.rgw rgw_sync_trace_servicemap_update_interval
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -916,6 +922,7 @@ ceph -s  # cluster health, slow ops
 ```bash
 ceph config set client.rgw rgw_user_quota_bucket_sync_interval 3_min
 ceph config get client.rgw rgw_user_quota_bucket_sync_interval
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -951,7 +958,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_user_quota_sync_idle_users False
+ceph config set client.rgw rgw_user_quota_sync_idle_users true
 ceph config get client.rgw rgw_user_quota_sync_idle_users
 ```
 
@@ -984,6 +991,7 @@ ceph config get client.rgw rgw_user_quota_sync_idle_users
 ```bash
 ceph config set client.rgw rgw_user_quota_sync_interval 1_day
 ceph config get client.rgw rgw_user_quota_sync_interval
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**

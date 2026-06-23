@@ -83,7 +83,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_log_nonexistent_bucket False
+ceph config set client.rgw rgw_log_nonexistent_bucket true
 ceph config get client.rgw rgw_log_nonexistent_bucket
 ```
 
@@ -111,7 +111,7 @@ ceph config get client.rgw rgw_log_nonexistent_bucket
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_log_object_name %Y-%m-%d-%H-%i-%n
+ceph config set client.rgw rgw_log_object_name "%Y-%m-%d-%H-%i-%n"
 ceph config get client.rgw rgw_log_object_name
 ```
 
@@ -149,7 +149,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_log_object_name_utc False
+ceph config set client.rgw rgw_log_object_name_utc true
 ceph config get client.rgw rgw_log_object_name_utc
 ```
 

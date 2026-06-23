@@ -45,7 +45,7 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_lua_enable True
+ceph config set client.rgw rgw_lua_enable false
 ceph config get client.rgw rgw_lua_enable
 ceph orch restart rgw
 ```

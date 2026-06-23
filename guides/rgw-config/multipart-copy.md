@@ -45,7 +45,7 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_copy_obj_progress True
+ceph config set client.rgw rgw_copy_obj_progress false
 ceph config get client.rgw rgw_copy_obj_progress
 ```
 

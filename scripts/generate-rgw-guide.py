@@ -1199,22 +1199,236 @@ def format_see_also(opt: Option) -> str:
     return "\n".join(lines)
 
 
-def format_example(opt: Option) -> str:
-    if opt.flags and "STARTUP" in opt.flags:
-        restart = "\nceph orch restart rgw"
+def config_target(opt: Option) -> str:
+    if opt.name == "rgw_usage_max_shards":
+        return "global"
+    if opt.name.startswith(
+        ("rgw_account_default_", "rgw_bucket_default_", "rgw_user_default_")
+    ):
+        return "client"
+    return "client.rgw"
+
+
+def quote_config_value(opt: Option, value: str) -> str:
+    if opt.typ != "Str":
+        return value
+    if value.startswith('"') and value.endswith('"'):
+        return value
+    if any(c in value for c in (' ', '/', '@', ':', '.', '-', '<', '>', '=')):
+        return f'"{value}"'
+    return value
+
+
+def example_value(opt: Option) -> str:
+    """Demonstration value for ceph config set (may differ from default when -1/empty)."""
+    default = opt.effective_default
+    name = opt.name
+
+    if default not in ("(empty)", ""):
+        return quote_config_value(opt, default)
+
+    if name.endswith("_url") or name.endswith("_uri"):
+        if "keystone" in name:
+            return '"https://keystone.example.com:5000/v3/"'
+        if "barbican" in name:
+            return '"https://barbican.example.com:9311/"'
+        if "vault" in name or "crypt_sse" in name:
+            return '"https://vault.example.com:8200/"'
+        if "ldap" in name:
+            return '"ldaps://ldap.example.com/"'
+        if "opa" in name:
+            return '"https://opa.example.com:8181/v1/data/ceph/authz"'
+        if "swift" in name:
+            return '"https://swift.example.com/auth/v1.0"'
+        if "sts" in name and "introspection" in name:
+            return '"https://idp.example.com/oauth2/introspect"'
+        return '"https://service.example.com/"'
+
+    if name.endswith("_addr") or name.endswith("_address"):
+        if "d4n" in name or "d3n" in name:
+            return '"127.0.0.1:6379"'
+        if "kmip" in name:
+            return '"kmip.example.com:5696"'
+        return '"192.0.2.10:7480"'
+
+    if name.endswith(("_path", "_dir", "_base_path")):
+        if "d4n" in name or "d3n" in name or "cache" in name:
+            return '"/var/cache/rgw"'
+        if "posix" in name:
+            return '"/data/rgw/posix"'
+        return '"/var/lib/ceph/radosgw"'
+
+    if name.endswith("_file"):
+        if "token" in name:
+            return '"/etc/ceph/rgw-vault-token"'
+        if "clientcert" in name or "clientkey" in name:
+            return '"/etc/ceph/ssl/rgw-client.crt"'
+        if "cacert" in name or "ssl_cacert" in name:
+            return '"/etc/ceph/ssl/ca.crt"'
+        return '"/etc/ceph/rgw.conf"'
+
+    if name.endswith("_pool") or name.endswith("_root_pool"):
+        return ".rgw.root"
+
+    if name.endswith("_oid"):
+        return '"zone.info"'
+
+    if name == "rgw_zone":
+        return '"us-east-1"'
+    if name == "rgw_zonegroup":
+        return '"default"'
+    if name == "rgw_realm":
+        return '"default"'
+    if name == "rgw_region":
+        return '"us-east-1"'
+
+    if "password" in name or "secret" in name or name.endswith("_key"):
+        if "template" in name:
+            return '"vault/secret/data/ceph/{{key}}"'
+        return '"<from-secrets-manager>"'
+
+    if name.endswith("_endpoint") or name.endswith("_fid"):
+        return '"192.168.1.10@tcp:12345:1:1"'
+
+    if name == "rgw_dns_name":
+        return '"s3.example.com"'
+    if name == "rgw_dns_s3website_name":
+        return '"website.s3.example.com"'
+
+    if name == "rgw_frontends":
+        return '"beast port=7480"'
+
+    if name == "rgw_run_sync_thread" or name.startswith("rgw_enable_"):
+        return "true"
+
+    return "<value>"
+
+
+def bool_example_value(opt: Option) -> str:
+    default = opt.effective_default.lower()
+    if default == "true":
+        return "false"
+    return "true"
+
+
+def numeric_example_value(opt: Option) -> str:
+    default = opt.effective_default
+    name = opt.name
+    if default == "-1" and "quota" in name and "max" in name:
+        if "size" in name:
+            return "$((100*1024*1024*1024))"
+        return "1000000"
+    if default == "0" and ("timeout" in name or "interval" in name):
+        return "60"
+    if default == "0" and "max" in name:
+        return "128"
+    return default
+
+
+def example_followups(opt: Option) -> list[str]:
+    name = opt.name
+    lines: list[str] = []
+
+    if "quota" in name and "max" in name:
+        if "account" in name:
+            lines.append(
+                'radosgw-admin account create --account-id=acme --account-name="ACME Corp"'
+            )
+        else:
+            lines.append("radosgw-admin quota get --uid=testuser")
+    elif name.startswith("rgw_user_default_quota") or name == "rgw_user_max_buckets":
+        lines.append('radosgw-admin user create --uid=newuser --display-name="New User"')
+    elif name.startswith("rgw_bucket_default_quota"):
+        lines.append('radosgw-admin user create --uid=newuser --display-name="New User"')
+    elif name in ("rgw_zone", "rgw_zonegroup", "rgw_realm"):
+        lines.append(f"radosgw-admin {name.replace('rgw_', '')} list")
+    elif name.startswith("rgw_zone") and name not in ("rgw_zone",):
+        lines.append("radosgw-admin zone get --rgw-zone=<zone>")
+    elif "sync" in name and ("interval" in name or "poll" in name or "spawn" in name):
+        lines.append("radosgw-admin sync status")
+    elif name.endswith("_url") or name.endswith("_uri") or name.endswith("_addr"):
+        lines.append("# curl -k <url>  # from each RGW node")
+    elif name == "rgw_bucket_index_max_aio":
+        lines.append("radosgw-admin bucket stats --bucket=BIG_BUCKET | jq '.num_shards'")
+    elif name == "rgw_bucket_eexist_override":
+        lines.append("# aws s3 mb s3://existing-bucket  →  409 if bucket exists")
+    elif name == "rgw_admin_entry":
+        lines.append(
+            'curl -s "https://rgw.example.com/admin/bucket?bucket=mybucket&format=json" '
+            '-H "Authorization: AWS ..."'
+        )
+    elif name == "rgw_barbican_url":
+        lines.append("ceph config set client.rgw rgw_crypt_s3_kms_backend barbican")
+    elif name == "rgw_backend_store" and opt.effective_default == "rados":
+        lines.append("# Production: keep rados; PoC only: dbstore | daos | motr | posix")
+    elif name == "d4n_writecache_enabled":
+        lines.extend(
+            [
+                "ceph config set client.rgw rgw_filter d4n",
+                "ceph config set client.rgw rgw_d4n_l1_datacache_persistent_path /var/cache/rgw_d4n/",
+            ]
+        )
+    elif name == "rgw_bucket_counters_cache":
+        lines.append("ceph config set client.rgw rgw_bucket_counters_cache_size 20000")
+    elif name == "rgw_user_counters_cache":
+        lines.append("ceph config set client.rgw rgw_user_counters_cache_size 20000")
+    elif name == "rgw_lc_counters_cache":
+        lines.append("ceph config set client.rgw rgw_lc_counters_cache_size 20000")
+    elif name == "rgw_enable_quota_threads":
+        lines.append("radosgw-admin quota get --uid=testuser")
+    elif name == "rgw_crypt_s3_kms_backend":
+        lines.append("ceph config set client.rgw rgw_barbican_url https://barbican.example.com:9311/")
+    elif name.startswith("rgw_ldap_"):
+        lines.append("ceph config set client.rgw rgw_s3_auth_use_ldap true")
+    elif name == "rgw_use_opa_authz":
+        lines.append('ceph config set client.rgw rgw_opa_url "https://opa.example.com:8181/v1/data/ceph/authz"')
+
+    return lines
+
+
+def render_example(opt: Option) -> str:
+    enrich = ENRICHMENTS.get(opt.name, {})
+    if enrich.get("example"):
+        return enrich["example"]
+
+    if opt.name == "daos_pool":
+        return (
+            "```ini\n"
+            "[client.rgw]\n"
+            "rgw backend store = daos\n"
+            "daos pool = mypool\n"
+            "```\n\n"
+            "Create the pool with `dmg pool create --size=<size> mypool`."
+        )
+
+    if opt.name == "rgw_admin_entry":
+        return enrich.get("example") or (
+            "```bash\n"
+            "ceph config get client.rgw rgw_admin_entry\n"
+            "# Default admin URL:\n"
+            "curl -s -H \"Authorization: AWS ...\" \\\n"
+            '  "https://rgw.example.com/admin/bucket?bucket=mybucket&format=json"\n'
+            "```"
+        )
+
+    target = config_target(opt)
+    restart = "\nceph orch restart rgw" if opt.flags and "STARTUP" in opt.flags else ""
+
+    if opt.typ == "Bool":
+        val = bool_example_value(opt)
+    elif opt.typ in ("Int", "Uint", "Size"):
+        val = numeric_example_value(opt)
     else:
-        restart = ""
-    val = opt.effective_default
-    if val in ("(empty)", ""):
-        val = "<value>"
-    elif opt.typ == "Str" and not val.startswith('"'):
-        val = f'"{val}"' if " " in val or "/" in val else val
-    return (
-        f"```bash\n"
-        f"ceph config set client.rgw {opt.name} {val}\n"
-        f"ceph config get client.rgw {opt.name}{restart}\n"
-        f"```"
-    )
+        val = example_value(opt)
+
+    lines = [f"ceph config set {target} {opt.name} {val}", f"ceph config get {target} {opt.name}"]
+    lines.extend(example_followups(opt))
+
+    return f"```bash\n" + "\n".join(lines) + restart + "\n```"
+
+
+def format_example(opt: Option) -> str:
+    return render_example(opt)
 
 
 def format_related_extra(opt: Option, extra: str) -> str:
@@ -1261,7 +1475,7 @@ def render_option(opt: Option) -> str:
         see = format_see_also(opt)
         if see:
             parts.append(see)
-    parts.extend(["**Example:**", "", enrich.get("example") or format_example(opt), ""])
+    parts.extend(["**Example:**", "", render_example(opt), ""])
     finding = render_finding_optimal_value(opt)
     if enrich.get("finding_note"):
         finding = f"{finding}\n\n{enrich['finding_note']}"

@@ -45,7 +45,7 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_override_bucket_index_max_shards 0
+ceph config set client.rgw rgw_override_bucket_index_max_shards 128
 ceph config get client.rgw rgw_override_bucket_index_max_shards
 ```
 

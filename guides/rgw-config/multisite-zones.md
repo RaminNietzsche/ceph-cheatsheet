@@ -58,7 +58,7 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_default_realm_info_oid default.realm
+ceph config set client.rgw rgw_default_realm_info_oid "default.realm"
 ceph config get client.rgw rgw_default_realm_info_oid
 ```
 
@@ -96,7 +96,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_default_region_info_oid default.region
+ceph config set client.rgw rgw_default_region_info_oid "default.region"
 ceph config get client.rgw rgw_default_region_info_oid
 ```
 
@@ -134,7 +134,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_default_zone_info_oid default.zone
+ceph config set client.rgw rgw_default_zone_info_oid "default.zone"
 ceph config get client.rgw rgw_default_zone_info_oid
 ```
 
@@ -170,7 +170,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_default_zonegroup_info_oid default.zonegroup
+ceph config set client.rgw rgw_default_zonegroup_info_oid "default.zonegroup"
 ceph config get client.rgw rgw_default_zonegroup_info_oid
 ```
 
@@ -206,7 +206,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_period_latest_epoch_info_oid .latest_epoch
+ceph config set client.rgw rgw_period_latest_epoch_info_oid ".latest_epoch"
 ceph config get client.rgw rgw_period_latest_epoch_info_oid
 ```
 
@@ -323,7 +323,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_period_root_pool .rgw.root
+ceph config set client.rgw rgw_period_root_pool ".rgw.root"
 ceph config get client.rgw rgw_period_root_pool
 ```
 
@@ -358,8 +358,9 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_realm <value>
+ceph config set client.rgw rgw_realm "default"
 ceph config get client.rgw rgw_realm
+radosgw-admin realm list
 ```
 
 **Finding optimal value:**
@@ -422,7 +423,7 @@ radosgw-admin zone get --rgw-zone=<zone>
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_realm_root_pool .rgw.root
+ceph config set client.rgw rgw_realm_root_pool ".rgw.root"
 ceph config get client.rgw rgw_realm_root_pool
 ```
 
@@ -455,7 +456,7 @@ radosgw-admin zone get --rgw-zone=<zone>
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_region <value>
+ceph config set client.rgw rgw_region "us-east-1"
 ceph config get client.rgw rgw_region
 ```
 
@@ -488,7 +489,7 @@ radosgw-admin zone get --rgw-zone=<zone>
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_region_root_pool .rgw.root
+ceph config set client.rgw rgw_region_root_pool ".rgw.root"
 ceph config get client.rgw rgw_region_root_pool
 ```
 
@@ -521,8 +522,9 @@ radosgw-admin zone get --rgw-zone=<zone>
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_zone <value>
+ceph config set client.rgw rgw_zone "us-east-1"
 ceph config get client.rgw rgw_zone
+radosgw-admin zone list
 ```
 
 **Finding optimal value:**
@@ -556,6 +558,7 @@ radosgw-admin zone get --rgw-zone=<zone>
 ```bash
 ceph config set client.rgw rgw_zone_id <value>
 ceph config get client.rgw rgw_zone_id
+radosgw-admin zone get --rgw-zone=<zone>
 ```
 
 **Finding optimal value:**
@@ -587,8 +590,9 @@ radosgw-admin zone get --rgw-zone=<zone>
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_zone_root_pool .rgw.root
+ceph config set client.rgw rgw_zone_root_pool ".rgw.root"
 ceph config get client.rgw rgw_zone_root_pool
+radosgw-admin zone get --rgw-zone=<zone>
 ```
 
 **Finding optimal value:**
@@ -620,8 +624,9 @@ radosgw-admin zone get --rgw-zone=<zone>
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_zonegroup <value>
+ceph config set client.rgw rgw_zonegroup "default"
 ceph config get client.rgw rgw_zonegroup
+radosgw-admin zonegroup list
 ```
 
 **Finding optimal value:**
@@ -655,6 +660,7 @@ radosgw-admin zone get --rgw-zone=<zone>
 ```bash
 ceph config set client.rgw rgw_zonegroup_id <value>
 ceph config get client.rgw rgw_zonegroup_id
+radosgw-admin zone get --rgw-zone=<zone>
 ```
 
 **Finding optimal value:**
@@ -686,8 +692,9 @@ radosgw-admin zone get --rgw-zone=<zone>
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_zonegroup_root_pool .rgw.root
+ceph config set client.rgw rgw_zonegroup_root_pool ".rgw.root"
 ceph config get client.rgw rgw_zonegroup_root_pool
+radosgw-admin zone get --rgw-zone=<zone>
 ```
 
 **Finding optimal value:**

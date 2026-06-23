@@ -278,7 +278,7 @@ More shards and faster OSDs tolerate higher values; during `nearfull` or heavy r
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_bucket_index_transaction_instrumentation False
+ceph config set client.rgw rgw_bucket_index_transaction_instrumentation true
 ceph config get client.rgw rgw_bucket_index_transaction_instrumentation
 ```
 
@@ -456,6 +456,7 @@ ceph -s  # cluster health, slow ops
 ```bash
 ceph config set client.rgw rgw_bucket_sync_spawn_window 20
 ceph config get client.rgw rgw_bucket_sync_spawn_window
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**

@@ -58,7 +58,7 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_content_length_compat False
+ceph config set client.rgw rgw_content_length_compat true
 ceph config get client.rgw rgw_content_length_compat
 ```
 
@@ -162,7 +162,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_enforce_swift_acls True
+ceph config set client.rgw rgw_enforce_swift_acls false
 ceph config get client.rgw rgw_enforce_swift_acls
 ```
 
@@ -228,7 +228,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_ignore_get_invalid_range False
+ceph config set client.rgw rgw_ignore_get_invalid_range true
 ceph config get client.rgw rgw_ignore_get_invalid_range
 ```
 
@@ -256,7 +256,7 @@ ceph config get client.rgw rgw_ignore_get_invalid_range
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_print_continue True
+ceph config set client.rgw rgw_print_continue false
 ceph config get client.rgw rgw_print_continue
 ```
 
@@ -284,7 +284,7 @@ ceph config get client.rgw rgw_print_continue
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_print_prohibited_content_length False
+ceph config set client.rgw rgw_print_prohibited_content_length true
 ceph config get client.rgw rgw_print_prohibited_content_length
 ```
 
@@ -312,7 +312,7 @@ ceph config get client.rgw rgw_print_prohibited_content_length
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_relaxed_region_enforcement False
+ceph config set client.rgw rgw_relaxed_region_enforcement true
 ceph config get client.rgw rgw_relaxed_region_enforcement
 ```
 
@@ -340,7 +340,7 @@ ceph config get client.rgw rgw_relaxed_region_enforcement
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_relaxed_s3_bucket_names False
+ceph config set client.rgw rgw_relaxed_s3_bucket_names true
 ceph config get client.rgw rgw_relaxed_s3_bucket_names
 ```
 
@@ -368,7 +368,7 @@ ceph config get client.rgw rgw_relaxed_s3_bucket_names
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_relaxed_topic_names False
+ceph config set client.rgw rgw_relaxed_topic_names true
 ceph config get client.rgw rgw_relaxed_topic_names
 ```
 
@@ -432,8 +432,9 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_request_uri <value>
+ceph config set client.rgw rgw_request_uri "https://service.example.com/"
 ceph config get client.rgw rgw_request_uri
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**
@@ -469,7 +470,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_resolve_cname False
+ceph config set client.rgw rgw_resolve_cname true
 ceph config get client.rgw rgw_resolve_cname
 ```
 
@@ -535,7 +536,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_trust_forwarded_https False
+ceph config set client.rgw rgw_trust_forwarded_https true
 ceph config get client.rgw rgw_trust_forwarded_https
 ```
 
@@ -563,7 +564,7 @@ ceph config get client.rgw rgw_trust_forwarded_https
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_verify_ssl True
+ceph config set client.rgw rgw_verify_ssl false
 ceph config get client.rgw rgw_verify_ssl
 ```
 

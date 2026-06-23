@@ -73,8 +73,9 @@ ceph config get client.rgw rgw_opa_token
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_opa_url <value>
+ceph config set client.rgw rgw_opa_url "https://opa.example.com:8181/v1/data/ceph/authz"
 ceph config get client.rgw rgw_opa_url
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**
@@ -110,7 +111,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_opa_verify_ssl True
+ceph config set client.rgw rgw_opa_verify_ssl false
 ceph config get client.rgw rgw_opa_verify_ssl
 ```
 
@@ -138,8 +139,9 @@ ceph config get client.rgw rgw_opa_verify_ssl
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_use_opa_authz False
+ceph config set client.rgw rgw_use_opa_authz true
 ceph config get client.rgw rgw_use_opa_authz
+ceph config set client.rgw rgw_opa_url "https://opa.example.com:8181/v1/data/ceph/authz"
 ```
 
 **Finding optimal value:**

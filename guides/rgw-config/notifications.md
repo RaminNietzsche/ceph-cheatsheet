@@ -58,7 +58,7 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_allow_notification_secrets_in_cleartext False
+ceph config set client.rgw rgw_allow_notification_secrets_in_cleartext true
 ceph config get client.rgw rgw_allow_notification_secrets_in_cleartext
 ```
 
@@ -266,7 +266,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_kafka_max_batch_size 0
+ceph config set client.rgw rgw_kafka_max_batch_size 128
 ceph config get client.rgw rgw_kafka_max_batch_size
 ```
 
@@ -406,7 +406,7 @@ ceph config get client.rgw rgw_max_notify_retries
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_topic_persistency_max_retries 0
+ceph config set client.rgw rgw_topic_persistency_max_retries 128
 ceph config get client.rgw rgw_topic_persistency_max_retries
 ceph orch restart rgw
 ```

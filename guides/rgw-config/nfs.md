@@ -131,7 +131,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_nfs_frontends rgw-nfs
+ceph config set client.rgw rgw_nfs_frontends "rgw-nfs"
 ceph config get client.rgw rgw_nfs_frontends
 ```
 
@@ -307,7 +307,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_nfs_run_gc_threads False
+ceph config set client.rgw rgw_nfs_run_gc_threads true
 ceph config get client.rgw rgw_nfs_run_gc_threads
 ```
 
@@ -335,7 +335,7 @@ ceph config get client.rgw rgw_nfs_run_gc_threads
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_nfs_run_lc_threads False
+ceph config set client.rgw rgw_nfs_run_lc_threads true
 ceph config get client.rgw rgw_nfs_run_lc_threads
 ```
 
@@ -363,7 +363,7 @@ ceph config get client.rgw rgw_nfs_run_lc_threads
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_nfs_run_quota_threads True
+ceph config set client.rgw rgw_nfs_run_quota_threads false
 ceph config get client.rgw rgw_nfs_run_quota_threads
 ```
 
@@ -391,7 +391,7 @@ ceph config get client.rgw rgw_nfs_run_quota_threads
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_nfs_run_restore_threads False
+ceph config set client.rgw rgw_nfs_run_restore_threads true
 ceph config get client.rgw rgw_nfs_run_restore_threads
 ```
 
@@ -419,7 +419,7 @@ ceph config get client.rgw rgw_nfs_run_restore_threads
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_nfs_run_sync_thread False
+ceph config set client.rgw rgw_nfs_run_sync_thread true
 ceph config get client.rgw rgw_nfs_run_sync_thread
 ```
 
@@ -447,7 +447,7 @@ ceph config get client.rgw rgw_nfs_run_sync_thread
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_nfs_s3_fast_attrs False
+ceph config set client.rgw rgw_nfs_s3_fast_attrs true
 ceph config get client.rgw rgw_nfs_s3_fast_attrs
 ```
 

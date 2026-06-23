@@ -83,7 +83,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_usage_log_key_transition True
+ceph config set client.rgw rgw_usage_log_key_transition false
 ceph config get client.rgw rgw_usage_log_key_transition
 ```
 
@@ -111,8 +111,8 @@ ceph config get client.rgw rgw_usage_log_key_transition
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_usage_max_shards 32
-ceph config get client.rgw rgw_usage_max_shards
+ceph config set global rgw_usage_max_shards 32
+ceph config get global rgw_usage_max_shards
 ```
 
 **Finding optimal value:**

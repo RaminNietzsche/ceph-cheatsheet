@@ -346,7 +346,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_op_thread_suicide_timeout 0
+ceph config set client.rgw rgw_op_thread_suicide_timeout 60
 ceph config get client.rgw rgw_op_thread_suicide_timeout
 ```
 

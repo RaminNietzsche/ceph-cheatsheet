@@ -49,8 +49,9 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_s3_auth_disable_signature_url False
+ceph config set client.rgw rgw_s3_auth_disable_signature_url true
 ceph config get client.rgw rgw_s3_auth_disable_signature_url
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**
@@ -124,7 +125,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_s3_auth_use_keystone False
+ceph config set client.rgw rgw_s3_auth_use_keystone true
 ceph config get client.rgw rgw_s3_auth_use_keystone
 ```
 
@@ -152,7 +153,7 @@ ceph config get client.rgw rgw_s3_auth_use_keystone
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_s3_auth_use_ldap False
+ceph config set client.rgw rgw_s3_auth_use_ldap true
 ceph config get client.rgw rgw_s3_auth_use_ldap
 ```
 
@@ -180,7 +181,7 @@ ceph config get client.rgw rgw_s3_auth_use_ldap
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_s3_auth_use_rados True
+ceph config set client.rgw rgw_s3_auth_use_rados false
 ceph config get client.rgw rgw_s3_auth_use_rados
 ```
 
@@ -208,7 +209,7 @@ ceph config get client.rgw rgw_s3_auth_use_rados
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_s3_auth_use_sts False
+ceph config set client.rgw rgw_s3_auth_use_sts true
 ceph config get client.rgw rgw_s3_auth_use_sts
 ```
 

@@ -98,8 +98,9 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_lc_counters_cache False
+ceph config set client.rgw rgw_lc_counters_cache true
 ceph config get client.rgw rgw_lc_counters_cache
+ceph config set client.rgw rgw_lc_counters_cache_size 20000
 ```
 
 **Finding optimal value:**
@@ -465,7 +466,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_lifecycle_work_time 00:00-06:00
+ceph config set client.rgw rgw_lifecycle_work_time "00:00-06:00"
 ceph config get client.rgw rgw_lifecycle_work_time
 ```
 
@@ -559,7 +560,7 @@ ceph config get client.rgw rgw_restore_lock_max_time
 **Example:**
 
 ```bash
-ceph config set client.rgw rgwlc_auto_session_clear True
+ceph config set client.rgw rgwlc_auto_session_clear false
 ceph config get client.rgw rgwlc_auto_session_clear
 ```
 
@@ -587,7 +588,7 @@ ceph config get client.rgw rgwlc_auto_session_clear
 **Example:**
 
 ```bash
-ceph config set client.rgw rgwlc_skip_bucket_step False
+ceph config set client.rgw rgwlc_skip_bucket_step true
 ceph config get client.rgw rgwlc_skip_bucket_step
 ```
 

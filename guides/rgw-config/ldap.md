@@ -47,8 +47,9 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_ldap_binddn uid=admin,cn=users,dc=example,dc=com
+ceph config set client.rgw rgw_ldap_binddn "uid=admin,cn=users,dc=example,dc=com"
 ceph config get client.rgw rgw_ldap_binddn
+ceph config set client.rgw rgw_s3_auth_use_ldap true
 ```
 
 **Finding optimal value:**
@@ -77,6 +78,7 @@ ceph config get client.rgw rgw_ldap_binddn
 ```bash
 ceph config set client.rgw rgw_ldap_dnattr uid
 ceph config get client.rgw rgw_ldap_dnattr
+ceph config set client.rgw rgw_s3_auth_use_ldap true
 ```
 
 **Finding optimal value:**
@@ -113,8 +115,9 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_ldap_searchdn cn=users,cn=accounts,dc=example,dc=com
+ceph config set client.rgw rgw_ldap_searchdn "cn=users,cn=accounts,dc=example,dc=com"
 ceph config get client.rgw rgw_ldap_searchdn
+ceph config set client.rgw rgw_s3_auth_use_ldap true
 ```
 
 **Finding optimal value:**
@@ -153,6 +156,7 @@ ceph -s  # cluster health, slow ops
 ```bash
 ceph config set client.rgw rgw_ldap_searchfilter <value>
 ceph config get client.rgw rgw_ldap_searchfilter
+ceph config set client.rgw rgw_s3_auth_use_ldap true
 ```
 
 **Finding optimal value:**
@@ -191,6 +195,7 @@ ceph -s  # cluster health, slow ops
 ```bash
 ceph config set client.rgw rgw_ldap_secret "/etc/openldap/secret"
 ceph config get client.rgw rgw_ldap_secret
+ceph config set client.rgw rgw_s3_auth_use_ldap true
 ```
 
 **Finding optimal value:**
@@ -217,8 +222,9 @@ ceph config get client.rgw rgw_ldap_secret
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_ldap_uri <value>
+ceph config set client.rgw rgw_ldap_uri "ldaps://ldap.example.com/"
 ceph config get client.rgw rgw_ldap_uri
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**

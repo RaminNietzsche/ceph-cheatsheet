@@ -225,7 +225,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_keystone_admin_password <value>
+ceph config set client.rgw rgw_keystone_admin_password "<from-secrets-manager>"
 ceph config get client.rgw rgw_keystone_admin_password
 ```
 
@@ -253,7 +253,7 @@ ceph config get client.rgw rgw_keystone_admin_password
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_keystone_admin_password_path <value>
+ceph config set client.rgw rgw_keystone_admin_password_path "/var/lib/ceph/radosgw"
 ceph config get client.rgw rgw_keystone_admin_password_path
 ```
 
@@ -439,7 +439,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_keystone_barbican_password <value>
+ceph config set client.rgw rgw_keystone_barbican_password "<from-secrets-manager>"
 ceph config get client.rgw rgw_keystone_barbican_password
 ```
 
@@ -649,7 +649,7 @@ ceph config get client.rgw rgw_keystone_implicit_tenants
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_keystone_scope_enabled False
+ceph config set client.rgw rgw_keystone_scope_enabled true
 ceph config get client.rgw rgw_keystone_scope_enabled
 ```
 
@@ -677,7 +677,7 @@ ceph config get client.rgw rgw_keystone_scope_enabled
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_keystone_scope_include_roles True
+ceph config set client.rgw rgw_keystone_scope_include_roles false
 ceph config get client.rgw rgw_keystone_scope_include_roles
 ```
 
@@ -705,7 +705,7 @@ ceph config get client.rgw rgw_keystone_scope_include_roles
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_keystone_scope_include_user False
+ceph config set client.rgw rgw_keystone_scope_include_user true
 ceph config get client.rgw rgw_keystone_scope_include_user
 ```
 
@@ -761,7 +761,7 @@ ceph config get client.rgw rgw_keystone_service_token_accepted_roles
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_keystone_service_token_enabled False
+ceph config set client.rgw rgw_keystone_service_token_enabled true
 ceph config get client.rgw rgw_keystone_service_token_enabled
 ```
 
@@ -869,8 +869,9 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_keystone_url <value>
+ceph config set client.rgw rgw_keystone_url "https://keystone.example.com:5000/v3/"
 ceph config get client.rgw rgw_keystone_url
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**
@@ -906,7 +907,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_keystone_verify_ssl True
+ceph config set client.rgw rgw_keystone_verify_ssl false
 ceph config get client.rgw rgw_keystone_verify_ssl
 ```
 
@@ -962,7 +963,7 @@ ceph config get client.rgw rgw_sts_client_id
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_sts_client_secret <value>
+ceph config set client.rgw rgw_sts_client_secret "<from-secrets-manager>"
 ceph config get client.rgw rgw_sts_client_secret
 ```
 
@@ -1018,7 +1019,7 @@ ceph config get client.rgw rgw_sts_entry
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_sts_key <value>
+ceph config set client.rgw rgw_sts_key "<from-secrets-manager>"
 ceph config get client.rgw rgw_sts_key
 ```
 
@@ -1122,8 +1123,9 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_sts_token_introspection_url <value>
+ceph config set client.rgw rgw_sts_token_introspection_url "https://idp.example.com/oauth2/introspect"
 ceph config get client.rgw rgw_sts_token_introspection_url
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**

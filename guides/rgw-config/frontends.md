@@ -51,7 +51,7 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_asio_assert_yielding False
+ceph config set client.rgw rgw_asio_assert_yielding true
 ceph config get client.rgw rgw_asio_assert_yielding
 ```
 
@@ -109,7 +109,7 @@ ceph orch restart rgw
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_dns_name <value>
+ceph config set client.rgw rgw_dns_name "s3.example.com"
 ceph config get client.rgw rgw_dns_name
 ```
 
@@ -147,7 +147,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_dns_s3website_name <value>
+ceph config set client.rgw rgw_dns_s3website_name "website.s3.example.com"
 ceph config get client.rgw rgw_dns_s3website_name
 ```
 

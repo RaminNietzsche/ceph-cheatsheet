@@ -45,7 +45,7 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_cache_enabled True
+ceph config set client.rgw rgw_cache_enabled false
 ceph config get client.rgw rgw_cache_enabled
 ```
 

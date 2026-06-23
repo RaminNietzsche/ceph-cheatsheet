@@ -127,8 +127,9 @@ radosgw-admin bucket stats --bucket=testbucket
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_enable_quota_threads True
+ceph config set client.rgw rgw_enable_quota_threads false
 ceph config get client.rgw rgw_enable_quota_threads
+radosgw-admin quota get --uid=testuser
 ```
 
 **Finding optimal value:**
@@ -155,8 +156,9 @@ ceph config get client.rgw rgw_enable_quota_threads
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_user_default_quota_max_objects -1
-ceph config get client.rgw rgw_user_default_quota_max_objects
+ceph config set client rgw_user_default_quota_max_objects 1000000
+ceph config get client rgw_user_default_quota_max_objects
+radosgw-admin quota get --uid=testuser
 ```
 
 **Finding optimal value:**
@@ -191,8 +193,9 @@ radosgw-admin bucket stats --bucket=testbucket
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_user_default_quota_max_size -1
-ceph config get client.rgw rgw_user_default_quota_max_size
+ceph config set client rgw_user_default_quota_max_size $((100*1024*1024*1024))
+ceph config get client rgw_user_default_quota_max_size
+radosgw-admin quota get --uid=testuser
 ```
 
 **Finding optimal value:**

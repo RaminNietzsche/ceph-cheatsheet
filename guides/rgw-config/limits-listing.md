@@ -109,7 +109,7 @@ ceph config get client.rgw rgw_list_buckets_max_chunk
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_max_attr_name_len 0
+ceph config set client.rgw rgw_max_attr_name_len 128
 ceph config get client.rgw rgw_max_attr_name_len
 ```
 
@@ -137,7 +137,7 @@ ceph config get client.rgw rgw_max_attr_name_len
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_max_attr_size 0
+ceph config set client.rgw rgw_max_attr_size 128
 ceph config get client.rgw rgw_max_attr_size
 ```
 
@@ -165,7 +165,7 @@ ceph config get client.rgw rgw_max_attr_size
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_max_attrs_num_in_req 0
+ceph config set client.rgw rgw_max_attrs_num_in_req 128
 ceph config get client.rgw rgw_max_attrs_num_in_req
 ```
 

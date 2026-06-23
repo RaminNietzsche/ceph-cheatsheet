@@ -133,7 +133,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_dedup_split_obj_head True
+ceph config set client.rgw rgw_dedup_split_obj_head false
 ceph config get client.rgw rgw_dedup_split_obj_head
 ```
 
@@ -161,7 +161,7 @@ ceph config get client.rgw rgw_dedup_split_obj_head
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_expose_bucket False
+ceph config set client.rgw rgw_expose_bucket true
 ceph config get client.rgw rgw_expose_bucket
 ```
 
@@ -217,7 +217,7 @@ ceph config get client.rgw rgw_filter
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_graceful_stop False
+ceph config set client.rgw rgw_graceful_stop true
 ceph config get client.rgw rgw_graceful_stop
 ```
 
@@ -245,7 +245,7 @@ ceph config get client.rgw rgw_graceful_stop
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_healthcheck_disabling_path <value>
+ceph config set client.rgw rgw_healthcheck_disabling_path "/var/lib/ceph/radosgw"
 ceph config get client.rgw rgw_healthcheck_disabling_path
 ```
 
@@ -380,7 +380,7 @@ ceph orch restart rgw
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_op_tracing False
+ceph config set client.rgw rgw_op_tracing true
 ceph config get client.rgw rgw_op_tracing
 ```
 
@@ -526,7 +526,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_rados_tracing False
+ceph config set client.rgw rgw_rados_tracing true
 ceph config get client.rgw rgw_rados_tracing
 ```
 
@@ -552,8 +552,9 @@ ceph config get client.rgw rgw_rados_tracing
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_script_uri <value>
+ceph config set client.rgw rgw_script_uri "https://service.example.com/"
 ceph config get client.rgw rgw_script_uri
+# curl -k <url>  # from each RGW node
 ```
 
 **Finding optimal value:**

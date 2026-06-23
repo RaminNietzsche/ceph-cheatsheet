@@ -163,7 +163,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_torrent_flag False
+ceph config set client.rgw rgw_torrent_flag true
 ceph config get client.rgw rgw_torrent_flag
 ```
 

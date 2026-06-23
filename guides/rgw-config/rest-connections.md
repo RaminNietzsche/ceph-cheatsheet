@@ -42,7 +42,7 @@ ceph osd pool stats
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_rest_conn_connect_to_resolved_ips False
+ceph config set client.rgw rgw_rest_conn_connect_to_resolved_ips true
 ceph config get client.rgw rgw_rest_conn_connect_to_resolved_ips
 ```
 
@@ -107,7 +107,7 @@ ceph -s  # cluster health, slow ops
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_rest_getusage_op_compat False
+ceph config set client.rgw rgw_rest_getusage_op_compat true
 ceph config get client.rgw rgw_rest_getusage_op_compat
 ```
 

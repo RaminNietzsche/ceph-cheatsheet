@@ -138,7 +138,7 @@ ceph config get client.rgw rgw_cors_rules_max_num
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_policy_reject_invalid_principals True
+ceph config set client.rgw rgw_policy_reject_invalid_principals false
 ceph config get client.rgw rgw_policy_reject_invalid_principals
 ```
 
@@ -166,7 +166,7 @@ ceph config get client.rgw rgw_policy_reject_invalid_principals
 **Example:**
 
 ```bash
-ceph config set client.rgw rgw_topic_require_publish_policy False
+ceph config set client.rgw rgw_topic_require_publish_policy true
 ceph config get client.rgw rgw_topic_require_publish_policy
 ```
 
