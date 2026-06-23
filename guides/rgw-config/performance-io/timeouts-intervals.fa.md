@@ -4,25 +4,25 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_exit_timeout_secs](#rgw_exit_timeout_secs) | `2_min` | Advanced | Performance |
-| [rgw_init_timeout](#rgw_init_timeout) | `5_min` | Basic | Performance |
-| [rgw_objexp_gc_interval](#rgw_objexp_gc_interval) | `600` | Advanced | Performance |
-| [rgw_olh_pending_timeout_sec](#rgw_olh_pending_timeout_sec) | `1_hr` | Dev | Performance |
-| [rgw_ratelimit_interval](#rgw_ratelimit_interval) | `60` | Advanced | Performance |
-| [rgw_read_through_timeout_ms](#rgw_read_through_timeout_ms) | `10000` | Advanced | Performance |
-| [rgw_restore_debug_interval](#rgw_restore_debug_interval) | `-1` | Dev | Dev |
-| [rgw_usage_log_tick_interval](#rgw_usage_log_tick_interval) | `30` | Advanced | Performance |
+| [rgw_exit_timeout_secs](#rgw_exit_timeout_secs) | `2_min` | Advanced | عملکرد |
+| [rgw_init_timeout](#rgw_init_timeout) | `5_min` | Basic | عملکرد |
+| [rgw_objexp_gc_interval](#rgw_objexp_gc_interval) | `600` | Advanced | عملکرد |
+| [rgw_olh_pending_timeout_sec](#rgw_olh_pending_timeout_sec) | `1_hr` | Dev | عملکرد |
+| [rgw_ratelimit_interval](#rgw_ratelimit_interval) | `60` | Advanced | عملکرد |
+| [rgw_read_through_timeout_ms](#rgw_read_through_timeout_ms) | `10000` | Advanced | عملکرد |
+| [rgw_restore_debug_interval](#rgw_restore_debug_interval) | `-1` | Dev | توسعه |
+| [rgw_usage_log_tick_interval](#rgw_usage_log_tick_interval) | `30` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

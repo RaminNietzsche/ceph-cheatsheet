@@ -4,23 +4,23 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_ldap_binddn](#rgw_ldap_binddn) | `uid=admin,cn=users,dc=example,dc=com` | Advanced | Policy |
-| [rgw_ldap_dnattr](#rgw_ldap_dnattr) | `uid` | Advanced | Performance |
-| [rgw_ldap_searchdn](#rgw_ldap_searchdn) | `cn=users,cn=accounts,dc=example,dc=com` | Advanced | Performance |
-| [rgw_ldap_searchfilter](#rgw_ldap_searchfilter) | `(empty)` | Advanced | Performance |
-| [rgw_ldap_secret](#rgw_ldap_secret) | `/etc/openldap/secret` | Advanced | Policy |
-| [rgw_ldap_uri](#rgw_ldap_uri) | `(empty)` | Advanced | Connectivity |
+| [rgw_ldap_binddn](#rgw_ldap_binddn) | `uid=admin,cn=users,dc=example,dc=com` | Advanced | سیاست |
+| [rgw_ldap_dnattr](#rgw_ldap_dnattr) | `uid` | Advanced | عملکرد |
+| [rgw_ldap_searchdn](#rgw_ldap_searchdn) | `cn=users,cn=accounts,dc=example,dc=com` | Advanced | عملکرد |
+| [rgw_ldap_searchfilter](#rgw_ldap_searchfilter) | `(empty)` | Advanced | عملکرد |
+| [rgw_ldap_secret](#rgw_ldap_secret) | `/etc/openldap/secret` | Advanced | سیاست |
+| [rgw_ldap_uri](#rgw_ldap_uri) | `(empty)` | Advanced | اتصال |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

@@ -4,25 +4,25 @@ RGW 配置深度指南 — 8 个选项。[← RGW 配置概览](../OVERVIEW.md) 
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_s3_auth_disable_signature_url](#rgw_s3_auth_disable_signature_url) | `False` | Advanced | Connectivity |
-| [rgw_s3_auth_order](#rgw_s3_auth_order) | `sts, external, local` | Advanced | Performance |
-| [rgw_s3_auth_use_keystone](#rgw_s3_auth_use_keystone) | `False` | Advanced | Policy |
-| [rgw_s3_auth_use_ldap](#rgw_s3_auth_use_ldap) | `False` | Advanced | Policy |
-| [rgw_s3_auth_use_rados](#rgw_s3_auth_use_rados) | `True` | Advanced | Policy |
-| [rgw_s3_auth_use_sts](#rgw_s3_auth_use_sts) | `False` | Advanced | Policy |
-| [rgw_s3_client_max_sig_ver](#rgw_s3_client_max_sig_ver) | `-1` | Advanced | Policy |
-| [rgw_s3_success_create_obj_status](#rgw_s3_success_create_obj_status) | `0` | Advanced | Performance |
+| [rgw_s3_auth_disable_signature_url](#rgw_s3_auth_disable_signature_url) | `False` | Advanced | 连通性 |
+| [rgw_s3_auth_order](#rgw_s3_auth_order) | `sts, external, local` | Advanced | 性能 |
+| [rgw_s3_auth_use_keystone](#rgw_s3_auth_use_keystone) | `False` | Advanced | 策略 |
+| [rgw_s3_auth_use_ldap](#rgw_s3_auth_use_ldap) | `False` | Advanced | 策略 |
+| [rgw_s3_auth_use_rados](#rgw_s3_auth_use_rados) | `True` | Advanced | 策略 |
+| [rgw_s3_auth_use_sts](#rgw_s3_auth_use_sts) | `False` | Advanced | 策略 |
+| [rgw_s3_client_max_sig_ver](#rgw_s3_client_max_sig_ver) | `-1` | Advanced | 策略 |
+| [rgw_s3_success_create_obj_status](#rgw_s3_success_create_obj_status) | `0` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

@@ -18,4 +18,4 @@ python3 scripts/generate-config-guide.py ceph-exporter
 |-------|---------|
 | [ceph-exporter](topics/exporter.md) | 8 |
 
-[← Guides overview](../../guides/OVERVIEW.md)
+[← Guides overview](../OVERVIEW.md)

@@ -4,28 +4,28 @@ RGW 配置深度指南 — 11 个选项。[← RGW 配置概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_swift_account_in_url](#rgw_swift_account_in_url) | `False` | Advanced | Connectivity |
-| [rgw_swift_auth_entry](#rgw_swift_auth_entry) | `auth` | Advanced | Policy |
-| [rgw_swift_auth_url](#rgw_swift_auth_url) | `(empty)` | Advanced | Connectivity |
-| [rgw_swift_custom_header](#rgw_swift_custom_header) | `(empty)` | Advanced | Performance |
-| [rgw_swift_enforce_content_length](#rgw_swift_enforce_content_length) | `False` | Advanced | Policy |
-| [rgw_swift_need_stats](#rgw_swift_need_stats) | `True` | Advanced | Policy |
-| [rgw_swift_tenant_name](#rgw_swift_tenant_name) | `(empty)` | Advanced | Performance |
-| [rgw_swift_token_expiration](#rgw_swift_token_expiration) | `1_day` | Advanced | Performance |
-| [rgw_swift_url](#rgw_swift_url) | `(empty)` | Advanced | Connectivity |
-| [rgw_swift_url_prefix](#rgw_swift_url_prefix) | `swift` | Advanced | Performance |
-| [rgw_swift_versioning_enabled](#rgw_swift_versioning_enabled) | `False` | Advanced | Policy |
+| [rgw_swift_account_in_url](#rgw_swift_account_in_url) | `False` | Advanced | 连通性 |
+| [rgw_swift_auth_entry](#rgw_swift_auth_entry) | `auth` | Advanced | 策略 |
+| [rgw_swift_auth_url](#rgw_swift_auth_url) | `(empty)` | Advanced | 连通性 |
+| [rgw_swift_custom_header](#rgw_swift_custom_header) | `(empty)` | Advanced | 性能 |
+| [rgw_swift_enforce_content_length](#rgw_swift_enforce_content_length) | `False` | Advanced | 策略 |
+| [rgw_swift_need_stats](#rgw_swift_need_stats) | `True` | Advanced | 策略 |
+| [rgw_swift_tenant_name](#rgw_swift_tenant_name) | `(empty)` | Advanced | 性能 |
+| [rgw_swift_token_expiration](#rgw_swift_token_expiration) | `1_day` | Advanced | 性能 |
+| [rgw_swift_url](#rgw_swift_url) | `(empty)` | Advanced | 连通性 |
+| [rgw_swift_url_prefix](#rgw_swift_url_prefix) | `swift` | Advanced | 性能 |
+| [rgw_swift_versioning_enabled](#rgw_swift_versioning_enabled) | `False` | Advanced | 策略 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

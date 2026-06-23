@@ -53,4 +53,4 @@ python3 scripts/generate-config-guide.py osd
 |-------|---------|
 | [Debug & injection](debug/debug.md) | 4 |
 
-[← نمای کلی راهنما](../../guides/OVERVIEW.md)
+[← نمای کلی راهنما](../OVERVIEW.md)

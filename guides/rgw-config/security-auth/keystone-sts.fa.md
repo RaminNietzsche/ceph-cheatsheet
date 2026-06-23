@@ -4,49 +4,49 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_keystone_accepted_admin_roles](#rgw_keystone_accepted_admin_roles) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_accepted_reader_roles](#rgw_keystone_accepted_reader_roles) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_accepted_roles](#rgw_keystone_accepted_roles) | `Member, admin` | Advanced | Performance |
-| [rgw_keystone_admin_domain](#rgw_keystone_admin_domain) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_admin_password](#rgw_keystone_admin_password) | `(empty)` | Advanced | Policy |
-| [rgw_keystone_admin_password_path](#rgw_keystone_admin_password_path) | `(empty)` | Advanced | Capacity |
-| [rgw_keystone_admin_project](#rgw_keystone_admin_project) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_admin_tenant](#rgw_keystone_admin_tenant) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_admin_user](#rgw_keystone_admin_user) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_barbican_domain](#rgw_keystone_barbican_domain) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_barbican_password](#rgw_keystone_barbican_password) | `(empty)` | Advanced | Policy |
-| [rgw_keystone_barbican_project](#rgw_keystone_barbican_project) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_barbican_tenant](#rgw_keystone_barbican_tenant) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_barbican_user](#rgw_keystone_barbican_user) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_expired_token_cache_expiration](#rgw_keystone_expired_token_cache_expiration) | `3600` | Advanced | Performance |
-| [rgw_keystone_implicit_tenants](#rgw_keystone_implicit_tenants) | `false` | Advanced | Architecture |
-| [rgw_keystone_scope_enabled](#rgw_keystone_scope_enabled) | `False` | Advanced | Policy |
-| [rgw_keystone_scope_include_roles](#rgw_keystone_scope_include_roles) | `True` | Advanced | Policy |
-| [rgw_keystone_scope_include_user](#rgw_keystone_scope_include_user) | `False` | Advanced | Policy |
-| [rgw_keystone_service_token_accepted_roles](#rgw_keystone_service_token_accepted_roles) | `admin` | Advanced | Policy |
-| [rgw_keystone_service_token_enabled](#rgw_keystone_service_token_enabled) | `False` | Advanced | Policy |
-| [rgw_keystone_token_cache_size](#rgw_keystone_token_cache_size) | `10000` | Advanced | Performance |
-| [rgw_keystone_token_cache_ttl](#rgw_keystone_token_cache_ttl) | `300` | Advanced | Performance |
-| [rgw_keystone_url](#rgw_keystone_url) | `(empty)` | Basic | Connectivity |
-| [rgw_keystone_verify_ssl](#rgw_keystone_verify_ssl) | `True` | Advanced | Policy |
-| [rgw_sts_client_id](#rgw_sts_client_id) | `(empty)` | Advanced | Policy |
-| [rgw_sts_client_secret](#rgw_sts_client_secret) | `(empty)` | Advanced | Policy |
-| [rgw_sts_entry](#rgw_sts_entry) | `sts` | Advanced | Policy |
-| [rgw_sts_key](#rgw_sts_key) | `(empty)` | Advanced | Performance |
-| [rgw_sts_max_session_duration](#rgw_sts_max_session_duration) | `43200` | Advanced | Policy |
-| [rgw_sts_min_session_duration](#rgw_sts_min_session_duration) | `900` | Advanced | Performance |
-| [rgw_sts_token_introspection_url](#rgw_sts_token_introspection_url) | `(empty)` | Advanced | Connectivity |
+| [rgw_keystone_accepted_admin_roles](#rgw_keystone_accepted_admin_roles) | `(empty)` | Advanced | عملکرد |
+| [rgw_keystone_accepted_reader_roles](#rgw_keystone_accepted_reader_roles) | `(empty)` | Advanced | عملکرد |
+| [rgw_keystone_accepted_roles](#rgw_keystone_accepted_roles) | `Member, admin` | Advanced | عملکرد |
+| [rgw_keystone_admin_domain](#rgw_keystone_admin_domain) | `(empty)` | Advanced | عملکرد |
+| [rgw_keystone_admin_password](#rgw_keystone_admin_password) | `(empty)` | Advanced | سیاست |
+| [rgw_keystone_admin_password_path](#rgw_keystone_admin_password_path) | `(empty)` | Advanced | ظرفیت |
+| [rgw_keystone_admin_project](#rgw_keystone_admin_project) | `(empty)` | Advanced | عملکرد |
+| [rgw_keystone_admin_tenant](#rgw_keystone_admin_tenant) | `(empty)` | Advanced | عملکرد |
+| [rgw_keystone_admin_user](#rgw_keystone_admin_user) | `(empty)` | Advanced | عملکرد |
+| [rgw_keystone_barbican_domain](#rgw_keystone_barbican_domain) | `(empty)` | Advanced | عملکرد |
+| [rgw_keystone_barbican_password](#rgw_keystone_barbican_password) | `(empty)` | Advanced | سیاست |
+| [rgw_keystone_barbican_project](#rgw_keystone_barbican_project) | `(empty)` | Advanced | عملکرد |
+| [rgw_keystone_barbican_tenant](#rgw_keystone_barbican_tenant) | `(empty)` | Advanced | عملکرد |
+| [rgw_keystone_barbican_user](#rgw_keystone_barbican_user) | `(empty)` | Advanced | عملکرد |
+| [rgw_keystone_expired_token_cache_expiration](#rgw_keystone_expired_token_cache_expiration) | `3600` | Advanced | عملکرد |
+| [rgw_keystone_implicit_tenants](#rgw_keystone_implicit_tenants) | `false` | Advanced | معماری |
+| [rgw_keystone_scope_enabled](#rgw_keystone_scope_enabled) | `False` | Advanced | سیاست |
+| [rgw_keystone_scope_include_roles](#rgw_keystone_scope_include_roles) | `True` | Advanced | سیاست |
+| [rgw_keystone_scope_include_user](#rgw_keystone_scope_include_user) | `False` | Advanced | سیاست |
+| [rgw_keystone_service_token_accepted_roles](#rgw_keystone_service_token_accepted_roles) | `admin` | Advanced | سیاست |
+| [rgw_keystone_service_token_enabled](#rgw_keystone_service_token_enabled) | `False` | Advanced | سیاست |
+| [rgw_keystone_token_cache_size](#rgw_keystone_token_cache_size) | `10000` | Advanced | عملکرد |
+| [rgw_keystone_token_cache_ttl](#rgw_keystone_token_cache_ttl) | `300` | Advanced | عملکرد |
+| [rgw_keystone_url](#rgw_keystone_url) | `(empty)` | Basic | اتصال |
+| [rgw_keystone_verify_ssl](#rgw_keystone_verify_ssl) | `True` | Advanced | سیاست |
+| [rgw_sts_client_id](#rgw_sts_client_id) | `(empty)` | Advanced | سیاست |
+| [rgw_sts_client_secret](#rgw_sts_client_secret) | `(empty)` | Advanced | سیاست |
+| [rgw_sts_entry](#rgw_sts_entry) | `sts` | Advanced | سیاست |
+| [rgw_sts_key](#rgw_sts_key) | `(empty)` | Advanced | عملکرد |
+| [rgw_sts_max_session_duration](#rgw_sts_max_session_duration) | `43200` | Advanced | سیاست |
+| [rgw_sts_min_session_duration](#rgw_sts_min_session_duration) | `900` | Advanced | عملکرد |
+| [rgw_sts_token_introspection_url](#rgw_sts_token_introspection_url) | `(empty)` | Advanced | اتصال |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

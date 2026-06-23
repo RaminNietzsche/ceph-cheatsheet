@@ -4,31 +4,31 @@ RGW 配置深度指南 — 14 个选项。[← RGW 配置概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_nfs_fhcache_partitions](#rgw_nfs_fhcache_partitions) | `3` | Advanced | Performance |
-| [rgw_nfs_fhcache_size](#rgw_nfs_fhcache_size) | `2017` | Advanced | Performance |
-| [rgw_nfs_frontends](#rgw_nfs_frontends) | `rgw-nfs` | Basic | Performance |
-| [rgw_nfs_lru_lane_hiwat](#rgw_nfs_lru_lane_hiwat) | `911` | Advanced | Performance |
-| [rgw_nfs_lru_lanes](#rgw_nfs_lru_lanes) | `5` | Advanced | Performance |
-| [rgw_nfs_max_gc](#rgw_nfs_max_gc) | `5_min` | Advanced | Policy |
-| [rgw_nfs_namespace_expire_secs](#rgw_nfs_namespace_expire_secs) | `5_min` | Advanced | Performance |
-| [rgw_nfs_run_gc_threads](#rgw_nfs_run_gc_threads) | `False` | Advanced | Policy |
-| [rgw_nfs_run_lc_threads](#rgw_nfs_run_lc_threads) | `False` | Advanced | Policy |
-| [rgw_nfs_run_quota_threads](#rgw_nfs_run_quota_threads) | `True` | Advanced | Policy |
-| [rgw_nfs_run_restore_threads](#rgw_nfs_run_restore_threads) | `False` | Advanced | Policy |
-| [rgw_nfs_run_sync_thread](#rgw_nfs_run_sync_thread) | `False` | Advanced | Policy |
-| [rgw_nfs_s3_fast_attrs](#rgw_nfs_s3_fast_attrs) | `False` | Advanced | Policy |
-| [rgw_nfs_write_completion_interval_s](#rgw_nfs_write_completion_interval_s) | `10` | Advanced | Performance |
+| [rgw_nfs_fhcache_partitions](#rgw_nfs_fhcache_partitions) | `3` | Advanced | 性能 |
+| [rgw_nfs_fhcache_size](#rgw_nfs_fhcache_size) | `2017` | Advanced | 性能 |
+| [rgw_nfs_frontends](#rgw_nfs_frontends) | `rgw-nfs` | Basic | 性能 |
+| [rgw_nfs_lru_lane_hiwat](#rgw_nfs_lru_lane_hiwat) | `911` | Advanced | 性能 |
+| [rgw_nfs_lru_lanes](#rgw_nfs_lru_lanes) | `5` | Advanced | 性能 |
+| [rgw_nfs_max_gc](#rgw_nfs_max_gc) | `5_min` | Advanced | 策略 |
+| [rgw_nfs_namespace_expire_secs](#rgw_nfs_namespace_expire_secs) | `5_min` | Advanced | 性能 |
+| [rgw_nfs_run_gc_threads](#rgw_nfs_run_gc_threads) | `False` | Advanced | 策略 |
+| [rgw_nfs_run_lc_threads](#rgw_nfs_run_lc_threads) | `False` | Advanced | 策略 |
+| [rgw_nfs_run_quota_threads](#rgw_nfs_run_quota_threads) | `True` | Advanced | 策略 |
+| [rgw_nfs_run_restore_threads](#rgw_nfs_run_restore_threads) | `False` | Advanced | 策略 |
+| [rgw_nfs_run_sync_thread](#rgw_nfs_run_sync_thread) | `False` | Advanced | 策略 |
+| [rgw_nfs_s3_fast_attrs](#rgw_nfs_s3_fast_attrs) | `False` | Advanced | 策略 |
+| [rgw_nfs_write_completion_interval_s](#rgw_nfs_write_completion_interval_s) | `10` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

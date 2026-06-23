@@ -4,24 +4,24 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_debug_inject_latency_bi_unlink](#rgw_debug_inject_latency_bi_unlink) | `0` | Dev | Dev |
-| [rgw_debug_inject_olh_cancel_modification_err](#rgw_debug_inject_olh_cancel_modification_err) | `False` | Dev | Dev |
-| [rgw_debug_inject_set_olh_err](#rgw_debug_inject_set_olh_err) | `0` | Dev | Dev |
-| [rgw_inject_delay_pattern](#rgw_inject_delay_pattern) | `(empty)` | Dev | Dev |
-| [rgw_inject_delay_sec](#rgw_inject_delay_sec) | `0` | Dev | Dev |
-| [rgw_mp_lock_inject_delay](#rgw_mp_lock_inject_delay) | `0` | Dev | Dev |
-| [rgw_mp_lock_inject_renewal_error](#rgw_mp_lock_inject_renewal_error) | `0` | Dev | Dev |
+| [rgw_debug_inject_latency_bi_unlink](#rgw_debug_inject_latency_bi_unlink) | `0` | Dev | توسعه |
+| [rgw_debug_inject_olh_cancel_modification_err](#rgw_debug_inject_olh_cancel_modification_err) | `False` | Dev | توسعه |
+| [rgw_debug_inject_set_olh_err](#rgw_debug_inject_set_olh_err) | `0` | Dev | توسعه |
+| [rgw_inject_delay_pattern](#rgw_inject_delay_pattern) | `(empty)` | Dev | توسعه |
+| [rgw_inject_delay_sec](#rgw_inject_delay_sec) | `0` | Dev | توسعه |
+| [rgw_mp_lock_inject_delay](#rgw_mp_lock_inject_delay) | `0` | Dev | توسعه |
+| [rgw_mp_lock_inject_renewal_error](#rgw_mp_lock_inject_renewal_error) | `0` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

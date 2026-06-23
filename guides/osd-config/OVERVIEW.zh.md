@@ -53,4 +53,4 @@ python3 scripts/generate-config-guide.py osd
 |-------|---------|
 | [Debug & injection](debug/debug.md) | 4 |
 
-[← 指南概览](../../guides/OVERVIEW.md)
+[← 指南概览](../OVERVIEW.md)

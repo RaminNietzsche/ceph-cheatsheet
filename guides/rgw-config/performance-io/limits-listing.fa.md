@@ -4,29 +4,29 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_delete_multi_obj_max_num](#rgw_delete_multi_obj_max_num) | `1000` | Advanced | Policy |
-| [rgw_list_buckets_max_chunk](#rgw_list_buckets_max_chunk) | `1000` | Advanced | Policy |
-| [rgw_max_attr_name_len](#rgw_max_attr_name_len) | `0` | Advanced | Policy |
-| [rgw_max_attr_size](#rgw_max_attr_size) | `0` | Advanced | Policy |
-| [rgw_max_attrs_num_in_req](#rgw_max_attrs_num_in_req) | `0` | Advanced | Policy |
-| [rgw_max_chunk_size](#rgw_max_chunk_size) | `4_M` | Advanced | Performance |
-| [rgw_max_control_aio](#rgw_max_control_aio) | `8` | Advanced | Policy |
-| [rgw_max_dynamic_shards](#rgw_max_dynamic_shards) | `1999` | Advanced | Policy |
-| [rgw_max_listing_results](#rgw_max_listing_results) | `5000` | Advanced | Policy |
-| [rgw_max_put_param_size](#rgw_max_put_param_size) | `1_M` | Advanced | Policy |
-| [rgw_max_put_size](#rgw_max_put_size) | `5_G` | Advanced | Policy |
-| [rgw_max_slo_entries](#rgw_max_slo_entries) | `1000` | Advanced | Policy |
+| [rgw_delete_multi_obj_max_num](#rgw_delete_multi_obj_max_num) | `1000` | Advanced | سیاست |
+| [rgw_list_buckets_max_chunk](#rgw_list_buckets_max_chunk) | `1000` | Advanced | سیاست |
+| [rgw_max_attr_name_len](#rgw_max_attr_name_len) | `0` | Advanced | سیاست |
+| [rgw_max_attr_size](#rgw_max_attr_size) | `0` | Advanced | سیاست |
+| [rgw_max_attrs_num_in_req](#rgw_max_attrs_num_in_req) | `0` | Advanced | سیاست |
+| [rgw_max_chunk_size](#rgw_max_chunk_size) | `4_M` | Advanced | عملکرد |
+| [rgw_max_control_aio](#rgw_max_control_aio) | `8` | Advanced | سیاست |
+| [rgw_max_dynamic_shards](#rgw_max_dynamic_shards) | `1999` | Advanced | سیاست |
+| [rgw_max_listing_results](#rgw_max_listing_results) | `5000` | Advanced | سیاست |
+| [rgw_max_put_param_size](#rgw_max_put_param_size) | `1_M` | Advanced | سیاست |
+| [rgw_max_put_size](#rgw_max_put_size) | `5_G` | Advanced | سیاست |
+| [rgw_max_slo_entries](#rgw_max_slo_entries) | `1000` | Advanced | سیاست |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

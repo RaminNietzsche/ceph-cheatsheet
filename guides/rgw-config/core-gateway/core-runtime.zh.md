@@ -4,33 +4,33 @@ RGW 配置深度指南 — 16 个选项。[← RGW 配置概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_data](#rgw_data) | `/var/lib/ceph/radosgw/$cluster-$id` | Advanced | Performance |
-| [rgw_dedup_min_obj_size_for_dedup](#rgw_dedup_min_obj_size_for_dedup) | `64_K` | Advanced | Performance |
-| [rgw_dedup_split_obj_head](#rgw_dedup_split_obj_head) | `True` | Advanced | Policy |
-| [rgw_expose_bucket](#rgw_expose_bucket) | `False` | Advanced | Policy |
-| [rgw_filter](#rgw_filter) | `none` | Advanced | Architecture |
-| [rgw_graceful_stop](#rgw_graceful_stop) | `False` | Advanced | Policy |
-| [rgw_healthcheck_disabling_path](#rgw_healthcheck_disabling_path) | `(empty)` | Dev | Capacity |
-| [rgw_json_config](#rgw_json_config) | `/var/lib/ceph/radosgw/config.json` | Advanced | Performance |
-| [rgw_mime_types_file](#rgw_mime_types_file) | `/etc/mime.types` | Basic | Capacity |
-| [rgw_numa_node](#rgw_numa_node) | `-1` | Advanced | Policy |
-| [rgw_op_tracing](#rgw_op_tracing) | `False` | Advanced | Policy |
-| [rgw_parquet_buffer_size](#rgw_parquet_buffer_size) | `16_M` | Advanced | Performance |
-| [rgw_rados_pool_autoscale_bias](#rgw_rados_pool_autoscale_bias) | `4` | Advanced | Performance |
-| [rgw_rados_pool_recovery_priority](#rgw_rados_pool_recovery_priority) | `5` | Advanced | Performance |
-| [rgw_rados_tracing](#rgw_rados_tracing) | `False` | Advanced | Policy |
-| [rgw_script_uri](#rgw_script_uri) | `(empty)` | Dev | Connectivity |
+| [rgw_data](#rgw_data) | `/var/lib/ceph/radosgw/$cluster-$id` | Advanced | 性能 |
+| [rgw_dedup_min_obj_size_for_dedup](#rgw_dedup_min_obj_size_for_dedup) | `64_K` | Advanced | 性能 |
+| [rgw_dedup_split_obj_head](#rgw_dedup_split_obj_head) | `True` | Advanced | 策略 |
+| [rgw_expose_bucket](#rgw_expose_bucket) | `False` | Advanced | 策略 |
+| [rgw_filter](#rgw_filter) | `none` | Advanced | 架构 |
+| [rgw_graceful_stop](#rgw_graceful_stop) | `False` | Advanced | 策略 |
+| [rgw_healthcheck_disabling_path](#rgw_healthcheck_disabling_path) | `(empty)` | Dev | 容量 |
+| [rgw_json_config](#rgw_json_config) | `/var/lib/ceph/radosgw/config.json` | Advanced | 性能 |
+| [rgw_mime_types_file](#rgw_mime_types_file) | `/etc/mime.types` | Basic | 容量 |
+| [rgw_numa_node](#rgw_numa_node) | `-1` | Advanced | 策略 |
+| [rgw_op_tracing](#rgw_op_tracing) | `False` | Advanced | 策略 |
+| [rgw_parquet_buffer_size](#rgw_parquet_buffer_size) | `16_M` | Advanced | 性能 |
+| [rgw_rados_pool_autoscale_bias](#rgw_rados_pool_autoscale_bias) | `4` | Advanced | 性能 |
+| [rgw_rados_pool_recovery_priority](#rgw_rados_pool_recovery_priority) | `5` | Advanced | 性能 |
+| [rgw_rados_tracing](#rgw_rados_tracing) | `False` | Advanced | 策略 |
+| [rgw_script_uri](#rgw_script_uri) | `(empty)` | Dev | 连通性 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

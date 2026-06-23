@@ -26,4 +26,4 @@ python3 scripts/generate-config-guide.py mds-client
 | [Debug](other/debug.md) | 1 |
 | [General](other/general.md) | 1 |
 
-[← Guides overview](../../guides/OVERVIEW.md)
+[← Guides overview](../OVERVIEW.md)

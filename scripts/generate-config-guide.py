@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from config_guide_lib import SubsystemProfile, generate_subsystem, slug_title
+from config_guide_lib import GUIDES_NAV_PREFIX, SubsystemProfile, generate_subsystem, slug_title
 
 try:
     from subsystem_enrichments import SUBSYSTEM_ENRICHMENTS
@@ -413,13 +413,14 @@ GLOBAL_REDIRECT_END = "# global-redirects:end"
 
 
 def build_global_redirect_yaml(stem_to_section: dict[str, str]) -> str:
+    prefix = f"{GUIDES_NAV_PREFIX}/global-config"
     lines = []
     for stem, section_dir in sorted(stem_to_section.items()):
         if stem == section_dir:
             continue
         lines.append(
             f"        'guides/global-config/{stem}.md': "
-            f"'guides/global-config/{section_dir}/{stem}.md'"
+            f"'{prefix}/{section_dir}/{stem}.md'"
         )
     return "\n".join(lines)
 

@@ -69,7 +69,7 @@ guides/roles/cluster-admin:
 
     [cli/troubleshooting.md](../../cli/troubleshooting.md) — logs, mon quorum, upgrade stalls
 
-    [← Guides overview](../index.md)
+    [← Guides overview](../OVERVIEW.md)
 
   fa: |
     # مدیر کلاستر
@@ -139,7 +139,7 @@ guides/roles/cluster-admin:
 
     [cli/troubleshooting.md](../../cli/troubleshooting.md) — logها، quorum مانیتور، توقف ارتقا
 
-    [← نمای کلی راهنما](../index.md)
+    [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # 集群管理员
@@ -209,7 +209,7 @@ guides/roles/cluster-admin:
 
     [cli/troubleshooting.md](../../cli/troubleshooting.md) — 日志、Monitor quorum、升级停滞
 
-    [← 指南概览](../index.md)
+    [← 指南概览](../OVERVIEW.md)
 
 guides/roles/storage-operator:
   en: |
@@ -285,7 +285,7 @@ guides/roles/storage-operator:
 
     Degraded PGs, backfill throttling, nearfull — [cli/troubleshooting.md](../../cli/troubleshooting.md)
 
-    [← Guides overview](../index.md)
+    [← Guides overview](../OVERVIEW.md)
 
   fa: |
     # مسئول ذخیره‌سازی
@@ -359,7 +359,7 @@ guides/roles/storage-operator:
 
     PGهای degraded، محدودسازی backfill، nearfull — [cli/troubleshooting.md](../../cli/troubleshooting.md)
 
-    [← نمای کلی راهنما](../index.md)
+    [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # 存储运维
@@ -431,7 +431,7 @@ guides/roles/storage-operator:
 
     降级 PG、backfill 限流、nearfull — [cli/troubleshooting.md](../../cli/troubleshooting.md)
 
-    [← 指南概览](../index.md)
+    [← 指南概览](../OVERVIEW.md)
 
 guides/roles/rgw-admin:
   en: |
@@ -499,7 +499,7 @@ guides/roles/rgw-admin:
     | [Multisite](../scales/multisite.md) | Realms, zones, sync lag |
     | [Large production](../scales/large-production.md) | Many RGW instances, cache tuning |
 
-    [← Guides overview](../index.md)
+    [← Guides overview](../OVERVIEW.md)
 
   fa: |
     # مدیر RGW
@@ -566,7 +566,7 @@ guides/roles/rgw-admin:
     | [چندسایته](../scales/multisite.md) | realm/zone، تأخیر sync |
     | [محیط عملیاتی بزرگ](../scales/large-production.md) | چند RGW، تنظیم cache |
 
-    [← نمای کلی راهنما](../index.md)
+    [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # RGW 管理员
@@ -633,7 +633,7 @@ guides/roles/rgw-admin:
     | [多站点](../scales/multisite.md) | realm/zone、同步延迟 |
     | [大型生产](../scales/large-production.md) | 多 RGW、缓存调优 |
 
-    [← 指南概览](../index.md)
+    [← 指南概览](../OVERVIEW.md)
 
 guides/roles/cephfs-admin:
   en: |
@@ -698,7 +698,7 @@ guides/roles/cephfs-admin:
     | [Small production](../scales/small-production.md) | 2 MDS for HA |
     | [Multisite](../scales/multisite.md) | cephfs-mirror DR |
 
-    [← Guides overview](../index.md)
+    [← Guides overview](../OVERVIEW.md)
 
   fa: |
     # مدیر CephFS
@@ -762,7 +762,7 @@ guides/roles/cephfs-admin:
     | [محیط عملیاتی کوچک](../scales/small-production.md) | ۲ MDS برای HA |
     | [چندسایته](../scales/multisite.md) | cephfs-mirror برای DR |
 
-    [← نمای کلی راهنما](../index.md)
+    [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # CephFS 管理员
@@ -826,7 +826,7 @@ guides/roles/cephfs-admin:
     | [小型生产](../scales/small-production.md) | 2 个 MDS 高可用 |
     | [多站点](../scales/multisite.md) | cephfs-mirror 灾备 |
 
-    [← 指南概览](../index.md)
+    [← 指南概览](../OVERVIEW.md)
 
 guides/scales/lab:
   en: |
@@ -876,7 +876,7 @@ guides/scales/lab:
 
     [cli/cluster.md](../../cli/cluster.md) · [cli/osd-pool.md](../../cli/osd-pool.md)
 
-    [← Guides overview](../index.md)
+    [← Guides overview](../OVERVIEW.md)
 
   fa: |
     # مقیاس آزمایشگاه / توسعه
@@ -925,7 +925,7 @@ guides/scales/lab:
 
     [cli/cluster.md](../../cli/cluster.md) · [cli/osd-pool.md](../../cli/osd-pool.md)
 
-    [← نمای کلی راهنما](../index.md)
+    [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # 实验室 / 开发规模
@@ -974,7 +974,7 @@ guides/scales/lab:
 
     [cli/cluster.md](../../cli/cluster.md) · [cli/osd-pool.md](../../cli/osd-pool.md)
 
-    [← 指南概览](../index.md)
+    [← 指南概览](../OVERVIEW.md)
 
 guides/scales/small-production:
   en: |
@@ -1024,7 +1024,7 @@ guides/scales/small-production:
 
     Rolling upgrade via cephadm — [cli/cephadm.md](../../cli/cephadm.md)
 
-    [← Guides overview](../index.md)
+    [← Guides overview](../OVERVIEW.md)
 
   fa: |
     # محیط عملیاتی کوچک
@@ -1073,7 +1073,7 @@ guides/scales/small-production:
 
     ارتقای rolling با cephadm — [cli/cephadm.md](../../cli/cephadm.md)
 
-    [← نمای کلی راهنما](../index.md)
+    [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # 小型生产规模
@@ -1122,7 +1122,7 @@ guides/scales/small-production:
 
     通过 cephadm 滚动升级 — [cli/cephadm.md](../../cli/cephadm.md)
 
-    [← 指南概览](../index.md)
+    [← 指南概览](../OVERVIEW.md)
 
 guides/scales/large-production:
   en: |
@@ -1172,7 +1172,7 @@ guides/scales/large-production:
 
     [storage-operator.md](../roles/storage-operator.md) · [cluster-admin.md](../roles/cluster-admin.md)
 
-    [← Guides overview](../index.md)
+    [← Guides overview](../OVERVIEW.md)
 
   fa: |
     # محیط عملیاتی بزرگ
@@ -1221,7 +1221,7 @@ guides/scales/large-production:
 
     [storage-operator.md](../roles/storage-operator.md) · [cluster-admin.md](../roles/cluster-admin.md)
 
-    [← نمای کلی راهنما](../index.md)
+    [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # 大型生产规模
@@ -1270,7 +1270,7 @@ guides/scales/large-production:
 
     [storage-operator.md](../roles/storage-operator.md) · [cluster-admin.md](../roles/cluster-admin.md)
 
-    [← 指南概览](../index.md)
+    [← 指南概览](../OVERVIEW.md)
 
 guides/scales/multisite:
   en: |
@@ -1336,7 +1336,7 @@ guides/scales/multisite:
     - Test failover (`promote`) in maintenance windows
     - Plan CRUSH and pools per site for erasure + multisite
 
-    [← Guides overview](../index.md)
+    [← Guides overview](../OVERVIEW.md)
 
   fa: |
     # مقیاس چندسایته
@@ -1401,7 +1401,7 @@ guides/scales/multisite:
     - failover (`promote`) را در پنجره نگهداری تست کنید
     - CRUSH و pool را برای erasure + چندسایته برنامه‌ریزی کنید
 
-    [← نمای کلی راهنما](../index.md)
+    [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # 多站点规模
@@ -1466,4 +1466,4 @@ guides/scales/multisite:
     - 在维护窗口测试 failover（`promote`）
     - 为多站点 erasure 规划各站点的 CRUSH 与池
 
-    [← 指南概览](../index.md)
+    [← 指南概览](../OVERVIEW.md)

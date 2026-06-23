@@ -4,21 +4,21 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_cache_enabled](#rgw_cache_enabled) | `True` | Advanced | Performance |
-| [rgw_cache_expiry_interval](#rgw_cache_expiry_interval) | `900` | Advanced | Performance |
-| [rgw_cache_lru_size](#rgw_cache_lru_size) | `25000` | Advanced | Performance |
-| [rgw_obj_tombstone_cache_size](#rgw_obj_tombstone_cache_size) | `1000` | Advanced | Performance |
+| [rgw_cache_enabled](#rgw_cache_enabled) | `True` | Advanced | عملکرد |
+| [rgw_cache_expiry_interval](#rgw_cache_expiry_interval) | `900` | Advanced | عملکرد |
+| [rgw_cache_lru_size](#rgw_cache_lru_size) | `25000` | Advanced | عملکرد |
+| [rgw_obj_tombstone_cache_size](#rgw_obj_tombstone_cache_size) | `1000` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

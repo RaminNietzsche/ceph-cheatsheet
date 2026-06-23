@@ -4,23 +4,23 @@ RGW 配置深度指南 — 6 个选项。[← RGW 配置概览](../OVERVIEW.md) 
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_asio_assert_yielding](#rgw_asio_assert_yielding) | `False` | Dev | Dev |
-| [rgw_beast_enable_async](#rgw_beast_enable_async) | `True` | Dev | Policy |
-| [rgw_dns_name](#rgw_dns_name) | `(empty)` | Advanced | Performance |
-| [rgw_dns_s3website_name](#rgw_dns_s3website_name) | `(empty)` | Advanced | Performance |
-| [rgw_frontend_defaults](#rgw_frontend_defaults) | `beast ssl_certificate=config://rgw/cert/$realm/$zone.crt ssl_private_key=config://rgw/cert/$realm/$zone.key` | Advanced | Performance |
-| [rgw_frontends](#rgw_frontends) | `beast port=7480` | Basic | Performance |
+| [rgw_asio_assert_yielding](#rgw_asio_assert_yielding) | `False` | Dev | 开发 |
+| [rgw_beast_enable_async](#rgw_beast_enable_async) | `True` | Dev | 策略 |
+| [rgw_dns_name](#rgw_dns_name) | `(empty)` | Advanced | 性能 |
+| [rgw_dns_s3website_name](#rgw_dns_s3website_name) | `(empty)` | Advanced | 性能 |
+| [rgw_frontend_defaults](#rgw_frontend_defaults) | `beast ssl_certificate=config://rgw/cert/$realm/$zone.crt ssl_private_key=config://rgw/cert/$realm/$zone.key` | Advanced | 性能 |
+| [rgw_frontends](#rgw_frontends) | `beast port=7480` | Basic | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

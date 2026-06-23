@@ -4,22 +4,22 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_curl_buffersize](#rgw_curl_buffersize) | `524288` | Dev | Performance |
-| [rgw_curl_low_speed_limit](#rgw_curl_low_speed_limit) | `1024` | Advanced | Policy |
-| [rgw_curl_low_speed_time](#rgw_curl_low_speed_time) | `5_min` | Advanced | Performance |
-| [rgw_curl_tcp_keepalive](#rgw_curl_tcp_keepalive) | `0` | Advanced | Architecture |
-| [rgw_curl_wait_timeout_ms](#rgw_curl_wait_timeout_ms) | `1000` | Dev | Performance |
+| [rgw_curl_buffersize](#rgw_curl_buffersize) | `524288` | Dev | عملکرد |
+| [rgw_curl_low_speed_limit](#rgw_curl_low_speed_limit) | `1024` | Advanced | سیاست |
+| [rgw_curl_low_speed_time](#rgw_curl_low_speed_time) | `5_min` | Advanced | عملکرد |
+| [rgw_curl_tcp_keepalive](#rgw_curl_tcp_keepalive) | `0` | Advanced | معماری |
+| [rgw_curl_wait_timeout_ms](#rgw_curl_wait_timeout_ms) | `1000` | Dev | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

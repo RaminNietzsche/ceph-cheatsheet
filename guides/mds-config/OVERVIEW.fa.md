@@ -33,4 +33,4 @@ python3 scripts/generate-config-guide.py mds
 | [Debug](ops/debug.md) | 9 |
 | [General](ops/general.md) | 1 |
 
-[← نمای کلی راهنما](../../guides/OVERVIEW.md)
+[← نمای کلی راهنما](../OVERVIEW.md)

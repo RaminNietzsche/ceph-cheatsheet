@@ -20,6 +20,7 @@ from i18n import (  # noqa: E402
     t,
     write_localized,
 )
+from config_guide_lib import GUIDES_NAV_PREFIX  # noqa: E402
 CONFIG_RGW = ROOT / "config" / "rgw"
 GUIDES = ROOT / "guides" / "rgw-config"
 
@@ -1692,11 +1693,12 @@ def render_all_locales_rgw(fn, *args, **kwargs) -> dict[str, str]:
 
 
 def build_mkdocs_nav_yaml(groups: dict[str, list[Option]]) -> str:
+    prefix = f"{GUIDES_NAV_PREFIX}/rgw-config"
     lines = [
         "    - RGW config deep dive:",
         "      - Start here:",
-        "        - Overview: guides/rgw-config/OVERVIEW.md",
-        "        - Tuning quick reference: guides/rgw-config/TUNING.md",
+        f"        - Overview: {prefix}/OVERVIEW.md",
+        f"        - Tuning quick reference: {prefix}/TUNING.md",
     ]
     for section_title, slugs in NAV_SECTIONS:
         present = [s for s in slugs if s in groups]
@@ -1706,7 +1708,7 @@ def build_mkdocs_nav_yaml(groups: dict[str, list[Option]]) -> str:
         for slug in present:
             title = GROUP_TITLES.get(slug, slug.replace("-", " ").title())
             lines.append(
-                f"        - {title}: guides/rgw-config/{section_dir_for_slug(slug)}/{slug}.md"
+                f"        - {title}: {prefix}/{section_dir_for_slug(slug)}/{slug}.md"
             )
     extra = [s for s in sorted(groups) if section_for_slug(s) == "Other"]
     if extra:
@@ -1714,25 +1716,26 @@ def build_mkdocs_nav_yaml(groups: dict[str, list[Option]]) -> str:
         for slug in extra:
             title = GROUP_TITLES.get(slug, slug)
             lines.append(
-                f"        - {title}: guides/rgw-config/{section_dir_for_slug(slug)}/{slug}.md"
+                f"        - {title}: {prefix}/{section_dir_for_slug(slug)}/{slug}.md"
             )
     return "\n".join(lines)
 
 
 def indent_nav_block(block: str) -> str:
-    return "\n".join(f"  {line}" if line.strip() else line for line in block.splitlines())
+    return "\n".join(f"    {line}" if line.strip() else line for line in block.splitlines())
 
 
 def build_rgw_redirect_yaml() -> str:
+    prefix = f"{GUIDES_NAV_PREFIX}/rgw-config"
     lines = [
-        "        'guides/rgw-config-options.md': 'guides/rgw-config/OVERVIEW.md'",
+        f"        'guides/rgw-config-options.md': '{prefix}/OVERVIEW.md'",
     ]
     for section_title, slugs in NAV_SECTIONS:
         section_dir = SECTION_SLUGS.get(section_title, "other")
         for slug in slugs:
             lines.append(
                 f"        'guides/rgw-config/{slug}.md': "
-                f"'guides/rgw-config/{section_dir}/{slug}.md'"
+                f"'{prefix}/{section_dir}/{slug}.md'"
             )
     return "\n".join(lines)
 

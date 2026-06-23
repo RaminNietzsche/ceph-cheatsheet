@@ -4,45 +4,45 @@ RGW 配置深度指南 — 28 个选项。[← RGW 配置概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_data_log_changes_size](#rgw_data_log_changes_size) | `1000` | Dev | Performance |
-| [rgw_data_log_num_shards](#rgw_data_log_num_shards) | `128` | Advanced | Policy |
-| [rgw_data_log_window](#rgw_data_log_window) | `30` | Advanced | Performance |
-| [rgw_data_notify_interval_msec](#rgw_data_notify_interval_msec) | `0` | Advanced | Performance |
-| [rgw_data_sync_poll_interval](#rgw_data_sync_poll_interval) | `20` | Dev | Performance |
-| [rgw_data_sync_spawn_window](#rgw_data_sync_spawn_window) | `20` | Dev | Performance |
-| [rgw_lfuda_sync_frequency](#rgw_lfuda_sync_frequency) | `60` | Advanced | Performance |
-| [rgw_md_log_max_shards](#rgw_md_log_max_shards) | `64` | Advanced | Policy |
-| [rgw_md_notify_interval_msec](#rgw_md_notify_interval_msec) | `200` | Advanced | Performance |
-| [rgw_meta_sync_poll_interval](#rgw_meta_sync_poll_interval) | `20` | Dev | Performance |
-| [rgw_meta_sync_spawn_window](#rgw_meta_sync_spawn_window) | `20` | Dev | Performance |
-| [rgw_run_sync_thread](#rgw_run_sync_thread) | `True` | Advanced | Policy |
-| [rgw_sync_data_full_inject_err_probability](#rgw_sync_data_full_inject_err_probability) | `0` | Dev | Dev |
-| [rgw_sync_data_inject_err_probability](#rgw_sync_data_inject_err_probability) | `0` | Dev | Dev |
-| [rgw_sync_lease_period](#rgw_sync_lease_period) | `2_min` | Dev | Performance |
-| [rgw_sync_log_trim_concurrent_buckets](#rgw_sync_log_trim_concurrent_buckets) | `4` | Advanced | Performance |
-| [rgw_sync_log_trim_interval](#rgw_sync_log_trim_interval) | `20_min` | Advanced | Performance |
-| [rgw_sync_log_trim_max_buckets](#rgw_sync_log_trim_max_buckets) | `16` | Advanced | Policy |
-| [rgw_sync_log_trim_min_cold_buckets](#rgw_sync_log_trim_min_cold_buckets) | `4` | Advanced | Performance |
-| [rgw_sync_meta_inject_err_probability](#rgw_sync_meta_inject_err_probability) | `0` | Dev | Dev |
-| [rgw_sync_obj_etag_verify](#rgw_sync_obj_etag_verify) | `False` | Advanced | Policy |
-| [rgw_sync_trace_history_size](#rgw_sync_trace_history_size) | `4_K` | Advanced | Performance |
-| [rgw_sync_trace_per_node_log_size](#rgw_sync_trace_per_node_log_size) | `32` | Advanced | Performance |
-| [rgw_sync_trace_servicemap_update_interval](#rgw_sync_trace_servicemap_update_interval) | `10` | Advanced | Performance |
-| [rgw_user_quota_bucket_sync_interval](#rgw_user_quota_bucket_sync_interval) | `3_min` | Advanced | Performance |
-| [rgw_user_quota_sync_idle_users](#rgw_user_quota_sync_idle_users) | `False` | Advanced | Policy |
-| [rgw_user_quota_sync_interval](#rgw_user_quota_sync_interval) | `1_day` | Advanced | Performance |
-| [rgw_user_quota_sync_wait_time](#rgw_user_quota_sync_wait_time) | `1_day` | Advanced | Performance |
+| [rgw_data_log_changes_size](#rgw_data_log_changes_size) | `1000` | Dev | 性能 |
+| [rgw_data_log_num_shards](#rgw_data_log_num_shards) | `128` | Advanced | 策略 |
+| [rgw_data_log_window](#rgw_data_log_window) | `30` | Advanced | 性能 |
+| [rgw_data_notify_interval_msec](#rgw_data_notify_interval_msec) | `0` | Advanced | 性能 |
+| [rgw_data_sync_poll_interval](#rgw_data_sync_poll_interval) | `20` | Dev | 性能 |
+| [rgw_data_sync_spawn_window](#rgw_data_sync_spawn_window) | `20` | Dev | 性能 |
+| [rgw_lfuda_sync_frequency](#rgw_lfuda_sync_frequency) | `60` | Advanced | 性能 |
+| [rgw_md_log_max_shards](#rgw_md_log_max_shards) | `64` | Advanced | 策略 |
+| [rgw_md_notify_interval_msec](#rgw_md_notify_interval_msec) | `200` | Advanced | 性能 |
+| [rgw_meta_sync_poll_interval](#rgw_meta_sync_poll_interval) | `20` | Dev | 性能 |
+| [rgw_meta_sync_spawn_window](#rgw_meta_sync_spawn_window) | `20` | Dev | 性能 |
+| [rgw_run_sync_thread](#rgw_run_sync_thread) | `True` | Advanced | 策略 |
+| [rgw_sync_data_full_inject_err_probability](#rgw_sync_data_full_inject_err_probability) | `0` | Dev | 开发 |
+| [rgw_sync_data_inject_err_probability](#rgw_sync_data_inject_err_probability) | `0` | Dev | 开发 |
+| [rgw_sync_lease_period](#rgw_sync_lease_period) | `2_min` | Dev | 性能 |
+| [rgw_sync_log_trim_concurrent_buckets](#rgw_sync_log_trim_concurrent_buckets) | `4` | Advanced | 性能 |
+| [rgw_sync_log_trim_interval](#rgw_sync_log_trim_interval) | `20_min` | Advanced | 性能 |
+| [rgw_sync_log_trim_max_buckets](#rgw_sync_log_trim_max_buckets) | `16` | Advanced | 策略 |
+| [rgw_sync_log_trim_min_cold_buckets](#rgw_sync_log_trim_min_cold_buckets) | `4` | Advanced | 性能 |
+| [rgw_sync_meta_inject_err_probability](#rgw_sync_meta_inject_err_probability) | `0` | Dev | 开发 |
+| [rgw_sync_obj_etag_verify](#rgw_sync_obj_etag_verify) | `False` | Advanced | 策略 |
+| [rgw_sync_trace_history_size](#rgw_sync_trace_history_size) | `4_K` | Advanced | 性能 |
+| [rgw_sync_trace_per_node_log_size](#rgw_sync_trace_per_node_log_size) | `32` | Advanced | 性能 |
+| [rgw_sync_trace_servicemap_update_interval](#rgw_sync_trace_servicemap_update_interval) | `10` | Advanced | 性能 |
+| [rgw_user_quota_bucket_sync_interval](#rgw_user_quota_bucket_sync_interval) | `3_min` | Advanced | 性能 |
+| [rgw_user_quota_sync_idle_users](#rgw_user_quota_sync_idle_users) | `False` | Advanced | 策略 |
+| [rgw_user_quota_sync_interval](#rgw_user_quota_sync_interval) | `1_day` | Advanced | 性能 |
+| [rgw_user_quota_sync_wait_time](#rgw_user_quota_sync_wait_time) | `1_day` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

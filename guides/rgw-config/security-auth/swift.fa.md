@@ -4,28 +4,28 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_swift_account_in_url](#rgw_swift_account_in_url) | `False` | Advanced | Connectivity |
-| [rgw_swift_auth_entry](#rgw_swift_auth_entry) | `auth` | Advanced | Policy |
-| [rgw_swift_auth_url](#rgw_swift_auth_url) | `(empty)` | Advanced | Connectivity |
-| [rgw_swift_custom_header](#rgw_swift_custom_header) | `(empty)` | Advanced | Performance |
-| [rgw_swift_enforce_content_length](#rgw_swift_enforce_content_length) | `False` | Advanced | Policy |
-| [rgw_swift_need_stats](#rgw_swift_need_stats) | `True` | Advanced | Policy |
-| [rgw_swift_tenant_name](#rgw_swift_tenant_name) | `(empty)` | Advanced | Performance |
-| [rgw_swift_token_expiration](#rgw_swift_token_expiration) | `1_day` | Advanced | Performance |
-| [rgw_swift_url](#rgw_swift_url) | `(empty)` | Advanced | Connectivity |
-| [rgw_swift_url_prefix](#rgw_swift_url_prefix) | `swift` | Advanced | Performance |
-| [rgw_swift_versioning_enabled](#rgw_swift_versioning_enabled) | `False` | Advanced | Policy |
+| [rgw_swift_account_in_url](#rgw_swift_account_in_url) | `False` | Advanced | اتصال |
+| [rgw_swift_auth_entry](#rgw_swift_auth_entry) | `auth` | Advanced | سیاست |
+| [rgw_swift_auth_url](#rgw_swift_auth_url) | `(empty)` | Advanced | اتصال |
+| [rgw_swift_custom_header](#rgw_swift_custom_header) | `(empty)` | Advanced | عملکرد |
+| [rgw_swift_enforce_content_length](#rgw_swift_enforce_content_length) | `False` | Advanced | سیاست |
+| [rgw_swift_need_stats](#rgw_swift_need_stats) | `True` | Advanced | سیاست |
+| [rgw_swift_tenant_name](#rgw_swift_tenant_name) | `(empty)` | Advanced | عملکرد |
+| [rgw_swift_token_expiration](#rgw_swift_token_expiration) | `1_day` | Advanced | عملکرد |
+| [rgw_swift_url](#rgw_swift_url) | `(empty)` | Advanced | اتصال |
+| [rgw_swift_url_prefix](#rgw_swift_url_prefix) | `swift` | Advanced | عملکرد |
+| [rgw_swift_versioning_enabled](#rgw_swift_versioning_enabled) | `False` | Advanced | سیاست |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

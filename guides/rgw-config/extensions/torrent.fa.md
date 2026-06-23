@@ -4,25 +4,25 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_torrent_comment](#rgw_torrent_comment) | `(empty)` | Advanced | Performance |
-| [rgw_torrent_createby](#rgw_torrent_createby) | `(empty)` | Advanced | Performance |
-| [rgw_torrent_encoding](#rgw_torrent_encoding) | `(empty)` | Advanced | Performance |
-| [rgw_torrent_flag](#rgw_torrent_flag) | `False` | Advanced | Policy |
-| [rgw_torrent_max_size](#rgw_torrent_max_size) | `5_G` | Advanced | Policy |
-| [rgw_torrent_origin](#rgw_torrent_origin) | `(empty)` | Advanced | Performance |
-| [rgw_torrent_sha_unit](#rgw_torrent_sha_unit) | `512_K` | Advanced | Performance |
-| [rgw_torrent_tracker](#rgw_torrent_tracker) | `(empty)` | Advanced | Performance |
+| [rgw_torrent_comment](#rgw_torrent_comment) | `(empty)` | Advanced | عملکرد |
+| [rgw_torrent_createby](#rgw_torrent_createby) | `(empty)` | Advanced | عملکرد |
+| [rgw_torrent_encoding](#rgw_torrent_encoding) | `(empty)` | Advanced | عملکرد |
+| [rgw_torrent_flag](#rgw_torrent_flag) | `False` | Advanced | سیاست |
+| [rgw_torrent_max_size](#rgw_torrent_max_size) | `5_G` | Advanced | سیاست |
+| [rgw_torrent_origin](#rgw_torrent_origin) | `(empty)` | Advanced | عملکرد |
+| [rgw_torrent_sha_unit](#rgw_torrent_sha_unit) | `512_K` | Advanced | عملکرد |
+| [rgw_torrent_tracker](#rgw_torrent_tracker) | `(empty)` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

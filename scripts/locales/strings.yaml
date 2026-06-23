@@ -222,9 +222,9 @@ back_overview:
   zh: "[← 概览](../OVERVIEW.md)"
 
 back_guides_overview:
-  en: "[← Guides overview](../../guides/OVERVIEW.md)"
-  fa: "[← نمای کلی راهنما](../../guides/OVERVIEW.md)"
-  zh: "[← 指南概览](../../guides/OVERVIEW.md)"
+  en: "[← Guides overview](../OVERVIEW.md)"
+  fa: "[← نمای کلی راهنما](../OVERVIEW.md)"
+  zh: "[← 指南概览](../OVERVIEW.md)"
 
 back_rgw_overview:
   en: "[← RGW config overview](../OVERVIEW.md)"

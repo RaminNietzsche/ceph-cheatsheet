@@ -18,4 +18,4 @@ python3 scripts/generate-config-guide.py cephfs-mirror
 |-------|---------|
 | [CephFS mirror](topics/mirror.md) | 15 |
 
-[← نمای کلی راهنما](../../guides/OVERVIEW.md)
+[← نمای کلی راهنما](../OVERVIEW.md)

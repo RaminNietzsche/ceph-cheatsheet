@@ -4,34 +4,34 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_content_length_compat](#rgw_content_length_compat) | `False` | Advanced | Policy |
-| [rgw_cross_domain_policy](#rgw_cross_domain_policy) | `<allow-access-from domain="*" secure="false" />` | Advanced | Performance |
-| [rgw_defer_to_bucket_acls](#rgw_defer_to_bucket_acls) | `(empty)` | Advanced | Performance |
-| [rgw_enforce_swift_acls](#rgw_enforce_swift_acls) | `True` | Advanced | Policy |
-| [rgw_extended_http_attrs](#rgw_extended_http_attrs) | `(empty)` | Advanced | Performance |
-| [rgw_ignore_get_invalid_range](#rgw_ignore_get_invalid_range) | `False` | Advanced | Policy |
-| [rgw_print_continue](#rgw_print_continue) | `True` | Advanced | Policy |
-| [rgw_print_prohibited_content_length](#rgw_print_prohibited_content_length) | `False` | Advanced | Policy |
-| [rgw_relaxed_region_enforcement](#rgw_relaxed_region_enforcement) | `False` | Advanced | Policy |
-| [rgw_relaxed_s3_bucket_names](#rgw_relaxed_s3_bucket_names) | `False` | Advanced | Policy |
-| [rgw_relaxed_topic_names](#rgw_relaxed_topic_names) | `False` | Advanced | Policy |
-| [rgw_remote_addr_param](#rgw_remote_addr_param) | `REMOTE_ADDR` | Advanced | Performance |
-| [rgw_request_uri](#rgw_request_uri) | `(empty)` | Dev | Connectivity |
-| [rgw_resolve_cname](#rgw_resolve_cname) | `False` | Advanced | Policy |
-| [rgw_service_provider_name](#rgw_service_provider_name) | `(empty)` | Advanced | Performance |
-| [rgw_trust_forwarded_https](#rgw_trust_forwarded_https) | `False` | Advanced | Policy |
-| [rgw_verify_ssl](#rgw_verify_ssl) | `True` | Advanced | Policy |
+| [rgw_content_length_compat](#rgw_content_length_compat) | `False` | Advanced | سیاست |
+| [rgw_cross_domain_policy](#rgw_cross_domain_policy) | `<allow-access-from domain="*" secure="false" />` | Advanced | عملکرد |
+| [rgw_defer_to_bucket_acls](#rgw_defer_to_bucket_acls) | `(empty)` | Advanced | عملکرد |
+| [rgw_enforce_swift_acls](#rgw_enforce_swift_acls) | `True` | Advanced | سیاست |
+| [rgw_extended_http_attrs](#rgw_extended_http_attrs) | `(empty)` | Advanced | عملکرد |
+| [rgw_ignore_get_invalid_range](#rgw_ignore_get_invalid_range) | `False` | Advanced | سیاست |
+| [rgw_print_continue](#rgw_print_continue) | `True` | Advanced | سیاست |
+| [rgw_print_prohibited_content_length](#rgw_print_prohibited_content_length) | `False` | Advanced | سیاست |
+| [rgw_relaxed_region_enforcement](#rgw_relaxed_region_enforcement) | `False` | Advanced | سیاست |
+| [rgw_relaxed_s3_bucket_names](#rgw_relaxed_s3_bucket_names) | `False` | Advanced | سیاست |
+| [rgw_relaxed_topic_names](#rgw_relaxed_topic_names) | `False` | Advanced | سیاست |
+| [rgw_remote_addr_param](#rgw_remote_addr_param) | `REMOTE_ADDR` | Advanced | عملکرد |
+| [rgw_request_uri](#rgw_request_uri) | `(empty)` | Dev | اتصال |
+| [rgw_resolve_cname](#rgw_resolve_cname) | `False` | Advanced | سیاست |
+| [rgw_service_provider_name](#rgw_service_provider_name) | `(empty)` | Advanced | عملکرد |
+| [rgw_trust_forwarded_https](#rgw_trust_forwarded_https) | `False` | Advanced | سیاست |
+| [rgw_verify_ssl](#rgw_verify_ssl) | `True` | Advanced | سیاست |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

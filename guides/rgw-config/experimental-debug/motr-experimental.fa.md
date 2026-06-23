@@ -4,24 +4,24 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [motr_admin_endpoint](#motr_admin_endpoint) | `192.168.180.182@tcp:12345:4:1` | Advanced | Architecture |
-| [motr_admin_fid](#motr_admin_fid) | `0x7200000000000001:0x0` | Advanced | Architecture |
-| [motr_ha_endpoint](#motr_ha_endpoint) | `192.168.180.182@tcp:12345:1:1` | Advanced | Architecture |
-| [motr_my_endpoint](#motr_my_endpoint) | `192.168.180.182@tcp:12345:4:1` | Advanced | Architecture |
-| [motr_my_fid](#motr_my_fid) | `0x7200000000000001:0x0` | Advanced | Architecture |
-| [motr_profile_fid](#motr_profile_fid) | `0x7000000000000001:0x0` | Advanced | Architecture |
-| [motr_tracing_enabled](#motr_tracing_enabled) | `False` | Advanced | Dev |
+| [motr_admin_endpoint](#motr_admin_endpoint) | `192.168.180.182@tcp:12345:4:1` | Advanced | معماری |
+| [motr_admin_fid](#motr_admin_fid) | `0x7200000000000001:0x0` | Advanced | معماری |
+| [motr_ha_endpoint](#motr_ha_endpoint) | `192.168.180.182@tcp:12345:1:1` | Advanced | معماری |
+| [motr_my_endpoint](#motr_my_endpoint) | `192.168.180.182@tcp:12345:4:1` | Advanced | معماری |
+| [motr_my_fid](#motr_my_fid) | `0x7200000000000001:0x0` | Advanced | معماری |
+| [motr_profile_fid](#motr_profile_fid) | `0x7000000000000001:0x0` | Advanced | معماری |
+| [motr_tracing_enabled](#motr_tracing_enabled) | `False` | Advanced | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

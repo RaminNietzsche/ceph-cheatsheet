@@ -4,36 +4,36 @@ RGW 配置深度指南 — 19 个选项。[← RGW 配置概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_default_realm_info_oid](#rgw_default_realm_info_oid) | `default.realm` | Advanced | Performance |
-| [rgw_default_region_info_oid](#rgw_default_region_info_oid) | `default.region` | Advanced | Performance |
-| [rgw_default_zone_info_oid](#rgw_default_zone_info_oid) | `default.zone` | Advanced | Performance |
-| [rgw_default_zonegroup_info_oid](#rgw_default_zonegroup_info_oid) | `default.zonegroup` | Advanced | Performance |
-| [rgw_period_latest_epoch_info_oid](#rgw_period_latest_epoch_info_oid) | `.latest_epoch` | Dev | Performance |
-| [rgw_period_push_interval](#rgw_period_push_interval) | `2` | Advanced | Performance |
-| [rgw_period_push_interval_max](#rgw_period_push_interval_max) | `30` | Advanced | Performance |
-| [rgw_period_root_pool](#rgw_period_root_pool) | `.rgw.root` | Advanced | Performance |
-| [rgw_realm](#rgw_realm) | `(empty)` | Advanced | Architecture |
-| [rgw_realm_id](#rgw_realm_id) | `(empty)` | Advanced | Architecture |
-| [rgw_realm_root_pool](#rgw_realm_root_pool) | `.rgw.root` | Advanced | Architecture |
-| [rgw_region](#rgw_region) | `(empty)` | Advanced | Architecture |
-| [rgw_region_root_pool](#rgw_region_root_pool) | `.rgw.root` | Advanced | Architecture |
-| [rgw_zone](#rgw_zone) | `(empty)` | Advanced | Architecture |
-| [rgw_zone_id](#rgw_zone_id) | `(empty)` | Advanced | Architecture |
-| [rgw_zone_root_pool](#rgw_zone_root_pool) | `.rgw.root` | Advanced | Architecture |
-| [rgw_zonegroup](#rgw_zonegroup) | `(empty)` | Advanced | Architecture |
-| [rgw_zonegroup_id](#rgw_zonegroup_id) | `(empty)` | Advanced | Architecture |
-| [rgw_zonegroup_root_pool](#rgw_zonegroup_root_pool) | `.rgw.root` | Advanced | Architecture |
+| [rgw_default_realm_info_oid](#rgw_default_realm_info_oid) | `default.realm` | Advanced | 性能 |
+| [rgw_default_region_info_oid](#rgw_default_region_info_oid) | `default.region` | Advanced | 性能 |
+| [rgw_default_zone_info_oid](#rgw_default_zone_info_oid) | `default.zone` | Advanced | 性能 |
+| [rgw_default_zonegroup_info_oid](#rgw_default_zonegroup_info_oid) | `default.zonegroup` | Advanced | 性能 |
+| [rgw_period_latest_epoch_info_oid](#rgw_period_latest_epoch_info_oid) | `.latest_epoch` | Dev | 性能 |
+| [rgw_period_push_interval](#rgw_period_push_interval) | `2` | Advanced | 性能 |
+| [rgw_period_push_interval_max](#rgw_period_push_interval_max) | `30` | Advanced | 性能 |
+| [rgw_period_root_pool](#rgw_period_root_pool) | `.rgw.root` | Advanced | 性能 |
+| [rgw_realm](#rgw_realm) | `(empty)` | Advanced | 架构 |
+| [rgw_realm_id](#rgw_realm_id) | `(empty)` | Advanced | 架构 |
+| [rgw_realm_root_pool](#rgw_realm_root_pool) | `.rgw.root` | Advanced | 架构 |
+| [rgw_region](#rgw_region) | `(empty)` | Advanced | 架构 |
+| [rgw_region_root_pool](#rgw_region_root_pool) | `.rgw.root` | Advanced | 架构 |
+| [rgw_zone](#rgw_zone) | `(empty)` | Advanced | 架构 |
+| [rgw_zone_id](#rgw_zone_id) | `(empty)` | Advanced | 架构 |
+| [rgw_zone_root_pool](#rgw_zone_root_pool) | `.rgw.root` | Advanced | 架构 |
+| [rgw_zonegroup](#rgw_zonegroup) | `(empty)` | Advanced | 架构 |
+| [rgw_zonegroup_id](#rgw_zonegroup_id) | `(empty)` | Advanced | 架构 |
+| [rgw_zonegroup_root_pool](#rgw_zonegroup_root_pool) | `.rgw.root` | Advanced | 架构 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

@@ -12,6 +12,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# MkDocs serves guides under /cheatsheet/guides/ (see docs/cheatsheet/guides symlink).
+GUIDES_NAV_PREFIX = "cheatsheet/guides"
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from i18n import (  # noqa: E402
     LOCALES,
@@ -616,8 +619,8 @@ def render_tuning_index(profile: SubsystemProfile, all_options: list[Option]) ->
 
 
 def indent_nav_block(block: str) -> str:
-    """Indent subsystem nav by 2 spaces (under Config deep dives parent)."""
-    return "\n".join(f"  {line}" if line.strip() else line for line in block.splitlines())
+    """Indent under Cheatsheet → Guides → Config deep dives (4 spaces)."""
+    return "\n".join(f"    {line}" if line.strip() else line for line in block.splitlines())
 
 
 def build_mkdocs_nav_yaml(profile: SubsystemProfile, groups: dict[str, list[Option]]) -> str:
@@ -628,8 +631,8 @@ def build_mkdocs_nav_yaml(profile: SubsystemProfile, groups: dict[str, list[Opti
     lines = [
         f"    - {profile.title} config deep dive:",
         "      - Start here:",
-        f"        - Overview: guides/{profile.guides_subdir}/OVERVIEW.md",
-        f"        - Tuning quick reference: guides/{profile.guides_subdir}/TUNING.md",
+        f"        - Overview: {GUIDES_NAV_PREFIX}/{profile.guides_subdir}/OVERVIEW.md",
+        f"        - Tuning quick reference: {GUIDES_NAV_PREFIX}/{profile.guides_subdir}/TUNING.md",
     ]
     for section_title, section_dir, slugs in profile.nav_sections:
         present = [s for s in slugs if s in groups]
@@ -639,7 +642,7 @@ def build_mkdocs_nav_yaml(profile: SubsystemProfile, groups: dict[str, list[Opti
         for slug in present:
             title = group_title(profile, slug)
             lines.append(
-                f"        - {title}: guides/{profile.guides_subdir}/"
+                f"        - {title}: {GUIDES_NAV_PREFIX}/{profile.guides_subdir}/"
                 f"{section_dir_for_slug(profile, slug)}/{slug}.md"
             )
     extra = [s for s in sorted(groups) if s not in assigned]
@@ -648,7 +651,7 @@ def build_mkdocs_nav_yaml(profile: SubsystemProfile, groups: dict[str, list[Opti
         for slug in extra:
             title = group_title(profile, slug)
             lines.append(
-                f"        - {title}: guides/{profile.guides_subdir}/"
+                f"        - {title}: {GUIDES_NAV_PREFIX}/{profile.guides_subdir}/"
                 f"{section_dir_for_slug(profile, slug)}/{slug}.md"
             )
     return indent_nav_block("\n".join(lines))

@@ -4,34 +4,34 @@ RGW 配置深度指南 — 17 个选项。[← RGW 配置概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_lc_counters_batch_size](#rgw_lc_counters_batch_size) | `5000` | Advanced | Performance |
-| [rgw_lc_counters_cache](#rgw_lc_counters_cache) | `False` | Advanced | Performance |
-| [rgw_lc_counters_cache_size](#rgw_lc_counters_cache_size) | `10000` | Advanced | Performance |
-| [rgw_lc_debug_interval](#rgw_lc_debug_interval) | `-1` | Dev | Dev |
-| [rgw_lc_list_cnt](#rgw_lc_list_cnt) | `1000` | Dev | Performance |
-| [rgw_lc_lock_max_time](#rgw_lc_lock_max_time) | `90` | Dev | Policy |
-| [rgw_lc_max_objs](#rgw_lc_max_objs) | `32` | Advanced | Policy |
-| [rgw_lc_max_rules](#rgw_lc_max_rules) | `1000` | Advanced | Policy |
-| [rgw_lc_max_worker](#rgw_lc_max_worker) | `3` | Advanced | Performance |
-| [rgw_lc_max_wp_worker](#rgw_lc_max_wp_worker) | `128` | Advanced | Policy |
-| [rgw_lc_ordered_list_threshold](#rgw_lc_ordered_list_threshold) | `500` | Dev | Performance |
-| [rgw_lc_thread_delay](#rgw_lc_thread_delay) | `0` | Advanced | Performance |
-| [rgw_lifecycle_work_time](#rgw_lifecycle_work_time) | `00:00-06:00` | Advanced | Performance |
-| [rgw_mp_lock_max_time](#rgw_mp_lock_max_time) | `10_min` | Advanced | Policy |
-| [rgw_restore_lock_max_time](#rgw_restore_lock_max_time) | `90` | Dev | Policy |
-| [rgwlc_auto_session_clear](#rgwlc_auto_session_clear) | `True` | Advanced | Policy |
-| [rgwlc_skip_bucket_step](#rgwlc_skip_bucket_step) | `False` | Advanced | Policy |
+| [rgw_lc_counters_batch_size](#rgw_lc_counters_batch_size) | `5000` | Advanced | 性能 |
+| [rgw_lc_counters_cache](#rgw_lc_counters_cache) | `False` | Advanced | 性能 |
+| [rgw_lc_counters_cache_size](#rgw_lc_counters_cache_size) | `10000` | Advanced | 性能 |
+| [rgw_lc_debug_interval](#rgw_lc_debug_interval) | `-1` | Dev | 开发 |
+| [rgw_lc_list_cnt](#rgw_lc_list_cnt) | `1000` | Dev | 性能 |
+| [rgw_lc_lock_max_time](#rgw_lc_lock_max_time) | `90` | Dev | 策略 |
+| [rgw_lc_max_objs](#rgw_lc_max_objs) | `32` | Advanced | 策略 |
+| [rgw_lc_max_rules](#rgw_lc_max_rules) | `1000` | Advanced | 策略 |
+| [rgw_lc_max_worker](#rgw_lc_max_worker) | `3` | Advanced | 性能 |
+| [rgw_lc_max_wp_worker](#rgw_lc_max_wp_worker) | `128` | Advanced | 策略 |
+| [rgw_lc_ordered_list_threshold](#rgw_lc_ordered_list_threshold) | `500` | Dev | 性能 |
+| [rgw_lc_thread_delay](#rgw_lc_thread_delay) | `0` | Advanced | 性能 |
+| [rgw_lifecycle_work_time](#rgw_lifecycle_work_time) | `00:00-06:00` | Advanced | 性能 |
+| [rgw_mp_lock_max_time](#rgw_mp_lock_max_time) | `10_min` | Advanced | 策略 |
+| [rgw_restore_lock_max_time](#rgw_restore_lock_max_time) | `90` | Dev | 策略 |
+| [rgwlc_auto_session_clear](#rgwlc_auto_session_clear) | `True` | Advanced | 策略 |
+| [rgwlc_skip_bucket_step](#rgwlc_skip_bucket_step) | `False` | Advanced | 策略 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

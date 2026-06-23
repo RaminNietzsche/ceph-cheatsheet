@@ -18,4 +18,4 @@ python3 scripts/generate-config-guide.py rbd-mirror
 |-------|---------|
 | [RBD mirror](topics/mirror.md) | 24 |
 
-[← نمای کلی راهنما](../../guides/OVERVIEW.md)
+[← نمای کلی راهنما](../OVERVIEW.md)

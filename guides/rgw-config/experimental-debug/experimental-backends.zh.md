@@ -4,23 +4,23 @@ RGW 配置深度指南 — 6 个选项。[← RGW 配置概览](../OVERVIEW.md) 
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [daos_pool](#daos_pool) | `tank` | Advanced | Capacity |
-| [dbstore_config_uri](#dbstore_config_uri) | `file:/var/lib/ceph/radosgw/dbstore-config.db` | Advanced | Capacity |
-| [dbstore_db_dir](#dbstore_db_dir) | `/var/lib/ceph/radosgw` | Advanced | Capacity |
-| [dbstore_db_name_prefix](#dbstore_db_name_prefix) | `dbstore` | Advanced | Performance |
-| [rgw_backend_store](#rgw_backend_store) | `rados` | Advanced | Architecture |
-| [rgw_config_store](#rgw_config_store) | `rados` | Advanced | Architecture |
+| [daos_pool](#daos_pool) | `tank` | Advanced | 容量 |
+| [dbstore_config_uri](#dbstore_config_uri) | `file:/var/lib/ceph/radosgw/dbstore-config.db` | Advanced | 容量 |
+| [dbstore_db_dir](#dbstore_db_dir) | `/var/lib/ceph/radosgw` | Advanced | 容量 |
+| [dbstore_db_name_prefix](#dbstore_db_name_prefix) | `dbstore` | Advanced | 性能 |
+| [rgw_backend_store](#rgw_backend_store) | `rados` | Advanced | 架构 |
+| [rgw_config_store](#rgw_config_store) | `rados` | Advanced | 架构 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

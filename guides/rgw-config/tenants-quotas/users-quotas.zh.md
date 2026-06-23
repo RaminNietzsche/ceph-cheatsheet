@@ -4,22 +4,22 @@ RGW 配置深度指南 — 5 个选项。[← RGW 配置概览](../OVERVIEW.md) 
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_user_counters_cache](#rgw_user_counters_cache) | `False` | Dev | Performance |
-| [rgw_user_counters_cache_size](#rgw_user_counters_cache_size) | `10000` | Advanced | Performance |
-| [rgw_user_max_buckets](#rgw_user_max_buckets) | `1000` | Basic | Policy |
-| [rgw_user_policies_max_num](#rgw_user_policies_max_num) | `100` | Advanced | Policy |
-| [rgw_user_unique_email](#rgw_user_unique_email) | `True` | Basic | Policy |
+| [rgw_user_counters_cache](#rgw_user_counters_cache) | `False` | Dev | 性能 |
+| [rgw_user_counters_cache_size](#rgw_user_counters_cache_size) | `10000` | Advanced | 性能 |
+| [rgw_user_max_buckets](#rgw_user_max_buckets) | `1000` | Basic | 策略 |
+| [rgw_user_policies_max_num](#rgw_user_policies_max_num) | `100` | Advanced | 策略 |
+| [rgw_user_unique_email](#rgw_user_unique_email) | `True` | Basic | 策略 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

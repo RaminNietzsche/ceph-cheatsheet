@@ -18,4 +18,4 @@ python3 scripts/generate-config-guide.py immutable-object-cache
 |-------|---------|
 | [Immutable object cache](topics/immutable.md) | 13 |
 
-[← Guides overview](../../guides/OVERVIEW.md)
+[← Guides overview](../OVERVIEW.md)

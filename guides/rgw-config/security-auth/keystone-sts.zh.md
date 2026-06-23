@@ -4,49 +4,49 @@ RGW 配置深度指南 — 32 个选项。[← RGW 配置概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_keystone_accepted_admin_roles](#rgw_keystone_accepted_admin_roles) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_accepted_reader_roles](#rgw_keystone_accepted_reader_roles) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_accepted_roles](#rgw_keystone_accepted_roles) | `Member, admin` | Advanced | Performance |
-| [rgw_keystone_admin_domain](#rgw_keystone_admin_domain) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_admin_password](#rgw_keystone_admin_password) | `(empty)` | Advanced | Policy |
-| [rgw_keystone_admin_password_path](#rgw_keystone_admin_password_path) | `(empty)` | Advanced | Capacity |
-| [rgw_keystone_admin_project](#rgw_keystone_admin_project) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_admin_tenant](#rgw_keystone_admin_tenant) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_admin_user](#rgw_keystone_admin_user) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_barbican_domain](#rgw_keystone_barbican_domain) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_barbican_password](#rgw_keystone_barbican_password) | `(empty)` | Advanced | Policy |
-| [rgw_keystone_barbican_project](#rgw_keystone_barbican_project) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_barbican_tenant](#rgw_keystone_barbican_tenant) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_barbican_user](#rgw_keystone_barbican_user) | `(empty)` | Advanced | Performance |
-| [rgw_keystone_expired_token_cache_expiration](#rgw_keystone_expired_token_cache_expiration) | `3600` | Advanced | Performance |
-| [rgw_keystone_implicit_tenants](#rgw_keystone_implicit_tenants) | `false` | Advanced | Architecture |
-| [rgw_keystone_scope_enabled](#rgw_keystone_scope_enabled) | `False` | Advanced | Policy |
-| [rgw_keystone_scope_include_roles](#rgw_keystone_scope_include_roles) | `True` | Advanced | Policy |
-| [rgw_keystone_scope_include_user](#rgw_keystone_scope_include_user) | `False` | Advanced | Policy |
-| [rgw_keystone_service_token_accepted_roles](#rgw_keystone_service_token_accepted_roles) | `admin` | Advanced | Policy |
-| [rgw_keystone_service_token_enabled](#rgw_keystone_service_token_enabled) | `False` | Advanced | Policy |
-| [rgw_keystone_token_cache_size](#rgw_keystone_token_cache_size) | `10000` | Advanced | Performance |
-| [rgw_keystone_token_cache_ttl](#rgw_keystone_token_cache_ttl) | `300` | Advanced | Performance |
-| [rgw_keystone_url](#rgw_keystone_url) | `(empty)` | Basic | Connectivity |
-| [rgw_keystone_verify_ssl](#rgw_keystone_verify_ssl) | `True` | Advanced | Policy |
-| [rgw_sts_client_id](#rgw_sts_client_id) | `(empty)` | Advanced | Policy |
-| [rgw_sts_client_secret](#rgw_sts_client_secret) | `(empty)` | Advanced | Policy |
-| [rgw_sts_entry](#rgw_sts_entry) | `sts` | Advanced | Policy |
-| [rgw_sts_key](#rgw_sts_key) | `(empty)` | Advanced | Performance |
-| [rgw_sts_max_session_duration](#rgw_sts_max_session_duration) | `43200` | Advanced | Policy |
-| [rgw_sts_min_session_duration](#rgw_sts_min_session_duration) | `900` | Advanced | Performance |
-| [rgw_sts_token_introspection_url](#rgw_sts_token_introspection_url) | `(empty)` | Advanced | Connectivity |
+| [rgw_keystone_accepted_admin_roles](#rgw_keystone_accepted_admin_roles) | `(empty)` | Advanced | 性能 |
+| [rgw_keystone_accepted_reader_roles](#rgw_keystone_accepted_reader_roles) | `(empty)` | Advanced | 性能 |
+| [rgw_keystone_accepted_roles](#rgw_keystone_accepted_roles) | `Member, admin` | Advanced | 性能 |
+| [rgw_keystone_admin_domain](#rgw_keystone_admin_domain) | `(empty)` | Advanced | 性能 |
+| [rgw_keystone_admin_password](#rgw_keystone_admin_password) | `(empty)` | Advanced | 策略 |
+| [rgw_keystone_admin_password_path](#rgw_keystone_admin_password_path) | `(empty)` | Advanced | 容量 |
+| [rgw_keystone_admin_project](#rgw_keystone_admin_project) | `(empty)` | Advanced | 性能 |
+| [rgw_keystone_admin_tenant](#rgw_keystone_admin_tenant) | `(empty)` | Advanced | 性能 |
+| [rgw_keystone_admin_user](#rgw_keystone_admin_user) | `(empty)` | Advanced | 性能 |
+| [rgw_keystone_barbican_domain](#rgw_keystone_barbican_domain) | `(empty)` | Advanced | 性能 |
+| [rgw_keystone_barbican_password](#rgw_keystone_barbican_password) | `(empty)` | Advanced | 策略 |
+| [rgw_keystone_barbican_project](#rgw_keystone_barbican_project) | `(empty)` | Advanced | 性能 |
+| [rgw_keystone_barbican_tenant](#rgw_keystone_barbican_tenant) | `(empty)` | Advanced | 性能 |
+| [rgw_keystone_barbican_user](#rgw_keystone_barbican_user) | `(empty)` | Advanced | 性能 |
+| [rgw_keystone_expired_token_cache_expiration](#rgw_keystone_expired_token_cache_expiration) | `3600` | Advanced | 性能 |
+| [rgw_keystone_implicit_tenants](#rgw_keystone_implicit_tenants) | `false` | Advanced | 架构 |
+| [rgw_keystone_scope_enabled](#rgw_keystone_scope_enabled) | `False` | Advanced | 策略 |
+| [rgw_keystone_scope_include_roles](#rgw_keystone_scope_include_roles) | `True` | Advanced | 策略 |
+| [rgw_keystone_scope_include_user](#rgw_keystone_scope_include_user) | `False` | Advanced | 策略 |
+| [rgw_keystone_service_token_accepted_roles](#rgw_keystone_service_token_accepted_roles) | `admin` | Advanced | 策略 |
+| [rgw_keystone_service_token_enabled](#rgw_keystone_service_token_enabled) | `False` | Advanced | 策略 |
+| [rgw_keystone_token_cache_size](#rgw_keystone_token_cache_size) | `10000` | Advanced | 性能 |
+| [rgw_keystone_token_cache_ttl](#rgw_keystone_token_cache_ttl) | `300` | Advanced | 性能 |
+| [rgw_keystone_url](#rgw_keystone_url) | `(empty)` | Basic | 连通性 |
+| [rgw_keystone_verify_ssl](#rgw_keystone_verify_ssl) | `True` | Advanced | 策略 |
+| [rgw_sts_client_id](#rgw_sts_client_id) | `(empty)` | Advanced | 策略 |
+| [rgw_sts_client_secret](#rgw_sts_client_secret) | `(empty)` | Advanced | 策略 |
+| [rgw_sts_entry](#rgw_sts_entry) | `sts` | Advanced | 策略 |
+| [rgw_sts_key](#rgw_sts_key) | `(empty)` | Advanced | 性能 |
+| [rgw_sts_max_session_duration](#rgw_sts_max_session_duration) | `43200` | Advanced | 策略 |
+| [rgw_sts_min_session_duration](#rgw_sts_min_session_duration) | `900` | Advanced | 性能 |
+| [rgw_sts_token_introspection_url](#rgw_sts_token_introspection_url) | `(empty)` | Advanced | 连通性 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

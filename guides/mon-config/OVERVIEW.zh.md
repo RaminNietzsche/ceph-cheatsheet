@@ -48,4 +48,4 @@ python3 scripts/generate-config-guide.py mon
 | [Paths & storage](runtime/paths.md) | 4 |
 | [General monitor](runtime/general.md) | 44 |
 
-[← 指南概览](../../guides/OVERVIEW.md)
+[← 指南概览](../OVERVIEW.md)

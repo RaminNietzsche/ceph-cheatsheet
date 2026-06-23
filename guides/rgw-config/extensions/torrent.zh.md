@@ -4,25 +4,25 @@ RGW 配置深度指南 — 8 个选项。[← RGW 配置概览](../OVERVIEW.md) 
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_torrent_comment](#rgw_torrent_comment) | `(empty)` | Advanced | Performance |
-| [rgw_torrent_createby](#rgw_torrent_createby) | `(empty)` | Advanced | Performance |
-| [rgw_torrent_encoding](#rgw_torrent_encoding) | `(empty)` | Advanced | Performance |
-| [rgw_torrent_flag](#rgw_torrent_flag) | `False` | Advanced | Policy |
-| [rgw_torrent_max_size](#rgw_torrent_max_size) | `5_G` | Advanced | Policy |
-| [rgw_torrent_origin](#rgw_torrent_origin) | `(empty)` | Advanced | Performance |
-| [rgw_torrent_sha_unit](#rgw_torrent_sha_unit) | `512_K` | Advanced | Performance |
-| [rgw_torrent_tracker](#rgw_torrent_tracker) | `(empty)` | Advanced | Performance |
+| [rgw_torrent_comment](#rgw_torrent_comment) | `(empty)` | Advanced | 性能 |
+| [rgw_torrent_createby](#rgw_torrent_createby) | `(empty)` | Advanced | 性能 |
+| [rgw_torrent_encoding](#rgw_torrent_encoding) | `(empty)` | Advanced | 性能 |
+| [rgw_torrent_flag](#rgw_torrent_flag) | `False` | Advanced | 策略 |
+| [rgw_torrent_max_size](#rgw_torrent_max_size) | `5_G` | Advanced | 策略 |
+| [rgw_torrent_origin](#rgw_torrent_origin) | `(empty)` | Advanced | 性能 |
+| [rgw_torrent_sha_unit](#rgw_torrent_sha_unit) | `512_K` | Advanced | 性能 |
+| [rgw_torrent_tracker](#rgw_torrent_tracker) | `(empty)` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

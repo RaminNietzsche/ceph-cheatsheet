@@ -6,22 +6,22 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_account_default_quota_max_objects](#rgw_account_default_quota_max_objects) | `-1` | Basic | Policy |
-| [rgw_account_default_quota_max_size](#rgw_account_default_quota_max_size) | `-1` | Basic | Policy |
-| [rgw_enable_quota_threads](#rgw_enable_quota_threads) | `True` | Advanced | Policy |
-| [rgw_user_default_quota_max_objects](#rgw_user_default_quota_max_objects) | `-1` | Basic | Policy |
-| [rgw_user_default_quota_max_size](#rgw_user_default_quota_max_size) | `-1` | Basic | Policy |
+| [rgw_account_default_quota_max_objects](#rgw_account_default_quota_max_objects) | `-1` | Basic | سیاست |
+| [rgw_account_default_quota_max_size](#rgw_account_default_quota_max_size) | `-1` | Basic | سیاست |
+| [rgw_enable_quota_threads](#rgw_enable_quota_threads) | `True` | Advanced | سیاست |
+| [rgw_user_default_quota_max_objects](#rgw_user_default_quota_max_objects) | `-1` | Basic | سیاست |
+| [rgw_user_default_quota_max_size](#rgw_user_default_quota_max_size) | `-1` | Basic | سیاست |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

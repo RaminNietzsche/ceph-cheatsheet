@@ -4,27 +4,27 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_disable_s3select](#rgw_disable_s3select) | `False` | Advanced | Policy |
-| [rgw_enable_apis](#rgw_enable_apis) | `s3, s3control, s3website, swift, swift_auth, admin, sts, iam, notifications` | Advanced | Performance |
-| [rgw_enable_gc_threads](#rgw_enable_gc_threads) | `True` | Advanced | Policy |
-| [rgw_enable_jwks_url_verification](#rgw_enable_jwks_url_verification) | `False` | Advanced | Policy |
-| [rgw_enable_lc_threads](#rgw_enable_lc_threads) | `True` | Advanced | Policy |
-| [rgw_enable_mdsearch](#rgw_enable_mdsearch) | `True` | Basic | Policy |
-| [rgw_enable_ops_log](#rgw_enable_ops_log) | `False` | Advanced | Policy |
-| [rgw_enable_restore_threads](#rgw_enable_restore_threads) | `True` | Advanced | Policy |
-| [rgw_enable_static_website](#rgw_enable_static_website) | `False` | Basic | Policy |
-| [rgw_enable_usage_log](#rgw_enable_usage_log) | `False` | Advanced | Policy |
+| [rgw_disable_s3select](#rgw_disable_s3select) | `False` | Advanced | سیاست |
+| [rgw_enable_apis](#rgw_enable_apis) | `s3, s3control, s3website, swift, swift_auth, admin, sts, iam, notifications` | Advanced | عملکرد |
+| [rgw_enable_gc_threads](#rgw_enable_gc_threads) | `True` | Advanced | سیاست |
+| [rgw_enable_jwks_url_verification](#rgw_enable_jwks_url_verification) | `False` | Advanced | سیاست |
+| [rgw_enable_lc_threads](#rgw_enable_lc_threads) | `True` | Advanced | سیاست |
+| [rgw_enable_mdsearch](#rgw_enable_mdsearch) | `True` | Basic | سیاست |
+| [rgw_enable_ops_log](#rgw_enable_ops_log) | `False` | Advanced | سیاست |
+| [rgw_enable_restore_threads](#rgw_enable_restore_threads) | `True` | Advanced | سیاست |
+| [rgw_enable_static_website](#rgw_enable_static_website) | `False` | Basic | سیاست |
+| [rgw_enable_usage_log](#rgw_enable_usage_log) | `False` | Advanced | سیاست |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

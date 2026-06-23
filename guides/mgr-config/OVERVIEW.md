@@ -26,4 +26,4 @@ python3 scripts/generate-config-guide.py mgr
 | [Intervals](cluster/intervals.md) | 2 |
 | [General manager](cluster/general.md) | 8 |
 
-[← Guides overview](../../guides/OVERVIEW.md)
+[← Guides overview](../OVERVIEW.md)

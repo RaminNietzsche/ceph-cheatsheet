@@ -4,34 +4,34 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_lc_counters_batch_size](#rgw_lc_counters_batch_size) | `5000` | Advanced | Performance |
-| [rgw_lc_counters_cache](#rgw_lc_counters_cache) | `False` | Advanced | Performance |
-| [rgw_lc_counters_cache_size](#rgw_lc_counters_cache_size) | `10000` | Advanced | Performance |
-| [rgw_lc_debug_interval](#rgw_lc_debug_interval) | `-1` | Dev | Dev |
-| [rgw_lc_list_cnt](#rgw_lc_list_cnt) | `1000` | Dev | Performance |
-| [rgw_lc_lock_max_time](#rgw_lc_lock_max_time) | `90` | Dev | Policy |
-| [rgw_lc_max_objs](#rgw_lc_max_objs) | `32` | Advanced | Policy |
-| [rgw_lc_max_rules](#rgw_lc_max_rules) | `1000` | Advanced | Policy |
-| [rgw_lc_max_worker](#rgw_lc_max_worker) | `3` | Advanced | Performance |
-| [rgw_lc_max_wp_worker](#rgw_lc_max_wp_worker) | `128` | Advanced | Policy |
-| [rgw_lc_ordered_list_threshold](#rgw_lc_ordered_list_threshold) | `500` | Dev | Performance |
-| [rgw_lc_thread_delay](#rgw_lc_thread_delay) | `0` | Advanced | Performance |
-| [rgw_lifecycle_work_time](#rgw_lifecycle_work_time) | `00:00-06:00` | Advanced | Performance |
-| [rgw_mp_lock_max_time](#rgw_mp_lock_max_time) | `10_min` | Advanced | Policy |
-| [rgw_restore_lock_max_time](#rgw_restore_lock_max_time) | `90` | Dev | Policy |
-| [rgwlc_auto_session_clear](#rgwlc_auto_session_clear) | `True` | Advanced | Policy |
-| [rgwlc_skip_bucket_step](#rgwlc_skip_bucket_step) | `False` | Advanced | Policy |
+| [rgw_lc_counters_batch_size](#rgw_lc_counters_batch_size) | `5000` | Advanced | عملکرد |
+| [rgw_lc_counters_cache](#rgw_lc_counters_cache) | `False` | Advanced | عملکرد |
+| [rgw_lc_counters_cache_size](#rgw_lc_counters_cache_size) | `10000` | Advanced | عملکرد |
+| [rgw_lc_debug_interval](#rgw_lc_debug_interval) | `-1` | Dev | توسعه |
+| [rgw_lc_list_cnt](#rgw_lc_list_cnt) | `1000` | Dev | عملکرد |
+| [rgw_lc_lock_max_time](#rgw_lc_lock_max_time) | `90` | Dev | سیاست |
+| [rgw_lc_max_objs](#rgw_lc_max_objs) | `32` | Advanced | سیاست |
+| [rgw_lc_max_rules](#rgw_lc_max_rules) | `1000` | Advanced | سیاست |
+| [rgw_lc_max_worker](#rgw_lc_max_worker) | `3` | Advanced | عملکرد |
+| [rgw_lc_max_wp_worker](#rgw_lc_max_wp_worker) | `128` | Advanced | سیاست |
+| [rgw_lc_ordered_list_threshold](#rgw_lc_ordered_list_threshold) | `500` | Dev | عملکرد |
+| [rgw_lc_thread_delay](#rgw_lc_thread_delay) | `0` | Advanced | عملکرد |
+| [rgw_lifecycle_work_time](#rgw_lifecycle_work_time) | `00:00-06:00` | Advanced | عملکرد |
+| [rgw_mp_lock_max_time](#rgw_mp_lock_max_time) | `10_min` | Advanced | سیاست |
+| [rgw_restore_lock_max_time](#rgw_restore_lock_max_time) | `90` | Dev | سیاست |
+| [rgwlc_auto_session_clear](#rgwlc_auto_session_clear) | `True` | Advanced | سیاست |
+| [rgwlc_skip_bucket_step](#rgwlc_skip_bucket_step) | `False` | Advanced | سیاست |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

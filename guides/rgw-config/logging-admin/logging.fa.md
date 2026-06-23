@@ -4,21 +4,21 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_log_http_headers](#rgw_log_http_headers) | `(empty)` | Basic | Performance |
-| [rgw_log_nonexistent_bucket](#rgw_log_nonexistent_bucket) | `False` | Advanced | Policy |
-| [rgw_log_object_name](#rgw_log_object_name) | `%Y-%m-%d-%H-%i-%n` | Advanced | Performance |
-| [rgw_log_object_name_utc](#rgw_log_object_name_utc) | `False` | Advanced | Policy |
+| [rgw_log_http_headers](#rgw_log_http_headers) | `(empty)` | Basic | عملکرد |
+| [rgw_log_nonexistent_bucket](#rgw_log_nonexistent_bucket) | `False` | Advanced | سیاست |
+| [rgw_log_object_name](#rgw_log_object_name) | `%Y-%m-%d-%H-%i-%n` | Advanced | عملکرد |
+| [rgw_log_object_name_utc](#rgw_log_object_name_utc) | `False` | Advanced | سیاست |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

@@ -4,30 +4,30 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_dmclock_admin_lim](#rgw_dmclock_admin_lim) | `0` | Advanced | Performance |
-| [rgw_dmclock_admin_res](#rgw_dmclock_admin_res) | `100` | Advanced | Performance |
-| [rgw_dmclock_admin_wgt](#rgw_dmclock_admin_wgt) | `100` | Advanced | Performance |
-| [rgw_dmclock_auth_lim](#rgw_dmclock_auth_lim) | `0` | Advanced | Performance |
-| [rgw_dmclock_auth_res](#rgw_dmclock_auth_res) | `200` | Advanced | Performance |
-| [rgw_dmclock_auth_wgt](#rgw_dmclock_auth_wgt) | `100` | Advanced | Performance |
-| [rgw_dmclock_data_lim](#rgw_dmclock_data_lim) | `0` | Advanced | Performance |
-| [rgw_dmclock_data_res](#rgw_dmclock_data_res) | `500` | Advanced | Performance |
-| [rgw_dmclock_data_wgt](#rgw_dmclock_data_wgt) | `500` | Advanced | Performance |
-| [rgw_dmclock_metadata_lim](#rgw_dmclock_metadata_lim) | `0` | Advanced | Performance |
-| [rgw_dmclock_metadata_res](#rgw_dmclock_metadata_res) | `500` | Advanced | Performance |
-| [rgw_dmclock_metadata_wgt](#rgw_dmclock_metadata_wgt) | `500` | Advanced | Performance |
-| [rgw_scheduler_type](#rgw_scheduler_type) | `throttler` | Advanced | Performance |
+| [rgw_dmclock_admin_lim](#rgw_dmclock_admin_lim) | `0` | Advanced | عملکرد |
+| [rgw_dmclock_admin_res](#rgw_dmclock_admin_res) | `100` | Advanced | عملکرد |
+| [rgw_dmclock_admin_wgt](#rgw_dmclock_admin_wgt) | `100` | Advanced | عملکرد |
+| [rgw_dmclock_auth_lim](#rgw_dmclock_auth_lim) | `0` | Advanced | عملکرد |
+| [rgw_dmclock_auth_res](#rgw_dmclock_auth_res) | `200` | Advanced | عملکرد |
+| [rgw_dmclock_auth_wgt](#rgw_dmclock_auth_wgt) | `100` | Advanced | عملکرد |
+| [rgw_dmclock_data_lim](#rgw_dmclock_data_lim) | `0` | Advanced | عملکرد |
+| [rgw_dmclock_data_res](#rgw_dmclock_data_res) | `500` | Advanced | عملکرد |
+| [rgw_dmclock_data_wgt](#rgw_dmclock_data_wgt) | `500` | Advanced | عملکرد |
+| [rgw_dmclock_metadata_lim](#rgw_dmclock_metadata_lim) | `0` | Advanced | عملکرد |
+| [rgw_dmclock_metadata_res](#rgw_dmclock_metadata_res) | `500` | Advanced | عملکرد |
+| [rgw_dmclock_metadata_wgt](#rgw_dmclock_metadata_wgt) | `500` | Advanced | عملکرد |
+| [rgw_scheduler_type](#rgw_scheduler_type) | `throttler` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

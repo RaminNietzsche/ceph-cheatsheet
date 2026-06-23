@@ -4,24 +4,24 @@ RGW 配置深度指南 — 7 个选项。[← RGW 配置概览](../OVERVIEW.md) 
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_gc_max_concurrent_io](#rgw_gc_max_concurrent_io) | `10` | Advanced | Performance |
-| [rgw_gc_max_objs](#rgw_gc_max_objs) | `32` | Advanced | Policy |
-| [rgw_gc_max_queue_size](#rgw_gc_max_queue_size) | `131071_K` | Advanced | Policy |
-| [rgw_gc_max_trim_chunk](#rgw_gc_max_trim_chunk) | `16` | Advanced | Policy |
-| [rgw_gc_obj_min_wait](#rgw_gc_obj_min_wait) | `2_hr` | Advanced | Performance |
-| [rgw_gc_processor_max_time](#rgw_gc_processor_max_time) | `1_hr` | Advanced | Policy |
-| [rgw_gc_processor_period](#rgw_gc_processor_period) | `1_hr` | Advanced | Performance |
+| [rgw_gc_max_concurrent_io](#rgw_gc_max_concurrent_io) | `10` | Advanced | 性能 |
+| [rgw_gc_max_objs](#rgw_gc_max_objs) | `32` | Advanced | 策略 |
+| [rgw_gc_max_queue_size](#rgw_gc_max_queue_size) | `131071_K` | Advanced | 策略 |
+| [rgw_gc_max_trim_chunk](#rgw_gc_max_trim_chunk) | `16` | Advanced | 策略 |
+| [rgw_gc_obj_min_wait](#rgw_gc_obj_min_wait) | `2_hr` | Advanced | 性能 |
+| [rgw_gc_processor_max_time](#rgw_gc_processor_max_time) | `1_hr` | Advanced | 策略 |
+| [rgw_gc_processor_period](#rgw_gc_processor_period) | `1_hr` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

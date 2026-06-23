@@ -4,27 +4,27 @@ RGW 配置深度指南 — 10 个选项。[← RGW 配置概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_disable_s3select](#rgw_disable_s3select) | `False` | Advanced | Policy |
-| [rgw_enable_apis](#rgw_enable_apis) | `s3, s3control, s3website, swift, swift_auth, admin, sts, iam, notifications` | Advanced | Performance |
-| [rgw_enable_gc_threads](#rgw_enable_gc_threads) | `True` | Advanced | Policy |
-| [rgw_enable_jwks_url_verification](#rgw_enable_jwks_url_verification) | `False` | Advanced | Policy |
-| [rgw_enable_lc_threads](#rgw_enable_lc_threads) | `True` | Advanced | Policy |
-| [rgw_enable_mdsearch](#rgw_enable_mdsearch) | `True` | Basic | Policy |
-| [rgw_enable_ops_log](#rgw_enable_ops_log) | `False` | Advanced | Policy |
-| [rgw_enable_restore_threads](#rgw_enable_restore_threads) | `True` | Advanced | Policy |
-| [rgw_enable_static_website](#rgw_enable_static_website) | `False` | Basic | Policy |
-| [rgw_enable_usage_log](#rgw_enable_usage_log) | `False` | Advanced | Policy |
+| [rgw_disable_s3select](#rgw_disable_s3select) | `False` | Advanced | 策略 |
+| [rgw_enable_apis](#rgw_enable_apis) | `s3, s3control, s3website, swift, swift_auth, admin, sts, iam, notifications` | Advanced | 性能 |
+| [rgw_enable_gc_threads](#rgw_enable_gc_threads) | `True` | Advanced | 策略 |
+| [rgw_enable_jwks_url_verification](#rgw_enable_jwks_url_verification) | `False` | Advanced | 策略 |
+| [rgw_enable_lc_threads](#rgw_enable_lc_threads) | `True` | Advanced | 策略 |
+| [rgw_enable_mdsearch](#rgw_enable_mdsearch) | `True` | Basic | 策略 |
+| [rgw_enable_ops_log](#rgw_enable_ops_log) | `False` | Advanced | 策略 |
+| [rgw_enable_restore_threads](#rgw_enable_restore_threads) | `True` | Advanced | 策略 |
+| [rgw_enable_static_website](#rgw_enable_static_website) | `False` | Basic | 策略 |
+| [rgw_enable_usage_log](#rgw_enable_usage_log) | `False` | Advanced | 策略 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

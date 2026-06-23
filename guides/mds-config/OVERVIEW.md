@@ -33,4 +33,4 @@ python3 scripts/generate-config-guide.py mds
 | [Debug](ops/debug.md) | 9 |
 | [General](ops/general.md) | 1 |
 
-[← Guides overview](../../guides/OVERVIEW.md)
+[← Guides overview](../OVERVIEW.md)

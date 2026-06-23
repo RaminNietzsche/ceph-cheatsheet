@@ -4,34 +4,34 @@ RGW 配置深度指南 — 17 个选项。[← RGW 配置概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_content_length_compat](#rgw_content_length_compat) | `False` | Advanced | Policy |
-| [rgw_cross_domain_policy](#rgw_cross_domain_policy) | `<allow-access-from domain="*" secure="false" />` | Advanced | Performance |
-| [rgw_defer_to_bucket_acls](#rgw_defer_to_bucket_acls) | `(empty)` | Advanced | Performance |
-| [rgw_enforce_swift_acls](#rgw_enforce_swift_acls) | `True` | Advanced | Policy |
-| [rgw_extended_http_attrs](#rgw_extended_http_attrs) | `(empty)` | Advanced | Performance |
-| [rgw_ignore_get_invalid_range](#rgw_ignore_get_invalid_range) | `False` | Advanced | Policy |
-| [rgw_print_continue](#rgw_print_continue) | `True` | Advanced | Policy |
-| [rgw_print_prohibited_content_length](#rgw_print_prohibited_content_length) | `False` | Advanced | Policy |
-| [rgw_relaxed_region_enforcement](#rgw_relaxed_region_enforcement) | `False` | Advanced | Policy |
-| [rgw_relaxed_s3_bucket_names](#rgw_relaxed_s3_bucket_names) | `False` | Advanced | Policy |
-| [rgw_relaxed_topic_names](#rgw_relaxed_topic_names) | `False` | Advanced | Policy |
-| [rgw_remote_addr_param](#rgw_remote_addr_param) | `REMOTE_ADDR` | Advanced | Performance |
-| [rgw_request_uri](#rgw_request_uri) | `(empty)` | Dev | Connectivity |
-| [rgw_resolve_cname](#rgw_resolve_cname) | `False` | Advanced | Policy |
-| [rgw_service_provider_name](#rgw_service_provider_name) | `(empty)` | Advanced | Performance |
-| [rgw_trust_forwarded_https](#rgw_trust_forwarded_https) | `False` | Advanced | Policy |
-| [rgw_verify_ssl](#rgw_verify_ssl) | `True` | Advanced | Policy |
+| [rgw_content_length_compat](#rgw_content_length_compat) | `False` | Advanced | 策略 |
+| [rgw_cross_domain_policy](#rgw_cross_domain_policy) | `<allow-access-from domain="*" secure="false" />` | Advanced | 性能 |
+| [rgw_defer_to_bucket_acls](#rgw_defer_to_bucket_acls) | `(empty)` | Advanced | 性能 |
+| [rgw_enforce_swift_acls](#rgw_enforce_swift_acls) | `True` | Advanced | 策略 |
+| [rgw_extended_http_attrs](#rgw_extended_http_attrs) | `(empty)` | Advanced | 性能 |
+| [rgw_ignore_get_invalid_range](#rgw_ignore_get_invalid_range) | `False` | Advanced | 策略 |
+| [rgw_print_continue](#rgw_print_continue) | `True` | Advanced | 策略 |
+| [rgw_print_prohibited_content_length](#rgw_print_prohibited_content_length) | `False` | Advanced | 策略 |
+| [rgw_relaxed_region_enforcement](#rgw_relaxed_region_enforcement) | `False` | Advanced | 策略 |
+| [rgw_relaxed_s3_bucket_names](#rgw_relaxed_s3_bucket_names) | `False` | Advanced | 策略 |
+| [rgw_relaxed_topic_names](#rgw_relaxed_topic_names) | `False` | Advanced | 策略 |
+| [rgw_remote_addr_param](#rgw_remote_addr_param) | `REMOTE_ADDR` | Advanced | 性能 |
+| [rgw_request_uri](#rgw_request_uri) | `(empty)` | Dev | 连通性 |
+| [rgw_resolve_cname](#rgw_resolve_cname) | `False` | Advanced | 策略 |
+| [rgw_service_provider_name](#rgw_service_provider_name) | `(empty)` | Advanced | 性能 |
+| [rgw_trust_forwarded_https](#rgw_trust_forwarded_https) | `False` | Advanced | 策略 |
+| [rgw_verify_ssl](#rgw_verify_ssl) | `True` | Advanced | 策略 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

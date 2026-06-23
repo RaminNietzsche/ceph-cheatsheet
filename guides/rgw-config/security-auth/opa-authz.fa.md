@@ -4,21 +4,21 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_opa_token](#rgw_opa_token) | `(empty)` | Advanced | Policy |
-| [rgw_opa_url](#rgw_opa_url) | `(empty)` | Advanced | Connectivity |
-| [rgw_opa_verify_ssl](#rgw_opa_verify_ssl) | `True` | Advanced | Policy |
-| [rgw_use_opa_authz](#rgw_use_opa_authz) | `False` | Advanced | Policy |
+| [rgw_opa_token](#rgw_opa_token) | `(empty)` | Advanced | سیاست |
+| [rgw_opa_url](#rgw_opa_url) | `(empty)` | Advanced | اتصال |
+| [rgw_opa_verify_ssl](#rgw_opa_verify_ssl) | `True` | Advanced | سیاست |
+| [rgw_use_opa_authz](#rgw_use_opa_authz) | `False` | Advanced | سیاست |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

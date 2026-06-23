@@ -19,4 +19,4 @@ python3 scripts/generate-config-guide.py crimson
 | [Crimson OSD](topics/crimson.md) | 14 |
 | [Seastore](topics/seastore.md) | 28 |
 
-[← نمای کلی راهنما](../../guides/OVERVIEW.md)
+[← نمای کلی راهنما](../OVERVIEW.md)

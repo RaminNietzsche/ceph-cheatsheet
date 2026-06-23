@@ -4,31 +4,31 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_list_bucket_min_readahead](#rgw_list_bucket_min_readahead) | `1000` | Advanced | Performance |
-| [rgw_max_concurrent_requests](#rgw_max_concurrent_requests) | `1024` | Basic | Performance |
-| [rgw_max_copy_obj_concurrent_io](#rgw_max_copy_obj_concurrent_io) | `10` | Advanced | Performance |
-| [rgw_max_objs_per_shard](#rgw_max_objs_per_shard) | `100000` | Basic | Policy |
-| [rgw_multi_obj_del_max_aio](#rgw_multi_obj_del_max_aio) | `16` | Advanced | Performance |
-| [rgw_num_async_rados_threads](#rgw_num_async_rados_threads) | `32` | Advanced | Performance |
-| [rgw_num_control_oids](#rgw_num_control_oids) | `8` | Advanced | Policy |
-| [rgw_obj_stripe_size](#rgw_obj_stripe_size) | `4_M` | Advanced | Performance |
-| [rgw_op_thread_suicide_timeout](#rgw_op_thread_suicide_timeout) | `0` | Dev | Dev |
-| [rgw_op_thread_timeout](#rgw_op_thread_timeout) | `10_min` | Dev | Dev |
-| [rgw_redis_connection_pool_size](#rgw_redis_connection_pool_size) | `512` | Basic | Performance |
-| [rgw_restore_max_objs](#rgw_restore_max_objs) | `32` | Advanced | Policy |
-| [rgw_restore_processor_period](#rgw_restore_processor_period) | `15_min` | Advanced | Performance |
-| [rgw_thread_pool_size](#rgw_thread_pool_size) | `512` | Basic | Performance |
+| [rgw_list_bucket_min_readahead](#rgw_list_bucket_min_readahead) | `1000` | Advanced | عملکرد |
+| [rgw_max_concurrent_requests](#rgw_max_concurrent_requests) | `1024` | Basic | عملکرد |
+| [rgw_max_copy_obj_concurrent_io](#rgw_max_copy_obj_concurrent_io) | `10` | Advanced | عملکرد |
+| [rgw_max_objs_per_shard](#rgw_max_objs_per_shard) | `100000` | Basic | سیاست |
+| [rgw_multi_obj_del_max_aio](#rgw_multi_obj_del_max_aio) | `16` | Advanced | عملکرد |
+| [rgw_num_async_rados_threads](#rgw_num_async_rados_threads) | `32` | Advanced | عملکرد |
+| [rgw_num_control_oids](#rgw_num_control_oids) | `8` | Advanced | سیاست |
+| [rgw_obj_stripe_size](#rgw_obj_stripe_size) | `4_M` | Advanced | عملکرد |
+| [rgw_op_thread_suicide_timeout](#rgw_op_thread_suicide_timeout) | `0` | Dev | توسعه |
+| [rgw_op_thread_timeout](#rgw_op_thread_timeout) | `10_min` | Dev | توسعه |
+| [rgw_redis_connection_pool_size](#rgw_redis_connection_pool_size) | `512` | Basic | عملکرد |
+| [rgw_restore_max_objs](#rgw_restore_max_objs) | `32` | Advanced | سیاست |
+| [rgw_restore_processor_period](#rgw_restore_processor_period) | `15_min` | Advanced | عملکرد |
+| [rgw_thread_pool_size](#rgw_thread_pool_size) | `512` | Basic | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

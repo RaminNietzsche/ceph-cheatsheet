@@ -4,29 +4,29 @@ RGW 配置深度指南 — 12 个选项。[← RGW 配置概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_dynamic_resharding](#rgw_dynamic_resharding) | `True` | Basic | Policy |
-| [rgw_dynamic_resharding_may_reduce](#rgw_dynamic_resharding_may_reduce) | `True` | Advanced | Policy |
-| [rgw_dynamic_resharding_reduction_wait](#rgw_dynamic_resharding_reduction_wait) | `120` | Advanced | Performance |
-| [rgw_reshard_batch_size](#rgw_reshard_batch_size) | `64` | Advanced | Performance |
-| [rgw_reshard_bucket_lock_duration](#rgw_reshard_bucket_lock_duration) | `360` | Advanced | Performance |
-| [rgw_reshard_debug_interval](#rgw_reshard_debug_interval) | `-1` | Dev | Dev |
-| [rgw_reshard_max_aio](#rgw_reshard_max_aio) | `128` | Advanced | Performance |
-| [rgw_reshard_num_logs](#rgw_reshard_num_logs) | `16` | Advanced | Policy |
-| [rgw_reshard_progress_judge_interval](#rgw_reshard_progress_judge_interval) | `120` | Dev | Performance |
-| [rgw_reshard_progress_judge_ratio](#rgw_reshard_progress_judge_ratio) | `0.5` | Dev | Performance |
-| [rgw_reshard_thread_interval](#rgw_reshard_thread_interval) | `600` | Advanced | Performance |
-| [rgw_reshardlog_threshold](#rgw_reshardlog_threshold) | `30000` | Dev | Performance |
+| [rgw_dynamic_resharding](#rgw_dynamic_resharding) | `True` | Basic | 策略 |
+| [rgw_dynamic_resharding_may_reduce](#rgw_dynamic_resharding_may_reduce) | `True` | Advanced | 策略 |
+| [rgw_dynamic_resharding_reduction_wait](#rgw_dynamic_resharding_reduction_wait) | `120` | Advanced | 性能 |
+| [rgw_reshard_batch_size](#rgw_reshard_batch_size) | `64` | Advanced | 性能 |
+| [rgw_reshard_bucket_lock_duration](#rgw_reshard_bucket_lock_duration) | `360` | Advanced | 性能 |
+| [rgw_reshard_debug_interval](#rgw_reshard_debug_interval) | `-1` | Dev | 开发 |
+| [rgw_reshard_max_aio](#rgw_reshard_max_aio) | `128` | Advanced | 性能 |
+| [rgw_reshard_num_logs](#rgw_reshard_num_logs) | `16` | Advanced | 策略 |
+| [rgw_reshard_progress_judge_interval](#rgw_reshard_progress_judge_interval) | `120` | Dev | 性能 |
+| [rgw_reshard_progress_judge_ratio](#rgw_reshard_progress_judge_ratio) | `0.5` | Dev | 性能 |
+| [rgw_reshard_thread_interval](#rgw_reshard_thread_interval) | `600` | Advanced | 性能 |
+| [rgw_reshardlog_threshold](#rgw_reshardlog_threshold) | `30000` | Dev | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

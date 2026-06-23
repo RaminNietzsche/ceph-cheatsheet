@@ -4,31 +4,31 @@ RGW 配置深度指南 — 14 个选项。[← RGW 配置概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_list_bucket_min_readahead](#rgw_list_bucket_min_readahead) | `1000` | Advanced | Performance |
-| [rgw_max_concurrent_requests](#rgw_max_concurrent_requests) | `1024` | Basic | Performance |
-| [rgw_max_copy_obj_concurrent_io](#rgw_max_copy_obj_concurrent_io) | `10` | Advanced | Performance |
-| [rgw_max_objs_per_shard](#rgw_max_objs_per_shard) | `100000` | Basic | Policy |
-| [rgw_multi_obj_del_max_aio](#rgw_multi_obj_del_max_aio) | `16` | Advanced | Performance |
-| [rgw_num_async_rados_threads](#rgw_num_async_rados_threads) | `32` | Advanced | Performance |
-| [rgw_num_control_oids](#rgw_num_control_oids) | `8` | Advanced | Policy |
-| [rgw_obj_stripe_size](#rgw_obj_stripe_size) | `4_M` | Advanced | Performance |
-| [rgw_op_thread_suicide_timeout](#rgw_op_thread_suicide_timeout) | `0` | Dev | Dev |
-| [rgw_op_thread_timeout](#rgw_op_thread_timeout) | `10_min` | Dev | Dev |
-| [rgw_redis_connection_pool_size](#rgw_redis_connection_pool_size) | `512` | Basic | Performance |
-| [rgw_restore_max_objs](#rgw_restore_max_objs) | `32` | Advanced | Policy |
-| [rgw_restore_processor_period](#rgw_restore_processor_period) | `15_min` | Advanced | Performance |
-| [rgw_thread_pool_size](#rgw_thread_pool_size) | `512` | Basic | Performance |
+| [rgw_list_bucket_min_readahead](#rgw_list_bucket_min_readahead) | `1000` | Advanced | 性能 |
+| [rgw_max_concurrent_requests](#rgw_max_concurrent_requests) | `1024` | Basic | 性能 |
+| [rgw_max_copy_obj_concurrent_io](#rgw_max_copy_obj_concurrent_io) | `10` | Advanced | 性能 |
+| [rgw_max_objs_per_shard](#rgw_max_objs_per_shard) | `100000` | Basic | 策略 |
+| [rgw_multi_obj_del_max_aio](#rgw_multi_obj_del_max_aio) | `16` | Advanced | 性能 |
+| [rgw_num_async_rados_threads](#rgw_num_async_rados_threads) | `32` | Advanced | 性能 |
+| [rgw_num_control_oids](#rgw_num_control_oids) | `8` | Advanced | 策略 |
+| [rgw_obj_stripe_size](#rgw_obj_stripe_size) | `4_M` | Advanced | 性能 |
+| [rgw_op_thread_suicide_timeout](#rgw_op_thread_suicide_timeout) | `0` | Dev | 开发 |
+| [rgw_op_thread_timeout](#rgw_op_thread_timeout) | `10_min` | Dev | 开发 |
+| [rgw_redis_connection_pool_size](#rgw_redis_connection_pool_size) | `512` | Basic | 性能 |
+| [rgw_restore_max_objs](#rgw_restore_max_objs) | `32` | Advanced | 策略 |
+| [rgw_restore_processor_period](#rgw_restore_processor_period) | `15_min` | Advanced | 性能 |
+| [rgw_thread_pool_size](#rgw_thread_pool_size) | `512` | Basic | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

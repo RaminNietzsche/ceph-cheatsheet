@@ -4,36 +4,36 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_default_realm_info_oid](#rgw_default_realm_info_oid) | `default.realm` | Advanced | Performance |
-| [rgw_default_region_info_oid](#rgw_default_region_info_oid) | `default.region` | Advanced | Performance |
-| [rgw_default_zone_info_oid](#rgw_default_zone_info_oid) | `default.zone` | Advanced | Performance |
-| [rgw_default_zonegroup_info_oid](#rgw_default_zonegroup_info_oid) | `default.zonegroup` | Advanced | Performance |
-| [rgw_period_latest_epoch_info_oid](#rgw_period_latest_epoch_info_oid) | `.latest_epoch` | Dev | Performance |
-| [rgw_period_push_interval](#rgw_period_push_interval) | `2` | Advanced | Performance |
-| [rgw_period_push_interval_max](#rgw_period_push_interval_max) | `30` | Advanced | Performance |
-| [rgw_period_root_pool](#rgw_period_root_pool) | `.rgw.root` | Advanced | Performance |
-| [rgw_realm](#rgw_realm) | `(empty)` | Advanced | Architecture |
-| [rgw_realm_id](#rgw_realm_id) | `(empty)` | Advanced | Architecture |
-| [rgw_realm_root_pool](#rgw_realm_root_pool) | `.rgw.root` | Advanced | Architecture |
-| [rgw_region](#rgw_region) | `(empty)` | Advanced | Architecture |
-| [rgw_region_root_pool](#rgw_region_root_pool) | `.rgw.root` | Advanced | Architecture |
-| [rgw_zone](#rgw_zone) | `(empty)` | Advanced | Architecture |
-| [rgw_zone_id](#rgw_zone_id) | `(empty)` | Advanced | Architecture |
-| [rgw_zone_root_pool](#rgw_zone_root_pool) | `.rgw.root` | Advanced | Architecture |
-| [rgw_zonegroup](#rgw_zonegroup) | `(empty)` | Advanced | Architecture |
-| [rgw_zonegroup_id](#rgw_zonegroup_id) | `(empty)` | Advanced | Architecture |
-| [rgw_zonegroup_root_pool](#rgw_zonegroup_root_pool) | `.rgw.root` | Advanced | Architecture |
+| [rgw_default_realm_info_oid](#rgw_default_realm_info_oid) | `default.realm` | Advanced | عملکرد |
+| [rgw_default_region_info_oid](#rgw_default_region_info_oid) | `default.region` | Advanced | عملکرد |
+| [rgw_default_zone_info_oid](#rgw_default_zone_info_oid) | `default.zone` | Advanced | عملکرد |
+| [rgw_default_zonegroup_info_oid](#rgw_default_zonegroup_info_oid) | `default.zonegroup` | Advanced | عملکرد |
+| [rgw_period_latest_epoch_info_oid](#rgw_period_latest_epoch_info_oid) | `.latest_epoch` | Dev | عملکرد |
+| [rgw_period_push_interval](#rgw_period_push_interval) | `2` | Advanced | عملکرد |
+| [rgw_period_push_interval_max](#rgw_period_push_interval_max) | `30` | Advanced | عملکرد |
+| [rgw_period_root_pool](#rgw_period_root_pool) | `.rgw.root` | Advanced | عملکرد |
+| [rgw_realm](#rgw_realm) | `(empty)` | Advanced | معماری |
+| [rgw_realm_id](#rgw_realm_id) | `(empty)` | Advanced | معماری |
+| [rgw_realm_root_pool](#rgw_realm_root_pool) | `.rgw.root` | Advanced | معماری |
+| [rgw_region](#rgw_region) | `(empty)` | Advanced | معماری |
+| [rgw_region_root_pool](#rgw_region_root_pool) | `.rgw.root` | Advanced | معماری |
+| [rgw_zone](#rgw_zone) | `(empty)` | Advanced | معماری |
+| [rgw_zone_id](#rgw_zone_id) | `(empty)` | Advanced | معماری |
+| [rgw_zone_root_pool](#rgw_zone_root_pool) | `.rgw.root` | Advanced | معماری |
+| [rgw_zonegroup](#rgw_zonegroup) | `(empty)` | Advanced | معماری |
+| [rgw_zonegroup_id](#rgw_zonegroup_id) | `(empty)` | Advanced | معماری |
+| [rgw_zonegroup_root_pool](#rgw_zonegroup_root_pool) | `.rgw.root` | Advanced | معماری |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

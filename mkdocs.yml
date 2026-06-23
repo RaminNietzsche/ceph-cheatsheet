@@ -254,12 +254,6 @@ plugins:
         'guides/global-config/throttler.md': 'cheatsheet/guides/global-config/runtime/throttler.md'
         'guides/global-config/tmp.md': 'cheatsheet/guides/global-config/runtime/tmp.md'
         'guides/global-config/uadk.md': 'cheatsheet/guides/global-config/storage/uadk.md'
-        'cheatsheet/OVERVIEW.md': 'cheatsheet/index.md'
-        'develop/OVERVIEW.md': 'dev/OVERVIEW.md'
-        'architecture/rgw/OVERVIEW.md': 'arch/rgw/OVERVIEW.md'
-        'guides/OVERVIEW.md': 'cheatsheet/guides/OVERVIEW.md'
-        'cli/OVERVIEW.md': 'cheatsheet/cli/OVERVIEW.md'
-        'config/OVERVIEW.md': 'cheatsheet/config/OVERVIEW.md'
 # global-redirects:end
 
 markdown_extensions:

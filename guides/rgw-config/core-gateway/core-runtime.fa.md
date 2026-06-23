@@ -4,33 +4,33 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_data](#rgw_data) | `/var/lib/ceph/radosgw/$cluster-$id` | Advanced | Performance |
-| [rgw_dedup_min_obj_size_for_dedup](#rgw_dedup_min_obj_size_for_dedup) | `64_K` | Advanced | Performance |
-| [rgw_dedup_split_obj_head](#rgw_dedup_split_obj_head) | `True` | Advanced | Policy |
-| [rgw_expose_bucket](#rgw_expose_bucket) | `False` | Advanced | Policy |
-| [rgw_filter](#rgw_filter) | `none` | Advanced | Architecture |
-| [rgw_graceful_stop](#rgw_graceful_stop) | `False` | Advanced | Policy |
-| [rgw_healthcheck_disabling_path](#rgw_healthcheck_disabling_path) | `(empty)` | Dev | Capacity |
-| [rgw_json_config](#rgw_json_config) | `/var/lib/ceph/radosgw/config.json` | Advanced | Performance |
-| [rgw_mime_types_file](#rgw_mime_types_file) | `/etc/mime.types` | Basic | Capacity |
-| [rgw_numa_node](#rgw_numa_node) | `-1` | Advanced | Policy |
-| [rgw_op_tracing](#rgw_op_tracing) | `False` | Advanced | Policy |
-| [rgw_parquet_buffer_size](#rgw_parquet_buffer_size) | `16_M` | Advanced | Performance |
-| [rgw_rados_pool_autoscale_bias](#rgw_rados_pool_autoscale_bias) | `4` | Advanced | Performance |
-| [rgw_rados_pool_recovery_priority](#rgw_rados_pool_recovery_priority) | `5` | Advanced | Performance |
-| [rgw_rados_tracing](#rgw_rados_tracing) | `False` | Advanced | Policy |
-| [rgw_script_uri](#rgw_script_uri) | `(empty)` | Dev | Connectivity |
+| [rgw_data](#rgw_data) | `/var/lib/ceph/radosgw/$cluster-$id` | Advanced | عملکرد |
+| [rgw_dedup_min_obj_size_for_dedup](#rgw_dedup_min_obj_size_for_dedup) | `64_K` | Advanced | عملکرد |
+| [rgw_dedup_split_obj_head](#rgw_dedup_split_obj_head) | `True` | Advanced | سیاست |
+| [rgw_expose_bucket](#rgw_expose_bucket) | `False` | Advanced | سیاست |
+| [rgw_filter](#rgw_filter) | `none` | Advanced | معماری |
+| [rgw_graceful_stop](#rgw_graceful_stop) | `False` | Advanced | سیاست |
+| [rgw_healthcheck_disabling_path](#rgw_healthcheck_disabling_path) | `(empty)` | Dev | ظرفیت |
+| [rgw_json_config](#rgw_json_config) | `/var/lib/ceph/radosgw/config.json` | Advanced | عملکرد |
+| [rgw_mime_types_file](#rgw_mime_types_file) | `/etc/mime.types` | Basic | ظرفیت |
+| [rgw_numa_node](#rgw_numa_node) | `-1` | Advanced | سیاست |
+| [rgw_op_tracing](#rgw_op_tracing) | `False` | Advanced | سیاست |
+| [rgw_parquet_buffer_size](#rgw_parquet_buffer_size) | `16_M` | Advanced | عملکرد |
+| [rgw_rados_pool_autoscale_bias](#rgw_rados_pool_autoscale_bias) | `4` | Advanced | عملکرد |
+| [rgw_rados_pool_recovery_priority](#rgw_rados_pool_recovery_priority) | `5` | Advanced | عملکرد |
+| [rgw_rados_tracing](#rgw_rados_tracing) | `False` | Advanced | سیاست |
+| [rgw_script_uri](#rgw_script_uri) | `(empty)` | Dev | اتصال |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

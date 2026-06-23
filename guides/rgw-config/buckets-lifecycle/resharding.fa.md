@@ -4,29 +4,29 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_dynamic_resharding](#rgw_dynamic_resharding) | `True` | Basic | Policy |
-| [rgw_dynamic_resharding_may_reduce](#rgw_dynamic_resharding_may_reduce) | `True` | Advanced | Policy |
-| [rgw_dynamic_resharding_reduction_wait](#rgw_dynamic_resharding_reduction_wait) | `120` | Advanced | Performance |
-| [rgw_reshard_batch_size](#rgw_reshard_batch_size) | `64` | Advanced | Performance |
-| [rgw_reshard_bucket_lock_duration](#rgw_reshard_bucket_lock_duration) | `360` | Advanced | Performance |
-| [rgw_reshard_debug_interval](#rgw_reshard_debug_interval) | `-1` | Dev | Dev |
-| [rgw_reshard_max_aio](#rgw_reshard_max_aio) | `128` | Advanced | Performance |
-| [rgw_reshard_num_logs](#rgw_reshard_num_logs) | `16` | Advanced | Policy |
-| [rgw_reshard_progress_judge_interval](#rgw_reshard_progress_judge_interval) | `120` | Dev | Performance |
-| [rgw_reshard_progress_judge_ratio](#rgw_reshard_progress_judge_ratio) | `0.5` | Dev | Performance |
-| [rgw_reshard_thread_interval](#rgw_reshard_thread_interval) | `600` | Advanced | Performance |
-| [rgw_reshardlog_threshold](#rgw_reshardlog_threshold) | `30000` | Dev | Performance |
+| [rgw_dynamic_resharding](#rgw_dynamic_resharding) | `True` | Basic | سیاست |
+| [rgw_dynamic_resharding_may_reduce](#rgw_dynamic_resharding_may_reduce) | `True` | Advanced | سیاست |
+| [rgw_dynamic_resharding_reduction_wait](#rgw_dynamic_resharding_reduction_wait) | `120` | Advanced | عملکرد |
+| [rgw_reshard_batch_size](#rgw_reshard_batch_size) | `64` | Advanced | عملکرد |
+| [rgw_reshard_bucket_lock_duration](#rgw_reshard_bucket_lock_duration) | `360` | Advanced | عملکرد |
+| [rgw_reshard_debug_interval](#rgw_reshard_debug_interval) | `-1` | Dev | توسعه |
+| [rgw_reshard_max_aio](#rgw_reshard_max_aio) | `128` | Advanced | عملکرد |
+| [rgw_reshard_num_logs](#rgw_reshard_num_logs) | `16` | Advanced | سیاست |
+| [rgw_reshard_progress_judge_interval](#rgw_reshard_progress_judge_interval) | `120` | Dev | عملکرد |
+| [rgw_reshard_progress_judge_ratio](#rgw_reshard_progress_judge_ratio) | `0.5` | Dev | عملکرد |
+| [rgw_reshard_thread_interval](#rgw_reshard_thread_interval) | `600` | Advanced | عملکرد |
+| [rgw_reshardlog_threshold](#rgw_reshardlog_threshold) | `30000` | Dev | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

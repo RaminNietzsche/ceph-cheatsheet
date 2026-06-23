@@ -4,21 +4,21 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_gcors_allow_headers](#rgw_gcors_allow_headers) | `(empty)` | Advanced | Performance |
-| [rgw_gcors_allow_methods](#rgw_gcors_allow_methods) | `(empty)` | Advanced | Performance |
-| [rgw_gcors_allow_origins](#rgw_gcors_allow_origins) | `(empty)` | Advanced | Performance |
-| [rgw_gcors_expose_headers](#rgw_gcors_expose_headers) | `(empty)` | Advanced | Performance |
+| [rgw_gcors_allow_headers](#rgw_gcors_allow_headers) | `(empty)` | Advanced | عملکرد |
+| [rgw_gcors_allow_methods](#rgw_gcors_allow_methods) | `(empty)` | Advanced | عملکرد |
+| [rgw_gcors_allow_origins](#rgw_gcors_allow_origins) | `(empty)` | Advanced | عملکرد |
+| [rgw_gcors_expose_headers](#rgw_gcors_expose_headers) | `(empty)` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

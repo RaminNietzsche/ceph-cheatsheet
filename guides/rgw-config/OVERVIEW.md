@@ -118,4 +118,4 @@ python3 scripts/generate-rgw-guide.py  # regenerate after config sync
 | [D4N / D3N cache](experimental-debug/d4n-cache.md) | 22 |
 | [Debug & fault injection](experimental-debug/debug-inject.md) | 7 |
 
-[← Guides overview](../../guides/OVERVIEW.md)
+[← Guides overview](../OVERVIEW.md)

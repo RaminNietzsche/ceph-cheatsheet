@@ -4,29 +4,29 @@ RGW 配置深度指南 — 12 个选项。[← RGW 配置概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rgw_delete_multi_obj_max_num](#rgw_delete_multi_obj_max_num) | `1000` | Advanced | Policy |
-| [rgw_list_buckets_max_chunk](#rgw_list_buckets_max_chunk) | `1000` | Advanced | Policy |
-| [rgw_max_attr_name_len](#rgw_max_attr_name_len) | `0` | Advanced | Policy |
-| [rgw_max_attr_size](#rgw_max_attr_size) | `0` | Advanced | Policy |
-| [rgw_max_attrs_num_in_req](#rgw_max_attrs_num_in_req) | `0` | Advanced | Policy |
-| [rgw_max_chunk_size](#rgw_max_chunk_size) | `4_M` | Advanced | Performance |
-| [rgw_max_control_aio](#rgw_max_control_aio) | `8` | Advanced | Policy |
-| [rgw_max_dynamic_shards](#rgw_max_dynamic_shards) | `1999` | Advanced | Policy |
-| [rgw_max_listing_results](#rgw_max_listing_results) | `5000` | Advanced | Policy |
-| [rgw_max_put_param_size](#rgw_max_put_param_size) | `1_M` | Advanced | Policy |
-| [rgw_max_put_size](#rgw_max_put_size) | `5_G` | Advanced | Policy |
-| [rgw_max_slo_entries](#rgw_max_slo_entries) | `1000` | Advanced | Policy |
+| [rgw_delete_multi_obj_max_num](#rgw_delete_multi_obj_max_num) | `1000` | Advanced | 策略 |
+| [rgw_list_buckets_max_chunk](#rgw_list_buckets_max_chunk) | `1000` | Advanced | 策略 |
+| [rgw_max_attr_name_len](#rgw_max_attr_name_len) | `0` | Advanced | 策略 |
+| [rgw_max_attr_size](#rgw_max_attr_size) | `0` | Advanced | 策略 |
+| [rgw_max_attrs_num_in_req](#rgw_max_attrs_num_in_req) | `0` | Advanced | 策略 |
+| [rgw_max_chunk_size](#rgw_max_chunk_size) | `4_M` | Advanced | 性能 |
+| [rgw_max_control_aio](#rgw_max_control_aio) | `8` | Advanced | 策略 |
+| [rgw_max_dynamic_shards](#rgw_max_dynamic_shards) | `1999` | Advanced | 策略 |
+| [rgw_max_listing_results](#rgw_max_listing_results) | `5000` | Advanced | 策略 |
+| [rgw_max_put_param_size](#rgw_max_put_param_size) | `1_M` | Advanced | 策略 |
+| [rgw_max_put_size](#rgw_max_put_size) | `5_G` | Advanced | 策略 |
+| [rgw_max_slo_entries](#rgw_max_slo_entries) | `1000` | Advanced | 策略 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、API 兼容性、租户限制 |
-| **Capacity** | 磁盘布局、路径、池容量 |
-| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、API 兼容性、租户限制 |
+| **容量** | 磁盘布局、路径、池容量 |
+| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |
+| **连通性** | 最近且稳定的外部端点 |
+| **架构** | 后端、多站点拓扑 — 非数值扫描 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 

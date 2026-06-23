@@ -61,4 +61,4 @@ python3 scripts/generate-config-guide.py rbd
 | [Sparse](misc/sparse.md) | 1 |
 | [Validate](misc/validate.md) | 2 |
 
-[← نمای کلی راهنما](../../guides/OVERVIEW.md)
+[← نمای کلی راهنما](../OVERVIEW.md)

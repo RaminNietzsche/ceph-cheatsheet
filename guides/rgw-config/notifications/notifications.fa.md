@@ -4,30 +4,30 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rgw_allow_notification_secrets_in_cleartext](#rgw_allow_notification_secrets_in_cleartext) | `False` | Advanced | Policy |
-| [rgw_http_notif_connection_timeout](#rgw_http_notif_connection_timeout) | `5` | Advanced | Performance |
-| [rgw_http_notif_max_inflight](#rgw_http_notif_max_inflight) | `8192` | Advanced | Performance |
-| [rgw_http_notif_message_timeout](#rgw_http_notif_message_timeout) | `10` | Advanced | Performance |
-| [rgw_inject_notify_timeout_probability](#rgw_inject_notify_timeout_probability) | `0` | Dev | Dev |
-| [rgw_kafka_connection_idle](#rgw_kafka_connection_idle) | `300` | Advanced | Performance |
-| [rgw_kafka_max_batch_size](#rgw_kafka_max_batch_size) | `0` | Advanced | Performance |
-| [rgw_kafka_message_timeout](#rgw_kafka_message_timeout) | `5000` | Advanced | Performance |
-| [rgw_kafka_sleep_timeout](#rgw_kafka_sleep_timeout) | `10` | Advanced | Performance |
-| [rgw_max_notify_retries](#rgw_max_notify_retries) | `10` | Advanced | Policy |
-| [rgw_topic_persistency_max_retries](#rgw_topic_persistency_max_retries) | `0` | Advanced | Policy |
-| [rgw_topic_persistency_sleep_duration](#rgw_topic_persistency_sleep_duration) | `0` | Advanced | Performance |
-| [rgw_topic_persistency_time_to_live](#rgw_topic_persistency_time_to_live) | `0` | Advanced | Performance |
+| [rgw_allow_notification_secrets_in_cleartext](#rgw_allow_notification_secrets_in_cleartext) | `False` | Advanced | سیاست |
+| [rgw_http_notif_connection_timeout](#rgw_http_notif_connection_timeout) | `5` | Advanced | عملکرد |
+| [rgw_http_notif_max_inflight](#rgw_http_notif_max_inflight) | `8192` | Advanced | عملکرد |
+| [rgw_http_notif_message_timeout](#rgw_http_notif_message_timeout) | `10` | Advanced | عملکرد |
+| [rgw_inject_notify_timeout_probability](#rgw_inject_notify_timeout_probability) | `0` | Dev | توسعه |
+| [rgw_kafka_connection_idle](#rgw_kafka_connection_idle) | `300` | Advanced | عملکرد |
+| [rgw_kafka_max_batch_size](#rgw_kafka_max_batch_size) | `0` | Advanced | عملکرد |
+| [rgw_kafka_message_timeout](#rgw_kafka_message_timeout) | `5000` | Advanced | عملکرد |
+| [rgw_kafka_sleep_timeout](#rgw_kafka_sleep_timeout) | `10` | Advanced | عملکرد |
+| [rgw_max_notify_retries](#rgw_max_notify_retries) | `10` | Advanced | سیاست |
+| [rgw_topic_persistency_max_retries](#rgw_topic_persistency_max_retries) | `0` | Advanced | سیاست |
+| [rgw_topic_persistency_sleep_duration](#rgw_topic_persistency_sleep_duration) | `0` | Advanced | عملکرد |
+| [rgw_topic_persistency_time_to_live](#rgw_topic_persistency_time_to_live) | `0` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری API، محدودیت tenant |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |
-| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری API، محدودیت tenant |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 

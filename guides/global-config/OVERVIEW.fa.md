@@ -116,4 +116,4 @@ python3 scripts/generate-config-guide.py global
 | [Throttler](runtime/throttler.md) | 1 |
 | [Tmp](runtime/tmp.md) | 2 |
 
-[← نمای کلی راهنما](../../guides/OVERVIEW.md)
+[← نمای کلی راهنما](../OVERVIEW.md)
