@@ -122,7 +122,7 @@ ceph config get mgr mgr_enable_op_tracker
 ```bash
 ceph config get mgr mgr_enable_op_tracker
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -186,7 +186,7 @@ ceph config get mgr mgr_num_op_tracker_shard
 ```bash
 ceph config get mgr mgr_num_op_tracker_shard
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -222,7 +222,7 @@ ceph config get mgr mgr_op_complaint_time
 ```bash
 ceph config get mgr mgr_op_complaint_time
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -258,7 +258,7 @@ ceph config get mgr mgr_op_history_duration
 ```bash
 ceph config get mgr mgr_op_history_duration
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -292,7 +292,7 @@ ceph config get mgr mgr_op_history_size
 ```bash
 ceph config get mgr mgr_op_history_size
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -328,7 +328,7 @@ ceph config get mgr mgr_op_history_slow_op_size
 ```bash
 ceph config get mgr mgr_op_history_slow_op_size
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -364,7 +364,7 @@ ceph config get mgr mgr_op_history_slow_op_threshold
 ```bash
 ceph config get mgr mgr_op_history_slow_op_threshold
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -398,7 +398,7 @@ ceph config get mgr mgr_op_log_threshold
 ```bash
 ceph config get mgr mgr_op_log_threshold
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---

@@ -113,7 +113,7 @@ ceph config get osd osd_backfill_retry_interval
 ceph config get osd osd_backfill_retry_interval
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -148,7 +148,7 @@ ceph config get osd osd_backfill_scan_max
 ceph config get osd osd_backfill_scan_max
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -183,7 +183,7 @@ ceph config get osd osd_backfill_scan_min
 ceph config get osd osd_backfill_scan_min
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -220,7 +220,7 @@ ceph config get osd osd_max_backfills
 ceph config get osd osd_max_backfills
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -257,7 +257,7 @@ ceph config get osd osd_mclock_override_recovery_settings
 ceph config get osd osd_mclock_override_recovery_settings
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -296,7 +296,7 @@ ceph config get osd osd_mclock_scheduler_background_recovery_lim
 ceph config get osd osd_mclock_scheduler_background_recovery_lim
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -335,7 +335,7 @@ ceph config get osd osd_mclock_scheduler_background_recovery_res
 ceph config get osd osd_mclock_scheduler_background_recovery_res
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -372,7 +372,7 @@ ceph config get osd osd_mclock_scheduler_background_recovery_wgt
 ceph config get osd osd_mclock_scheduler_background_recovery_wgt
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -409,7 +409,7 @@ ceph config get osd osd_min_recovery_priority
 ceph config get osd osd_min_recovery_priority
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -444,7 +444,7 @@ ceph config get osd osd_recover_clone_overlap
 ceph config get osd osd_recover_clone_overlap
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -479,7 +479,7 @@ ceph config get osd osd_recover_clone_overlap_limit
 ceph config get osd osd_recover_clone_overlap_limit
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -514,7 +514,7 @@ ceph config get osd osd_recovery_delay_start
 ceph config get osd osd_recovery_delay_start
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -551,7 +551,7 @@ ceph config get osd osd_recovery_max_active
 ceph config get osd osd_recovery_max_active
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 Watch `recovering`/`backfilling` PG count and client p99. See also `osd_recovery_max_active_hdd` / `_ssd` when set to 0.
@@ -590,7 +590,7 @@ ceph config get osd osd_recovery_max_active_hdd
 ceph config get osd osd_recovery_max_active_hdd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -627,7 +627,7 @@ ceph config get osd osd_recovery_max_active_ssd
 ceph config get osd osd_recovery_max_active_ssd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -662,7 +662,7 @@ ceph config get osd osd_recovery_max_chunk
 ceph config get osd osd_recovery_max_chunk
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -697,7 +697,7 @@ ceph config get osd osd_recovery_max_omap_entries_per_chunk
 ceph config get osd osd_recovery_max_omap_entries_per_chunk
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -732,7 +732,7 @@ ceph config get osd osd_recovery_max_single_start
 ceph config get osd osd_recovery_max_single_start
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -769,7 +769,7 @@ ceph config get osd osd_recovery_retry_interval
 ceph config get osd osd_recovery_retry_interval
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -806,7 +806,7 @@ ceph config get osd osd_recovery_sleep
 ceph config get osd osd_recovery_sleep
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -843,7 +843,7 @@ ceph config get osd osd_recovery_sleep_degraded
 ceph config get osd osd_recovery_sleep_degraded
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -880,7 +880,7 @@ ceph config get osd osd_recovery_sleep_degraded_hdd
 ceph config get osd osd_recovery_sleep_degraded_hdd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -917,7 +917,7 @@ ceph config get osd osd_recovery_sleep_degraded_hybrid
 ceph config get osd osd_recovery_sleep_degraded_hybrid
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -954,7 +954,7 @@ ceph config get osd osd_recovery_sleep_degraded_ssd
 ceph config get osd osd_recovery_sleep_degraded_ssd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -991,7 +991,7 @@ ceph config get osd osd_recovery_sleep_hdd
 ceph config get osd osd_recovery_sleep_hdd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1028,7 +1028,7 @@ ceph config get osd osd_recovery_sleep_hybrid
 ceph config get osd osd_recovery_sleep_hybrid
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1065,7 +1065,7 @@ ceph config get osd osd_recovery_sleep_ssd
 ceph config get osd osd_recovery_sleep_ssd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

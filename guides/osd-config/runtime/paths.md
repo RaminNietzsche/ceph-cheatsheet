@@ -59,7 +59,7 @@ ceph config get osd osd_data
 ceph config get osd osd_data
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

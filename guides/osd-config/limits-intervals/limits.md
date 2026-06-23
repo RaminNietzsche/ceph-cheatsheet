@@ -98,7 +98,7 @@ ceph config get osd osd_client_message_cap
 ceph config get osd osd_client_message_cap
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -135,7 +135,7 @@ ceph config get osd osd_client_message_size_cap
 ceph config get osd osd_client_message_size_cap
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -170,7 +170,7 @@ ceph config get osd osd_copyfrom_max_chunk
 ceph config get osd osd_copyfrom_max_chunk
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -205,7 +205,7 @@ ceph config get osd osd_heartbeat_min_peers
 ceph config get osd osd_heartbeat_min_peers
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -240,7 +240,7 @@ ceph config get osd osd_map_share_max_epochs
 ceph config get osd osd_map_share_max_epochs
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -275,7 +275,7 @@ ceph config get osd osd_max_markdown_count
 ceph config get osd osd_max_markdown_count
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -312,7 +312,7 @@ ceph config get osd osd_max_pgls
 ceph config get osd osd_max_pgls
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -347,7 +347,7 @@ ceph config get osd osd_max_push_cost
 ceph config get osd osd_max_push_cost
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -382,7 +382,7 @@ ceph config get osd osd_max_push_objects
 ceph config get osd osd_max_push_objects
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -421,7 +421,7 @@ ceph config get osd osd_max_write_size
 ceph config get osd osd_max_write_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -456,7 +456,7 @@ ceph config get osd osd_op_pq_max_tokens_per_priority
 ceph config get osd osd_op_pq_max_tokens_per_priority
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -491,7 +491,7 @@ ceph config get osd osd_op_pq_min_cost
 ceph config get osd osd_op_pq_min_cost
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -528,7 +528,7 @@ ceph config get osd osd_pg_epoch_max_lag_factor
 ceph config get osd osd_pg_epoch_max_lag_factor
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -566,7 +566,7 @@ ceph orch restart osd
 ceph config get osd set_keepcaps
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

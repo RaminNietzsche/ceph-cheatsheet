@@ -233,7 +233,7 @@ ceph config get osd osd_asio_thread_count
 ceph config get osd osd_asio_thread_count
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -270,7 +270,7 @@ ceph config get osd osd_async_recovery_min_cost
 ceph config get osd osd_async_recovery_min_cost
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -305,7 +305,7 @@ ceph config get osd osd_auto_mark_unfound_lost
 ceph config get osd osd_auto_mark_unfound_lost
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -340,7 +340,7 @@ ceph config get osd osd_backoff_on_degraded
 ceph config get osd osd_backoff_on_degraded
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -375,7 +375,7 @@ ceph config get osd osd_backoff_on_peering
 ceph config get osd osd_backoff_on_peering
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -410,7 +410,7 @@ ceph config get osd osd_backoff_on_unfound
 ceph config get osd osd_backoff_on_unfound
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -445,7 +445,7 @@ ceph config get osd osd_beacon_report_interval
 ceph config get osd osd_beacon_report_interval
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -480,7 +480,7 @@ ceph config get osd osd_bench_duration
 ceph config get osd osd_bench_duration
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -515,7 +515,7 @@ ceph config get osd osd_bench_large_size_max_throughput
 ceph config get osd osd_bench_large_size_max_throughput
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -550,7 +550,7 @@ ceph config get osd osd_bench_max_block_size
 ceph config get osd osd_bench_max_block_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -585,7 +585,7 @@ ceph config get osd osd_bench_small_size_max_iops
 ceph config get osd osd_bench_small_size_max_iops
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -620,7 +620,7 @@ ceph config get osd osd_blkin_trace_all
 ceph config get osd osd_blkin_trace_all
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -657,7 +657,7 @@ ceph config get osd osd_calc_pg_upmaps_aggressively
 ceph config get osd osd_calc_pg_upmaps_aggressively
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -694,7 +694,7 @@ ceph config get osd osd_calc_pg_upmaps_aggressively_fast
 ceph config get osd osd_calc_pg_upmaps_aggressively_fast
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -731,7 +731,7 @@ ceph config get osd osd_calc_pg_upmaps_local_fallback_retries
 ceph config get osd osd_calc_pg_upmaps_local_fallback_retries
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -766,7 +766,7 @@ ceph config get osd osd_check_for_log_corruption
 ceph config get osd osd_check_for_log_corruption
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -801,7 +801,7 @@ ceph config get osd osd_client_op_priority
 ceph config get osd osd_client_op_priority
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -836,7 +836,7 @@ ceph config get osd osd_command_max_records
 ceph config get osd osd_command_max_records
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1479,7 +1479,7 @@ ceph config get osd osd_default_data_pool_replay_window
 ceph config get osd osd_default_data_pool_replay_window
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1516,7 +1516,7 @@ ceph config get osd osd_default_notify_timeout
 ceph config get osd osd_default_notify_timeout
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1551,7 +1551,7 @@ ceph config get osd osd_discard_disconnected_ops
 ceph config get osd osd_discard_disconnected_ops
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1585,7 +1585,7 @@ ceph config get osd osd_enable_op_tracker
 ceph config get osd osd_enable_op_tracker
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1622,7 +1622,7 @@ ceph config get osd osd_erasure_code_plugins
 ceph config get osd osd_erasure_code_plugins
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1657,7 +1657,7 @@ ceph config get osd osd_failsafe_full_ratio
 ceph config get osd osd_failsafe_full_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1692,7 +1692,7 @@ ceph config get osd osd_fast_fail_on_connection_refused
 ceph config get osd osd_fast_fail_on_connection_refused
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1727,7 +1727,7 @@ ceph config get osd osd_fast_info
 ceph config get osd osd_fast_info
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1764,7 +1764,7 @@ ceph config get osd osd_fast_shutdown
 ceph config get osd osd_fast_shutdown
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1801,7 +1801,7 @@ ceph config get osd osd_fast_shutdown_notify_mon
 ceph config get osd osd_fast_shutdown_notify_mon
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1840,7 +1840,7 @@ ceph config get osd osd_fast_shutdown_timeout
 ceph config get osd osd_fast_shutdown_timeout
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1877,7 +1877,7 @@ ceph config get osd osd_force_auth_primary_missing_objects
 ceph config get osd osd_force_auth_primary_missing_objects
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1938,7 +1938,7 @@ ceph config get osd osd_function_tracing
 ceph config get osd osd_function_tracing
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1973,7 +1973,7 @@ ceph config get osd osd_heartbeat_grace
 ceph config get osd osd_heartbeat_grace
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2036,7 +2036,7 @@ ceph config get osd osd_heartbeat_min_healthy_ratio
 ceph config get osd osd_heartbeat_min_healthy_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2073,7 +2073,7 @@ ceph config get osd osd_heartbeat_min_size
 ceph config get osd osd_heartbeat_min_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2110,7 +2110,7 @@ ceph config get osd osd_heartbeat_stale
 ceph config get osd osd_heartbeat_stale
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2145,7 +2145,7 @@ ceph config get osd osd_heartbeat_use_min_delay_socket
 ceph config get osd osd_heartbeat_use_min_delay_socket
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2180,7 +2180,7 @@ ceph config get osd osd_hit_set_max_size
 ceph config get osd osd_hit_set_max_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2215,7 +2215,7 @@ ceph config get osd osd_hit_set_min_size
 ceph config get osd osd_hit_set_min_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2250,7 +2250,7 @@ ceph config get osd osd_hit_set_namespace
 ceph config get osd osd_hit_set_namespace
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2285,7 +2285,7 @@ ceph config get osd osd_ignore_stale_divergent_priors
 ceph config get osd osd_ignore_stale_divergent_priors
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2346,7 +2346,7 @@ ceph config get osd osd_loop_before_reset_tphandle
 ceph config get osd osd_loop_before_reset_tphandle
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2381,7 +2381,7 @@ ceph config get osd osd_map_dedup
 ceph config get osd osd_map_dedup
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2418,7 +2418,7 @@ ceph config get osd osd_map_message_max
 ceph config get osd osd_map_message_max
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2455,7 +2455,7 @@ ceph config get osd osd_map_message_max_bytes
 ceph config get osd osd_map_message_max_bytes
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2490,7 +2490,7 @@ ceph config get osd osd_max_attr_name_len
 ceph config get osd osd_max_attr_name_len
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2525,7 +2525,7 @@ ceph config get osd osd_max_attr_size
 ceph config get osd osd_max_attr_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2560,7 +2560,7 @@ ceph config get osd osd_max_object_name_len
 ceph config get osd osd_max_object_name_len
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2595,7 +2595,7 @@ ceph config get osd osd_max_object_namespace_len
 ceph config get osd osd_max_object_namespace_len
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2630,7 +2630,7 @@ ceph config get osd osd_max_object_size
 ceph config get osd osd_max_object_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2665,7 +2665,7 @@ ceph config get osd osd_max_omap_bytes_per_request
 ceph config get osd osd_max_omap_bytes_per_request
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2700,7 +2700,7 @@ ceph config get osd osd_max_omap_entries_per_request
 ceph config get osd osd_max_omap_entries_per_request
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2735,7 +2735,7 @@ ceph config get osd osd_max_pg_blocked_by
 ceph config get osd osd_max_pg_blocked_by
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2802,7 +2802,7 @@ ceph config get osd osd_max_pg_per_osd_hard_ratio
 ceph config get osd osd_max_pg_per_osd_hard_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2865,7 +2865,7 @@ ceph config get osd osd_max_trimming_pgs
 ceph config get osd osd_max_trimming_pgs
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -2902,7 +2902,7 @@ ceph config get osd osd_max_write_op_reply_len
 ceph config get osd osd_max_write_op_reply_len
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3050,7 +3050,7 @@ ceph config get osd osd_memory_target
 ceph config get osd osd_memory_target
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3087,7 +3087,7 @@ ceph config get osd osd_memory_target_autotune
 ceph config get osd osd_memory_target_autotune
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3126,7 +3126,7 @@ ceph config get osd osd_memory_target_cgroup_limit_ratio
 ceph config get osd osd_memory_target_cgroup_limit_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3189,7 +3189,7 @@ ceph config get osd osd_min_split_replica_read_size
 ceph config get osd osd_min_split_replica_read_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3224,7 +3224,7 @@ ceph config get osd osd_mon_heartbeat_interval
 ceph config get osd osd_mon_heartbeat_interval
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3261,7 +3261,7 @@ ceph config get osd osd_mon_heartbeat_stat_stale
 ceph config get osd osd_mon_heartbeat_stat_stale
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3298,7 +3298,7 @@ ceph config get osd osd_mon_report_interval
 ceph config get osd osd_mon_report_interval
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3333,7 +3333,7 @@ ceph config get osd osd_mon_report_max_in_flight
 ceph config get osd osd_mon_report_max_in_flight
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3368,7 +3368,7 @@ ceph config get osd osd_mon_shutdown_timeout
 ceph config get osd osd_mon_shutdown_timeout
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3403,7 +3403,7 @@ ceph config get osd osd_num_op_tracker_shard
 ceph config get osd osd_num_op_tracker_shard
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3466,7 +3466,7 @@ ceph config get osd osd_objecter_finishers
 ceph config get osd osd_objecter_finishers
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3503,7 +3503,7 @@ ceph config get osd osd_objectstore
 ceph config get osd osd_objectstore
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3538,7 +3538,7 @@ ceph config get osd osd_objectstore_fuse
 ceph config get osd osd_objectstore_fuse
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3575,7 +3575,7 @@ ceph config get osd osd_objectstore_ideal_list_max
 ceph config get osd osd_objectstore_ideal_list_max
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3610,7 +3610,7 @@ ceph config get osd osd_objectstore_tracing
 ceph config get osd osd_objectstore_tracing
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3645,7 +3645,7 @@ ceph config get osd osd_op_complaint_time
 ceph config get osd osd_op_complaint_time
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3680,7 +3680,7 @@ ceph config get osd osd_op_history_duration
 ceph config get osd osd_op_history_duration
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3715,7 +3715,7 @@ ceph config get osd osd_op_history_size
 ceph config get osd osd_op_history_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3750,7 +3750,7 @@ ceph config get osd osd_op_history_slow_op_size
 ceph config get osd osd_op_history_slow_op_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3785,7 +3785,7 @@ ceph config get osd osd_op_history_slow_op_threshold
 ceph config get osd osd_op_history_slow_op_threshold
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3820,7 +3820,7 @@ ceph config get osd osd_op_log_threshold
 ceph config get osd osd_op_log_threshold
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3881,7 +3881,7 @@ ceph config get osd osd_pg_delete_cost
 ceph config get osd osd_pg_delete_cost
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3916,7 +3916,7 @@ ceph config get osd osd_pg_delete_priority
 ceph config get osd osd_pg_delete_priority
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -3951,7 +3951,7 @@ ceph config get osd osd_pg_epoch_persisted_max_stale
 ceph config get osd osd_pg_epoch_persisted_max_stale
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4016,7 +4016,7 @@ ceph config get osd osd_pg_log_trim_max
 ceph config get osd osd_pg_log_trim_max
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4081,7 +4081,7 @@ ceph config get osd osd_pg_max_concurrent_snap_trims
 ceph config get osd osd_pg_max_concurrent_snap_trims
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4116,7 +4116,7 @@ ceph config get osd osd_pg_object_context_cache_count
 ceph config get osd osd_pg_object_context_cache_count
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4153,7 +4153,7 @@ ceph config get osd osd_pg_stat_report_interval_max_epochs
 ceph config get osd osd_pg_stat_report_interval_max_epochs
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4190,7 +4190,7 @@ ceph config get osd osd_pg_stat_report_interval_max_seconds
 ceph config get osd osd_pg_stat_report_interval_max_seconds
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4225,7 +4225,7 @@ ceph config get osd osd_pool_default_cache_max_evict_check_size
 ceph config get osd osd_pool_default_cache_max_evict_check_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4260,7 +4260,7 @@ ceph config get osd osd_pool_default_cache_min_evict_age
 ceph config get osd osd_pool_default_cache_min_evict_age
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4295,7 +4295,7 @@ ceph config get osd osd_pool_default_cache_min_flush_age
 ceph config get osd osd_pool_default_cache_min_flush_age
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4330,7 +4330,7 @@ ceph config get osd osd_pool_default_cache_target_dirty_high_ratio
 ceph config get osd osd_pool_default_cache_target_dirty_high_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4365,7 +4365,7 @@ ceph config get osd osd_pool_default_cache_target_dirty_ratio
 ceph config get osd osd_pool_default_cache_target_dirty_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4400,7 +4400,7 @@ ceph config get osd osd_pool_default_cache_target_full_ratio
 ceph config get osd osd_pool_default_cache_target_full_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4437,7 +4437,7 @@ ceph config get osd osd_pool_default_crush_rule
 ceph config get osd osd_pool_default_crush_rule
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4474,7 +4474,7 @@ ceph config get osd osd_pool_default_ec_fast_read
 ceph config get osd osd_pool_default_ec_fast_read
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4511,7 +4511,7 @@ ceph config get osd osd_pool_default_erasure_code_profile
 ceph config get osd osd_pool_default_erasure_code_profile
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4548,7 +4548,7 @@ ceph config get osd osd_pool_default_flag_bulk
 ceph config get osd osd_pool_default_flag_bulk
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4585,7 +4585,7 @@ ceph config get osd osd_pool_default_flag_ec_optimizations
 ceph config get osd osd_pool_default_flag_ec_optimizations
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4622,7 +4622,7 @@ ceph config get osd osd_pool_default_flag_hashpspool
 ceph config get osd osd_pool_default_flag_hashpspool
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4659,7 +4659,7 @@ ceph config get osd osd_pool_default_flag_nodelete
 ceph config get osd osd_pool_default_flag_nodelete
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4696,7 +4696,7 @@ ceph config get osd osd_pool_default_flag_nopgchange
 ceph config get osd osd_pool_default_flag_nopgchange
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4733,7 +4733,7 @@ ceph config get osd osd_pool_default_flag_nosizechange
 ceph config get osd osd_pool_default_flag_nosizechange
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4796,7 +4796,7 @@ ceph config get osd osd_pool_default_hit_set_bloom_fpp
 ceph config get osd osd_pool_default_hit_set_bloom_fpp
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4835,7 +4835,7 @@ ceph config get osd osd_pool_default_min_size
 ceph config get osd osd_pool_default_min_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4872,7 +4872,7 @@ ceph config get osd osd_pool_default_pg_autoscale_mode
 ceph config get osd osd_pool_default_pg_autoscale_mode
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4909,7 +4909,7 @@ ceph config get osd osd_pool_default_pg_num
 ceph config get osd osd_pool_default_pg_num
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -4946,7 +4946,7 @@ ceph config get osd osd_pool_default_pgp_num
 ceph config get osd osd_pool_default_pgp_num
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5011,7 +5011,7 @@ ceph config get osd osd_pool_default_read_ratio
 ceph config get osd osd_pool_default_read_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5050,7 +5050,7 @@ ceph config get osd osd_pool_default_size
 ceph config get osd osd_pool_default_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5087,7 +5087,7 @@ ceph config get osd osd_pool_default_type
 ceph config get osd osd_pool_default_type
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5150,7 +5150,7 @@ ceph config get osd osd_recovery_cost
 ceph config get osd osd_recovery_cost
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5187,7 +5187,7 @@ ceph config get osd osd_recovery_op_priority
 ceph config get osd osd_recovery_op_priority
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5222,7 +5222,7 @@ ceph config get osd osd_recovery_op_warn_multiple
 ceph config get osd osd_recovery_op_warn_multiple
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5259,7 +5259,7 @@ ceph config get osd osd_recovery_priority
 ceph config get osd osd_recovery_priority
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5294,7 +5294,7 @@ ceph config get osd osd_requested_scrub_priority
 ceph config get osd osd_requested_scrub_priority
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5329,7 +5329,7 @@ ceph config get osd osd_rollback_to_cluster_snap
 ceph config get osd osd_rollback_to_cluster_snap
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5366,7 +5366,7 @@ ceph config get osd osd_scrub_cost
 ceph config get osd osd_scrub_cost
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5403,7 +5403,7 @@ ceph config get osd osd_scrub_event_cost
 ceph config get osd osd_scrub_event_cost
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5440,7 +5440,7 @@ ceph config get osd osd_scrub_priority
 ceph config get osd osd_scrub_priority
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5475,7 +5475,7 @@ ceph config get osd osd_shutdown_pgref_assert
 ceph config get osd osd_shutdown_pgref_assert
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5538,7 +5538,7 @@ ceph config get osd osd_snap_trim_cost
 ceph config get osd osd_snap_trim_cost
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5573,7 +5573,7 @@ ceph config get osd osd_snap_trim_priority
 ceph config get osd osd_snap_trim_priority
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5636,7 +5636,7 @@ ceph config get osd osd_target_transaction_size
 ceph config get osd osd_target_transaction_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5671,7 +5671,7 @@ ceph config get osd osd_tier_default_cache_hit_set_count
 ceph config get osd osd_tier_default_cache_hit_set_count
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5706,7 +5706,7 @@ ceph config get osd osd_tier_default_cache_hit_set_grade_decay_rate
 ceph config get osd osd_tier_default_cache_hit_set_grade_decay_rate
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5741,7 +5741,7 @@ ceph config get osd osd_tier_default_cache_hit_set_period
 ceph config get osd osd_tier_default_cache_hit_set_period
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5776,7 +5776,7 @@ ceph config get osd osd_tier_default_cache_hit_set_search_last_n
 ceph config get osd osd_tier_default_cache_hit_set_search_last_n
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5811,7 +5811,7 @@ ceph config get osd osd_tier_default_cache_hit_set_type
 ceph config get osd osd_tier_default_cache_hit_set_type
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5848,7 +5848,7 @@ ceph config get osd osd_tier_default_cache_min_read_recency_for_promote
 ceph config get osd osd_tier_default_cache_min_read_recency_for_promote
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5885,7 +5885,7 @@ ceph config get osd osd_tier_default_cache_min_write_recency_for_promote
 ceph config get osd osd_tier_default_cache_min_write_recency_for_promote
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5920,7 +5920,7 @@ ceph config get osd osd_tier_default_cache_mode
 ceph config get osd osd_tier_default_cache_mode
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5955,7 +5955,7 @@ ceph config get osd osd_tier_promote_max_bytes_sec
 ceph config get osd osd_tier_promote_max_bytes_sec
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -5990,7 +5990,7 @@ ceph config get osd osd_tier_promote_max_objects_sec
 ceph config get osd osd_tier_promote_max_objects_sec
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -6025,7 +6025,7 @@ ceph config get osd osd_tracing
 ceph config get osd osd_tracing
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -6060,7 +6060,7 @@ ceph config get osd osd_use_stale_snap
 ceph config get osd osd_use_stale_snap
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

@@ -302,13 +302,14 @@ def monitor_block(profile: SubsystemProfile, opt: Option) -> str:
     ]
     if target == "osd":
         lines.append("ceph daemon osd.<id> perf dump | head")
-        lines.append("ceph osd pool stats")
+        lines.append("ceph pg stat")
     elif target == "mon":
         lines.append("ceph mon stat")
     elif target == "mgr":
-        lines.append("ceph mgr dump")
+        lines.append("ceph mgr stat")
     elif target == "mds":
         lines.append("ceph fs status")
+        lines.append("ceph mds stat")
     elif target == "client":
         lines.append("# client options: set on client section or ceph.conf")
     lines.append("```")

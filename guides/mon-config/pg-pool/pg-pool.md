@@ -448,7 +448,7 @@ ceph config get osd osd_pool_default_crimson
 ceph config get osd osd_pool_default_crimson
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -485,7 +485,7 @@ ceph config get osd osd_pool_erasure_code_stripe_unit
 ceph config get osd osd_pool_erasure_code_stripe_unit
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

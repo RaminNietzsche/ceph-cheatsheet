@@ -63,9 +63,9 @@ RGW config deep dive — 43 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -107,8 +107,8 @@ See [Ceph RGW config ref — Barbican](https://docs.ceph.com/en/latest/radosgw/c
 
 ```bash
 ceph config get client.rgw rgw_barbican_url
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -143,8 +143,8 @@ ceph config get client.rgw rgw_crypt_default_encryption_key
 
 ```bash
 ceph config get client.rgw rgw_crypt_default_encryption_key
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -181,8 +181,8 @@ ceph config get client.rgw rgw_crypt_kmip_addr
 
 ```bash
 ceph config get client.rgw rgw_crypt_kmip_addr
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -253,8 +253,8 @@ ceph config get client.rgw rgw_crypt_kmip_client_cert
 
 ```bash
 ceph config get client.rgw rgw_crypt_kmip_client_cert
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -291,8 +291,8 @@ ceph config get client.rgw rgw_crypt_kmip_client_key
 
 ```bash
 ceph config get client.rgw rgw_crypt_kmip_client_key
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -329,8 +329,8 @@ ceph config get client.rgw rgw_crypt_kmip_kms_key_template
 
 ```bash
 ceph config get client.rgw rgw_crypt_kmip_kms_key_template
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -395,8 +395,8 @@ ceph config get client.rgw rgw_crypt_kmip_s3_key_template
 
 ```bash
 ceph config get client.rgw rgw_crypt_kmip_s3_key_template
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -433,8 +433,8 @@ ceph config get client.rgw rgw_crypt_kmip_username
 
 ```bash
 ceph config get client.rgw rgw_crypt_kmip_username
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -589,8 +589,8 @@ ceph config get client.rgw rgw_crypt_s3_kms_cache_negative_ttl
 
 ```bash
 ceph config get client.rgw rgw_crypt_s3_kms_cache_negative_ttl
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -631,8 +631,8 @@ ceph config get client.rgw rgw_crypt_s3_kms_cache_positive_ttl
 
 ```bash
 ceph config get client.rgw rgw_crypt_s3_kms_cache_positive_ttl
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -673,8 +673,8 @@ ceph config get client.rgw rgw_crypt_s3_kms_cache_transient_error_ttl
 
 ```bash
 ceph config get client.rgw rgw_crypt_s3_kms_cache_transient_error_ttl
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -711,8 +711,8 @@ ceph config get client.rgw rgw_crypt_s3_kms_encryption_keys
 
 ```bash
 ceph config get client.rgw rgw_crypt_s3_kms_encryption_keys
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -749,8 +749,8 @@ ceph config get client.rgw rgw_crypt_s3_kms_testing_delay
 
 ```bash
 ceph config get client.rgw rgw_crypt_s3_kms_testing_delay
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -843,8 +843,8 @@ ceph config get client.rgw rgw_crypt_sse_s3_key_template
 
 ```bash
 ceph config get client.rgw rgw_crypt_sse_s3_key_template
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -881,8 +881,8 @@ ceph config get client.rgw rgw_crypt_sse_s3_vault_addr
 
 ```bash
 ceph config get client.rgw rgw_crypt_sse_s3_vault_addr
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -947,8 +947,8 @@ ceph config get client.rgw rgw_crypt_sse_s3_vault_namespace
 
 ```bash
 ceph config get client.rgw rgw_crypt_sse_s3_vault_namespace
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -985,8 +985,8 @@ ceph config get client.rgw rgw_crypt_sse_s3_vault_prefix
 
 ```bash
 ceph config get client.rgw rgw_crypt_sse_s3_vault_prefix
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1051,8 +1051,8 @@ ceph config get client.rgw rgw_crypt_sse_s3_vault_ssl_cacert
 
 ```bash
 ceph config get client.rgw rgw_crypt_sse_s3_vault_ssl_cacert
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1089,8 +1089,8 @@ ceph config get client.rgw rgw_crypt_sse_s3_vault_ssl_clientcert
 
 ```bash
 ceph config get client.rgw rgw_crypt_sse_s3_vault_ssl_clientcert
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1127,8 +1127,8 @@ ceph config get client.rgw rgw_crypt_sse_s3_vault_ssl_clientkey
 
 ```bash
 ceph config get client.rgw rgw_crypt_sse_s3_vault_ssl_clientkey
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1255,8 +1255,8 @@ ceph config get client.rgw rgw_crypt_vault_addr
 
 ```bash
 ceph config get client.rgw rgw_crypt_vault_addr
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1321,8 +1321,8 @@ ceph config get client.rgw rgw_crypt_vault_namespace
 
 ```bash
 ceph config get client.rgw rgw_crypt_vault_namespace
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1359,8 +1359,8 @@ ceph config get client.rgw rgw_crypt_vault_prefix
 
 ```bash
 ceph config get client.rgw rgw_crypt_vault_prefix
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1425,8 +1425,8 @@ ceph config get client.rgw rgw_crypt_vault_ssl_cacert
 
 ```bash
 ceph config get client.rgw rgw_crypt_vault_ssl_cacert
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1463,8 +1463,8 @@ ceph config get client.rgw rgw_crypt_vault_ssl_clientcert
 
 ```bash
 ceph config get client.rgw rgw_crypt_vault_ssl_clientcert
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1501,8 +1501,8 @@ ceph config get client.rgw rgw_crypt_vault_ssl_clientkey
 
 ```bash
 ceph config get client.rgw rgw_crypt_vault_ssl_clientkey
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

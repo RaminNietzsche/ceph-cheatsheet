@@ -98,6 +98,7 @@ ceph config get mds mds_log_event_large_threshold
 ceph config get mds mds_log_event_large_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -136,6 +137,7 @@ ceph config get mds mds_log_events_per_segment
 ceph config get mds mds_log_events_per_segment
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -172,6 +174,7 @@ ceph config get mds mds_log_max_events
 ceph config get mds mds_log_max_events
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -210,6 +213,7 @@ ceph config get mds mds_log_max_segments
 ceph config get mds mds_log_max_segments
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -248,6 +252,7 @@ ceph config get mds mds_log_minor_segments_per_major_segment
 ceph config get mds mds_log_minor_segments_per_major_segment
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -310,6 +315,7 @@ ceph config get mds mds_log_segment_size
 ceph config get mds mds_log_segment_size
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -400,6 +406,7 @@ ceph config get mds mds_log_trim_decay_rate
 ceph config get mds mds_log_trim_decay_rate
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -438,6 +445,7 @@ ceph config get mds mds_log_trim_threshold
 ceph config get mds mds_log_trim_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -474,6 +482,7 @@ ceph config get mds mds_log_trim_upkeep_interval
 ceph config get mds mds_log_trim_upkeep_interval
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -512,6 +521,7 @@ ceph config get mds mds_log_warn_factor
 ceph config get mds mds_log_warn_factor
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---

@@ -25,9 +25,9 @@ RGW config deep dive — 5 options. [← RGW config overview](../OVERVIEW.md) ·
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -61,8 +61,8 @@ ceph config get client.rgw rgw_curl_buffersize
 
 ```bash
 ceph config get client.rgw rgw_curl_buffersize
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -125,8 +125,8 @@ ceph config get client.rgw rgw_curl_low_speed_time
 
 ```bash
 ceph config get client.rgw rgw_curl_low_speed_time
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -186,8 +186,8 @@ ceph config get client.rgw rgw_curl_wait_timeout_ms
 
 ```bash
 ceph config get client.rgw rgw_curl_wait_timeout_ms
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

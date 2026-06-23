@@ -58,6 +58,7 @@ ceph config get mds defer_client_eviction_on_laggy_osds
 ceph config get mds defer_client_eviction_on_laggy_osds
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---

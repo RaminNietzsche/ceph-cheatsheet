@@ -193,6 +193,7 @@ ceph config get mds mds_abort_on_newly_corrupt_dentry
 ceph config get mds mds_abort_on_newly_corrupt_dentry
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -229,6 +230,7 @@ ceph config get mds mds_action_on_write_error
 ceph config get mds mds_action_on_write_error
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -262,6 +264,7 @@ ceph config get mds mds_allow_async_dirops
 ceph config get mds mds_allow_async_dirops
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -297,6 +300,7 @@ ceph config get mds mds_allow_batched_ops
 ceph config get mds mds_allow_batched_ops
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -333,6 +337,7 @@ ceph config get mds mds_alternate_name_max
 ceph config get mds mds_alternate_name_max
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -371,6 +376,7 @@ ceph config get mds mds_asio_thread_count
 ceph config get mds mds_asio_thread_count
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -407,6 +413,7 @@ ceph config get mds mds_bal_export_pin
 ceph config get mds mds_bal_export_pin
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -443,6 +450,7 @@ ceph config get mds mds_bal_fragment_dirs
 ceph config get mds mds_bal_fragment_dirs
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -479,6 +487,7 @@ ceph config get mds mds_bal_fragment_fast_factor
 ceph config get mds mds_bal_fragment_fast_factor
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -515,6 +524,7 @@ ceph config get mds mds_bal_fragment_size_max
 ceph config get mds mds_bal_fragment_size_max
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -551,6 +561,7 @@ ceph config get mds mds_bal_idle_threshold
 ceph config get mds mds_bal_idle_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -639,6 +650,7 @@ ceph config get mds mds_bal_merge_size
 ceph config get mds mds_bal_merge_size
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -887,6 +899,7 @@ ceph config get mds mds_bal_replicate_threshold
 ceph config get mds mds_bal_replicate_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -925,6 +938,7 @@ ceph config get mds mds_bal_split_bits
 ceph config get mds mds_bal_split_bits
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -961,6 +975,7 @@ ceph config get mds mds_bal_split_rd
 ceph config get mds mds_bal_split_rd
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -997,6 +1012,7 @@ ceph config get mds mds_bal_split_size
 ceph config get mds mds_bal_split_size
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1033,6 +1049,7 @@ ceph config get mds mds_bal_split_wr
 ceph config get mds mds_bal_split_wr
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1069,6 +1086,7 @@ ceph config get mds mds_bal_target_decay
 ceph config get mds mds_bal_target_decay
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1105,6 +1123,7 @@ ceph config get mds mds_bal_unreplicate_threshold
 ceph config get mds mds_bal_unreplicate_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1141,6 +1160,7 @@ ceph config get mds mds_beacon_grace
 ceph config get mds mds_beacon_grace
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1177,6 +1197,7 @@ ceph config get mds mds_cache_memory_limit
 ceph config get mds mds_cache_memory_limit
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 Watch `ceph fs status`, slow requests, and `mds_cache_trim_*` counters. Size MDS RAM ≥ 2× this limit in production.
@@ -1215,6 +1236,7 @@ ceph config get mds mds_cache_mid
 ceph config get mds mds_cache_mid
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1251,6 +1273,7 @@ ceph config get mds mds_cache_quiesce_decay_rate
 ceph config get mds mds_cache_quiesce_decay_rate
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1315,6 +1338,7 @@ ceph config get mds mds_cache_quiesce_sleep
 ceph config get mds mds_cache_quiesce_sleep
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1351,6 +1375,7 @@ ceph config get mds mds_cache_quiesce_threshold
 ceph config get mds mds_cache_quiesce_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1387,6 +1412,7 @@ ceph config get mds mds_cache_reservation
 ceph config get mds mds_cache_reservation
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1423,6 +1449,7 @@ ceph config get mds mds_cache_trim_decay_rate
 ceph config get mds mds_cache_trim_decay_rate
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1459,6 +1486,7 @@ ceph config get mds mds_cache_trim_threshold
 ceph config get mds mds_cache_trim_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1495,6 +1523,7 @@ ceph config get mds mds_client_delegate_inos_pct
 ceph config get mds mds_client_delegate_inos_pct
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1531,6 +1560,7 @@ ceph config get mds mds_client_prealloc_inos
 ceph config get mds mds_client_prealloc_inos
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1567,6 +1597,7 @@ ceph config get mds mds_client_writeable_range_max_inc_objs
 ceph config get mds mds_client_writeable_range_max_inc_objs
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1629,6 +1660,7 @@ ceph config get mds mds_damage_table_max_entries
 ceph config get mds mds_damage_table_max_entries
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1665,6 +1697,7 @@ ceph config get mds mds_data
 ceph config get mds mds_data
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1701,6 +1734,7 @@ ceph config get mds mds_decay_halflife
 ceph config get mds mds_decay_halflife
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1737,6 +1771,7 @@ ceph config get mds mds_default_dir_hash
 ceph config get mds mds_default_dir_hash
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1827,6 +1862,7 @@ ceph config get mds mds_deny_all_reconnect
 ceph config get mds mds_deny_all_reconnect
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1863,6 +1899,7 @@ ceph config get mds mds_dir_keys_per_op
 ceph config get mds mds_dir_keys_per_op
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1899,6 +1936,7 @@ ceph config get mds mds_dir_max_commit_size
 ceph config get mds mds_dir_max_commit_size
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1935,6 +1973,7 @@ ceph config get mds mds_dir_max_entries
 ceph config get mds mds_dir_max_entries
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -1971,6 +2010,7 @@ ceph config get mds mds_dir_prefetch
 ceph config get mds mds_dir_prefetch
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2115,6 +2155,7 @@ ceph config get mds mds_early_reply
 ceph config get mds mds_early_reply
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2150,6 +2191,7 @@ ceph config get mds mds_enable_op_tracker
 ceph config get mds mds_enable_op_tracker
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2185,6 +2227,7 @@ ceph config get mds mds_enforce_unique_name
 ceph config get mds mds_enforce_unique_name
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2221,6 +2264,7 @@ ceph config get mds mds_export_ephemeral_distributed
 ceph config get mds mds_export_ephemeral_distributed
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2259,6 +2303,7 @@ ceph config get mds mds_export_ephemeral_distributed_factor
 ceph config get mds mds_export_ephemeral_distributed_factor
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2295,6 +2340,7 @@ ceph config get mds mds_export_ephemeral_random
 ceph config get mds mds_export_ephemeral_random
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2333,6 +2379,7 @@ ceph config get mds mds_export_ephemeral_random_max
 ceph config get mds mds_export_ephemeral_random_max
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2371,6 +2418,7 @@ ceph config get mds mds_file_blockdiff_max_concurrent_object_scans
 ceph config get mds mds_file_blockdiff_max_concurrent_object_scans
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2407,6 +2455,7 @@ ceph config get mds mds_fscrypt_last_block_max_size
 ceph config get mds mds_fscrypt_last_block_max_size
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2441,6 +2490,7 @@ ceph config get mds mds_go_bad_corrupt_dentry
 ceph config get mds mds_go_bad_corrupt_dentry
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2476,6 +2526,7 @@ ceph config get mds mds_hack_allow_loading_invalid_metadata
 ceph config get mds mds_hack_allow_loading_invalid_metadata
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2512,6 +2563,7 @@ ceph config get mds mds_health_cache_threshold
 ceph config get mds mds_health_cache_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2548,6 +2600,7 @@ ceph config get mds mds_health_summarize_threshold
 ceph config get mds mds_health_summarize_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2584,6 +2637,7 @@ ceph config get mds mds_heartbeat_grace
 ceph config get mds mds_heartbeat_grace
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2620,6 +2674,7 @@ ceph config get mds mds_heartbeat_reset_grace
 ceph config get mds mds_heartbeat_reset_grace
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -2655,6 +2710,7 @@ ceph config get mds mds_join_fs
 ceph config get mds mds_join_fs
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3109,6 +3165,7 @@ ceph config get mds mds_max_file_recover
 ceph config get mds mds_max_file_recover
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3145,6 +3202,7 @@ ceph config get mds mds_max_purge_files
 ceph config get mds mds_max_purge_files
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3181,6 +3239,7 @@ ceph config get mds mds_max_purge_ops
 ceph config get mds mds_max_purge_ops
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3217,6 +3276,7 @@ ceph config get mds mds_max_purge_ops_per_pg
 ceph config get mds mds_max_purge_ops_per_pg
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3253,6 +3313,7 @@ ceph config get mds mds_max_scrub_ops_in_progress
 ceph config get mds mds_max_scrub_ops_in_progress
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3288,6 +3349,7 @@ ceph config get mds mds_max_snaps_per_dir
 ceph config get mds mds_max_snaps_per_dir
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3325,6 +3387,7 @@ ceph orch restart mds
 ceph config get mds mds_numa_node
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3362,6 +3425,7 @@ ceph orch restart mds
 ceph config get mds mds_oft_prefetch_dirfrags
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3398,6 +3462,7 @@ ceph config get mds mds_op_complaint_time
 ceph config get mds mds_op_complaint_time
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3434,6 +3499,7 @@ ceph config get mds mds_op_history_duration
 ceph config get mds mds_op_history_duration
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3470,6 +3536,7 @@ ceph config get mds mds_op_history_size
 ceph config get mds mds_op_history_size
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3506,6 +3573,7 @@ ceph config get mds mds_op_history_slow_op_size
 ceph config get mds mds_op_history_slow_op_size
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3542,6 +3610,7 @@ ceph config get mds mds_op_history_slow_op_threshold
 ceph config get mds mds_op_history_slow_op_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3578,6 +3647,7 @@ ceph config get mds mds_ping_grace
 ceph config get mds mds_ping_grace
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3640,6 +3710,7 @@ ceph config get mds mds_recall_global_max_decay_threshold
 ceph config get mds mds_recall_global_max_decay_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3676,6 +3747,7 @@ ceph config get mds mds_recall_max_decay_rate
 ceph config get mds mds_recall_max_decay_rate
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3712,6 +3784,7 @@ ceph config get mds mds_recall_max_decay_threshold
 ceph config get mds mds_recall_max_decay_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3748,6 +3821,7 @@ ceph config get mds mds_recall_warning_decay_rate
 ceph config get mds mds_recall_warning_decay_rate
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3784,6 +3858,7 @@ ceph config get mds mds_recall_warning_threshold
 ceph config get mds mds_recall_warning_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3821,6 +3896,7 @@ ceph orch restart mds
 ceph config get mds mds_replay_unsafe_with_closed_session
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3857,6 +3933,7 @@ ceph config get mds mds_request_load_average_decay_rate
 ceph config get mds mds_request_load_average_decay_rate
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3893,6 +3970,7 @@ ceph config get mds mds_root_ino_gid
 ceph config get mds mds_root_ino_gid
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3929,6 +4007,7 @@ ceph config get mds mds_root_ino_uid
 ceph config get mds mds_root_ino_uid
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -3967,6 +4046,7 @@ ceph config get mds mds_scrub_stats_review_period
 ceph config get mds mds_scrub_stats_review_period
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -4055,6 +4135,7 @@ ceph config get mds mds_session_blocklist_on_evict
 ceph config get mds mds_session_blocklist_on_evict
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -4091,6 +4172,7 @@ ceph config get mds mds_session_cache_liveness_decay_rate
 ceph config get mds mds_session_cache_liveness_decay_rate
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -4127,6 +4209,7 @@ ceph config get mds mds_session_cache_liveness_magnitude
 ceph config get mds mds_session_cache_liveness_magnitude
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -4163,6 +4246,7 @@ ceph config get mds mds_session_metadata_threshold
 ceph config get mds mds_session_metadata_threshold
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -4199,6 +4283,7 @@ ceph config get mds mds_sessionmap_keys_per_op
 ceph config get mds mds_sessionmap_keys_per_op
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -4313,6 +4398,7 @@ ceph config get mds mds_snap_max_uid
 ceph config get mds mds_snap_max_uid
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -4349,6 +4435,7 @@ ceph config get mds mds_snap_min_uid
 ceph config get mds mds_snap_min_uid
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -4385,6 +4472,7 @@ ceph config get mds mds_snap_rstat
 ceph config get mds mds_snap_rstat
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -4447,6 +4535,7 @@ ceph config get mds mds_symlink_recovery
 ceph config get mds mds_symlink_recovery
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -4533,6 +4622,7 @@ ceph config get mds mds_use_global_snaprealm_seq_for_subvol
 ceph config get mds mds_use_global_snaprealm_seq_for_subvol
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---

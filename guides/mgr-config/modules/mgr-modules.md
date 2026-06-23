@@ -86,7 +86,7 @@ ceph config get mgr cephadm_path
 ```bash
 ceph config get mgr cephadm_path
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -174,7 +174,7 @@ ceph config get mgr mgr_data
 ```bash
 ceph config get mgr mgr_data
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -239,7 +239,7 @@ ceph orch restart mgr
 ```bash
 ceph config get mgr mgr_disabled_modules
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -274,7 +274,7 @@ ceph config get mgr mgr_initial_modules
 ```bash
 ceph config get mgr mgr_initial_modules
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -310,7 +310,7 @@ ceph config get mgr mgr_max_pg_creating
 ```bash
 ceph config get mgr mgr_max_pg_creating
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -346,7 +346,7 @@ ceph config get mgr mgr_max_pg_num_change
 ```bash
 ceph config get mgr mgr_max_pg_num_change
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -520,7 +520,7 @@ ceph config get mgr mgr_module_monitor_interval
 ```bash
 ceph config get mgr mgr_module_monitor_interval
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -555,7 +555,7 @@ ceph config get mgr mgr_module_path
 ```bash
 ceph config get mgr mgr_module_path
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -697,7 +697,7 @@ ceph config get mgr mgr_osd_upgrade_check_convergence_factor
 ```bash
 ceph config get mgr mgr_osd_upgrade_check_convergence_factor
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -762,7 +762,7 @@ ceph config get mgr mgr_service_beacon_grace
 ```bash
 ceph config get mgr mgr_service_beacon_grace
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -798,7 +798,7 @@ ceph config get mgr mgr_standby_modules
 ```bash
 ceph config get mgr mgr_standby_modules
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -833,7 +833,7 @@ ceph config get mgr mgr_stats_period
 ```bash
 ceph config get mgr mgr_stats_period
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -868,7 +868,7 @@ ceph config get mgr mgr_stats_period_autotune
 ```bash
 ceph config get mgr mgr_stats_period_autotune
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -904,7 +904,7 @@ ceph config get mgr mgr_stats_period_autotune_queue_threshold
 ```bash
 ceph config get mgr mgr_stats_period_autotune_queue_threshold
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -942,7 +942,7 @@ ceph config get mgr mgr_stats_threshold
 ```bash
 ceph config get mgr mgr_stats_threshold
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -979,7 +979,7 @@ ceph orch restart mgr
 ```bash
 ceph config get mgr mgr_subinterpreter_modules
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -1043,7 +1043,7 @@ ceph config get mgr mgr_tick_period
 ```bash
 ceph config get mgr mgr_tick_period
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---

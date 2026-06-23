@@ -96,7 +96,7 @@ ceph config get osd osd_blocked_scrub_grace_period
 ceph config get osd osd_blocked_scrub_grace_period
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -133,7 +133,7 @@ ceph config get osd osd_deep_scrub_interval
 ceph config get osd osd_deep_scrub_interval
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -172,7 +172,7 @@ ceph config get osd osd_deep_scrub_interval_cv
 ceph config get osd osd_deep_scrub_interval_cv
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -209,7 +209,7 @@ ceph config get osd osd_deep_scrub_keys
 ceph config get osd osd_deep_scrub_keys
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -246,7 +246,7 @@ ceph config get osd osd_deep_scrub_large_omap_object_key_threshold
 ceph config get osd osd_deep_scrub_large_omap_object_key_threshold
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -283,7 +283,7 @@ ceph config get osd osd_deep_scrub_large_omap_object_value_sum_threshold
 ceph config get osd osd_deep_scrub_large_omap_object_value_sum_threshold
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -320,7 +320,7 @@ ceph config get osd osd_deep_scrub_randomize_ratio
 ceph config get osd osd_deep_scrub_randomize_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -357,7 +357,7 @@ ceph config get osd osd_deep_scrub_stride
 ceph config get osd osd_deep_scrub_stride
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -394,7 +394,7 @@ ceph config get osd osd_deep_scrub_update_digest_min_age
 ceph config get osd osd_deep_scrub_update_digest_min_age
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -431,7 +431,7 @@ ceph config get osd osd_max_scrubs
 ceph config get osd osd_max_scrubs
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 Pair with `osd_scrub_sleep` and deep-scrub intervals. HDD clusters often stay at 1; NVMe may tolerate 2–3 if load is low.
@@ -470,7 +470,7 @@ ceph config get osd osd_scrub_auto_repair
 ceph config get osd osd_scrub_auto_repair
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -507,7 +507,7 @@ ceph config get osd osd_scrub_auto_repair_num_errors
 ceph config get osd osd_scrub_auto_repair_num_errors
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -574,7 +574,7 @@ ceph config get osd osd_scrub_begin_hour
 ceph config get osd osd_scrub_begin_hour
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -613,7 +613,7 @@ ceph config get osd osd_scrub_begin_week_day
 ceph config get osd osd_scrub_begin_week_day
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -650,7 +650,7 @@ ceph config get osd osd_scrub_chunk_max
 ceph config get osd osd_scrub_chunk_max
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -687,7 +687,7 @@ ceph config get osd osd_scrub_chunk_min
 ceph config get osd osd_scrub_chunk_min
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -723,7 +723,7 @@ ceph config get osd osd_scrub_disable_reservation_queuing
 ceph config get osd osd_scrub_disable_reservation_queuing
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -760,7 +760,7 @@ ceph config get osd osd_scrub_during_recovery
 ceph config get osd osd_scrub_during_recovery
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -799,7 +799,7 @@ ceph config get osd osd_scrub_end_hour
 ceph config get osd osd_scrub_end_hour
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -838,7 +838,7 @@ ceph config get osd osd_scrub_end_week_day
 ceph config get osd osd_scrub_end_week_day
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -875,7 +875,7 @@ ceph config get osd osd_scrub_extended_sleep
 ceph config get osd osd_scrub_extended_sleep
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -912,7 +912,7 @@ ceph config get osd osd_scrub_interval_randomize_ratio
 ceph config get osd osd_scrub_interval_randomize_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -947,7 +947,7 @@ ceph config get osd osd_scrub_invalid_stats
 ceph config get osd osd_scrub_invalid_stats
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -984,7 +984,7 @@ ceph config get osd osd_scrub_load_threshold
 ceph config get osd osd_scrub_load_threshold
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1021,7 +1021,7 @@ ceph config get osd osd_scrub_max_interval
 ceph config get osd osd_scrub_max_interval
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1060,7 +1060,7 @@ ceph config get osd osd_scrub_max_preemptions
 ceph config get osd osd_scrub_max_preemptions
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1097,7 +1097,7 @@ ceph config get osd osd_scrub_min_interval
 ceph config get osd osd_scrub_min_interval
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1134,7 +1134,7 @@ ceph config get osd osd_scrub_queued_snaptrims_limit
 ceph config get osd osd_scrub_queued_snaptrims_limit
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1173,7 +1173,7 @@ ceph config get osd osd_scrub_retry_after_noscrub
 ceph config get osd osd_scrub_retry_after_noscrub
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1212,7 +1212,7 @@ ceph config get osd osd_scrub_retry_delay
 ceph config get osd osd_scrub_retry_delay
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1251,7 +1251,7 @@ ceph config get osd osd_scrub_retry_new_interval
 ceph config get osd osd_scrub_retry_new_interval
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1290,7 +1290,7 @@ ceph config get osd osd_scrub_retry_pg_state
 ceph config get osd osd_scrub_retry_pg_state
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1329,7 +1329,7 @@ ceph config get osd osd_scrub_retry_trimming
 ceph config get osd osd_scrub_retry_trimming
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1366,7 +1366,7 @@ ceph config get osd osd_scrub_sleep
 ceph config get osd osd_scrub_sleep
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1403,7 +1403,7 @@ ceph config get osd osd_shallow_scrub_chunk_max
 ceph config get osd osd_shallow_scrub_chunk_max
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1440,7 +1440,7 @@ ceph config get osd osd_shallow_scrub_chunk_min
 ceph config get osd osd_shallow_scrub_chunk_min
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1477,7 +1477,7 @@ ceph config get osd osd_stats_update_period_not_scrubbing
 ceph config get osd osd_stats_update_period_not_scrubbing
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -1514,7 +1514,7 @@ ceph config get osd osd_stats_update_period_scrubbing
 ceph config get osd osd_stats_update_period_scrubbing
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

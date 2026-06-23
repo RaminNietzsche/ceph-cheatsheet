@@ -64,7 +64,7 @@ ceph config get mgr exporter_addr
 ```bash
 ceph config get mgr exporter_addr
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -99,7 +99,7 @@ ceph config get mgr exporter_cert_file
 ```bash
 ceph config get mgr exporter_cert_file
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -135,7 +135,7 @@ ceph config get mgr exporter_http_port
 ```bash
 ceph config get mgr exporter_http_port
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -170,7 +170,7 @@ ceph config get mgr exporter_key_file
 ```bash
 ceph config get mgr exporter_key_file
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -206,7 +206,7 @@ ceph config get mgr exporter_prio_limit
 ```bash
 ceph config get mgr exporter_prio_limit
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -241,7 +241,7 @@ ceph config get mgr exporter_sock_dir
 ```bash
 ceph config get mgr exporter_sock_dir
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -277,7 +277,7 @@ ceph config get mgr exporter_sort_metrics
 ```bash
 ceph config get mgr exporter_sort_metrics
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---
@@ -313,7 +313,7 @@ ceph config get mgr exporter_stats_period
 ```bash
 ceph config get mgr exporter_stats_period
 ceph -s
-ceph mgr dump
+ceph mgr stat
 ```
 
 ---

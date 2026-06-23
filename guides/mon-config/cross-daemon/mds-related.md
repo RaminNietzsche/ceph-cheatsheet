@@ -58,6 +58,7 @@ ceph config get mds mds_beacon_mon_down_grace
 ceph config get mds mds_beacon_mon_down_grace
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---

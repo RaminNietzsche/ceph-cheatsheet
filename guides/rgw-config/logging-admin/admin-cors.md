@@ -24,9 +24,9 @@ RGW config deep dive — 4 options. [← RGW config overview](../OVERVIEW.md) ·
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -62,8 +62,8 @@ ceph config get client.rgw rgw_gcors_allow_headers
 
 ```bash
 ceph config get client.rgw rgw_gcors_allow_headers
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -100,8 +100,8 @@ ceph config get client.rgw rgw_gcors_allow_methods
 
 ```bash
 ceph config get client.rgw rgw_gcors_allow_methods
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -138,8 +138,8 @@ ceph config get client.rgw rgw_gcors_allow_origins
 
 ```bash
 ceph config get client.rgw rgw_gcors_allow_origins
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -176,8 +176,8 @@ ceph config get client.rgw rgw_gcors_expose_headers
 
 ```bash
 ceph config get client.rgw rgw_gcors_expose_headers
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

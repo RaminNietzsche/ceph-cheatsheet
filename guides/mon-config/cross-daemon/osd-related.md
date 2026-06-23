@@ -1044,7 +1044,7 @@ ceph config get osd osd_crush_update_weight_set
 ceph config get osd osd_crush_update_weight_set
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

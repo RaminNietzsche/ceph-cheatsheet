@@ -76,6 +76,7 @@ ceph config get mds mds_bal_fragment_interval
 ceph config get mds mds_bal_fragment_interval
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -112,6 +113,7 @@ ceph config get mds mds_bal_interval
 ceph config get mds mds_bal_interval
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -148,6 +150,7 @@ ceph config get mds mds_bal_sample_interval
 ceph config get mds mds_bal_sample_interval
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -184,6 +187,7 @@ ceph config get mds mds_beacon_interval
 ceph config get mds mds_beacon_interval
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -248,6 +252,7 @@ ceph config get mds mds_cache_trim_interval
 ceph config get mds mds_cache_trim_interval
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -312,6 +317,7 @@ ceph config get mds mds_extraordinary_events_dump_interval
 ceph config get mds mds_extraordinary_events_dump_interval
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -374,6 +380,7 @@ ceph config get mds mds_metrics_update_interval
 ceph config get mds mds_metrics_update_interval
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -410,6 +417,7 @@ ceph config get mds mds_mon_shutdown_timeout
 ceph config get mds mds_mon_shutdown_timeout
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -446,6 +454,7 @@ ceph config get mds mds_ping_interval
 ceph config get mds mds_ping_interval
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -482,6 +491,7 @@ ceph config get mds mds_reconnect_timeout
 ceph config get mds mds_reconnect_timeout
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -518,6 +528,7 @@ ceph config get mds mds_replay_interval
 ceph config get mds mds_replay_interval
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -554,6 +565,7 @@ ceph config get mds mds_scatter_nudge_interval
 ceph config get mds mds_scatter_nudge_interval
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -590,6 +602,7 @@ ceph config get mds mds_session_blocklist_on_timeout
 ceph config get mds mds_session_blocklist_on_timeout
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -654,6 +667,7 @@ ceph config get mds mds_tick_interval
 ceph config get mds mds_tick_interval
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---

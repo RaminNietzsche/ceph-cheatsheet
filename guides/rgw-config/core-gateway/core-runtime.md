@@ -36,9 +36,9 @@ RGW config deep dive — 16 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -74,8 +74,8 @@ ceph config get client.rgw rgw_data
 
 ```bash
 ceph config get client.rgw rgw_data
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -112,8 +112,8 @@ ceph config get client.rgw rgw_dedup_min_obj_size_for_dedup
 
 ```bash
 ceph config get client.rgw rgw_dedup_min_obj_size_for_dedup
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -296,8 +296,8 @@ ceph config get client.rgw rgw_json_config
 
 ```bash
 ceph config get client.rgw rgw_json_config
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -425,8 +425,8 @@ ceph config get client.rgw rgw_parquet_buffer_size
 
 ```bash
 ceph config get client.rgw rgw_parquet_buffer_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -463,8 +463,8 @@ ceph config get client.rgw rgw_rados_pool_autoscale_bias
 
 ```bash
 ceph config get client.rgw rgw_rados_pool_autoscale_bias
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -503,8 +503,8 @@ ceph config get client.rgw rgw_rados_pool_recovery_priority
 
 ```bash
 ceph config get client.rgw rgw_rados_pool_recovery_priority
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -569,8 +569,8 @@ ceph config get client.rgw rgw_script_uri
 
 ```bash
 ceph config get client.rgw rgw_script_uri
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

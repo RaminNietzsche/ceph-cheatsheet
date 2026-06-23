@@ -48,9 +48,9 @@ RGW config deep dive — 28 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -86,8 +86,8 @@ ceph config get client.rgw rgw_data_log_changes_size
 
 ```bash
 ceph config get client.rgw rgw_data_log_changes_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -151,8 +151,8 @@ ceph config get client.rgw rgw_data_log_window
 
 ```bash
 ceph config get client.rgw rgw_data_log_window
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -191,8 +191,8 @@ ceph config get client.rgw rgw_data_notify_interval_msec
 
 ```bash
 ceph config get client.rgw rgw_data_notify_interval_msec
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -230,8 +230,8 @@ radosgw-admin sync status
 
 ```bash
 ceph config get client.rgw rgw_data_sync_poll_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -269,8 +269,8 @@ radosgw-admin sync status
 
 ```bash
 ceph config get client.rgw rgw_data_sync_spawn_window
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 radosgw-admin sync status
 ```
@@ -309,8 +309,8 @@ ceph orch restart rgw
 
 ```bash
 ceph config get client.rgw rgw_lfuda_sync_frequency
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -377,8 +377,8 @@ ceph config get client.rgw rgw_md_notify_interval_msec
 
 ```bash
 ceph config get client.rgw rgw_md_notify_interval_msec
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -416,8 +416,8 @@ radosgw-admin sync status
 
 ```bash
 ceph config get client.rgw rgw_meta_sync_poll_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -455,8 +455,8 @@ radosgw-admin sync status
 
 ```bash
 ceph config get client.rgw rgw_meta_sync_spawn_window
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 radosgw-admin sync status
 ```
@@ -575,8 +575,8 @@ ceph config get client.rgw rgw_sync_lease_period
 
 ```bash
 ceph config get client.rgw rgw_sync_lease_period
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -616,8 +616,8 @@ ceph config get client.rgw rgw_sync_log_trim_concurrent_buckets
 
 ```bash
 ceph config get client.rgw rgw_sync_log_trim_concurrent_buckets
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -657,8 +657,8 @@ radosgw-admin sync status
 
 ```bash
 ceph config get client.rgw rgw_sync_log_trim_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -723,8 +723,8 @@ ceph config get client.rgw rgw_sync_log_trim_min_cold_buckets
 
 ```bash
 ceph config get client.rgw rgw_sync_log_trim_min_cold_buckets
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -817,8 +817,8 @@ ceph config get client.rgw rgw_sync_trace_history_size
 
 ```bash
 ceph config get client.rgw rgw_sync_trace_history_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -855,8 +855,8 @@ ceph config get client.rgw rgw_sync_trace_per_node_log_size
 
 ```bash
 ceph config get client.rgw rgw_sync_trace_per_node_log_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -896,8 +896,8 @@ radosgw-admin sync status
 
 ```bash
 ceph config get client.rgw rgw_sync_trace_servicemap_update_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -937,8 +937,8 @@ radosgw-admin sync status
 
 ```bash
 ceph config get client.rgw rgw_user_quota_bucket_sync_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1006,8 +1006,8 @@ radosgw-admin sync status
 
 ```bash
 ceph config get client.rgw rgw_user_quota_sync_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1043,8 +1043,8 @@ ceph config get client.rgw rgw_user_quota_sync_wait_time
 
 ```bash
 ceph config get client.rgw rgw_user_quota_sync_wait_time
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

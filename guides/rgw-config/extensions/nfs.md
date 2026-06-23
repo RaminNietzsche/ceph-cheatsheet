@@ -34,9 +34,9 @@ RGW config deep dive — 14 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -72,8 +72,8 @@ ceph config get client.rgw rgw_nfs_fhcache_partitions
 
 ```bash
 ceph config get client.rgw rgw_nfs_fhcache_partitions
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -110,8 +110,8 @@ ceph config get client.rgw rgw_nfs_fhcache_size
 
 ```bash
 ceph config get client.rgw rgw_nfs_fhcache_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -148,8 +148,8 @@ ceph config get client.rgw rgw_nfs_frontends
 
 ```bash
 ceph config get client.rgw rgw_nfs_frontends
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -184,8 +184,8 @@ ceph config get client.rgw rgw_nfs_lru_lane_hiwat
 
 ```bash
 ceph config get client.rgw rgw_nfs_lru_lane_hiwat
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -220,8 +220,8 @@ ceph config get client.rgw rgw_nfs_lru_lanes
 
 ```bash
 ceph config get client.rgw rgw_nfs_lru_lanes
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -284,8 +284,8 @@ ceph config get client.rgw rgw_nfs_namespace_expire_secs
 
 ```bash
 ceph config get client.rgw rgw_nfs_namespace_expire_secs
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -492,8 +492,8 @@ ceph config get client.rgw rgw_nfs_write_completion_interval_s
 
 ```bash
 ceph config get client.rgw rgw_nfs_write_completion_interval_s
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

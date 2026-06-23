@@ -113,7 +113,7 @@ ceph config get osd seastore_cachepin_2q_in_ratio
 ceph config get osd seastore_cachepin_2q_in_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -150,7 +150,7 @@ ceph config get osd seastore_cachepin_2q_out_ratio
 ceph config get osd seastore_cachepin_2q_out_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -187,7 +187,7 @@ ceph config get osd seastore_cachepin_size_pershard
 ceph config get osd seastore_cachepin_size_pershard
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -280,7 +280,7 @@ ceph config get osd seastore_cold_tier_generations
 ceph config get osd seastore_cold_tier_generations
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -459,7 +459,7 @@ ceph config get osd seastore_hot_tier_generations
 ceph config get osd seastore_hot_tier_generations
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -636,7 +636,7 @@ ceph config get osd seastore_max_concurrent_transactions
 ceph config get osd seastore_max_concurrent_transactions
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -673,7 +673,7 @@ ceph config get osd seastore_max_data_allocation_size
 ceph config get osd seastore_max_data_allocation_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -710,7 +710,7 @@ ceph config get osd seastore_multiple_tiers_default_evict_ratio
 ceph config get osd seastore_multiple_tiers_default_evict_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -747,7 +747,7 @@ ceph config get osd seastore_multiple_tiers_fast_evict_ratio
 ceph config get osd seastore_multiple_tiers_fast_evict_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -784,7 +784,7 @@ ceph config get osd seastore_multiple_tiers_stop_evict_ratio
 ceph config get osd seastore_multiple_tiers_stop_evict_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -822,7 +822,7 @@ ceph orch restart osd
 ceph config get osd seastore_require_partition_count_match_reactor_count
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -859,7 +859,7 @@ ceph config get osd seastore_segment_cleaner_gc_autotune
 ceph config get osd seastore_segment_cleaner_gc_autotune
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -898,7 +898,7 @@ ceph config get osd seastore_segment_cleaner_gc_autotune_ratio
 ceph config get osd seastore_segment_cleaner_gc_autotune_ratio
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -935,7 +935,7 @@ ceph config get osd seastore_segment_cleaner_gc_formula
 ceph config get osd seastore_segment_cleaner_gc_formula
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -972,7 +972,7 @@ ceph config get osd seastore_segment_size
 ceph config get osd seastore_segment_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

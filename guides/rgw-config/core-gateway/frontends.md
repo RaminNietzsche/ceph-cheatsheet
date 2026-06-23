@@ -26,9 +26,9 @@ RGW config deep dive — 6 options. [← RGW config overview](../OVERVIEW.md) ·
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -126,8 +126,8 @@ ceph config get client.rgw rgw_dns_name
 
 ```bash
 ceph config get client.rgw rgw_dns_name
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -164,8 +164,8 @@ ceph config get client.rgw rgw_dns_s3website_name
 
 ```bash
 ceph config get client.rgw rgw_dns_s3website_name
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -202,8 +202,8 @@ ceph config get client.rgw rgw_frontend_defaults
 
 ```bash
 ceph config get client.rgw rgw_frontend_defaults
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -240,8 +240,8 @@ ceph config get client.rgw rgw_frontends
 
 ```bash
 ceph config get client.rgw rgw_frontends
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

@@ -28,9 +28,9 @@ RGW config deep dive — 8 options. [← RGW config overview](../OVERVIEW.md) ·
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -66,8 +66,8 @@ ceph config get client.rgw rgw_torrent_comment
 
 ```bash
 ceph config get client.rgw rgw_torrent_comment
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -104,8 +104,8 @@ ceph config get client.rgw rgw_torrent_createby
 
 ```bash
 ceph config get client.rgw rgw_torrent_createby
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -142,8 +142,8 @@ ceph config get client.rgw rgw_torrent_encoding
 
 ```bash
 ceph config get client.rgw rgw_torrent_encoding
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -236,8 +236,8 @@ ceph config get client.rgw rgw_torrent_origin
 
 ```bash
 ceph config get client.rgw rgw_torrent_origin
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -272,8 +272,8 @@ ceph config get client.rgw rgw_torrent_sha_unit
 
 ```bash
 ceph config get client.rgw rgw_torrent_sha_unit
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -310,8 +310,8 @@ ceph config get client.rgw rgw_torrent_tracker
 
 ```bash
 ceph config get client.rgw rgw_torrent_tracker
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

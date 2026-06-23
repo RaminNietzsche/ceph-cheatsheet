@@ -70,7 +70,7 @@ ceph config get osd crimson_allow_pg_split
 ceph config get osd crimson_allow_pg_split
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -108,7 +108,7 @@ ceph orch restart osd
 ceph config get osd crimson_bluestore_cpu_set
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -146,7 +146,7 @@ ceph orch restart osd
 ceph config get osd crimson_bluestore_num_threads
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -186,7 +186,7 @@ ceph orch restart osd
 ceph config get osd crimson_cpu_num
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -224,7 +224,7 @@ ceph orch restart osd
 ceph config get osd crimson_cpu_set
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -262,7 +262,7 @@ ceph orch restart osd
 ceph config get osd crimson_memory
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -299,7 +299,7 @@ ceph config get osd crimson_osd_obc_lru_size
 ceph config get osd crimson_osd_obc_lru_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -336,7 +336,7 @@ ceph config get osd crimson_osd_scheduler_concurrency
 ceph config get osd crimson_osd_scheduler_concurrency
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -373,7 +373,7 @@ ceph config get osd crimson_osd_stat_interval
 ceph config get osd crimson_osd_stat_interval
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -411,7 +411,7 @@ ceph orch restart osd
 ceph config get osd crimson_poll_mode
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -449,7 +449,7 @@ ceph orch restart osd
 ceph config get osd crimson_reactor_backend
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -487,7 +487,7 @@ ceph orch restart osd
 ceph config get osd crimson_reactor_idle_poll_time_us
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -525,7 +525,7 @@ ceph orch restart osd
 ceph config get osd crimson_reactor_io_latency_goal_ms
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -563,7 +563,7 @@ ceph orch restart osd
 ceph config get osd crimson_reactor_task_quota_ms
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

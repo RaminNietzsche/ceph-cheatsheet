@@ -60,7 +60,7 @@ ceph config get osd osd_class_default_list
 ceph config get osd osd_class_default_list
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -94,7 +94,7 @@ ceph config get osd osd_class_dir
 ceph config get osd osd_class_dir
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -129,7 +129,7 @@ ceph config get osd osd_class_load_list
 ceph config get osd osd_class_load_list
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -166,7 +166,7 @@ ceph config get osd osd_class_update_on_start
 ceph config get osd osd_class_update_on_start
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -201,7 +201,7 @@ ceph config get osd osd_open_classes_on_start
 ceph config get osd osd_open_classes_on_start
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

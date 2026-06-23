@@ -54,7 +54,7 @@ ENRICHMENTS: dict[str, dict[str, str]] = {
             "rgw backend store = daos\n"
             "daos pool = mypool\n"
             "```\n\n"
-            "Create the pool with `dmg pool create --size=<size> mypool`."
+            "Provision the DAOS pool with your site DAOS admin tools before setting this option."
         ),
     },
     "dbstore_config_uri": {
@@ -132,7 +132,8 @@ ENRICHMENTS: dict[str, dict[str, str]] = {
         "example": (
             "```bash\n"
             "ceph config set client rgw_account_default_quota_max_objects 1000000\n"
-            "radosgw-admin account create --account-id=acme --account-name=\"ACME Corp\"\n"
+            'radosgw-admin user create --uid=alice --display-name="Alice"\n'
+            "radosgw-admin quota get --quota-scope=user --uid=alice\n"
             "```\n\n"
             "Set in `[client]` or global so `radosgw-admin` picks it up."
         ),
@@ -277,8 +278,9 @@ ENRICHMENTS: dict[str, dict[str, str]] = {
             "```bash\n"
             "ceph config set client rgw_bucket_default_quota_max_size "
             "$((100*1024*1024*1024))\n\n"
-            "radosgw-admin quota set --uid=alice --max-size=50G --max-objects=10000\n"
-            "radosgw-admin quota enable --uid=alice\n"
+            "radosgw-admin quota set --quota-scope=user --uid=alice "
+            "--max-size=50G --max-objects=10000\n"
+            "radosgw-admin quota enable --quota-scope=user --uid=alice\n"
             "```"
         ),
     },
@@ -894,8 +896,8 @@ def _monitor_commands(opt: Option, *extra: str) -> str:
         "",
         "```bash",
         f"ceph config get client.rgw {opt.name}",
-        "ceph daemon rgw.<id> perf dump | jq '.rgw' | head",
-        "radosgw-admin perf stats",
+        "radosgw-admin sync status",
+        "ceph config show client.rgw.<instance>",
         "ceph -s  # cluster health, slow ops",
     ]
     lines.extend(extra)
@@ -939,7 +941,8 @@ def render_finding_optimal_value(opt: Option) -> str:
                     "",
                     "```bash",
                     "radosgw-admin realm list",
-                    "radosgw-admin zone get --rgw-zone=<zone>",
+                    "radosgw-admin sync status",
+                    "ceph config get client.rgw rgw_zone",
                     "```",
                 ]
             )
@@ -997,12 +1000,13 @@ def render_finding_optimal_value(opt: Option) -> str:
                     "1. `ceph df detail` — usable cluster capacity.",
                     "2. Divide by expected tenants/accounts; leave 20–30% headroom for GC and bursts.",
                     f"3. Set limit; `-1` means unlimited. Default: `{default}`.",
-                    "4. Create a test user/account and confirm via `radosgw-admin quota get`.",
+                    "4. Create a test user and confirm via "
+                    "`radosgw-admin quota get --quota-scope=user --uid=<uid>`.",
                     "5. Existing users/accounts are **not** retroactively changed.",
                     "",
                     "```bash",
                     "ceph df detail",
-                    "radosgw-admin quota get --uid=testuser",
+                    "radosgw-admin quota get --quota-scope=user --uid=testuser",
                     "radosgw-admin bucket stats --bucket=testbucket",
                     "```",
                 ]
@@ -1348,20 +1352,18 @@ def example_followups(opt: Option) -> list[str]:
     lines: list[str] = []
 
     if "quota" in name and "max" in name:
-        if "account" in name:
-            lines.append(
-                'radosgw-admin account create --account-id=acme --account-name="ACME Corp"'
-            )
-        else:
-            lines.append("radosgw-admin quota get --uid=testuser")
+        lines.append("radosgw-admin quota get --quota-scope=user --uid=testuser")
     elif name.startswith("rgw_user_default_quota") or name == "rgw_user_max_buckets":
         lines.append('radosgw-admin user create --uid=newuser --display-name="New User"')
     elif name.startswith("rgw_bucket_default_quota"):
         lines.append('radosgw-admin user create --uid=newuser --display-name="New User"')
-    elif name in ("rgw_zone", "rgw_zonegroup", "rgw_realm"):
-        lines.append(f"radosgw-admin {name.replace('rgw_', '')} list")
-    elif name.startswith("rgw_zone") and name not in ("rgw_zone",):
-        lines.append("radosgw-admin zone get --rgw-zone=<zone>")
+    elif name == "rgw_realm":
+        lines.append("radosgw-admin realm list")
+    elif name in ("rgw_zone", "rgw_zonegroup"):
+        lines.append(f"ceph config get client.rgw {name}")
+        lines.append("radosgw-admin sync status")
+    elif name.startswith("rgw_zone"):
+        lines.append("radosgw-admin sync status")
     elif "sync" in name and ("interval" in name or "poll" in name or "spawn" in name):
         lines.append("radosgw-admin sync status")
     elif name.endswith("_url") or name.endswith("_uri") or name.endswith("_addr"):
@@ -1393,7 +1395,7 @@ def example_followups(opt: Option) -> list[str]:
     elif name == "rgw_lc_counters_cache":
         lines.append("ceph config set client.rgw rgw_lc_counters_cache_size 20000")
     elif name == "rgw_enable_quota_threads":
-        lines.append("radosgw-admin quota get --uid=testuser")
+        lines.append("radosgw-admin quota get --quota-scope=user --uid=testuser")
     elif name == "rgw_crypt_s3_kms_backend":
         lines.append("ceph config set client.rgw rgw_barbican_url https://barbican.example.com:9311/")
     elif name.startswith("rgw_ldap_"):
@@ -1416,7 +1418,7 @@ def render_example(opt: Option) -> str:
             "rgw backend store = daos\n"
             "daos pool = mypool\n"
             "```\n\n"
-            "Create the pool with `dmg pool create --size=<size> mypool`."
+            "Provision the DAOS pool with your site DAOS admin tools before setting this option."
         )
 
     if opt.name == "rgw_admin_entry":
@@ -1519,9 +1521,9 @@ def tuning_intro() -> str:
             "",
             "```bash",
             "ceph config get client.rgw <option>",
-            "ceph daemon rgw.<id> perf dump | jq '.rgw' | head",
-            "radosgw-admin perf stats",
-            "ceph osd pool stats",
+            "radosgw-admin sync status",
+            "ceph config show client.rgw.<instance>",
+            "ceph pg stat",
             "```",
             "",
             "---",

@@ -28,9 +28,9 @@ RGW config deep dive — 8 options. [← RGW config overview](../OVERVIEW.md) ·
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -66,8 +66,8 @@ ceph config get client.rgw rgw_s3_auth_disable_signature_url
 
 ```bash
 ceph config get client.rgw rgw_s3_auth_disable_signature_url
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -104,8 +104,8 @@ ceph config get client.rgw rgw_s3_auth_order
 
 ```bash
 ceph config get client.rgw rgw_s3_auth_order
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -282,8 +282,8 @@ ceph config get client.rgw rgw_s3_success_create_obj_status
 
 ```bash
 ceph config get client.rgw rgw_s3_success_create_obj_status
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

@@ -34,9 +34,9 @@ RGW config deep dive — 14 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -72,8 +72,8 @@ ceph config get client.rgw rgw_list_bucket_min_readahead
 
 ```bash
 ceph config get client.rgw rgw_list_bucket_min_readahead
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -113,8 +113,8 @@ ceph config get client.rgw rgw_max_concurrent_requests
 
 ```bash
 ceph config get client.rgw rgw_max_concurrent_requests
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -154,8 +154,8 @@ ceph config get client.rgw rgw_max_copy_obj_concurrent_io
 
 ```bash
 ceph config get client.rgw rgw_max_copy_obj_concurrent_io
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -223,8 +223,8 @@ ceph config get client.rgw rgw_multi_obj_del_max_aio
 
 ```bash
 ceph config get client.rgw rgw_multi_obj_del_max_aio
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 radosgw-admin bucket stats --bucket=BIG_BUCKET | jq '.num_shards'
 ```
@@ -262,8 +262,8 @@ ceph config get client.rgw rgw_num_async_rados_threads
 
 ```bash
 ceph config get client.rgw rgw_num_async_rados_threads
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -327,8 +327,8 @@ ceph config get client.rgw rgw_obj_stripe_size
 
 ```bash
 ceph config get client.rgw rgw_obj_stripe_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -423,8 +423,8 @@ ceph config get client.rgw rgw_redis_connection_pool_size
 
 ```bash
 ceph config get client.rgw rgw_redis_connection_pool_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -488,8 +488,8 @@ ceph config get client.rgw rgw_restore_processor_period
 
 ```bash
 ceph config get client.rgw rgw_restore_processor_period
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -529,8 +529,8 @@ ceph config get client.rgw rgw_thread_pool_size
 
 ```bash
 ceph config get client.rgw rgw_thread_pool_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

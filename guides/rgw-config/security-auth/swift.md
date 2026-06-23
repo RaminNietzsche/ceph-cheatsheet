@@ -31,9 +31,9 @@ RGW config deep dive — 11 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -69,8 +69,8 @@ ceph config get client.rgw rgw_swift_account_in_url
 
 ```bash
 ceph config get client.rgw rgw_swift_account_in_url
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -135,8 +135,8 @@ ceph config get client.rgw rgw_swift_auth_url
 
 ```bash
 ceph config get client.rgw rgw_swift_auth_url
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -173,8 +173,8 @@ ceph config get client.rgw rgw_swift_custom_header
 
 ```bash
 ceph config get client.rgw rgw_swift_custom_header
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -267,8 +267,8 @@ ceph config get client.rgw rgw_swift_tenant_name
 
 ```bash
 ceph config get client.rgw rgw_swift_tenant_name
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -305,8 +305,8 @@ ceph config get client.rgw rgw_swift_token_expiration
 
 ```bash
 ceph config get client.rgw rgw_swift_token_expiration
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -343,8 +343,8 @@ ceph config get client.rgw rgw_swift_url
 
 ```bash
 ceph config get client.rgw rgw_swift_url
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -381,8 +381,8 @@ ceph config get client.rgw rgw_swift_url_prefix
 
 ```bash
 ceph config get client.rgw rgw_swift_url_prefix
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

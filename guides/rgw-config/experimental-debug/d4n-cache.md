@@ -42,9 +42,9 @@ RGW config deep dive — 22 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -149,8 +149,8 @@ ceph config get client.rgw rgw_d3n_l1_datacache_size
 
 ```bash
 ceph config get client.rgw rgw_d3n_l1_datacache_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -243,8 +243,8 @@ ceph config get client.rgw rgw_d3n_l1_fadvise
 
 ```bash
 ceph config get client.rgw rgw_d3n_l1_fadvise
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -337,8 +337,8 @@ ceph config get client.rgw rgw_d3n_libaio_aio_threads
 
 ```bash
 ceph config get client.rgw rgw_d3n_libaio_aio_threads
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -376,8 +376,8 @@ ceph orch restart rgw
 
 ```bash
 ceph config get client.rgw rgw_d4n_address
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -415,8 +415,8 @@ ceph orch restart rgw
 
 ```bash
 ceph config get client.rgw rgw_d4n_backend_address
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -456,8 +456,8 @@ ceph orch restart rgw
 
 ```bash
 ceph config get client.rgw rgw_d4n_cache_cleaning_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -495,8 +495,8 @@ ceph orch restart rgw
 
 ```bash
 ceph config get client.rgw rgw_d4n_l1_datacache_address
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -533,8 +533,8 @@ ceph config get client.rgw rgw_d4n_l1_datacache_disk_reserve
 
 ```bash
 ceph config get client.rgw rgw_d4n_l1_datacache_disk_reserve
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -633,8 +633,8 @@ ceph config get client.rgw rgw_d4n_l1_fadvise
 
 ```bash
 ceph config get client.rgw rgw_d4n_l1_fadvise
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -671,8 +671,8 @@ ceph config get client.rgw rgw_d4n_l1_write_open_flags
 
 ```bash
 ceph config get client.rgw rgw_d4n_l1_write_open_flags
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -737,8 +737,8 @@ ceph config get client.rgw rgw_d4n_libaio_aio_threads
 
 ```bash
 ceph config get client.rgw rgw_d4n_libaio_aio_threads
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -776,8 +776,8 @@ ceph orch restart rgw
 
 ```bash
 ceph config get client.rgw rgw_d4n_local_rgw_address
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -817,8 +817,8 @@ ceph orch restart rgw
 
 ```bash
 ceph config get client.rgw rgw_d4n_localweight_processing_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

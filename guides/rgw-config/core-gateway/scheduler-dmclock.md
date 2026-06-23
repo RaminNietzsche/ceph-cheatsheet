@@ -33,9 +33,9 @@ RGW config deep dive — 13 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -70,8 +70,8 @@ ceph config get client.rgw rgw_dmclock_admin_lim
 
 ```bash
 ceph config get client.rgw rgw_dmclock_admin_lim
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
 ```
@@ -108,8 +108,8 @@ ceph config get client.rgw rgw_dmclock_admin_res
 
 ```bash
 ceph config get client.rgw rgw_dmclock_admin_res
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
 ```
@@ -146,8 +146,8 @@ ceph config get client.rgw rgw_dmclock_admin_wgt
 
 ```bash
 ceph config get client.rgw rgw_dmclock_admin_wgt
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
 ```
@@ -184,8 +184,8 @@ ceph config get client.rgw rgw_dmclock_auth_lim
 
 ```bash
 ceph config get client.rgw rgw_dmclock_auth_lim
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
 ```
@@ -222,8 +222,8 @@ ceph config get client.rgw rgw_dmclock_auth_res
 
 ```bash
 ceph config get client.rgw rgw_dmclock_auth_res
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
 ```
@@ -260,8 +260,8 @@ ceph config get client.rgw rgw_dmclock_auth_wgt
 
 ```bash
 ceph config get client.rgw rgw_dmclock_auth_wgt
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
 ```
@@ -298,8 +298,8 @@ ceph config get client.rgw rgw_dmclock_data_lim
 
 ```bash
 ceph config get client.rgw rgw_dmclock_data_lim
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
 ```
@@ -336,8 +336,8 @@ ceph config get client.rgw rgw_dmclock_data_res
 
 ```bash
 ceph config get client.rgw rgw_dmclock_data_res
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
 ```
@@ -374,8 +374,8 @@ ceph config get client.rgw rgw_dmclock_data_wgt
 
 ```bash
 ceph config get client.rgw rgw_dmclock_data_wgt
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
 ```
@@ -412,8 +412,8 @@ ceph config get client.rgw rgw_dmclock_metadata_lim
 
 ```bash
 ceph config get client.rgw rgw_dmclock_metadata_lim
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
 ```
@@ -450,8 +450,8 @@ ceph config get client.rgw rgw_dmclock_metadata_res
 
 ```bash
 ceph config get client.rgw rgw_dmclock_metadata_res
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
 ```
@@ -488,8 +488,8 @@ ceph config get client.rgw rgw_dmclock_metadata_wgt
 
 ```bash
 ceph config get client.rgw rgw_dmclock_metadata_wgt
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ceph daemon rgw.<id> perf dump | jq 'to_entries[] | select(.key|test("dmclock"))'
 ```
@@ -527,8 +527,8 @@ ceph config get client.rgw rgw_scheduler_type
 
 ```bash
 ceph config get client.rgw rgw_scheduler_type
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

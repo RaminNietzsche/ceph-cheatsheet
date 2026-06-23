@@ -37,9 +37,9 @@ RGW config deep dive — 17 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -75,8 +75,8 @@ ceph config get client.rgw rgw_lc_counters_batch_size
 
 ```bash
 ceph config get client.rgw rgw_lc_counters_batch_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -146,8 +146,8 @@ ceph config get client.rgw rgw_lc_counters_cache_size
 
 ```bash
 ceph config get client.rgw rgw_lc_counters_cache_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -217,8 +217,8 @@ ceph config get client.rgw rgw_lc_list_cnt
 
 ```bash
 ceph config get client.rgw rgw_lc_list_cnt
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -339,8 +339,8 @@ ceph config get client.rgw rgw_lc_max_worker
 
 ```bash
 ceph config get client.rgw rgw_lc_max_worker
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -405,8 +405,8 @@ ceph config get client.rgw rgw_lc_ordered_list_threshold
 
 ```bash
 ceph config get client.rgw rgw_lc_ordered_list_threshold
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -445,8 +445,8 @@ ceph config get client.rgw rgw_lc_thread_delay
 
 ```bash
 ceph config get client.rgw rgw_lc_thread_delay
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -483,8 +483,8 @@ ceph config get client.rgw rgw_lifecycle_work_time
 
 ```bash
 ceph config get client.rgw rgw_lifecycle_work_time
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

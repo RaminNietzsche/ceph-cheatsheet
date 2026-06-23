@@ -39,9 +39,9 @@ RGW config deep dive — 19 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -75,8 +75,8 @@ ceph config get client.rgw rgw_default_realm_info_oid
 
 ```bash
 ceph config get client.rgw rgw_default_realm_info_oid
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -113,8 +113,8 @@ ceph config get client.rgw rgw_default_region_info_oid
 
 ```bash
 ceph config get client.rgw rgw_default_region_info_oid
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -151,8 +151,8 @@ ceph config get client.rgw rgw_default_zone_info_oid
 
 ```bash
 ceph config get client.rgw rgw_default_zone_info_oid
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -187,8 +187,8 @@ ceph config get client.rgw rgw_default_zonegroup_info_oid
 
 ```bash
 ceph config get client.rgw rgw_default_zonegroup_info_oid
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -222,8 +222,8 @@ ceph config get client.rgw rgw_period_latest_epoch_info_oid
 
 ```bash
 ceph config get client.rgw rgw_period_latest_epoch_info_oid
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -262,8 +262,8 @@ ceph config get client.rgw rgw_period_push_interval
 
 ```bash
 ceph config get client.rgw rgw_period_push_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -302,8 +302,8 @@ ceph config get client.rgw rgw_period_push_interval_max
 
 ```bash
 ceph config get client.rgw rgw_period_push_interval_max
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -339,8 +339,8 @@ ceph config get client.rgw rgw_period_root_pool
 
 ```bash
 ceph config get client.rgw rgw_period_root_pool
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -373,7 +373,8 @@ radosgw-admin realm list
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
+ceph config get client.rgw rgw_zone
 ```
 
 ---
@@ -404,7 +405,8 @@ ceph config get client.rgw rgw_realm_id
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
+ceph config get client.rgw rgw_zone
 ```
 
 ---
@@ -437,7 +439,8 @@ ceph config get client.rgw rgw_realm_root_pool
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
+ceph config get client.rgw rgw_zone
 ```
 
 ---
@@ -470,7 +473,8 @@ ceph config get client.rgw rgw_region
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
+ceph config get client.rgw rgw_zone
 ```
 
 ---
@@ -503,7 +507,8 @@ ceph config get client.rgw rgw_region_root_pool
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
+ceph config get client.rgw rgw_zone
 ```
 
 ---
@@ -524,7 +529,8 @@ radosgw-admin zone get --rgw-zone=<zone>
 ```bash
 ceph config set client.rgw rgw_zone "us-east-1"
 ceph config get client.rgw rgw_zone
-radosgw-admin zone list
+ceph config get client.rgw rgw_zone
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -537,7 +543,8 @@ radosgw-admin zone list
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
+ceph config get client.rgw rgw_zone
 ```
 
 ---
@@ -558,7 +565,7 @@ radosgw-admin zone get --rgw-zone=<zone>
 ```bash
 ceph config set client.rgw rgw_zone_id <value>
 ceph config get client.rgw rgw_zone_id
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -571,7 +578,8 @@ radosgw-admin zone get --rgw-zone=<zone>
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
+ceph config get client.rgw rgw_zone
 ```
 
 ---
@@ -592,7 +600,7 @@ radosgw-admin zone get --rgw-zone=<zone>
 ```bash
 ceph config set client.rgw rgw_zone_root_pool ".rgw.root"
 ceph config get client.rgw rgw_zone_root_pool
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -605,7 +613,8 @@ radosgw-admin zone get --rgw-zone=<zone>
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
+ceph config get client.rgw rgw_zone
 ```
 
 ---
@@ -626,7 +635,8 @@ radosgw-admin zone get --rgw-zone=<zone>
 ```bash
 ceph config set client.rgw rgw_zonegroup "default"
 ceph config get client.rgw rgw_zonegroup
-radosgw-admin zonegroup list
+ceph config get client.rgw rgw_zonegroup
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -639,7 +649,8 @@ radosgw-admin zonegroup list
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
+ceph config get client.rgw rgw_zone
 ```
 
 ---
@@ -660,7 +671,7 @@ radosgw-admin zone get --rgw-zone=<zone>
 ```bash
 ceph config set client.rgw rgw_zonegroup_id <value>
 ceph config get client.rgw rgw_zonegroup_id
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -673,7 +684,8 @@ radosgw-admin zone get --rgw-zone=<zone>
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
+ceph config get client.rgw rgw_zone
 ```
 
 ---
@@ -694,7 +706,7 @@ radosgw-admin zone get --rgw-zone=<zone>
 ```bash
 ceph config set client.rgw rgw_zonegroup_root_pool ".rgw.root"
 ceph config get client.rgw rgw_zonegroup_root_pool
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
 ```
 
 **Finding optimal value:**
@@ -707,7 +719,8 @@ radosgw-admin zone get --rgw-zone=<zone>
 
 ```bash
 radosgw-admin realm list
-radosgw-admin zone get --rgw-zone=<zone>
+radosgw-admin sync status
+ceph config get client.rgw rgw_zone
 ```
 
 ---

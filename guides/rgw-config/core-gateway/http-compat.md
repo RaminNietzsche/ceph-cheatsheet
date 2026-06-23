@@ -37,9 +37,9 @@ RGW config deep dive — 17 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -103,8 +103,8 @@ ceph config get client.rgw rgw_cross_domain_policy
 
 ```bash
 ceph config get client.rgw rgw_cross_domain_policy
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -141,8 +141,8 @@ ceph config get client.rgw rgw_defer_to_bucket_acls
 
 ```bash
 ceph config get client.rgw rgw_defer_to_bucket_acls
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -207,8 +207,8 @@ ceph config get client.rgw rgw_extended_http_attrs
 
 ```bash
 ceph config get client.rgw rgw_extended_http_attrs
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -413,8 +413,8 @@ ceph config get client.rgw rgw_remote_addr_param
 
 ```bash
 ceph config get client.rgw rgw_remote_addr_param
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -449,8 +449,8 @@ ceph config get client.rgw rgw_request_uri
 
 ```bash
 ceph config get client.rgw rgw_request_uri
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -515,8 +515,8 @@ ceph config get client.rgw rgw_service_provider_name
 
 ```bash
 ceph config get client.rgw rgw_service_provider_name
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

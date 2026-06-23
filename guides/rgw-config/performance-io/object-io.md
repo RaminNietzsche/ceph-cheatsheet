@@ -24,9 +24,9 @@ RGW config deep dive — 4 options. [← RGW config overview](../OVERVIEW.md) ·
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -89,8 +89,8 @@ ceph config get client.rgw rgw_get_obj_window_size
 
 ```bash
 ceph config get client.rgw rgw_get_obj_window_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -126,8 +126,8 @@ ceph config get client.rgw rgw_put_obj_max_window_size
 
 ```bash
 ceph config get client.rgw rgw_put_obj_max_window_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -163,8 +163,8 @@ ceph config get client.rgw rgw_put_obj_min_window_size
 
 ```bash
 ceph config get client.rgw rgw_put_obj_min_window_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

@@ -64,7 +64,7 @@ ceph config get osd osd_agent_delay_time
 ceph config get osd osd_agent_delay_time
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -101,7 +101,7 @@ ceph config get osd osd_agent_hist_halflife
 ceph config get osd osd_agent_hist_halflife
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -138,7 +138,7 @@ ceph config get osd osd_agent_max_low_ops
 ceph config get osd osd_agent_max_low_ops
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -175,7 +175,7 @@ ceph config get osd osd_agent_max_ops
 ceph config get osd osd_agent_max_ops
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -214,7 +214,7 @@ ceph config get osd osd_agent_min_evict_effort
 ceph config get osd osd_agent_min_evict_effort
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -251,7 +251,7 @@ ceph config get osd osd_agent_quantize_effort
 ceph config get osd osd_agent_quantize_effort
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -288,7 +288,7 @@ ceph config get osd osd_agent_slop
 ceph config get osd osd_agent_slop
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

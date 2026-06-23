@@ -68,6 +68,7 @@ ceph config get mds mds_cache_quiesce_splitauth
 ceph config get mds mds_cache_quiesce_splitauth
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -104,6 +105,7 @@ ceph config get mds mds_cap_acquisition_throttle_retry_request_timeout
 ceph config get mds mds_cap_acquisition_throttle_retry_request_timeout
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -140,6 +142,7 @@ ceph config get mds mds_cap_revoke_eviction_timeout
 ceph config get mds mds_cap_revoke_eviction_timeout
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -201,6 +204,7 @@ ceph config get mds mds_forward_all_requests_to_auth
 ceph config get mds mds_forward_all_requests_to_auth
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -237,6 +241,7 @@ ceph config get mds mds_max_caps_per_client
 ceph config get mds mds_max_caps_per_client
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -273,6 +278,7 @@ ceph config get mds mds_min_caps_per_client
 ceph config get mds mds_min_caps_per_client
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -309,6 +315,7 @@ ceph config get mds mds_min_caps_working_set
 ceph config get mds mds_min_caps_working_set
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -345,6 +352,7 @@ ceph config get mds mds_recall_max_caps
 ceph config get mds mds_recall_max_caps
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -381,6 +389,7 @@ ceph config get mds mds_session_cap_acquisition_decay_rate
 ceph config get mds mds_session_cap_acquisition_decay_rate
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -417,6 +426,7 @@ ceph config get mds mds_session_cap_acquisition_throttle
 ceph config get mds mds_session_cap_acquisition_throttle
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---
@@ -453,6 +463,7 @@ ceph config get mds mds_session_max_caps_throttle_ratio
 ceph config get mds mds_session_max_caps_throttle_ratio
 ceph -s
 ceph fs status
+ceph mds stat
 ```
 
 ---

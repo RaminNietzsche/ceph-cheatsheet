@@ -26,9 +26,9 @@ RGW config deep dive — 6 options. [← RGW config overview](../OVERVIEW.md) ·
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -52,7 +52,7 @@ rgw backend store = daos
 daos pool = mypool
 ```
 
-Create the pool with `dmg pool create --size=<size> mypool`.
+Provision the DAOS pool with your site DAOS admin tools before setting this option.
 
 **Finding optimal value:**
 
@@ -176,8 +176,8 @@ ceph config get client.rgw dbstore_db_name_prefix
 
 ```bash
 ceph config get client.rgw dbstore_db_name_prefix
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

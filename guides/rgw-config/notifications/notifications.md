@@ -33,9 +33,9 @@ RGW config deep dive — 13 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -102,8 +102,8 @@ ceph config get client.rgw rgw_http_notif_connection_timeout
 
 ```bash
 ceph config get client.rgw rgw_http_notif_connection_timeout
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -140,8 +140,8 @@ ceph config get client.rgw rgw_http_notif_max_inflight
 
 ```bash
 ceph config get client.rgw rgw_http_notif_max_inflight
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -177,8 +177,8 @@ ceph config get client.rgw rgw_http_notif_message_timeout
 
 ```bash
 ceph config get client.rgw rgw_http_notif_message_timeout
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -245,8 +245,8 @@ ceph config get client.rgw rgw_kafka_connection_idle
 
 ```bash
 ceph config get client.rgw rgw_kafka_connection_idle
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -283,8 +283,8 @@ ceph config get client.rgw rgw_kafka_max_batch_size
 
 ```bash
 ceph config get client.rgw rgw_kafka_max_batch_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -320,8 +320,8 @@ ceph config get client.rgw rgw_kafka_message_timeout
 
 ```bash
 ceph config get client.rgw rgw_kafka_message_timeout
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -357,8 +357,8 @@ ceph config get client.rgw rgw_kafka_sleep_timeout
 
 ```bash
 ceph config get client.rgw rgw_kafka_sleep_timeout
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -453,8 +453,8 @@ ceph orch restart rgw
 
 ```bash
 ceph config get client.rgw rgw_topic_persistency_sleep_duration
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -492,8 +492,8 @@ ceph orch restart rgw
 
 ```bash
 ceph config get client.rgw rgw_topic_persistency_time_to_live
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

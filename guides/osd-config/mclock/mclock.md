@@ -76,7 +76,7 @@ ceph orch restart osd
 ceph config get osd osd_mclock_force_run_benchmark_on_init
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -113,7 +113,7 @@ ceph config get osd osd_mclock_iops_capacity_low_threshold_hdd
 ceph config get osd osd_mclock_iops_capacity_low_threshold_hdd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -150,7 +150,7 @@ ceph config get osd osd_mclock_iops_capacity_low_threshold_ssd
 ceph config get osd osd_mclock_iops_capacity_low_threshold_ssd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -187,7 +187,7 @@ ceph config get osd osd_mclock_iops_capacity_threshold_hdd
 ceph config get osd osd_mclock_iops_capacity_threshold_hdd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -224,7 +224,7 @@ ceph config get osd osd_mclock_iops_capacity_threshold_ssd
 ceph config get osd osd_mclock_iops_capacity_threshold_ssd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -261,7 +261,7 @@ ceph config get osd osd_mclock_max_capacity_iops_hdd
 ceph config get osd osd_mclock_max_capacity_iops_hdd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -298,7 +298,7 @@ ceph config get osd osd_mclock_max_capacity_iops_ssd
 ceph config get osd osd_mclock_max_capacity_iops_ssd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -335,7 +335,7 @@ ceph config get osd osd_mclock_max_sequential_bandwidth_hdd
 ceph config get osd osd_mclock_max_sequential_bandwidth_hdd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -372,7 +372,7 @@ ceph config get osd osd_mclock_max_sequential_bandwidth_ssd
 ceph config get osd osd_mclock_max_sequential_bandwidth_ssd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -410,7 +410,7 @@ ceph daemon osd.<id> config show | grep mclock
 ceph config get osd osd_mclock_profile
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -447,7 +447,7 @@ ceph config get osd osd_mclock_scheduler_anticipation_timeout
 ceph config get osd osd_mclock_scheduler_anticipation_timeout
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -486,7 +486,7 @@ ceph config get osd osd_mclock_scheduler_background_best_effort_lim
 ceph config get osd osd_mclock_scheduler_background_best_effort_lim
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -525,7 +525,7 @@ ceph config get osd osd_mclock_scheduler_background_best_effort_res
 ceph config get osd osd_mclock_scheduler_background_best_effort_res
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -562,7 +562,7 @@ ceph config get osd osd_mclock_scheduler_background_best_effort_wgt
 ceph config get osd osd_mclock_scheduler_background_best_effort_wgt
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -601,7 +601,7 @@ ceph config get osd osd_mclock_scheduler_client_lim
 ceph config get osd osd_mclock_scheduler_client_lim
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -640,7 +640,7 @@ ceph config get osd osd_mclock_scheduler_client_res
 ceph config get osd osd_mclock_scheduler_client_res
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -677,7 +677,7 @@ ceph config get osd osd_mclock_scheduler_client_wgt
 ceph config get osd osd_mclock_scheduler_client_wgt
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

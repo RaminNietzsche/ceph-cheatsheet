@@ -28,9 +28,9 @@ RGW config deep dive — 8 options. [← RGW config overview](../OVERVIEW.md) ·
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -65,8 +65,8 @@ ceph config get client.rgw rgw_exit_timeout_secs
 
 ```bash
 ceph config get client.rgw rgw_exit_timeout_secs
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -102,8 +102,8 @@ ceph config get client.rgw rgw_init_timeout
 
 ```bash
 ceph config get client.rgw rgw_init_timeout
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -142,8 +142,8 @@ ceph config get client.rgw rgw_objexp_gc_interval
 
 ```bash
 ceph config get client.rgw rgw_objexp_gc_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -179,8 +179,8 @@ ceph config get client.rgw rgw_olh_pending_timeout_sec
 
 ```bash
 ceph config get client.rgw rgw_olh_pending_timeout_sec
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -220,8 +220,8 @@ ceph orch restart rgw
 
 ```bash
 ceph config get client.rgw rgw_ratelimit_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -259,8 +259,8 @@ ceph config get client.rgw rgw_read_through_timeout_ms
 
 ```bash
 ceph config get client.rgw rgw_read_through_timeout_ms
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -334,8 +334,8 @@ ceph config get client.rgw rgw_usage_log_tick_interval
 
 ```bash
 ceph config get client.rgw rgw_usage_log_tick_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

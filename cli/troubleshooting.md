@@ -73,6 +73,7 @@ radosgw-admin sync status
 radosgw-admin gc process --include-all
 ceph orch ps --service-type rgw
 ceph config show client.rgw.<instance>
+ceph daemon rgw.<id> perf dump          # local admin socket on RGW node
 ```
 
 ## RBD issues

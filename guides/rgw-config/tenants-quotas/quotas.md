@@ -27,9 +27,9 @@ Quota enforcement also requires `rgw_enable_quota_threads` on at least one RGW p
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -54,7 +54,8 @@ ceph osd pool stats
 
 ```bash
 ceph config set client rgw_account_default_quota_max_objects 1000000
-radosgw-admin account create --account-id=acme --account-name="ACME Corp"
+radosgw-admin user create --uid=alice --display-name="Alice"
+radosgw-admin quota get --quota-scope=user --uid=alice
 ```
 
 Set in `[client]` or global so `radosgw-admin` picks it up.
@@ -66,12 +67,12 @@ Set in `[client]` or global so `radosgw-admin` picks it up.
 1. `ceph df detail` — usable cluster capacity.
 2. Divide by expected tenants/accounts; leave 20–30% headroom for GC and bursts.
 3. Set limit; `-1` means unlimited. Default: `-1`.
-4. Create a test user/account and confirm via `radosgw-admin quota get`.
+4. Create a test user and confirm via `radosgw-admin quota get --quota-scope=user --uid=<uid>`.
 5. Existing users/accounts are **not** retroactively changed.
 
 ```bash
 ceph df detail
-radosgw-admin quota get --uid=testuser
+radosgw-admin quota get --quota-scope=user --uid=testuser
 radosgw-admin bucket stats --bucket=testbucket
 ```
 
@@ -102,12 +103,12 @@ ceph config set client rgw_account_default_quota_max_size $((10*1024*1024*1024*1
 1. `ceph df detail` — usable cluster capacity.
 2. Divide by expected tenants/accounts; leave 20–30% headroom for GC and bursts.
 3. Set limit; `-1` means unlimited. Default: `-1`.
-4. Create a test user/account and confirm via `radosgw-admin quota get`.
+4. Create a test user and confirm via `radosgw-admin quota get --quota-scope=user --uid=<uid>`.
 5. Existing users/accounts are **not** retroactively changed.
 
 ```bash
 ceph df detail
-radosgw-admin quota get --uid=testuser
+radosgw-admin quota get --quota-scope=user --uid=testuser
 radosgw-admin bucket stats --bucket=testbucket
 ```
 
@@ -129,7 +130,7 @@ radosgw-admin bucket stats --bucket=testbucket
 ```bash
 ceph config set client.rgw rgw_enable_quota_threads false
 ceph config get client.rgw rgw_enable_quota_threads
-radosgw-admin quota get --uid=testuser
+radosgw-admin quota get --quota-scope=user --uid=testuser
 ```
 
 **Finding optimal value:**
@@ -158,7 +159,7 @@ radosgw-admin quota get --uid=testuser
 ```bash
 ceph config set client rgw_user_default_quota_max_objects 1000000
 ceph config get client rgw_user_default_quota_max_objects
-radosgw-admin quota get --uid=testuser
+radosgw-admin quota get --quota-scope=user --uid=testuser
 ```
 
 **Finding optimal value:**
@@ -168,12 +169,12 @@ radosgw-admin quota get --uid=testuser
 1. `ceph df detail` — usable cluster capacity.
 2. Divide by expected tenants/accounts; leave 20–30% headroom for GC and bursts.
 3. Set limit; `-1` means unlimited. Default: `-1`.
-4. Create a test user/account and confirm via `radosgw-admin quota get`.
+4. Create a test user and confirm via `radosgw-admin quota get --quota-scope=user --uid=<uid>`.
 5. Existing users/accounts are **not** retroactively changed.
 
 ```bash
 ceph df detail
-radosgw-admin quota get --uid=testuser
+radosgw-admin quota get --quota-scope=user --uid=testuser
 radosgw-admin bucket stats --bucket=testbucket
 ```
 
@@ -195,7 +196,7 @@ radosgw-admin bucket stats --bucket=testbucket
 ```bash
 ceph config set client rgw_user_default_quota_max_size $((100*1024*1024*1024))
 ceph config get client rgw_user_default_quota_max_size
-radosgw-admin quota get --uid=testuser
+radosgw-admin quota get --quota-scope=user --uid=testuser
 ```
 
 **Finding optimal value:**
@@ -205,12 +206,12 @@ radosgw-admin quota get --uid=testuser
 1. `ceph df detail` — usable cluster capacity.
 2. Divide by expected tenants/accounts; leave 20–30% headroom for GC and bursts.
 3. Set limit; `-1` means unlimited. Default: `-1`.
-4. Create a test user/account and confirm via `radosgw-admin quota get`.
+4. Create a test user and confirm via `radosgw-admin quota get --quota-scope=user --uid=<uid>`.
 5. Existing users/accounts are **not** retroactively changed.
 
 ```bash
 ceph df detail
-radosgw-admin quota get --uid=testuser
+radosgw-admin quota get --quota-scope=user --uid=testuser
 radosgw-admin bucket stats --bucket=testbucket
 ```
 

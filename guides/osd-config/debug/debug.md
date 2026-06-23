@@ -89,7 +89,7 @@ ceph config get osd osd_debug_trim_objects
 ceph config get osd osd_debug_trim_objects
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

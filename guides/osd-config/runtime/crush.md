@@ -59,7 +59,7 @@ ceph config get osd osd_crush_initial_weight
 ceph config get osd osd_crush_initial_weight
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -96,7 +96,7 @@ ceph config get osd osd_crush_update_on_start
 ceph config get osd osd_crush_update_on_start
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

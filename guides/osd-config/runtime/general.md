@@ -83,7 +83,7 @@ ceph config get osd osd_aggregated_slow_ops_logging
 ceph config get osd osd_aggregated_slow_ops_logging
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -120,7 +120,7 @@ ceph config get osd osd_compact_on_start
 ceph config get osd osd_compact_on_start
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -155,7 +155,7 @@ ceph config get osd osd_ec_partial_reads
 ceph config get osd osd_ec_partial_reads
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -193,7 +193,7 @@ ceph orch restart osd
 ceph config get osd osd_extblkdev_plugins
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -258,7 +258,7 @@ ceph config get osd osd_journal
 ceph config get osd osd_journal
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -295,7 +295,7 @@ ceph config get osd osd_journal_flush_on_shutdown
 ceph config get osd osd_journal_flush_on_shutdown
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -332,7 +332,7 @@ ceph config get osd osd_journal_size
 ceph config get osd osd_journal_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -367,7 +367,7 @@ ceph config get osd osd_map_cache_size
 ceph config get osd osd_map_cache_size
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -405,7 +405,7 @@ ceph orch restart osd
 ceph config get osd osd_num_cache_shards
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -443,7 +443,7 @@ ceph orch restart osd
 ceph config get osd osd_numa_auto_affinity
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -481,7 +481,7 @@ ceph orch restart osd
 ceph config get osd osd_numa_node
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -519,7 +519,7 @@ ceph orch restart osd
 ceph config get osd osd_numa_prefer_iface
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -555,7 +555,7 @@ ceph orch restart osd
 ceph config get osd osd_op_num_shards
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -591,7 +591,7 @@ ceph orch restart osd
 ceph config get osd osd_op_num_shards_hdd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -627,7 +627,7 @@ ceph orch restart osd
 ceph config get osd osd_op_num_shards_ssd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -663,7 +663,7 @@ ceph orch restart osd
 ceph config get osd osd_op_num_threads_per_shard
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -699,7 +699,7 @@ ceph orch restart osd
 ceph config get osd osd_op_num_threads_per_shard_hdd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -735,7 +735,7 @@ ceph orch restart osd
 ceph config get osd osd_op_num_threads_per_shard_ssd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -772,7 +772,7 @@ ceph config get osd osd_op_queue
 ceph config get osd osd_op_queue
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -809,7 +809,7 @@ ceph config get osd osd_op_queue_cut_off
 ceph config get osd osd_op_queue_cut_off
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -872,7 +872,7 @@ ceph config get osd osd_push_per_object_cost
 ceph config get osd osd_push_per_object_cost
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -907,7 +907,7 @@ ceph config get osd osd_read_ec_check_for_errors
 ceph config get osd osd_read_ec_check_for_errors
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -972,7 +972,7 @@ ceph config get osd osd_uuid
 ceph config get osd osd_uuid
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

@@ -24,9 +24,9 @@ RGW config deep dive — 4 options. [← RGW config overview](../OVERVIEW.md) ·
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -90,8 +90,8 @@ ceph config get client.rgw rgw_pending_bucket_index_op_expiration
 
 ```bash
 ceph config get client.rgw rgw_pending_bucket_index_op_expiration
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -156,8 +156,8 @@ ceph config get client.rgw rgw_shard_warning_threshold
 
 ```bash
 ceph config get client.rgw rgw_shard_warning_threshold
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

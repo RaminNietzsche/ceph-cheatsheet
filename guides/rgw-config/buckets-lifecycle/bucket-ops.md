@@ -32,9 +32,9 @@ RGW config deep dive — 12 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -101,8 +101,8 @@ ceph config get client.rgw rgw_bucket_counters_cache_size
 
 ```bash
 ceph config get client.rgw rgw_bucket_counters_cache_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -137,12 +137,12 @@ radosgw-admin user create --uid=newuser --display-name="New User"
 1. `ceph df detail` — usable cluster capacity.
 2. Divide by expected tenants/accounts; leave 20–30% headroom for GC and bursts.
 3. Set limit; `-1` means unlimited. Default: `-1`.
-4. Create a test user/account and confirm via `radosgw-admin quota get`.
+4. Create a test user and confirm via `radosgw-admin quota get --quota-scope=user --uid=<uid>`.
 5. Existing users/accounts are **not** retroactively changed.
 
 ```bash
 ceph df detail
-radosgw-admin quota get --uid=testuser
+radosgw-admin quota get --quota-scope=user --uid=testuser
 radosgw-admin bucket stats --bucket=testbucket
 ```
 
@@ -164,8 +164,8 @@ radosgw-admin bucket stats --bucket=testbucket
 ```bash
 ceph config set client rgw_bucket_default_quota_max_size $((100*1024*1024*1024))
 
-radosgw-admin quota set --uid=alice --max-size=50G --max-objects=10000
-radosgw-admin quota enable --uid=alice
+radosgw-admin quota set --quota-scope=user --uid=alice --max-size=50G --max-objects=10000
+radosgw-admin quota enable --quota-scope=user --uid=alice
 ```
 
 **Finding optimal value:**
@@ -175,12 +175,12 @@ radosgw-admin quota enable --uid=alice
 1. `ceph df detail` — usable cluster capacity.
 2. Divide by expected tenants/accounts; leave 20–30% headroom for GC and bursts.
 3. Set limit; `-1` means unlimited. Default: `-1`.
-4. Create a test user/account and confirm via `radosgw-admin quota get`.
+4. Create a test user and confirm via `radosgw-admin quota get --quota-scope=user --uid=<uid>`.
 5. Existing users/accounts are **not** retroactively changed.
 
 ```bash
 ceph df detail
-radosgw-admin quota get --uid=testuser
+radosgw-admin quota get --quota-scope=user --uid=testuser
 radosgw-admin bucket stats --bucket=testbucket
 ```
 
@@ -254,8 +254,8 @@ ceph config set client.rgw rgw_bucket_index_max_aio 256
 
 ```bash
 ceph config get client.rgw rgw_bucket_index_max_aio
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 radosgw-admin bucket stats --bucket=BIG_BUCKET | jq '.num_shards'
 ```
@@ -324,8 +324,8 @@ ceph config get client.rgw rgw_bucket_logging_obj_roll_time
 
 ```bash
 ceph config get client.rgw rgw_bucket_logging_obj_roll_time
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -392,8 +392,8 @@ ceph config get client.rgw rgw_bucket_quota_cache_size
 
 ```bash
 ceph config get client.rgw rgw_bucket_quota_cache_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -432,8 +432,8 @@ ceph config get client.rgw rgw_bucket_quota_ttl
 
 ```bash
 ceph config get client.rgw rgw_bucket_quota_ttl
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -471,8 +471,8 @@ radosgw-admin sync status
 
 ```bash
 ceph config get client.rgw rgw_bucket_sync_spawn_window
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 radosgw-admin sync status
 ```

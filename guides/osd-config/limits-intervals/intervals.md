@@ -69,7 +69,7 @@ ceph config get osd osd_delete_sleep
 ceph config get osd osd_delete_sleep
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -106,7 +106,7 @@ ceph config get osd osd_delete_sleep_hdd
 ceph config get osd osd_delete_sleep_hdd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -143,7 +143,7 @@ ceph config get osd osd_delete_sleep_hybrid
 ceph config get osd osd_delete_sleep_hybrid
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -180,7 +180,7 @@ ceph config get osd osd_delete_sleep_ssd
 ceph config get osd osd_delete_sleep_ssd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -215,7 +215,7 @@ ceph config get osd osd_max_markdown_period
 ceph config get osd osd_max_markdown_period
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -250,7 +250,7 @@ ceph config get osd osd_op_thread_suicide_timeout
 ceph config get osd osd_op_thread_suicide_timeout
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -285,7 +285,7 @@ ceph config get osd osd_op_thread_timeout
 ceph config get osd osd_op_thread_timeout
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -322,7 +322,7 @@ ceph config get osd osd_smart_report_timeout
 ceph config get osd osd_smart_report_timeout
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -359,7 +359,7 @@ ceph config get osd osd_snap_trim_sleep
 ceph config get osd osd_snap_trim_sleep
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -396,7 +396,7 @@ ceph config get osd osd_snap_trim_sleep_hdd
 ceph config get osd osd_snap_trim_sleep_hdd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -433,7 +433,7 @@ ceph config get osd osd_snap_trim_sleep_hybrid
 ceph config get osd osd_snap_trim_sleep_hybrid
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---
@@ -470,7 +470,7 @@ ceph config get osd osd_snap_trim_sleep_ssd
 ceph config get osd osd_snap_trim_sleep_ssd
 ceph -s
 ceph daemon osd.<id> perf dump | head
-ceph osd pool stats
+ceph pg stat
 ```
 
 ---

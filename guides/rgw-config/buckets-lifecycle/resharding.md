@@ -32,9 +32,9 @@ RGW config deep dive — 12 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -126,8 +126,8 @@ ceph config get client.rgw rgw_dynamic_resharding_reduction_wait
 
 ```bash
 ceph config get client.rgw rgw_dynamic_resharding_reduction_wait
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -166,8 +166,8 @@ ceph config get client.rgw rgw_reshard_batch_size
 
 ```bash
 ceph config get client.rgw rgw_reshard_batch_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -206,8 +206,8 @@ ceph config get client.rgw rgw_reshard_bucket_lock_duration
 
 ```bash
 ceph config get client.rgw rgw_reshard_bucket_lock_duration
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -282,8 +282,8 @@ ceph config get client.rgw rgw_reshard_max_aio
 
 ```bash
 ceph config get client.rgw rgw_reshard_max_aio
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 radosgw-admin bucket stats --bucket=BIG_BUCKET | jq '.num_shards'
 ```
@@ -353,8 +353,8 @@ ceph config get client.rgw rgw_reshard_progress_judge_interval
 
 ```bash
 ceph config get client.rgw rgw_reshard_progress_judge_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -391,8 +391,8 @@ ceph config get client.rgw rgw_reshard_progress_judge_ratio
 
 ```bash
 ceph config get client.rgw rgw_reshard_progress_judge_ratio
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -431,8 +431,8 @@ ceph config get client.rgw rgw_reshard_thread_interval
 
 ```bash
 ceph config get client.rgw rgw_reshard_thread_interval
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -471,8 +471,8 @@ ceph config get client.rgw rgw_reshardlog_threshold
 
 ```bash
 ceph config get client.rgw rgw_reshardlog_threshold
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 

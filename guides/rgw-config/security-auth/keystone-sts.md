@@ -52,9 +52,9 @@ RGW config deep dive — 32 options. [← RGW config overview](../OVERVIEW.md) �
 
 ```bash
 ceph config get client.rgw <option>
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph osd pool stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
+ceph pg stat
 ```
 
 ---
@@ -90,8 +90,8 @@ ceph config get client.rgw rgw_keystone_accepted_admin_roles
 
 ```bash
 ceph config get client.rgw rgw_keystone_accepted_admin_roles
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -128,8 +128,8 @@ ceph config get client.rgw rgw_keystone_accepted_reader_roles
 
 ```bash
 ceph config get client.rgw rgw_keystone_accepted_reader_roles
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -166,8 +166,8 @@ ceph config get client.rgw rgw_keystone_accepted_roles
 
 ```bash
 ceph config get client.rgw rgw_keystone_accepted_roles
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -204,8 +204,8 @@ ceph config get client.rgw rgw_keystone_admin_domain
 
 ```bash
 ceph config get client.rgw rgw_keystone_admin_domain
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -304,8 +304,8 @@ ceph config get client.rgw rgw_keystone_admin_project
 
 ```bash
 ceph config get client.rgw rgw_keystone_admin_project
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -342,8 +342,8 @@ ceph config get client.rgw rgw_keystone_admin_tenant
 
 ```bash
 ceph config get client.rgw rgw_keystone_admin_tenant
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -380,8 +380,8 @@ ceph config get client.rgw rgw_keystone_admin_user
 
 ```bash
 ceph config get client.rgw rgw_keystone_admin_user
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -418,8 +418,8 @@ ceph config get client.rgw rgw_keystone_barbican_domain
 
 ```bash
 ceph config get client.rgw rgw_keystone_barbican_domain
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -484,8 +484,8 @@ ceph config get client.rgw rgw_keystone_barbican_project
 
 ```bash
 ceph config get client.rgw rgw_keystone_barbican_project
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -522,8 +522,8 @@ ceph config get client.rgw rgw_keystone_barbican_tenant
 
 ```bash
 ceph config get client.rgw rgw_keystone_barbican_tenant
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -560,8 +560,8 @@ ceph config get client.rgw rgw_keystone_barbican_user
 
 ```bash
 ceph config get client.rgw rgw_keystone_barbican_user
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -600,8 +600,8 @@ ceph config get client.rgw rgw_keystone_expired_token_cache_expiration
 
 ```bash
 ceph config get client.rgw rgw_keystone_expired_token_cache_expiration
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -808,8 +808,8 @@ ceph config get client.rgw rgw_keystone_token_cache_size
 
 ```bash
 ceph config get client.rgw rgw_keystone_token_cache_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -848,8 +848,8 @@ ceph config get client.rgw rgw_keystone_token_cache_ttl
 
 ```bash
 ceph config get client.rgw rgw_keystone_token_cache_ttl
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -886,8 +886,8 @@ ceph config get client.rgw rgw_keystone_url
 
 ```bash
 ceph config get client.rgw rgw_keystone_url
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1036,8 +1036,8 @@ ceph config get client.rgw rgw_sts_key
 
 ```bash
 ceph config get client.rgw rgw_sts_key
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1102,8 +1102,8 @@ ceph config get client.rgw rgw_sts_min_session_duration
 
 ```bash
 ceph config get client.rgw rgw_sts_min_session_duration
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
@@ -1140,8 +1140,8 @@ ceph config get client.rgw rgw_sts_token_introspection_url
 
 ```bash
 ceph config get client.rgw rgw_sts_token_introspection_url
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
+radosgw-admin sync status
+ceph config show client.rgw.<instance>
 ceph -s  # cluster health, slow ops
 ```
 
