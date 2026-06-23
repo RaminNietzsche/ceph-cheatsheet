@@ -34,7 +34,10 @@ REFERENCE.md      Hub — sync to docs/index.md
 
 ```bash
 python3 scripts/generate-config.py --ref main
+python3 scripts/generate-rgw-guide.py
 ```
+
+The RGW guide generator reads `config/rgw/*.md` and writes `guides/rgw-config/` (421 options in 43 topic files). Re-run after config regeneration; update `mkdocs.yml` nav if new topic groups are added.
 
 **Edit prose (CLI, guides, REFERENCE):**
 

@@ -68,7 +68,52 @@ nav:
     - Overview: guides/OVERVIEW.md
     - Quick start: guides/quickstart.md
     - Config lookup: guides/config-lookup.md
-    - RGW config deep dive: guides/rgw-config-options.md
+    - RGW config deep dive:
+      - Overview: guides/rgw-config/OVERVIEW.md
+      - Handwritten (batch 1): guides/rgw-config-options.md
+      - Access and object logging: guides/rgw-config/logging.md
+      - Admin CORS: guides/rgw-config/admin-cors.md
+      - BitTorrent: guides/rgw-config/torrent.md
+      - Bucket notifications: guides/rgw-config/notifications.md
+      - Bucket operations and index: guides/rgw-config/bucket-ops.md
+      - Caches and TTL: guides/rgw-config/caches-and-ttl.md
+      - Copy progress: guides/rgw-config/copy-progress.md
+      - D4N / D3N cache: guides/rgw-config/d4n-cache.md
+      - Debug and fault injection: guides/rgw-config/debug-inject.md
+      - Dynamic resharding: guides/rgw-config/resharding.md
+      - Encryption and KMS: guides/rgw-config/encryption.md
+      - Feature toggles: guides/rgw-config/feature-toggles.md
+      - Frontends and DNS: guides/rgw-config/frontends-dns.md
+      - Garbage collection: guides/rgw-config/garbage-collection.md
+      - General RGW options: guides/rgw-config/general.md
+      - HTTP / libcurl: guides/rgw-config/http-curl.md
+      - Keystone and STS: guides/rgw-config/keystone-sts.md
+      - LDAP authentication: guides/rgw-config/ldap.md
+      - Lifecycle (LC) workers: guides/rgw-config/lifecycle.md
+      - Limits and listing: guides/rgw-config/limits-listing.md
+      - Lua scripting: guides/rgw-config/lua.md
+      - Motr (experimental backend): guides/rgw-config/motr-experimental.md
+      - Multipart uploads: guides/rgw-config/multipart.md
+      - Multisite sync: guides/rgw-config/multisite-sync.md
+      - Multisite zones and realm: guides/rgw-config/multisite-zones.md
+      - NFS gateway: guides/rgw-config/nfs.md
+      - OPA authorization: guides/rgw-config/opa-authz.md
+      - Object expiry hints: guides/rgw-config/object-expiry.md
+      - Object read/write I/O: guides/rgw-config/object-io.md
+      - Ops logging: guides/rgw-config/ops-logging.md
+      - POSIX backend (experimental): guides/rgw-config/posix-experimental.md
+      - Performance and concurrency: guides/rgw-config/performance-tuning.md
+      - Quota sync and defaults: guides/rgw-config/quotas.md
+      - REST connections (multisite): guides/rgw-config/rest-connections.md
+      - RGW LC counters: guides/rgw-config/lifecycle-counters.md
+      - RGW metadata cache: guides/rgw-config/metadata-cache.md
+      - Request scheduler: guides/rgw-config/scheduler.md
+      - S3 API behavior: guides/rgw-config/s3-api.md
+      - Swift API: guides/rgw-config/swift.md
+      - Timeouts and intervals: guides/rgw-config/timeouts-intervals.md
+      - Usage logging: guides/rgw-config/usage-logging.md
+      - Users and per-user settings: guides/rgw-config/users-quotas.md
+      - dmclock scheduler: guides/rgw-config/dmclock.md
     - Contributing: guides/contributing.md
     - By role:
       - Cluster admin: guides/roles/cluster-admin.md

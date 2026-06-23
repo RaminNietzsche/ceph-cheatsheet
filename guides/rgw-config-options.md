@@ -2,6 +2,8 @@
 
 Extended reference for selected RADOS Gateway options. Generated tables live in [config/rgw/INDEX.md](../config/rgw/INDEX.md); this guide adds behavior, use cases, related options, and examples from upstream Ceph `main`.
 
+**Full coverage:** [421 additional options](rgw-config/OVERVIEW.md) are documented by topic (with tuning guidance). Regenerate after config sync: `python3 scripts/generate-rgw-guide.py`.
+
 **Lookup any option:**
 
 ```bash
@@ -571,6 +573,7 @@ ceph config set client.rgw rgw_bucket_eexist_override true
 
 ## See also
 
+- [RGW config — all options by topic](rgw-config/OVERVIEW.md)
 - [RGW admin guide](roles/rgw-admin.md) — daily operations
 - [RGW CLI](../cli/rgw.md) — `radosgw-admin`, S3 API
 - [Config lookup](config-lookup.md) — reading generated tables

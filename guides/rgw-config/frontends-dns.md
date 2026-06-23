@@ -1,0 +1,103 @@
+# Frontends and DNS
+
+RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Handwritten batch](../rgw-config-options.md) · [INDEX](../../config/rgw/INDEX.md)
+
+| Option | Default | Level |
+|--------|---------|-------|
+| [rgw_dns_name](#rgw_dns_name) | `(empty)` | Advanced |
+| [rgw_dns_s3website_name](#rgw_dns_s3website_name) | `(empty)` | Advanced |
+| [rgw_frontend_defaults](#rgw_frontend_defaults) | `beast ssl_certificate=config://rgw/cert/$realm/$zone.crt ssl_private_key=config://rgw/cert/$realm/$zone.key` | Advanced |
+| [rgw_frontends](#rgw_frontends) | `beast port=7480` | Basic |
+
+---
+
+### rgw_dns_name
+
+| | |
+|---|---|
+| Type | Str · default `(empty)` · **Advanced** |
+| Table | [rgw.md#SP_rgw_dns_name](../../config/rgw/rgw.md#SP_rgw_dns_name) |
+
+**What it does:** The host names that RGW uses.
+
+**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_dns_name <value>
+ceph config get client.rgw rgw_dns_name
+```
+
+**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+
+---
+
+### rgw_dns_s3website_name
+
+| | |
+|---|---|
+| Type | Str · default `(empty)` · **Advanced** |
+| Table | [rgw.md#SP_rgw_dns_s3website_name](../../config/rgw/rgw.md#SP_rgw_dns_s3website_name) |
+
+**What it does:** The host name that RGW uses for static websites (S3)
+
+**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_dns_s3website_name <value>
+ceph config get client.rgw rgw_dns_s3website_name
+```
+
+**Finding optimal value:** Start from upstream default (`(empty)`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+
+---
+
+### rgw_frontend_defaults
+
+| | |
+|---|---|
+| Type | Str · default `beast ssl_certificate=config://rgw/cert/$realm/$zone.crt ssl_private_key=config://rgw/cert/$realm/$zone.key` · **Advanced** |
+| Table | [rgw.md#SP_rgw_frontend_defaults](../../config/rgw/rgw.md#SP_rgw_frontend_defaults) |
+
+**What it does:** RGW frontends default configuration
+
+**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_frontend_defaults "beast ssl_certificate=config://rgw/cert/$realm/$zone.crt ssl_private_key=config://rgw/cert/$realm/$zone.key"
+ceph config get client.rgw rgw_frontend_defaults
+```
+
+**Finding optimal value:** Start from upstream default (`beast ssl_certificate=config://rgw/cert/$realm/$zone.crt ssl_private_key=config://rgw/cert/$realm/$zone.key`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+
+---
+
+### rgw_frontends
+
+| | |
+|---|---|
+| Type | Str · default `beast port=7480` · **Basic** |
+| Table | [rgw.md#SP_rgw_frontends](../../config/rgw/rgw.md#SP_rgw_frontends) |
+
+**What it does:** RGW frontends configuration
+
+**When to use:** Core RGW behavior — review before changing in production.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_frontends "beast port=7480"
+ceph config get client.rgw rgw_frontends
+```
+
+**Finding optimal value:** Start from upstream default (`beast port=7480`). Change one option at a time under representative load; use `ceph config get client.rgw` and RGW perf counters to validate.
+
+---
+
+
+[← RGW config overview](OVERVIEW.md)
