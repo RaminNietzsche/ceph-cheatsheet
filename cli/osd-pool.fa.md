@@ -1,8 +1,6 @@
-> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
+# دستورات OSD، Pool و PG
 
-# OSD, Pool & PG Commands
-
-## OSD lifecycle
+## چرخهٔ عمر OSD
 
 ```bash
 ceph osd tree
@@ -25,7 +23,7 @@ ceph osd reweight-by-utilization [max_change] [max_osds]
 ceph osd reweight-by-pg [threshold]
 ```
 
-## OSD maintenance
+## نگهداری OSD
 
 ```bash
 ceph osd safe-to-destroy <id>      # check before destroy
@@ -34,7 +32,7 @@ ceph osd blocked-by                # what's blocking PGs
 ceph osd require-min-compat-client <release>
 ```
 
-## Scrub and deep-scrub
+## Scrub و deep-scrub
 
 ```bash
 ceph pg scrub <pgid>
@@ -43,7 +41,7 @@ ceph osd scrub <osd-id>            # all PGs on OSD
 ceph osd deep-scrub <osd-id>
 ```
 
-## Pool management
+## مدیریت pool
 
 ```bash
 ceph osd lspools
@@ -62,7 +60,7 @@ ceph osd pool autoscale-status
 ceph osd pool set <name> pg_autoscale_mode on|off|warn
 ```
 
-## Erasure-coded pools
+## Pool با erasure code
 
 ```bash
 ceph osd erasure-code-profile ls
@@ -71,7 +69,7 @@ ceph osd erasure-code-profile rm <profile>
 ceph osd pool create <ec-pool> 12 12 erasure <profile>
 ```
 
-## Placement groups
+## Placement group
 
 ```bash
 ceph pg dump [filtered]
@@ -92,4 +90,4 @@ ceph osd crush set-device-class <class> <osd> …
 ceph osd crush rule create-replicated <name> default host hdd
 ```
 
-[← CLI overview](OVERVIEW.md)
+[← نمای کلی CLI](OVERVIEW.md)

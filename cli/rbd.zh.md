@@ -1,8 +1,6 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# RBD 命令
 
-# RBD Commands
-
-## Images
+## 镜像
 
 ```bash
 rbd ls [-p pool]
@@ -21,7 +19,7 @@ rbd diff <pool>/<image> [--from-snap snap]
 rbd du [-p pool]
 ```
 
-## Snapshots
+## 快照
 
 ```bash
 rbd snap ls <pool>/<image>
@@ -33,7 +31,7 @@ rbd snap unprotect <pool>/<image>@<snap>
 rbd snap purge <pool>/<image>
 ```
 
-## Mapping (kernel / nbd)
+## 映射（kernel / nbd）
 
 ```bash
 rbd map <pool>/<image>             # kernel krbd
@@ -42,7 +40,7 @@ rbd unmap <pool>/<image>|/dev/rbd*
 rbd map <pool>/<image> --device nbd   # nbd
 ```
 
-## Locking & mirroring
+## 锁定与镜像
 
 ```bash
 rbd lock ls <pool>/<image>
@@ -57,7 +55,7 @@ rbd mirror image promote <pool>/<image> [--force]
 rbd mirror image demote <pool>/<image>
 ```
 
-## Features & metadata
+## 特性与元数据
 
 ```bash
 rbd feature ls <pool>/<image>
@@ -67,18 +65,18 @@ rbd metadata ls <pool>/<image>
 rbd image-meta get/set/rm <pool>/<image> <key> [value]
 ```
 
-## Common image features
+## 常见镜像特性
 
-| Feature | Bit | Notes |
-|---------|-----|-------|
-| layering | +1 | clones/snapshots |
-| exclusive-lock | +4 | required for live migration |
-| object-map | +8 | fast diff, deep-flatten |
-| fast-diff | +16 | efficient diff |
-| deep-flatten | +32 | flatten clones |
-| journaling | +64 | RBD mirroring |
-| data-pool | +128 | separate data pool |
+| Feature | Bit | 说明 |
+|---------|-----|------|
+| layering | +1 | 克隆/快照 |
+| exclusive-lock | +4 | live migration 所需 |
+| object-map | +8 | 快速 diff、deep-flatten |
+| fast-diff | +16 | 高效 diff |
+| deep-flatten | +32 | 扁平化克隆 |
+| journaling | +64 | RBD 镜像 |
+| data-pool | +128 | 独立数据池 |
 
-Default features: see `rbd_default_features` in [config/rbd](../config/rbd/INDEX.md).
+默认特性：见 [config/rbd](../config/rbd/INDEX.md) 中的 `rbd_default_features`。
 
-[← CLI overview](OVERVIEW.md)
+[← CLI 概览](OVERVIEW.md)

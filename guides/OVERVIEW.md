@@ -2,7 +2,7 @@
 
 Task-oriented documentation organized by **who you are** (role) and **how big the cluster is** (scale).
 
-## By role
+## By role {#by-role}
 
 <table class="guide-table">
 <thead>
@@ -32,7 +32,7 @@ Task-oriented documentation organized by **who you are** (role) and **how big th
 </tbody>
 </table>
 
-## By scale
+## By scale {#by-scale}
 
 <table class="guide-table">
 <thead>
@@ -70,4 +70,4 @@ Task-oriented documentation organized by **who you are** (role) and **how big th
   RGW · [OSD](osd-config/OVERVIEW.md) · [MON](mon-config/OVERVIEW.md) · [MGR](mgr-config/OVERVIEW.md) · [MDS](mds-config/OVERVIEW.md) · [Global](global-config/OVERVIEW.md)
 - [Contributing](contributing.md) — rules, skills, regeneration
 
-[← Main reference](../index.md)
+[← Cheatsheet](../cheatsheet/OVERVIEW.md)

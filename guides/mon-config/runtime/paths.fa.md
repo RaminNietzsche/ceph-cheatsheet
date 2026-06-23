@@ -4,20 +4,20 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mon_data](#mon_data) | `/var/lib/ceph/mon/$cluster-$id` | Advanced | Performance |
-| [mon_data_avail_crit](#mon_data_avail_crit) | `5` | Advanced | Performance |
-| [mon_data_avail_warn](#mon_data_avail_warn) | `30` | Advanced | Performance |
-| [mon_data_size_warn](#mon_data_size_warn) | `15_G` | Advanced | Performance |
+| [mon_data](#mon_data) | `/var/lib/ceph/mon/$cluster-$id` | Advanced | عملکرد |
+| [mon_data_avail_crit](#mon_data_avail_crit) | `5` | Advanced | عملکرد |
+| [mon_data_avail_warn](#mon_data_avail_warn) | `30` | Advanced | عملکرد |
+| [mon_data_size_warn](#mon_data_size_warn) | `15_G` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -49,7 +49,7 @@ ceph config get mon mon_data
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `/var/lib/ceph/mon/$cluster-$id`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -85,7 +85,7 @@ ceph config get mon mon_data_avail_crit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -121,7 +121,7 @@ ceph config get mon mon_data_avail_warn
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -157,7 +157,7 @@ ceph config get mon mon_data_size_warn
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15_G`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

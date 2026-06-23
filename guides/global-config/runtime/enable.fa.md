@@ -4,17 +4,17 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [enable_experimental_unrecoverable_data_corrupting_features](#enable_experimental_unrecoverable_data_corrupting_features) | `(empty)` | Advanced | Performance |
+| [enable_experimental_unrecoverable_data_corrupting_features](#enable_experimental_unrecoverable_data_corrupting_features) | `(empty)` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -46,7 +46,7 @@ ceph config get global enable_experimental_unrecoverable_data_corrupting_feature
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

@@ -4,60 +4,60 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [enable_availability_tracking](#enable_availability_tracking) | `False` | Advanced | Policy |
-| [mon_clock_drift_allowed](#mon_clock_drift_allowed) | `0.05` | Advanced | Performance |
-| [mon_clock_drift_warn_backoff](#mon_clock_drift_warn_backoff) | `5` | Advanced | Performance |
-| [mon_compact_on_bootstrap](#mon_compact_on_bootstrap) | `False` | Advanced | Performance |
-| [mon_compact_on_start](#mon_compact_on_start) | `False` | Advanced | Performance |
-| [mon_compact_on_trim](#mon_compact_on_trim) | `True` | Advanced | Performance |
-| [mon_con_tracker_score_halflife](#mon_con_tracker_score_halflife) | `43200` | Advanced | Performance |
-| [mon_cpu_threads](#mon_cpu_threads) | `4` | Advanced | Performance |
-| [mon_crush_min_required_version](#mon_crush_min_required_version) | `hammer` | Advanced | Performance |
-| [mon_daemon_bytes](#mon_daemon_bytes) | `400_M` | Advanced | Performance |
-| [mon_down_added_grace](#mon_down_added_grace) | `3_min` | Advanced | Performance |
-| [mon_down_mkfs_grace](#mon_down_mkfs_grace) | `1_min` | Advanced | Performance |
-| [mon_down_uptime_grace](#mon_down_uptime_grace) | `1_min` | Advanced | Performance |
-| [mon_elector_ignore_propose_margin](#mon_elector_ignore_propose_margin) | `0.0005` | Advanced | Performance |
-| [mon_elector_ping_divisor](#mon_elector_ping_divisor) | `2` | Advanced | Performance |
-| [mon_enable_op_tracker](#mon_enable_op_tracker) | `True` | Advanced | Policy |
-| [mon_fsmap_prune_threshold](#mon_fsmap_prune_threshold) | `300` | Advanced | Performance |
-| [mon_health_max_detail](#mon_health_max_detail) | `50` | Advanced | Performance |
-| [mon_lease](#mon_lease) | `5` | Advanced | Performance |
-| [mon_mds_force_trim_to](#mon_mds_force_trim_to) | `0` | Dev | Dev |
-| [mon_mds_skip_sanity](#mon_mds_skip_sanity) | `False` | Advanced | Performance |
-| [mon_memory_autotune](#mon_memory_autotune) | `True` | Basic | Policy |
-| [mon_memory_target](#mon_memory_target) | `2_G` | Basic | Policy |
-| [mon_nvmeofgw_beacon_grace](#mon_nvmeofgw_beacon_grace) | `7` | Advanced | Performance |
-| [mon_nvmeofgw_beacons_till_ack](#mon_nvmeofgw_beacons_till_ack) | `15` | Advanced | Performance |
-| [mon_nvmeofgw_delete_grace](#mon_nvmeofgw_delete_grace) | `15_min` | Advanced | Performance |
-| [mon_nvmeofgw_set_group_id_retry](#mon_nvmeofgw_set_group_id_retry) | `1000` | Advanced | Performance |
-| [mon_nvmeofgw_wrong_map_ignore_sec](#mon_nvmeofgw_wrong_map_ignore_sec) | `15` | Advanced | Performance |
-| [mon_op_complaint_time](#mon_op_complaint_time) | `30` | Advanced | Performance |
-| [mon_op_history_duration](#mon_op_history_duration) | `10_min` | Advanced | Performance |
-| [mon_op_history_size](#mon_op_history_size) | `20` | Advanced | Performance |
-| [mon_op_history_slow_op_size](#mon_op_history_slow_op_size) | `20` | Advanced | Performance |
-| [mon_op_history_slow_op_threshold](#mon_op_history_slow_op_threshold) | `10` | Advanced | Performance |
-| [mon_rocksdb_options](#mon_rocksdb_options) | `write_buffer_size=33554432,compression=kNoCompression,level_compaction_dynamic_level_bytes=true` | Advanced | Performance |
-| [mon_stretch_cluster_recovery_ratio](#mon_stretch_cluster_recovery_ratio) | `0.6` | Advanced | Performance |
-| [mon_stretch_max_bucket_weight_delta](#mon_stretch_max_bucket_weight_delta) | `0.1` | Dev | Dev |
-| [mon_stretch_recovery_min_wait](#mon_stretch_recovery_min_wait) | `15` | Advanced | Performance |
-| [mon_warn_on_colocated_monitors](#mon_warn_on_colocated_monitors) | `False` | Advanced | Performance |
-| [mon_warn_on_crush_straw_calc_version_zero](#mon_warn_on_crush_straw_calc_version_zero) | `True` | Advanced | Performance |
-| [mon_warn_on_degraded_stretch_mode](#mon_warn_on_degraded_stretch_mode) | `True` | Advanced | Performance |
-| [mon_warn_on_legacy_crush_tunables](#mon_warn_on_legacy_crush_tunables) | `True` | Advanced | Performance |
-| [mon_warn_on_older_version](#mon_warn_on_older_version) | `True` | Advanced | Performance |
-| [nvmeof_mon_client_connect_panic](#nvmeof_mon_client_connect_panic) | `30` | Advanced | Performance |
-| [nvmeof_mon_client_disconnect_panic](#nvmeof_mon_client_disconnect_panic) | `100` | Advanced | Performance |
+| [enable_availability_tracking](#enable_availability_tracking) | `False` | Advanced | سیاست |
+| [mon_clock_drift_allowed](#mon_clock_drift_allowed) | `0.05` | Advanced | عملکرد |
+| [mon_clock_drift_warn_backoff](#mon_clock_drift_warn_backoff) | `5` | Advanced | عملکرد |
+| [mon_compact_on_bootstrap](#mon_compact_on_bootstrap) | `False` | Advanced | عملکرد |
+| [mon_compact_on_start](#mon_compact_on_start) | `False` | Advanced | عملکرد |
+| [mon_compact_on_trim](#mon_compact_on_trim) | `True` | Advanced | عملکرد |
+| [mon_con_tracker_score_halflife](#mon_con_tracker_score_halflife) | `43200` | Advanced | عملکرد |
+| [mon_cpu_threads](#mon_cpu_threads) | `4` | Advanced | عملکرد |
+| [mon_crush_min_required_version](#mon_crush_min_required_version) | `hammer` | Advanced | عملکرد |
+| [mon_daemon_bytes](#mon_daemon_bytes) | `400_M` | Advanced | عملکرد |
+| [mon_down_added_grace](#mon_down_added_grace) | `3_min` | Advanced | عملکرد |
+| [mon_down_mkfs_grace](#mon_down_mkfs_grace) | `1_min` | Advanced | عملکرد |
+| [mon_down_uptime_grace](#mon_down_uptime_grace) | `1_min` | Advanced | عملکرد |
+| [mon_elector_ignore_propose_margin](#mon_elector_ignore_propose_margin) | `0.0005` | Advanced | عملکرد |
+| [mon_elector_ping_divisor](#mon_elector_ping_divisor) | `2` | Advanced | عملکرد |
+| [mon_enable_op_tracker](#mon_enable_op_tracker) | `True` | Advanced | سیاست |
+| [mon_fsmap_prune_threshold](#mon_fsmap_prune_threshold) | `300` | Advanced | عملکرد |
+| [mon_health_max_detail](#mon_health_max_detail) | `50` | Advanced | عملکرد |
+| [mon_lease](#mon_lease) | `5` | Advanced | عملکرد |
+| [mon_mds_force_trim_to](#mon_mds_force_trim_to) | `0` | Dev | توسعه |
+| [mon_mds_skip_sanity](#mon_mds_skip_sanity) | `False` | Advanced | عملکرد |
+| [mon_memory_autotune](#mon_memory_autotune) | `True` | Basic | سیاست |
+| [mon_memory_target](#mon_memory_target) | `2_G` | Basic | سیاست |
+| [mon_nvmeofgw_beacon_grace](#mon_nvmeofgw_beacon_grace) | `7` | Advanced | عملکرد |
+| [mon_nvmeofgw_beacons_till_ack](#mon_nvmeofgw_beacons_till_ack) | `15` | Advanced | عملکرد |
+| [mon_nvmeofgw_delete_grace](#mon_nvmeofgw_delete_grace) | `15_min` | Advanced | عملکرد |
+| [mon_nvmeofgw_set_group_id_retry](#mon_nvmeofgw_set_group_id_retry) | `1000` | Advanced | عملکرد |
+| [mon_nvmeofgw_wrong_map_ignore_sec](#mon_nvmeofgw_wrong_map_ignore_sec) | `15` | Advanced | عملکرد |
+| [mon_op_complaint_time](#mon_op_complaint_time) | `30` | Advanced | عملکرد |
+| [mon_op_history_duration](#mon_op_history_duration) | `10_min` | Advanced | عملکرد |
+| [mon_op_history_size](#mon_op_history_size) | `20` | Advanced | عملکرد |
+| [mon_op_history_slow_op_size](#mon_op_history_slow_op_size) | `20` | Advanced | عملکرد |
+| [mon_op_history_slow_op_threshold](#mon_op_history_slow_op_threshold) | `10` | Advanced | عملکرد |
+| [mon_rocksdb_options](#mon_rocksdb_options) | `write_buffer_size=33554432,compression=kNoCompression,level_compaction_dynamic_level_bytes=true` | Advanced | عملکرد |
+| [mon_stretch_cluster_recovery_ratio](#mon_stretch_cluster_recovery_ratio) | `0.6` | Advanced | عملکرد |
+| [mon_stretch_max_bucket_weight_delta](#mon_stretch_max_bucket_weight_delta) | `0.1` | Dev | توسعه |
+| [mon_stretch_recovery_min_wait](#mon_stretch_recovery_min_wait) | `15` | Advanced | عملکرد |
+| [mon_warn_on_colocated_monitors](#mon_warn_on_colocated_monitors) | `False` | Advanced | عملکرد |
+| [mon_warn_on_crush_straw_calc_version_zero](#mon_warn_on_crush_straw_calc_version_zero) | `True` | Advanced | عملکرد |
+| [mon_warn_on_degraded_stretch_mode](#mon_warn_on_degraded_stretch_mode) | `True` | Advanced | عملکرد |
+| [mon_warn_on_legacy_crush_tunables](#mon_warn_on_legacy_crush_tunables) | `True` | Advanced | عملکرد |
+| [mon_warn_on_older_version](#mon_warn_on_older_version) | `True` | Advanced | عملکرد |
+| [nvmeof_mon_client_connect_panic](#nvmeof_mon_client_connect_panic) | `30` | Advanced | عملکرد |
+| [nvmeof_mon_client_disconnect_panic](#nvmeof_mon_client_disconnect_panic) | `100` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -89,7 +89,7 @@ ceph config get mon enable_availability_tracking
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -124,7 +124,7 @@ ceph config get mon mon_clock_drift_allowed
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.05`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -160,7 +160,7 @@ ceph config get mon mon_clock_drift_warn_backoff
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -194,7 +194,7 @@ ceph config get mon mon_compact_on_bootstrap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -228,7 +228,7 @@ ceph config get mon mon_compact_on_start
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -262,7 +262,7 @@ ceph config get mon mon_compact_on_trim
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -298,7 +298,7 @@ ceph config get mon mon_con_tracker_score_halflife
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `43200`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -336,7 +336,7 @@ ceph config get mon mon_cpu_threads
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -372,7 +372,7 @@ ceph config get mon mon_crush_min_required_version
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `hammer`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -408,7 +408,7 @@ ceph config get mon mon_daemon_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `400_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -444,7 +444,7 @@ ceph config get mon mon_down_added_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -480,7 +480,7 @@ ceph config get mon mon_down_mkfs_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -516,7 +516,7 @@ ceph config get mon mon_down_uptime_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -552,7 +552,7 @@ ceph config get mon mon_elector_ignore_propose_margin
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.0005`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -588,7 +588,7 @@ ceph config get mon mon_elector_ping_divisor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -624,7 +624,7 @@ ceph config get mon mon_enable_op_tracker
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -659,7 +659,7 @@ ceph config get mon mon_fsmap_prune_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `300`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -695,7 +695,7 @@ ceph config get mon mon_health_max_detail
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `50`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -731,7 +731,7 @@ ceph config get mon mon_lease
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -767,7 +767,7 @@ ceph config get mon mon_mds_force_trim_to
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -795,7 +795,7 @@ ceph config get mon mon_mds_skip_sanity
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -831,7 +831,7 @@ ceph config get mon mon_memory_autotune
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -866,7 +866,7 @@ ceph config get mon mon_memory_target
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `2_G` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -901,7 +901,7 @@ ceph config get mon mon_nvmeofgw_beacon_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `7`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -937,7 +937,7 @@ ceph config get mon mon_nvmeofgw_beacons_till_ack
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -973,7 +973,7 @@ ceph config get mon mon_nvmeofgw_delete_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1009,7 +1009,7 @@ ceph config get mon mon_nvmeofgw_set_group_id_retry
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1045,7 +1045,7 @@ ceph config get mon mon_nvmeofgw_wrong_map_ignore_sec
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1081,7 +1081,7 @@ ceph config get mon mon_op_complaint_time
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1117,7 +1117,7 @@ ceph config get mon mon_op_history_duration
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1153,7 +1153,7 @@ ceph config get mon mon_op_history_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1189,7 +1189,7 @@ ceph config get mon mon_op_history_slow_op_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1225,7 +1225,7 @@ ceph config get mon mon_op_history_slow_op_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1259,7 +1259,7 @@ ceph config get mon mon_rocksdb_options
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `write_buffer_size=33554432,compression=kNoCompression,level_compaction_dynamic_level_bytes=true`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1295,7 +1295,7 @@ ceph config get mon mon_stretch_cluster_recovery_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.6`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1333,7 +1333,7 @@ ceph config get mon mon_stretch_max_bucket_weight_delta
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1361,7 +1361,7 @@ ceph config get mon mon_stretch_recovery_min_wait
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1399,7 +1399,7 @@ ceph config get mon mon_warn_on_colocated_monitors
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1435,7 +1435,7 @@ ceph config get mon mon_warn_on_crush_straw_calc_version_zero
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1471,7 +1471,7 @@ ceph config get mon mon_warn_on_degraded_stretch_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1507,7 +1507,7 @@ ceph config get mon mon_warn_on_legacy_crush_tunables
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1543,7 +1543,7 @@ ceph config get mon mon_warn_on_older_version
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1579,7 +1579,7 @@ ceph config get mon nvmeof_mon_client_connect_panic
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1615,7 +1615,7 @@ ceph config get mon nvmeof_mon_client_disconnect_panic
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

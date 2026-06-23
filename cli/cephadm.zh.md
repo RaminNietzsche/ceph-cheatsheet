@@ -1,17 +1,15 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# Cephadm 与编排器命令
 
-# Cephadm & Orchestrator Commands
+需要启用 `ceph mgr` 模块：`ceph mgr module enable cephadm`。
 
-Requires active `ceph mgr` module: `ceph mgr module enable cephadm`.
-
-## Cluster bootstrap
+## 集群 bootstrap
 
 ```bash
 cephadm bootstrap --mon-ip <ip> [--cluster-network …] [--single-host-defaults]
 cephadm install                        # install cephadm on local host
 ```
 
-## Host management
+## 主机管理
 
 ```bash
 ceph orch host ls
@@ -21,7 +19,7 @@ ceph orch host label add|rm <hostname> <label>
 ceph orch host maintenance enter|exit <hostname>
 ```
 
-## Service deployment
+## 服务部署
 
 ```bash
 ceph orch ls
@@ -40,7 +38,7 @@ ceph orch daemon redeploy <daemon>
 ceph orch daemon rm <daemon> [--force]
 ```
 
-## Upgrades
+## 升级
 
 ```bash
 ceph orch upgrade ls
@@ -49,7 +47,7 @@ ceph orch upgrade status
 ceph orch upgrade pause|resume|stop
 ```
 
-## Device / OSD
+## 设备 / OSD
 
 ```bash
 ceph orch device ls
@@ -57,7 +55,7 @@ ceph orch device zap <hostname> <path> [--force]
 ceph orch daemon add osd <hostname>:<device-path>
 ```
 
-## Logs & shell
+## 日志与 shell
 
 ```bash
 ceph orch logs <svc-type>.<hostname>.<id> [--follow]
@@ -65,6 +63,6 @@ cephadm shell                              # run ceph commands in container
 cephadm enter --name <daemon-name>
 ```
 
-See [config/mgr/cephadm](../config/mgr/INDEX.md) for cephadm-related config options.
+cephadm 相关配置见 [config/mgr/cephadm](../config/mgr/cephadm.md)。
 
-[← CLI overview](OVERVIEW.md)
+[← CLI 概览](OVERVIEW.md)

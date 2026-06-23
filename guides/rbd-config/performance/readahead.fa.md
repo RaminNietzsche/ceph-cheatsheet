@@ -4,19 +4,19 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rbd_readahead_disable_after_bytes](#rbd_readahead_disable_after_bytes) | `50_M` | Advanced | Performance |
-| [rbd_readahead_max_bytes](#rbd_readahead_max_bytes) | `512_K` | Advanced | Performance |
-| [rbd_readahead_trigger_requests](#rbd_readahead_trigger_requests) | `10` | Advanced | Performance |
+| [rbd_readahead_disable_after_bytes](#rbd_readahead_disable_after_bytes) | `50_M` | Advanced | عملکرد |
+| [rbd_readahead_max_bytes](#rbd_readahead_max_bytes) | `512_K` | Advanced | عملکرد |
+| [rbd_readahead_trigger_requests](#rbd_readahead_trigger_requests) | `10` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -48,7 +48,7 @@ ceph config get client rbd_readahead_disable_after_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `50_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -84,7 +84,7 @@ ceph config get client rbd_readahead_max_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `512_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -120,7 +120,7 @@ ceph config get client rbd_readahead_trigger_requests
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

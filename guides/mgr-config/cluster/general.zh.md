@@ -4,24 +4,24 @@ MGR 配置深度指南 — 8 个选项。[← 概览](../OVERVIEW.md) · [调优
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [mon_cache_target_full_warn_ratio](#mon_cache_target_full_warn_ratio) | `0.66` | Advanced | Performance |
-| [mon_osd_err_op_age_ratio](#mon_osd_err_op_age_ratio) | `128` | Advanced | Performance |
-| [mon_reweight_max_change](#mon_reweight_max_change) | `0.05` | Advanced | Performance |
-| [mon_reweight_max_osds](#mon_reweight_max_osds) | `4` | Advanced | Performance |
-| [mon_reweight_min_bytes_per_osd](#mon_reweight_min_bytes_per_osd) | `100_M` | Advanced | Performance |
-| [mon_reweight_min_pgs_per_osd](#mon_reweight_min_pgs_per_osd) | `10` | Advanced | Performance |
-| [mon_warn_on_misplaced](#mon_warn_on_misplaced) | `False` | Advanced | Performance |
-| [mon_warn_on_too_few_osds](#mon_warn_on_too_few_osds) | `True` | Advanced | Performance |
+| [mon_cache_target_full_warn_ratio](#mon_cache_target_full_warn_ratio) | `0.66` | Advanced | 性能 |
+| [mon_osd_err_op_age_ratio](#mon_osd_err_op_age_ratio) | `128` | Advanced | 性能 |
+| [mon_reweight_max_change](#mon_reweight_max_change) | `0.05` | Advanced | 性能 |
+| [mon_reweight_max_osds](#mon_reweight_max_osds) | `4` | Advanced | 性能 |
+| [mon_reweight_min_bytes_per_osd](#mon_reweight_min_bytes_per_osd) | `100_M` | Advanced | 性能 |
+| [mon_reweight_min_pgs_per_osd](#mon_reweight_min_pgs_per_osd) | `10` | Advanced | 性能 |
+| [mon_warn_on_misplaced](#mon_warn_on_misplaced) | `False` | Advanced | 性能 |
+| [mon_warn_on_too_few_osds](#mon_warn_on_too_few_osds) | `True` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -53,7 +53,7 @@ ceph config get mon mon_cache_target_full_warn_ratio
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0.66` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -89,7 +89,7 @@ ceph config get mon mon_osd_err_op_age_ratio
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `128` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -123,7 +123,7 @@ ceph config get mon mon_reweight_max_change
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0.05` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -157,7 +157,7 @@ ceph config get mon mon_reweight_max_osds
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `4` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -191,7 +191,7 @@ ceph config get mon mon_reweight_min_bytes_per_osd
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `100_M` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -225,7 +225,7 @@ ceph config get mon mon_reweight_min_pgs_per_osd
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `10` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -261,7 +261,7 @@ ceph config get mon mon_warn_on_misplaced
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -297,7 +297,7 @@ ceph config get mon mon_warn_on_too_few_osds
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

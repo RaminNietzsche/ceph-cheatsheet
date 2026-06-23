@@ -4,17 +4,17 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rbd_auto_exclusive_lock_until_manual_request](#rbd_auto_exclusive_lock_until_manual_request) | `True` | Advanced | Performance |
+| [rbd_auto_exclusive_lock_until_manual_request](#rbd_auto_exclusive_lock_until_manual_request) | `True` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -46,7 +46,7 @@ ceph config get client rbd_auto_exclusive_lock_until_manual_request
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

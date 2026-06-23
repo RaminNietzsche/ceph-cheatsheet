@@ -4,23 +4,23 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [cephx_cluster_require_signatures](#cephx_cluster_require_signatures) | `False` | Advanced | Performance |
-| [cephx_cluster_require_version](#cephx_cluster_require_version) | `2` | Advanced | Performance |
-| [cephx_require_signatures](#cephx_require_signatures) | `False` | Advanced | Performance |
-| [cephx_require_version](#cephx_require_version) | `2` | Advanced | Performance |
-| [cephx_service_require_signatures](#cephx_service_require_signatures) | `False` | Advanced | Performance |
-| [cephx_service_require_version](#cephx_service_require_version) | `2` | Advanced | Performance |
-| [cephx_sign_messages](#cephx_sign_messages) | `True` | Advanced | Performance |
+| [cephx_cluster_require_signatures](#cephx_cluster_require_signatures) | `False` | Advanced | عملکرد |
+| [cephx_cluster_require_version](#cephx_cluster_require_version) | `2` | Advanced | عملکرد |
+| [cephx_require_signatures](#cephx_require_signatures) | `False` | Advanced | عملکرد |
+| [cephx_require_version](#cephx_require_version) | `2` | Advanced | عملکرد |
+| [cephx_service_require_signatures](#cephx_service_require_signatures) | `False` | Advanced | عملکرد |
+| [cephx_service_require_version](#cephx_service_require_version) | `2` | Advanced | عملکرد |
+| [cephx_sign_messages](#cephx_sign_messages) | `True` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -50,7 +50,7 @@ ceph config get global cephx_cluster_require_signatures
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -85,7 +85,7 @@ ceph config get global cephx_cluster_require_version
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -118,7 +118,7 @@ ceph config get global cephx_require_signatures
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -153,7 +153,7 @@ ceph config get global cephx_require_version
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -186,7 +186,7 @@ ceph config get global cephx_service_require_signatures
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -221,7 +221,7 @@ ceph config get global cephx_service_require_version
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -254,7 +254,7 @@ ceph config get global cephx_sign_messages
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

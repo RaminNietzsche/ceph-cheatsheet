@@ -1,10 +1,8 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# RADOS 命令
 
-# RADOS Commands
+底层对象存储接口。通常需通过 `-p` 或 `--pool` 指定池名。
 
-Low-level object storage interface. Pool name usually required via `-p` or `--pool`.
-
-## Pool info
+## 池信息
 
 ```bash
 rados lspools
@@ -14,7 +12,7 @@ rados pool get-quota <pool>
 rados pool set-quota <pool> [--max-objects N] [--max-size N]
 ```
 
-## Objects
+## 对象
 
 ```bash
 rados -p <pool> ls
@@ -30,7 +28,7 @@ rados -p <pool> truncate <object> <size>
 rados -p <pool> touch <object>
 ```
 
-## Extended attributes & omap
+## 扩展属性与 omap
 
 ```bash
 rados -p <pool> getxattr <object> <attr>
@@ -44,7 +42,7 @@ rados -p <pool> listomapkeys <object>
 rados -p <pool> listomapvals <object>
 ```
 
-## Snapshots & bench
+## 快照与 bench
 
 ```bash
 rados -p <pool> mksnap <snap-name>
@@ -53,7 +51,7 @@ rados -p <pool> bench <seconds> write|seq|rand [-b blocksize] [-t threads]
 rados cleanup --pool <pool> --prefix <prefix> --dry-run
 ```
 
-## Cluster admin via rados
+## 通过 rados 管理集群
 
 ```bash
 rados purge <pool> --yes-i-really-really-mean-it
@@ -61,4 +59,4 @@ rados list-inconsistent-pg <pool>
 rados list-inconsistent-obj <pgid> --format json-pretty
 ```
 
-[← CLI overview](OVERVIEW.md)
+[← CLI 概览](OVERVIEW.md)

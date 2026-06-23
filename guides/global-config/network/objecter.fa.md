@@ -4,24 +4,24 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [objecter_completion_locks_per_session](#objecter_completion_locks_per_session) | `32` | Dev | Dev |
-| [objecter_debug_inject_relock_delay](#objecter_debug_inject_relock_delay) | `False` | Dev | Dev |
-| [objecter_inflight_op_bytes](#objecter_inflight_op_bytes) | `100_M` | Advanced | Performance |
-| [objecter_inflight_ops](#objecter_inflight_ops) | `1_K` | Advanced | Performance |
-| [objecter_inject_no_watch_ping](#objecter_inject_no_watch_ping) | `False` | Dev | Dev |
-| [objecter_retry_writes_after_first_reply](#objecter_retry_writes_after_first_reply) | `False` | Dev | Dev |
-| [objecter_tick_interval](#objecter_tick_interval) | `5` | Dev | Dev |
-| [objecter_timeout](#objecter_timeout) | `10` | Advanced | Performance |
+| [objecter_completion_locks_per_session](#objecter_completion_locks_per_session) | `32` | Dev | توسعه |
+| [objecter_debug_inject_relock_delay](#objecter_debug_inject_relock_delay) | `False` | Dev | توسعه |
+| [objecter_inflight_op_bytes](#objecter_inflight_op_bytes) | `100_M` | Advanced | عملکرد |
+| [objecter_inflight_ops](#objecter_inflight_ops) | `1_K` | Advanced | عملکرد |
+| [objecter_inject_no_watch_ping](#objecter_inject_no_watch_ping) | `False` | Dev | توسعه |
+| [objecter_retry_writes_after_first_reply](#objecter_retry_writes_after_first_reply) | `False` | Dev | توسعه |
+| [objecter_tick_interval](#objecter_tick_interval) | `5` | Dev | توسعه |
+| [objecter_timeout](#objecter_timeout) | `10` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -51,7 +51,7 @@ ceph config get global objecter_completion_locks_per_session
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`32`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -77,7 +77,7 @@ ceph config get global objecter_debug_inject_relock_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -105,7 +105,7 @@ ceph config get global objecter_inflight_op_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -140,7 +140,7 @@ ceph config get global objecter_inflight_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -173,7 +173,7 @@ ceph config get global objecter_inject_no_watch_ping
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -199,7 +199,7 @@ ceph config get global objecter_retry_writes_after_first_reply
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -225,7 +225,7 @@ ceph config get global objecter_tick_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -253,7 +253,7 @@ ceph config get global objecter_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

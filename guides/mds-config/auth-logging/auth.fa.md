@@ -4,28 +4,28 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mds_cache_quiesce_splitauth](#mds_cache_quiesce_splitauth) | `True` | Advanced | Policy |
-| [mds_cap_acquisition_throttle_retry_request_timeout](#mds_cap_acquisition_throttle_retry_request_timeout) | `0.5` | Advanced | Performance |
-| [mds_cap_revoke_eviction_timeout](#mds_cap_revoke_eviction_timeout) | `0` | Advanced | Performance |
-| [mds_debug_auth_pins](#mds_debug_auth_pins) | `False` | Dev | Dev |
-| [mds_forward_all_requests_to_auth](#mds_forward_all_requests_to_auth) | `False` | Advanced | Policy |
-| [mds_max_caps_per_client](#mds_max_caps_per_client) | `1_M` | Advanced | Performance |
-| [mds_min_caps_per_client](#mds_min_caps_per_client) | `100` | Advanced | Performance |
-| [mds_min_caps_working_set](#mds_min_caps_working_set) | `10000` | Advanced | Performance |
-| [mds_recall_max_caps](#mds_recall_max_caps) | `30000` | Advanced | Performance |
-| [mds_session_cap_acquisition_decay_rate](#mds_session_cap_acquisition_decay_rate) | `30` | Advanced | Performance |
-| [mds_session_cap_acquisition_throttle](#mds_session_cap_acquisition_throttle) | `100000` | Advanced | Performance |
-| [mds_session_max_caps_throttle_ratio](#mds_session_max_caps_throttle_ratio) | `1.1` | Advanced | Performance |
+| [mds_cache_quiesce_splitauth](#mds_cache_quiesce_splitauth) | `True` | Advanced | سیاست |
+| [mds_cap_acquisition_throttle_retry_request_timeout](#mds_cap_acquisition_throttle_retry_request_timeout) | `0.5` | Advanced | عملکرد |
+| [mds_cap_revoke_eviction_timeout](#mds_cap_revoke_eviction_timeout) | `0` | Advanced | عملکرد |
+| [mds_debug_auth_pins](#mds_debug_auth_pins) | `False` | Dev | توسعه |
+| [mds_forward_all_requests_to_auth](#mds_forward_all_requests_to_auth) | `False` | Advanced | سیاست |
+| [mds_max_caps_per_client](#mds_max_caps_per_client) | `1_M` | Advanced | عملکرد |
+| [mds_min_caps_per_client](#mds_min_caps_per_client) | `100` | Advanced | عملکرد |
+| [mds_min_caps_working_set](#mds_min_caps_working_set) | `10000` | Advanced | عملکرد |
+| [mds_recall_max_caps](#mds_recall_max_caps) | `30000` | Advanced | عملکرد |
+| [mds_session_cap_acquisition_decay_rate](#mds_session_cap_acquisition_decay_rate) | `30` | Advanced | عملکرد |
+| [mds_session_cap_acquisition_throttle](#mds_session_cap_acquisition_throttle) | `100000` | Advanced | عملکرد |
+| [mds_session_max_caps_throttle_ratio](#mds_session_max_caps_throttle_ratio) | `1.1` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -57,7 +57,7 @@ ceph config get mds mds_cache_quiesce_splitauth
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -93,7 +93,7 @@ ceph config get mds mds_cap_acquisition_throttle_retry_request_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -130,7 +130,7 @@ ceph config get mds mds_cap_revoke_eviction_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -165,7 +165,7 @@ ceph config get mds mds_debug_auth_pins
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -193,7 +193,7 @@ ceph config get mds mds_forward_all_requests_to_auth
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -229,7 +229,7 @@ ceph config get mds mds_max_caps_per_client
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -266,7 +266,7 @@ ceph config get mds mds_min_caps_per_client
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -303,7 +303,7 @@ ceph config get mds mds_min_caps_working_set
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -340,7 +340,7 @@ ceph config get mds mds_recall_max_caps
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -377,7 +377,7 @@ ceph config get mds mds_session_cap_acquisition_decay_rate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -414,7 +414,7 @@ ceph config get mds mds_session_cap_acquisition_throttle
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -451,7 +451,7 @@ ceph config get mds mds_session_max_caps_throttle_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1.1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

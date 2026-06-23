@@ -4,37 +4,37 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rocksdb_block_size](#rocksdb_block_size) | `4_K` | Advanced | Performance |
-| [rocksdb_bloom_bits_per_key](#rocksdb_bloom_bits_per_key) | `20` | Advanced | Performance |
-| [rocksdb_cache_index_and_filter_blocks](#rocksdb_cache_index_and_filter_blocks) | `True` | Dev | Dev |
-| [rocksdb_cache_index_and_filter_blocks_with_high_priority](#rocksdb_cache_index_and_filter_blocks_with_high_priority) | `False` | Dev | Dev |
-| [rocksdb_cache_row_ratio](#rocksdb_cache_row_ratio) | `0` | Advanced | Performance |
-| [rocksdb_cache_shard_bits](#rocksdb_cache_shard_bits) | `4` | Advanced | Performance |
-| [rocksdb_cache_size](#rocksdb_cache_size) | `512_M` | Advanced | Performance |
-| [rocksdb_cache_type](#rocksdb_cache_type) | `binned_lru` | Advanced | Performance |
-| [rocksdb_cf_compact_on_deletion](#rocksdb_cf_compact_on_deletion) | `True` | Dev | Dev |
-| [rocksdb_cf_compact_on_deletion_sliding_window](#rocksdb_cf_compact_on_deletion_sliding_window) | `32768` | Dev | Dev |
-| [rocksdb_cf_compact_on_deletion_trigger](#rocksdb_cf_compact_on_deletion_trigger) | `16384` | Dev | Dev |
-| [rocksdb_collect_compaction_stats](#rocksdb_collect_compaction_stats) | `False` | Advanced | Performance |
-| [rocksdb_collect_extended_stats](#rocksdb_collect_extended_stats) | `False` | Advanced | Performance |
-| [rocksdb_collect_memory_stats](#rocksdb_collect_memory_stats) | `False` | Advanced | Performance |
-| [rocksdb_delete_range_threshold](#rocksdb_delete_range_threshold) | `1_M` | Advanced | Performance |
-| [rocksdb_index_type](#rocksdb_index_type) | `binary_search` | Dev | Dev |
-| [rocksdb_log_to_ceph_log](#rocksdb_log_to_ceph_log) | `True` | Advanced | Performance |
-| [rocksdb_metadata_block_size](#rocksdb_metadata_block_size) | `4_K` | Dev | Dev |
-| [rocksdb_partition_filters](#rocksdb_partition_filters) | `False` | Dev | Dev |
-| [rocksdb_perf](#rocksdb_perf) | `False` | Advanced | Performance |
-| [rocksdb_pin_l0_filter_and_index_blocks_in_cache](#rocksdb_pin_l0_filter_and_index_blocks_in_cache) | `False` | Dev | Dev |
+| [rocksdb_block_size](#rocksdb_block_size) | `4_K` | Advanced | عملکرد |
+| [rocksdb_bloom_bits_per_key](#rocksdb_bloom_bits_per_key) | `20` | Advanced | عملکرد |
+| [rocksdb_cache_index_and_filter_blocks](#rocksdb_cache_index_and_filter_blocks) | `True` | Dev | توسعه |
+| [rocksdb_cache_index_and_filter_blocks_with_high_priority](#rocksdb_cache_index_and_filter_blocks_with_high_priority) | `False` | Dev | توسعه |
+| [rocksdb_cache_row_ratio](#rocksdb_cache_row_ratio) | `0` | Advanced | عملکرد |
+| [rocksdb_cache_shard_bits](#rocksdb_cache_shard_bits) | `4` | Advanced | عملکرد |
+| [rocksdb_cache_size](#rocksdb_cache_size) | `512_M` | Advanced | عملکرد |
+| [rocksdb_cache_type](#rocksdb_cache_type) | `binned_lru` | Advanced | عملکرد |
+| [rocksdb_cf_compact_on_deletion](#rocksdb_cf_compact_on_deletion) | `True` | Dev | توسعه |
+| [rocksdb_cf_compact_on_deletion_sliding_window](#rocksdb_cf_compact_on_deletion_sliding_window) | `32768` | Dev | توسعه |
+| [rocksdb_cf_compact_on_deletion_trigger](#rocksdb_cf_compact_on_deletion_trigger) | `16384` | Dev | توسعه |
+| [rocksdb_collect_compaction_stats](#rocksdb_collect_compaction_stats) | `False` | Advanced | عملکرد |
+| [rocksdb_collect_extended_stats](#rocksdb_collect_extended_stats) | `False` | Advanced | عملکرد |
+| [rocksdb_collect_memory_stats](#rocksdb_collect_memory_stats) | `False` | Advanced | عملکرد |
+| [rocksdb_delete_range_threshold](#rocksdb_delete_range_threshold) | `1_M` | Advanced | عملکرد |
+| [rocksdb_index_type](#rocksdb_index_type) | `binary_search` | Dev | توسعه |
+| [rocksdb_log_to_ceph_log](#rocksdb_log_to_ceph_log) | `True` | Advanced | عملکرد |
+| [rocksdb_metadata_block_size](#rocksdb_metadata_block_size) | `4_K` | Dev | توسعه |
+| [rocksdb_partition_filters](#rocksdb_partition_filters) | `False` | Dev | توسعه |
+| [rocksdb_perf](#rocksdb_perf) | `False` | Advanced | عملکرد |
+| [rocksdb_pin_l0_filter_and_index_blocks_in_cache](#rocksdb_pin_l0_filter_and_index_blocks_in_cache) | `False` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -64,7 +64,7 @@ ceph config get global rocksdb_block_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -99,7 +99,7 @@ ceph config get global rocksdb_bloom_bits_per_key
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -134,7 +134,7 @@ ceph config get global rocksdb_cache_index_and_filter_blocks
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -162,7 +162,7 @@ ceph config get global rocksdb_cache_index_and_filter_blocks_with_high_priority
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -188,7 +188,7 @@ ceph config get global rocksdb_cache_row_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -223,7 +223,7 @@ ceph config get global rocksdb_cache_shard_bits
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -256,7 +256,7 @@ ceph config get global rocksdb_cache_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `512_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -289,7 +289,7 @@ ceph config get global rocksdb_cache_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `binned_lru`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -324,7 +324,7 @@ ceph config get global rocksdb_cf_compact_on_deletion
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -352,7 +352,7 @@ ceph config get global rocksdb_cf_compact_on_deletion_sliding_window
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`32768`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -380,7 +380,7 @@ ceph config get global rocksdb_cf_compact_on_deletion_trigger
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`16384`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -406,7 +406,7 @@ ceph config get global rocksdb_collect_compaction_stats
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -439,7 +439,7 @@ ceph config get global rocksdb_collect_extended_stats
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -472,7 +472,7 @@ ceph config get global rocksdb_collect_memory_stats
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -507,7 +507,7 @@ ceph config get global rocksdb_delete_range_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -542,7 +542,7 @@ ceph config get global rocksdb_index_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`binary_search`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -568,7 +568,7 @@ ceph config get global rocksdb_log_to_ceph_log
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -603,7 +603,7 @@ ceph config get global rocksdb_metadata_block_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`4_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -631,7 +631,7 @@ ceph config get global rocksdb_partition_filters
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -657,7 +657,7 @@ ceph config get global rocksdb_perf
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -692,7 +692,7 @@ ceph config get global rocksdb_pin_l0_filter_and_index_blocks_in_cache
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

@@ -4,19 +4,19 @@ Global 配置深度指南 — 3 个选项。[← 概览](../OVERVIEW.md) · [调
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [crush_location](#crush_location) | `(empty)` | Advanced | Performance |
-| [crush_location_hook](#crush_location_hook) | `(empty)` | Advanced | Performance |
-| [crush_location_hook_timeout](#crush_location_hook_timeout) | `10` | Advanced | Performance |
+| [crush_location](#crush_location) | `(empty)` | Advanced | 性能 |
+| [crush_location_hook](#crush_location_hook) | `(empty)` | Advanced | 性能 |
+| [crush_location_hook_timeout](#crush_location_hook_timeout) | `10` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -46,7 +46,7 @@ ceph config get global crush_location
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `(empty)` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -79,7 +79,7 @@ ceph config get global crush_location_hook
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `(empty)` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -112,7 +112,7 @@ ceph config get global crush_location_hook_timeout
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `10` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

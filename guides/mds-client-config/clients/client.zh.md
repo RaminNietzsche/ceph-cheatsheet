@@ -4,69 +4,69 @@ MDS client 配置深度指南 — 53 个选项。[← 概览](../OVERVIEW.md) ·
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [client_acl_type](#client_acl_type) | `(empty)` | Advanced | Performance |
-| [client_asio_thread_count](#client_asio_thread_count) | `2` | Advanced | Performance |
-| [client_cache_mid](#client_cache_mid) | `0.75` | Advanced | Performance |
-| [client_cache_size](#client_cache_size) | `16_K` | Basic | Performance |
-| [client_caps_release_delay](#client_caps_release_delay) | `5` | Dev | Dev |
-| [client_check_pool_perm](#client_check_pool_perm) | `True` | Advanced | Performance |
-| [client_collect_and_send_global_metrics](#client_collect_and_send_global_metrics) | `False` | Advanced | Performance |
-| [client_debug_force_sync_read](#client_debug_force_sync_read) | `False` | Dev | Dev |
-| [client_debug_getattr_caps](#client_debug_getattr_caps) | `False` | Dev | Dev |
-| [client_debug_inject_features](#client_debug_inject_features) | `(empty)` | Dev | Dev |
-| [client_debug_inject_tick_delay](#client_debug_inject_tick_delay) | `0` | Dev | Dev |
-| [client_die_on_failed_dentry_invalidate](#client_die_on_failed_dentry_invalidate) | `True` | Advanced | Performance |
-| [client_die_on_failed_remount](#client_die_on_failed_remount) | `False` | Dev | Dev |
-| [client_dirsize_rbytes](#client_dirsize_rbytes) | `True` | Advanced | Performance |
-| [client_file_blockdiff_max_concurrent_object_scans](#client_file_blockdiff_max_concurrent_object_scans) | `16` | Advanced | Performance |
-| [client_force_lazyio](#client_force_lazyio) | `False` | Advanced | Performance |
-| [client_fs](#client_fs) | `(empty)` | Advanced | Performance |
-| [client_fscrypt_as](#client_fscrypt_as) | `True` | Advanced | Performance |
-| [client_fscrypt_dummy_encryption](#client_fscrypt_dummy_encryption) | `False` | Dev | Dev |
-| [client_inject_fixed_oldest_tid](#client_inject_fixed_oldest_tid) | `False` | Dev | Dev |
-| [client_inject_release_failure](#client_inject_release_failure) | `False` | Dev | Dev |
-| [client_inject_write_delay_secs](#client_inject_write_delay_secs) | `0` | Dev | Dev |
-| [client_max_inline_size](#client_max_inline_size) | `4_K` | Dev | Dev |
-| [client_max_retries_on_remount_failure](#client_max_retries_on_remount_failure) | `5` | Advanced | Performance |
-| [client_mds_namespace](#client_mds_namespace) | `(empty)` | Dev | Dev |
-| [client_metadata](#client_metadata) | `(empty)` | Advanced | Performance |
-| [client_mount_gid](#client_mount_gid) | `-1` | Advanced | Performance |
-| [client_mount_timeout](#client_mount_timeout) | `5_min` | Advanced | Performance |
-| [client_mount_uid](#client_mount_uid) | `-1` | Advanced | Performance |
-| [client_mountpoint](#client_mountpoint) | `/` | Advanced | Performance |
-| [client_notify_timeout](#client_notify_timeout) | `10` | Dev | Dev |
-| [client_oc](#client_oc) | `True` | Advanced | Performance |
-| [client_oc_max_dirty](#client_oc_max_dirty) | `100_M` | Advanced | Performance |
-| [client_oc_max_dirty_age](#client_oc_max_dirty_age) | `5` | Advanced | Performance |
-| [client_oc_max_objects](#client_oc_max_objects) | `1000` | Advanced | Performance |
-| [client_oc_size](#client_oc_size) | `200_M` | Advanced | Performance |
-| [client_oc_target_dirty](#client_oc_target_dirty) | `8_M` | Advanced | Performance |
-| [client_permissions](#client_permissions) | `True` | Advanced | Performance |
-| [client_quota](#client_quota) | `True` | Advanced | Performance |
-| [client_quota_df](#client_quota_df) | `True` | Advanced | Performance |
-| [client_readahead_max_bytes](#client_readahead_max_bytes) | `0` | Advanced | Performance |
-| [client_readahead_max_periods](#client_readahead_max_periods) | `4` | Advanced | Performance |
-| [client_readahead_min](#client_readahead_min) | `128_K` | Advanced | Performance |
-| [client_reconnect_stale](#client_reconnect_stale) | `False` | Advanced | Performance |
-| [client_respect_subvolume_snapshot_visibility](#client_respect_subvolume_snapshot_visibility) | `False` | Advanced | Performance |
-| [client_shutdown_timeout](#client_shutdown_timeout) | `30` | Advanced | Performance |
-| [client_snapdir](#client_snapdir) | `.snap` | Advanced | Performance |
-| [client_tick_interval](#client_tick_interval) | `1` | Dev | Dev |
-| [client_trace](#client_trace) | `(empty)` | Dev | Dev |
-| [client_try_dentry_invalidate](#client_try_dentry_invalidate) | `False` | Dev | Dev |
-| [client_use_faked_inos](#client_use_faked_inos) | `False` | Dev | Dev |
-| [client_use_random_mds](#client_use_random_mds) | `False` | Dev | Dev |
-| [osd_client_watch_timeout](#osd_client_watch_timeout) | `30` | Dev | Dev |
+| [client_acl_type](#client_acl_type) | `(empty)` | Advanced | 性能 |
+| [client_asio_thread_count](#client_asio_thread_count) | `2` | Advanced | 性能 |
+| [client_cache_mid](#client_cache_mid) | `0.75` | Advanced | 性能 |
+| [client_cache_size](#client_cache_size) | `16_K` | Basic | 性能 |
+| [client_caps_release_delay](#client_caps_release_delay) | `5` | Dev | 开发 |
+| [client_check_pool_perm](#client_check_pool_perm) | `True` | Advanced | 性能 |
+| [client_collect_and_send_global_metrics](#client_collect_and_send_global_metrics) | `False` | Advanced | 性能 |
+| [client_debug_force_sync_read](#client_debug_force_sync_read) | `False` | Dev | 开发 |
+| [client_debug_getattr_caps](#client_debug_getattr_caps) | `False` | Dev | 开发 |
+| [client_debug_inject_features](#client_debug_inject_features) | `(empty)` | Dev | 开发 |
+| [client_debug_inject_tick_delay](#client_debug_inject_tick_delay) | `0` | Dev | 开发 |
+| [client_die_on_failed_dentry_invalidate](#client_die_on_failed_dentry_invalidate) | `True` | Advanced | 性能 |
+| [client_die_on_failed_remount](#client_die_on_failed_remount) | `False` | Dev | 开发 |
+| [client_dirsize_rbytes](#client_dirsize_rbytes) | `True` | Advanced | 性能 |
+| [client_file_blockdiff_max_concurrent_object_scans](#client_file_blockdiff_max_concurrent_object_scans) | `16` | Advanced | 性能 |
+| [client_force_lazyio](#client_force_lazyio) | `False` | Advanced | 性能 |
+| [client_fs](#client_fs) | `(empty)` | Advanced | 性能 |
+| [client_fscrypt_as](#client_fscrypt_as) | `True` | Advanced | 性能 |
+| [client_fscrypt_dummy_encryption](#client_fscrypt_dummy_encryption) | `False` | Dev | 开发 |
+| [client_inject_fixed_oldest_tid](#client_inject_fixed_oldest_tid) | `False` | Dev | 开发 |
+| [client_inject_release_failure](#client_inject_release_failure) | `False` | Dev | 开发 |
+| [client_inject_write_delay_secs](#client_inject_write_delay_secs) | `0` | Dev | 开发 |
+| [client_max_inline_size](#client_max_inline_size) | `4_K` | Dev | 开发 |
+| [client_max_retries_on_remount_failure](#client_max_retries_on_remount_failure) | `5` | Advanced | 性能 |
+| [client_mds_namespace](#client_mds_namespace) | `(empty)` | Dev | 开发 |
+| [client_metadata](#client_metadata) | `(empty)` | Advanced | 性能 |
+| [client_mount_gid](#client_mount_gid) | `-1` | Advanced | 性能 |
+| [client_mount_timeout](#client_mount_timeout) | `5_min` | Advanced | 性能 |
+| [client_mount_uid](#client_mount_uid) | `-1` | Advanced | 性能 |
+| [client_mountpoint](#client_mountpoint) | `/` | Advanced | 性能 |
+| [client_notify_timeout](#client_notify_timeout) | `10` | Dev | 开发 |
+| [client_oc](#client_oc) | `True` | Advanced | 性能 |
+| [client_oc_max_dirty](#client_oc_max_dirty) | `100_M` | Advanced | 性能 |
+| [client_oc_max_dirty_age](#client_oc_max_dirty_age) | `5` | Advanced | 性能 |
+| [client_oc_max_objects](#client_oc_max_objects) | `1000` | Advanced | 性能 |
+| [client_oc_size](#client_oc_size) | `200_M` | Advanced | 性能 |
+| [client_oc_target_dirty](#client_oc_target_dirty) | `8_M` | Advanced | 性能 |
+| [client_permissions](#client_permissions) | `True` | Advanced | 性能 |
+| [client_quota](#client_quota) | `True` | Advanced | 性能 |
+| [client_quota_df](#client_quota_df) | `True` | Advanced | 性能 |
+| [client_readahead_max_bytes](#client_readahead_max_bytes) | `0` | Advanced | 性能 |
+| [client_readahead_max_periods](#client_readahead_max_periods) | `4` | Advanced | 性能 |
+| [client_readahead_min](#client_readahead_min) | `128_K` | Advanced | 性能 |
+| [client_reconnect_stale](#client_reconnect_stale) | `False` | Advanced | 性能 |
+| [client_respect_subvolume_snapshot_visibility](#client_respect_subvolume_snapshot_visibility) | `False` | Advanced | 性能 |
+| [client_shutdown_timeout](#client_shutdown_timeout) | `30` | Advanced | 性能 |
+| [client_snapdir](#client_snapdir) | `.snap` | Advanced | 性能 |
+| [client_tick_interval](#client_tick_interval) | `1` | Dev | 开发 |
+| [client_trace](#client_trace) | `(empty)` | Dev | 开发 |
+| [client_try_dentry_invalidate](#client_try_dentry_invalidate) | `False` | Dev | 开发 |
+| [client_use_faked_inos](#client_use_faked_inos) | `False` | Dev | 开发 |
+| [client_use_random_mds](#client_use_random_mds) | `False` | Dev | 开发 |
+| [osd_client_watch_timeout](#osd_client_watch_timeout) | `30` | Dev | 开发 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -98,7 +98,7 @@ ceph config get client client_acl_type
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `(empty)` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -134,7 +134,7 @@ ceph config get client client_asio_thread_count
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `2` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -172,7 +172,7 @@ ceph config get client client_cache_mid
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0.75` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -208,7 +208,7 @@ ceph config get client client_cache_size
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `16_K` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -242,7 +242,7 @@ ceph config get client client_caps_release_delay
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`5`）。
 2. 仅在实验室复现特定问题时修改。
@@ -270,7 +270,7 @@ ceph config get client client_check_pool_perm
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -306,7 +306,7 @@ ceph config get client client_collect_and_send_global_metrics
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -340,7 +340,7 @@ ceph config get client client_debug_force_sync_read
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -366,7 +366,7 @@ ceph config get client client_debug_getattr_caps
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -392,7 +392,7 @@ ceph config get client client_debug_inject_features
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`(empty)`）。
 2. 仅在实验室复现特定问题时修改。
@@ -418,7 +418,7 @@ ceph config get client client_debug_inject_tick_delay
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`0`）。
 2. 仅在实验室复现特定问题时修改。
@@ -446,7 +446,7 @@ ceph config get client client_die_on_failed_dentry_invalidate
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -480,7 +480,7 @@ ceph config get client client_die_on_failed_remount
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -508,7 +508,7 @@ ceph config get client client_dirsize_rbytes
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -544,7 +544,7 @@ ceph config get client client_file_blockdiff_max_concurrent_object_scans
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `16` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -580,7 +580,7 @@ ceph config get client client_force_lazyio
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -616,7 +616,7 @@ ceph config get client client_fs
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `(empty)` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -652,7 +652,7 @@ ceph config get client client_fscrypt_as
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -688,7 +688,7 @@ ceph config get client client_fscrypt_dummy_encryption
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -714,7 +714,7 @@ ceph config get client client_inject_fixed_oldest_tid
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -740,7 +740,7 @@ ceph config get client client_inject_release_failure
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -768,7 +768,7 @@ ceph config get client client_inject_write_delay_secs
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`0`）。
 2. 仅在实验室复现特定问题时修改。
@@ -794,7 +794,7 @@ ceph config get client client_max_inline_size
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`4_K`）。
 2. 仅在实验室复现特定问题时修改。
@@ -822,7 +822,7 @@ ceph config get client client_max_retries_on_remount_failure
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `5` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -856,7 +856,7 @@ ceph config get client client_mds_namespace
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`(empty)`）。
 2. 仅在实验室复现特定问题时修改。
@@ -884,7 +884,7 @@ ceph config get client client_metadata
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `(empty)` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -920,7 +920,7 @@ ceph config get client client_mount_gid
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `-1` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -956,7 +956,7 @@ ceph config get client client_mount_timeout
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `5_min` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -992,7 +992,7 @@ ceph config get client client_mount_uid
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `-1` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1028,7 +1028,7 @@ ceph config get client client_mountpoint
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `/` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1062,7 +1062,7 @@ ceph config get client client_notify_timeout
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`10`）。
 2. 仅在实验室复现特定问题时修改。
@@ -1090,7 +1090,7 @@ ceph config get client client_oc
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1126,7 +1126,7 @@ ceph config get client client_oc_max_dirty
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `100_M` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1162,7 +1162,7 @@ ceph config get client client_oc_max_dirty_age
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `5` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1198,7 +1198,7 @@ ceph config get client client_oc_max_objects
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `1000` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1234,7 +1234,7 @@ ceph config get client client_oc_size
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `200_M` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1270,7 +1270,7 @@ ceph config get client client_oc_target_dirty
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `8_M` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1306,7 +1306,7 @@ ceph config get client client_permissions
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1342,7 +1342,7 @@ ceph config get client client_quota
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1378,7 +1378,7 @@ ceph config get client client_quota_df
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1414,7 +1414,7 @@ ceph config get client client_readahead_max_bytes
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1450,7 +1450,7 @@ ceph config get client client_readahead_max_periods
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `4` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1486,7 +1486,7 @@ ceph config get client client_readahead_min
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `128_K` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1522,7 +1522,7 @@ ceph config get client client_reconnect_stale
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1558,7 +1558,7 @@ ceph config get client client_respect_subvolume_snapshot_visibility
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1594,7 +1594,7 @@ ceph config get client client_shutdown_timeout
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `30` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1632,7 +1632,7 @@ ceph config get client client_snapdir
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `.snap` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -1668,7 +1668,7 @@ ceph config get client client_tick_interval
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`1`）。
 2. 仅在实验室复现特定问题时修改。
@@ -1696,7 +1696,7 @@ ceph config get client client_trace
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`(empty)`）。
 2. 仅在实验室复现特定问题时修改。
@@ -1722,7 +1722,7 @@ ceph config get client client_try_dentry_invalidate
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -1748,7 +1748,7 @@ ceph config get client client_use_faked_inos
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -1776,7 +1776,7 @@ ceph config get client client_use_random_mds
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -1802,7 +1802,7 @@ ceph config get osd osd_client_watch_timeout
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`30`）。
 2. 仅在实验室复现特定问题时修改。

@@ -4,21 +4,21 @@ Global 配置深度指南 — 5 个选项。[← 概览](../OVERVIEW.md) · [调
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [debug_asok_assert_abort](#debug_asok_assert_abort) | `False` | Dev | Dev |
-| [debug_asserts_on_shutdown](#debug_asserts_on_shutdown) | `False` | Dev | Dev |
-| [debug_deliberately_leak_memory](#debug_deliberately_leak_memory) | `False` | Dev | Dev |
-| [debug_disable_randomized_ping](#debug_disable_randomized_ping) | `False` | Dev | Dev |
-| [debug_heartbeat_testing_span](#debug_heartbeat_testing_span) | `0` | Dev | Dev |
+| [debug_asok_assert_abort](#debug_asok_assert_abort) | `False` | Dev | 开发 |
+| [debug_asserts_on_shutdown](#debug_asserts_on_shutdown) | `False` | Dev | 开发 |
+| [debug_deliberately_leak_memory](#debug_deliberately_leak_memory) | `False` | Dev | 开发 |
+| [debug_disable_randomized_ping](#debug_disable_randomized_ping) | `False` | Dev | 开发 |
+| [debug_heartbeat_testing_span](#debug_heartbeat_testing_span) | `0` | Dev | 开发 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -50,7 +50,7 @@ ceph config get global debug_asok_assert_abort
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -78,7 +78,7 @@ ceph config get global debug_asserts_on_shutdown
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -104,7 +104,7 @@ ceph config get global debug_deliberately_leak_memory
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -132,7 +132,7 @@ ceph config get global debug_disable_randomized_ping
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -160,7 +160,7 @@ ceph config get global debug_heartbeat_testing_span
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`0`）。
 2. 仅在实验室复现特定问题时修改。

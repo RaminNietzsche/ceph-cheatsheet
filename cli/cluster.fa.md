@@ -1,8 +1,6 @@
-> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
+# دستورات کلاستر و مانیتور
 
-# Cluster & Monitor Commands
-
-## Status and health
+## وضعیت و سلامت
 
 ```bash
 ceph status                      # full cluster status (-s)
@@ -25,7 +23,7 @@ ceph pg dump_stuck               # stuck PGs only
 ceph report                    # recent cluster report
 ```
 
-## Daemon management
+## مدیریت دیمن
 
 ```bash
 ceph tell osd.<id> version
@@ -36,7 +34,7 @@ ceph daemon osd.<id> perf dump
 ceph daemon osd.<id> help
 ```
 
-## Monitor operations
+## عملیات مانیتور
 
 ```bash
 ceph mon add <name> <ip:port>
@@ -45,7 +43,7 @@ ceph mon getmap -o monmap
 ceph quorum_status --format json-pretty
 ```
 
-## Auth
+## احراز هویت
 
 ```bash
 ceph auth ls
@@ -55,7 +53,7 @@ ceph auth del client.<name>
 ceph auth caps client.<name> mon 'profile rbd' osd 'profile rbd pool=rbd'
 ```
 
-## CRUSH map
+## نقشه CRUSH
 
 ```bash
 ceph osd crush tree
@@ -64,7 +62,7 @@ ceph osd crush rule dump
 ceph osd crush weight-set ls
 ```
 
-## Watch / progress
+## مشاهده / پیشرفت
 
 ```bash
 ceph -w
@@ -72,4 +70,4 @@ ceph progress
 ceph progress json
 ```
 
-[← CLI overview](OVERVIEW.md)
+[← نمای کلی CLI](OVERVIEW.md)

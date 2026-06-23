@@ -4,25 +4,25 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [auth_allow_insecure_global_id_reclaim](#auth_allow_insecure_global_id_reclaim) | `True` | Advanced | Policy |
-| [auth_client_required](#auth_client_required) | `cephx, none` | Advanced | Performance |
-| [auth_cluster_required](#auth_cluster_required) | `cephx` | Advanced | Performance |
-| [auth_debug](#auth_debug) | `False` | Dev | Dev |
-| [auth_expose_insecure_global_id_reclaim](#auth_expose_insecure_global_id_reclaim) | `True` | Advanced | Policy |
-| [auth_mon_ticket_ttl](#auth_mon_ticket_ttl) | `72_hr` | Advanced | Performance |
-| [auth_service_required](#auth_service_required) | `cephx` | Advanced | Performance |
-| [auth_service_ticket_ttl](#auth_service_ticket_ttl) | `1_hr` | Advanced | Performance |
-| [auth_supported](#auth_supported) | `(empty)` | Advanced | Performance |
+| [auth_allow_insecure_global_id_reclaim](#auth_allow_insecure_global_id_reclaim) | `True` | Advanced | سیاست |
+| [auth_client_required](#auth_client_required) | `cephx, none` | Advanced | عملکرد |
+| [auth_cluster_required](#auth_cluster_required) | `cephx` | Advanced | عملکرد |
+| [auth_debug](#auth_debug) | `False` | Dev | توسعه |
+| [auth_expose_insecure_global_id_reclaim](#auth_expose_insecure_global_id_reclaim) | `True` | Advanced | سیاست |
+| [auth_mon_ticket_ttl](#auth_mon_ticket_ttl) | `72_hr` | Advanced | عملکرد |
+| [auth_service_required](#auth_service_required) | `cephx` | Advanced | عملکرد |
+| [auth_service_ticket_ttl](#auth_service_ticket_ttl) | `1_hr` | Advanced | عملکرد |
+| [auth_supported](#auth_supported) | `(empty)` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -54,7 +54,7 @@ ceph config get global auth_allow_insecure_global_id_reclaim
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -88,7 +88,7 @@ ceph config get global auth_client_required
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `cephx, none`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -123,7 +123,7 @@ ceph config get global auth_cluster_required
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `cephx`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -156,7 +156,7 @@ ceph config get global auth_debug
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -184,7 +184,7 @@ ceph config get global auth_expose_insecure_global_id_reclaim
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -216,7 +216,7 @@ ceph config get global auth_mon_ticket_ttl
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `72_hr`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -251,7 +251,7 @@ ceph config get global auth_service_required
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `cephx`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -284,7 +284,7 @@ ceph config get global auth_service_ticket_ttl
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_hr`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -319,7 +319,7 @@ ceph config get global auth_supported
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

@@ -1,21 +1,42 @@
-# Ceph 参考
+<div class="splash-hero">
+  <p class="splash-kicker">Ceph 文档中心</p>
+  <h1 class="splash-title">构建、运维并理解 Ceph</h1>
+  <p class="splash-lead">
+    三个板块：日常 <strong>速查表</strong>、子系统 <strong>架构</strong> 深度解读，
+    以及 <strong>开发</strong> 指南（即将推出）。
+  </p>
+</div>
 
-面向 Ceph 管理员的离线简明参考 — 按 **角色**、**规模**、**CLI** 与 **配置** 组织。
+<div class="splash-portals">
 
-**来源：** [ceph/ceph](https://github.com/ceph/ceph) `main` — 生成日期见 [VERSION](version.md)。
+<a class="portal-card portal-cheatsheet" href="cheatsheet/OVERVIEW/">
+  <span class="portal-icon">📋</span>
+  <h2>速查表</h2>
+  <p>CLI、配置、按角色与规模的指南 — 您一直在用的参考。</p>
+  <span class="portal-cta">打开速查表 →</span>
+</a>
 
----
+<a class="portal-card portal-architecture" href="architecture/rgw/OVERVIEW/">
+  <span class="portal-icon">🏗</span>
+  <h2>架构</h2>
+  <p>RGW 子系统原理：请求路径、SAL、RADOS 驱动、认证、多站点、调度。</p>
+  <span class="portal-cta">探索 RGW 内部 →</span>
+</a>
 
-## 从这里开始
+<a class="portal-card portal-develop portal-soon" href="develop/OVERVIEW/">
+  <span class="portal-icon">🛠</span>
+  <h2>开发</h2>
+  <p>开发者指南 — 工作流、规范与构建说明。</p>
+  <span class="portal-badge">即将推出</span>
+  <span class="portal-cta">查看占位页 →</span>
+</a>
 
-| 我想… | 前往 |
-|-------|------|
-| 按职责找文档 | [按角色指南](guides/OVERVIEW.md#by-role) |
-| 按集群规模找建议 | [按规模指南](guides/OVERVIEW.md#by-scale) |
-| 运行集群命令 | [CLI 参考](cli/OVERVIEW.md) |
-| 查找配置项 | [Config 参考](config/OVERVIEW.md) |
-| 日常检查清单 | [快速入门](guides/quickstart.md) |
-| 本地搜索 | `./scripts/search-all.sh <term>` |
-| 单个配置项 | `./scripts/lookup-config.sh <option>` |
+</div>
 
-[README](https://github.com/RaminNietzsche/ceph-cheatsheet) · [License](license.md)
+<div class="splash-meta">
+  <p>
+    速查表来源：<a href="https://github.com/ceph/ceph">ceph/ceph</a> ·
+    架构来自 <code>src/rgw</code> ·
+    <a href="https://github.com/RaminNietzsche/ceph-cheatsheet">GitHub</a>
+  </p>
+</div>

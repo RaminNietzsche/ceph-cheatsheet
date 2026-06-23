@@ -4,31 +4,31 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mds_kill_after_journal_logs_flushed](#mds_kill_after_journal_logs_flushed) | `False` | Dev | Dev |
-| [mds_log_event_large_threshold](#mds_log_event_large_threshold) | `512_K` | Advanced | Performance |
-| [mds_log_events_per_segment](#mds_log_events_per_segment) | `1024` | Advanced | Performance |
-| [mds_log_max_events](#mds_log_max_events) | `-1` | Advanced | Performance |
-| [mds_log_max_segments](#mds_log_max_segments) | `128` | Advanced | Performance |
-| [mds_log_minor_segments_per_major_segment](#mds_log_minor_segments_per_major_segment) | `16` | Advanced | Performance |
-| [mds_log_pause](#mds_log_pause) | `False` | Dev | Dev |
-| [mds_log_segment_size](#mds_log_segment_size) | `0` | Advanced | Performance |
-| [mds_log_skip_corrupt_events](#mds_log_skip_corrupt_events) | `False` | Dev | Dev |
-| [mds_log_skip_unbounded_events](#mds_log_skip_unbounded_events) | `False` | Dev | Dev |
-| [mds_log_trim_decay_rate](#mds_log_trim_decay_rate) | `1.0` | Advanced | Performance |
-| [mds_log_trim_threshold](#mds_log_trim_threshold) | `128` | Advanced | Performance |
-| [mds_log_trim_upkeep_interval](#mds_log_trim_upkeep_interval) | `1000` | Advanced | Performance |
-| [mds_log_warn_factor](#mds_log_warn_factor) | `2` | Advanced | Performance |
-| [mds_op_log_threshold](#mds_op_log_threshold) | `5` | Dev | Dev |
+| [mds_kill_after_journal_logs_flushed](#mds_kill_after_journal_logs_flushed) | `False` | Dev | توسعه |
+| [mds_log_event_large_threshold](#mds_log_event_large_threshold) | `512_K` | Advanced | عملکرد |
+| [mds_log_events_per_segment](#mds_log_events_per_segment) | `1024` | Advanced | عملکرد |
+| [mds_log_max_events](#mds_log_max_events) | `-1` | Advanced | عملکرد |
+| [mds_log_max_segments](#mds_log_max_segments) | `128` | Advanced | عملکرد |
+| [mds_log_minor_segments_per_major_segment](#mds_log_minor_segments_per_major_segment) | `16` | Advanced | عملکرد |
+| [mds_log_pause](#mds_log_pause) | `False` | Dev | توسعه |
+| [mds_log_segment_size](#mds_log_segment_size) | `0` | Advanced | عملکرد |
+| [mds_log_skip_corrupt_events](#mds_log_skip_corrupt_events) | `False` | Dev | توسعه |
+| [mds_log_skip_unbounded_events](#mds_log_skip_unbounded_events) | `False` | Dev | توسعه |
+| [mds_log_trim_decay_rate](#mds_log_trim_decay_rate) | `1.0` | Advanced | عملکرد |
+| [mds_log_trim_threshold](#mds_log_trim_threshold) | `128` | Advanced | عملکرد |
+| [mds_log_trim_upkeep_interval](#mds_log_trim_upkeep_interval) | `1000` | Advanced | عملکرد |
+| [mds_log_warn_factor](#mds_log_warn_factor) | `2` | Advanced | عملکرد |
+| [mds_op_log_threshold](#mds_op_log_threshold) | `5` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -58,7 +58,7 @@ ceph config get mds mds_kill_after_journal_logs_flushed
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -84,7 +84,7 @@ ceph config get mds mds_log_event_large_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `512_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -123,7 +123,7 @@ ceph config get mds mds_log_events_per_segment
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1024`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -162,7 +162,7 @@ ceph config get mds mds_log_max_events
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `-1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -199,7 +199,7 @@ ceph config get mds mds_log_max_segments
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -238,7 +238,7 @@ ceph config get mds mds_log_minor_segments_per_major_segment
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -275,7 +275,7 @@ ceph config get mds mds_log_pause
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -303,7 +303,7 @@ ceph config get mds mds_log_segment_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -338,7 +338,7 @@ ceph config get mds mds_log_skip_corrupt_events
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -364,7 +364,7 @@ ceph config get mds mds_log_skip_unbounded_events
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -392,7 +392,7 @@ ceph config get mds mds_log_trim_decay_rate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1.0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -431,7 +431,7 @@ ceph config get mds mds_log_trim_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -470,7 +470,7 @@ ceph config get mds mds_log_trim_upkeep_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -507,7 +507,7 @@ ceph config get mds mds_log_warn_factor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -544,7 +544,7 @@ ceph config get mds mds_op_log_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

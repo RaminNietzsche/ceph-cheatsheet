@@ -1,10 +1,8 @@
-> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
+# دستورات RADOS
 
-# RADOS Commands
+رابط ذخیره‌سازی شیء در سطح پایین. نام pool معمولاً با `-p` یا `--pool` لازم است.
 
-Low-level object storage interface. Pool name usually required via `-p` or `--pool`.
-
-## Pool info
+## اطلاعات pool
 
 ```bash
 rados lspools
@@ -14,7 +12,7 @@ rados pool get-quota <pool>
 rados pool set-quota <pool> [--max-objects N] [--max-size N]
 ```
 
-## Objects
+## اشیاء
 
 ```bash
 rados -p <pool> ls
@@ -30,7 +28,7 @@ rados -p <pool> truncate <object> <size>
 rados -p <pool> touch <object>
 ```
 
-## Extended attributes & omap
+## xattr و omap
 
 ```bash
 rados -p <pool> getxattr <object> <attr>
@@ -44,7 +42,7 @@ rados -p <pool> listomapkeys <object>
 rados -p <pool> listomapvals <object>
 ```
 
-## Snapshots & bench
+## Snapshot و bench
 
 ```bash
 rados -p <pool> mksnap <snap-name>
@@ -53,7 +51,7 @@ rados -p <pool> bench <seconds> write|seq|rand [-b blocksize] [-t threads]
 rados cleanup --pool <pool> --prefix <prefix> --dry-run
 ```
 
-## Cluster admin via rados
+## مدیریت کلاستر با rados
 
 ```bash
 rados purge <pool> --yes-i-really-really-mean-it
@@ -61,4 +59,4 @@ rados list-inconsistent-pg <pool>
 rados list-inconsistent-obj <pgid> --format json-pretty
 ```
 
-[← CLI overview](OVERVIEW.md)
+[← نمای کلی CLI](OVERVIEW.md)

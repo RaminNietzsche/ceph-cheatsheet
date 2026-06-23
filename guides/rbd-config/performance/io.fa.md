@@ -4,18 +4,18 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rbd_io_scheduler](#rbd_io_scheduler) | `simple` | Advanced | Performance |
-| [rbd_io_scheduler_simple_max_delay](#rbd_io_scheduler_simple_max_delay) | `0` | Advanced | Performance |
+| [rbd_io_scheduler](#rbd_io_scheduler) | `simple` | Advanced | عملکرد |
+| [rbd_io_scheduler_simple_max_delay](#rbd_io_scheduler_simple_max_delay) | `0` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -47,7 +47,7 @@ ceph config get client rbd_io_scheduler
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `simple`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -83,7 +83,7 @@ ceph config get client rbd_io_scheduler_simple_max_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

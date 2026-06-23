@@ -4,21 +4,21 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [osd_class_default_list](#osd_class_default_list) | `cephfs hello journal lock log numops otp rbd refcount rgw rgw_gc timeindex user version cas cmpomap queue 2pc_queue fifo sem_set` | Advanced | Performance |
-| [osd_class_dir](#osd_class_dir) | `0/rados-classes` | Advanced | Capacity |
-| [osd_class_load_list](#osd_class_load_list) | `cephfs hello journal lock log numops otp rbd refcount rgw rgw_gc timeindex user version cas cmpomap queue 2pc_queue fifo sem_set` | Advanced | Performance |
-| [osd_class_update_on_start](#osd_class_update_on_start) | `True` | Advanced | Performance |
-| [osd_open_classes_on_start](#osd_open_classes_on_start) | `True` | Advanced | Performance |
+| [osd_class_default_list](#osd_class_default_list) | `cephfs hello journal lock log numops otp rbd refcount rgw rgw_gc timeindex user version cas cmpomap queue 2pc_queue fifo sem_set` | Advanced | عملکرد |
+| [osd_class_dir](#osd_class_dir) | `0/rados-classes` | Advanced | ظرفیت |
+| [osd_class_load_list](#osd_class_load_list) | `cephfs hello journal lock log numops otp rbd refcount rgw rgw_gc timeindex user version cas cmpomap queue 2pc_queue fifo sem_set` | Advanced | عملکرد |
+| [osd_class_update_on_start](#osd_class_update_on_start) | `True` | Advanced | عملکرد |
+| [osd_open_classes_on_start](#osd_open_classes_on_start) | `True` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -48,7 +48,7 @@ ceph config get osd osd_class_default_list
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `cephfs hello journal lock log numops otp rbd refcount rgw rgw_gc timeindex user version cas cmpomap queue 2pc_queue fifo sem_set`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -83,7 +83,7 @@ ceph config get osd osd_class_dir
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `0/rados-classes`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -117,7 +117,7 @@ ceph config get osd osd_class_load_list
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `cephfs hello journal lock log numops otp rbd refcount rgw rgw_gc timeindex user version cas cmpomap queue 2pc_queue fifo sem_set`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -154,7 +154,7 @@ ceph config get osd osd_class_update_on_start
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -189,7 +189,7 @@ ceph config get osd osd_open_classes_on_start
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

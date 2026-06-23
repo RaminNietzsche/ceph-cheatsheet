@@ -1,6 +1,6 @@
 # مدیر CephFS
 
-<span class="badge badge-role-cephfs">CephFS admin</span> مدیریت فایل‌سیستم Ceph، MDS، subvolume و mirroring.
+<span class="badge badge-role-cephfs">مدیر CephFS</span> مدیریت فایل‌سیستم Ceph، سرورهای متاداده (MDS)، subvolume و mirroring.
 
 ## دستورات روزانه
 
@@ -15,13 +15,13 @@ ceph orch ps --service-type mds
 
 ## پیکربندی
 
-| حوزه | INDEX |
+| حوزه | فهرست پیکربندی |
 |------|-------|
-| MDS | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [راهنمای عمیق](../mds-config/OVERVIEW.md) |
-| Client | [mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [راهنمای عمیق](../mds-client-config/OVERVIEW.md) |
-| Mirror | [cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [راهنمای عمیق](../cephfs-mirror-config/OVERVIEW.md) |
+| دیمن MDS | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [راهنمای عمیق MDS](../mds-config/OVERVIEW.md) |
+| Client / FUSE | [mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [راهنمای عمیق client](../mds-client-config/OVERVIEW.md) |
+| CephFS mirror | [cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [راهنمای عمیق mirror](../cephfs-mirror-config/OVERVIEW.md) |
 
-گزینه‌های کلیدی: `mds_cache_memory_limit` — [TUNING](../mds-config/TUNING.md)
+گزینه‌های کلیدی: `mds_cache_memory_limit`، `mds_max_file_size` — [TUNING MDS](../mds-config/TUNING.md)
 
 ```bash
 ./scripts/lookup-config.sh mds_cache_memory_limit
@@ -29,12 +29,25 @@ ceph orch ps --service-type mds
 
 ## روندهای کاری رایج
 
+**ایجاد فایل‌سیستم:**
+
 ```bash
 ceph osd pool create cephfs-metadata 32 32
 ceph osd pool create cephfs-data 128 128
 ceph fs new myfs cephfs-metadata cephfs-data
 ceph orch apply mds myfs --placement="2"
+```
+
+**Subvolume:**
+
+```bash
 ceph fs subvolume create myfs vol1 --size 10737418240
+ceph fs subvolume info myfs vol1
+```
+
+**Mirroring snapshot:**
+
+```bash
 ceph fs snapshot mirror enable myfs
 ```
 
@@ -42,8 +55,8 @@ ceph fs snapshot mirror enable myfs
 
 | مقیاس | تمرکز |
 |-------|--------|
-| [Lab](../scales/lab.md) | ۱ MDS |
+| [آزمایشگاه](../scales/lab.md) | ۱ MDS، cache کوچک |
 | [محیط عملیاتی کوچک](../scales/small-production.md) | ۲ MDS برای HA |
-| [Multisite](../scales/multisite.md) | cephfs-mirror |
+| [چندسایته](../scales/multisite.md) | cephfs-mirror برای DR |
 
 [← نمای کلی راهنما](../OVERVIEW.md)

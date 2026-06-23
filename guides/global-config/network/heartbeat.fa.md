@@ -4,19 +4,19 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [heartbeat_file](#heartbeat_file) | `(empty)` | Advanced | Capacity |
-| [heartbeat_inject_failure](#heartbeat_inject_failure) | `0` | Dev | Dev |
-| [heartbeat_interval](#heartbeat_interval) | `5` | Advanced | Performance |
+| [heartbeat_file](#heartbeat_file) | `(empty)` | Advanced | ظرفیت |
+| [heartbeat_inject_failure](#heartbeat_inject_failure) | `0` | Dev | توسعه |
+| [heartbeat_interval](#heartbeat_interval) | `5` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -48,7 +48,7 @@ ceph config get global heartbeat_file
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `(empty)`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -80,7 +80,7 @@ ceph config get global heartbeat_inject_failure
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -108,7 +108,7 @@ ceph config get global heartbeat_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

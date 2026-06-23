@@ -1,49 +1,47 @@
-> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
+# استفاده از مرجع Config
 
-# Using the Config Reference
+بخش config به‌صورت خودکار از YAML upstream Ceph تولید می‌شود. هر گزینه یک سطر در جدول Markdown است.
 
-The config section is auto-generated from Ceph upstream YAML. Each option is a row in a Markdown table.
+## یافتن یک گزینه
 
-## Finding an option
-
-**By name:**
+**با نام:**
 
 ```bash
 ./scripts/lookup-config.sh rgw_cache_enabled
 ```
 
-**By keyword:**
+**با کلیدواژه:**
 
 ```bash
 ./scripts/search-config.sh scrub
 ./scripts/search-config.sh -s osd mclock
 ```
 
-**Browse:**
+**مرور:**
 
-1. Open [config/OVERVIEW.md](../config/OVERVIEW.md)
-2. Pick a subsystem (e.g. `rgw`)
-3. Open `INDEX.md` for a linked list, or open `rgw.md` for the full table
+1. [config/OVERVIEW.md](../config/OVERVIEW.md) را باز کنید
+2. زیرسیستم را انتخاب کنید (مثلاً `rgw`)
+3. `INDEX.md` برای فهرست لینک‌دار، یا `rgw.md` برای جدول کامل
 
-## Reading a table row
+## خواندن سطر جدول
 
-Example: `osd_max_scrubs`
+مثال: `osd_max_scrubs`
 
-| Column | Meaning |
+| ستون | معنی |
 |--------|---------|
-| **Name** | Key used with `ceph config set osd osd_max_scrubs 2` |
-| **Desc** | Short description |
-| **Level** | `Basic` (commonly tuned) · `Advanced` · `Dev` |
-| **Type** | `Int`, `Bool`, `Size`, `Str`, … |
-| **non-Daemon / Daemon Default** | Default value (may differ for daemons) |
-| **Min / Max** | Valid numeric range |
-| **Valid Values** | Allowed enum values as JSON array |
-| **Flags** | `RUNTIME` = live `ceph config set`; `STARTUP` = needs restart |
-| **Services** | Which components consume the option |
-| **See also** | Related options (linked) |
-| **Long Desc** | Extended explanation |
+| **Name** | کلیدی که با `ceph config set osd osd_max_scrubs 2` استفاده می‌شود |
+| **Desc** | توضیح کوتاه |
+| **Level** | `Basic` (معمولاً تنظیم می‌شود) · `Advanced` · `Dev` |
+| **Type** | `Int`، `Bool`، `Size`، `Str`، … |
+| **non-Daemon / Daemon Default** | مقدار پیش‌فرض (ممکن است برای دیمن‌ها متفاوت باشد) |
+| **Min / Max** | محدودهٔ عددی مجاز |
+| **Valid Values** | مقادیر enum مجاز به‌صورت آرایهٔ JSON |
+| **Flags** | `RUNTIME` = `ceph config set` زنده؛ `STARTUP` = نیاز به restart |
+| **Services** | کدام اجزا این گزینه را مصرف می‌کنند |
+| **See also** | گزینه‌های مرتبط (لینک‌دار) |
+| **Long Desc** | توضیح مفصل |
 
-## Applying changes
+## اعمال تغییرات
 
 ```bash
 # Check current effective value
@@ -59,16 +57,16 @@ ceph config set osd.0 osd_max_scrubs 1
 ceph config rm osd osd_max_scrubs
 ```
 
-Only options with the `RUNTIME` flag accept live `ceph config set`. Others require restart or `ceph.conf`.
+فقط گزینه‌های دارای پرچم `RUNTIME` با `ceph config set` زنده پذیرفته می‌شوند. بقیه restart یا `ceph.conf` می‌خواهند.
 
-## Regenerating from upstream
+## بازتولید از upstream
 
-When Ceph releases a new version:
+با release جدید Ceph:
 
 ```bash
 python3 scripts/generate-config.py --ref reef    # or squid, main, …
 ```
 
-See [VERSION](../version.md) for the current source ref.
+ref فعلی در [VERSION](../version.md).
 
-[← Main reference](../index.md)
+[← Cheatsheet](../cheatsheet/OVERVIEW.md)

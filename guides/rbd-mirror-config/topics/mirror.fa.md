@@ -4,40 +4,40 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rbd_mirror_concurrent_image_deletions](#rbd_mirror_concurrent_image_deletions) | `1` | Advanced | Performance |
-| [rbd_mirror_concurrent_image_syncs](#rbd_mirror_concurrent_image_syncs) | `5` | Advanced | Performance |
-| [rbd_mirror_delete_retry_interval](#rbd_mirror_delete_retry_interval) | `30` | Advanced | Performance |
-| [rbd_mirror_image_perf_stats_prio](#rbd_mirror_image_perf_stats_prio) | `5` | Advanced | Performance |
-| [rbd_mirror_image_policy_migration_throttle](#rbd_mirror_image_policy_migration_throttle) | `300` | Advanced | Performance |
-| [rbd_mirror_image_policy_rebalance_timeout](#rbd_mirror_image_policy_rebalance_timeout) | `0` | Advanced | Performance |
-| [rbd_mirror_image_policy_type](#rbd_mirror_image_policy_type) | `simple` | Advanced | Performance |
-| [rbd_mirror_image_policy_update_throttle_interval](#rbd_mirror_image_policy_update_throttle_interval) | `1` | Advanced | Performance |
-| [rbd_mirror_image_state_check_interval](#rbd_mirror_image_state_check_interval) | `30` | Advanced | Performance |
-| [rbd_mirror_journal_commit_age](#rbd_mirror_journal_commit_age) | `5` | Advanced | Performance |
-| [rbd_mirror_journal_poll_age](#rbd_mirror_journal_poll_age) | `5` | Advanced | Performance |
-| [rbd_mirror_leader_heartbeat_interval](#rbd_mirror_leader_heartbeat_interval) | `5` | Advanced | Performance |
-| [rbd_mirror_leader_max_acquire_attempts_before_break](#rbd_mirror_leader_max_acquire_attempts_before_break) | `3` | Advanced | Performance |
-| [rbd_mirror_leader_max_missed_heartbeats](#rbd_mirror_leader_max_missed_heartbeats) | `2` | Advanced | Performance |
-| [rbd_mirror_memory_autotune](#rbd_mirror_memory_autotune) | `True` | Dev | Dev |
-| [rbd_mirror_memory_base](#rbd_mirror_memory_base) | `768_M` | Dev | Dev |
-| [rbd_mirror_memory_cache_autotune_interval](#rbd_mirror_memory_cache_autotune_interval) | `30` | Dev | Dev |
-| [rbd_mirror_memory_cache_min](#rbd_mirror_memory_cache_min) | `128_M` | Dev | Dev |
-| [rbd_mirror_memory_cache_resize_interval](#rbd_mirror_memory_cache_resize_interval) | `5` | Dev | Dev |
-| [rbd_mirror_memory_expected_fragmentation](#rbd_mirror_memory_expected_fragmentation) | `0.15` | Dev | Dev |
-| [rbd_mirror_memory_target](#rbd_mirror_memory_target) | `4_G` | Basic | Policy |
-| [rbd_mirror_perf_stats_prio](#rbd_mirror_perf_stats_prio) | `5` | Advanced | Performance |
-| [rbd_mirror_pool_replayers_refresh_interval](#rbd_mirror_pool_replayers_refresh_interval) | `30` | Advanced | Performance |
-| [rbd_mirror_sync_point_update_age](#rbd_mirror_sync_point_update_age) | `30` | Advanced | Performance |
+| [rbd_mirror_concurrent_image_deletions](#rbd_mirror_concurrent_image_deletions) | `1` | Advanced | عملکرد |
+| [rbd_mirror_concurrent_image_syncs](#rbd_mirror_concurrent_image_syncs) | `5` | Advanced | عملکرد |
+| [rbd_mirror_delete_retry_interval](#rbd_mirror_delete_retry_interval) | `30` | Advanced | عملکرد |
+| [rbd_mirror_image_perf_stats_prio](#rbd_mirror_image_perf_stats_prio) | `5` | Advanced | عملکرد |
+| [rbd_mirror_image_policy_migration_throttle](#rbd_mirror_image_policy_migration_throttle) | `300` | Advanced | عملکرد |
+| [rbd_mirror_image_policy_rebalance_timeout](#rbd_mirror_image_policy_rebalance_timeout) | `0` | Advanced | عملکرد |
+| [rbd_mirror_image_policy_type](#rbd_mirror_image_policy_type) | `simple` | Advanced | عملکرد |
+| [rbd_mirror_image_policy_update_throttle_interval](#rbd_mirror_image_policy_update_throttle_interval) | `1` | Advanced | عملکرد |
+| [rbd_mirror_image_state_check_interval](#rbd_mirror_image_state_check_interval) | `30` | Advanced | عملکرد |
+| [rbd_mirror_journal_commit_age](#rbd_mirror_journal_commit_age) | `5` | Advanced | عملکرد |
+| [rbd_mirror_journal_poll_age](#rbd_mirror_journal_poll_age) | `5` | Advanced | عملکرد |
+| [rbd_mirror_leader_heartbeat_interval](#rbd_mirror_leader_heartbeat_interval) | `5` | Advanced | عملکرد |
+| [rbd_mirror_leader_max_acquire_attempts_before_break](#rbd_mirror_leader_max_acquire_attempts_before_break) | `3` | Advanced | عملکرد |
+| [rbd_mirror_leader_max_missed_heartbeats](#rbd_mirror_leader_max_missed_heartbeats) | `2` | Advanced | عملکرد |
+| [rbd_mirror_memory_autotune](#rbd_mirror_memory_autotune) | `True` | Dev | توسعه |
+| [rbd_mirror_memory_base](#rbd_mirror_memory_base) | `768_M` | Dev | توسعه |
+| [rbd_mirror_memory_cache_autotune_interval](#rbd_mirror_memory_cache_autotune_interval) | `30` | Dev | توسعه |
+| [rbd_mirror_memory_cache_min](#rbd_mirror_memory_cache_min) | `128_M` | Dev | توسعه |
+| [rbd_mirror_memory_cache_resize_interval](#rbd_mirror_memory_cache_resize_interval) | `5` | Dev | توسعه |
+| [rbd_mirror_memory_expected_fragmentation](#rbd_mirror_memory_expected_fragmentation) | `0.15` | Dev | توسعه |
+| [rbd_mirror_memory_target](#rbd_mirror_memory_target) | `4_G` | Basic | سیاست |
+| [rbd_mirror_perf_stats_prio](#rbd_mirror_perf_stats_prio) | `5` | Advanced | عملکرد |
+| [rbd_mirror_pool_replayers_refresh_interval](#rbd_mirror_pool_replayers_refresh_interval) | `30` | Advanced | عملکرد |
+| [rbd_mirror_sync_point_update_age](#rbd_mirror_sync_point_update_age) | `30` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -69,7 +69,7 @@ ceph config get client rbd_mirror_concurrent_image_deletions
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -107,7 +107,7 @@ ceph config get client rbd_mirror_concurrent_image_syncs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -143,7 +143,7 @@ ceph config get client rbd_mirror_delete_retry_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -179,7 +179,7 @@ ceph config get client rbd_mirror_image_perf_stats_prio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -217,7 +217,7 @@ ceph config get client rbd_mirror_image_policy_migration_throttle
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `300`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -253,7 +253,7 @@ ceph config get client rbd_mirror_image_policy_rebalance_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -289,7 +289,7 @@ ceph config get client rbd_mirror_image_policy_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `simple`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -325,7 +325,7 @@ ceph config get client rbd_mirror_image_policy_update_throttle_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -363,7 +363,7 @@ ceph config get client rbd_mirror_image_state_check_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -401,7 +401,7 @@ ceph config get client rbd_mirror_journal_commit_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -437,7 +437,7 @@ ceph config get client rbd_mirror_journal_poll_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -473,7 +473,7 @@ ceph config get client rbd_mirror_leader_heartbeat_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -511,7 +511,7 @@ ceph config get client rbd_mirror_leader_max_acquire_attempts_before_break
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -547,7 +547,7 @@ ceph config get client rbd_mirror_leader_max_missed_heartbeats
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -583,7 +583,7 @@ ceph config get client rbd_mirror_memory_autotune
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -611,7 +611,7 @@ ceph config get client rbd_mirror_memory_base
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`768_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -639,7 +639,7 @@ ceph config get client rbd_mirror_memory_cache_autotune_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`30`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -667,7 +667,7 @@ ceph config get client rbd_mirror_memory_cache_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`128_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -695,7 +695,7 @@ ceph config get client rbd_mirror_memory_cache_resize_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -723,7 +723,7 @@ ceph config get client rbd_mirror_memory_expected_fragmentation
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.15`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -751,7 +751,7 @@ ceph config get client rbd_mirror_memory_target
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `4_G` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -786,7 +786,7 @@ ceph config get client rbd_mirror_perf_stats_prio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -824,7 +824,7 @@ ceph config get client rbd_mirror_pool_replayers_refresh_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -860,7 +860,7 @@ ceph config get client rbd_mirror_sync_point_update_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

@@ -4,23 +4,23 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [osd_agent_delay_time](#osd_agent_delay_time) | `5` | Advanced | Performance |
-| [osd_agent_hist_halflife](#osd_agent_hist_halflife) | `1000` | Advanced | Performance |
-| [osd_agent_max_low_ops](#osd_agent_max_low_ops) | `2` | Advanced | Performance |
-| [osd_agent_max_ops](#osd_agent_max_ops) | `4` | Advanced | Performance |
-| [osd_agent_min_evict_effort](#osd_agent_min_evict_effort) | `0.1` | Advanced | Performance |
-| [osd_agent_quantize_effort](#osd_agent_quantize_effort) | `0.1` | Advanced | Performance |
-| [osd_agent_slop](#osd_agent_slop) | `0.02` | Advanced | Performance |
+| [osd_agent_delay_time](#osd_agent_delay_time) | `5` | Advanced | عملکرد |
+| [osd_agent_hist_halflife](#osd_agent_hist_halflife) | `1000` | Advanced | عملکرد |
+| [osd_agent_max_low_ops](#osd_agent_max_low_ops) | `2` | Advanced | عملکرد |
+| [osd_agent_max_ops](#osd_agent_max_ops) | `4` | Advanced | عملکرد |
+| [osd_agent_min_evict_effort](#osd_agent_min_evict_effort) | `0.1` | Advanced | عملکرد |
+| [osd_agent_quantize_effort](#osd_agent_quantize_effort) | `0.1` | Advanced | عملکرد |
+| [osd_agent_slop](#osd_agent_slop) | `0.02` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -52,7 +52,7 @@ ceph config get osd osd_agent_delay_time
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -89,7 +89,7 @@ ceph config get osd osd_agent_hist_halflife
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -126,7 +126,7 @@ ceph config get osd osd_agent_max_low_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -163,7 +163,7 @@ ceph config get osd osd_agent_max_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -200,7 +200,7 @@ ceph config get osd osd_agent_min_evict_effort
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -239,7 +239,7 @@ ceph config get osd osd_agent_quantize_effort
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -276,7 +276,7 @@ ceph config get osd osd_agent_slop
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.02`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

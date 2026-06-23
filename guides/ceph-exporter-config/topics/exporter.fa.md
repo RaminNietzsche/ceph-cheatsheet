@@ -4,24 +4,24 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [exporter_addr](#exporter_addr) | `0.0.0.0` | Advanced | Connectivity |
-| [exporter_cert_file](#exporter_cert_file) | `(empty)` | Advanced | Capacity |
-| [exporter_http_port](#exporter_http_port) | `9926` | Advanced | Performance |
-| [exporter_key_file](#exporter_key_file) | `(empty)` | Advanced | Capacity |
-| [exporter_prio_limit](#exporter_prio_limit) | `5` | Advanced | Performance |
-| [exporter_sock_dir](#exporter_sock_dir) | `/var/run/ceph/` | Advanced | Capacity |
-| [exporter_sort_metrics](#exporter_sort_metrics) | `True` | Advanced | Performance |
-| [exporter_stats_period](#exporter_stats_period) | `5` | Advanced | Performance |
+| [exporter_addr](#exporter_addr) | `0.0.0.0` | Advanced | اتصال |
+| [exporter_cert_file](#exporter_cert_file) | `(empty)` | Advanced | ظرفیت |
+| [exporter_http_port](#exporter_http_port) | `9926` | Advanced | عملکرد |
+| [exporter_key_file](#exporter_key_file) | `(empty)` | Advanced | ظرفیت |
+| [exporter_prio_limit](#exporter_prio_limit) | `5` | Advanced | عملکرد |
+| [exporter_sock_dir](#exporter_sock_dir) | `/var/run/ceph/` | Advanced | ظرفیت |
+| [exporter_sort_metrics](#exporter_sort_metrics) | `True` | Advanced | عملکرد |
+| [exporter_stats_period](#exporter_stats_period) | `5` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -53,7 +53,7 @@ ceph config get mgr exporter_addr
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Connectivity
+**مدل تنظیم:** اتصال
 
 1. نقاط پایانی (endpoint) کاندید را از محیط خود فهرست کنید.
 2. دسترسی‌پذیری از هر نودی که دیمن روی آن اجرا می‌شود را بررسی کنید.
@@ -89,7 +89,7 @@ ceph config get mgr exporter_cert_file
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `(empty)`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -124,7 +124,7 @@ ceph config get mgr exporter_http_port
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `9926`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -160,7 +160,7 @@ ceph config get mgr exporter_key_file
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `(empty)`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -195,7 +195,7 @@ ceph config get mgr exporter_prio_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -231,7 +231,7 @@ ceph config get mgr exporter_sock_dir
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `/var/run/ceph/`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -266,7 +266,7 @@ ceph config get mgr exporter_sort_metrics
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -302,7 +302,7 @@ ceph config get mgr exporter_stats_period
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

@@ -4,31 +4,31 @@ MDS client 配置深度指南 — 15 个选项。[← 概览](../OVERVIEW.md) ·
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [fuse_allow_other](#fuse_allow_other) | `True` | Advanced | Policy |
-| [fuse_atomic_o_trunc](#fuse_atomic_o_trunc) | `True` | Advanced | Performance |
-| [fuse_big_writes](#fuse_big_writes) | `True` | Advanced | Performance |
-| [fuse_debug](#fuse_debug) | `False` | Advanced | Performance |
-| [fuse_default_permissions](#fuse_default_permissions) | `False` | Advanced | Performance |
-| [fuse_disable_pagecache](#fuse_disable_pagecache) | `False` | Advanced | Policy |
-| [fuse_max_write](#fuse_max_write) | `0` | Advanced | Performance |
-| [fuse_multithreaded](#fuse_multithreaded) | `True` | Advanced | Performance |
-| [fuse_require_active_mds](#fuse_require_active_mds) | `True` | Advanced | Performance |
-| [fuse_set_user_groups](#fuse_set_user_groups) | `True` | Advanced | Performance |
-| [fuse_splice_move](#fuse_splice_move) | `True` | Advanced | Performance |
-| [fuse_splice_read](#fuse_splice_read) | `True` | Advanced | Performance |
-| [fuse_splice_write](#fuse_splice_write) | `True` | Advanced | Performance |
-| [fuse_syncfs_on_mksnap](#fuse_syncfs_on_mksnap) | `True` | Advanced | Performance |
-| [fuse_use_invalidate_cb](#fuse_use_invalidate_cb) | `True` | Advanced | Performance |
+| [fuse_allow_other](#fuse_allow_other) | `True` | Advanced | 策略 |
+| [fuse_atomic_o_trunc](#fuse_atomic_o_trunc) | `True` | Advanced | 性能 |
+| [fuse_big_writes](#fuse_big_writes) | `True` | Advanced | 性能 |
+| [fuse_debug](#fuse_debug) | `False` | Advanced | 性能 |
+| [fuse_default_permissions](#fuse_default_permissions) | `False` | Advanced | 性能 |
+| [fuse_disable_pagecache](#fuse_disable_pagecache) | `False` | Advanced | 策略 |
+| [fuse_max_write](#fuse_max_write) | `0` | Advanced | 性能 |
+| [fuse_multithreaded](#fuse_multithreaded) | `True` | Advanced | 性能 |
+| [fuse_require_active_mds](#fuse_require_active_mds) | `True` | Advanced | 性能 |
+| [fuse_set_user_groups](#fuse_set_user_groups) | `True` | Advanced | 性能 |
+| [fuse_splice_move](#fuse_splice_move) | `True` | Advanced | 性能 |
+| [fuse_splice_read](#fuse_splice_read) | `True` | Advanced | 性能 |
+| [fuse_splice_write](#fuse_splice_write) | `True` | Advanced | 性能 |
+| [fuse_syncfs_on_mksnap](#fuse_syncfs_on_mksnap) | `True` | Advanced | 性能 |
+| [fuse_use_invalidate_cb](#fuse_use_invalidate_cb) | `True` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -60,7 +60,7 @@ ceph config get client fuse_allow_other
 
 **寻找最优值：**
 
-**调优模型：** Policy
+**调优模型：** 策略
 
 1. 记录 `True` 为何符合您的策略。
 2. 仅为兼容性或安全要求而变更。
@@ -95,7 +95,7 @@ ceph config get client fuse_atomic_o_trunc
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -131,7 +131,7 @@ ceph config get client fuse_big_writes
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -167,7 +167,7 @@ ceph config get client fuse_debug
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -203,7 +203,7 @@ ceph config get client fuse_default_permissions
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -239,7 +239,7 @@ ceph config get client fuse_disable_pagecache
 
 **寻找最优值：**
 
-**调优模型：** Policy
+**调优模型：** 策略
 
 1. 记录 `False` 为何符合您的策略。
 2. 仅为兼容性或安全要求而变更。
@@ -274,7 +274,7 @@ ceph config get client fuse_max_write
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -310,7 +310,7 @@ ceph config get client fuse_multithreaded
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -346,7 +346,7 @@ ceph config get client fuse_require_active_mds
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -382,7 +382,7 @@ ceph config get client fuse_set_user_groups
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -418,7 +418,7 @@ ceph config get client fuse_splice_move
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -454,7 +454,7 @@ ceph config get client fuse_splice_read
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -490,7 +490,7 @@ ceph config get client fuse_splice_write
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -526,7 +526,7 @@ ceph config get client fuse_syncfs_on_mksnap
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -562,7 +562,7 @@ ceph config get client fuse_use_invalidate_cb
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

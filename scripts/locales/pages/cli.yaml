@@ -1,0 +1,1519 @@
+# CLI reference — fa / zh (command blocks stay English in all locales).
+
+cli/OVERVIEW:
+  fa: |
+    # مرجع دستورات CLI
+
+    <span class="badge badge-cli">CLI</span> دستورات ضروری Ceph برای مدیریت روزانهٔ کلاستر. فرض: کلاستر در حال اجرا، دسترسی به `ceph` و credential مناسب (`ceph.conf` / keyring).
+
+    <table class="guide-table">
+    <thead>
+    <tr><th>بخش</th><th>موضوعات</th></tr>
+    </thead>
+    <tbody>
+    <tr class="row-cluster"><td><span class="badge badge-cli">cluster</span> <a href="cluster/">→</a></td><td>وضعیت، سلامت، مانیتور، نسخه‌ها</td></tr>
+    <tr class="row-small"><td><span class="badge badge-cli">config</span> <a href="config/">→</a></td><td>پیکربندی runtime (<code>ceph config …</code>)</td></tr>
+    <tr class="row-storage"><td><span class="badge badge-cli">osd-pool</span> <a href="osd-pool/">→</a></td><td>OSD، pool، placement group</td></tr>
+    <tr class="row-lab"><td><span class="badge badge-cli">rados</span> <a href="rados/">→</a></td><td>شیء و pool در سطح پایین RADOS</td></tr>
+    <tr class="row-large"><td><span class="badge badge-cli">rbd</span> <a href="rbd/">→</a></td><td>تصویر بلوکی، snapshot، map</td></tr>
+    <tr class="row-rgw"><td><span class="badge badge-cli">rgw</span> <a href="rgw/">→</a></td><td>مدیریت S3/Swift، کاربر، bucket</td></tr>
+    <tr class="row-cephfs"><td><span class="badge badge-cli">cephfs</span> <a href="cephfs/">→</a></td><td>فایل‌سیستم، MDS، mount</td></tr>
+    <tr class="row-multi"><td><span class="badge badge-cli">cephadm</span> <a href="cephadm/">→</a></td><td>ارکستراتور، سرویس، میزبان</td></tr>
+    <tr class="row-dev"><td><span class="badge badge-cli">troubleshooting</span> <a href="troubleshooting/">→</a></td><td>log، عملکرد، recovery، رفع مشکلات رایج</td></tr>
+    </tbody>
+    </table>
+
+    ## پرچم‌های سراسری
+
+    بیشتر دستورات این‌ها را می‌پذیرند:
+
+    ```bash
+    ceph -s                          # short status
+    ceph -w                          # watch cluster events
+    ceph --cluster mycluster …       # non-default cluster name
+    ceph -c /path/ceph.conf …
+    ceph -k /path/keyring …
+    ceph -n client.admin …           # explicit entity name
+    ```
+
+    ## خانوادهٔ دستورات
+
+    | باینری | کاربرد |
+    |--------|---------|
+    | `ceph` | مدیریت کلاستر — health، config، orch، tell |
+    | `rados` | I/O مستقیم pool/شیء |
+    | `rbd` | مدیریت block device |
+    | `radosgw-admin` | کاربر، bucket و zoneهای RGW |
+    | `cephadm` | bootstrap و عملیات cephadm روی نود |
+    | `cephfs` | shell تعاملی CephFS |
+
+    ## مثال‌های سریع
+
+    ```bash
+    ceph status
+    ceph health detail
+    ceph osd tree
+    ceph df
+    ceph pg stat
+    rbd ls
+    radosgw-admin user list
+    ceph orch ps
+    ```
+
+    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+  zh: |
+    # CLI 命令参考
+
+    <span class="badge badge-cli">CLI</span> 日常集群管理必备 Ceph 命令。前提：集群运行中，可访问 `ceph` CLI 及相应凭据（`ceph.conf` / keyring）。
+
+    <table class="guide-table">
+    <thead>
+    <tr><th>章节</th><th>主题</th></tr>
+    </thead>
+    <tbody>
+    <tr class="row-cluster"><td><span class="badge badge-cli">cluster</span> <a href="cluster/">→</a></td><td>状态、健康、Monitor、版本</td></tr>
+    <tr class="row-small"><td><span class="badge badge-cli">config</span> <a href="config/">→</a></td><td>运行时配置（<code>ceph config …</code>）</td></tr>
+    <tr class="row-storage"><td><span class="badge badge-cli">osd-pool</span> <a href="osd-pool/">→</a></td><td>OSD、池、PG</td></tr>
+    <tr class="row-lab"><td><span class="badge badge-cli">rados</span> <a href="rados/">→</a></td><td>底层 RADOS 对象与池</td></tr>
+    <tr class="row-large"><td><span class="badge badge-cli">rbd</span> <a href="rbd/">→</a></td><td>块镜像、快照、映射</td></tr>
+    <tr class="row-rgw"><td><span class="badge badge-cli">rgw</span> <a href="rgw/">→</a></td><td>S3/Swift 管理、用户、bucket</td></tr>
+    <tr class="row-cephfs"><td><span class="badge badge-cli">cephfs</span> <a href="cephfs/">→</a></td><td>文件系统、MDS、挂载</td></tr>
+    <tr class="row-multi"><td><span class="badge badge-cli">cephadm</span> <a href="cephadm/">→</a></td><td>编排器、服务、主机</td></tr>
+    <tr class="row-dev"><td><span class="badge badge-cli">troubleshooting</span> <a href="troubleshooting/">→</a></td><td>日志、性能、恢复、常见修复</td></tr>
+    </tbody>
+    </table>
+
+    ## 全局选项
+
+    多数命令支持：
+
+    ```bash
+    ceph -s                          # short status
+    ceph -w                          # watch cluster events
+    ceph --cluster mycluster …       # non-default cluster name
+    ceph -c /path/ceph.conf …
+    ceph -k /path/keyring …
+    ceph -n client.admin …           # explicit entity name
+    ```
+
+    ## 命令族
+
+    | 二进制 | 用途 |
+    |--------|------|
+    | `ceph` | 集群管理 — 健康、配置、orch、tell |
+    | `rados` | 直接 pool/对象 I/O |
+    | `rbd` | 块设备管理 |
+    | `radosgw-admin` | RGW 用户、bucket、zone |
+    | `cephadm` | bootstrap 与节点级 cephadm 操作 |
+    | `cephfs` | CephFS 交互 shell |
+
+    ## 快速示例
+
+    ```bash
+    ceph status
+    ceph health detail
+    ceph osd tree
+    ceph df
+    ceph pg stat
+    rbd ls
+    radosgw-admin user list
+    ceph orch ps
+    ```
+
+    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+
+cli/cluster:
+  fa: |
+    # دستورات کلاستر و مانیتور
+
+    ## وضعیت و سلامت
+
+    ```bash
+    ceph status                      # full cluster status (-s)
+    ceph -w                          # watch live cluster changes
+    ceph health                      # HEALTH_OK / WARN / ERR
+    ceph health detail               # expanded health checks
+    ceph versions                    # daemon versions across cluster
+    ceph mon stat                    # monitor quorum info
+    ceph mon dump                    # full mon map
+    ceph mgr stat                    # active/standby mgr
+    ceph fs ls                       # list CephFS volumes
+    ceph osd stat                    # osd summary counts
+    ceph osd df                      # per-OSD usage
+    ceph osd df tree                 # usage by CRUSH hierarchy
+    ceph df                          # cluster capacity summary
+    ceph df detail                   # per-pool breakdown
+    ceph pg stat                     # placement group summary
+    ceph pg dump                     # all PG states (verbose)
+    ceph pg dump_stuck               # stuck PGs only
+    ceph report                    # recent cluster report
+    ```
+
+    ## مدیریت دیمن
+
+    ```bash
+    ceph tell osd.<id> version
+    ceph tell mon.<id> mon_status
+    ceph tell mgr.<id> config show
+    ceph daemon osd.<id> config show   # via admin socket (local)
+    ceph daemon osd.<id> perf dump
+    ceph daemon osd.<id> help
+    ```
+
+    ## عملیات مانیتور
+
+    ```bash
+    ceph mon add <name> <ip:port>
+    ceph mon remove <name>
+    ceph mon getmap -o monmap
+    ceph quorum_status --format json-pretty
+    ```
+
+    ## احراز هویت
+
+    ```bash
+    ceph auth ls
+    ceph auth get client.admin
+    ceph auth get-or-create client.<name> mon 'allow r' osd 'allow rwx pool=<pool>'
+    ceph auth del client.<name>
+    ceph auth caps client.<name> mon 'profile rbd' osd 'profile rbd pool=rbd'
+    ```
+
+    ## نقشه CRUSH
+
+    ```bash
+    ceph osd crush tree
+    ceph osd crush rule ls
+    ceph osd crush rule dump
+    ceph osd crush weight-set ls
+    ```
+
+    ## مشاهده / پیشرفت
+
+    ```bash
+    ceph -w
+    ceph progress
+    ceph progress json
+    ```
+
+    [← نمای کلی CLI](OVERVIEW.md)
+  zh: |
+    # 集群与 Monitor 命令
+
+    ## 状态与健康
+
+    ```bash
+    ceph status                      # full cluster status (-s)
+    ceph -w                          # watch live cluster changes
+    ceph health                      # HEALTH_OK / WARN / ERR
+    ceph health detail               # expanded health checks
+    ceph versions                    # daemon versions across cluster
+    ceph mon stat                    # monitor quorum info
+    ceph mon dump                    # full mon map
+    ceph mgr stat                    # active/standby mgr
+    ceph fs ls                       # list CephFS volumes
+    ceph osd stat                    # osd summary counts
+    ceph osd df                      # per-OSD usage
+    ceph osd df tree                 # usage by CRUSH hierarchy
+    ceph df                          # cluster capacity summary
+    ceph df detail                   # per-pool breakdown
+    ceph pg stat                     # placement group summary
+    ceph pg dump                     # all PG states (verbose)
+    ceph pg dump_stuck               # stuck PGs only
+    ceph report                    # recent cluster report
+    ```
+
+    ## 守护进程管理
+
+    ```bash
+    ceph tell osd.<id> version
+    ceph tell mon.<id> mon_status
+    ceph tell mgr.<id> config show
+    ceph daemon osd.<id> config show   # via admin socket (local)
+    ceph daemon osd.<id> perf dump
+    ceph daemon osd.<id> help
+    ```
+
+    ## Monitor 操作
+
+    ```bash
+    ceph mon add <name> <ip:port>
+    ceph mon remove <name>
+    ceph mon getmap -o monmap
+    ceph quorum_status --format json-pretty
+    ```
+
+    ## 认证
+
+    ```bash
+    ceph auth ls
+    ceph auth get client.admin
+    ceph auth get-or-create client.<name> mon 'allow r' osd 'allow rwx pool=<pool>'
+    ceph auth del client.<name>
+    ceph auth caps client.<name> mon 'profile rbd' osd 'profile rbd pool=rbd'
+    ```
+
+    ## CRUSH 映射
+
+    ```bash
+    ceph osd crush tree
+    ceph osd crush rule ls
+    ceph osd crush rule dump
+    ceph osd crush weight-set ls
+    ```
+
+    ## 监视 / 进度
+
+    ```bash
+    ceph -w
+    ceph progress
+    ceph progress json
+    ```
+
+    [← CLI 概览](OVERVIEW.md)
+
+cli/config:
+  fa: |
+    # دستورات پیکربندی
+
+    پیکربندی runtime در پایگاه config مانیتور ذخیره می‌شود. نام گزینه‌ها، پیش‌فرض و پرچم‌ها در [مرجع config](../config/OVERVIEW.md).
+
+    ## خواندن config
+
+    ```bash
+    ceph config show <who>                 # effective config for a daemon
+    ceph config show-with-defaults <who>
+    ceph config get <who> <option>
+    ceph config dump                       # entire config database
+    ceph config help <option>              # option metadata (if documented)
+    ```
+
+    نمونه `<who>`: `global`، `mon`، `osd`، `osd.0`، `mgr`، `mds`، `rgw`، `client.rgw.gateway1`
+
+    ## تنظیم config
+
+    ```bash
+    ceph config set <who> <option> <value>
+    ceph config rm <who> <option>          # remove override (revert to default)
+    ceph config assimilate-conf -i ceph.conf   # import ceph.conf into mon store
+    ```
+
+    مثال‌ها:
+
+    ```bash
+    ceph config set global mon_allow_pool_delete true
+    ceph config set osd.0 osd_max_scrubs 2
+    ceph config set mgr debug_mgr 20/5
+    ceph config set client.rgw.mygw rgw frontends "beast ssl_port=443"
+    ```
+
+    ## Legacy / injectargs
+
+    ```bash
+    ceph tell osd.* injectargs '--debug-osd=10/5'   # temporary (lost on restart)
+    ```
+
+    برای تغییرات پایدار `ceph config set` را ترجیح دهید.
+
+    ## ceph.conf محلی
+
+    گزینه‌های bootstrap و محلی فقط در `/etc/ceph/ceph.conf`:
+
+    ```ini
+    [global]
+        fsid = …
+        mon_host = 10.0.0.1,10.0.0.2
+
+    [mon]
+        mon_allow_pool_delete = false
+
+    [osd]
+        osd_memory_target = 4294967296
+    ```
+
+    برای به‌روزرسانی runtime، پرچم `RUNTIME` را در [جداول config](../config/OVERVIEW.md) ببینید.
+
+    ## جستجوی محلی گزینه
+
+    ```bash
+    ./scripts/lookup-config.sh osd_max_scrubs
+    ./scripts/search-config.sh -s osd scrub
+    ```
+
+    [← نمای کلی CLI](OVERVIEW.md) · [مرجع Config](../config/OVERVIEW.md)
+  zh: |
+    # 配置命令
+
+    运行时配置存储在 Monitor 配置库中。选项名、默认值与标志见 [配置参考](../config/OVERVIEW.md)。
+
+    ## 读取配置
+
+    ```bash
+    ceph config show <who>                 # effective config for a daemon
+    ceph config show-with-defaults <who>
+    ceph config get <who> <option>
+    ceph config dump                       # entire config database
+    ceph config help <option>              # option metadata (if documented)
+    ```
+
+    `<who>` 示例：`global`、`mon`、`osd`、`osd.0`、`mgr`、`mds`、`rgw`、`client.rgw.gateway1`
+
+    ## 设置配置
+
+    ```bash
+    ceph config set <who> <option> <value>
+    ceph config rm <who> <option>          # remove override (revert to default)
+    ceph config assimilate-conf -i ceph.conf   # import ceph.conf into mon store
+    ```
+
+    示例：
+
+    ```bash
+    ceph config set global mon_allow_pool_delete true
+    ceph config set osd.0 osd_max_scrubs 2
+    ceph config set mgr debug_mgr 20/5
+    ceph config set client.rgw.mygw rgw frontends "beast ssl_port=443"
+    ```
+
+    ## 旧式 / injectargs
+
+    ```bash
+    ceph tell osd.* injectargs '--debug-osd=10/5'   # temporary (lost on restart)
+    ```
+
+    持久变更请优先使用 `ceph config set`。
+
+    ## 本地 ceph.conf
+
+    bootstrap 与仅本地选项仍在 `/etc/ceph/ceph.conf`：
+
+    ```ini
+    [global]
+        fsid = …
+        mon_host = 10.0.0.1,10.0.0.2
+
+    [mon]
+        mon_allow_pool_delete = false
+
+    [osd]
+        osd_memory_target = 4294967296
+    ```
+
+    是否支持运行时更新：在 [配置表](../config/OVERVIEW.md) 中查看 `RUNTIME` 标志。
+
+    ## 本地查找配置项
+
+    ```bash
+    ./scripts/lookup-config.sh osd_max_scrubs
+    ./scripts/search-config.sh -s osd scrub
+    ```
+
+    [← CLI 概览](OVERVIEW.md) · [配置参考](../config/OVERVIEW.md)
+
+cli/osd-pool:
+  fa: |
+    # دستورات OSD، Pool و PG
+
+    ## چرخهٔ عمر OSD
+
+    ```bash
+    ceph osd tree
+    ceph osd ls
+    ceph osd ls-tree <bucket>          # e.g. host, rack, root
+    ceph osd find <id>
+    ceph osd metadata <id>
+    ceph osd perf
+
+    # Mark OSD in/out/down
+    ceph osd down <id>                 # mark down (admin)
+    ceph osd in <id>                   # allow data (default)
+    ceph osd out <id>                  # drain — triggers backfill
+    ceph osd rm <id>                   # remove from cluster (must be out + down)
+    ceph osd destroy <id> --yes-i-really-mean-it
+
+    # Weights and rebalancing
+    ceph osd crush reweight <id> <weight>
+    ceph osd reweight-by-utilization [max_change] [max_osds]
+    ceph osd reweight-by-pg [threshold]
+    ```
+
+    ## نگهداری OSD
+
+    ```bash
+    ceph osd safe-to-destroy <id>      # check before destroy
+    ceph osd ok-to-stop osd.<id> …     # check before stopping multiple OSDs
+    ceph osd blocked-by                # what's blocking PGs
+    ceph osd require-min-compat-client <release>
+    ```
+
+    ## Scrub و deep-scrub
+
+    ```bash
+    ceph pg scrub <pgid>
+    ceph pg deep-scrub <pgid>
+    ceph osd scrub <osd-id>            # all PGs on OSD
+    ceph osd deep-scrub <osd-id>
+    ```
+
+    ## مدیریت pool
+
+    ```bash
+    ceph osd lspools
+    ceph osd pool ls detail
+    ceph osd pool create <name> <pg> [<pgp>] [replicated|erasure] [<crush-rule>] [<expected-num-objects>]
+    ceph osd pool delete <name> [<name> --yes-i-really-really-mean-it]
+    ceph osd pool rename <old> <new>
+    ceph osd pool get <name> all
+    ceph osd pool set <name> size <n>
+    ceph osd pool set <name> min_size <n>
+    ceph osd pool set <name> pg_num <n>
+    ceph osd pool set <name> pgp_num <n>
+    ceph osd pool set <name> crush_rule <rule>
+    ceph osd pool set <name> application rbd|rgw|cephfs
+    ceph osd pool autoscale-status
+    ceph osd pool set <name> pg_autoscale_mode on|off|warn
+    ```
+
+    ## Pool با erasure code
+
+    ```bash
+    ceph osd erasure-code-profile ls
+    ceph osd erasure-code-profile set <profile> k=4 m=2 crush-failure-domain=host
+    ceph osd erasure-code-profile rm <profile>
+    ceph osd pool create <ec-pool> 12 12 erasure <profile>
+    ```
+
+    ## Placement group
+
+    ```bash
+    ceph pg dump [filtered]
+    ceph pg dump_stuck [inactive|unclean|stale|undersized|degraded]
+    ceph pg map <pgid>
+    ceph pg <pgid> query
+    ceph pg repair <pgid>
+    ceph pg force-recovery <pgid>
+    ceph pg force-backfill <pgid>
+    ceph pg cancel-force-recovery <pgid>
+    ```
+
+    ## CRUSH / device class
+
+    ```bash
+    ceph osd crush class ls
+    ceph osd crush set-device-class <class> <osd> …
+    ceph osd crush rule create-replicated <name> default host hdd
+    ```
+
+    [← نمای کلی CLI](OVERVIEW.md)
+  zh: |
+    # OSD、池与 PG 命令
+
+    ## OSD 生命周期
+
+    ```bash
+    ceph osd tree
+    ceph osd ls
+    ceph osd ls-tree <bucket>          # e.g. host, rack, root
+    ceph osd find <id>
+    ceph osd metadata <id>
+    ceph osd perf
+
+    # Mark OSD in/out/down
+    ceph osd down <id>                 # mark down (admin)
+    ceph osd in <id>                   # allow data (default)
+    ceph osd out <id>                  # drain — triggers backfill
+    ceph osd rm <id>                   # remove from cluster (must be out + down)
+    ceph osd destroy <id> --yes-i-really-mean-it
+
+    # Weights and rebalancing
+    ceph osd crush reweight <id> <weight>
+    ceph osd reweight-by-utilization [max_change] [max_osds]
+    ceph osd reweight-by-pg [threshold]
+    ```
+
+    ## OSD 维护
+
+    ```bash
+    ceph osd safe-to-destroy <id>      # check before destroy
+    ceph osd ok-to-stop osd.<id> …     # check before stopping multiple OSDs
+    ceph osd blocked-by                # what's blocking PGs
+    ceph osd require-min-compat-client <release>
+    ```
+
+    ## Scrub 与 deep-scrub
+
+    ```bash
+    ceph pg scrub <pgid>
+    ceph pg deep-scrub <pgid>
+    ceph osd scrub <osd-id>            # all PGs on OSD
+    ceph osd deep-scrub <osd-id>
+    ```
+
+    ## 池管理
+
+    ```bash
+    ceph osd lspools
+    ceph osd pool ls detail
+    ceph osd pool create <name> <pg> [<pgp>] [replicated|erasure] [<crush-rule>] [<expected-num-objects>]
+    ceph osd pool delete <name> [<name> --yes-i-really-really-mean-it]
+    ceph osd pool rename <old> <new>
+    ceph osd pool get <name> all
+    ceph osd pool set <name> size <n>
+    ceph osd pool set <name> min_size <n>
+    ceph osd pool set <name> pg_num <n>
+    ceph osd pool set <name> pgp_num <n>
+    ceph osd pool set <name> crush_rule <rule>
+    ceph osd pool set <name> application rbd|rgw|cephfs
+    ceph osd pool autoscale-status
+    ceph osd pool set <name> pg_autoscale_mode on|off|warn
+    ```
+
+    ## 纠删码池
+
+    ```bash
+    ceph osd erasure-code-profile ls
+    ceph osd erasure-code-profile set <profile> k=4 m=2 crush-failure-domain=host
+    ceph osd erasure-code-profile rm <profile>
+    ceph osd pool create <ec-pool> 12 12 erasure <profile>
+    ```
+
+    ## 放置组
+
+    ```bash
+    ceph pg dump [filtered]
+    ceph pg dump_stuck [inactive|unclean|stale|undersized|degraded]
+    ceph pg map <pgid>
+    ceph pg <pgid> query
+    ceph pg repair <pgid>
+    ceph pg force-recovery <pgid>
+    ceph pg force-backfill <pgid>
+    ceph pg cancel-force-recovery <pgid>
+    ```
+
+    ## CRUSH / 设备类
+
+    ```bash
+    ceph osd crush class ls
+    ceph osd crush set-device-class <class> <osd> …
+    ceph osd crush rule create-replicated <name> default host hdd
+    ```
+
+    [← CLI 概览](OVERVIEW.md)
+
+cli/rados:
+  fa: |
+    # دستورات RADOS
+
+    رابط ذخیره‌سازی شیء در سطح پایین. نام pool معمولاً با `-p` یا `--pool` لازم است.
+
+    ## اطلاعات pool
+
+    ```bash
+    rados lspools
+    rados df
+    rados pool stats <pool>
+    rados pool get-quota <pool>
+    rados pool set-quota <pool> [--max-objects N] [--max-size N]
+    ```
+
+    ## اشیاء
+
+    ```bash
+    rados -p <pool> ls
+    rados -p <pool> ls <prefix>
+    rados -p <pool> stat <object>
+    rados -p <pool> get <object> <local-file>
+    rados -p <pool> put <object> <local-file>
+    rados -p <pool> rm <object>
+    rados -p <pool> create <object>              # empty object
+    rados -p <pool> cp <src> <dest>
+    rados -p <pool> mv <src> <dest>
+    rados -p <pool> truncate <object> <size>
+    rados -p <pool> touch <object>
+    ```
+
+    ## xattr و omap
+
+    ```bash
+    rados -p <pool> getxattr <object> <attr>
+    rados -p <pool> setxattr <object> <attr> <value>
+    rados -p <pool> rmxattr <object> <attr>
+    rados -p <pool> listxattr <object>
+    rados -p <pool> getomapval <object> <key>
+    rados -p <pool> setomapval <object> <key> <value>
+    rados -p <pool> rmomapkey <object> <key>
+    rados -p <pool> listomapkeys <object>
+    rados -p <pool> listomapvals <object>
+    ```
+
+    ## Snapshot و bench
+
+    ```bash
+    rados -p <pool> mksnap <snap-name>
+    rados -p <pool> rmsnap <snap-name>
+    rados -p <pool> bench <seconds> write|seq|rand [-b blocksize] [-t threads]
+    rados cleanup --pool <pool> --prefix <prefix> --dry-run
+    ```
+
+    ## مدیریت کلاستر با rados
+
+    ```bash
+    rados purge <pool> --yes-i-really-really-mean-it
+    rados list-inconsistent-pg <pool>
+    rados list-inconsistent-obj <pgid> --format json-pretty
+    ```
+
+    [← نمای کلی CLI](OVERVIEW.md)
+  zh: |
+    # RADOS 命令
+
+    底层对象存储接口。通常需通过 `-p` 或 `--pool` 指定池名。
+
+    ## 池信息
+
+    ```bash
+    rados lspools
+    rados df
+    rados pool stats <pool>
+    rados pool get-quota <pool>
+    rados pool set-quota <pool> [--max-objects N] [--max-size N]
+    ```
+
+    ## 对象
+
+    ```bash
+    rados -p <pool> ls
+    rados -p <pool> ls <prefix>
+    rados -p <pool> stat <object>
+    rados -p <pool> get <object> <local-file>
+    rados -p <pool> put <object> <local-file>
+    rados -p <pool> rm <object>
+    rados -p <pool> create <object>              # empty object
+    rados -p <pool> cp <src> <dest>
+    rados -p <pool> mv <src> <dest>
+    rados -p <pool> truncate <object> <size>
+    rados -p <pool> touch <object>
+    ```
+
+    ## 扩展属性与 omap
+
+    ```bash
+    rados -p <pool> getxattr <object> <attr>
+    rados -p <pool> setxattr <object> <attr> <value>
+    rados -p <pool> rmxattr <object> <attr>
+    rados -p <pool> listxattr <object>
+    rados -p <pool> getomapval <object> <key>
+    rados -p <pool> setomapval <object> <key> <value>
+    rados -p <pool> rmomapkey <object> <key>
+    rados -p <pool> listomapkeys <object>
+    rados -p <pool> listomapvals <object>
+    ```
+
+    ## 快照与 bench
+
+    ```bash
+    rados -p <pool> mksnap <snap-name>
+    rados -p <pool> rmsnap <snap-name>
+    rados -p <pool> bench <seconds> write|seq|rand [-b blocksize] [-t threads]
+    rados cleanup --pool <pool> --prefix <prefix> --dry-run
+    ```
+
+    ## 通过 rados 管理集群
+
+    ```bash
+    rados purge <pool> --yes-i-really-really-mean-it
+    rados list-inconsistent-pg <pool>
+    rados list-inconsistent-obj <pgid> --format json-pretty
+    ```
+
+    [← CLI 概览](OVERVIEW.md)
+
+cli/rbd:
+  fa: |
+    # دستورات RBD
+
+    ## تصاویر
+
+    ```bash
+    rbd ls [-p pool]
+    rbd ls -l [-p pool]                # long format with size/features
+    rbd info <pool>/<image>
+    rbd create <pool>/<image> --size <bytes> [--image-feature layering,…]
+    rbd rm <pool>/<image>
+    rbd rename <src> <dest>
+    rbd resize <pool>/<image> --size <bytes> [--allow-shrink]
+    rbd clone <parent-pool>/<parent>@<snap> <child-pool>/<child>
+    rbd flatten <pool>/<image>
+    rbd copy <src-pool>/<src> <dest-pool>/<dest>
+    rbd import <file> <pool>/<image>
+    rbd export <pool>/<image> <file>
+    rbd diff <pool>/<image> [--from-snap snap]
+    rbd du [-p pool]
+    ```
+
+    ## Snapshot
+
+    ```bash
+    rbd snap ls <pool>/<image>
+    rbd snap create <pool>/<image>@<snap>
+    rbd snap rm <pool>/<image>@<snap>
+    rbd snap rename <pool>/<image>@<old> <new>
+    rbd snap protect <pool>/<image>@<snap>
+    rbd snap unprotect <pool>/<image>@<snap>
+    rbd snap purge <pool>/<image>
+    ```
+
+    ## Map (kernel / nbd)
+
+    ```bash
+    rbd map <pool>/<image>             # kernel krbd
+    rbd showmapped
+    rbd unmap <pool>/<image>|/dev/rbd*
+    rbd map <pool>/<image> --device nbd   # nbd
+    ```
+
+    ## قفل و mirroring
+
+    ```bash
+    rbd lock ls <pool>/<image>
+    rbd lock rm <pool>/<image> <cookie> <entity>
+    rbd mirror pool enable <pool> <mode>   # image or pool mode
+    rbd mirror pool disable <pool>
+    rbd mirror pool status <pool>
+    rbd mirror image enable <pool>/<image>
+    rbd mirror image status <pool>/<image>
+    rbd mirror image resync <pool>/<image>
+    rbd mirror image promote <pool>/<image> [--force]
+    rbd mirror image demote <pool>/<image>
+    ```
+
+    ## Feature و متادیتا
+
+    ```bash
+    rbd feature ls <pool>/<image>
+    rbd feature enable <pool>/<image> <feature>
+    rbd feature disable <pool>/<image> <feature>
+    rbd metadata ls <pool>/<image>
+    rbd image-meta get/set/rm <pool>/<image> <key> [value]
+    ```
+
+    ## featureهای رایج تصویر
+
+    | Feature | Bit | توضیح |
+    |---------|-----|-------|
+    | layering | +1 | clone/snapshot |
+    | exclusive-lock | +4 | برای live migration لازم |
+    | object-map | +8 | diff سریع، deep-flatten |
+    | fast-diff | +16 | diff کارآمد |
+    | deep-flatten | +32 | flatten cloneها |
+    | journaling | +64 | RBD mirroring |
+    | data-pool | +128 | pool داده جدا |
+
+    پیش‌فرض featureها: `rbd_default_features` در [config/rbd](../config/rbd/INDEX.md).
+
+    [← نمای کلی CLI](OVERVIEW.md)
+  zh: |
+    # RBD 命令
+
+    ## 镜像
+
+    ```bash
+    rbd ls [-p pool]
+    rbd ls -l [-p pool]                # long format with size/features
+    rbd info <pool>/<image>
+    rbd create <pool>/<image> --size <bytes> [--image-feature layering,…]
+    rbd rm <pool>/<image>
+    rbd rename <src> <dest>
+    rbd resize <pool>/<image> --size <bytes> [--allow-shrink]
+    rbd clone <parent-pool>/<parent>@<snap> <child-pool>/<child>
+    rbd flatten <pool>/<image>
+    rbd copy <src-pool>/<src> <dest-pool>/<dest>
+    rbd import <file> <pool>/<image>
+    rbd export <pool>/<image> <file>
+    rbd diff <pool>/<image> [--from-snap snap]
+    rbd du [-p pool]
+    ```
+
+    ## 快照
+
+    ```bash
+    rbd snap ls <pool>/<image>
+    rbd snap create <pool>/<image>@<snap>
+    rbd snap rm <pool>/<image>@<snap>
+    rbd snap rename <pool>/<image>@<old> <new>
+    rbd snap protect <pool>/<image>@<snap>
+    rbd snap unprotect <pool>/<image>@<snap>
+    rbd snap purge <pool>/<image>
+    ```
+
+    ## 映射（kernel / nbd）
+
+    ```bash
+    rbd map <pool>/<image>             # kernel krbd
+    rbd showmapped
+    rbd unmap <pool>/<image>|/dev/rbd*
+    rbd map <pool>/<image> --device nbd   # nbd
+    ```
+
+    ## 锁定与镜像
+
+    ```bash
+    rbd lock ls <pool>/<image>
+    rbd lock rm <pool>/<image> <cookie> <entity>
+    rbd mirror pool enable <pool> <mode>   # image or pool mode
+    rbd mirror pool disable <pool>
+    rbd mirror pool status <pool>
+    rbd mirror image enable <pool>/<image>
+    rbd mirror image status <pool>/<image>
+    rbd mirror image resync <pool>/<image>
+    rbd mirror image promote <pool>/<image> [--force]
+    rbd mirror image demote <pool>/<image>
+    ```
+
+    ## 特性与元数据
+
+    ```bash
+    rbd feature ls <pool>/<image>
+    rbd feature enable <pool>/<image> <feature>
+    rbd feature disable <pool>/<image> <feature>
+    rbd metadata ls <pool>/<image>
+    rbd image-meta get/set/rm <pool>/<image> <key> [value]
+    ```
+
+    ## 常见镜像特性
+
+    | Feature | Bit | 说明 |
+    |---------|-----|------|
+    | layering | +1 | 克隆/快照 |
+    | exclusive-lock | +4 | live migration 所需 |
+    | object-map | +8 | 快速 diff、deep-flatten |
+    | fast-diff | +16 | 高效 diff |
+    | deep-flatten | +32 | 扁平化克隆 |
+    | journaling | +64 | RBD 镜像 |
+    | data-pool | +128 | 独立数据池 |
+
+    默认特性：见 [config/rbd](../config/rbd/INDEX.md) 中的 `rbd_default_features`。
+
+    [← CLI 概览](OVERVIEW.md)
+
+cli/rgw:
+  fa: |
+    # دستورات RGW (S3)
+
+    مدیریت RGW با `radosgw-admin` انجام می‌شود. دیمن gateway از cephadm (`ceph orch …`) یا unit file مدیریت می‌شود.
+
+    ## کاربر و کلید
+
+    ```bash
+    radosgw-admin user list
+    radosgw-admin user info --uid=<uid>
+    radosgw-admin user create --uid=<uid> --display-name="Name"
+    radosgw-admin user rm --uid=<uid>
+    radosgw-admin user modify --uid=<uid> --email=… --max-buckets=…
+    radosgw-admin user suspend --uid=<uid>
+    radosgw-admin user enable --uid=<uid>
+
+    radosgw-admin key create --uid=<uid> --key-type=s3 --access-key=… --secret-key=…
+    radosgw-admin key rm --uid=<uid> --access-key=…
+    ```
+
+    ## Bucket و quota
+
+    ```bash
+    radosgw-admin bucket list
+    radosgw-admin bucket stats --bucket=<name>
+    radosgw-admin bucket rm --bucket=<name>
+    radosgw-admin bucket link --bucket=<name> --uid=<uid>
+    radosgw-admin bucket unlink --bucket=<name> --uid=<uid>
+
+    radosgw-admin quota set --quota-scope=user|bucket --uid=<uid> [--max-size=…] [--max-objects=…]
+    radosgw-admin quota get --quota-scope=user|bucket --uid=<uid>
+    radosgw-admin quota enable --quota-scope=user|bucket --uid=<uid>
+    ```
+
+    ## چندسایته (realm / zone / zonegroup)
+
+    ```bash
+    radosgw-admin realm list
+    radosgw-admin realm create --rgw-realm=<name> --default
+    radosgw-admin zonegroup create --rgw-zonegroup=<name> --master --default
+    radosgw-admin zone create --rgw-zonegroup=<zg> --rgw-zone=<zone> --master --default
+    radosgw-admin period update --commit
+    radosgw-admin period pull --url=http://<master>:80 --access-key=… --secret-key=…
+    radosgw-admin sync status
+    radosgw-admin metadata sync status
+    radosgw-admin data sync status
+    ```
+
+    ## عملیات gateway
+
+    ```bash
+    radosgw-admin gc list|process
+    radosgw-admin bi list --bucket=<name>
+    radosgw-admin log list|show|rm
+    radosgw-admin datalog list|trim
+    radosgw-admin mdlog list|status
+    ```
+
+    ## مثال S3 CLI (awscli / s3cmd)
+
+    ```bash
+    aws s3 ls --endpoint-url http://rgw.example.com
+    aws s3 mb s3://mybucket --endpoint-url http://rgw.example.com
+    aws s3 cp file s3://mybucket/key --endpoint-url http://rgw.example.com
+    ```
+
+    ## گزینه‌های config پرکاربرد
+
+    [config/rgw](../config/rgw/INDEX.md): `rgw_frontends`، `rgw_dns_name`، `rgw_zone`، `rgw_cache_enabled`، `rgw_crypt_s3_kms_backend`.
+
+    [← نمای کلی CLI](OVERVIEW.md)
+  zh: |
+    # RGW (S3) 命令
+
+    RGW 管理使用 `radosgw-admin`。网关守护进程通过 cephadm（`ceph orch …`）或 unit 文件管理。
+
+    ## 用户与密钥
+
+    ```bash
+    radosgw-admin user list
+    radosgw-admin user info --uid=<uid>
+    radosgw-admin user create --uid=<uid> --display-name="Name"
+    radosgw-admin user rm --uid=<uid>
+    radosgw-admin user modify --uid=<uid> --email=… --max-buckets=…
+    radosgw-admin user suspend --uid=<uid>
+    radosgw-admin user enable --uid=<uid>
+
+    radosgw-admin key create --uid=<uid> --key-type=s3 --access-key=… --secret-key=…
+    radosgw-admin key rm --uid=<uid> --access-key=…
+    ```
+
+    ## Bucket 与配额
+
+    ```bash
+    radosgw-admin bucket list
+    radosgw-admin bucket stats --bucket=<name>
+    radosgw-admin bucket rm --bucket=<name>
+    radosgw-admin bucket link --bucket=<name> --uid=<uid>
+    radosgw-admin bucket unlink --bucket=<name> --uid=<uid>
+
+    radosgw-admin quota set --quota-scope=user|bucket --uid=<uid> [--max-size=…] [--max-objects=…]
+    radosgw-admin quota get --quota-scope=user|bucket --uid=<uid>
+    radosgw-admin quota enable --quota-scope=user|bucket --uid=<uid>
+    ```
+
+    ## 多站点（realm / zone / zonegroup）
+
+    ```bash
+    radosgw-admin realm list
+    radosgw-admin realm create --rgw-realm=<name> --default
+    radosgw-admin zonegroup create --rgw-zonegroup=<name> --master --default
+    radosgw-admin zone create --rgw-zonegroup=<zg> --rgw-zone=<zone> --master --default
+    radosgw-admin period update --commit
+    radosgw-admin period pull --url=http://<master>:80 --access-key=… --secret-key=…
+    radosgw-admin sync status
+    radosgw-admin metadata sync status
+    radosgw-admin data sync status
+    ```
+
+    ## 网关操作
+
+    ```bash
+    radosgw-admin gc list|process
+    radosgw-admin bi list --bucket=<name>
+    radosgw-admin log list|show|rm
+    radosgw-admin datalog list|trim
+    radosgw-admin mdlog list|status
+    ```
+
+    ## S3 CLI 示例（awscli / s3cmd）
+
+    ```bash
+    aws s3 ls --endpoint-url http://rgw.example.com
+    aws s3 mb s3://mybucket --endpoint-url http://rgw.example.com
+    aws s3 cp file s3://mybucket/key --endpoint-url http://rgw.example.com
+    ```
+
+    ## 常用配置选项
+
+    见 [config/rgw](../config/rgw/INDEX.md)：`rgw_frontends`、`rgw_dns_name`、`rgw_zone`、`rgw_cache_enabled`、`rgw_crypt_s3_kms_backend`。
+
+    [← CLI 概览](OVERVIEW.md)
+
+cli/cephfs:
+  fa: |
+    # دستورات CephFS
+
+    ## مدیریت فایل‌سیستم
+
+    ```bash
+    ceph fs ls
+    ceph fs volume ls
+    ceph fs new <fs-name> <metadata-pool> <data-pool> [--force]
+    ceph fs rm <fs-name> [--yes-i-really-mean-it]
+    ceph fs get <fs-name>
+    ceph fs set <fs-name> max_mds <n>
+    ceph fs set <fs-name> allow_standby_replay true|false
+    ceph fs status [<fs-name>]
+    ceph fs dump
+    ```
+
+    ## MDS (metadata server)
+
+    ```bash
+    ceph mds stat
+    ceph mds fail <gid|name>           # mark failed
+    ceph mds rm <gid> <name>           # remove from map
+    ceph mds repaired <rank>           # after damage repair
+    ceph tell mds.<name> command …
+    ```
+
+    ## Subvolume و quota (volumes)
+
+    ```bash
+    ceph fs subvolume create <vol> <subvol> [--size bytes] [--group=<group>]
+    ceph fs subvolume rm <vol> <subvol>
+    ceph fs subvolume ls <vol>
+    ceph fs subvolume info <vol> <subvol>
+    ceph fs subvolumegroup create <vol> <group>
+    ```
+
+    ## Snapshot
+
+    ```bash
+    ceph fs snap-schedule status [<path>]
+    ceph fs snap-schedule list [<path>]
+    ceph fs snap-schedule add <path> <interval> [--start-time …]
+    ```
+
+    ## Mount
+
+    ```bash
+    # Kernel mount
+    mount -t ceph mon1,mon2:/ /mnt/cephfs -o name=admin,secret=<key>
+
+    # FUSE
+    ceph-fuse /mnt/cephfs -n client.admin
+
+    # With cephadm / fs volume
+    ceph fs volume info <vol>
+    ```
+
+    ## CephFS mirroring
+
+    ```bash
+    ceph fs snapshot mirror enable <fs>
+    ceph fs snapshot mirror disable <fs>
+    ceph fs snapshot mirror add <fs> <peer_fsid>/<remote_fs>
+    ceph fs snapshot mirror info <fs>
+    ```
+
+    [config/mds](../config/mds/INDEX.md) و [config/cephfs-mirror](../config/cephfs-mirror/INDEX.md).
+
+    [← نمای کلی CLI](OVERVIEW.md)
+  zh: |
+    # CephFS 命令
+
+    ## 文件系统管理
+
+    ```bash
+    ceph fs ls
+    ceph fs volume ls
+    ceph fs new <fs-name> <metadata-pool> <data-pool> [--force]
+    ceph fs rm <fs-name> [--yes-i-really-mean-it]
+    ceph fs get <fs-name>
+    ceph fs set <fs-name> max_mds <n>
+    ceph fs set <fs-name> allow_standby_replay true|false
+    ceph fs status [<fs-name>]
+    ceph fs dump
+    ```
+
+    ## MDS（元数据服务器）
+
+    ```bash
+    ceph mds stat
+    ceph mds fail <gid|name>           # mark failed
+    ceph mds rm <gid> <name>           # remove from map
+    ceph mds repaired <rank>           # after damage repair
+    ceph tell mds.<name> command …
+    ```
+
+    ## 子卷与配额（volumes）
+
+    ```bash
+    ceph fs subvolume create <vol> <subvol> [--size bytes] [--group=<group>]
+    ceph fs subvolume rm <vol> <subvol>
+    ceph fs subvolume ls <vol>
+    ceph fs subvolume info <vol> <subvol>
+    ceph fs subvolumegroup create <vol> <group>
+    ```
+
+    ## 快照
+
+    ```bash
+    ceph fs snap-schedule status [<path>]
+    ceph fs snap-schedule list [<path>]
+    ceph fs snap-schedule add <path> <interval> [--start-time …]
+    ```
+
+    ## 挂载
+
+    ```bash
+    # Kernel mount
+    mount -t ceph mon1,mon2:/ /mnt/cephfs -o name=admin,secret=<key>
+
+    # FUSE
+    ceph-fuse /mnt/cephfs -n client.admin
+
+    # With cephadm / fs volume
+    ceph fs volume info <vol>
+    ```
+
+    ## CephFS 镜像
+
+    ```bash
+    ceph fs snapshot mirror enable <fs>
+    ceph fs snapshot mirror disable <fs>
+    ceph fs snapshot mirror add <fs> <peer_fsid>/<remote_fs>
+    ceph fs snapshot mirror info <fs>
+    ```
+
+    见 [config/mds](../config/mds/INDEX.md) 与 [config/cephfs-mirror](../config/cephfs-mirror/INDEX.md)。
+
+    [← CLI 概览](OVERVIEW.md)
+
+cli/cephadm:
+  fa: |
+    # دستورات Cephadm و Orchestrator
+
+    نیاز به ماژول فعال `ceph mgr`: `ceph mgr module enable cephadm`.
+
+    ## Bootstrap کلاستر
+
+    ```bash
+    cephadm bootstrap --mon-ip <ip> [--cluster-network …] [--single-host-defaults]
+    cephadm install                        # install cephadm on local host
+    ```
+
+    ## مدیریت میزبان
+
+    ```bash
+    ceph orch host ls
+    ceph orch host add <hostname> [--addr ip] [--labels label1,label2]
+    ceph orch host rm <hostname> [--offline] [--force]
+    ceph orch host label add|rm <hostname> <label>
+    ceph orch host maintenance enter|exit <hostname>
+    ```
+
+    ## استقرار سرویس
+
+    ```bash
+    ceph orch ls
+    ceph orch ps
+    ceph orch apply mon --unmanaged | 3
+    ceph orch apply mgr --unmanaged | 2
+    ceph orch apply osd --all-available-devices
+    ceph orch apply rgw <svc-id> --placement="3 host1 host2" --port=8080
+    ceph orch apply mds <fs-name> --placement="2"
+    ceph orch apply node-exporter
+    ceph orch apply ceph-exporter
+
+    ceph orch daemon ls
+    ceph orch daemon restart <daemon-type>.<hostname>.<id>
+    ceph orch daemon redeploy <daemon>
+    ceph orch daemon rm <daemon> [--force]
+    ```
+
+    ## ارتقا
+
+    ```bash
+    ceph orch upgrade ls
+    ceph orch upgrade start --image quay.io/ceph/ceph:v19
+    ceph orch upgrade status
+    ceph orch upgrade pause|resume|stop
+    ```
+
+    ## دستگاه / OSD
+
+    ```bash
+    ceph orch device ls
+    ceph orch device zap <hostname> <path> [--force]
+    ceph orch daemon add osd <hostname>:<device-path>
+    ```
+
+    ## Log و shell
+
+    ```bash
+    ceph orch logs <svc-type>.<hostname>.<id> [--follow]
+    cephadm shell                              # run ceph commands in container
+    cephadm enter --name <daemon-name>
+    ```
+
+    گزینه‌های مرتبط cephadm: [config/mgr/cephadm](../config/mgr/cephadm.md).
+
+    [← نمای کلی CLI](OVERVIEW.md)
+  zh: |
+    # Cephadm 与编排器命令
+
+    需要启用 `ceph mgr` 模块：`ceph mgr module enable cephadm`。
+
+    ## 集群 bootstrap
+
+    ```bash
+    cephadm bootstrap --mon-ip <ip> [--cluster-network …] [--single-host-defaults]
+    cephadm install                        # install cephadm on local host
+    ```
+
+    ## 主机管理
+
+    ```bash
+    ceph orch host ls
+    ceph orch host add <hostname> [--addr ip] [--labels label1,label2]
+    ceph orch host rm <hostname> [--offline] [--force]
+    ceph orch host label add|rm <hostname> <label>
+    ceph orch host maintenance enter|exit <hostname>
+    ```
+
+    ## 服务部署
+
+    ```bash
+    ceph orch ls
+    ceph orch ps
+    ceph orch apply mon --unmanaged | 3
+    ceph orch apply mgr --unmanaged | 2
+    ceph orch apply osd --all-available-devices
+    ceph orch apply rgw <svc-id> --placement="3 host1 host2" --port=8080
+    ceph orch apply mds <fs-name> --placement="2"
+    ceph orch apply node-exporter
+    ceph orch apply ceph-exporter
+
+    ceph orch daemon ls
+    ceph orch daemon restart <daemon-type>.<hostname>.<id>
+    ceph orch daemon redeploy <daemon>
+    ceph orch daemon rm <daemon> [--force]
+    ```
+
+    ## 升级
+
+    ```bash
+    ceph orch upgrade ls
+    ceph orch upgrade start --image quay.io/ceph/ceph:v19
+    ceph orch upgrade status
+    ceph orch upgrade pause|resume|stop
+    ```
+
+    ## 设备 / OSD
+
+    ```bash
+    ceph orch device ls
+    ceph orch device zap <hostname> <path> [--force]
+    ceph orch daemon add osd <hostname>:<device-path>
+    ```
+
+    ## 日志与 shell
+
+    ```bash
+    ceph orch logs <svc-type>.<hostname>.<id> [--follow]
+    cephadm shell                              # run ceph commands in container
+    cephadm enter --name <daemon-name>
+    ```
+
+    cephadm 相关配置见 [config/mgr/cephadm](../config/mgr/cephadm.md)。
+
+    [← CLI 概览](OVERVIEW.md)
+
+cli/troubleshooting:
+  fa: |
+    # دستورات عیب‌یابی
+
+    ## Log
+
+    ```bash
+    # Cluster log (recent events)
+    ceph log last [n]
+    ceph log dump
+
+    # Daemon logs (cephadm)
+    ceph orch logs mon.<host>.<id> --follow
+    ceph orch logs osd.<host>.<id> --follow
+    journalctl -u ceph-osd@<id> -f          # systemd (non-cephadm)
+
+    # Debug levels (runtime)
+    ceph config set global debug_ms 1/5
+    ceph config set osd debug_osd 20/5
+    ceph config set mon debug_mon 10/5
+    ceph tell osd.* config set debug_osd 20/5
+    ```
+
+    ## عملکرد و درخواست‌های کند
+
+    ```bash
+    ceph daemon osd.<id> perf dump
+    ceph daemon osd.<id> dump_historic_ops
+    ceph daemon osd.<id> dump_ops_in_flight
+    ceph tell osd.<id> dump_ops_in_flight
+    ceph health detail                     # SLOW_OPS warnings
+    ```
+
+    ## Recovery و backfill
+
+    ```bash
+    ceph -s                                # recovery progress
+    ceph pg stat
+    ceph pg dump | grep -E 'degraded|recovering|backfill'
+    ceph osd blocked-by
+    ceph tell osd.* injectargs '--osd_max_backfills=1'   # throttle (temporary)
+    ```
+
+    ## PG / شیء ناسازگار
+
+    ```bash
+    ceph pg dump | grep inconsistent
+    rados list-inconsistent-pg <pool>
+    rados list-inconsistent-obj <pgid> --format json-pretty
+    ceph pg repair <pgid>
+    ```
+
+    ## کلاستر full / nearfull
+
+    ```bash
+    ceph df detail
+    ceph osd df tree
+    ceph osd pool set <pool> size <n>      # reduce if oversized (careful!)
+    ceph osd reweight-by-utilization
+    ```
+
+    ## مشکلات مانیتور
+
+    ```bash
+    ceph mon stat
+    ceph quorum_status --format json-pretty
+    ceph daemon mon.<name> mon_status
+    ceph mon dump
+    ```
+
+    ## مشکلات RGW
+
+    ```bash
+    radosgw-admin sync status
+    radosgw-admin gc process --include-all
+    ceph orch ps --service-type rgw
+    ceph config show client.rgw.<instance>
+    ceph daemon rgw.<id> perf dump          # local admin socket on RGW node
+    ```
+
+    ## مشکلات RBD
+
+    ```bash
+    rbd status <pool>/<image>
+    rbd showmapped
+    rbd mirror pool status <pool>
+    ```
+
+    ## جستجوی مرجع config
+
+    هنگام تنظیم، پیش‌فرض و پرچم گزینه را ببینید:
+
+    ```bash
+    ./scripts/lookup-config.sh <option-name>
+    ./scripts/search-config.sh <keyword>
+    ```
+
+    [← نمای کلی CLI](OVERVIEW.md)
+  zh: |
+    # 故障排查命令
+
+    ## 日志
+
+    ```bash
+    # Cluster log (recent events)
+    ceph log last [n]
+    ceph log dump
+
+    # Daemon logs (cephadm)
+    ceph orch logs mon.<host>.<id> --follow
+    ceph orch logs osd.<host>.<id> --follow
+    journalctl -u ceph-osd@<id> -f          # systemd (non-cephadm)
+
+    # Debug levels (runtime)
+    ceph config set global debug_ms 1/5
+    ceph config set osd debug_osd 20/5
+    ceph config set mon debug_mon 10/5
+    ceph tell osd.* config set debug_osd 20/5
+    ```
+
+    ## 性能与慢请求
+
+    ```bash
+    ceph daemon osd.<id> perf dump
+    ceph daemon osd.<id> dump_historic_ops
+    ceph daemon osd.<id> dump_ops_in_flight
+    ceph tell osd.<id> dump_ops_in_flight
+    ceph health detail                     # SLOW_OPS warnings
+    ```
+
+    ## 恢复与 backfill
+
+    ```bash
+    ceph -s                                # recovery progress
+    ceph pg stat
+    ceph pg dump | grep -E 'degraded|recovering|backfill'
+    ceph osd blocked-by
+    ceph tell osd.* injectargs '--osd_max_backfills=1'   # throttle (temporary)
+    ```
+
+    ## 不一致 PG / 对象
+
+    ```bash
+    ceph pg dump | grep inconsistent
+    rados list-inconsistent-pg <pool>
+    rados list-inconsistent-obj <pgid> --format json-pretty
+    ceph pg repair <pgid>
+    ```
+
+    ## 集群 full / nearfull
+
+    ```bash
+    ceph df detail
+    ceph osd df tree
+    ceph osd pool set <pool> size <n>      # reduce if oversized (careful!)
+    ceph osd reweight-by-utilization
+    ```
+
+    ## Monitor 问题
+
+    ```bash
+    ceph mon stat
+    ceph quorum_status --format json-pretty
+    ceph daemon mon.<name> mon_status
+    ceph mon dump
+    ```
+
+    ## RGW 问题
+
+    ```bash
+    radosgw-admin sync status
+    radosgw-admin gc process --include-all
+    ceph orch ps --service-type rgw
+    ceph config show client.rgw.<instance>
+    ceph daemon rgw.<id> perf dump          # local admin socket on RGW node
+    ```
+
+    ## RBD 问题
+
+    ```bash
+    rbd status <pool>/<image>
+    rbd showmapped
+    rbd mirror pool status <pool>
+    ```
+
+    ## 配置参考查找
+
+    调优时查看选项默认值与标志：
+
+    ```bash
+    ./scripts/lookup-config.sh <option-name>
+    ./scripts/search-config.sh <keyword>
+    ```
+
+    [← CLI 概览](OVERVIEW.md)

@@ -4,24 +4,24 @@ Global 配置深度指南 — 8 个选项。[← 概览](../OVERVIEW.md) · [调
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [objecter_completion_locks_per_session](#objecter_completion_locks_per_session) | `32` | Dev | Dev |
-| [objecter_debug_inject_relock_delay](#objecter_debug_inject_relock_delay) | `False` | Dev | Dev |
-| [objecter_inflight_op_bytes](#objecter_inflight_op_bytes) | `100_M` | Advanced | Performance |
-| [objecter_inflight_ops](#objecter_inflight_ops) | `1_K` | Advanced | Performance |
-| [objecter_inject_no_watch_ping](#objecter_inject_no_watch_ping) | `False` | Dev | Dev |
-| [objecter_retry_writes_after_first_reply](#objecter_retry_writes_after_first_reply) | `False` | Dev | Dev |
-| [objecter_tick_interval](#objecter_tick_interval) | `5` | Dev | Dev |
-| [objecter_timeout](#objecter_timeout) | `10` | Advanced | Performance |
+| [objecter_completion_locks_per_session](#objecter_completion_locks_per_session) | `32` | Dev | 开发 |
+| [objecter_debug_inject_relock_delay](#objecter_debug_inject_relock_delay) | `False` | Dev | 开发 |
+| [objecter_inflight_op_bytes](#objecter_inflight_op_bytes) | `100_M` | Advanced | 性能 |
+| [objecter_inflight_ops](#objecter_inflight_ops) | `1_K` | Advanced | 性能 |
+| [objecter_inject_no_watch_ping](#objecter_inject_no_watch_ping) | `False` | Dev | 开发 |
+| [objecter_retry_writes_after_first_reply](#objecter_retry_writes_after_first_reply) | `False` | Dev | 开发 |
+| [objecter_tick_interval](#objecter_tick_interval) | `5` | Dev | 开发 |
+| [objecter_timeout](#objecter_timeout) | `10` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -51,7 +51,7 @@ ceph config get global objecter_completion_locks_per_session
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`32`）。
 2. 仅在实验室复现特定问题时修改。
@@ -77,7 +77,7 @@ ceph config get global objecter_debug_inject_relock_delay
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -105,7 +105,7 @@ ceph config get global objecter_inflight_op_bytes
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `100_M` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -140,7 +140,7 @@ ceph config get global objecter_inflight_ops
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `1_K` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -173,7 +173,7 @@ ceph config get global objecter_inject_no_watch_ping
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -199,7 +199,7 @@ ceph config get global objecter_retry_writes_after_first_reply
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -225,7 +225,7 @@ ceph config get global objecter_tick_interval
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`5`）。
 2. 仅在实验室复现特定问题时修改。
@@ -253,7 +253,7 @@ ceph config get global objecter_timeout
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `10` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

@@ -1,10 +1,8 @@
-> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
+# دستورات پیکربندی
 
-# Configuration Commands
+پیکربندی runtime در پایگاه config مانیتور ذخیره می‌شود. نام گزینه‌ها، پیش‌فرض و پرچم‌ها در [مرجع config](../config/OVERVIEW.md).
 
-Runtime config is stored in the monitor config database. See the [config reference](../config/OVERVIEW.md) for option names, defaults, and flags.
-
-## Read config
+## خواندن config
 
 ```bash
 ceph config show <who>                 # effective config for a daemon
@@ -14,9 +12,9 @@ ceph config dump                       # entire config database
 ceph config help <option>              # option metadata (if documented)
 ```
 
-`<who>` examples: `global`, `mon`, `osd`, `osd.0`, `mgr`, `mds`, `rgw`, `client.rgw.gateway1`
+نمونه `<who>`: `global`، `mon`، `osd`، `osd.0`، `mgr`، `mds`، `rgw`، `client.rgw.gateway1`
 
-## Set config
+## تنظیم config
 
 ```bash
 ceph config set <who> <option> <value>
@@ -24,7 +22,7 @@ ceph config rm <who> <option>          # remove override (revert to default)
 ceph config assimilate-conf -i ceph.conf   # import ceph.conf into mon store
 ```
 
-Examples:
+مثال‌ها:
 
 ```bash
 ceph config set global mon_allow_pool_delete true
@@ -39,11 +37,11 @@ ceph config set client.rgw.mygw rgw frontends "beast ssl_port=443"
 ceph tell osd.* injectargs '--debug-osd=10/5'   # temporary (lost on restart)
 ```
 
-Prefer `ceph config set` for persistent changes.
+برای تغییرات پایدار `ceph config set` را ترجیح دهید.
 
-## Local ceph.conf
+## ceph.conf محلی
 
-Bootstrap and local-only options still live in `/etc/ceph/ceph.conf`:
+گزینه‌های bootstrap و محلی فقط در `/etc/ceph/ceph.conf`:
 
 ```ini
 [global]
@@ -57,13 +55,13 @@ Bootstrap and local-only options still live in `/etc/ceph/ceph.conf`:
     osd_memory_target = 4294967296
 ```
 
-Check whether an option supports runtime update: look for the `RUNTIME` flag in the [config tables](../config/OVERVIEW.md).
+برای به‌روزرسانی runtime، پرچم `RUNTIME` را در [جداول config](../config/OVERVIEW.md) ببینید.
 
-## Lookup a config option locally
+## جستجوی محلی گزینه
 
 ```bash
 ./scripts/lookup-config.sh osd_max_scrubs
 ./scripts/search-config.sh -s osd scrub
 ```
 
-[← CLI overview](OVERVIEW.md) · [Config reference](../config/OVERVIEW.md)
+[← نمای کلی CLI](OVERVIEW.md) · [مرجع Config](../config/OVERVIEW.md)

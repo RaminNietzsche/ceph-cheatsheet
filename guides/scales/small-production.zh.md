@@ -1,6 +1,6 @@
 # 小型生产规模
 
-<span class="badge badge-scale-small">Small production</span> 通常 **3–12 节点**、单数据中心、**三副本**、cephadm 管理。
+<span class="badge badge-scale-small">小型生产</span> 通常 **3–12 节点**、单数据中心、**三副本**、cephadm 管理。
 
 ## 架构检查清单
 
@@ -29,7 +29,7 @@ ceph config get mgr mon_target_pg_per_osd
 ceph osd pool autoscale-status
 ```
 
-深度指南：[OSD](../osd-config/OVERVIEW.md) · [MON](../mon-config/OVERVIEW.md)
+深度指南：[OSD](../osd-config/OVERVIEW.md) · [MON](../mon-config/OVERVIEW.md) · [MGR](../mgr-config/TUNING.md)
 
 ## 容量规划
 
@@ -38,6 +38,10 @@ ceph df detail
 ceph osd df tree
 ```
 
-`nearfull` 前约 **70%** 可用容量。
+`nearfull` 前约 **70%** 可用容量；为 OSD 更换期间的 backfill 预留空间。
+
+## 升级
+
+通过 cephadm 滚动升级 — [cli/cephadm.md](../../cli/cephadm.md)
 
 [← 指南概览](../OVERVIEW.md)

@@ -2,7 +2,7 @@
 
 按 **职责** 与 **集群规模** 组织的任务导向文档。
 
-## 按角色
+## 按角色 {#by-role}
 
 <table class="guide-table">
 <thead>
@@ -32,7 +32,7 @@
 </tbody>
 </table>
 
-## 按规模
+## 按规模 {#by-scale}
 
 <table class="guide-table">
 <thead>
@@ -70,4 +70,4 @@
   RGW · [OSD](osd-config/OVERVIEW.md) · [MON](mon-config/OVERVIEW.md) · [MGR](mgr-config/OVERVIEW.md) · [MDS](mds-config/OVERVIEW.md) · [Global](global-config/OVERVIEW.md)
 - [贡献](contributing.md) — 规则、技能、重新生成
 
-[← 主参考](../index.md)
+[← Cheatsheet](../cheatsheet/OVERVIEW.md)

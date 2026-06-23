@@ -4,24 +4,24 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mon_cache_target_full_warn_ratio](#mon_cache_target_full_warn_ratio) | `0.66` | Advanced | Performance |
-| [mon_osd_err_op_age_ratio](#mon_osd_err_op_age_ratio) | `128` | Advanced | Performance |
-| [mon_reweight_max_change](#mon_reweight_max_change) | `0.05` | Advanced | Performance |
-| [mon_reweight_max_osds](#mon_reweight_max_osds) | `4` | Advanced | Performance |
-| [mon_reweight_min_bytes_per_osd](#mon_reweight_min_bytes_per_osd) | `100_M` | Advanced | Performance |
-| [mon_reweight_min_pgs_per_osd](#mon_reweight_min_pgs_per_osd) | `10` | Advanced | Performance |
-| [mon_warn_on_misplaced](#mon_warn_on_misplaced) | `False` | Advanced | Performance |
-| [mon_warn_on_too_few_osds](#mon_warn_on_too_few_osds) | `True` | Advanced | Performance |
+| [mon_cache_target_full_warn_ratio](#mon_cache_target_full_warn_ratio) | `0.66` | Advanced | عملکرد |
+| [mon_osd_err_op_age_ratio](#mon_osd_err_op_age_ratio) | `128` | Advanced | عملکرد |
+| [mon_reweight_max_change](#mon_reweight_max_change) | `0.05` | Advanced | عملکرد |
+| [mon_reweight_max_osds](#mon_reweight_max_osds) | `4` | Advanced | عملکرد |
+| [mon_reweight_min_bytes_per_osd](#mon_reweight_min_bytes_per_osd) | `100_M` | Advanced | عملکرد |
+| [mon_reweight_min_pgs_per_osd](#mon_reweight_min_pgs_per_osd) | `10` | Advanced | عملکرد |
+| [mon_warn_on_misplaced](#mon_warn_on_misplaced) | `False` | Advanced | عملکرد |
+| [mon_warn_on_too_few_osds](#mon_warn_on_too_few_osds) | `True` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -53,7 +53,7 @@ ceph config get mon mon_cache_target_full_warn_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.66`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -89,7 +89,7 @@ ceph config get mon mon_osd_err_op_age_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -123,7 +123,7 @@ ceph config get mon mon_reweight_max_change
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.05`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -157,7 +157,7 @@ ceph config get mon mon_reweight_max_osds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -191,7 +191,7 @@ ceph config get mon mon_reweight_min_bytes_per_osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -225,7 +225,7 @@ ceph config get mon mon_reweight_min_pgs_per_osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -261,7 +261,7 @@ ceph config get mon mon_warn_on_misplaced
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -297,7 +297,7 @@ ceph config get mon mon_warn_on_too_few_osds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

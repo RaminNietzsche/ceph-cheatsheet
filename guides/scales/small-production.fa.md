@@ -1,14 +1,14 @@
-# مقیاس Small Production
+# محیط عملیاتی کوچک
 
-<span class="badge badge-scale-small">محیط عملیاتی کوچک</span> معمولاً **۳–۱۲ نود**، یک مرکز داده، replica **3**، cephadm.
+<span class="badge badge-scale-small">محیط عملیاتی کوچک</span> معمولاً **۳–۱۲ نود**، یک مرکز داده، replica **3**، مدیریت با cephadm.
 
 ## چک‌لیست معماری
 
-- [ ] ۳ monitor روی host جدا
+- [ ] ۳ monitor روی hostهای جدا
 - [ ] ۲ manager (active + standby)
-- [ ] یک OSD به ازای هر دیسک
-- [ ] PG autoscale **روشن**
-- [ ] برچسب `application` روی pool
+- [ ] OSD: یک OSD به ازای هر دیسک؛ در صورت امکان شبکه mon/osd جدا
+- [ ] PG autoscale **روشن** برای همه poolها
+- [ ] برچسب `application` روی pool (rbd، rgw، cephfs)
 
 ## عملیات روزانه
 
@@ -29,7 +29,7 @@ ceph config get mgr mon_target_pg_per_osd
 ceph osd pool autoscale-status
 ```
 
-Deep dive: [OSD](../osd-config/OVERVIEW.md) · [MON](../mon-config/OVERVIEW.md)
+راهنمای عمیق: [OSD](../osd-config/OVERVIEW.md) · [MON](../mon-config/OVERVIEW.md) · [MGR](../mgr-config/TUNING.md)
 
 ## ظرفیت
 
@@ -38,6 +38,10 @@ ceph df detail
 ceph osd df tree
 ```
 
-حدود **۷۰٪** قابل استفاده قبل از `nearfull`.
+حدود **۷۰٪** قابل استفاده قبل از `nearfull`؛ فضای headroom برای backfill هنگام تعویض OSD بگذارید.
+
+## ارتقا
+
+ارتقای rolling با cephadm — [cli/cephadm.md](../../cli/cephadm.md)
 
 [← نمای کلی راهنما](../OVERVIEW.md)

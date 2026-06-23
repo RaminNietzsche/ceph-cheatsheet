@@ -1,6 +1,6 @@
 # 存储运维
 
-<span class="badge badge-role-storage">Storage operator</span> 管理 OSD、池、PG、CRUSH、恢复与 scrub。
+<span class="badge badge-role-storage">存储运维</span> 管理 OSD、池、PG、CRUSH、恢复与 scrub。
 
 ## 日常命令
 
@@ -58,13 +58,13 @@ ceph osd crush reweight osd.5 0.95
 
 | 规模 | 重点 |
 |------|------|
-| [Lab](../scales/lab.md) | 较低 `osd_memory_target` |
-| [Small production](../scales/small-production.md) | 自动扩缩、三副本 |
-| [Large production](../scales/large-production.md) | mClock、设备类 |
-| [Multisite](../scales/multisite.md) | 各站点 CRUSH |
+| [实验室](../scales/lab.md) | 较低 `osd_memory_target`、更少 PG |
+| [小型生产](../scales/small-production.md) | 自动扩缩、三副本 |
+| [大型生产](../scales/large-production.md) | mClock、设备类、scrub 窗口 |
+| [多站点](../scales/multisite.md) | 各站点 CRUSH；DR 池布局 |
 
 ## 故障排查
 
-[cli/troubleshooting.md](../../cli/troubleshooting.md)
+降级 PG、backfill 限流、nearfull — [cli/troubleshooting.md](../../cli/troubleshooting.md)
 
 [← 指南概览](../OVERVIEW.md)

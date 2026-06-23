@@ -1,10 +1,8 @@
-> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
+# دستورات RGW (S3)
 
-# RGW (S3) Commands
+مدیریت RGW با `radosgw-admin` انجام می‌شود. دیمن gateway از cephadm (`ceph orch …`) یا unit file مدیریت می‌شود.
 
-RGW admin uses `radosgw-admin`. Gateway daemons are managed via cephadm (`ceph orch …`) or unit files.
-
-## Users & keys
+## کاربر و کلید
 
 ```bash
 radosgw-admin user list
@@ -19,7 +17,7 @@ radosgw-admin key create --uid=<uid> --key-type=s3 --access-key=… --secret-key
 radosgw-admin key rm --uid=<uid> --access-key=…
 ```
 
-## Buckets & quotas
+## Bucket و quota
 
 ```bash
 radosgw-admin bucket list
@@ -33,7 +31,7 @@ radosgw-admin quota get --quota-scope=user|bucket --uid=<uid>
 radosgw-admin quota enable --quota-scope=user|bucket --uid=<uid>
 ```
 
-## Multisite (realm / zone / zonegroup)
+## چندسایته (realm / zone / zonegroup)
 
 ```bash
 radosgw-admin realm list
@@ -47,7 +45,7 @@ radosgw-admin metadata sync status
 radosgw-admin data sync status
 ```
 
-## Gateway ops
+## عملیات gateway
 
 ```bash
 radosgw-admin gc list|process
@@ -57,7 +55,7 @@ radosgw-admin datalog list|trim
 radosgw-admin mdlog list|status
 ```
 
-## S3 CLI examples (awscli / s3cmd)
+## مثال S3 CLI (awscli / s3cmd)
 
 ```bash
 aws s3 ls --endpoint-url http://rgw.example.com
@@ -65,8 +63,8 @@ aws s3 mb s3://mybucket --endpoint-url http://rgw.example.com
 aws s3 cp file s3://mybucket/key --endpoint-url http://rgw.example.com
 ```
 
-## Useful config options
+## گزینه‌های config پرکاربرد
 
-See [config/rgw](../config/rgw/INDEX.md): `rgw_frontends`, `rgw_dns_name`, `rgw_zone`, `rgw_cache_enabled`, `rgw_crypt_s3_kms_backend`.
+[config/rgw](../config/rgw/INDEX.md): `rgw_frontends`، `rgw_dns_name`، `rgw_zone`، `rgw_cache_enabled`، `rgw_crypt_s3_kms_backend`.
 
-[← CLI overview](OVERVIEW.md)
+[← نمای کلی CLI](OVERVIEW.md)

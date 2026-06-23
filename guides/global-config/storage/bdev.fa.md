@@ -4,47 +4,47 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [bdev_aio](#bdev_aio) | `True` | Advanced | Performance |
-| [bdev_aio_max_queue_depth](#bdev_aio_max_queue_depth) | `1024` | Advanced | Performance |
-| [bdev_aio_poll_ms](#bdev_aio_poll_ms) | `250` | Advanced | Performance |
-| [bdev_aio_reap_max](#bdev_aio_reap_max) | `16` | Advanced | Performance |
-| [bdev_aio_submit_retry_initial_delay_us](#bdev_aio_submit_retry_initial_delay_us) | `125` | Advanced | Performance |
-| [bdev_aio_submit_retry_max](#bdev_aio_submit_retry_max) | `16` | Advanced | Performance |
-| [bdev_async_discard](#bdev_async_discard) | `False` | Advanced | Performance |
-| [bdev_async_discard_max_pending](#bdev_async_discard_max_pending) | `1000000` | Advanced | Performance |
-| [bdev_async_discard_threads](#bdev_async_discard_threads) | `0` | Advanced | Performance |
-| [bdev_block_size](#bdev_block_size) | `4_K` | Advanced | Performance |
-| [bdev_debug_aio](#bdev_debug_aio) | `False` | Dev | Dev |
-| [bdev_debug_aio_log_age](#bdev_debug_aio_log_age) | `5` | Dev | Dev |
-| [bdev_debug_aio_suicide_timeout](#bdev_debug_aio_suicide_timeout) | `1_min` | Dev | Dev |
-| [bdev_debug_discard_sleep](#bdev_debug_discard_sleep) | `0` | Dev | Dev |
-| [bdev_debug_inflight_ios](#bdev_debug_inflight_ios) | `False` | Dev | Dev |
-| [bdev_discard_max_bytes](#bdev_discard_max_bytes) | `10_G` | Advanced | Performance |
-| [bdev_enable_discard](#bdev_enable_discard) | `False` | Advanced | Policy |
-| [bdev_flock_retry](#bdev_flock_retry) | `3` | Advanced | Performance |
-| [bdev_flock_retry_interval](#bdev_flock_retry_interval) | `0.1` | Advanced | Performance |
-| [bdev_inject_crash](#bdev_inject_crash) | `0` | Dev | Dev |
-| [bdev_inject_crash_flush_delay](#bdev_inject_crash_flush_delay) | `2` | Dev | Dev |
-| [bdev_ioring](#bdev_ioring) | `False` | Advanced | Performance |
-| [bdev_ioring_hipri](#bdev_ioring_hipri) | `False` | Advanced | Performance |
-| [bdev_ioring_sqthread_poll](#bdev_ioring_sqthread_poll) | `False` | Advanced | Performance |
-| [bdev_max_discard_length](#bdev_max_discard_length) | `2147483648` | Advanced | Performance |
-| [bdev_nvme_unbind_from_kernel](#bdev_nvme_unbind_from_kernel) | `False` | Advanced | Performance |
-| [bdev_read_buffer_alignment](#bdev_read_buffer_alignment) | `4_K` | Advanced | Performance |
-| [bdev_read_preallocated_huge_buffers](#bdev_read_preallocated_huge_buffers) | `(empty)` | Advanced | Performance |
-| [bdev_stalled_read_warn_lifetime](#bdev_stalled_read_warn_lifetime) | `86400` | Advanced | Performance |
-| [bdev_stalled_read_warn_threshold](#bdev_stalled_read_warn_threshold) | `1` | Advanced | Performance |
-| [bdev_type](#bdev_type) | `(empty)` | Advanced | Performance |
+| [bdev_aio](#bdev_aio) | `True` | Advanced | عملکرد |
+| [bdev_aio_max_queue_depth](#bdev_aio_max_queue_depth) | `1024` | Advanced | عملکرد |
+| [bdev_aio_poll_ms](#bdev_aio_poll_ms) | `250` | Advanced | عملکرد |
+| [bdev_aio_reap_max](#bdev_aio_reap_max) | `16` | Advanced | عملکرد |
+| [bdev_aio_submit_retry_initial_delay_us](#bdev_aio_submit_retry_initial_delay_us) | `125` | Advanced | عملکرد |
+| [bdev_aio_submit_retry_max](#bdev_aio_submit_retry_max) | `16` | Advanced | عملکرد |
+| [bdev_async_discard](#bdev_async_discard) | `False` | Advanced | عملکرد |
+| [bdev_async_discard_max_pending](#bdev_async_discard_max_pending) | `1000000` | Advanced | عملکرد |
+| [bdev_async_discard_threads](#bdev_async_discard_threads) | `0` | Advanced | عملکرد |
+| [bdev_block_size](#bdev_block_size) | `4_K` | Advanced | عملکرد |
+| [bdev_debug_aio](#bdev_debug_aio) | `False` | Dev | توسعه |
+| [bdev_debug_aio_log_age](#bdev_debug_aio_log_age) | `5` | Dev | توسعه |
+| [bdev_debug_aio_suicide_timeout](#bdev_debug_aio_suicide_timeout) | `1_min` | Dev | توسعه |
+| [bdev_debug_discard_sleep](#bdev_debug_discard_sleep) | `0` | Dev | توسعه |
+| [bdev_debug_inflight_ios](#bdev_debug_inflight_ios) | `False` | Dev | توسعه |
+| [bdev_discard_max_bytes](#bdev_discard_max_bytes) | `10_G` | Advanced | عملکرد |
+| [bdev_enable_discard](#bdev_enable_discard) | `False` | Advanced | سیاست |
+| [bdev_flock_retry](#bdev_flock_retry) | `3` | Advanced | عملکرد |
+| [bdev_flock_retry_interval](#bdev_flock_retry_interval) | `0.1` | Advanced | عملکرد |
+| [bdev_inject_crash](#bdev_inject_crash) | `0` | Dev | توسعه |
+| [bdev_inject_crash_flush_delay](#bdev_inject_crash_flush_delay) | `2` | Dev | توسعه |
+| [bdev_ioring](#bdev_ioring) | `False` | Advanced | عملکرد |
+| [bdev_ioring_hipri](#bdev_ioring_hipri) | `False` | Advanced | عملکرد |
+| [bdev_ioring_sqthread_poll](#bdev_ioring_sqthread_poll) | `False` | Advanced | عملکرد |
+| [bdev_max_discard_length](#bdev_max_discard_length) | `2147483648` | Advanced | عملکرد |
+| [bdev_nvme_unbind_from_kernel](#bdev_nvme_unbind_from_kernel) | `False` | Advanced | عملکرد |
+| [bdev_read_buffer_alignment](#bdev_read_buffer_alignment) | `4_K` | Advanced | عملکرد |
+| [bdev_read_preallocated_huge_buffers](#bdev_read_preallocated_huge_buffers) | `(empty)` | Advanced | عملکرد |
+| [bdev_stalled_read_warn_lifetime](#bdev_stalled_read_warn_lifetime) | `86400` | Advanced | عملکرد |
+| [bdev_stalled_read_warn_threshold](#bdev_stalled_read_warn_threshold) | `1` | Advanced | عملکرد |
+| [bdev_type](#bdev_type) | `(empty)` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -74,7 +74,7 @@ ceph config get global bdev_aio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -107,7 +107,7 @@ ceph config get global bdev_aio_max_queue_depth
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1024`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -140,7 +140,7 @@ ceph config get global bdev_aio_poll_ms
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `250`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -173,7 +173,7 @@ ceph config get global bdev_aio_reap_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -206,7 +206,7 @@ ceph config get global bdev_aio_submit_retry_initial_delay_us
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `125`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -239,7 +239,7 @@ ceph config get global bdev_aio_submit_retry_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -272,7 +272,7 @@ ceph config get global bdev_async_discard
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -307,7 +307,7 @@ ceph config get global bdev_async_discard_max_pending
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -344,7 +344,7 @@ ceph config get global bdev_async_discard_threads
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -379,7 +379,7 @@ ceph config get global bdev_block_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -412,7 +412,7 @@ ceph config get global bdev_debug_aio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -438,7 +438,7 @@ ceph config get global bdev_debug_aio_log_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -464,7 +464,7 @@ ceph config get global bdev_debug_aio_suicide_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_min`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -492,7 +492,7 @@ ceph config get global bdev_debug_discard_sleep
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -518,7 +518,7 @@ ceph config get global bdev_debug_inflight_ios
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -546,7 +546,7 @@ ceph config get global bdev_discard_max_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10_G`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -581,7 +581,7 @@ ceph config get global bdev_enable_discard
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -615,7 +615,7 @@ ceph config get global bdev_flock_retry
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -650,7 +650,7 @@ ceph config get global bdev_flock_retry_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -683,7 +683,7 @@ ceph config get global bdev_inject_crash
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -709,7 +709,7 @@ ceph config get global bdev_inject_crash_flush_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`2`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -737,7 +737,7 @@ ceph config get global bdev_ioring
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -772,7 +772,7 @@ ceph config get global bdev_ioring_hipri
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -807,7 +807,7 @@ ceph config get global bdev_ioring_sqthread_poll
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -842,7 +842,7 @@ ceph config get global bdev_max_discard_length
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2147483648`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -875,7 +875,7 @@ ceph config get global bdev_nvme_unbind_from_kernel
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -908,7 +908,7 @@ ceph config get global bdev_read_buffer_alignment
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -943,7 +943,7 @@ ceph config get global bdev_read_preallocated_huge_buffers
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -978,7 +978,7 @@ ceph config get global bdev_stalled_read_warn_lifetime
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `86400`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1013,7 +1013,7 @@ ceph config get global bdev_stalled_read_warn_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1048,7 +1048,7 @@ ceph config get global bdev_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

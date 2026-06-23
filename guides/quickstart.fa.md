@@ -1,10 +1,8 @@
-> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
+# شروع سریع — روند کاری روزانهٔ مدیر
 
-# Quick Start — Daily Admin Workflow
+حداقل گام‌ها برای بهره‌برداری از کلاستر Ceph. با محیط خود (cephadm یا دستی، نسخهٔ release) تطبیق دهید.
 
-A minimal workflow for operating a Ceph cluster. Adjust for your environment (cephadm vs manual, release version).
-
-## 1. Check cluster health
+## ۱. بررسی سلامت کلاستر
 
 ```bash
 ceph -s
@@ -13,9 +11,9 @@ ceph versions
 ceph orch ps          # if using cephadm
 ```
 
-Expected: `health: HEALTH_OK`, all OSDs up, quorum intact.
+انتظار: `health: HEALTH_OK`، همه OSDها up، quorum سالم.
 
-## 2. Capacity and usage
+## ۲. ظرفیت و مصرف
 
 ```bash
 ceph df
@@ -23,18 +21,18 @@ ceph df detail
 ceph osd df tree
 ```
 
-Watch for `nearfull` / `backfillfull` warnings.
+به هشدارهای `nearfull` / `backfillfull` توجه کنید.
 
-## 3. PG state
+## ۳. وضعیت PG
 
 ```bash
 ceph pg stat
 ceph pg dump_stuck
 ```
 
-All PGs should be `active+clean`. Investigate `degraded`, `recovering`, `backfilling`, or `stuck`.
+همه PGها باید `active+clean` باشند. `degraded`، `recovering`، `backfilling` یا `stuck` را بررسی کنید.
 
-## 4. Common changes
+## ۴. تغییرات رایج
 
 ```bash
 # Set a runtime config option
@@ -53,7 +51,7 @@ ceph osd out 5
 ceph osd in 5
 ```
 
-## 5. Before upgrades
+## ۵. پیش از ارتقا
 
 ```bash
 ceph versions                         # mixed versions?
@@ -62,14 +60,14 @@ ceph osd ok-to-stop osd.0 osd.1 …    # check N OSDs at a time
 ceph orch upgrade status              # cephadm path
 ```
 
-## 6. When something breaks
+## ۶. وقتی مشکلی پیش آمد
 
-1. `ceph health detail` — read the warning/error text
-2. `ceph -w` — watch live events
-3. [Troubleshooting commands](../cli/troubleshooting.md)
-4. Look up related config: `./scripts/lookup-config.sh <option>`
+1. `ceph health detail` — متن هشدار/خطا را بخوانید
+2. `ceph -w` — رویدادهای زنده را ببینید
+3. [دستورات عیب‌یابی](../cli/troubleshooting.md)
+4. پیکربندی مرتبط: `./scripts/lookup-config.sh <option>`
 
-## Lookup cheat sheet
+## برگهٔ تقلب جستجو
 
 ```bash
 ./scripts/lookup-config.sh osd_max_scrubs
@@ -77,8 +75,8 @@ ceph orch upgrade status              # cephadm path
 ./scripts/search-config.sh -s rgw cache
 ```
 
-## Next steps
+## گام بعدی
 
-- Pick your [role](OVERVIEW.md#by-role) or [scale](OVERVIEW.md#by-scale) for focused workflows.
+- [نقش](OVERVIEW.md#by-role) یا [مقیاس](OVERVIEW.md#by-scale) خود را برای روندهای تخصصی‌تر انتخاب کنید.
 
-[← Main reference](../index.md)
+[← Cheatsheet](../cheatsheet/OVERVIEW.md)

@@ -4,19 +4,19 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rbd_move_parent_to_trash_on_remove](#rbd_move_parent_to_trash_on_remove) | `False` | Basic | Policy |
-| [rbd_move_to_trash_on_remove](#rbd_move_to_trash_on_remove) | `False` | Basic | Policy |
-| [rbd_move_to_trash_on_remove_expire_seconds](#rbd_move_to_trash_on_remove_expire_seconds) | `0` | Basic | Policy |
+| [rbd_move_parent_to_trash_on_remove](#rbd_move_parent_to_trash_on_remove) | `False` | Basic | سیاست |
+| [rbd_move_to_trash_on_remove](#rbd_move_to_trash_on_remove) | `False` | Basic | سیاست |
+| [rbd_move_to_trash_on_remove_expire_seconds](#rbd_move_to_trash_on_remove_expire_seconds) | `0` | Basic | سیاست |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -48,7 +48,7 @@ ceph config get client rbd_move_parent_to_trash_on_remove
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -83,7 +83,7 @@ ceph config get client rbd_move_to_trash_on_remove
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -118,7 +118,7 @@ ceph config get client rbd_move_to_trash_on_remove_expire_seconds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `0` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.

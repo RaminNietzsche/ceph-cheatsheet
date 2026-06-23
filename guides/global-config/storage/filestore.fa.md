@@ -4,100 +4,100 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [filestore_apply_finisher_threads](#filestore_apply_finisher_threads) | `1` | Dev | Dev |
-| [filestore_blackhole](#filestore_blackhole) | `False` | Dev | Dev |
-| [filestore_btrfs_clone_range](#filestore_btrfs_clone_range) | `True` | Advanced | Performance |
-| [filestore_btrfs_snap](#filestore_btrfs_snap) | `True` | Dev | Dev |
-| [filestore_caller_concurrency](#filestore_caller_concurrency) | `10` | Dev | Dev |
-| [filestore_collect_device_partition_information](#filestore_collect_device_partition_information) | `True` | Advanced | Performance |
-| [filestore_commit_timeout](#filestore_commit_timeout) | `10_min` | Advanced | Performance |
-| [filestore_debug_inject_read_err](#filestore_debug_inject_read_err) | `False` | Dev | Dev |
-| [filestore_debug_omap_check](#filestore_debug_omap_check) | `False` | Dev | Dev |
-| [filestore_debug_verify_split](#filestore_debug_verify_split) | `False` | Dev | Dev |
-| [filestore_dump_file](#filestore_dump_file) | `(empty)` | Dev | Dev |
-| [filestore_expected_throughput_bytes](#filestore_expected_throughput_bytes) | `209715200` | Advanced | Performance |
-| [filestore_expected_throughput_ops](#filestore_expected_throughput_ops) | `200` | Advanced | Performance |
-| [filestore_fadvise](#filestore_fadvise) | `True` | Advanced | Performance |
-| [filestore_fail_eio](#filestore_fail_eio) | `True` | Dev | Dev |
-| [filestore_fd_cache_shards](#filestore_fd_cache_shards) | `16` | Dev | Dev |
-| [filestore_fd_cache_size](#filestore_fd_cache_size) | `128` | Dev | Dev |
-| [filestore_fiemap](#filestore_fiemap) | `False` | Advanced | Performance |
-| [filestore_fiemap_threshold](#filestore_fiemap_threshold) | `4_K` | Dev | Dev |
-| [filestore_fsync_flushes_journal_data](#filestore_fsync_flushes_journal_data) | `False` | Dev | Dev |
-| [filestore_index_retry_probability](#filestore_index_retry_probability) | `0` | Dev | Dev |
-| [filestore_inject_stall](#filestore_inject_stall) | `0` | Dev | Dev |
-| [filestore_journal_parallel](#filestore_journal_parallel) | `False` | Dev | Dev |
-| [filestore_journal_trailing](#filestore_journal_trailing) | `False` | Dev | Dev |
-| [filestore_journal_writeahead](#filestore_journal_writeahead) | `False` | Dev | Dev |
-| [filestore_kill_at](#filestore_kill_at) | `0` | Dev | Dev |
-| [filestore_max_alloc_hint_size](#filestore_max_alloc_hint_size) | `1_M` | Dev | Dev |
-| [filestore_max_inline_xattr_size](#filestore_max_inline_xattr_size) | `0` | Dev | Dev |
-| [filestore_max_inline_xattr_size_btrfs](#filestore_max_inline_xattr_size_btrfs) | `2_K` | Dev | Dev |
-| [filestore_max_inline_xattr_size_other](#filestore_max_inline_xattr_size_other) | `512` | Dev | Dev |
-| [filestore_max_inline_xattr_size_xfs](#filestore_max_inline_xattr_size_xfs) | `64_K` | Dev | Dev |
-| [filestore_max_inline_xattrs](#filestore_max_inline_xattrs) | `0` | Dev | Dev |
-| [filestore_max_inline_xattrs_btrfs](#filestore_max_inline_xattrs_btrfs) | `10` | Dev | Dev |
-| [filestore_max_inline_xattrs_other](#filestore_max_inline_xattrs_other) | `2` | Dev | Dev |
-| [filestore_max_inline_xattrs_xfs](#filestore_max_inline_xattrs_xfs) | `10` | Dev | Dev |
-| [filestore_max_sync_interval](#filestore_max_sync_interval) | `5` | Advanced | Performance |
-| [filestore_max_xattr_value_size](#filestore_max_xattr_value_size) | `0` | Dev | Dev |
-| [filestore_max_xattr_value_size_btrfs](#filestore_max_xattr_value_size_btrfs) | `64_K` | Dev | Dev |
-| [filestore_max_xattr_value_size_other](#filestore_max_xattr_value_size_other) | `1_K` | Dev | Dev |
-| [filestore_max_xattr_value_size_xfs](#filestore_max_xattr_value_size_xfs) | `64_K` | Dev | Dev |
-| [filestore_merge_threshold](#filestore_merge_threshold) | `-10` | Dev | Dev |
-| [filestore_min_sync_interval](#filestore_min_sync_interval) | `0.01` | Dev | Dev |
-| [filestore_odsync_write](#filestore_odsync_write) | `False` | Dev | Dev |
-| [filestore_omap_backend](#filestore_omap_backend) | `rocksdb` | Dev | Dev |
-| [filestore_omap_backend_path](#filestore_omap_backend_path) | `(empty)` | Dev | Dev |
-| [filestore_omap_header_cache_size](#filestore_omap_header_cache_size) | `1_K` | Dev | Dev |
-| [filestore_ondisk_finisher_threads](#filestore_ondisk_finisher_threads) | `1` | Dev | Dev |
-| [filestore_op_thread_suicide_timeout](#filestore_op_thread_suicide_timeout) | `3_min` | Advanced | Performance |
-| [filestore_op_thread_timeout](#filestore_op_thread_timeout) | `1_min` | Advanced | Performance |
-| [filestore_op_threads](#filestore_op_threads) | `2` | Advanced | Performance |
-| [filestore_punch_hole](#filestore_punch_hole) | `False` | Advanced | Performance |
-| [filestore_queue_high_delay_multiple](#filestore_queue_high_delay_multiple) | `0` | Dev | Dev |
-| [filestore_queue_high_delay_multiple_bytes](#filestore_queue_high_delay_multiple_bytes) | `0` | Dev | Dev |
-| [filestore_queue_high_delay_multiple_ops](#filestore_queue_high_delay_multiple_ops) | `0` | Dev | Dev |
-| [filestore_queue_high_threshhold](#filestore_queue_high_threshhold) | `0.9` | Dev | Dev |
-| [filestore_queue_low_threshhold](#filestore_queue_low_threshhold) | `0.3` | Dev | Dev |
-| [filestore_queue_max_bytes](#filestore_queue_max_bytes) | `100_M` | Advanced | Performance |
-| [filestore_queue_max_delay_multiple](#filestore_queue_max_delay_multiple) | `0` | Dev | Dev |
-| [filestore_queue_max_delay_multiple_bytes](#filestore_queue_max_delay_multiple_bytes) | `0` | Dev | Dev |
-| [filestore_queue_max_delay_multiple_ops](#filestore_queue_max_delay_multiple_ops) | `0` | Dev | Dev |
-| [filestore_queue_max_ops](#filestore_queue_max_ops) | `50` | Advanced | Performance |
-| [filestore_rocksdb_options](#filestore_rocksdb_options) | `max_background_jobs=10,compaction_readahead_size=2097152,compression=kNoCompression` | Dev | Dev |
-| [filestore_seek_data_hole](#filestore_seek_data_hole) | `False` | Advanced | Performance |
-| [filestore_sloppy_crc](#filestore_sloppy_crc) | `False` | Dev | Dev |
-| [filestore_sloppy_crc_block_size](#filestore_sloppy_crc_block_size) | `64_K` | Dev | Dev |
-| [filestore_splice](#filestore_splice) | `False` | Advanced | Performance |
-| [filestore_split_multiple](#filestore_split_multiple) | `2` | Dev | Dev |
-| [filestore_split_rand_factor](#filestore_split_rand_factor) | `20` | Dev | Dev |
-| [filestore_update_to](#filestore_update_to) | `1000` | Dev | Dev |
-| [filestore_wbthrottle_btrfs_bytes_hard_limit](#filestore_wbthrottle_btrfs_bytes_hard_limit) | `400_M` | Advanced | Performance |
-| [filestore_wbthrottle_btrfs_bytes_start_flusher](#filestore_wbthrottle_btrfs_bytes_start_flusher) | `40_M` | Advanced | Performance |
-| [filestore_wbthrottle_btrfs_inodes_hard_limit](#filestore_wbthrottle_btrfs_inodes_hard_limit) | `5000` | Advanced | Performance |
-| [filestore_wbthrottle_btrfs_inodes_start_flusher](#filestore_wbthrottle_btrfs_inodes_start_flusher) | `500` | Advanced | Performance |
-| [filestore_wbthrottle_btrfs_ios_hard_limit](#filestore_wbthrottle_btrfs_ios_hard_limit) | `5000` | Advanced | Performance |
-| [filestore_wbthrottle_btrfs_ios_start_flusher](#filestore_wbthrottle_btrfs_ios_start_flusher) | `500` | Advanced | Performance |
-| [filestore_wbthrottle_enable](#filestore_wbthrottle_enable) | `True` | Advanced | Policy |
-| [filestore_wbthrottle_xfs_bytes_hard_limit](#filestore_wbthrottle_xfs_bytes_hard_limit) | `400_M` | Advanced | Performance |
-| [filestore_wbthrottle_xfs_bytes_start_flusher](#filestore_wbthrottle_xfs_bytes_start_flusher) | `40_M` | Advanced | Performance |
-| [filestore_wbthrottle_xfs_inodes_hard_limit](#filestore_wbthrottle_xfs_inodes_hard_limit) | `5000` | Advanced | Performance |
-| [filestore_wbthrottle_xfs_inodes_start_flusher](#filestore_wbthrottle_xfs_inodes_start_flusher) | `500` | Advanced | Performance |
-| [filestore_wbthrottle_xfs_ios_hard_limit](#filestore_wbthrottle_xfs_ios_hard_limit) | `5000` | Advanced | Performance |
-| [filestore_wbthrottle_xfs_ios_start_flusher](#filestore_wbthrottle_xfs_ios_start_flusher) | `500` | Advanced | Performance |
-| [filestore_xfs_extsize](#filestore_xfs_extsize) | `False` | Advanced | Performance |
-| [filestore_zfs_snap](#filestore_zfs_snap) | `False` | Dev | Dev |
+| [filestore_apply_finisher_threads](#filestore_apply_finisher_threads) | `1` | Dev | توسعه |
+| [filestore_blackhole](#filestore_blackhole) | `False` | Dev | توسعه |
+| [filestore_btrfs_clone_range](#filestore_btrfs_clone_range) | `True` | Advanced | عملکرد |
+| [filestore_btrfs_snap](#filestore_btrfs_snap) | `True` | Dev | توسعه |
+| [filestore_caller_concurrency](#filestore_caller_concurrency) | `10` | Dev | توسعه |
+| [filestore_collect_device_partition_information](#filestore_collect_device_partition_information) | `True` | Advanced | عملکرد |
+| [filestore_commit_timeout](#filestore_commit_timeout) | `10_min` | Advanced | عملکرد |
+| [filestore_debug_inject_read_err](#filestore_debug_inject_read_err) | `False` | Dev | توسعه |
+| [filestore_debug_omap_check](#filestore_debug_omap_check) | `False` | Dev | توسعه |
+| [filestore_debug_verify_split](#filestore_debug_verify_split) | `False` | Dev | توسعه |
+| [filestore_dump_file](#filestore_dump_file) | `(empty)` | Dev | توسعه |
+| [filestore_expected_throughput_bytes](#filestore_expected_throughput_bytes) | `209715200` | Advanced | عملکرد |
+| [filestore_expected_throughput_ops](#filestore_expected_throughput_ops) | `200` | Advanced | عملکرد |
+| [filestore_fadvise](#filestore_fadvise) | `True` | Advanced | عملکرد |
+| [filestore_fail_eio](#filestore_fail_eio) | `True` | Dev | توسعه |
+| [filestore_fd_cache_shards](#filestore_fd_cache_shards) | `16` | Dev | توسعه |
+| [filestore_fd_cache_size](#filestore_fd_cache_size) | `128` | Dev | توسعه |
+| [filestore_fiemap](#filestore_fiemap) | `False` | Advanced | عملکرد |
+| [filestore_fiemap_threshold](#filestore_fiemap_threshold) | `4_K` | Dev | توسعه |
+| [filestore_fsync_flushes_journal_data](#filestore_fsync_flushes_journal_data) | `False` | Dev | توسعه |
+| [filestore_index_retry_probability](#filestore_index_retry_probability) | `0` | Dev | توسعه |
+| [filestore_inject_stall](#filestore_inject_stall) | `0` | Dev | توسعه |
+| [filestore_journal_parallel](#filestore_journal_parallel) | `False` | Dev | توسعه |
+| [filestore_journal_trailing](#filestore_journal_trailing) | `False` | Dev | توسعه |
+| [filestore_journal_writeahead](#filestore_journal_writeahead) | `False` | Dev | توسعه |
+| [filestore_kill_at](#filestore_kill_at) | `0` | Dev | توسعه |
+| [filestore_max_alloc_hint_size](#filestore_max_alloc_hint_size) | `1_M` | Dev | توسعه |
+| [filestore_max_inline_xattr_size](#filestore_max_inline_xattr_size) | `0` | Dev | توسعه |
+| [filestore_max_inline_xattr_size_btrfs](#filestore_max_inline_xattr_size_btrfs) | `2_K` | Dev | توسعه |
+| [filestore_max_inline_xattr_size_other](#filestore_max_inline_xattr_size_other) | `512` | Dev | توسعه |
+| [filestore_max_inline_xattr_size_xfs](#filestore_max_inline_xattr_size_xfs) | `64_K` | Dev | توسعه |
+| [filestore_max_inline_xattrs](#filestore_max_inline_xattrs) | `0` | Dev | توسعه |
+| [filestore_max_inline_xattrs_btrfs](#filestore_max_inline_xattrs_btrfs) | `10` | Dev | توسعه |
+| [filestore_max_inline_xattrs_other](#filestore_max_inline_xattrs_other) | `2` | Dev | توسعه |
+| [filestore_max_inline_xattrs_xfs](#filestore_max_inline_xattrs_xfs) | `10` | Dev | توسعه |
+| [filestore_max_sync_interval](#filestore_max_sync_interval) | `5` | Advanced | عملکرد |
+| [filestore_max_xattr_value_size](#filestore_max_xattr_value_size) | `0` | Dev | توسعه |
+| [filestore_max_xattr_value_size_btrfs](#filestore_max_xattr_value_size_btrfs) | `64_K` | Dev | توسعه |
+| [filestore_max_xattr_value_size_other](#filestore_max_xattr_value_size_other) | `1_K` | Dev | توسعه |
+| [filestore_max_xattr_value_size_xfs](#filestore_max_xattr_value_size_xfs) | `64_K` | Dev | توسعه |
+| [filestore_merge_threshold](#filestore_merge_threshold) | `-10` | Dev | توسعه |
+| [filestore_min_sync_interval](#filestore_min_sync_interval) | `0.01` | Dev | توسعه |
+| [filestore_odsync_write](#filestore_odsync_write) | `False` | Dev | توسعه |
+| [filestore_omap_backend](#filestore_omap_backend) | `rocksdb` | Dev | توسعه |
+| [filestore_omap_backend_path](#filestore_omap_backend_path) | `(empty)` | Dev | توسعه |
+| [filestore_omap_header_cache_size](#filestore_omap_header_cache_size) | `1_K` | Dev | توسعه |
+| [filestore_ondisk_finisher_threads](#filestore_ondisk_finisher_threads) | `1` | Dev | توسعه |
+| [filestore_op_thread_suicide_timeout](#filestore_op_thread_suicide_timeout) | `3_min` | Advanced | عملکرد |
+| [filestore_op_thread_timeout](#filestore_op_thread_timeout) | `1_min` | Advanced | عملکرد |
+| [filestore_op_threads](#filestore_op_threads) | `2` | Advanced | عملکرد |
+| [filestore_punch_hole](#filestore_punch_hole) | `False` | Advanced | عملکرد |
+| [filestore_queue_high_delay_multiple](#filestore_queue_high_delay_multiple) | `0` | Dev | توسعه |
+| [filestore_queue_high_delay_multiple_bytes](#filestore_queue_high_delay_multiple_bytes) | `0` | Dev | توسعه |
+| [filestore_queue_high_delay_multiple_ops](#filestore_queue_high_delay_multiple_ops) | `0` | Dev | توسعه |
+| [filestore_queue_high_threshhold](#filestore_queue_high_threshhold) | `0.9` | Dev | توسعه |
+| [filestore_queue_low_threshhold](#filestore_queue_low_threshhold) | `0.3` | Dev | توسعه |
+| [filestore_queue_max_bytes](#filestore_queue_max_bytes) | `100_M` | Advanced | عملکرد |
+| [filestore_queue_max_delay_multiple](#filestore_queue_max_delay_multiple) | `0` | Dev | توسعه |
+| [filestore_queue_max_delay_multiple_bytes](#filestore_queue_max_delay_multiple_bytes) | `0` | Dev | توسعه |
+| [filestore_queue_max_delay_multiple_ops](#filestore_queue_max_delay_multiple_ops) | `0` | Dev | توسعه |
+| [filestore_queue_max_ops](#filestore_queue_max_ops) | `50` | Advanced | عملکرد |
+| [filestore_rocksdb_options](#filestore_rocksdb_options) | `max_background_jobs=10,compaction_readahead_size=2097152,compression=kNoCompression` | Dev | توسعه |
+| [filestore_seek_data_hole](#filestore_seek_data_hole) | `False` | Advanced | عملکرد |
+| [filestore_sloppy_crc](#filestore_sloppy_crc) | `False` | Dev | توسعه |
+| [filestore_sloppy_crc_block_size](#filestore_sloppy_crc_block_size) | `64_K` | Dev | توسعه |
+| [filestore_splice](#filestore_splice) | `False` | Advanced | عملکرد |
+| [filestore_split_multiple](#filestore_split_multiple) | `2` | Dev | توسعه |
+| [filestore_split_rand_factor](#filestore_split_rand_factor) | `20` | Dev | توسعه |
+| [filestore_update_to](#filestore_update_to) | `1000` | Dev | توسعه |
+| [filestore_wbthrottle_btrfs_bytes_hard_limit](#filestore_wbthrottle_btrfs_bytes_hard_limit) | `400_M` | Advanced | عملکرد |
+| [filestore_wbthrottle_btrfs_bytes_start_flusher](#filestore_wbthrottle_btrfs_bytes_start_flusher) | `40_M` | Advanced | عملکرد |
+| [filestore_wbthrottle_btrfs_inodes_hard_limit](#filestore_wbthrottle_btrfs_inodes_hard_limit) | `5000` | Advanced | عملکرد |
+| [filestore_wbthrottle_btrfs_inodes_start_flusher](#filestore_wbthrottle_btrfs_inodes_start_flusher) | `500` | Advanced | عملکرد |
+| [filestore_wbthrottle_btrfs_ios_hard_limit](#filestore_wbthrottle_btrfs_ios_hard_limit) | `5000` | Advanced | عملکرد |
+| [filestore_wbthrottle_btrfs_ios_start_flusher](#filestore_wbthrottle_btrfs_ios_start_flusher) | `500` | Advanced | عملکرد |
+| [filestore_wbthrottle_enable](#filestore_wbthrottle_enable) | `True` | Advanced | سیاست |
+| [filestore_wbthrottle_xfs_bytes_hard_limit](#filestore_wbthrottle_xfs_bytes_hard_limit) | `400_M` | Advanced | عملکرد |
+| [filestore_wbthrottle_xfs_bytes_start_flusher](#filestore_wbthrottle_xfs_bytes_start_flusher) | `40_M` | Advanced | عملکرد |
+| [filestore_wbthrottle_xfs_inodes_hard_limit](#filestore_wbthrottle_xfs_inodes_hard_limit) | `5000` | Advanced | عملکرد |
+| [filestore_wbthrottle_xfs_inodes_start_flusher](#filestore_wbthrottle_xfs_inodes_start_flusher) | `500` | Advanced | عملکرد |
+| [filestore_wbthrottle_xfs_ios_hard_limit](#filestore_wbthrottle_xfs_ios_hard_limit) | `5000` | Advanced | عملکرد |
+| [filestore_wbthrottle_xfs_ios_start_flusher](#filestore_wbthrottle_xfs_ios_start_flusher) | `500` | Advanced | عملکرد |
+| [filestore_xfs_extsize](#filestore_xfs_extsize) | `False` | Advanced | عملکرد |
+| [filestore_zfs_snap](#filestore_zfs_snap) | `False` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -129,7 +129,7 @@ ceph config get global filestore_apply_finisher_threads
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -157,7 +157,7 @@ ceph config get global filestore_blackhole
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -185,7 +185,7 @@ ceph config get global filestore_btrfs_clone_range
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -220,7 +220,7 @@ ceph config get global filestore_btrfs_snap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -248,7 +248,7 @@ ceph config get global filestore_caller_concurrency
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`10`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -276,7 +276,7 @@ ceph config get global filestore_collect_device_partition_information
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -311,7 +311,7 @@ ceph config get global filestore_commit_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -346,7 +346,7 @@ ceph config get global filestore_debug_inject_read_err
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -374,7 +374,7 @@ ceph config get global filestore_debug_omap_check
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -402,7 +402,7 @@ ceph config get global filestore_debug_verify_split
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -430,7 +430,7 @@ ceph config get global filestore_dump_file
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`(empty)`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -458,7 +458,7 @@ ceph config get global filestore_expected_throughput_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `209715200`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -493,7 +493,7 @@ ceph config get global filestore_expected_throughput_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `200`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -528,7 +528,7 @@ ceph config get global filestore_fadvise
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -563,7 +563,7 @@ ceph config get global filestore_fail_eio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -591,7 +591,7 @@ ceph config get global filestore_fd_cache_shards
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`16`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -619,7 +619,7 @@ ceph config get global filestore_fd_cache_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`128`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -647,7 +647,7 @@ ceph config get global filestore_fiemap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -682,7 +682,7 @@ ceph config get global filestore_fiemap_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`4_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -710,7 +710,7 @@ ceph config get global filestore_fsync_flushes_journal_data
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -738,7 +738,7 @@ ceph config get global filestore_index_retry_probability
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -766,7 +766,7 @@ ceph config get global filestore_inject_stall
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -794,7 +794,7 @@ ceph config get global filestore_journal_parallel
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -822,7 +822,7 @@ ceph config get global filestore_journal_trailing
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -850,7 +850,7 @@ ceph config get global filestore_journal_writeahead
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -878,7 +878,7 @@ ceph config get global filestore_kill_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -906,7 +906,7 @@ ceph config get global filestore_max_alloc_hint_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -934,7 +934,7 @@ ceph config get global filestore_max_inline_xattr_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -962,7 +962,7 @@ ceph config get global filestore_max_inline_xattr_size_btrfs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`2_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -990,7 +990,7 @@ ceph config get global filestore_max_inline_xattr_size_other
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`512`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1018,7 +1018,7 @@ ceph config get global filestore_max_inline_xattr_size_xfs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`64_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1046,7 +1046,7 @@ ceph config get global filestore_max_inline_xattrs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1074,7 +1074,7 @@ ceph config get global filestore_max_inline_xattrs_btrfs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`10`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1102,7 +1102,7 @@ ceph config get global filestore_max_inline_xattrs_other
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`2`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1130,7 +1130,7 @@ ceph config get global filestore_max_inline_xattrs_xfs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`10`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1158,7 +1158,7 @@ ceph config get global filestore_max_sync_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1193,7 +1193,7 @@ ceph config get global filestore_max_xattr_value_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1221,7 +1221,7 @@ ceph config get global filestore_max_xattr_value_size_btrfs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`64_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1249,7 +1249,7 @@ ceph config get global filestore_max_xattr_value_size_other
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1277,7 +1277,7 @@ ceph config get global filestore_max_xattr_value_size_xfs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`64_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1305,7 +1305,7 @@ ceph config get global filestore_merge_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`-10`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1333,7 +1333,7 @@ ceph config get global filestore_min_sync_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.01`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1361,7 +1361,7 @@ ceph config get global filestore_odsync_write
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1389,7 +1389,7 @@ ceph config get global filestore_omap_backend
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`rocksdb`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1417,7 +1417,7 @@ ceph config get global filestore_omap_backend_path
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`(empty)`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1445,7 +1445,7 @@ ceph config get global filestore_omap_header_cache_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1473,7 +1473,7 @@ ceph config get global filestore_ondisk_finisher_threads
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1501,7 +1501,7 @@ ceph config get global filestore_op_thread_suicide_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1536,7 +1536,7 @@ ceph config get global filestore_op_thread_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1571,7 +1571,7 @@ ceph config get global filestore_op_threads
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1606,7 +1606,7 @@ ceph config get global filestore_punch_hole
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1641,7 +1641,7 @@ ceph config get global filestore_queue_high_delay_multiple
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1669,7 +1669,7 @@ ceph config get global filestore_queue_high_delay_multiple_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1697,7 +1697,7 @@ ceph config get global filestore_queue_high_delay_multiple_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1725,7 +1725,7 @@ ceph config get global filestore_queue_high_threshhold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.9`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1753,7 +1753,7 @@ ceph config get global filestore_queue_low_threshhold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.3`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1781,7 +1781,7 @@ ceph config get global filestore_queue_max_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1816,7 +1816,7 @@ ceph config get global filestore_queue_max_delay_multiple
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1844,7 +1844,7 @@ ceph config get global filestore_queue_max_delay_multiple_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1872,7 +1872,7 @@ ceph config get global filestore_queue_max_delay_multiple_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1900,7 +1900,7 @@ ceph config get global filestore_queue_max_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `50`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1935,7 +1935,7 @@ ceph config get global filestore_rocksdb_options
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`max_background_jobs=10,compaction_readahead_size=2097152,compression=kNoCompression`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1963,7 +1963,7 @@ ceph config get global filestore_seek_data_hole
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1998,7 +1998,7 @@ ceph config get global filestore_sloppy_crc
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2026,7 +2026,7 @@ ceph config get global filestore_sloppy_crc_block_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`64_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2054,7 +2054,7 @@ ceph config get global filestore_splice
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2089,7 +2089,7 @@ ceph config get global filestore_split_multiple
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`2`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2117,7 +2117,7 @@ ceph config get global filestore_split_rand_factor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`20`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2145,7 +2145,7 @@ ceph config get global filestore_update_to
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1000`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2173,7 +2173,7 @@ ceph config get global filestore_wbthrottle_btrfs_bytes_hard_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `400_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2208,7 +2208,7 @@ ceph config get global filestore_wbthrottle_btrfs_bytes_start_flusher
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `40_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2243,7 +2243,7 @@ ceph config get global filestore_wbthrottle_btrfs_inodes_hard_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2278,7 +2278,7 @@ ceph config get global filestore_wbthrottle_btrfs_inodes_start_flusher
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2313,7 +2313,7 @@ ceph config get global filestore_wbthrottle_btrfs_ios_hard_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2348,7 +2348,7 @@ ceph config get global filestore_wbthrottle_btrfs_ios_start_flusher
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2383,7 +2383,7 @@ ceph config get global filestore_wbthrottle_enable
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -2417,7 +2417,7 @@ ceph config get global filestore_wbthrottle_xfs_bytes_hard_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `400_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2452,7 +2452,7 @@ ceph config get global filestore_wbthrottle_xfs_bytes_start_flusher
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `40_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2487,7 +2487,7 @@ ceph config get global filestore_wbthrottle_xfs_inodes_hard_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2522,7 +2522,7 @@ ceph config get global filestore_wbthrottle_xfs_inodes_start_flusher
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2557,7 +2557,7 @@ ceph config get global filestore_wbthrottle_xfs_ios_hard_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2592,7 +2592,7 @@ ceph config get global filestore_wbthrottle_xfs_ios_start_flusher
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2627,7 +2627,7 @@ ceph config get global filestore_xfs_extsize
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2662,7 +2662,7 @@ ceph config get global filestore_zfs_snap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

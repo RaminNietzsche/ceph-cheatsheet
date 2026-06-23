@@ -4,21 +4,21 @@ Global 配置深度指南 — 5 个选项。[← 概览](../OVERVIEW.md) · [调
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [public_addr](#public_addr) | `(empty)` | Basic | Connectivity |
-| [public_addrv](#public_addrv) | `(empty)` | Basic | Policy |
-| [public_bind_addr](#public_bind_addr) | `(empty)` | Advanced | Connectivity |
-| [public_network](#public_network) | `(empty)` | Advanced | Performance |
-| [public_network_interface](#public_network_interface) | `(empty)` | Advanced | Performance |
+| [public_addr](#public_addr) | `(empty)` | Basic | 连通性 |
+| [public_addrv](#public_addrv) | `(empty)` | Basic | 策略 |
+| [public_bind_addr](#public_bind_addr) | `(empty)` | Advanced | 连通性 |
+| [public_network](#public_network) | `(empty)` | Advanced | 性能 |
+| [public_network_interface](#public_network_interface) | `(empty)` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -50,7 +50,7 @@ ceph config get global public_addr
 
 **寻找最优值：**
 
-**调优模型：** Connectivity
+**调优模型：** 连通性
 
 1. 列出环境中的候选端点。
 2. 从运行守护进程的每个节点验证可达性。
@@ -85,7 +85,7 @@ ceph config get global public_addrv
 
 **寻找最优值：**
 
-**调优模型：** Policy
+**调优模型：** 策略
 
 1. 记录 `(empty)` 为何符合您的策略。
 2. 仅为兼容性或安全要求而变更。
@@ -117,7 +117,7 @@ ceph config get global public_bind_addr
 
 **寻找最优值：**
 
-**调优模型：** Connectivity
+**调优模型：** 连通性
 
 1. 列出环境中的候选端点。
 2. 从运行守护进程的每个节点验证可达性。
@@ -152,7 +152,7 @@ ceph config get global public_network
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `(empty)` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -187,7 +187,7 @@ ceph config get global public_network_interface
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `(empty)` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

@@ -4,27 +4,27 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mon_pg_check_down_all_threshold](#mon_pg_check_down_all_threshold) | `0.5` | Advanced | Performance |
-| [mon_pg_stuck_threshold](#mon_pg_stuck_threshold) | `1_min` | Advanced | Performance |
-| [mon_pg_warn_max_object_skew](#mon_pg_warn_max_object_skew) | `10` | Advanced | Performance |
-| [mon_pg_warn_min_objects](#mon_pg_warn_min_objects) | `10000` | Advanced | Performance |
-| [mon_pg_warn_min_per_osd](#mon_pg_warn_min_per_osd) | `0` | Advanced | Performance |
-| [mon_pg_warn_min_pool_objects](#mon_pg_warn_min_pool_objects) | `1000` | Advanced | Performance |
-| [mon_pool_quota_crit_threshold](#mon_pool_quota_crit_threshold) | `0` | Advanced | Performance |
-| [mon_pool_quota_warn_threshold](#mon_pool_quota_warn_threshold) | `0` | Advanced | Performance |
-| [mon_target_pg_per_osd](#mon_target_pg_per_osd) | `200` | Advanced | Performance |
-| [mon_warn_on_pool_no_app](#mon_warn_on_pool_no_app) | `True` | Dev | Dev |
-| [mon_warn_on_pool_no_app_grace](#mon_warn_on_pool_no_app_grace) | `5_min` | Dev | Dev |
+| [mon_pg_check_down_all_threshold](#mon_pg_check_down_all_threshold) | `0.5` | Advanced | عملکرد |
+| [mon_pg_stuck_threshold](#mon_pg_stuck_threshold) | `1_min` | Advanced | عملکرد |
+| [mon_pg_warn_max_object_skew](#mon_pg_warn_max_object_skew) | `10` | Advanced | عملکرد |
+| [mon_pg_warn_min_objects](#mon_pg_warn_min_objects) | `10000` | Advanced | عملکرد |
+| [mon_pg_warn_min_per_osd](#mon_pg_warn_min_per_osd) | `0` | Advanced | عملکرد |
+| [mon_pg_warn_min_pool_objects](#mon_pg_warn_min_pool_objects) | `1000` | Advanced | عملکرد |
+| [mon_pool_quota_crit_threshold](#mon_pool_quota_crit_threshold) | `0` | Advanced | عملکرد |
+| [mon_pool_quota_warn_threshold](#mon_pool_quota_warn_threshold) | `0` | Advanced | عملکرد |
+| [mon_target_pg_per_osd](#mon_target_pg_per_osd) | `200` | Advanced | عملکرد |
+| [mon_warn_on_pool_no_app](#mon_warn_on_pool_no_app) | `True` | Dev | توسعه |
+| [mon_warn_on_pool_no_app_grace](#mon_warn_on_pool_no_app_grace) | `5_min` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -56,7 +56,7 @@ ceph config get mon mon_pg_check_down_all_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -92,7 +92,7 @@ ceph config get mon mon_pg_stuck_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -128,7 +128,7 @@ ceph config get mon mon_pg_warn_max_object_skew
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -164,7 +164,7 @@ ceph config get mon mon_pg_warn_min_objects
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -200,7 +200,7 @@ ceph config get mon mon_pg_warn_min_per_osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -236,7 +236,7 @@ ceph config get mon mon_pg_warn_min_pool_objects
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -272,7 +272,7 @@ ceph config get mon mon_pool_quota_crit_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -308,7 +308,7 @@ ceph config get mon mon_pool_quota_warn_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -344,7 +344,7 @@ ceph config get mon mon_target_pg_per_osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `200`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -382,7 +382,7 @@ ceph config get mon mon_warn_on_pool_no_app
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -410,7 +410,7 @@ ceph config get mon mon_warn_on_pool_no_app_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5_min`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

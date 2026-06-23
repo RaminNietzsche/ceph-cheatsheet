@@ -4,24 +4,24 @@ RBD 配置深度指南 — 8 个选项。[← 概览](../OVERVIEW.md) · [调优
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rbd_cache_block_writes_upfront](#rbd_cache_block_writes_upfront) | `False` | Advanced | Performance |
-| [rbd_cache_max_dirty](#rbd_cache_max_dirty) | `24_M` | Advanced | Performance |
-| [rbd_cache_max_dirty_age](#rbd_cache_max_dirty_age) | `1` | Advanced | Performance |
-| [rbd_cache_max_dirty_object](#rbd_cache_max_dirty_object) | `0` | Advanced | Performance |
-| [rbd_cache_policy](#rbd_cache_policy) | `writearound` | Advanced | Performance |
-| [rbd_cache_size](#rbd_cache_size) | `32_M` | Advanced | Performance |
-| [rbd_cache_target_dirty](#rbd_cache_target_dirty) | `16_M` | Advanced | Performance |
-| [rbd_cache_writethrough_until_flush](#rbd_cache_writethrough_until_flush) | `True` | Advanced | Performance |
+| [rbd_cache_block_writes_upfront](#rbd_cache_block_writes_upfront) | `False` | Advanced | 性能 |
+| [rbd_cache_max_dirty](#rbd_cache_max_dirty) | `24_M` | Advanced | 性能 |
+| [rbd_cache_max_dirty_age](#rbd_cache_max_dirty_age) | `1` | Advanced | 性能 |
+| [rbd_cache_max_dirty_object](#rbd_cache_max_dirty_object) | `0` | Advanced | 性能 |
+| [rbd_cache_policy](#rbd_cache_policy) | `writearound` | Advanced | 性能 |
+| [rbd_cache_size](#rbd_cache_size) | `32_M` | Advanced | 性能 |
+| [rbd_cache_target_dirty](#rbd_cache_target_dirty) | `16_M` | Advanced | 性能 |
+| [rbd_cache_writethrough_until_flush](#rbd_cache_writethrough_until_flush) | `True` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -53,7 +53,7 @@ ceph config get client rbd_cache_block_writes_upfront
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -89,7 +89,7 @@ ceph config get client rbd_cache_max_dirty
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `24_M` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -125,7 +125,7 @@ ceph config get client rbd_cache_max_dirty_age
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `1` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -161,7 +161,7 @@ ceph config get client rbd_cache_max_dirty_object
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -197,7 +197,7 @@ ceph config get client rbd_cache_policy
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `writearound` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -233,7 +233,7 @@ ceph config get client rbd_cache_size
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `32_M` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -269,7 +269,7 @@ ceph config get client rbd_cache_target_dirty
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `16_M` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -305,7 +305,7 @@ ceph config get client rbd_cache_writethrough_until_flush
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

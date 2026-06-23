@@ -4,19 +4,19 @@ Global 配置深度指南 — 3 个选项。[← 概览](../OVERVIEW.md) · [调
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [cluster_addr](#cluster_addr) | `(empty)` | Basic | Connectivity |
-| [cluster_network](#cluster_network) | `(empty)` | Advanced | Performance |
-| [cluster_network_interface](#cluster_network_interface) | `(empty)` | Advanced | Performance |
+| [cluster_addr](#cluster_addr) | `(empty)` | Basic | 连通性 |
+| [cluster_network](#cluster_network) | `(empty)` | Advanced | 性能 |
+| [cluster_network_interface](#cluster_network_interface) | `(empty)` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -48,7 +48,7 @@ ceph config get global cluster_addr
 
 **寻找最优值：**
 
-**调优模型：** Connectivity
+**调优模型：** 连通性
 
 1. 列出环境中的候选端点。
 2. 从运行守护进程的每个节点验证可达性。
@@ -83,7 +83,7 @@ ceph config get global cluster_network
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `(empty)` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -118,7 +118,7 @@ ceph config get global cluster_network_interface
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `(empty)` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

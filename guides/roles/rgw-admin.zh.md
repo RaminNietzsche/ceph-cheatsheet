@@ -1,6 +1,6 @@
 # RGW 管理员
 
-<span class="badge badge-role-rgw">RGW admin</span> 管理 RADOS Gateway — S3/Swift、用户、bucket、配额与多站点。
+<span class="badge badge-role-rgw">RGW 管理员</span> 管理 RADOS Gateway — S3/Swift、用户、bucket、配额与多站点。
 
 ## 日常命令
 
@@ -34,11 +34,23 @@ ceph config show client.rgw.<instance>
 
 ## 常见工作流
 
+**创建用户：**
+
 ```bash
 radosgw-admin user create --uid=alice --display-name="Alice"
 radosgw-admin key create --uid=alice --key-type=s3 --gen-access-key --gen-secret
+```
+
+**多站点 period 更新：**
+
+```bash
 radosgw-admin period update --commit
 radosgw-admin sync status
+```
+
+**部署 RGW（cephadm）：**
+
+```bash
 ceph orch apply rgw myrgw --placement="2 host1 host2" --port=8080
 ```
 
@@ -46,8 +58,8 @@ ceph orch apply rgw myrgw --placement="2 host1 host2" --port=8080
 
 | 规模 | 重点 |
 |------|------|
-| [Small production](../scales/small-production.md) | 单 zone |
-| [Multisite](../scales/multisite.md) | realm/zone、同步延迟 |
-| [Large production](../scales/large-production.md) | 多 RGW、缓存调优 |
+| [小型生产](../scales/small-production.md) | 单 zone、本地缓存 |
+| [多站点](../scales/multisite.md) | realm/zone、同步延迟 |
+| [大型生产](../scales/large-production.md) | 多 RGW、缓存调优 |
 
 [← 指南概览](../OVERVIEW.md)

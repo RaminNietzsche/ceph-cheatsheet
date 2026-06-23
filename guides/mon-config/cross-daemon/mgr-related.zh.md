@@ -4,22 +4,22 @@ MON 配置深度指南 — 6 个选项。[← 概览](../OVERVIEW.md) · [调优
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [mon_mgr_beacon_grace](#mon_mgr_beacon_grace) | `30` | Advanced | Performance |
-| [mon_mgr_blocklist_interval](#mon_mgr_blocklist_interval) | `1_day` | Dev | Dev |
-| [mon_mgr_digest_period](#mon_mgr_digest_period) | `5` | Dev | Dev |
-| [mon_mgr_inactive_grace](#mon_mgr_inactive_grace) | `1_min` | Advanced | Performance |
-| [mon_mgr_mkfs_grace](#mon_mgr_mkfs_grace) | `2_min` | Advanced | Performance |
-| [mon_mgr_proxy_client_bytes_ratio](#mon_mgr_proxy_client_bytes_ratio) | `0.3` | Dev | Dev |
+| [mon_mgr_beacon_grace](#mon_mgr_beacon_grace) | `30` | Advanced | 性能 |
+| [mon_mgr_blocklist_interval](#mon_mgr_blocklist_interval) | `1_day` | Dev | 开发 |
+| [mon_mgr_digest_period](#mon_mgr_digest_period) | `5` | Dev | 开发 |
+| [mon_mgr_inactive_grace](#mon_mgr_inactive_grace) | `1_min` | Advanced | 性能 |
+| [mon_mgr_mkfs_grace](#mon_mgr_mkfs_grace) | `2_min` | Advanced | 性能 |
+| [mon_mgr_proxy_client_bytes_ratio](#mon_mgr_proxy_client_bytes_ratio) | `0.3` | Dev | 开发 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -51,7 +51,7 @@ ceph config get mon mon_mgr_beacon_grace
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `30` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -87,7 +87,7 @@ ceph config get mon mon_mgr_blocklist_interval
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`1_day`）。
 2. 仅在实验室复现特定问题时修改。
@@ -115,7 +115,7 @@ ceph config get mon mon_mgr_digest_period
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`5`）。
 2. 仅在实验室复现特定问题时修改。
@@ -143,7 +143,7 @@ ceph config get mon mon_mgr_inactive_grace
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `1_min` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -179,7 +179,7 @@ ceph config get mon mon_mgr_mkfs_grace
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `2_min` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -215,7 +215,7 @@ ceph config get mon mon_mgr_proxy_client_bytes_ratio
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`0.3`）。
 2. 仅在实验室复现特定问题时修改。

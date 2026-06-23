@@ -1,10 +1,8 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# 配置命令
 
-# Configuration Commands
+运行时配置存储在 Monitor 配置库中。选项名、默认值与标志见 [配置参考](../config/OVERVIEW.md)。
 
-Runtime config is stored in the monitor config database. See the [config reference](../config/OVERVIEW.md) for option names, defaults, and flags.
-
-## Read config
+## 读取配置
 
 ```bash
 ceph config show <who>                 # effective config for a daemon
@@ -14,9 +12,9 @@ ceph config dump                       # entire config database
 ceph config help <option>              # option metadata (if documented)
 ```
 
-`<who>` examples: `global`, `mon`, `osd`, `osd.0`, `mgr`, `mds`, `rgw`, `client.rgw.gateway1`
+`<who>` 示例：`global`、`mon`、`osd`、`osd.0`、`mgr`、`mds`、`rgw`、`client.rgw.gateway1`
 
-## Set config
+## 设置配置
 
 ```bash
 ceph config set <who> <option> <value>
@@ -24,7 +22,7 @@ ceph config rm <who> <option>          # remove override (revert to default)
 ceph config assimilate-conf -i ceph.conf   # import ceph.conf into mon store
 ```
 
-Examples:
+示例：
 
 ```bash
 ceph config set global mon_allow_pool_delete true
@@ -33,17 +31,17 @@ ceph config set mgr debug_mgr 20/5
 ceph config set client.rgw.mygw rgw frontends "beast ssl_port=443"
 ```
 
-## Legacy / injectargs
+## 旧式 / injectargs
 
 ```bash
 ceph tell osd.* injectargs '--debug-osd=10/5'   # temporary (lost on restart)
 ```
 
-Prefer `ceph config set` for persistent changes.
+持久变更请优先使用 `ceph config set`。
 
-## Local ceph.conf
+## 本地 ceph.conf
 
-Bootstrap and local-only options still live in `/etc/ceph/ceph.conf`:
+bootstrap 与仅本地选项仍在 `/etc/ceph/ceph.conf`：
 
 ```ini
 [global]
@@ -57,13 +55,13 @@ Bootstrap and local-only options still live in `/etc/ceph/ceph.conf`:
     osd_memory_target = 4294967296
 ```
 
-Check whether an option supports runtime update: look for the `RUNTIME` flag in the [config tables](../config/OVERVIEW.md).
+是否支持运行时更新：在 [配置表](../config/OVERVIEW.md) 中查看 `RUNTIME` 标志。
 
-## Lookup a config option locally
+## 本地查找配置项
 
 ```bash
 ./scripts/lookup-config.sh osd_max_scrubs
 ./scripts/search-config.sh -s osd scrub
 ```
 
-[← CLI overview](OVERVIEW.md) · [Config reference](../config/OVERVIEW.md)
+[← CLI 概览](OVERVIEW.md) · [配置参考](../config/OVERVIEW.md)

@@ -4,35 +4,35 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mds_bal_fragment_interval](#mds_bal_fragment_interval) | `5` | Advanced | Performance |
-| [mds_bal_interval](#mds_bal_interval) | `10` | Advanced | Performance |
-| [mds_bal_sample_interval](#mds_bal_sample_interval) | `3` | Advanced | Performance |
-| [mds_beacon_interval](#mds_beacon_interval) | `4` | Advanced | Performance |
-| [mds_cache_release_free_interval](#mds_cache_release_free_interval) | `10` | Dev | Dev |
-| [mds_cache_trim_interval](#mds_cache_trim_interval) | `1` | Advanced | Performance |
-| [mds_dirstat_min_interval](#mds_dirstat_min_interval) | `1` | Dev | Dev |
-| [mds_extraordinary_events_dump_interval](#mds_extraordinary_events_dump_interval) | `0` | Advanced | Performance |
-| [mds_freeze_tree_timeout](#mds_freeze_tree_timeout) | `30` | Dev | Dev |
-| [mds_metrics_update_interval](#mds_metrics_update_interval) | `2` | Advanced | Performance |
-| [mds_mon_shutdown_timeout](#mds_mon_shutdown_timeout) | `5` | Advanced | Performance |
-| [mds_ping_interval](#mds_ping_interval) | `5` | Advanced | Performance |
-| [mds_reconnect_timeout](#mds_reconnect_timeout) | `45` | Advanced | Performance |
-| [mds_replay_interval](#mds_replay_interval) | `1` | Advanced | Performance |
-| [mds_scatter_nudge_interval](#mds_scatter_nudge_interval) | `5` | Advanced | Performance |
-| [mds_session_blocklist_on_timeout](#mds_session_blocklist_on_timeout) | `True` | Advanced | Performance |
-| [mds_task_status_update_interval](#mds_task_status_update_interval) | `2` | Dev | Dev |
-| [mds_tick_interval](#mds_tick_interval) | `5` | Advanced | Performance |
-| [subv_metrics_window_interval](#subv_metrics_window_interval) | `30` | Dev | Dev |
+| [mds_bal_fragment_interval](#mds_bal_fragment_interval) | `5` | Advanced | عملکرد |
+| [mds_bal_interval](#mds_bal_interval) | `10` | Advanced | عملکرد |
+| [mds_bal_sample_interval](#mds_bal_sample_interval) | `3` | Advanced | عملکرد |
+| [mds_beacon_interval](#mds_beacon_interval) | `4` | Advanced | عملکرد |
+| [mds_cache_release_free_interval](#mds_cache_release_free_interval) | `10` | Dev | توسعه |
+| [mds_cache_trim_interval](#mds_cache_trim_interval) | `1` | Advanced | عملکرد |
+| [mds_dirstat_min_interval](#mds_dirstat_min_interval) | `1` | Dev | توسعه |
+| [mds_extraordinary_events_dump_interval](#mds_extraordinary_events_dump_interval) | `0` | Advanced | عملکرد |
+| [mds_freeze_tree_timeout](#mds_freeze_tree_timeout) | `30` | Dev | توسعه |
+| [mds_metrics_update_interval](#mds_metrics_update_interval) | `2` | Advanced | عملکرد |
+| [mds_mon_shutdown_timeout](#mds_mon_shutdown_timeout) | `5` | Advanced | عملکرد |
+| [mds_ping_interval](#mds_ping_interval) | `5` | Advanced | عملکرد |
+| [mds_reconnect_timeout](#mds_reconnect_timeout) | `45` | Advanced | عملکرد |
+| [mds_replay_interval](#mds_replay_interval) | `1` | Advanced | عملکرد |
+| [mds_scatter_nudge_interval](#mds_scatter_nudge_interval) | `5` | Advanced | عملکرد |
+| [mds_session_blocklist_on_timeout](#mds_session_blocklist_on_timeout) | `True` | Advanced | عملکرد |
+| [mds_task_status_update_interval](#mds_task_status_update_interval) | `2` | Dev | توسعه |
+| [mds_tick_interval](#mds_tick_interval) | `5` | Advanced | عملکرد |
+| [subv_metrics_window_interval](#subv_metrics_window_interval) | `30` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -64,7 +64,7 @@ ceph config get mds mds_bal_fragment_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -101,7 +101,7 @@ ceph config get mds mds_bal_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -138,7 +138,7 @@ ceph config get mds mds_bal_sample_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -175,7 +175,7 @@ ceph config get mds mds_beacon_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -212,7 +212,7 @@ ceph config get mds mds_cache_release_free_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`10`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -240,7 +240,7 @@ ceph config get mds mds_cache_trim_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -275,7 +275,7 @@ ceph config get mds mds_dirstat_min_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -303,7 +303,7 @@ ceph config get mds mds_extraordinary_events_dump_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -340,7 +340,7 @@ ceph config get mds mds_freeze_tree_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`30`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -368,7 +368,7 @@ ceph config get mds mds_metrics_update_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -405,7 +405,7 @@ ceph config get mds mds_mon_shutdown_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -442,7 +442,7 @@ ceph config get mds mds_ping_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -479,7 +479,7 @@ ceph config get mds mds_reconnect_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `45`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -516,7 +516,7 @@ ceph config get mds mds_replay_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -553,7 +553,7 @@ ceph config get mds mds_scatter_nudge_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -590,7 +590,7 @@ ceph config get mds mds_session_blocklist_on_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -627,7 +627,7 @@ ceph config get mds mds_task_status_update_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`2`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -655,7 +655,7 @@ ceph config get mds mds_tick_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -692,7 +692,7 @@ ceph config get mds subv_metrics_window_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`30`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

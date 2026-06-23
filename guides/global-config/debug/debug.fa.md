@@ -4,21 +4,21 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [debug_asok_assert_abort](#debug_asok_assert_abort) | `False` | Dev | Dev |
-| [debug_asserts_on_shutdown](#debug_asserts_on_shutdown) | `False` | Dev | Dev |
-| [debug_deliberately_leak_memory](#debug_deliberately_leak_memory) | `False` | Dev | Dev |
-| [debug_disable_randomized_ping](#debug_disable_randomized_ping) | `False` | Dev | Dev |
-| [debug_heartbeat_testing_span](#debug_heartbeat_testing_span) | `0` | Dev | Dev |
+| [debug_asok_assert_abort](#debug_asok_assert_abort) | `False` | Dev | توسعه |
+| [debug_asserts_on_shutdown](#debug_asserts_on_shutdown) | `False` | Dev | توسعه |
+| [debug_deliberately_leak_memory](#debug_deliberately_leak_memory) | `False` | Dev | توسعه |
+| [debug_disable_randomized_ping](#debug_disable_randomized_ping) | `False` | Dev | توسعه |
+| [debug_heartbeat_testing_span](#debug_heartbeat_testing_span) | `0` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -50,7 +50,7 @@ ceph config get global debug_asok_assert_abort
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -78,7 +78,7 @@ ceph config get global debug_asserts_on_shutdown
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -104,7 +104,7 @@ ceph config get global debug_deliberately_leak_memory
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -132,7 +132,7 @@ ceph config get global debug_disable_randomized_ping
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -160,7 +160,7 @@ ceph config get global debug_heartbeat_testing_span
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

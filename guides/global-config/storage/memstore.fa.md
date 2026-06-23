@@ -4,20 +4,20 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [memstore_debug_omit_block_device_write](#memstore_debug_omit_block_device_write) | `False` | Dev | Dev |
-| [memstore_device_bytes](#memstore_device_bytes) | `1_G` | Advanced | Performance |
-| [memstore_page_set](#memstore_page_set) | `False` | Advanced | Performance |
-| [memstore_page_size](#memstore_page_size) | `64_K` | Advanced | Performance |
+| [memstore_debug_omit_block_device_write](#memstore_debug_omit_block_device_write) | `False` | Dev | توسعه |
+| [memstore_device_bytes](#memstore_device_bytes) | `1_G` | Advanced | عملکرد |
+| [memstore_page_set](#memstore_page_set) | `False` | Advanced | عملکرد |
+| [memstore_page_size](#memstore_page_size) | `64_K` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -49,7 +49,7 @@ ceph config get global memstore_debug_omit_block_device_write
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -75,7 +75,7 @@ ceph config get global memstore_device_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_G`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -108,7 +108,7 @@ ceph config get global memstore_page_set
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -141,7 +141,7 @@ ceph config get global memstore_page_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

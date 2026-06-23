@@ -4,25 +4,25 @@ MDS 配置深度指南 — 9 个选项。[← 概览](../OVERVIEW.md) · [调优
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [mds_debug_frag](#mds_debug_frag) | `False` | Dev | Dev |
-| [mds_debug_scatterstat](#mds_debug_scatterstat) | `False` | Dev | Dev |
-| [mds_debug_subtrees](#mds_debug_subtrees) | `False` | Dev | Dev |
-| [mds_inject_health_dummy](#mds_inject_health_dummy) | `False` | Dev | Dev |
-| [mds_inject_journal_corrupt_dentry_first](#mds_inject_journal_corrupt_dentry_first) | `0.0` | Dev | Dev |
-| [mds_inject_migrator_session_race](#mds_inject_migrator_session_race) | `False` | Dev | Dev |
-| [mds_inject_rename_corrupt_dentry_first](#mds_inject_rename_corrupt_dentry_first) | `0.0` | Dev | Dev |
-| [mds_inject_skip_replaying_inotable](#mds_inject_skip_replaying_inotable) | `False` | Dev | Dev |
-| [mds_inject_traceless_reply_probability](#mds_inject_traceless_reply_probability) | `0` | Dev | Dev |
+| [mds_debug_frag](#mds_debug_frag) | `False` | Dev | 开发 |
+| [mds_debug_scatterstat](#mds_debug_scatterstat) | `False` | Dev | 开发 |
+| [mds_debug_subtrees](#mds_debug_subtrees) | `False` | Dev | 开发 |
+| [mds_inject_health_dummy](#mds_inject_health_dummy) | `False` | Dev | 开发 |
+| [mds_inject_journal_corrupt_dentry_first](#mds_inject_journal_corrupt_dentry_first) | `0.0` | Dev | 开发 |
+| [mds_inject_migrator_session_race](#mds_inject_migrator_session_race) | `False` | Dev | 开发 |
+| [mds_inject_rename_corrupt_dentry_first](#mds_inject_rename_corrupt_dentry_first) | `0.0` | Dev | 开发 |
+| [mds_inject_skip_replaying_inotable](#mds_inject_skip_replaying_inotable) | `False` | Dev | 开发 |
+| [mds_inject_traceless_reply_probability](#mds_inject_traceless_reply_probability) | `0` | Dev | 开发 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -52,7 +52,7 @@ ceph config get mds mds_debug_frag
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -78,7 +78,7 @@ ceph config get mds mds_debug_scatterstat
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -104,7 +104,7 @@ ceph config get mds mds_debug_subtrees
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -130,7 +130,7 @@ ceph config get mds mds_inject_health_dummy
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -156,7 +156,7 @@ ceph config get mds mds_inject_journal_corrupt_dentry_first
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`0.0`）。
 2. 仅在实验室复现特定问题时修改。
@@ -182,7 +182,7 @@ ceph config get mds mds_inject_migrator_session_race
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -208,7 +208,7 @@ ceph config get mds mds_inject_rename_corrupt_dentry_first
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`0.0`）。
 2. 仅在实验室复现特定问题时修改。
@@ -234,7 +234,7 @@ ceph config get mds mds_inject_skip_replaying_inotable
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -260,7 +260,7 @@ ceph config get mds mds_inject_traceless_reply_probability
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`0`）。
 2. 仅在实验室复现特定问题时修改。

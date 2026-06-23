@@ -1,5 +1,5 @@
-site_name: Ceph Cheatsheet
-site_description: Offline Ceph CLI and configuration reference
+site_name: Ceph Docs Hub
+site_description: Ceph cheatsheet, RGW architecture, and developer documentation
 site_url: http://blog.ceph-s3.ir/cheatsheet/
 repo_url: https://github.com/RaminNietzsche/ceph-cheatsheet
 repo_name: RaminNietzsche/ceph-cheatsheet
@@ -45,6 +45,9 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+
 plugins:
   - search:
       lang:
@@ -68,6 +71,9 @@ plugins:
               text: Vazirmatn
           nav_translations:
             Home: خانه
+            Cheatsheet: Cheatsheet
+            Architecture: معماری
+            Develop: توسعه
             Guides: راهنما
             CLI: خط فرمان
             Config: پیکربندی
@@ -87,11 +93,21 @@ plugins:
             "Small production": محیط عملیاتی کوچک
             "Large production": محیط عملیاتی بزرگ
             Multisite: چندسایته
+            "OSD & pools": OSD و pool
+            RADOS: RADOS
+            RBD: RBD
+            RGW: RGW
+            CephFS: CephFS
+            Cephadm: Cephadm
+            Troubleshooting: عیب‌یابی
         - locale: zh
           name: 中文
           build: true
           nav_translations:
             Home: 首页
+            Cheatsheet: 速查表
+            Architecture: 架构
+            Develop: 开发
             Guides: 指南
             CLI: 命令行
             Config: 配置
@@ -100,6 +116,24 @@ plugins:
             "Config lookup": 配置查找
             Contributing: 贡献
             "Config deep dives": 配置深度指南
+            "By role": 按角色
+            "By scale": 按规模
+            "Cluster admin": 集群管理员
+            "Storage operator": 存储运维
+            "RGW admin": RGW 管理员
+            "CephFS admin": CephFS 管理员
+            Lab: 实验室
+            "Small production": 小型生产
+            "Large production": 大型生产
+            Multisite: 多站点
+            Cluster: 集群
+            "OSD & pools": OSD 与池
+            RADOS: RADOS
+            RBD: RBD
+            RGW: RGW
+            CephFS: CephFS
+            Cephadm: Cephadm
+            Troubleshooting: 故障排查
   - redirects:
       redirect_maps:
         # rgw-redirects:start
@@ -230,7 +264,11 @@ markdown_extensions:
       permalink: true
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
@@ -238,360 +276,389 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Guides:
-    - Overview: guides/OVERVIEW.md
-    - Quick start: guides/quickstart.md
-    - Config lookup: guides/config-lookup.md
-    # config-guides-nav:start
-    - Config deep dives:
+  - Cheatsheet:
+    - Overview: cheatsheet/OVERVIEW.md
+    - Guides:
+      - Overview: guides/OVERVIEW.md
+      - Quick start: guides/quickstart.md
+      - Config lookup: guides/config-lookup.md
+      # config-guides-nav:start
+      - Config deep dives:
     # rgw-nav:start
-      - RGW config deep dive:
-        - Start here:
-          - Overview: guides/rgw-config/OVERVIEW.md
-          - Tuning quick reference: guides/rgw-config/TUNING.md
-        - Core gateway:
-          - Frontends & HTTP stack: guides/rgw-config/core-gateway/frontends.md
-          - Feature toggles: guides/rgw-config/core-gateway/feature-toggles.md
-          - Scheduler & dmclock: guides/rgw-config/core-gateway/scheduler-dmclock.md
-          - HTTP compatibility: guides/rgw-config/core-gateway/http-compat.md
-          - Core runtime: guides/rgw-config/core-gateway/core-runtime.md
-        - Performance & I/O:
-          - Concurrency & RADOS I/O: guides/rgw-config/performance-io/performance-tuning.md
-          - Object read/write windows: guides/rgw-config/performance-io/object-io.md
-          - Multipart & copy: guides/rgw-config/performance-io/multipart-copy.md
-          - Metadata & object caches: guides/rgw-config/performance-io/caching.md
-          - Timeouts & intervals: guides/rgw-config/performance-io/timeouts-intervals.md
-          - Listing limits: guides/rgw-config/performance-io/limits-listing.md
-        - Buckets & data lifecycle:
-          - Bucket operations: guides/rgw-config/buckets-lifecycle/bucket-ops.md
-          - Bucket index & sharding: guides/rgw-config/buckets-lifecycle/index-sharding.md
-          - Dynamic resharding: guides/rgw-config/buckets-lifecycle/resharding.md
-          - Object expiry hints: guides/rgw-config/buckets-lifecycle/object-expiry.md
-          - Garbage collection: guides/rgw-config/buckets-lifecycle/garbage-collection.md
-          - Lifecycle (LC): guides/rgw-config/buckets-lifecycle/lifecycle.md
-        - Tenants & quotas:
-          - Quota sync & defaults: guides/rgw-config/tenants-quotas/quotas.md
-          - Users & per-user settings: guides/rgw-config/tenants-quotas/users-quotas.md
-        - Multisite:
-          - Zones, realm & region: guides/rgw-config/multisite/multisite-zones.md
-          - Replication & sync: guides/rgw-config/multisite/multisite-sync.md
-          - REST connections: guides/rgw-config/multisite/rest-connections.md
-        - Security & authentication:
-          - Encryption & KMS: guides/rgw-config/security-auth/encryption.md
-          - Keystone & STS: guides/rgw-config/security-auth/keystone-sts.md
-          - LDAP: guides/rgw-config/security-auth/ldap.md
-          - OPA authorization: guides/rgw-config/security-auth/opa-authz.md
-          - Swift API: guides/rgw-config/security-auth/swift.md
-          - S3 API & auth: guides/rgw-config/security-auth/s3-api.md
-        - Notifications:
-          - Bucket notifications: guides/rgw-config/notifications/notifications.md
-        - Logging & admin:
-          - Access & object logging: guides/rgw-config/logging-admin/logging.md
-          - Ops logging: guides/rgw-config/logging-admin/ops-logging.md
-          - Usage logging: guides/rgw-config/logging-admin/usage-logging.md
-          - Admin CORS: guides/rgw-config/logging-admin/admin-cors.md
-          - API limits & policies: guides/rgw-config/logging-admin/api-limits.md
-        - Extensions:
-          - NFS gateway: guides/rgw-config/extensions/nfs.md
-          - Lua scripting: guides/rgw-config/extensions/lua.md
-          - BitTorrent: guides/rgw-config/extensions/torrent.md
-          - HTTP / libcurl: guides/rgw-config/extensions/http-curl.md
-        - Experimental & debug:
-          - Experimental backends: guides/rgw-config/experimental-debug/experimental-backends.md
-          - Motr backend: guides/rgw-config/experimental-debug/motr-experimental.md
-          - POSIX backend: guides/rgw-config/experimental-debug/posix-experimental.md
-          - D4N / D3N cache: guides/rgw-config/experimental-debug/d4n-cache.md
-          - Debug & fault injection: guides/rgw-config/experimental-debug/debug-inject.md
+        - RGW config deep dive:
+          - Start here:
+            - Overview: guides/rgw-config/OVERVIEW.md
+            - Tuning quick reference: guides/rgw-config/TUNING.md
+          - Core gateway:
+            - Frontends & HTTP stack: guides/rgw-config/core-gateway/frontends.md
+            - Feature toggles: guides/rgw-config/core-gateway/feature-toggles.md
+            - Scheduler & dmclock: guides/rgw-config/core-gateway/scheduler-dmclock.md
+            - HTTP compatibility: guides/rgw-config/core-gateway/http-compat.md
+            - Core runtime: guides/rgw-config/core-gateway/core-runtime.md
+          - Performance & I/O:
+            - Concurrency & RADOS I/O: guides/rgw-config/performance-io/performance-tuning.md
+            - Object read/write windows: guides/rgw-config/performance-io/object-io.md
+            - Multipart & copy: guides/rgw-config/performance-io/multipart-copy.md
+            - Metadata & object caches: guides/rgw-config/performance-io/caching.md
+            - Timeouts & intervals: guides/rgw-config/performance-io/timeouts-intervals.md
+            - Listing limits: guides/rgw-config/performance-io/limits-listing.md
+          - Buckets & data lifecycle:
+            - Bucket operations: guides/rgw-config/buckets-lifecycle/bucket-ops.md
+            - Bucket index & sharding: guides/rgw-config/buckets-lifecycle/index-sharding.md
+            - Dynamic resharding: guides/rgw-config/buckets-lifecycle/resharding.md
+            - Object expiry hints: guides/rgw-config/buckets-lifecycle/object-expiry.md
+            - Garbage collection: guides/rgw-config/buckets-lifecycle/garbage-collection.md
+            - Lifecycle (LC): guides/rgw-config/buckets-lifecycle/lifecycle.md
+          - Tenants & quotas:
+            - Quota sync & defaults: guides/rgw-config/tenants-quotas/quotas.md
+            - Users & per-user settings: guides/rgw-config/tenants-quotas/users-quotas.md
+          - Multisite:
+            - Zones, realm & region: guides/rgw-config/multisite/multisite-zones.md
+            - Replication & sync: guides/rgw-config/multisite/multisite-sync.md
+            - REST connections: guides/rgw-config/multisite/rest-connections.md
+          - Security & authentication:
+            - Encryption & KMS: guides/rgw-config/security-auth/encryption.md
+            - Keystone & STS: guides/rgw-config/security-auth/keystone-sts.md
+            - LDAP: guides/rgw-config/security-auth/ldap.md
+            - OPA authorization: guides/rgw-config/security-auth/opa-authz.md
+            - Swift API: guides/rgw-config/security-auth/swift.md
+            - S3 API & auth: guides/rgw-config/security-auth/s3-api.md
+          - Notifications:
+            - Bucket notifications: guides/rgw-config/notifications/notifications.md
+          - Logging & admin:
+            - Access & object logging: guides/rgw-config/logging-admin/logging.md
+            - Ops logging: guides/rgw-config/logging-admin/ops-logging.md
+            - Usage logging: guides/rgw-config/logging-admin/usage-logging.md
+            - Admin CORS: guides/rgw-config/logging-admin/admin-cors.md
+            - API limits & policies: guides/rgw-config/logging-admin/api-limits.md
+          - Extensions:
+            - NFS gateway: guides/rgw-config/extensions/nfs.md
+            - Lua scripting: guides/rgw-config/extensions/lua.md
+            - BitTorrent: guides/rgw-config/extensions/torrent.md
+            - HTTP / libcurl: guides/rgw-config/extensions/http-curl.md
+          - Experimental & debug:
+            - Experimental backends: guides/rgw-config/experimental-debug/experimental-backends.md
+            - Motr backend: guides/rgw-config/experimental-debug/motr-experimental.md
+            - POSIX backend: guides/rgw-config/experimental-debug/posix-experimental.md
+            - D4N / D3N cache: guides/rgw-config/experimental-debug/d4n-cache.md
+            - Debug & fault injection: guides/rgw-config/experimental-debug/debug-inject.md
 # rgw-nav:end
     # osd-nav:start
-      - OSD config deep dive:
-        - Start here:
-          - Overview: guides/osd-config/OVERVIEW.md
-          - Tuning quick reference: guides/osd-config/TUNING.md
-        - Recovery & backfill:
-          - Recovery & backfill: guides/osd-config/recovery/recovery.md
-        - Scrub:
-          - Scrub: guides/osd-config/scrub/scrub.md
-        - mClock scheduler:
-          - mClock scheduler: guides/osd-config/mclock/mclock.md
-        - Limits & intervals:
-          - Limits & caps: guides/osd-config/limits-intervals/limits.md
-          - Intervals & throttling: guides/osd-config/limits-intervals/intervals.md
-        - Runtime & paths:
-          - Paths & data dirs: guides/osd-config/runtime/paths.md
-          - Cache agent: guides/osd-config/runtime/agent.md
-          - Object classes: guides/osd-config/runtime/classes.md
-          - CRUSH & weight: guides/osd-config/runtime/crush.md
-          - General runtime: guides/osd-config/runtime/general.md
-        - Debug:
-          - Debug & injection: guides/osd-config/debug/debug.md
+        - OSD config deep dive:
+          - Start here:
+            - Overview: guides/osd-config/OVERVIEW.md
+            - Tuning quick reference: guides/osd-config/TUNING.md
+          - Recovery & backfill:
+            - Recovery & backfill: guides/osd-config/recovery/recovery.md
+          - Scrub:
+            - Scrub: guides/osd-config/scrub/scrub.md
+          - mClock scheduler:
+            - mClock scheduler: guides/osd-config/mclock/mclock.md
+          - Limits & intervals:
+            - Limits & caps: guides/osd-config/limits-intervals/limits.md
+            - Intervals & throttling: guides/osd-config/limits-intervals/intervals.md
+          - Runtime & paths:
+            - Paths & data dirs: guides/osd-config/runtime/paths.md
+            - Cache agent: guides/osd-config/runtime/agent.md
+            - Object classes: guides/osd-config/runtime/classes.md
+            - CRUSH & weight: guides/osd-config/runtime/crush.md
+            - General runtime: guides/osd-config/runtime/general.md
+          - Debug:
+            - Debug & injection: guides/osd-config/debug/debug.md
 # osd-nav:end
     # mon-nav:start
-      - MON config deep dive:
-        - Start here:
-          - Overview: guides/mon-config/OVERVIEW.md
-          - Tuning quick reference: guides/mon-config/TUNING.md
-        - Quorum & Paxos:
-          - Quorum & Paxos: guides/mon-config/quorum/quorum-paxos.md
-        - PG & pool health:
-          - PG & pool health: guides/mon-config/pg-pool/pg-pool.md
-        - Logging & backup:
-          - Cluster logging: guides/mon-config/logging/logging.md
-          - Monitor backup: guides/mon-config/logging/backup.md
-        - Cross-daemon:
-          - OSD-related settings: guides/mon-config/cross-daemon/osd-related.md
-          - MGR-related settings: guides/mon-config/cross-daemon/mgr-related.md
-          - MDS-related settings: guides/mon-config/cross-daemon/mds-related.md
-        - Auth & runtime:
-          - Auth & caps: guides/mon-config/runtime/auth.md
-          - Intervals & timeouts: guides/mon-config/runtime/intervals.md
-          - Paths & storage: guides/mon-config/runtime/paths.md
-          - General monitor: guides/mon-config/runtime/general.md
+        - MON config deep dive:
+          - Start here:
+            - Overview: guides/mon-config/OVERVIEW.md
+            - Tuning quick reference: guides/mon-config/TUNING.md
+          - Quorum & Paxos:
+            - Quorum & Paxos: guides/mon-config/quorum/quorum-paxos.md
+          - PG & pool health:
+            - PG & pool health: guides/mon-config/pg-pool/pg-pool.md
+          - Logging & backup:
+            - Cluster logging: guides/mon-config/logging/logging.md
+            - Monitor backup: guides/mon-config/logging/backup.md
+          - Cross-daemon:
+            - OSD-related settings: guides/mon-config/cross-daemon/osd-related.md
+            - MGR-related settings: guides/mon-config/cross-daemon/mgr-related.md
+            - MDS-related settings: guides/mon-config/cross-daemon/mds-related.md
+          - Auth & runtime:
+            - Auth & caps: guides/mon-config/runtime/auth.md
+            - Intervals & timeouts: guides/mon-config/runtime/intervals.md
+            - Paths & storage: guides/mon-config/runtime/paths.md
+            - General monitor: guides/mon-config/runtime/general.md
 # mon-nav:end
     # mgr-nav:start
-      - MGR config deep dive:
-        - Start here:
-          - Overview: guides/mgr-config/OVERVIEW.md
-          - Tuning quick reference: guides/mgr-config/TUNING.md
-        - Modules & cephadm:
-          - Manager & cephadm modules: guides/mgr-config/modules/mgr-modules.md
-        - Cluster settings:
-          - PG & pool settings: guides/mgr-config/cluster/pg-pool.md
-          - Intervals: guides/mgr-config/cluster/intervals.md
-          - General manager: guides/mgr-config/cluster/general.md
+        - MGR config deep dive:
+          - Start here:
+            - Overview: guides/mgr-config/OVERVIEW.md
+            - Tuning quick reference: guides/mgr-config/TUNING.md
+          - Modules & cephadm:
+            - Manager & cephadm modules: guides/mgr-config/modules/mgr-modules.md
+          - Cluster settings:
+            - PG & pool settings: guides/mgr-config/cluster/pg-pool.md
+            - Intervals: guides/mgr-config/cluster/intervals.md
+            - General manager: guides/mgr-config/cluster/general.md
 # mgr-nav:end
     # mds-nav:start
-      - MDS config deep dive:
-        - Start here:
-          - Overview: guides/mds-config/OVERVIEW.md
-          - Tuning quick reference: guides/mds-config/TUNING.md
-        - Metadata server:
-          - Metadata server core: guides/mds-config/mds-core/mds-core.md
-        - Auth & logging:
-          - Auth & capabilities: guides/mds-config/auth-logging/auth.md
-          - Logging: guides/mds-config/auth-logging/logging.md
-        - Operations:
-          - Intervals: guides/mds-config/ops/intervals.md
-          - Debug: guides/mds-config/ops/debug.md
-          - General: guides/mds-config/ops/general.md
+        - MDS config deep dive:
+          - Start here:
+            - Overview: guides/mds-config/OVERVIEW.md
+            - Tuning quick reference: guides/mds-config/TUNING.md
+          - Metadata server:
+            - Metadata server core: guides/mds-config/mds-core/mds-core.md
+          - Auth & logging:
+            - Auth & capabilities: guides/mds-config/auth-logging/auth.md
+            - Logging: guides/mds-config/auth-logging/logging.md
+          - Operations:
+            - Intervals: guides/mds-config/ops/intervals.md
+            - Debug: guides/mds-config/ops/debug.md
+            - General: guides/mds-config/ops/general.md
 # mds-nav:end
     # mds-client-nav:start
-      - MDS client config deep dive:
-        - Start here:
-          - Overview: guides/mds-client-config/OVERVIEW.md
-          - Tuning quick reference: guides/mds-client-config/TUNING.md
-        - Clients:
-          - CephFS client: guides/mds-client-config/clients/client.md
-          - FUSE client: guides/mds-client-config/clients/fuse.md
-        - Other:
-          - Debug: guides/mds-client-config/other/debug.md
-          - General: guides/mds-client-config/other/general.md
+        - MDS client config deep dive:
+          - Start here:
+            - Overview: guides/mds-client-config/OVERVIEW.md
+            - Tuning quick reference: guides/mds-client-config/TUNING.md
+          - Clients:
+            - CephFS client: guides/mds-client-config/clients/client.md
+            - FUSE client: guides/mds-client-config/clients/fuse.md
+          - Other:
+            - Debug: guides/mds-client-config/other/debug.md
+            - General: guides/mds-client-config/other/general.md
 # mds-client-nav:end
     # global-nav:start
-      - Global config deep dive:
-        - Start here:
-          - Overview: guides/global-config/OVERVIEW.md
-          - Tuning quick reference: guides/global-config/TUNING.md
-        - Storage backends:
-          - Bdev: guides/global-config/storage/bdev.md
-          - Bluefs: guides/global-config/storage/bluefs.md
-          - Bluestore: guides/global-config/storage/bluestore.md
-          - Compressor: guides/global-config/storage/compressor.md
-          - Ec: guides/global-config/storage/ec.md
-          - Erasure: guides/global-config/storage/erasure.md
-          - Filestore: guides/global-config/storage/filestore.md
-          - Journal: guides/global-config/storage/journal.md
-          - Journaler: guides/global-config/storage/journaler.md
-          - Memstore: guides/global-config/storage/memstore.md
-          - Objectstore: guides/global-config/storage/objectstore.md
-          - Qat: guides/global-config/storage/qat.md
-          - Rocksdb: guides/global-config/storage/rocksdb.md
-          - Uadk: guides/global-config/storage/uadk.md
-        - Auth & keys:
-          - Auth: guides/global-config/auth/auth.md
-          - Cephx: guides/global-config/auth/cephx.md
-          - Gss: guides/global-config/auth/gss.md
-          - Key: guides/global-config/auth/key.md
-          - Keyfile: guides/global-config/auth/keyfile.md
-          - Keyring: guides/global-config/auth/keyring.md
-          - Rotating: guides/global-config/auth/rotating.md
-        - Network & I/O:
-          - Heartbeat: guides/global-config/network/heartbeat.md
-          - Ms: guides/global-config/network/ms.md
-          - Objecter: guides/global-config/network/objecter.md
-          - Osdc: guides/global-config/network/osdc.md
-          - Public: guides/global-config/network/public.md
-        - Cluster maps:
-          - Ceph: guides/global-config/cluster/ceph.md
-          - Cluster: guides/global-config/cluster/cluster.md
-          - Crush: guides/global-config/cluster/crush.md
-          - Fsid: guides/global-config/cluster/fsid.md
-          - Mgr: guides/global-config/cluster/mgr.md
-          - Mon: guides/global-config/cluster/mon.md
-          - Monmap: guides/global-config/cluster/monmap.md
-          - Osd: guides/global-config/cluster/osd.md
-          - Rados: guides/global-config/cluster/rados.md
-        - Logging & debug:
-          - Clog: guides/global-config/debug/clog.md
-          - Debug: guides/global-config/debug/debug.md
-          - Err: guides/global-config/debug/err.md
-          - Event: guides/global-config/debug/event.md
-          - Inject: guides/global-config/debug/inject.md
-          - Lockdep: guides/global-config/debug/lockdep.md
-          - Log: guides/global-config/debug/log.md
-          - Perf: guides/global-config/debug/perf.md
-        - Runtime & host:
-          - Admin: guides/global-config/runtime/admin.md
-          - Breakpad: guides/global-config/runtime/breakpad.md
-          - Cephsqlite: guides/global-config/runtime/cephsqlite.md
-          - Chdir: guides/global-config/runtime/chdir.md
-          - Container: guides/global-config/runtime/container.md
-          - Crash: guides/global-config/runtime/crash.md
-          - Daemonize: guides/global-config/runtime/daemonize.md
-          - Device: guides/global-config/runtime/device.md
-          - Enable: guides/global-config/runtime/enable.md
-          - Fatal: guides/global-config/runtime/fatal.md
-          - Filer: guides/global-config/runtime/filer.md
-          - Fio: guides/global-config/runtime/fio.md
-          - Host: guides/global-config/runtime/host.md
-          - Jaeger: guides/global-config/runtime/jaeger.md
-          - Librados: guides/global-config/runtime/librados.md
-          - Max: guides/global-config/runtime/max.md
-          - Mempool: guides/global-config/runtime/mempool.md
-          - No: guides/global-config/runtime/no.md
-          - Openssl: guides/global-config/runtime/openssl.md
-          - Pid: guides/global-config/runtime/pid.md
-          - Plugin: guides/global-config/runtime/plugin.md
-          - Restapi: guides/global-config/runtime/restapi.md
-          - Run: guides/global-config/runtime/run.md
-          - Service: guides/global-config/runtime/service.md
-          - Setgroup: guides/global-config/runtime/setgroup.md
-          - Setuser: guides/global-config/runtime/setuser.md
-          - Target: guides/global-config/runtime/target.md
-          - Thp: guides/global-config/runtime/thp.md
-          - Threadpool: guides/global-config/runtime/threadpool.md
-          - Throttler: guides/global-config/runtime/throttler.md
-          - Tmp: guides/global-config/runtime/tmp.md
+        - Global config deep dive:
+          - Start here:
+            - Overview: guides/global-config/OVERVIEW.md
+            - Tuning quick reference: guides/global-config/TUNING.md
+          - Storage backends:
+            - Bdev: guides/global-config/storage/bdev.md
+            - Bluefs: guides/global-config/storage/bluefs.md
+            - Bluestore: guides/global-config/storage/bluestore.md
+            - Compressor: guides/global-config/storage/compressor.md
+            - Ec: guides/global-config/storage/ec.md
+            - Erasure: guides/global-config/storage/erasure.md
+            - Filestore: guides/global-config/storage/filestore.md
+            - Journal: guides/global-config/storage/journal.md
+            - Journaler: guides/global-config/storage/journaler.md
+            - Memstore: guides/global-config/storage/memstore.md
+            - Objectstore: guides/global-config/storage/objectstore.md
+            - Qat: guides/global-config/storage/qat.md
+            - Rocksdb: guides/global-config/storage/rocksdb.md
+            - Uadk: guides/global-config/storage/uadk.md
+          - Auth & keys:
+            - Auth: guides/global-config/auth/auth.md
+            - Cephx: guides/global-config/auth/cephx.md
+            - Gss: guides/global-config/auth/gss.md
+            - Key: guides/global-config/auth/key.md
+            - Keyfile: guides/global-config/auth/keyfile.md
+            - Keyring: guides/global-config/auth/keyring.md
+            - Rotating: guides/global-config/auth/rotating.md
+          - Network & I/O:
+            - Heartbeat: guides/global-config/network/heartbeat.md
+            - Ms: guides/global-config/network/ms.md
+            - Objecter: guides/global-config/network/objecter.md
+            - Osdc: guides/global-config/network/osdc.md
+            - Public: guides/global-config/network/public.md
+          - Cluster maps:
+            - Ceph: guides/global-config/cluster/ceph.md
+            - Cluster: guides/global-config/cluster/cluster.md
+            - Crush: guides/global-config/cluster/crush.md
+            - Fsid: guides/global-config/cluster/fsid.md
+            - Mgr: guides/global-config/cluster/mgr.md
+            - Mon: guides/global-config/cluster/mon.md
+            - Monmap: guides/global-config/cluster/monmap.md
+            - Osd: guides/global-config/cluster/osd.md
+            - Rados: guides/global-config/cluster/rados.md
+          - Logging & debug:
+            - Clog: guides/global-config/debug/clog.md
+            - Debug: guides/global-config/debug/debug.md
+            - Err: guides/global-config/debug/err.md
+            - Event: guides/global-config/debug/event.md
+            - Inject: guides/global-config/debug/inject.md
+            - Lockdep: guides/global-config/debug/lockdep.md
+            - Log: guides/global-config/debug/log.md
+            - Perf: guides/global-config/debug/perf.md
+          - Runtime & host:
+            - Admin: guides/global-config/runtime/admin.md
+            - Breakpad: guides/global-config/runtime/breakpad.md
+            - Cephsqlite: guides/global-config/runtime/cephsqlite.md
+            - Chdir: guides/global-config/runtime/chdir.md
+            - Container: guides/global-config/runtime/container.md
+            - Crash: guides/global-config/runtime/crash.md
+            - Daemonize: guides/global-config/runtime/daemonize.md
+            - Device: guides/global-config/runtime/device.md
+            - Enable: guides/global-config/runtime/enable.md
+            - Fatal: guides/global-config/runtime/fatal.md
+            - Filer: guides/global-config/runtime/filer.md
+            - Fio: guides/global-config/runtime/fio.md
+            - Host: guides/global-config/runtime/host.md
+            - Jaeger: guides/global-config/runtime/jaeger.md
+            - Librados: guides/global-config/runtime/librados.md
+            - Max: guides/global-config/runtime/max.md
+            - Mempool: guides/global-config/runtime/mempool.md
+            - No: guides/global-config/runtime/no.md
+            - Openssl: guides/global-config/runtime/openssl.md
+            - Pid: guides/global-config/runtime/pid.md
+            - Plugin: guides/global-config/runtime/plugin.md
+            - Restapi: guides/global-config/runtime/restapi.md
+            - Run: guides/global-config/runtime/run.md
+            - Service: guides/global-config/runtime/service.md
+            - Setgroup: guides/global-config/runtime/setgroup.md
+            - Setuser: guides/global-config/runtime/setuser.md
+            - Target: guides/global-config/runtime/target.md
+            - Thp: guides/global-config/runtime/thp.md
+            - Threadpool: guides/global-config/runtime/threadpool.md
+            - Throttler: guides/global-config/runtime/throttler.md
+            - Tmp: guides/global-config/runtime/tmp.md
 # global-nav:end
     # rbd-nav:start
-      - RBD config deep dive:
-        - Start here:
-          - Overview: guides/rbd-config/OVERVIEW.md
-          - Tuning quick reference: guides/rbd-config/TUNING.md
-        - Performance:
-          - Cache: guides/rbd-config/performance/cache.md
-          - Io: guides/rbd-config/performance/io.md
-          - QoS & throttling: guides/rbd-config/performance/qos.md
-          - Readahead: guides/rbd-config/performance/readahead.md
-        - Mirroring & journal:
-          - Journal: guides/rbd-config/mirror/journal.md
-          - Mirroring: guides/rbd-config/mirror/mirroring.md
-        - Defaults & misc:
-          - Atime: guides/rbd-config/misc/atime.md
-          - Auto: guides/rbd-config/misc/auto.md
-          - Balance: guides/rbd-config/misc/balance.md
-          - Blkin: guides/rbd-config/misc/blkin.md
-          - Blocklist: guides/rbd-config/misc/blocklist.md
-          - Clone: guides/rbd-config/misc/clone.md
-          - Compression: guides/rbd-config/misc/compression.md
-          - Concurrent: guides/rbd-config/misc/concurrent.md
-          - Config: guides/rbd-config/misc/config.md
-          - Defaults: guides/rbd-config/misc/default.md
-          - Disable: guides/rbd-config/misc/disable.md
-          - Discard: guides/rbd-config/misc/discard.md
-          - Enable: guides/rbd-config/misc/enable.md
-          - General: guides/rbd-config/misc/general.md
-          - Invalidate: guides/rbd-config/misc/invalidate.md
-          - Localize: guides/rbd-config/misc/localize.md
-          - Move: guides/rbd-config/misc/move.md
-          - Mtime: guides/rbd-config/misc/mtime.md
-          - Non: guides/rbd-config/misc/non.md
-          - Op: guides/rbd-config/misc/op.md
-          - Parent: guides/rbd-config/misc/parent.md
-          - Persistent: guides/rbd-config/misc/persistent.md
-          - Quiesce: guides/rbd-config/misc/quiesce.md
-          - Read: guides/rbd-config/misc/read.md
-          - Request: guides/rbd-config/misc/request.md
-          - Skip: guides/rbd-config/misc/skip.md
-          - Sparse: guides/rbd-config/misc/sparse.md
-          - Validate: guides/rbd-config/misc/validate.md
+        - RBD config deep dive:
+          - Start here:
+            - Overview: guides/rbd-config/OVERVIEW.md
+            - Tuning quick reference: guides/rbd-config/TUNING.md
+          - Performance:
+            - Cache: guides/rbd-config/performance/cache.md
+            - Io: guides/rbd-config/performance/io.md
+            - QoS & throttling: guides/rbd-config/performance/qos.md
+            - Readahead: guides/rbd-config/performance/readahead.md
+          - Mirroring & journal:
+            - Journal: guides/rbd-config/mirror/journal.md
+            - Mirroring: guides/rbd-config/mirror/mirroring.md
+          - Defaults & misc:
+            - Atime: guides/rbd-config/misc/atime.md
+            - Auto: guides/rbd-config/misc/auto.md
+            - Balance: guides/rbd-config/misc/balance.md
+            - Blkin: guides/rbd-config/misc/blkin.md
+            - Blocklist: guides/rbd-config/misc/blocklist.md
+            - Clone: guides/rbd-config/misc/clone.md
+            - Compression: guides/rbd-config/misc/compression.md
+            - Concurrent: guides/rbd-config/misc/concurrent.md
+            - Config: guides/rbd-config/misc/config.md
+            - Defaults: guides/rbd-config/misc/default.md
+            - Disable: guides/rbd-config/misc/disable.md
+            - Discard: guides/rbd-config/misc/discard.md
+            - Enable: guides/rbd-config/misc/enable.md
+            - General: guides/rbd-config/misc/general.md
+            - Invalidate: guides/rbd-config/misc/invalidate.md
+            - Localize: guides/rbd-config/misc/localize.md
+            - Move: guides/rbd-config/misc/move.md
+            - Mtime: guides/rbd-config/misc/mtime.md
+            - Non: guides/rbd-config/misc/non.md
+            - Op: guides/rbd-config/misc/op.md
+            - Parent: guides/rbd-config/misc/parent.md
+            - Persistent: guides/rbd-config/misc/persistent.md
+            - Quiesce: guides/rbd-config/misc/quiesce.md
+            - Read: guides/rbd-config/misc/read.md
+            - Request: guides/rbd-config/misc/request.md
+            - Skip: guides/rbd-config/misc/skip.md
+            - Sparse: guides/rbd-config/misc/sparse.md
+            - Validate: guides/rbd-config/misc/validate.md
 # rbd-nav:end
     # rbd-mirror-nav:start
-      - RBD mirror config deep dive:
-        - Start here:
-          - Overview: guides/rbd-mirror-config/OVERVIEW.md
-          - Tuning quick reference: guides/rbd-mirror-config/TUNING.md
-        - RBD mirror:
-          - RBD mirror: guides/rbd-mirror-config/topics/mirror.md
+        - RBD mirror config deep dive:
+          - Start here:
+            - Overview: guides/rbd-mirror-config/OVERVIEW.md
+            - Tuning quick reference: guides/rbd-mirror-config/TUNING.md
+          - RBD mirror:
+            - RBD mirror: guides/rbd-mirror-config/topics/mirror.md
 # rbd-mirror-nav:end
     # cephfs-mirror-nav:start
-      - CephFS mirror config deep dive:
-        - Start here:
-          - Overview: guides/cephfs-mirror-config/OVERVIEW.md
-          - Tuning quick reference: guides/cephfs-mirror-config/TUNING.md
-        - CephFS mirror:
-          - CephFS mirror: guides/cephfs-mirror-config/topics/mirror.md
+        - CephFS mirror config deep dive:
+          - Start here:
+            - Overview: guides/cephfs-mirror-config/OVERVIEW.md
+            - Tuning quick reference: guides/cephfs-mirror-config/TUNING.md
+          - CephFS mirror:
+            - CephFS mirror: guides/cephfs-mirror-config/topics/mirror.md
 # cephfs-mirror-nav:end
     # crimson-nav:start
-      - Crimson config deep dive:
-        - Start here:
-          - Overview: guides/crimson-config/OVERVIEW.md
-          - Tuning quick reference: guides/crimson-config/TUNING.md
-        - Crimson:
-          - Crimson OSD: guides/crimson-config/topics/crimson.md
-          - Seastore: guides/crimson-config/topics/seastore.md
+        - Crimson config deep dive:
+          - Start here:
+            - Overview: guides/crimson-config/OVERVIEW.md
+            - Tuning quick reference: guides/crimson-config/TUNING.md
+          - Crimson:
+            - Crimson OSD: guides/crimson-config/topics/crimson.md
+            - Seastore: guides/crimson-config/topics/seastore.md
 # crimson-nav:end
     # immutable-cache-nav:start
-      - Immutable cache config deep dive:
-        - Start here:
-          - Overview: guides/immutable-cache-config/OVERVIEW.md
-          - Tuning quick reference: guides/immutable-cache-config/TUNING.md
-        - Immutable cache:
-          - Immutable object cache: guides/immutable-cache-config/topics/immutable.md
+        - Immutable cache config deep dive:
+          - Start here:
+            - Overview: guides/immutable-cache-config/OVERVIEW.md
+            - Tuning quick reference: guides/immutable-cache-config/TUNING.md
+          - Immutable cache:
+            - Immutable object cache: guides/immutable-cache-config/topics/immutable.md
 # immutable-cache-nav:end
     # ceph-exporter-nav:start
-      - Ceph exporter config deep dive:
-        - Start here:
-          - Overview: guides/ceph-exporter-config/OVERVIEW.md
-          - Tuning quick reference: guides/ceph-exporter-config/TUNING.md
-        - Exporter:
-          - ceph-exporter: guides/ceph-exporter-config/topics/exporter.md
+        - Ceph exporter config deep dive:
+          - Start here:
+            - Overview: guides/ceph-exporter-config/OVERVIEW.md
+            - Tuning quick reference: guides/ceph-exporter-config/TUNING.md
+          - Exporter:
+            - ceph-exporter: guides/ceph-exporter-config/topics/exporter.md
 # ceph-exporter-nav:end
     # config-guides-nav:end
-    - Contributing: guides/contributing.md
-    - By role:
-      - Cluster admin: guides/roles/cluster-admin.md
-      - Storage operator: guides/roles/storage-operator.md
-      - RGW admin: guides/roles/rgw-admin.md
-      - CephFS admin: guides/roles/cephfs-admin.md
-    - By scale:
-      - Lab / dev: guides/scales/lab.md
-      - Small production: guides/scales/small-production.md
-      - Large production: guides/scales/large-production.md
-      - Multisite: guides/scales/multisite.md
-  - CLI:
-    - Overview: cli/OVERVIEW.md
-    - Cluster: cli/cluster.md
-    - Config: cli/config.md
-    - OSD & pools: cli/osd-pool.md
-    - RADOS: cli/rados.md
-    - RBD: cli/rbd.md
-    - RGW: cli/rgw.md
-    - CephFS: cli/cephfs.md
-    - Cephadm: cli/cephadm.md
-    - Troubleshooting: cli/troubleshooting.md
-  - Config:
-    - Overview: config/OVERVIEW.md
-    - Global: config/global/INDEX.md
-    - OSD: config/osd/INDEX.md
-    - MON: config/mon/INDEX.md
-    - MGR: config/mgr/INDEX.md
-    - MDS: config/mds/INDEX.md
-    - MDS client: config/mds-client/INDEX.md
-    - RGW: config/rgw/INDEX.md
-    - RBD: config/rbd/INDEX.md
-    - RBD mirror: config/rbd-mirror/INDEX.md
-    - CephFS mirror: config/cephfs-mirror/INDEX.md
-    - Crimson: config/crimson/INDEX.md
-    - Immutable cache: config/immutable-object-cache/INDEX.md
-    - Ceph exporter: config/ceph-exporter/INDEX.md
+      - Contributing: guides/contributing.md
+      - By role:
+        - Cluster admin: guides/roles/cluster-admin.md
+        - Storage operator: guides/roles/storage-operator.md
+        - RGW admin: guides/roles/rgw-admin.md
+        - CephFS admin: guides/roles/cephfs-admin.md
+      - By scale:
+        - Lab / dev: guides/scales/lab.md
+        - Small production: guides/scales/small-production.md
+        - Large production: guides/scales/large-production.md
+        - Multisite: guides/scales/multisite.md
+    - CLI:
+      - Overview: cli/OVERVIEW.md
+      - Cluster: cli/cluster.md
+      - Config: cli/config.md
+      - OSD & pools: cli/osd-pool.md
+      - RADOS: cli/rados.md
+      - RBD: cli/rbd.md
+      - RGW: cli/rgw.md
+      - CephFS: cli/cephfs.md
+      - Cephadm: cli/cephadm.md
+      - Troubleshooting: cli/troubleshooting.md
+    - Config:
+      - Overview: config/OVERVIEW.md
+      - Global: config/global/INDEX.md
+      - OSD: config/osd/INDEX.md
+      - MON: config/mon/INDEX.md
+      - MGR: config/mgr/INDEX.md
+      - MDS: config/mds/INDEX.md
+      - MDS client: config/mds-client/INDEX.md
+      - RGW: config/rgw/INDEX.md
+      - RBD: config/rbd/INDEX.md
+      - RBD mirror: config/rbd-mirror/INDEX.md
+      - CephFS mirror: config/cephfs-mirror/INDEX.md
+      - Crimson: config/crimson/INDEX.md
+      - Immutable cache: config/immutable-object-cache/INDEX.md
+      - Ceph exporter: config/ceph-exporter/INDEX.md
+  - Architecture:
+    - RGW:
+      - Overview: architecture/rgw/OVERVIEW.md
+      - Learning program: architecture/rgw/learning-program/index.md
+      - System design:
+        - System overview: architecture/rgw/architecture/system-overview.md
+        - Request pipeline: architecture/rgw/architecture/request-pipeline.md
+        - Runtime topology: architecture/rgw/architecture/runtime-topology.md
+        - Worker architecture: architecture/rgw/architecture/worker-architecture.md
+        - Scheduling: architecture/rgw/architecture/scheduling-architecture.md
+        - dmclock: architecture/rgw/architecture/dmclock-architecture.md
+        - Rate limits: architecture/rgw/architecture/rate-limit-architecture.md
+        - Object lifecycle: architecture/rgw/architecture/object-lifecycle.md
+        - Deployment: architecture/rgw/architecture/deployment-architecture.md
+        - Observability: architecture/rgw/architecture/observability-overview.md
+        - Sequence diagrams: architecture/rgw/architecture/sequence-diagrams.md
+        - HA gaps: architecture/rgw/architecture/critical-gaps-and-ha-limitations.md
+      - Modules:
+        - Core request path: architecture/rgw/modules/core-request-path.md
+        - SAL layer: architecture/rgw/modules/sal-layer.md
+        - Auth: architecture/rgw/modules/auth.md
+        - RADOS driver: architecture/rgw/modules/rados-driver.md
+        - Services layer: architecture/rgw/modules/services-layer.md
+        - Multisite: architecture/rgw/modules/multisite.md
+        - Protocol APIs: architecture/rgw/modules/protocol-apis.md
+  - Develop:
+    - Overview: develop/OVERVIEW.md

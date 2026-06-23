@@ -148,63 +148,63 @@ finding_intro_table:
 
 finding_policy_row:
   en: "| **Policy** | Security, compatibility, operational defaults |"
-  fa: "| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |"
-  zh: "| **Policy** | 安全、兼容性、运维默认值 |"
+  fa: "| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |"
+  zh: "| **策略** | 安全、兼容性、运维默认值 |"
 
 finding_capacity_row:
   en: "| **Capacity** | Disk layout, paths, sizing |"
-  fa: "| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |"
-  zh: "| **Capacity** | 磁盘布局、路径、容量规划 |"
+  fa: "| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |"
+  zh: "| **容量** | 磁盘布局、路径、容量规划 |"
 
 finding_performance_row:
   en: "| **Performance** | Baseline → incremental change → monitor cluster |"
-  fa: "| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |"
-  zh: "| **Performance** | 基线 → 逐步调整 → 监控集群 |"
+  fa: "| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |"
+  zh: "| **性能** | 基线 → 逐步调整 → 监控集群 |"
 
 finding_connectivity_row:
   en: "| **Connectivity** | Nearest stable external endpoint |"
-  fa: "| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |"
-  zh: "| **Connectivity** | 最近且稳定的外部端点 |"
+  fa: "| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |"
+  zh: "| **连通性** | 最近且稳定的外部端点 |"
 
 finding_dev_row:
   en: "| **Dev** | Keep upstream default in production |"
-  fa: "| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |"
-  zh: "| **Dev** | 生产环境保持 upstream 默认值 |"
+  fa: "| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |"
+  zh: "| **开发** | 生产环境保持 upstream 默认值 |"
 
 finding_architecture_row:
   en: "| **Architecture** | Backend, multisite topology — not numeric sweeps |"
-  fa: "| **Architecture** | backend، توپولوژی چندسایته — نه جستجوی عددی |"
-  zh: "| **Architecture** | 后端、多站点拓扑 — 非数值扫描 |"
+  fa: "| **معماری** | backend، توپولوژی چندسایته — نه جستجوی عددی |"
+  zh: "| **架构** | 后端、多站点拓扑 — 非数值扫描 |"
 
 model_policy:
   en: "Policy"
-  fa: "Policy"
-  zh: "Policy"
+  fa: "سیاست"
+  zh: "策略"
 
 model_capacity:
   en: "Capacity"
-  fa: "Capacity"
-  zh: "Capacity"
+  fa: "ظرفیت"
+  zh: "容量"
 
 model_performance:
   en: "Performance"
-  fa: "Performance"
-  zh: "Performance"
+  fa: "عملکرد"
+  zh: "性能"
 
 model_connectivity:
   en: "Connectivity"
-  fa: "Connectivity"
-  zh: "Connectivity"
+  fa: "اتصال"
+  zh: "连通性"
 
 model_dev:
   en: "Dev"
-  fa: "Dev"
-  zh: "Dev"
+  fa: "توسعه"
+  zh: "开发"
 
 model_architecture:
   en: "Architecture"
-  fa: "Architecture"
-  zh: "Architecture"
+  fa: "معماری"
+  zh: "架构"
 
 signals_default:
   en: "**Signals:** `ceph -s`, slow ops, daemon perf counters, recovery/scrub backlog."
@@ -483,18 +483,18 @@ rgw_quota_note:
 
 finding_policy_rgw_row:
   en: "| **Policy** | Security, API compatibility, tenant limits |"
-  fa: "| **Policy** | امنیت، سازگاری API، محدودیت tenant |"
-  zh: "| **Policy** | 安全、API 兼容性、租户限制 |"
+  fa: "| **سیاست** | امنیت، سازگاری API، محدودیت tenant |"
+  zh: "| **策略** | 安全、API 兼容性、租户限制 |"
 
 finding_capacity_rgw_row:
   en: "| **Capacity** | Disk layout, paths, pool sizing |"
-  fa: "| **Capacity** | چیدمان دیسک، مسیرها، اندازه pool |"
-  zh: "| **Capacity** | 磁盘布局、路径、池容量 |"
+  fa: "| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه pool |"
+  zh: "| **容量** | 磁盘布局、路径、池容量 |"
 
 finding_performance_rgw_row:
   en: "| **Performance** | Baseline → incremental change → monitor OSD/RGW |"
-  fa: "| **Performance** | خط پایه → تغییر تدریجی → پایش OSD/RGW |"
-  zh: "| **Performance** | 基线 → 逐步调整 → 监控 OSD/RGW |"
+  fa: "| **عملکرد** | خط پایه → تغییر تدریجی → پایش OSD/RGW |"
+  zh: "| **性能** | 基线 → 逐步调整 → 监控 OSD/RGW |"
 
 rgw_overview_title:
   en: "# RGW Config Deep Dive — All Options"

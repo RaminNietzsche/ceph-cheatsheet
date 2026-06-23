@@ -4,20 +4,20 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [compressor_zlib_isal](#compressor_zlib_isal) | `False` | Advanced | Performance |
-| [compressor_zlib_level](#compressor_zlib_level) | `5` | Advanced | Performance |
-| [compressor_zlib_winsize](#compressor_zlib_winsize) | `-15` | Advanced | Performance |
-| [compressor_zstd_level](#compressor_zstd_level) | `1` | Advanced | Performance |
+| [compressor_zlib_isal](#compressor_zlib_isal) | `False` | Advanced | عملکرد |
+| [compressor_zlib_level](#compressor_zlib_level) | `5` | Advanced | عملکرد |
+| [compressor_zlib_winsize](#compressor_zlib_winsize) | `-15` | Advanced | عملکرد |
+| [compressor_zstd_level](#compressor_zstd_level) | `1` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -49,7 +49,7 @@ ceph config get global compressor_zlib_isal
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -84,7 +84,7 @@ ceph config get global compressor_zlib_level
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -119,7 +119,7 @@ ceph config get global compressor_zlib_winsize
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `-15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -156,7 +156,7 @@ ceph config get global compressor_zstd_level
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

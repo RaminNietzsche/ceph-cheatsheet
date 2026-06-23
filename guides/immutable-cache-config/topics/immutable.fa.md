@@ -4,29 +4,29 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [immutable_object_cache_client_dedicated_thread_num](#immutable_object_cache_client_dedicated_thread_num) | `2` | Advanced | Performance |
-| [immutable_object_cache_max_inflight_ops](#immutable_object_cache_max_inflight_ops) | `128` | Advanced | Performance |
-| [immutable_object_cache_max_size](#immutable_object_cache_max_size) | `1_G` | Advanced | Performance |
-| [immutable_object_cache_path](#immutable_object_cache_path) | `/tmp/ceph_immutable_object_cache` | Advanced | Capacity |
-| [immutable_object_cache_qos_bps_burst](#immutable_object_cache_qos_bps_burst) | `0` | Advanced | Performance |
-| [immutable_object_cache_qos_bps_burst_seconds](#immutable_object_cache_qos_bps_burst_seconds) | `1` | Advanced | Performance |
-| [immutable_object_cache_qos_bps_limit](#immutable_object_cache_qos_bps_limit) | `0` | Advanced | Performance |
-| [immutable_object_cache_qos_iops_burst](#immutable_object_cache_qos_iops_burst) | `0` | Advanced | Performance |
-| [immutable_object_cache_qos_iops_burst_seconds](#immutable_object_cache_qos_iops_burst_seconds) | `1` | Advanced | Performance |
-| [immutable_object_cache_qos_iops_limit](#immutable_object_cache_qos_iops_limit) | `0` | Advanced | Performance |
-| [immutable_object_cache_qos_schedule_tick_min](#immutable_object_cache_qos_schedule_tick_min) | `50` | Advanced | Performance |
-| [immutable_object_cache_sock](#immutable_object_cache_sock) | `/var/run/ceph/immutable_object_cache_sock` | Advanced | Performance |
-| [immutable_object_cache_watermark](#immutable_object_cache_watermark) | `0.9` | Advanced | Performance |
+| [immutable_object_cache_client_dedicated_thread_num](#immutable_object_cache_client_dedicated_thread_num) | `2` | Advanced | عملکرد |
+| [immutable_object_cache_max_inflight_ops](#immutable_object_cache_max_inflight_ops) | `128` | Advanced | عملکرد |
+| [immutable_object_cache_max_size](#immutable_object_cache_max_size) | `1_G` | Advanced | عملکرد |
+| [immutable_object_cache_path](#immutable_object_cache_path) | `/tmp/ceph_immutable_object_cache` | Advanced | ظرفیت |
+| [immutable_object_cache_qos_bps_burst](#immutable_object_cache_qos_bps_burst) | `0` | Advanced | عملکرد |
+| [immutable_object_cache_qos_bps_burst_seconds](#immutable_object_cache_qos_bps_burst_seconds) | `1` | Advanced | عملکرد |
+| [immutable_object_cache_qos_bps_limit](#immutable_object_cache_qos_bps_limit) | `0` | Advanced | عملکرد |
+| [immutable_object_cache_qos_iops_burst](#immutable_object_cache_qos_iops_burst) | `0` | Advanced | عملکرد |
+| [immutable_object_cache_qos_iops_burst_seconds](#immutable_object_cache_qos_iops_burst_seconds) | `1` | Advanced | عملکرد |
+| [immutable_object_cache_qos_iops_limit](#immutable_object_cache_qos_iops_limit) | `0` | Advanced | عملکرد |
+| [immutable_object_cache_qos_schedule_tick_min](#immutable_object_cache_qos_schedule_tick_min) | `50` | Advanced | عملکرد |
+| [immutable_object_cache_sock](#immutable_object_cache_sock) | `/var/run/ceph/immutable_object_cache_sock` | Advanced | عملکرد |
+| [immutable_object_cache_watermark](#immutable_object_cache_watermark) | `0.9` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -58,7 +58,7 @@ ceph config get immutable_object_cache immutable_object_cache_client_dedicated_t
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -93,7 +93,7 @@ ceph config get immutable_object_cache immutable_object_cache_max_inflight_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -128,7 +128,7 @@ ceph config get immutable_object_cache immutable_object_cache_max_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_G`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -163,7 +163,7 @@ ceph config get immutable_object_cache immutable_object_cache_path
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `/tmp/ceph_immutable_object_cache`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -197,7 +197,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_bps_burst
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -232,7 +232,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_bps_burst_seco
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -269,7 +269,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_bps_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -304,7 +304,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_iops_burst
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -339,7 +339,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_iops_burst_sec
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -376,7 +376,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_iops_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -411,7 +411,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_schedule_tick_
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `50`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -448,7 +448,7 @@ ceph config get immutable_object_cache immutable_object_cache_sock
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `/var/run/ceph/immutable_object_cache_sock`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -483,7 +483,7 @@ ceph config get immutable_object_cache immutable_object_cache_watermark
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.9`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

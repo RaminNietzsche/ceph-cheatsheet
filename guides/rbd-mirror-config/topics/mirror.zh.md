@@ -4,40 +4,40 @@ RBD mirror 配置深度指南 — 24 个选项。[← 概览](../OVERVIEW.md) ·
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rbd_mirror_concurrent_image_deletions](#rbd_mirror_concurrent_image_deletions) | `1` | Advanced | Performance |
-| [rbd_mirror_concurrent_image_syncs](#rbd_mirror_concurrent_image_syncs) | `5` | Advanced | Performance |
-| [rbd_mirror_delete_retry_interval](#rbd_mirror_delete_retry_interval) | `30` | Advanced | Performance |
-| [rbd_mirror_image_perf_stats_prio](#rbd_mirror_image_perf_stats_prio) | `5` | Advanced | Performance |
-| [rbd_mirror_image_policy_migration_throttle](#rbd_mirror_image_policy_migration_throttle) | `300` | Advanced | Performance |
-| [rbd_mirror_image_policy_rebalance_timeout](#rbd_mirror_image_policy_rebalance_timeout) | `0` | Advanced | Performance |
-| [rbd_mirror_image_policy_type](#rbd_mirror_image_policy_type) | `simple` | Advanced | Performance |
-| [rbd_mirror_image_policy_update_throttle_interval](#rbd_mirror_image_policy_update_throttle_interval) | `1` | Advanced | Performance |
-| [rbd_mirror_image_state_check_interval](#rbd_mirror_image_state_check_interval) | `30` | Advanced | Performance |
-| [rbd_mirror_journal_commit_age](#rbd_mirror_journal_commit_age) | `5` | Advanced | Performance |
-| [rbd_mirror_journal_poll_age](#rbd_mirror_journal_poll_age) | `5` | Advanced | Performance |
-| [rbd_mirror_leader_heartbeat_interval](#rbd_mirror_leader_heartbeat_interval) | `5` | Advanced | Performance |
-| [rbd_mirror_leader_max_acquire_attempts_before_break](#rbd_mirror_leader_max_acquire_attempts_before_break) | `3` | Advanced | Performance |
-| [rbd_mirror_leader_max_missed_heartbeats](#rbd_mirror_leader_max_missed_heartbeats) | `2` | Advanced | Performance |
-| [rbd_mirror_memory_autotune](#rbd_mirror_memory_autotune) | `True` | Dev | Dev |
-| [rbd_mirror_memory_base](#rbd_mirror_memory_base) | `768_M` | Dev | Dev |
-| [rbd_mirror_memory_cache_autotune_interval](#rbd_mirror_memory_cache_autotune_interval) | `30` | Dev | Dev |
-| [rbd_mirror_memory_cache_min](#rbd_mirror_memory_cache_min) | `128_M` | Dev | Dev |
-| [rbd_mirror_memory_cache_resize_interval](#rbd_mirror_memory_cache_resize_interval) | `5` | Dev | Dev |
-| [rbd_mirror_memory_expected_fragmentation](#rbd_mirror_memory_expected_fragmentation) | `0.15` | Dev | Dev |
-| [rbd_mirror_memory_target](#rbd_mirror_memory_target) | `4_G` | Basic | Policy |
-| [rbd_mirror_perf_stats_prio](#rbd_mirror_perf_stats_prio) | `5` | Advanced | Performance |
-| [rbd_mirror_pool_replayers_refresh_interval](#rbd_mirror_pool_replayers_refresh_interval) | `30` | Advanced | Performance |
-| [rbd_mirror_sync_point_update_age](#rbd_mirror_sync_point_update_age) | `30` | Advanced | Performance |
+| [rbd_mirror_concurrent_image_deletions](#rbd_mirror_concurrent_image_deletions) | `1` | Advanced | 性能 |
+| [rbd_mirror_concurrent_image_syncs](#rbd_mirror_concurrent_image_syncs) | `5` | Advanced | 性能 |
+| [rbd_mirror_delete_retry_interval](#rbd_mirror_delete_retry_interval) | `30` | Advanced | 性能 |
+| [rbd_mirror_image_perf_stats_prio](#rbd_mirror_image_perf_stats_prio) | `5` | Advanced | 性能 |
+| [rbd_mirror_image_policy_migration_throttle](#rbd_mirror_image_policy_migration_throttle) | `300` | Advanced | 性能 |
+| [rbd_mirror_image_policy_rebalance_timeout](#rbd_mirror_image_policy_rebalance_timeout) | `0` | Advanced | 性能 |
+| [rbd_mirror_image_policy_type](#rbd_mirror_image_policy_type) | `simple` | Advanced | 性能 |
+| [rbd_mirror_image_policy_update_throttle_interval](#rbd_mirror_image_policy_update_throttle_interval) | `1` | Advanced | 性能 |
+| [rbd_mirror_image_state_check_interval](#rbd_mirror_image_state_check_interval) | `30` | Advanced | 性能 |
+| [rbd_mirror_journal_commit_age](#rbd_mirror_journal_commit_age) | `5` | Advanced | 性能 |
+| [rbd_mirror_journal_poll_age](#rbd_mirror_journal_poll_age) | `5` | Advanced | 性能 |
+| [rbd_mirror_leader_heartbeat_interval](#rbd_mirror_leader_heartbeat_interval) | `5` | Advanced | 性能 |
+| [rbd_mirror_leader_max_acquire_attempts_before_break](#rbd_mirror_leader_max_acquire_attempts_before_break) | `3` | Advanced | 性能 |
+| [rbd_mirror_leader_max_missed_heartbeats](#rbd_mirror_leader_max_missed_heartbeats) | `2` | Advanced | 性能 |
+| [rbd_mirror_memory_autotune](#rbd_mirror_memory_autotune) | `True` | Dev | 开发 |
+| [rbd_mirror_memory_base](#rbd_mirror_memory_base) | `768_M` | Dev | 开发 |
+| [rbd_mirror_memory_cache_autotune_interval](#rbd_mirror_memory_cache_autotune_interval) | `30` | Dev | 开发 |
+| [rbd_mirror_memory_cache_min](#rbd_mirror_memory_cache_min) | `128_M` | Dev | 开发 |
+| [rbd_mirror_memory_cache_resize_interval](#rbd_mirror_memory_cache_resize_interval) | `5` | Dev | 开发 |
+| [rbd_mirror_memory_expected_fragmentation](#rbd_mirror_memory_expected_fragmentation) | `0.15` | Dev | 开发 |
+| [rbd_mirror_memory_target](#rbd_mirror_memory_target) | `4_G` | Basic | 策略 |
+| [rbd_mirror_perf_stats_prio](#rbd_mirror_perf_stats_prio) | `5` | Advanced | 性能 |
+| [rbd_mirror_pool_replayers_refresh_interval](#rbd_mirror_pool_replayers_refresh_interval) | `30` | Advanced | 性能 |
+| [rbd_mirror_sync_point_update_age](#rbd_mirror_sync_point_update_age) | `30` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -69,7 +69,7 @@ ceph config get client rbd_mirror_concurrent_image_deletions
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `1` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -107,7 +107,7 @@ ceph config get client rbd_mirror_concurrent_image_syncs
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `5` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -143,7 +143,7 @@ ceph config get client rbd_mirror_delete_retry_interval
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `30` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -179,7 +179,7 @@ ceph config get client rbd_mirror_image_perf_stats_prio
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `5` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -217,7 +217,7 @@ ceph config get client rbd_mirror_image_policy_migration_throttle
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `300` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -253,7 +253,7 @@ ceph config get client rbd_mirror_image_policy_rebalance_timeout
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -289,7 +289,7 @@ ceph config get client rbd_mirror_image_policy_type
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `simple` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -325,7 +325,7 @@ ceph config get client rbd_mirror_image_policy_update_throttle_interval
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `1` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -363,7 +363,7 @@ ceph config get client rbd_mirror_image_state_check_interval
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `30` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -401,7 +401,7 @@ ceph config get client rbd_mirror_journal_commit_age
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `5` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -437,7 +437,7 @@ ceph config get client rbd_mirror_journal_poll_age
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `5` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -473,7 +473,7 @@ ceph config get client rbd_mirror_leader_heartbeat_interval
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `5` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -511,7 +511,7 @@ ceph config get client rbd_mirror_leader_max_acquire_attempts_before_break
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `3` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -547,7 +547,7 @@ ceph config get client rbd_mirror_leader_max_missed_heartbeats
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `2` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -583,7 +583,7 @@ ceph config get client rbd_mirror_memory_autotune
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`True`）。
 2. 仅在实验室复现特定问题时修改。
@@ -611,7 +611,7 @@ ceph config get client rbd_mirror_memory_base
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`768_M`）。
 2. 仅在实验室复现特定问题时修改。
@@ -639,7 +639,7 @@ ceph config get client rbd_mirror_memory_cache_autotune_interval
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`30`）。
 2. 仅在实验室复现特定问题时修改。
@@ -667,7 +667,7 @@ ceph config get client rbd_mirror_memory_cache_min
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`128_M`）。
 2. 仅在实验室复现特定问题时修改。
@@ -695,7 +695,7 @@ ceph config get client rbd_mirror_memory_cache_resize_interval
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`5`）。
 2. 仅在实验室复现特定问题时修改。
@@ -723,7 +723,7 @@ ceph config get client rbd_mirror_memory_expected_fragmentation
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`0.15`）。
 2. 仅在实验室复现特定问题时修改。
@@ -751,7 +751,7 @@ ceph config get client rbd_mirror_memory_target
 
 **寻找最优值：**
 
-**调优模型：** Policy
+**调优模型：** 策略
 
 1. 记录 `4_G` 为何符合您的策略。
 2. 仅为兼容性或安全要求而变更。
@@ -786,7 +786,7 @@ ceph config get client rbd_mirror_perf_stats_prio
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `5` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -824,7 +824,7 @@ ceph config get client rbd_mirror_pool_replayers_refresh_interval
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `30` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -860,7 +860,7 @@ ceph config get client rbd_mirror_sync_point_update_age
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `30` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

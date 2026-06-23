@@ -1,21 +1,42 @@
-# مرجع Ceph
+<div class="splash-hero">
+  <p class="splash-kicker">مرکز مستندات Ceph</p>
+  <h1 class="splash-title">Ceph را بسازید، اداره کنید و بفهمید</h1>
+  <p class="splash-lead">
+    سه بخش: <strong>Cheatsheet</strong> روزمره، <strong>معماری</strong> زیرسیستم‌ها،
+    و راهنمای <strong>توسعه</strong> (به‌زودی).
+  </p>
+</div>
 
-مرجع آفلاین و ساده برای مدیران Ceph — بر اساس **نقش**، **مقیاس**، **خط فرمان (CLI)** و **پیکربندی**.
+<div class="splash-portals">
 
-**منبع:** [ceph/ceph](https://github.com/ceph/ceph) شاخهٔ `main` — تاریخ تولید در [VERSION](version.md).
+<a class="portal-card portal-cheatsheet" href="cheatsheet/OVERVIEW/">
+  <span class="portal-icon">📋</span>
+  <h2>Cheatsheet</h2>
+  <p>CLI، پیکربندی، راهنما بر اساس نقش و مقیاس — همان مرجع قبلی.</p>
+  <span class="portal-cta">باز کردن cheatsheet ←</span>
+</a>
 
----
+<a class="portal-card portal-architecture" href="architecture/rgw/OVERVIEW/">
+  <span class="portal-icon">🏗</span>
+  <h2>معماری</h2>
+  <p>عملکرد زیربخش‌های RGW: مسیر درخواست، SAL، RADOS، auth، multisite، scheduling.</p>
+  <span class="portal-cta">کاوش درون‌ریزی RGW ←</span>
+</a>
 
-## از اینجا شروع کنید
+<a class="portal-card portal-develop portal-soon" href="develop/OVERVIEW/">
+  <span class="portal-icon">🛠</span>
+  <h2>توسعه</h2>
+  <p>راهنمای توسعه‌دهنده — workflow، قراردادها و build.</p>
+  <span class="portal-badge">به‌زودی</span>
+  <span class="portal-cta">مشاهده placeholder ←</span>
+</a>
 
-| می‌خواهم… | برو به |
-|-----------|--------|
-| مستندات متناسب با نقشم | [راهنما بر اساس نقش](guides/OVERVIEW.md#by-role) |
-| توصیه بر اساس اندازهٔ کلاستر | [راهنما بر اساس مقیاس](guides/OVERVIEW.md#by-scale) |
-| دستورات کلاستر | [مرجع CLI](cli/OVERVIEW.md) |
-| جستجوی گزینهٔ پیکربندی | [مرجع Config](config/OVERVIEW.md) |
-| چک‌لیست روزانه | [شروع سریع](guides/quickstart.md) |
-| جستجوی محلی | `./scripts/search-all.sh <term>` |
-| یک گزینهٔ پیکربندی | `./scripts/lookup-config.sh <option>` |
+</div>
 
-[README](https://github.com/RaminNietzsche/ceph-cheatsheet) · [License](license.md)
+<div class="splash-meta">
+  <p>
+    منبع cheatsheet: <a href="https://github.com/ceph/ceph">ceph/ceph</a> ·
+    معماری از <code>src/rgw</code> ·
+    <a href="https://github.com/RaminNietzsche/ceph-cheatsheet">GitHub</a>
+  </p>
+</div>

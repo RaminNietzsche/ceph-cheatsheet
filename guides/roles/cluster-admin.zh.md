@@ -1,6 +1,6 @@
 # 集群管理员
 
-<span class="badge badge-role-cluster">Cluster admin</span> 管理 Monitor、Manager、编排、集群健康、认证与升级。
+<span class="badge badge-role-cluster">集群管理员</span> 管理 Monitor、Manager、编排、集群健康、认证与升级。
 
 ## 日常命令
 
@@ -56,13 +56,13 @@ ceph orch apply mon --placement="host1 host2 host3"
 
 | 规模 | 重点 |
 |------|------|
-| [Lab](../scales/lab.md) | 单 Mon、`--single-host-defaults` |
-| [Small production](../scales/small-production.md) | 3 Mon、2 MGR、单数据中心 |
-| [Large production](../scales/large-production.md) | Stretch、独立网络 |
-| [Multisite](../scales/multisite.md) | 每站点 quorum 或 stretch |
+| [实验室](../scales/lab.md) | 单 Mon、`--single-host-defaults` |
+| [小型生产](../scales/small-production.md) | 3 Mon、2 MGR、单数据中心 |
+| [大型生产](../scales/large-production.md) | Stretch、独立网络 |
+| [多站点](../scales/multisite.md) | 每站点 quorum 或 stretch |
 
 ## 故障排查
 
-[cli/troubleshooting.md](../../cli/troubleshooting.md)
+[cli/troubleshooting.md](../../cli/troubleshooting.md) — 日志、Monitor quorum、升级停滞
 
 [← 指南概览](../OVERVIEW.md)

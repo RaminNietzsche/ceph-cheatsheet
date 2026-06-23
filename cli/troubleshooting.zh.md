@@ -1,8 +1,6 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# 故障排查命令
 
-# Troubleshooting Commands
-
-## Logs
+## 日志
 
 ```bash
 # Cluster log (recent events)
@@ -21,7 +19,7 @@ ceph config set mon debug_mon 10/5
 ceph tell osd.* config set debug_osd 20/5
 ```
 
-## Performance & slow requests
+## 性能与慢请求
 
 ```bash
 ceph daemon osd.<id> perf dump
@@ -31,7 +29,7 @@ ceph tell osd.<id> dump_ops_in_flight
 ceph health detail                     # SLOW_OPS warnings
 ```
 
-## Recovery & backfill
+## 恢复与 backfill
 
 ```bash
 ceph -s                                # recovery progress
@@ -41,7 +39,7 @@ ceph osd blocked-by
 ceph tell osd.* injectargs '--osd_max_backfills=1'   # throttle (temporary)
 ```
 
-## Inconsistent PGs / objects
+## 不一致 PG / 对象
 
 ```bash
 ceph pg dump | grep inconsistent
@@ -50,7 +48,7 @@ rados list-inconsistent-obj <pgid> --format json-pretty
 ceph pg repair <pgid>
 ```
 
-## Full / nearfull cluster
+## 集群 full / nearfull
 
 ```bash
 ceph df detail
@@ -59,7 +57,7 @@ ceph osd pool set <pool> size <n>      # reduce if oversized (careful!)
 ceph osd reweight-by-utilization
 ```
 
-## Monitor issues
+## Monitor 问题
 
 ```bash
 ceph mon stat
@@ -68,7 +66,7 @@ ceph daemon mon.<name> mon_status
 ceph mon dump
 ```
 
-## RGW issues
+## RGW 问题
 
 ```bash
 radosgw-admin sync status
@@ -78,7 +76,7 @@ ceph config show client.rgw.<instance>
 ceph daemon rgw.<id> perf dump          # local admin socket on RGW node
 ```
 
-## RBD issues
+## RBD 问题
 
 ```bash
 rbd status <pool>/<image>
@@ -86,13 +84,13 @@ rbd showmapped
 rbd mirror pool status <pool>
 ```
 
-## Config reference lookup
+## 配置参考查找
 
-When tuning, look up option defaults and flags:
+调优时查看选项默认值与标志：
 
 ```bash
 ./scripts/lookup-config.sh <option-name>
 ./scripts/search-config.sh <keyword>
 ```
 
-[← CLI overview](OVERVIEW.md)
+[← CLI 概览](OVERVIEW.md)

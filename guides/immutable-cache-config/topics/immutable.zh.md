@@ -4,29 +4,29 @@ Immutable cache 配置深度指南 — 13 个选项。[← 概览](../OVERVIEW.m
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [immutable_object_cache_client_dedicated_thread_num](#immutable_object_cache_client_dedicated_thread_num) | `2` | Advanced | Performance |
-| [immutable_object_cache_max_inflight_ops](#immutable_object_cache_max_inflight_ops) | `128` | Advanced | Performance |
-| [immutable_object_cache_max_size](#immutable_object_cache_max_size) | `1_G` | Advanced | Performance |
-| [immutable_object_cache_path](#immutable_object_cache_path) | `/tmp/ceph_immutable_object_cache` | Advanced | Capacity |
-| [immutable_object_cache_qos_bps_burst](#immutable_object_cache_qos_bps_burst) | `0` | Advanced | Performance |
-| [immutable_object_cache_qos_bps_burst_seconds](#immutable_object_cache_qos_bps_burst_seconds) | `1` | Advanced | Performance |
-| [immutable_object_cache_qos_bps_limit](#immutable_object_cache_qos_bps_limit) | `0` | Advanced | Performance |
-| [immutable_object_cache_qos_iops_burst](#immutable_object_cache_qos_iops_burst) | `0` | Advanced | Performance |
-| [immutable_object_cache_qos_iops_burst_seconds](#immutable_object_cache_qos_iops_burst_seconds) | `1` | Advanced | Performance |
-| [immutable_object_cache_qos_iops_limit](#immutable_object_cache_qos_iops_limit) | `0` | Advanced | Performance |
-| [immutable_object_cache_qos_schedule_tick_min](#immutable_object_cache_qos_schedule_tick_min) | `50` | Advanced | Performance |
-| [immutable_object_cache_sock](#immutable_object_cache_sock) | `/var/run/ceph/immutable_object_cache_sock` | Advanced | Performance |
-| [immutable_object_cache_watermark](#immutable_object_cache_watermark) | `0.9` | Advanced | Performance |
+| [immutable_object_cache_client_dedicated_thread_num](#immutable_object_cache_client_dedicated_thread_num) | `2` | Advanced | 性能 |
+| [immutable_object_cache_max_inflight_ops](#immutable_object_cache_max_inflight_ops) | `128` | Advanced | 性能 |
+| [immutable_object_cache_max_size](#immutable_object_cache_max_size) | `1_G` | Advanced | 性能 |
+| [immutable_object_cache_path](#immutable_object_cache_path) | `/tmp/ceph_immutable_object_cache` | Advanced | 容量 |
+| [immutable_object_cache_qos_bps_burst](#immutable_object_cache_qos_bps_burst) | `0` | Advanced | 性能 |
+| [immutable_object_cache_qos_bps_burst_seconds](#immutable_object_cache_qos_bps_burst_seconds) | `1` | Advanced | 性能 |
+| [immutable_object_cache_qos_bps_limit](#immutable_object_cache_qos_bps_limit) | `0` | Advanced | 性能 |
+| [immutable_object_cache_qos_iops_burst](#immutable_object_cache_qos_iops_burst) | `0` | Advanced | 性能 |
+| [immutable_object_cache_qos_iops_burst_seconds](#immutable_object_cache_qos_iops_burst_seconds) | `1` | Advanced | 性能 |
+| [immutable_object_cache_qos_iops_limit](#immutable_object_cache_qos_iops_limit) | `0` | Advanced | 性能 |
+| [immutable_object_cache_qos_schedule_tick_min](#immutable_object_cache_qos_schedule_tick_min) | `50` | Advanced | 性能 |
+| [immutable_object_cache_sock](#immutable_object_cache_sock) | `/var/run/ceph/immutable_object_cache_sock` | Advanced | 性能 |
+| [immutable_object_cache_watermark](#immutable_object_cache_watermark) | `0.9` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -58,7 +58,7 @@ ceph config get immutable_object_cache immutable_object_cache_client_dedicated_t
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `2` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -93,7 +93,7 @@ ceph config get immutable_object_cache immutable_object_cache_max_inflight_ops
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `128` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -128,7 +128,7 @@ ceph config get immutable_object_cache immutable_object_cache_max_size
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `1_G` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -163,7 +163,7 @@ ceph config get immutable_object_cache immutable_object_cache_path
 
 **寻找最优值：**
 
-**调优模型：** Capacity
+**调优模型：** 容量
 
 1. 以 `/tmp/ceph_immutable_object_cache` 为基线。
 2. 变更路径前规划容量与文件系统布局。
@@ -197,7 +197,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_bps_burst
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -232,7 +232,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_bps_burst_seco
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `1` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -269,7 +269,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_bps_limit
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -304,7 +304,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_iops_burst
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -339,7 +339,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_iops_burst_sec
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `1` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -376,7 +376,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_iops_limit
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -411,7 +411,7 @@ ceph config get immutable_object_cache immutable_object_cache_qos_schedule_tick_
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `50` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -448,7 +448,7 @@ ceph config get immutable_object_cache immutable_object_cache_sock
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `/var/run/ceph/immutable_object_cache_sock` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -483,7 +483,7 @@ ceph config get immutable_object_cache immutable_object_cache_watermark
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0.9` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

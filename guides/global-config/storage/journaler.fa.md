@@ -4,19 +4,19 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [journaler_prefetch_periods](#journaler_prefetch_periods) | `10` | Advanced | Performance |
-| [journaler_prezero_periods](#journaler_prezero_periods) | `5` | Advanced | Performance |
-| [journaler_write_head_interval](#journaler_write_head_interval) | `15` | Advanced | Performance |
+| [journaler_prefetch_periods](#journaler_prefetch_periods) | `10` | Advanced | عملکرد |
+| [journaler_prezero_periods](#journaler_prezero_periods) | `5` | Advanced | عملکرد |
+| [journaler_write_head_interval](#journaler_write_head_interval) | `15` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -48,7 +48,7 @@ ceph config get global journaler_prefetch_periods
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -85,7 +85,7 @@ ceph config get global journaler_prezero_periods
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -122,7 +122,7 @@ ceph config get global journaler_write_head_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

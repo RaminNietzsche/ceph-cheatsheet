@@ -4,30 +4,30 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mon_allow_pool_size_one](#mon_allow_pool_size_one) | `False` | Advanced | Policy |
-| [mon_clean_pg_upmaps_per_chunk](#mon_clean_pg_upmaps_per_chunk) | `256` | Dev | Dev |
-| [mon_max_pool_pg_num](#mon_max_pool_pg_num) | `64_K` | Advanced | Performance |
-| [mon_osd_prime_pg_temp](#mon_osd_prime_pg_temp) | `True` | Dev | Dev |
-| [mon_osd_prime_pg_temp_max_estimate](#mon_osd_prime_pg_temp_max_estimate) | `0.25` | Advanced | Performance |
-| [mon_osd_prime_pg_temp_max_time](#mon_osd_prime_pg_temp_max_time) | `0.5` | Dev | Dev |
-| [mon_stretch_pool_min_size](#mon_stretch_pool_min_size) | `2` | Dev | Dev |
-| [mon_stretch_pool_size](#mon_stretch_pool_size) | `4` | Dev | Dev |
-| [mon_warn_on_cache_pools_without_hit_sets](#mon_warn_on_cache_pools_without_hit_sets) | `True` | Advanced | Performance |
-| [mon_warn_on_pool_no_redundancy](#mon_warn_on_pool_no_redundancy) | `True` | Advanced | Performance |
-| [mon_warn_on_pool_pg_num_not_power_of_two](#mon_warn_on_pool_pg_num_not_power_of_two) | `True` | Dev | Dev |
-| [pool_availability_update_interval](#pool_availability_update_interval) | `1` | Advanced | Performance |
-| [osd_pool_default_crimson](#osd_pool_default_crimson) | `False` | Advanced | Performance |
-| [osd_pool_erasure_code_stripe_unit](#osd_pool_erasure_code_stripe_unit) | `0` | Advanced | Performance |
+| [mon_allow_pool_size_one](#mon_allow_pool_size_one) | `False` | Advanced | سیاست |
+| [mon_clean_pg_upmaps_per_chunk](#mon_clean_pg_upmaps_per_chunk) | `256` | Dev | توسعه |
+| [mon_max_pool_pg_num](#mon_max_pool_pg_num) | `64_K` | Advanced | عملکرد |
+| [mon_osd_prime_pg_temp](#mon_osd_prime_pg_temp) | `True` | Dev | توسعه |
+| [mon_osd_prime_pg_temp_max_estimate](#mon_osd_prime_pg_temp_max_estimate) | `0.25` | Advanced | عملکرد |
+| [mon_osd_prime_pg_temp_max_time](#mon_osd_prime_pg_temp_max_time) | `0.5` | Dev | توسعه |
+| [mon_stretch_pool_min_size](#mon_stretch_pool_min_size) | `2` | Dev | توسعه |
+| [mon_stretch_pool_size](#mon_stretch_pool_size) | `4` | Dev | توسعه |
+| [mon_warn_on_cache_pools_without_hit_sets](#mon_warn_on_cache_pools_without_hit_sets) | `True` | Advanced | عملکرد |
+| [mon_warn_on_pool_no_redundancy](#mon_warn_on_pool_no_redundancy) | `True` | Advanced | عملکرد |
+| [mon_warn_on_pool_pg_num_not_power_of_two](#mon_warn_on_pool_pg_num_not_power_of_two) | `True` | Dev | توسعه |
+| [pool_availability_update_interval](#pool_availability_update_interval) | `1` | Advanced | عملکرد |
+| [osd_pool_default_crimson](#osd_pool_default_crimson) | `False` | Advanced | عملکرد |
+| [osd_pool_erasure_code_stripe_unit](#osd_pool_erasure_code_stripe_unit) | `0` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -59,7 +59,7 @@ ceph config get mon mon_allow_pool_size_one
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -94,7 +94,7 @@ ceph config get mon mon_clean_pg_upmaps_per_chunk
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`256`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -120,7 +120,7 @@ ceph config get mon mon_max_pool_pg_num
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -156,7 +156,7 @@ ceph config get mon mon_osd_prime_pg_temp
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -184,7 +184,7 @@ ceph config get mon mon_osd_prime_pg_temp_max_estimate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.25`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -220,7 +220,7 @@ ceph config get mon mon_osd_prime_pg_temp_max_time
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -246,7 +246,7 @@ ceph config get mon mon_stretch_pool_min_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`2`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -272,7 +272,7 @@ ceph config get mon mon_stretch_pool_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`4`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -300,7 +300,7 @@ ceph config get mon mon_warn_on_cache_pools_without_hit_sets
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -336,7 +336,7 @@ ceph config get mon mon_warn_on_pool_no_redundancy
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -372,7 +372,7 @@ ceph config get mon mon_warn_on_pool_pg_num_not_power_of_two
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -400,7 +400,7 @@ ceph config get mon pool_availability_update_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -436,7 +436,7 @@ ceph config get osd osd_pool_default_crimson
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -473,7 +473,7 @@ ceph config get osd osd_pool_erasure_code_stripe_unit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

@@ -1,8 +1,6 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# OSD、池与 PG 命令
 
-# OSD, Pool & PG Commands
-
-## OSD lifecycle
+## OSD 生命周期
 
 ```bash
 ceph osd tree
@@ -25,7 +23,7 @@ ceph osd reweight-by-utilization [max_change] [max_osds]
 ceph osd reweight-by-pg [threshold]
 ```
 
-## OSD maintenance
+## OSD 维护
 
 ```bash
 ceph osd safe-to-destroy <id>      # check before destroy
@@ -34,7 +32,7 @@ ceph osd blocked-by                # what's blocking PGs
 ceph osd require-min-compat-client <release>
 ```
 
-## Scrub and deep-scrub
+## Scrub 与 deep-scrub
 
 ```bash
 ceph pg scrub <pgid>
@@ -43,7 +41,7 @@ ceph osd scrub <osd-id>            # all PGs on OSD
 ceph osd deep-scrub <osd-id>
 ```
 
-## Pool management
+## 池管理
 
 ```bash
 ceph osd lspools
@@ -62,7 +60,7 @@ ceph osd pool autoscale-status
 ceph osd pool set <name> pg_autoscale_mode on|off|warn
 ```
 
-## Erasure-coded pools
+## 纠删码池
 
 ```bash
 ceph osd erasure-code-profile ls
@@ -71,7 +69,7 @@ ceph osd erasure-code-profile rm <profile>
 ceph osd pool create <ec-pool> 12 12 erasure <profile>
 ```
 
-## Placement groups
+## 放置组
 
 ```bash
 ceph pg dump [filtered]
@@ -84,7 +82,7 @@ ceph pg force-backfill <pgid>
 ceph pg cancel-force-recovery <pgid>
 ```
 
-## CRUSH / device class
+## CRUSH / 设备类
 
 ```bash
 ceph osd crush class ls
@@ -92,4 +90,4 @@ ceph osd crush set-device-class <class> <osd> …
 ceph osd crush rule create-replicated <name> default host hdd
 ```
 
-[← CLI overview](OVERVIEW.md)
+[← CLI 概览](OVERVIEW.md)

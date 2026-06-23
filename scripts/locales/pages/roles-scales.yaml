@@ -132,19 +132,19 @@ guides/roles/cluster-admin:
     |-------|--------|
     | [Lab](../scales/lab.md) | یک mon، `--single-host-defaults` |
     | [محیط عملیاتی کوچک](../scales/small-production.md) | ۳ mon، ۲ mgr، یک DC |
-    | [محیط عملیاتی بزرگ](../scales/large-production.md) | stretch، شبکه جدا |
-    | [Multisite](../scales/multisite.md) | quorum هر سایت یا stretch |
+    | [محیط عملیاتی بزرگ](../scales/large-production.md) | stretch، شبکهٔ جدا |
+    | [چندسایته](../scales/multisite.md) | quorum هر سایت یا stretch |
 
     ## عیب‌یابی
 
-    [cli/troubleshooting.md](../../cli/troubleshooting.md)
+    [cli/troubleshooting.md](../../cli/troubleshooting.md) — logها، quorum مانیتور، توقف ارتقا
 
     [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # 集群管理员
 
-    <span class="badge badge-role-cluster">Cluster admin</span> 管理 Monitor、Manager、编排、集群健康、认证与升级。
+    <span class="badge badge-role-cluster">集群管理员</span> 管理 Monitor、Manager、编排、集群健康、认证与升级。
 
     ## 日常命令
 
@@ -200,14 +200,14 @@ guides/roles/cluster-admin:
 
     | 规模 | 重点 |
     |------|------|
-    | [Lab](../scales/lab.md) | 单 Mon、`--single-host-defaults` |
-    | [Small production](../scales/small-production.md) | 3 Mon、2 MGR、单数据中心 |
-    | [Large production](../scales/large-production.md) | Stretch、独立网络 |
-    | [Multisite](../scales/multisite.md) | 每站点 quorum 或 stretch |
+    | [实验室](../scales/lab.md) | 单 Mon、`--single-host-defaults` |
+    | [小型生产](../scales/small-production.md) | 3 Mon、2 MGR、单数据中心 |
+    | [大型生产](../scales/large-production.md) | Stretch、独立网络 |
+    | [多站点](../scales/multisite.md) | 每站点 quorum 或 stretch |
 
     ## 故障排查
 
-    [cli/troubleshooting.md](../../cli/troubleshooting.md)
+    [cli/troubleshooting.md](../../cli/troubleshooting.md) — 日志、Monitor quorum、升级停滞
 
     [← 指南概览](../OVERVIEW.md)
 
@@ -307,12 +307,14 @@ guides/roles/storage-operator:
 
     ## پیکربندی
 
-    | حوزه | INDEX |
+    | حوزه | فهرست پیکربندی |
     |------|-------|
     | دیمن OSD | [config/osd/INDEX.md](../../config/osd/INDEX.md) · [راهنمای عمیق OSD](../osd-config/OVERVIEW.md) |
     | Global / bluestore | [osd.md](../../config/global/osd.md)، [bluestore.md](../../config/global/bluestore.md) |
-    | Recovery و scrub | [recovery](../osd-config/recovery/recovery.md)، [scrub](../osd-config/scrub/scrub.md) |
+    | بازیابی و scrub | [recovery](../osd-config/recovery/recovery.md)، [scrub](../osd-config/scrub/scrub.md) |
     | mClock | [mclock](../osd-config/mclock/mclock.md) — `osd_mclock_profile` |
+
+    جستجوی هر گزینه:
 
     ```bash
     ./scripts/lookup-config.sh osd_max_scrubs
@@ -337,7 +339,7 @@ guides/roles/storage-operator:
     ceph osd pool autoscale-status
     ```
 
-    **Rebalance:**
+    **تعادل مجدد (rebalance):**
 
     ```bash
     ceph osd reweight-by-utilization
@@ -348,21 +350,21 @@ guides/roles/storage-operator:
 
     | مقیاس | تمرکز |
     |-------|--------|
-    | [Lab](../scales/lab.md) | `osd_memory_target` پایین‌تر |
-    | [محیط عملیاتی کوچک](../scales/small-production.md) | autoscale، replica 3 |
-    | [محیط عملیاتی بزرگ](../scales/large-production.md) | mClock، device class |
-    | [Multisite](../scales/multisite.md) | CRUSH هر سایت |
+    | [آزمایشگاه](../scales/lab.md) | `osd_memory_target` پایین‌تر، PG کمتر |
+    | [محیط عملیاتی کوچک](../scales/small-production.md) | autoscale روشن، replica 3 |
+    | [محیط عملیاتی بزرگ](../scales/large-production.md) | mClock، device class، پنجره scrub |
+    | [چندسایته](../scales/multisite.md) | CRUSH هر سایت؛ چیدمان pool برای DR |
 
     ## عیب‌یابی
 
-    [cli/troubleshooting.md](../../cli/troubleshooting.md)
+    PGهای degraded، محدودسازی backfill، nearfull — [cli/troubleshooting.md](../../cli/troubleshooting.md)
 
     [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # 存储运维
 
-    <span class="badge badge-role-storage">Storage operator</span> 管理 OSD、池、PG、CRUSH、恢复与 scrub。
+    <span class="badge badge-role-storage">存储运维</span> 管理 OSD、池、PG、CRUSH、恢复与 scrub。
 
     ## 日常命令
 
@@ -420,14 +422,14 @@ guides/roles/storage-operator:
 
     | 规模 | 重点 |
     |------|------|
-    | [Lab](../scales/lab.md) | 较低 `osd_memory_target` |
-    | [Small production](../scales/small-production.md) | 自动扩缩、三副本 |
-    | [Large production](../scales/large-production.md) | mClock、设备类 |
-    | [Multisite](../scales/multisite.md) | 各站点 CRUSH |
+    | [实验室](../scales/lab.md) | 较低 `osd_memory_target`、更少 PG |
+    | [小型生产](../scales/small-production.md) | 自动扩缩、三副本 |
+    | [大型生产](../scales/large-production.md) | mClock、设备类、scrub 窗口 |
+    | [多站点](../scales/multisite.md) | 各站点 CRUSH；DR 池布局 |
 
     ## 故障排查
 
-    [cli/troubleshooting.md](../../cli/troubleshooting.md)
+    降级 PG、backfill 限流、nearfull — [cli/troubleshooting.md](../../cli/troubleshooting.md)
 
     [← 指南概览](../OVERVIEW.md)
 
@@ -502,7 +504,7 @@ guides/roles/rgw-admin:
   fa: |
     # مدیر RGW
 
-    <span class="badge badge-role-rgw">RGW admin</span> مدیریت RADOS Gateway — S3/Swift، کاربران، bucket، quota و multisite.
+    <span class="badge badge-role-rgw">مدیر RGW</span> مدیریت RADOS Gateway — S3/Swift، کاربران، bucket، quota و چندسایته.
 
     ## دستورات روزانه
 
@@ -523,10 +525,10 @@ guides/roles/rgw-admin:
 
     | موضوع | راهنمای عمیق |
     |-------|-----------|
-    | Frontends | [frontends.md](../rgw-config/core-gateway/frontends.md) |
-    | Multisite | [multisite-zones.md](../rgw-config/multisite/multisite-zones.md) |
-    | رمزنگاری | [encryption.md](../rgw-config/security-auth/encryption.md) |
-    | Quota | [quotas.md](../rgw-config/tenants-quotas/quotas.md) |
+    | Frontend و HTTP | [frontends.md](../rgw-config/core-gateway/frontends.md) |
+    | چندسایته | [multisite-zones.md](../rgw-config/multisite/multisite-zones.md) |
+    | امنیت و رمزنگاری | [encryption.md](../rgw-config/security-auth/encryption.md) |
+    | سهمیه (quota) | [quotas.md](../rgw-config/tenants-quotas/quotas.md) |
     | همه گزینه‌ها | [OVERVIEW](../rgw-config/OVERVIEW.md) · [TUNING](../rgw-config/TUNING.md) |
 
     ```bash
@@ -536,11 +538,23 @@ guides/roles/rgw-admin:
 
     ## روندهای کاری رایج
 
+    **ایجاد کاربر:**
+
     ```bash
     radosgw-admin user create --uid=alice --display-name="Alice"
     radosgw-admin key create --uid=alice --key-type=s3 --gen-access-key --gen-secret
+    ```
+
+    **به‌روزرسانی period چندسایته:**
+
+    ```bash
     radosgw-admin period update --commit
     radosgw-admin sync status
+    ```
+
+    **استقرار RGW (cephadm):**
+
+    ```bash
     ceph orch apply rgw myrgw --placement="2 host1 host2" --port=8080
     ```
 
@@ -548,16 +562,16 @@ guides/roles/rgw-admin:
 
     | مقیاس | تمرکز |
     |-------|--------|
-    | [محیط عملیاتی کوچک](../scales/small-production.md) | یک zone |
-    | [Multisite](../scales/multisite.md) | realm/zone، lag |
-    | [محیط عملیاتی بزرگ](../scales/large-production.md) | چند RGW، cache |
+    | [محیط عملیاتی کوچک](../scales/small-production.md) | یک zone، cache محلی |
+    | [چندسایته](../scales/multisite.md) | realm/zone، تأخیر sync |
+    | [محیط عملیاتی بزرگ](../scales/large-production.md) | چند RGW، تنظیم cache |
 
     [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # RGW 管理员
 
-    <span class="badge badge-role-rgw">RGW admin</span> 管理 RADOS Gateway — S3/Swift、用户、bucket、配额与多站点。
+    <span class="badge badge-role-rgw">RGW 管理员</span> 管理 RADOS Gateway — S3/Swift、用户、bucket、配额与多站点。
 
     ## 日常命令
 
@@ -591,11 +605,23 @@ guides/roles/rgw-admin:
 
     ## 常见工作流
 
+    **创建用户：**
+
     ```bash
     radosgw-admin user create --uid=alice --display-name="Alice"
     radosgw-admin key create --uid=alice --key-type=s3 --gen-access-key --gen-secret
+    ```
+
+    **多站点 period 更新：**
+
+    ```bash
     radosgw-admin period update --commit
     radosgw-admin sync status
+    ```
+
+    **部署 RGW（cephadm）：**
+
+    ```bash
     ceph orch apply rgw myrgw --placement="2 host1 host2" --port=8080
     ```
 
@@ -603,9 +629,9 @@ guides/roles/rgw-admin:
 
     | 规模 | 重点 |
     |------|------|
-    | [Small production](../scales/small-production.md) | 单 zone |
-    | [Multisite](../scales/multisite.md) | realm/zone、同步延迟 |
-    | [Large production](../scales/large-production.md) | 多 RGW、缓存调优 |
+    | [小型生产](../scales/small-production.md) | 单 zone、本地缓存 |
+    | [多站点](../scales/multisite.md) | realm/zone、同步延迟 |
+    | [大型生产](../scales/large-production.md) | 多 RGW、缓存调优 |
 
     [← 指南概览](../OVERVIEW.md)
 
@@ -677,7 +703,7 @@ guides/roles/cephfs-admin:
   fa: |
     # مدیر CephFS
 
-    <span class="badge badge-role-cephfs">CephFS admin</span> مدیریت فایل‌سیستم Ceph، MDS، subvolume و mirroring.
+    <span class="badge badge-role-cephfs">مدیر CephFS</span> مدیریت فایل‌سیستم Ceph، سرورهای متاداده (MDS)، subvolume و mirroring.
 
     ## دستورات روزانه
 
@@ -692,13 +718,13 @@ guides/roles/cephfs-admin:
 
     ## پیکربندی
 
-    | حوزه | INDEX |
+    | حوزه | فهرست پیکربندی |
     |------|-------|
-    | MDS | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [راهنمای عمیق](../mds-config/OVERVIEW.md) |
-    | Client | [mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [راهنمای عمیق](../mds-client-config/OVERVIEW.md) |
-    | Mirror | [cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [راهنمای عمیق](../cephfs-mirror-config/OVERVIEW.md) |
+    | دیمن MDS | [config/mds/INDEX.md](../../config/mds/INDEX.md) · [راهنمای عمیق MDS](../mds-config/OVERVIEW.md) |
+    | Client / FUSE | [mds-client/INDEX.md](../../config/mds-client/INDEX.md) · [راهنمای عمیق client](../mds-client-config/OVERVIEW.md) |
+    | CephFS mirror | [cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md) · [راهنمای عمیق mirror](../cephfs-mirror-config/OVERVIEW.md) |
 
-    گزینه‌های کلیدی: `mds_cache_memory_limit` — [TUNING](../mds-config/TUNING.md)
+    گزینه‌های کلیدی: `mds_cache_memory_limit`، `mds_max_file_size` — [TUNING MDS](../mds-config/TUNING.md)
 
     ```bash
     ./scripts/lookup-config.sh mds_cache_memory_limit
@@ -706,12 +732,25 @@ guides/roles/cephfs-admin:
 
     ## روندهای کاری رایج
 
+    **ایجاد فایل‌سیستم:**
+
     ```bash
     ceph osd pool create cephfs-metadata 32 32
     ceph osd pool create cephfs-data 128 128
     ceph fs new myfs cephfs-metadata cephfs-data
     ceph orch apply mds myfs --placement="2"
+    ```
+
+    **Subvolume:**
+
+    ```bash
     ceph fs subvolume create myfs vol1 --size 10737418240
+    ceph fs subvolume info myfs vol1
+    ```
+
+    **Mirroring snapshot:**
+
+    ```bash
     ceph fs snapshot mirror enable myfs
     ```
 
@@ -719,16 +758,16 @@ guides/roles/cephfs-admin:
 
     | مقیاس | تمرکز |
     |-------|--------|
-    | [Lab](../scales/lab.md) | ۱ MDS |
+    | [آزمایشگاه](../scales/lab.md) | ۱ MDS، cache کوچک |
     | [محیط عملیاتی کوچک](../scales/small-production.md) | ۲ MDS برای HA |
-    | [Multisite](../scales/multisite.md) | cephfs-mirror |
+    | [چندسایته](../scales/multisite.md) | cephfs-mirror برای DR |
 
     [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # CephFS 管理员
 
-    <span class="badge badge-role-cephfs">CephFS admin</span> 管理 Ceph 文件系统、MDS、子卷与镜像。
+    <span class="badge badge-role-cephfs">CephFS 管理员</span> 管理 Ceph 文件系统、元数据服务器 (MDS)、子卷与镜像。
 
     ## 日常命令
 
@@ -757,12 +796,25 @@ guides/roles/cephfs-admin:
 
     ## 常见工作流
 
+    **创建文件系统：**
+
     ```bash
     ceph osd pool create cephfs-metadata 32 32
     ceph osd pool create cephfs-data 128 128
     ceph fs new myfs cephfs-metadata cephfs-data
     ceph orch apply mds myfs --placement="2"
+    ```
+
+    **子卷：**
+
+    ```bash
     ceph fs subvolume create myfs vol1 --size 10737418240
+    ceph fs subvolume info myfs vol1
+    ```
+
+    **快照镜像：**
+
+    ```bash
     ceph fs snapshot mirror enable myfs
     ```
 
@@ -770,9 +822,9 @@ guides/roles/cephfs-admin:
 
     | 规模 | 重点 |
     |------|------|
-    | [Lab](../scales/lab.md) | 1 个 MDS |
-    | [Small production](../scales/small-production.md) | 2 个 MDS 高可用 |
-    | [Multisite](../scales/multisite.md) | cephfs-mirror |
+    | [实验室](../scales/lab.md) | 1 个 MDS、小缓存 |
+    | [小型生产](../scales/small-production.md) | 2 个 MDS 高可用 |
+    | [多站点](../scales/multisite.md) | cephfs-mirror 灾备 |
 
     [← 指南概览](../OVERVIEW.md)
 
@@ -827,9 +879,9 @@ guides/scales/lab:
     [← Guides overview](../OVERVIEW.md)
 
   fa: |
-    # مقیاس Lab / توسعه
+    # مقیاس آزمایشگاه / توسعه
 
-    <span class="badge badge-scale-lab">آزمایشگاه / توسعه</span> ۱–۳ نود، تست و یادگیری — **نه برای دادهٔ عملیاتی**.
+    <span class="badge badge-scale-lab">آزمایشگاه / توسعه</span> ۱–۳ نود، تست، یادگیری و CI — **نه برای دادهٔ عملیاتی**.
 
     ## اهداف
 
@@ -850,13 +902,14 @@ guides/scales/lab:
 
     | حوزه | رویکرد lab |
     |------|------------|
-    | Replication | `size=2` با `--single-host-defaults` |
-    | PG | autoscale؛ pool کوچک |
-    | حافظه OSD | `osd_memory_target` پایین‌تر |
-    | Scrub | interval بلندتر |
+    | Replication | `size=2` با `--single-host-defaults` روی یک host |
+    | PG | autoscale روشن؛ pool کوچک |
+    | حافظه OSD | `osd_memory_target` پایین‌تر اگر RAM محدود است |
+    | Scrub | interval بلندتر برای کاهش فشار دیسک |
 
     ```bash
     ./scripts/lookup-config.sh osd_memory_target
+    ./scripts/lookup-config.sh osd_pool_default_pg_autoscale_mode
     ```
 
     ## راهنمای نقش
@@ -865,13 +918,19 @@ guides/scales/lab:
     |------|--------|
     | Cluster | [cluster-admin.md](../roles/cluster-admin.md) |
     | Storage | [storage-operator.md](../roles/storage-operator.md) |
+    | RGW (اختیاری) | [rgw-admin.md](../roles/rgw-admin.md) |
+    | CephFS (اختیاری) | [cephfs-admin.md](../roles/cephfs-admin.md) |
+
+    ## مرجع سریع CLI
+
+    [cli/cluster.md](../../cli/cluster.md) · [cli/osd-pool.md](../../cli/osd-pool.md)
 
     [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
-    # Lab / 开发规模
+    # 实验室 / 开发规模
 
-    <span class="badge badge-scale-lab">Lab / dev</span> 1–3 节点，测试与学习 — **不用于生产数据**。
+    <span class="badge badge-scale-lab">实验室 / 开发</span> 1–3 节点，测试、学习与 CI — **不用于生产数据**。
 
     ## 目标
 
@@ -894,11 +953,12 @@ guides/scales/lab:
     |------|----------|
     | 副本 | 单主机 `--single-host-defaults` 下 `size=2` |
     | PG | 自动扩缩；小池 |
-    | OSD 内存 | 降低 `osd_memory_target` |
-    | Scrub | 延长间隔 |
+    | OSD 内存 | RAM 受限时降低 `osd_memory_target` |
+    | Scrub | 延长间隔以减少磁盘压力 |
 
     ```bash
     ./scripts/lookup-config.sh osd_memory_target
+    ./scripts/lookup-config.sh osd_pool_default_pg_autoscale_mode
     ```
 
     ## 角色指南
@@ -907,6 +967,12 @@ guides/scales/lab:
     |------|------|
     | 集群 | [cluster-admin.md](../roles/cluster-admin.md) |
     | 存储 | [storage-operator.md](../roles/storage-operator.md) |
+    | RGW（可选） | [rgw-admin.md](../roles/rgw-admin.md) |
+    | CephFS（可选） | [cephfs-admin.md](../roles/cephfs-admin.md) |
+
+    ## CLI 速查
+
+    [cli/cluster.md](../../cli/cluster.md) · [cli/osd-pool.md](../../cli/osd-pool.md)
 
     [← 指南概览](../OVERVIEW.md)
 
@@ -961,17 +1027,17 @@ guides/scales/small-production:
     [← Guides overview](../OVERVIEW.md)
 
   fa: |
-    # مقیاس Small Production
+    # محیط عملیاتی کوچک
 
-    <span class="badge badge-scale-small">محیط عملیاتی کوچک</span> معمولاً **۳–۱۲ نود**، یک مرکز داده، replica **3**، cephadm.
+    <span class="badge badge-scale-small">محیط عملیاتی کوچک</span> معمولاً **۳–۱۲ نود**، یک مرکز داده، replica **3**، مدیریت با cephadm.
 
     ## چک‌لیست معماری
 
-    - [ ] ۳ monitor روی host جدا
+    - [ ] ۳ monitor روی hostهای جدا
     - [ ] ۲ manager (active + standby)
-    - [ ] یک OSD به ازای هر دیسک
-    - [ ] PG autoscale **روشن**
-    - [ ] برچسب `application` روی pool
+    - [ ] OSD: یک OSD به ازای هر دیسک؛ در صورت امکان شبکه mon/osd جدا
+    - [ ] PG autoscale **روشن** برای همه poolها
+    - [ ] برچسب `application` روی pool (rbd، rgw، cephfs)
 
     ## عملیات روزانه
 
@@ -992,7 +1058,7 @@ guides/scales/small-production:
     ceph osd pool autoscale-status
     ```
 
-    Deep dive: [OSD](../osd-config/OVERVIEW.md) · [MON](../mon-config/OVERVIEW.md)
+    راهنمای عمیق: [OSD](../osd-config/OVERVIEW.md) · [MON](../mon-config/OVERVIEW.md) · [MGR](../mgr-config/TUNING.md)
 
     ## ظرفیت
 
@@ -1001,14 +1067,18 @@ guides/scales/small-production:
     ceph osd df tree
     ```
 
-    حدود **۷۰٪** قابل استفاده قبل از `nearfull`.
+    حدود **۷۰٪** قابل استفاده قبل از `nearfull`؛ فضای headroom برای backfill هنگام تعویض OSD بگذارید.
+
+    ## ارتقا
+
+    ارتقای rolling با cephadm — [cli/cephadm.md](../../cli/cephadm.md)
 
     [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # 小型生产规模
 
-    <span class="badge badge-scale-small">Small production</span> 通常 **3–12 节点**、单数据中心、**三副本**、cephadm 管理。
+    <span class="badge badge-scale-small">小型生产</span> 通常 **3–12 节点**、单数据中心、**三副本**、cephadm 管理。
 
     ## 架构检查清单
 
@@ -1037,7 +1107,7 @@ guides/scales/small-production:
     ceph osd pool autoscale-status
     ```
 
-    深度指南：[OSD](../osd-config/OVERVIEW.md) · [MON](../mon-config/OVERVIEW.md)
+    深度指南：[OSD](../osd-config/OVERVIEW.md) · [MON](../mon-config/OVERVIEW.md) · [MGR](../mgr-config/TUNING.md)
 
     ## 容量规划
 
@@ -1046,7 +1116,11 @@ guides/scales/small-production:
     ceph osd df tree
     ```
 
-    `nearfull` 前约 **70%** 可用容量。
+    `nearfull` 前约 **70%** 可用容量；为 OSD 更换期间的 backfill 预留空间。
+
+    ## 升级
+
+    通过 cephadm 滚动升级 — [cli/cephadm.md](../../cli/cephadm.md)
 
     [← 指南概览](../OVERVIEW.md)
 
@@ -1101,19 +1175,19 @@ guides/scales/large-production:
     [← Guides overview](../OVERVIEW.md)
 
   fa: |
-    # مقیاس Large Production
+    # محیط عملیاتی بزرگ
 
-    <span class="badge badge-scale-large">محیط عملیاتی بزرگ</span> **۱۲+ نود**، OSD زیاد، SLA سخت‌گیرانه، شبکه جدا، تنظیم عملکرد.
+    <span class="badge badge-scale-large">محیط عملیاتی بزرگ</span> **۱۲+ نود**، OSD زیاد، SLA سخت‌گیرانه، شبکهٔ جدا، تنظیم عملکرد.
 
     ## حوزه‌های تمرکز
 
     | حوزه | اقدام |
     |------|--------|
-    | زمان‌بندی | `osd_mclock_profile`، device class |
-    | PG | autoscale + `mon_target_pg_per_osd` |
+    | زمان‌بندی | `osd_mclock_profile`، device class (ssd/hdd/nvme) |
+    | PG | autoscale + `mon_target_pg_per_osd`؛ از OSD داغ پرهیز کنید |
     | Scrub | `osd_max_scrubs`، پنجره deep-scrub |
-    | شبکه | public / cluster — [public.md](../../config/global/public.md) |
-    | CRUSH | rule هر rack / DC |
+    | شبکه | `public_network` / `cluster_network` — [public.md](../../config/global/public.md) |
+    | failure domain | قوانین CRUSH برای هر rack / مرکز داده |
 
     ## دستورات
 
@@ -1128,25 +1202,31 @@ guides/scales/large-production:
     ## پیکربندی
 
     ```bash
+    ./scripts/search-config.sh -s osd mclock
     ./scripts/lookup-config.sh osd_mclock_profile
     ./scripts/lookup-config.sh osd_max_scrubs
+    ./scripts/lookup-config.sh mon_osd_full_ratio
     ```
 
-    Deep dive: [OSD](../osd-config/OVERVIEW.md) · [recovery](../osd-config/recovery/recovery.md)
+    راهنمای عمیق: [OSD](../osd-config/OVERVIEW.md) · [recovery](../osd-config/recovery/recovery.md) · [scrub](../osd-config/scrub/scrub.md)
 
-    ## محدود کردن recovery
+    ## محدود کردن recovery (ساعات کاری)
 
     ```bash
     ceph config set osd osd_max_backfills 1
     ceph config set osd osd_recovery_max_active 3
     ```
 
+    ## راهنمای نقش
+
+    [storage-operator.md](../roles/storage-operator.md) · [cluster-admin.md](../roles/cluster-admin.md)
+
     [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # 大型生产规模
 
-    <span class="badge badge-scale-large">Large production</span> **12+ 节点**、大量 OSD、严格 SLA、独立网络、性能调优。
+    <span class="badge badge-scale-large">大型生产</span> **12+ 节点**、大量 OSD、严格 SLA、独立网络、性能调优。
 
     ## 重点领域
 
@@ -1171,11 +1251,13 @@ guides/scales/large-production:
     ## 配置审查
 
     ```bash
+    ./scripts/search-config.sh -s osd mclock
     ./scripts/lookup-config.sh osd_mclock_profile
     ./scripts/lookup-config.sh osd_max_scrubs
+    ./scripts/lookup-config.sh mon_osd_full_ratio
     ```
 
-    深度指南：[OSD](../osd-config/OVERVIEW.md) · [recovery](../osd-config/recovery/recovery.md)
+    深度指南：[OSD](../osd-config/OVERVIEW.md) · [recovery](../osd-config/recovery/recovery.md) · [scrub](../osd-config/scrub/scrub.md)
 
     ## 限制恢复（业务时段）
 
@@ -1183,6 +1265,10 @@ guides/scales/large-production:
     ceph config set osd osd_max_backfills 1
     ceph config set osd osd_recovery_max_active 3
     ```
+
+    ## 角色指南
+
+    [storage-operator.md](../roles/storage-operator.md) · [cluster-admin.md](../roles/cluster-admin.md)
 
     [← 指南概览](../OVERVIEW.md)
 
@@ -1253,9 +1339,9 @@ guides/scales/multisite:
     [← Guides overview](../OVERVIEW.md)
 
   fa: |
-    # مقیاس Multisite
+    # مقیاس چندسایته
 
-    <span class="badge badge-scale-multi">Multisite</span> چند datacenter یا region — zoneهای RGW، mirroring اختیاری RBD / CephFS.
+    <span class="badge badge-scale-multi">چندسایته</span> چند datacenter یا region — zoneهای RGW، mirroring اختیاری RBD / CephFS.
 
     ## الگوها
 
@@ -1265,7 +1351,7 @@ guides/scales/multisite:
     | DR بلوک | RBD mirroring |
     | DR CephFS | cephfs-mirror |
 
-    ## RGW multisite
+    ## RGW چندسایته
 
     ```bash
     radosgw-admin realm list
@@ -1274,7 +1360,9 @@ guides/scales/multisite:
     ceph config get client.rgw rgw_zone
     ```
 
-    [cli/rgw.md](../../cli/rgw.md) · [multisite-zones.md](../rgw-config/multisite/multisite-zones.md)
+    CLI: [cli/rgw.md](../../cli/rgw.md)  
+    Config: [config/rgw/INDEX.md](../../config/rgw/INDEX.md)  
+    راهنمای عمیق: [multisite-zones.md](../rgw-config/multisite/multisite-zones.md) · [multisite-sync.md](../rgw-config/multisite/multisite-sync.md)
 
     ```bash
     ./scripts/search-config.sh -s rgw zone
@@ -1288,6 +1376,8 @@ guides/scales/multisite:
     rbd mirror image promote rbd/image --force
     ```
 
+    Config: [config/rbd-mirror/INDEX.md](../../config/rbd-mirror/INDEX.md)
+
     ## CephFS mirror
 
     ```bash
@@ -1295,21 +1385,28 @@ guides/scales/multisite:
     ceph fs snapshot mirror info myfs
     ```
 
+    Config: [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md)
+
     ## راهنمای نقش
 
-    [rgw-admin.md](../roles/rgw-admin.md) · [cephfs-admin.md](../roles/cephfs-admin.md)
+    | نقش | راهنما |
+    |------|--------|
+    | RGW چندسایته | [rgw-admin.md](../roles/rgw-admin.md) |
+    | DR CephFS | [cephfs-admin.md](../roles/cephfs-admin.md) |
+    | Cluster / mon | [cluster-admin.md](../roles/cluster-admin.md) |
 
-    ## هشدار
+    ## هشدارها
 
-    - latency بین سایت‌ها روی sync RGW اثر دارد
-    - failover را در پنجره نگهداری تست کنید
+    - latency بین سایت‌ها روی sync RGW و lag journal RBD اثر دارد
+    - failover (`promote`) را در پنجره نگهداری تست کنید
+    - CRUSH و pool را برای erasure + چندسایته برنامه‌ریزی کنید
 
     [← نمای کلی راهنما](../OVERVIEW.md)
 
   zh: |
     # 多站点规模
 
-    <span class="badge badge-scale-multi">Multisite</span> 多数据中心或区域 — RGW zone、可选 RBD / CephFS 镜像。
+    <span class="badge badge-scale-multi">多站点</span> 多数据中心或区域 — RGW zone、可选 RBD / CephFS 镜像。
 
     ## 模式
 
@@ -1328,7 +1425,9 @@ guides/scales/multisite:
     ceph config get client.rgw rgw_zone
     ```
 
-    [cli/rgw.md](../../cli/rgw.md) · [multisite-zones.md](../rgw-config/multisite/multisite-zones.md)
+    CLI：[cli/rgw.md](../../cli/rgw.md)  
+    配置：[config/rgw/INDEX.md](../../config/rgw/INDEX.md)  
+    深度指南：[multisite-zones.md](../rgw-config/multisite/multisite-zones.md) · [multisite-sync.md](../rgw-config/multisite/multisite-sync.md)
 
     ```bash
     ./scripts/search-config.sh -s rgw zone
@@ -1342,6 +1441,8 @@ guides/scales/multisite:
     rbd mirror image promote rbd/image --force
     ```
 
+    配置：[config/rbd-mirror/INDEX.md](../../config/rbd-mirror/INDEX.md)
+
     ## CephFS 镜像
 
     ```bash
@@ -1349,13 +1450,20 @@ guides/scales/multisite:
     ceph fs snapshot mirror info myfs
     ```
 
+    配置：[config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md)
+
     ## 角色指南
 
-    [rgw-admin.md](../roles/rgw-admin.md) · [cephfs-admin.md](../roles/cephfs-admin.md)
+    | 角色 | 指南 |
+    |------|------|
+    | RGW 多站点 | [rgw-admin.md](../roles/rgw-admin.md) |
+    | CephFS 灾备 | [cephfs-admin.md](../roles/cephfs-admin.md) |
+    | 集群 / Mon | [cluster-admin.md](../roles/cluster-admin.md) |
 
     ## 注意
 
-    - 站点间延迟影响 RGW 同步与 RBD journal
+    - 站点间延迟影响 RGW 同步与 RBD journal 延迟
     - 在维护窗口测试 failover（`promote`）
+    - 为多站点 erasure 规划各站点的 CRUSH 与池
 
     [← 指南概览](../OVERVIEW.md)

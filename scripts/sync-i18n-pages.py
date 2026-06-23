@@ -20,6 +20,8 @@ HAND_PAGES: tuple[str, ...] = (
     "docs/index",
     "docs/version",
     "docs/license",
+    "cheatsheet/OVERVIEW",
+    "develop/OVERVIEW",
     "config/OVERVIEW",
     "cli/OVERVIEW",
     "cli/cluster",

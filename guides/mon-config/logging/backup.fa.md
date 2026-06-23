@@ -4,23 +4,23 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mon_backup_cleanup_interval](#mon_backup_cleanup_interval) | `0` | Advanced | Performance |
-| [mon_backup_interval](#mon_backup_interval) | `0` | Advanced | Performance |
-| [mon_backup_keep_daily](#mon_backup_keep_daily) | `7` | Advanced | Performance |
-| [mon_backup_keep_hourly](#mon_backup_keep_hourly) | `5` | Advanced | Performance |
-| [mon_backup_keep_last](#mon_backup_keep_last) | `6` | Advanced | Performance |
-| [mon_backup_min_avail](#mon_backup_min_avail) | `10` | Advanced | Performance |
-| [mon_backup_path](#mon_backup_path) | `/var/backups/ceph/mon/$cluster-$id` | Advanced | Capacity |
+| [mon_backup_cleanup_interval](#mon_backup_cleanup_interval) | `0` | Advanced | عملکرد |
+| [mon_backup_interval](#mon_backup_interval) | `0` | Advanced | عملکرد |
+| [mon_backup_keep_daily](#mon_backup_keep_daily) | `7` | Advanced | عملکرد |
+| [mon_backup_keep_hourly](#mon_backup_keep_hourly) | `5` | Advanced | عملکرد |
+| [mon_backup_keep_last](#mon_backup_keep_last) | `6` | Advanced | عملکرد |
+| [mon_backup_min_avail](#mon_backup_min_avail) | `10` | Advanced | عملکرد |
+| [mon_backup_path](#mon_backup_path) | `/var/backups/ceph/mon/$cluster-$id` | Advanced | ظرفیت |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -52,7 +52,7 @@ ceph config get mon mon_backup_cleanup_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -88,7 +88,7 @@ ceph config get mon mon_backup_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -124,7 +124,7 @@ ceph config get mon mon_backup_keep_daily
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `7`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -160,7 +160,7 @@ ceph config get mon mon_backup_keep_hourly
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -196,7 +196,7 @@ ceph config get mon mon_backup_keep_last
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `6`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -232,7 +232,7 @@ ceph config get mon mon_backup_min_avail
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -270,7 +270,7 @@ ceph config get mon mon_backup_path
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `/var/backups/ceph/mon/$cluster-$id`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.

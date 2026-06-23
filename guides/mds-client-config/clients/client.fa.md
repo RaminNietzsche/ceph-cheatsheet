@@ -4,69 +4,69 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [client_acl_type](#client_acl_type) | `(empty)` | Advanced | Performance |
-| [client_asio_thread_count](#client_asio_thread_count) | `2` | Advanced | Performance |
-| [client_cache_mid](#client_cache_mid) | `0.75` | Advanced | Performance |
-| [client_cache_size](#client_cache_size) | `16_K` | Basic | Performance |
-| [client_caps_release_delay](#client_caps_release_delay) | `5` | Dev | Dev |
-| [client_check_pool_perm](#client_check_pool_perm) | `True` | Advanced | Performance |
-| [client_collect_and_send_global_metrics](#client_collect_and_send_global_metrics) | `False` | Advanced | Performance |
-| [client_debug_force_sync_read](#client_debug_force_sync_read) | `False` | Dev | Dev |
-| [client_debug_getattr_caps](#client_debug_getattr_caps) | `False` | Dev | Dev |
-| [client_debug_inject_features](#client_debug_inject_features) | `(empty)` | Dev | Dev |
-| [client_debug_inject_tick_delay](#client_debug_inject_tick_delay) | `0` | Dev | Dev |
-| [client_die_on_failed_dentry_invalidate](#client_die_on_failed_dentry_invalidate) | `True` | Advanced | Performance |
-| [client_die_on_failed_remount](#client_die_on_failed_remount) | `False` | Dev | Dev |
-| [client_dirsize_rbytes](#client_dirsize_rbytes) | `True` | Advanced | Performance |
-| [client_file_blockdiff_max_concurrent_object_scans](#client_file_blockdiff_max_concurrent_object_scans) | `16` | Advanced | Performance |
-| [client_force_lazyio](#client_force_lazyio) | `False` | Advanced | Performance |
-| [client_fs](#client_fs) | `(empty)` | Advanced | Performance |
-| [client_fscrypt_as](#client_fscrypt_as) | `True` | Advanced | Performance |
-| [client_fscrypt_dummy_encryption](#client_fscrypt_dummy_encryption) | `False` | Dev | Dev |
-| [client_inject_fixed_oldest_tid](#client_inject_fixed_oldest_tid) | `False` | Dev | Dev |
-| [client_inject_release_failure](#client_inject_release_failure) | `False` | Dev | Dev |
-| [client_inject_write_delay_secs](#client_inject_write_delay_secs) | `0` | Dev | Dev |
-| [client_max_inline_size](#client_max_inline_size) | `4_K` | Dev | Dev |
-| [client_max_retries_on_remount_failure](#client_max_retries_on_remount_failure) | `5` | Advanced | Performance |
-| [client_mds_namespace](#client_mds_namespace) | `(empty)` | Dev | Dev |
-| [client_metadata](#client_metadata) | `(empty)` | Advanced | Performance |
-| [client_mount_gid](#client_mount_gid) | `-1` | Advanced | Performance |
-| [client_mount_timeout](#client_mount_timeout) | `5_min` | Advanced | Performance |
-| [client_mount_uid](#client_mount_uid) | `-1` | Advanced | Performance |
-| [client_mountpoint](#client_mountpoint) | `/` | Advanced | Performance |
-| [client_notify_timeout](#client_notify_timeout) | `10` | Dev | Dev |
-| [client_oc](#client_oc) | `True` | Advanced | Performance |
-| [client_oc_max_dirty](#client_oc_max_dirty) | `100_M` | Advanced | Performance |
-| [client_oc_max_dirty_age](#client_oc_max_dirty_age) | `5` | Advanced | Performance |
-| [client_oc_max_objects](#client_oc_max_objects) | `1000` | Advanced | Performance |
-| [client_oc_size](#client_oc_size) | `200_M` | Advanced | Performance |
-| [client_oc_target_dirty](#client_oc_target_dirty) | `8_M` | Advanced | Performance |
-| [client_permissions](#client_permissions) | `True` | Advanced | Performance |
-| [client_quota](#client_quota) | `True` | Advanced | Performance |
-| [client_quota_df](#client_quota_df) | `True` | Advanced | Performance |
-| [client_readahead_max_bytes](#client_readahead_max_bytes) | `0` | Advanced | Performance |
-| [client_readahead_max_periods](#client_readahead_max_periods) | `4` | Advanced | Performance |
-| [client_readahead_min](#client_readahead_min) | `128_K` | Advanced | Performance |
-| [client_reconnect_stale](#client_reconnect_stale) | `False` | Advanced | Performance |
-| [client_respect_subvolume_snapshot_visibility](#client_respect_subvolume_snapshot_visibility) | `False` | Advanced | Performance |
-| [client_shutdown_timeout](#client_shutdown_timeout) | `30` | Advanced | Performance |
-| [client_snapdir](#client_snapdir) | `.snap` | Advanced | Performance |
-| [client_tick_interval](#client_tick_interval) | `1` | Dev | Dev |
-| [client_trace](#client_trace) | `(empty)` | Dev | Dev |
-| [client_try_dentry_invalidate](#client_try_dentry_invalidate) | `False` | Dev | Dev |
-| [client_use_faked_inos](#client_use_faked_inos) | `False` | Dev | Dev |
-| [client_use_random_mds](#client_use_random_mds) | `False` | Dev | Dev |
-| [osd_client_watch_timeout](#osd_client_watch_timeout) | `30` | Dev | Dev |
+| [client_acl_type](#client_acl_type) | `(empty)` | Advanced | عملکرد |
+| [client_asio_thread_count](#client_asio_thread_count) | `2` | Advanced | عملکرد |
+| [client_cache_mid](#client_cache_mid) | `0.75` | Advanced | عملکرد |
+| [client_cache_size](#client_cache_size) | `16_K` | Basic | عملکرد |
+| [client_caps_release_delay](#client_caps_release_delay) | `5` | Dev | توسعه |
+| [client_check_pool_perm](#client_check_pool_perm) | `True` | Advanced | عملکرد |
+| [client_collect_and_send_global_metrics](#client_collect_and_send_global_metrics) | `False` | Advanced | عملکرد |
+| [client_debug_force_sync_read](#client_debug_force_sync_read) | `False` | Dev | توسعه |
+| [client_debug_getattr_caps](#client_debug_getattr_caps) | `False` | Dev | توسعه |
+| [client_debug_inject_features](#client_debug_inject_features) | `(empty)` | Dev | توسعه |
+| [client_debug_inject_tick_delay](#client_debug_inject_tick_delay) | `0` | Dev | توسعه |
+| [client_die_on_failed_dentry_invalidate](#client_die_on_failed_dentry_invalidate) | `True` | Advanced | عملکرد |
+| [client_die_on_failed_remount](#client_die_on_failed_remount) | `False` | Dev | توسعه |
+| [client_dirsize_rbytes](#client_dirsize_rbytes) | `True` | Advanced | عملکرد |
+| [client_file_blockdiff_max_concurrent_object_scans](#client_file_blockdiff_max_concurrent_object_scans) | `16` | Advanced | عملکرد |
+| [client_force_lazyio](#client_force_lazyio) | `False` | Advanced | عملکرد |
+| [client_fs](#client_fs) | `(empty)` | Advanced | عملکرد |
+| [client_fscrypt_as](#client_fscrypt_as) | `True` | Advanced | عملکرد |
+| [client_fscrypt_dummy_encryption](#client_fscrypt_dummy_encryption) | `False` | Dev | توسعه |
+| [client_inject_fixed_oldest_tid](#client_inject_fixed_oldest_tid) | `False` | Dev | توسعه |
+| [client_inject_release_failure](#client_inject_release_failure) | `False` | Dev | توسعه |
+| [client_inject_write_delay_secs](#client_inject_write_delay_secs) | `0` | Dev | توسعه |
+| [client_max_inline_size](#client_max_inline_size) | `4_K` | Dev | توسعه |
+| [client_max_retries_on_remount_failure](#client_max_retries_on_remount_failure) | `5` | Advanced | عملکرد |
+| [client_mds_namespace](#client_mds_namespace) | `(empty)` | Dev | توسعه |
+| [client_metadata](#client_metadata) | `(empty)` | Advanced | عملکرد |
+| [client_mount_gid](#client_mount_gid) | `-1` | Advanced | عملکرد |
+| [client_mount_timeout](#client_mount_timeout) | `5_min` | Advanced | عملکرد |
+| [client_mount_uid](#client_mount_uid) | `-1` | Advanced | عملکرد |
+| [client_mountpoint](#client_mountpoint) | `/` | Advanced | عملکرد |
+| [client_notify_timeout](#client_notify_timeout) | `10` | Dev | توسعه |
+| [client_oc](#client_oc) | `True` | Advanced | عملکرد |
+| [client_oc_max_dirty](#client_oc_max_dirty) | `100_M` | Advanced | عملکرد |
+| [client_oc_max_dirty_age](#client_oc_max_dirty_age) | `5` | Advanced | عملکرد |
+| [client_oc_max_objects](#client_oc_max_objects) | `1000` | Advanced | عملکرد |
+| [client_oc_size](#client_oc_size) | `200_M` | Advanced | عملکرد |
+| [client_oc_target_dirty](#client_oc_target_dirty) | `8_M` | Advanced | عملکرد |
+| [client_permissions](#client_permissions) | `True` | Advanced | عملکرد |
+| [client_quota](#client_quota) | `True` | Advanced | عملکرد |
+| [client_quota_df](#client_quota_df) | `True` | Advanced | عملکرد |
+| [client_readahead_max_bytes](#client_readahead_max_bytes) | `0` | Advanced | عملکرد |
+| [client_readahead_max_periods](#client_readahead_max_periods) | `4` | Advanced | عملکرد |
+| [client_readahead_min](#client_readahead_min) | `128_K` | Advanced | عملکرد |
+| [client_reconnect_stale](#client_reconnect_stale) | `False` | Advanced | عملکرد |
+| [client_respect_subvolume_snapshot_visibility](#client_respect_subvolume_snapshot_visibility) | `False` | Advanced | عملکرد |
+| [client_shutdown_timeout](#client_shutdown_timeout) | `30` | Advanced | عملکرد |
+| [client_snapdir](#client_snapdir) | `.snap` | Advanced | عملکرد |
+| [client_tick_interval](#client_tick_interval) | `1` | Dev | توسعه |
+| [client_trace](#client_trace) | `(empty)` | Dev | توسعه |
+| [client_try_dentry_invalidate](#client_try_dentry_invalidate) | `False` | Dev | توسعه |
+| [client_use_faked_inos](#client_use_faked_inos) | `False` | Dev | توسعه |
+| [client_use_random_mds](#client_use_random_mds) | `False` | Dev | توسعه |
+| [osd_client_watch_timeout](#osd_client_watch_timeout) | `30` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -98,7 +98,7 @@ ceph config get client client_acl_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -134,7 +134,7 @@ ceph config get client client_asio_thread_count
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -172,7 +172,7 @@ ceph config get client client_cache_mid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.75`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -208,7 +208,7 @@ ceph config get client client_cache_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -242,7 +242,7 @@ ceph config get client client_caps_release_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -270,7 +270,7 @@ ceph config get client client_check_pool_perm
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -306,7 +306,7 @@ ceph config get client client_collect_and_send_global_metrics
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -340,7 +340,7 @@ ceph config get client client_debug_force_sync_read
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -366,7 +366,7 @@ ceph config get client client_debug_getattr_caps
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -392,7 +392,7 @@ ceph config get client client_debug_inject_features
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`(empty)`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -418,7 +418,7 @@ ceph config get client client_debug_inject_tick_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -446,7 +446,7 @@ ceph config get client client_die_on_failed_dentry_invalidate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -480,7 +480,7 @@ ceph config get client client_die_on_failed_remount
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -508,7 +508,7 @@ ceph config get client client_dirsize_rbytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -544,7 +544,7 @@ ceph config get client client_file_blockdiff_max_concurrent_object_scans
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -580,7 +580,7 @@ ceph config get client client_force_lazyio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -616,7 +616,7 @@ ceph config get client client_fs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -652,7 +652,7 @@ ceph config get client client_fscrypt_as
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -688,7 +688,7 @@ ceph config get client client_fscrypt_dummy_encryption
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -714,7 +714,7 @@ ceph config get client client_inject_fixed_oldest_tid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -740,7 +740,7 @@ ceph config get client client_inject_release_failure
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -768,7 +768,7 @@ ceph config get client client_inject_write_delay_secs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -794,7 +794,7 @@ ceph config get client client_max_inline_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`4_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -822,7 +822,7 @@ ceph config get client client_max_retries_on_remount_failure
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -856,7 +856,7 @@ ceph config get client client_mds_namespace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`(empty)`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -884,7 +884,7 @@ ceph config get client client_metadata
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -920,7 +920,7 @@ ceph config get client client_mount_gid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `-1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -956,7 +956,7 @@ ceph config get client client_mount_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -992,7 +992,7 @@ ceph config get client client_mount_uid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `-1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1028,7 +1028,7 @@ ceph config get client client_mountpoint
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `/`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1062,7 +1062,7 @@ ceph config get client client_notify_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`10`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1090,7 +1090,7 @@ ceph config get client client_oc
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1126,7 +1126,7 @@ ceph config get client client_oc_max_dirty
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1162,7 +1162,7 @@ ceph config get client client_oc_max_dirty_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1198,7 +1198,7 @@ ceph config get client client_oc_max_objects
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1234,7 +1234,7 @@ ceph config get client client_oc_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `200_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1270,7 +1270,7 @@ ceph config get client client_oc_target_dirty
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `8_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1306,7 +1306,7 @@ ceph config get client client_permissions
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1342,7 +1342,7 @@ ceph config get client client_quota
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1378,7 +1378,7 @@ ceph config get client client_quota_df
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1414,7 +1414,7 @@ ceph config get client client_readahead_max_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1450,7 +1450,7 @@ ceph config get client client_readahead_max_periods
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1486,7 +1486,7 @@ ceph config get client client_readahead_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1522,7 +1522,7 @@ ceph config get client client_reconnect_stale
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1558,7 +1558,7 @@ ceph config get client client_respect_subvolume_snapshot_visibility
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1594,7 +1594,7 @@ ceph config get client client_shutdown_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1632,7 +1632,7 @@ ceph config get client client_snapdir
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `.snap`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1668,7 +1668,7 @@ ceph config get client client_tick_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1696,7 +1696,7 @@ ceph config get client client_trace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`(empty)`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1722,7 +1722,7 @@ ceph config get client client_try_dentry_invalidate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1748,7 +1748,7 @@ ceph config get client client_use_faked_inos
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1776,7 +1776,7 @@ ceph config get client client_use_random_mds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1802,7 +1802,7 @@ ceph config get osd osd_client_watch_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`30`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

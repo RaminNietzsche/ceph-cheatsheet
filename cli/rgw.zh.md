@@ -1,10 +1,8 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# RGW (S3) 命令
 
-# RGW (S3) Commands
+RGW 管理使用 `radosgw-admin`。网关守护进程通过 cephadm（`ceph orch …`）或 unit 文件管理。
 
-RGW admin uses `radosgw-admin`. Gateway daemons are managed via cephadm (`ceph orch …`) or unit files.
-
-## Users & keys
+## 用户与密钥
 
 ```bash
 radosgw-admin user list
@@ -19,7 +17,7 @@ radosgw-admin key create --uid=<uid> --key-type=s3 --access-key=… --secret-key
 radosgw-admin key rm --uid=<uid> --access-key=…
 ```
 
-## Buckets & quotas
+## Bucket 与配额
 
 ```bash
 radosgw-admin bucket list
@@ -33,7 +31,7 @@ radosgw-admin quota get --quota-scope=user|bucket --uid=<uid>
 radosgw-admin quota enable --quota-scope=user|bucket --uid=<uid>
 ```
 
-## Multisite (realm / zone / zonegroup)
+## 多站点（realm / zone / zonegroup）
 
 ```bash
 radosgw-admin realm list
@@ -47,7 +45,7 @@ radosgw-admin metadata sync status
 radosgw-admin data sync status
 ```
 
-## Gateway ops
+## 网关操作
 
 ```bash
 radosgw-admin gc list|process
@@ -57,7 +55,7 @@ radosgw-admin datalog list|trim
 radosgw-admin mdlog list|status
 ```
 
-## S3 CLI examples (awscli / s3cmd)
+## S3 CLI 示例（awscli / s3cmd）
 
 ```bash
 aws s3 ls --endpoint-url http://rgw.example.com
@@ -65,8 +63,8 @@ aws s3 mb s3://mybucket --endpoint-url http://rgw.example.com
 aws s3 cp file s3://mybucket/key --endpoint-url http://rgw.example.com
 ```
 
-## Useful config options
+## 常用配置选项
 
-See [config/rgw](../config/rgw/INDEX.md): `rgw_frontends`, `rgw_dns_name`, `rgw_zone`, `rgw_cache_enabled`, `rgw_crypt_s3_kms_backend`.
+见 [config/rgw](../config/rgw/INDEX.md)：`rgw_frontends`、`rgw_dns_name`、`rgw_zone`、`rgw_cache_enabled`、`rgw_crypt_s3_kms_backend`。
 
-[← CLI overview](OVERVIEW.md)
+[← CLI 概览](OVERVIEW.md)

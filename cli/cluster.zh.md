@@ -1,8 +1,6 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# 集群与 Monitor 命令
 
-# Cluster & Monitor Commands
-
-## Status and health
+## 状态与健康
 
 ```bash
 ceph status                      # full cluster status (-s)
@@ -25,7 +23,7 @@ ceph pg dump_stuck               # stuck PGs only
 ceph report                    # recent cluster report
 ```
 
-## Daemon management
+## 守护进程管理
 
 ```bash
 ceph tell osd.<id> version
@@ -36,7 +34,7 @@ ceph daemon osd.<id> perf dump
 ceph daemon osd.<id> help
 ```
 
-## Monitor operations
+## Monitor 操作
 
 ```bash
 ceph mon add <name> <ip:port>
@@ -45,7 +43,7 @@ ceph mon getmap -o monmap
 ceph quorum_status --format json-pretty
 ```
 
-## Auth
+## 认证
 
 ```bash
 ceph auth ls
@@ -55,7 +53,7 @@ ceph auth del client.<name>
 ceph auth caps client.<name> mon 'profile rbd' osd 'profile rbd pool=rbd'
 ```
 
-## CRUSH map
+## CRUSH 映射
 
 ```bash
 ceph osd crush tree
@@ -64,7 +62,7 @@ ceph osd crush rule dump
 ceph osd crush weight-set ls
 ```
 
-## Watch / progress
+## 监视 / 进度
 
 ```bash
 ceph -w
@@ -72,4 +70,4 @@ ceph progress
 ceph progress json
 ```
 
-[← CLI overview](OVERVIEW.md)
+[← CLI 概览](OVERVIEW.md)

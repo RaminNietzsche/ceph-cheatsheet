@@ -4,31 +4,31 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [osd_check_max_object_name_len_on_startup](#osd_check_max_object_name_len_on_startup) | `True` | Dev | Dev |
-| [osd_client_message_cap](#osd_client_message_cap) | `256` | Advanced | Performance |
-| [osd_client_message_size_cap](#osd_client_message_size_cap) | `500_M` | Advanced | Performance |
-| [osd_copyfrom_max_chunk](#osd_copyfrom_max_chunk) | `8_M` | Advanced | Performance |
-| [osd_heartbeat_min_peers](#osd_heartbeat_min_peers) | `10` | Advanced | Performance |
-| [osd_map_share_max_epochs](#osd_map_share_max_epochs) | `40` | Advanced | Performance |
-| [osd_max_markdown_count](#osd_max_markdown_count) | `5` | Advanced | Performance |
-| [osd_max_pgls](#osd_max_pgls) | `1_K` | Advanced | Performance |
-| [osd_max_push_cost](#osd_max_push_cost) | `8_M` | Advanced | Performance |
-| [osd_max_push_objects](#osd_max_push_objects) | `10` | Advanced | Performance |
-| [osd_max_write_size](#osd_max_write_size) | `90` | Advanced | Performance |
-| [osd_op_pq_max_tokens_per_priority](#osd_op_pq_max_tokens_per_priority) | `4_M` | Advanced | Performance |
-| [osd_op_pq_min_cost](#osd_op_pq_min_cost) | `64_K` | Advanced | Performance |
-| [osd_pg_epoch_max_lag_factor](#osd_pg_epoch_max_lag_factor) | `2` | Advanced | Performance |
-| [set_keepcaps](#set_keepcaps) | `False` | Advanced | Performance |
+| [osd_check_max_object_name_len_on_startup](#osd_check_max_object_name_len_on_startup) | `True` | Dev | توسعه |
+| [osd_client_message_cap](#osd_client_message_cap) | `256` | Advanced | عملکرد |
+| [osd_client_message_size_cap](#osd_client_message_size_cap) | `500_M` | Advanced | عملکرد |
+| [osd_copyfrom_max_chunk](#osd_copyfrom_max_chunk) | `8_M` | Advanced | عملکرد |
+| [osd_heartbeat_min_peers](#osd_heartbeat_min_peers) | `10` | Advanced | عملکرد |
+| [osd_map_share_max_epochs](#osd_map_share_max_epochs) | `40` | Advanced | عملکرد |
+| [osd_max_markdown_count](#osd_max_markdown_count) | `5` | Advanced | عملکرد |
+| [osd_max_pgls](#osd_max_pgls) | `1_K` | Advanced | عملکرد |
+| [osd_max_push_cost](#osd_max_push_cost) | `8_M` | Advanced | عملکرد |
+| [osd_max_push_objects](#osd_max_push_objects) | `10` | Advanced | عملکرد |
+| [osd_max_write_size](#osd_max_write_size) | `90` | Advanced | عملکرد |
+| [osd_op_pq_max_tokens_per_priority](#osd_op_pq_max_tokens_per_priority) | `4_M` | Advanced | عملکرد |
+| [osd_op_pq_min_cost](#osd_op_pq_min_cost) | `64_K` | Advanced | عملکرد |
+| [osd_pg_epoch_max_lag_factor](#osd_pg_epoch_max_lag_factor) | `2` | Advanced | عملکرد |
+| [set_keepcaps](#set_keepcaps) | `False` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -58,7 +58,7 @@ ceph config get osd osd_check_max_object_name_len_on_startup
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -86,7 +86,7 @@ ceph config get osd osd_client_message_cap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `256`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -123,7 +123,7 @@ ceph config get osd osd_client_message_size_cap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -158,7 +158,7 @@ ceph config get osd osd_copyfrom_max_chunk
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `8_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -193,7 +193,7 @@ ceph config get osd osd_heartbeat_min_peers
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -228,7 +228,7 @@ ceph config get osd osd_map_share_max_epochs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `40`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -263,7 +263,7 @@ ceph config get osd osd_max_markdown_count
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -300,7 +300,7 @@ ceph config get osd osd_max_pgls
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -335,7 +335,7 @@ ceph config get osd osd_max_push_cost
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `8_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -370,7 +370,7 @@ ceph config get osd osd_max_push_objects
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -407,7 +407,7 @@ ceph config get osd osd_max_write_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `90`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -444,7 +444,7 @@ ceph config get osd osd_op_pq_max_tokens_per_priority
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -479,7 +479,7 @@ ceph config get osd osd_op_pq_min_cost
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -516,7 +516,7 @@ ceph config get osd osd_pg_epoch_max_lag_factor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -554,7 +554,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

@@ -4,33 +4,33 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mon_con_tracker_persist_interval](#mon_con_tracker_persist_interval) | `10` | Advanced | Performance |
-| [mon_elector_ping_timeout](#mon_elector_ping_timeout) | `2` | Advanced | Performance |
-| [mon_lease_ack_timeout_factor](#mon_lease_ack_timeout_factor) | `2` | Advanced | Performance |
-| [mon_lease_renew_interval_factor](#mon_lease_renew_interval_factor) | `0.6` | Advanced | Performance |
-| [mon_mds_blocklist_interval](#mon_mds_blocklist_interval) | `1_day` | Dev | Dev |
-| [mon_netsplit_grace_period](#mon_netsplit_grace_period) | `9` | Advanced | Performance |
-| [mon_nvmeofgw_failback_delay](#mon_nvmeofgw_failback_delay) | `0` | Advanced | Performance |
-| [mon_nvmeofgw_skip_failovers_interval](#mon_nvmeofgw_skip_failovers_interval) | `16` | Advanced | Performance |
-| [mon_session_timeout](#mon_session_timeout) | `5_min` | Advanced | Performance |
-| [mon_smart_report_timeout](#mon_smart_report_timeout) | `5` | Advanced | Performance |
-| [mon_subscribe_interval](#mon_subscribe_interval) | `1_day` | Dev | Dev |
-| [mon_tick_interval](#mon_tick_interval) | `5` | Advanced | Performance |
-| [mon_timecheck_interval](#mon_timecheck_interval) | `5_min` | Advanced | Performance |
-| [mon_timecheck_skew_interval](#mon_timecheck_skew_interval) | `30` | Advanced | Performance |
-| [mon_use_min_delay_socket](#mon_use_min_delay_socket) | `False` | Advanced | Performance |
-| [mon_warn_older_version_delay](#mon_warn_older_version_delay) | `7_day` | Advanced | Performance |
-| [nvmeof_mon_client_tick_period](#nvmeof_mon_client_tick_period) | `1` | Advanced | Performance |
+| [mon_con_tracker_persist_interval](#mon_con_tracker_persist_interval) | `10` | Advanced | عملکرد |
+| [mon_elector_ping_timeout](#mon_elector_ping_timeout) | `2` | Advanced | عملکرد |
+| [mon_lease_ack_timeout_factor](#mon_lease_ack_timeout_factor) | `2` | Advanced | عملکرد |
+| [mon_lease_renew_interval_factor](#mon_lease_renew_interval_factor) | `0.6` | Advanced | عملکرد |
+| [mon_mds_blocklist_interval](#mon_mds_blocklist_interval) | `1_day` | Dev | توسعه |
+| [mon_netsplit_grace_period](#mon_netsplit_grace_period) | `9` | Advanced | عملکرد |
+| [mon_nvmeofgw_failback_delay](#mon_nvmeofgw_failback_delay) | `0` | Advanced | عملکرد |
+| [mon_nvmeofgw_skip_failovers_interval](#mon_nvmeofgw_skip_failovers_interval) | `16` | Advanced | عملکرد |
+| [mon_session_timeout](#mon_session_timeout) | `5_min` | Advanced | عملکرد |
+| [mon_smart_report_timeout](#mon_smart_report_timeout) | `5` | Advanced | عملکرد |
+| [mon_subscribe_interval](#mon_subscribe_interval) | `1_day` | Dev | توسعه |
+| [mon_tick_interval](#mon_tick_interval) | `5` | Advanced | عملکرد |
+| [mon_timecheck_interval](#mon_timecheck_interval) | `5_min` | Advanced | عملکرد |
+| [mon_timecheck_skew_interval](#mon_timecheck_skew_interval) | `30` | Advanced | عملکرد |
+| [mon_use_min_delay_socket](#mon_use_min_delay_socket) | `False` | Advanced | عملکرد |
+| [mon_warn_older_version_delay](#mon_warn_older_version_delay) | `7_day` | Advanced | عملکرد |
+| [nvmeof_mon_client_tick_period](#nvmeof_mon_client_tick_period) | `1` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -62,7 +62,7 @@ ceph config get mon mon_con_tracker_persist_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -100,7 +100,7 @@ ceph config get mon mon_elector_ping_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -136,7 +136,7 @@ ceph config get mon mon_lease_ack_timeout_factor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -174,7 +174,7 @@ ceph config get mon mon_lease_renew_interval_factor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.6`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -212,7 +212,7 @@ ceph config get mon mon_mds_blocklist_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_day`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -240,7 +240,7 @@ ceph config get mon mon_netsplit_grace_period
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `9`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -276,7 +276,7 @@ ceph config get mon mon_nvmeofgw_failback_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -312,7 +312,7 @@ ceph config get mon mon_nvmeofgw_skip_failovers_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -348,7 +348,7 @@ ceph config get mon mon_session_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -384,7 +384,7 @@ ceph config get mon mon_smart_report_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -420,7 +420,7 @@ ceph config get mon mon_subscribe_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_day`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -448,7 +448,7 @@ ceph config get mon mon_tick_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -484,7 +484,7 @@ ceph config get mon mon_timecheck_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -520,7 +520,7 @@ ceph config get mon mon_timecheck_skew_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -556,7 +556,7 @@ ceph config get mon mon_use_min_delay_socket
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -592,7 +592,7 @@ ceph config get mon mon_warn_older_version_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `7_day`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -628,7 +628,7 @@ ceph config get mon nvmeof_mon_client_tick_period
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

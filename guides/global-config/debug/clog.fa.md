@@ -4,23 +4,23 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [clog_to_graylog](#clog_to_graylog) | `false` | Advanced | Performance |
-| [clog_to_graylog_host](#clog_to_graylog_host) | `127.0.0.1` | Advanced | Performance |
-| [clog_to_graylog_port](#clog_to_graylog_port) | `12201` | Advanced | Performance |
-| [clog_to_monitors](#clog_to_monitors) | `default=true` | Advanced | Performance |
-| [clog_to_syslog](#clog_to_syslog) | `false` | Advanced | Performance |
-| [clog_to_syslog_facility](#clog_to_syslog_facility) | `default=daemon audit=local0` | Advanced | Performance |
-| [clog_to_syslog_level](#clog_to_syslog_level) | `info` | Advanced | Performance |
+| [clog_to_graylog](#clog_to_graylog) | `false` | Advanced | عملکرد |
+| [clog_to_graylog_host](#clog_to_graylog_host) | `127.0.0.1` | Advanced | عملکرد |
+| [clog_to_graylog_port](#clog_to_graylog_port) | `12201` | Advanced | عملکرد |
+| [clog_to_monitors](#clog_to_monitors) | `default=true` | Advanced | عملکرد |
+| [clog_to_syslog](#clog_to_syslog) | `false` | Advanced | عملکرد |
+| [clog_to_syslog_facility](#clog_to_syslog_facility) | `default=daemon audit=local0` | Advanced | عملکرد |
+| [clog_to_syslog_level](#clog_to_syslog_level) | `info` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -52,7 +52,7 @@ ceph config get global clog_to_graylog
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `false`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -87,7 +87,7 @@ ceph config get global clog_to_graylog_host
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `127.0.0.1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -122,7 +122,7 @@ ceph config get global clog_to_graylog_port
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `12201`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -157,7 +157,7 @@ ceph config get global clog_to_monitors
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `default=true`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -192,7 +192,7 @@ ceph config get global clog_to_syslog
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `false`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -227,7 +227,7 @@ ceph config get global clog_to_syslog_facility
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `default=daemon audit=local0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -262,7 +262,7 @@ ceph config get global clog_to_syslog_level
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `info`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

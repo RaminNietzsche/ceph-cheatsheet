@@ -4,107 +4,107 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [ms_async_op_threads](#ms_async_op_threads) | `3` | Advanced | Performance |
-| [ms_async_rdma_buffer_size](#ms_async_rdma_buffer_size) | `128_K` | Advanced | Performance |
-| [ms_async_rdma_cm](#ms_async_rdma_cm) | `False` | Advanced | Performance |
-| [ms_async_rdma_device_name](#ms_async_rdma_device_name) | `(empty)` | Advanced | Performance |
-| [ms_async_rdma_dscp](#ms_async_rdma_dscp) | `96` | Advanced | Performance |
-| [ms_async_rdma_enable_hugepage](#ms_async_rdma_enable_hugepage) | `False` | Advanced | Policy |
-| [ms_async_rdma_gid_idx](#ms_async_rdma_gid_idx) | `0` | Advanced | Performance |
-| [ms_async_rdma_local_gid](#ms_async_rdma_local_gid) | `(empty)` | Advanced | Performance |
-| [ms_async_rdma_polling_us](#ms_async_rdma_polling_us) | `1000` | Advanced | Performance |
-| [ms_async_rdma_port_num](#ms_async_rdma_port_num) | `1` | Advanced | Performance |
-| [ms_async_rdma_receive_buffers](#ms_async_rdma_receive_buffers) | `32_K` | Advanced | Performance |
-| [ms_async_rdma_receive_queue_len](#ms_async_rdma_receive_queue_len) | `4_K` | Advanced | Performance |
-| [ms_async_rdma_roce_ver](#ms_async_rdma_roce_ver) | `1` | Advanced | Performance |
-| [ms_async_rdma_send_buffers](#ms_async_rdma_send_buffers) | `1_K` | Advanced | Performance |
-| [ms_async_rdma_sl](#ms_async_rdma_sl) | `3` | Advanced | Performance |
-| [ms_async_rdma_support_srq](#ms_async_rdma_support_srq) | `True` | Advanced | Performance |
-| [ms_async_rdma_type](#ms_async_rdma_type) | `ib` | Advanced | Performance |
-| [ms_async_reap_threshold](#ms_async_reap_threshold) | `5` | Dev | Dev |
-| [ms_bind_before_connect](#ms_bind_before_connect) | `False` | Advanced | Performance |
-| [ms_bind_ipv4](#ms_bind_ipv4) | `True` | Advanced | Performance |
-| [ms_bind_ipv6](#ms_bind_ipv6) | `False` | Advanced | Performance |
-| [ms_bind_msgr1](#ms_bind_msgr1) | `True` | Advanced | Performance |
-| [ms_bind_msgr2](#ms_bind_msgr2) | `True` | Advanced | Performance |
-| [ms_bind_port_max](#ms_bind_port_max) | `7568` | Advanced | Performance |
-| [ms_bind_port_min](#ms_bind_port_min) | `6800` | Advanced | Performance |
-| [ms_bind_prefer_ipv4](#ms_bind_prefer_ipv4) | `False` | Advanced | Performance |
-| [ms_bind_retry_count](#ms_bind_retry_count) | `0` | Advanced | Performance |
-| [ms_bind_retry_delay](#ms_bind_retry_delay) | `0` | Advanced | Performance |
-| [ms_blackhole_client](#ms_blackhole_client) | `False` | Dev | Dev |
-| [ms_blackhole_mds](#ms_blackhole_mds) | `False` | Dev | Dev |
-| [ms_blackhole_mgr](#ms_blackhole_mgr) | `False` | Dev | Dev |
-| [ms_blackhole_mon](#ms_blackhole_mon) | `False` | Dev | Dev |
-| [ms_blackhole_osd](#ms_blackhole_osd) | `False` | Dev | Dev |
-| [ms_client_mode](#ms_client_mode) | `crc secure` | Basic | Policy |
-| [ms_client_throttle_retry_time_interval](#ms_client_throttle_retry_time_interval) | `5000` | Dev | Dev |
-| [ms_cluster_mode](#ms_cluster_mode) | `crc secure` | Basic | Policy |
-| [ms_cluster_type](#ms_cluster_type) | `(empty)` | Advanced | Performance |
-| [ms_compress_secure](#ms_compress_secure) | `False` | Advanced | Performance |
-| [ms_connection_idle_timeout](#ms_connection_idle_timeout) | `900` | Advanced | Performance |
-| [ms_connection_ready_timeout](#ms_connection_ready_timeout) | `10` | Advanced | Performance |
-| [ms_crc_data](#ms_crc_data) | `True` | Dev | Dev |
-| [ms_crc_header](#ms_crc_header) | `True` | Dev | Dev |
-| [ms_die_on_bad_msg](#ms_die_on_bad_msg) | `False` | Dev | Dev |
-| [ms_die_on_bug](#ms_die_on_bug) | `False` | Dev | Dev |
-| [ms_die_on_old_message](#ms_die_on_old_message) | `False` | Dev | Dev |
-| [ms_die_on_skipped_message](#ms_die_on_skipped_message) | `False` | Dev | Dev |
-| [ms_die_on_unhandled_msg](#ms_die_on_unhandled_msg) | `False` | Dev | Dev |
-| [ms_dispatch_throttle_bytes](#ms_dispatch_throttle_bytes) | `100_M` | Advanced | Performance |
-| [ms_dpdk_coremask](#ms_dpdk_coremask) | `0xF` | Advanced | Performance |
-| [ms_dpdk_debug_allow_loopback](#ms_dpdk_debug_allow_loopback) | `False` | Dev | Dev |
-| [ms_dpdk_devs_allowlist](#ms_dpdk_devs_allowlist) | `(empty)` | Advanced | Performance |
-| [ms_dpdk_enable_tso](#ms_dpdk_enable_tso) | `True` | Advanced | Policy |
-| [ms_dpdk_gateway_ipv4_addr](#ms_dpdk_gateway_ipv4_addr) | `(empty)` | Advanced | Connectivity |
-| [ms_dpdk_host_ipv4_addr](#ms_dpdk_host_ipv4_addr) | `(empty)` | Advanced | Connectivity |
-| [ms_dpdk_hugepages](#ms_dpdk_hugepages) | `(empty)` | Advanced | Performance |
-| [ms_dpdk_hw_flow_control](#ms_dpdk_hw_flow_control) | `True` | Advanced | Performance |
-| [ms_dpdk_hw_queue_weight](#ms_dpdk_hw_queue_weight) | `1` | Advanced | Performance |
-| [ms_dpdk_lro](#ms_dpdk_lro) | `True` | Advanced | Performance |
-| [ms_dpdk_memory_channel](#ms_dpdk_memory_channel) | `4` | Advanced | Performance |
-| [ms_dpdk_netmask_ipv4_addr](#ms_dpdk_netmask_ipv4_addr) | `(empty)` | Advanced | Connectivity |
-| [ms_dpdk_pmd](#ms_dpdk_pmd) | `(empty)` | Advanced | Performance |
-| [ms_dpdk_port_id](#ms_dpdk_port_id) | `0` | Advanced | Performance |
-| [ms_dpdk_rx_buffer_count_per_core](#ms_dpdk_rx_buffer_count_per_core) | `8192` | Advanced | Performance |
-| [ms_dump_corrupt_message_level](#ms_dump_corrupt_message_level) | `1` | Advanced | Performance |
-| [ms_dump_on_send](#ms_dump_on_send) | `False` | Advanced | Performance |
-| [ms_initial_backoff](#ms_initial_backoff) | `0.2` | Advanced | Performance |
-| [ms_inject_delay_max](#ms_inject_delay_max) | `1` | Dev | Dev |
-| [ms_inject_delay_probability](#ms_inject_delay_probability) | `0` | Dev | Dev |
-| [ms_inject_delay_type](#ms_inject_delay_type) | `(empty)` | Dev | Dev |
-| [ms_inject_internal_delays](#ms_inject_internal_delays) | `0` | Dev | Dev |
-| [ms_inject_network_congestion](#ms_inject_network_congestion) | `0` | Dev | Dev |
-| [ms_inject_socket_failures](#ms_inject_socket_failures) | `0` | Dev | Dev |
-| [ms_learn_addr_from_peer](#ms_learn_addr_from_peer) | `True` | Advanced | Performance |
-| [ms_max_accept_failures](#ms_max_accept_failures) | `4` | Advanced | Performance |
-| [ms_max_backoff](#ms_max_backoff) | `15` | Advanced | Performance |
-| [ms_mon_client_mode](#ms_mon_client_mode) | `secure crc` | Basic | Policy |
-| [ms_mon_cluster_mode](#ms_mon_cluster_mode) | `secure crc` | Basic | Policy |
-| [ms_mon_service_mode](#ms_mon_service_mode) | `secure crc` | Basic | Policy |
-| [ms_osd_compress_min_size](#ms_osd_compress_min_size) | `1_K` | Advanced | Performance |
-| [ms_osd_compress_mode](#ms_osd_compress_mode) | `none` | Advanced | Performance |
-| [ms_osd_compression_algorithm](#ms_osd_compression_algorithm) | `snappy` | Advanced | Performance |
-| [ms_pq_max_tokens_per_priority](#ms_pq_max_tokens_per_priority) | `16_M` | Dev | Dev |
-| [ms_pq_min_cost](#ms_pq_min_cost) | `64_K` | Dev | Dev |
-| [ms_public_type](#ms_public_type) | `(empty)` | Advanced | Performance |
-| [ms_service_mode](#ms_service_mode) | `crc secure` | Basic | Policy |
-| [ms_tcp_listen_backlog](#ms_tcp_listen_backlog) | `512` | Advanced | Performance |
-| [ms_tcp_nodelay](#ms_tcp_nodelay) | `True` | Advanced | Performance |
-| [ms_tcp_prefetch_max_size](#ms_tcp_prefetch_max_size) | `64_K` | Advanced | Performance |
-| [ms_tcp_rcvbuf](#ms_tcp_rcvbuf) | `0` | Advanced | Performance |
-| [ms_time_events_min_wait_interval](#ms_time_events_min_wait_interval) | `1000` | Dev | Dev |
-| [ms_type](#ms_type) | `async+posix` | Advanced | Performance |
+| [ms_async_op_threads](#ms_async_op_threads) | `3` | Advanced | عملکرد |
+| [ms_async_rdma_buffer_size](#ms_async_rdma_buffer_size) | `128_K` | Advanced | عملکرد |
+| [ms_async_rdma_cm](#ms_async_rdma_cm) | `False` | Advanced | عملکرد |
+| [ms_async_rdma_device_name](#ms_async_rdma_device_name) | `(empty)` | Advanced | عملکرد |
+| [ms_async_rdma_dscp](#ms_async_rdma_dscp) | `96` | Advanced | عملکرد |
+| [ms_async_rdma_enable_hugepage](#ms_async_rdma_enable_hugepage) | `False` | Advanced | سیاست |
+| [ms_async_rdma_gid_idx](#ms_async_rdma_gid_idx) | `0` | Advanced | عملکرد |
+| [ms_async_rdma_local_gid](#ms_async_rdma_local_gid) | `(empty)` | Advanced | عملکرد |
+| [ms_async_rdma_polling_us](#ms_async_rdma_polling_us) | `1000` | Advanced | عملکرد |
+| [ms_async_rdma_port_num](#ms_async_rdma_port_num) | `1` | Advanced | عملکرد |
+| [ms_async_rdma_receive_buffers](#ms_async_rdma_receive_buffers) | `32_K` | Advanced | عملکرد |
+| [ms_async_rdma_receive_queue_len](#ms_async_rdma_receive_queue_len) | `4_K` | Advanced | عملکرد |
+| [ms_async_rdma_roce_ver](#ms_async_rdma_roce_ver) | `1` | Advanced | عملکرد |
+| [ms_async_rdma_send_buffers](#ms_async_rdma_send_buffers) | `1_K` | Advanced | عملکرد |
+| [ms_async_rdma_sl](#ms_async_rdma_sl) | `3` | Advanced | عملکرد |
+| [ms_async_rdma_support_srq](#ms_async_rdma_support_srq) | `True` | Advanced | عملکرد |
+| [ms_async_rdma_type](#ms_async_rdma_type) | `ib` | Advanced | عملکرد |
+| [ms_async_reap_threshold](#ms_async_reap_threshold) | `5` | Dev | توسعه |
+| [ms_bind_before_connect](#ms_bind_before_connect) | `False` | Advanced | عملکرد |
+| [ms_bind_ipv4](#ms_bind_ipv4) | `True` | Advanced | عملکرد |
+| [ms_bind_ipv6](#ms_bind_ipv6) | `False` | Advanced | عملکرد |
+| [ms_bind_msgr1](#ms_bind_msgr1) | `True` | Advanced | عملکرد |
+| [ms_bind_msgr2](#ms_bind_msgr2) | `True` | Advanced | عملکرد |
+| [ms_bind_port_max](#ms_bind_port_max) | `7568` | Advanced | عملکرد |
+| [ms_bind_port_min](#ms_bind_port_min) | `6800` | Advanced | عملکرد |
+| [ms_bind_prefer_ipv4](#ms_bind_prefer_ipv4) | `False` | Advanced | عملکرد |
+| [ms_bind_retry_count](#ms_bind_retry_count) | `0` | Advanced | عملکرد |
+| [ms_bind_retry_delay](#ms_bind_retry_delay) | `0` | Advanced | عملکرد |
+| [ms_blackhole_client](#ms_blackhole_client) | `False` | Dev | توسعه |
+| [ms_blackhole_mds](#ms_blackhole_mds) | `False` | Dev | توسعه |
+| [ms_blackhole_mgr](#ms_blackhole_mgr) | `False` | Dev | توسعه |
+| [ms_blackhole_mon](#ms_blackhole_mon) | `False` | Dev | توسعه |
+| [ms_blackhole_osd](#ms_blackhole_osd) | `False` | Dev | توسعه |
+| [ms_client_mode](#ms_client_mode) | `crc secure` | Basic | سیاست |
+| [ms_client_throttle_retry_time_interval](#ms_client_throttle_retry_time_interval) | `5000` | Dev | توسعه |
+| [ms_cluster_mode](#ms_cluster_mode) | `crc secure` | Basic | سیاست |
+| [ms_cluster_type](#ms_cluster_type) | `(empty)` | Advanced | عملکرد |
+| [ms_compress_secure](#ms_compress_secure) | `False` | Advanced | عملکرد |
+| [ms_connection_idle_timeout](#ms_connection_idle_timeout) | `900` | Advanced | عملکرد |
+| [ms_connection_ready_timeout](#ms_connection_ready_timeout) | `10` | Advanced | عملکرد |
+| [ms_crc_data](#ms_crc_data) | `True` | Dev | توسعه |
+| [ms_crc_header](#ms_crc_header) | `True` | Dev | توسعه |
+| [ms_die_on_bad_msg](#ms_die_on_bad_msg) | `False` | Dev | توسعه |
+| [ms_die_on_bug](#ms_die_on_bug) | `False` | Dev | توسعه |
+| [ms_die_on_old_message](#ms_die_on_old_message) | `False` | Dev | توسعه |
+| [ms_die_on_skipped_message](#ms_die_on_skipped_message) | `False` | Dev | توسعه |
+| [ms_die_on_unhandled_msg](#ms_die_on_unhandled_msg) | `False` | Dev | توسعه |
+| [ms_dispatch_throttle_bytes](#ms_dispatch_throttle_bytes) | `100_M` | Advanced | عملکرد |
+| [ms_dpdk_coremask](#ms_dpdk_coremask) | `0xF` | Advanced | عملکرد |
+| [ms_dpdk_debug_allow_loopback](#ms_dpdk_debug_allow_loopback) | `False` | Dev | توسعه |
+| [ms_dpdk_devs_allowlist](#ms_dpdk_devs_allowlist) | `(empty)` | Advanced | عملکرد |
+| [ms_dpdk_enable_tso](#ms_dpdk_enable_tso) | `True` | Advanced | سیاست |
+| [ms_dpdk_gateway_ipv4_addr](#ms_dpdk_gateway_ipv4_addr) | `(empty)` | Advanced | اتصال |
+| [ms_dpdk_host_ipv4_addr](#ms_dpdk_host_ipv4_addr) | `(empty)` | Advanced | اتصال |
+| [ms_dpdk_hugepages](#ms_dpdk_hugepages) | `(empty)` | Advanced | عملکرد |
+| [ms_dpdk_hw_flow_control](#ms_dpdk_hw_flow_control) | `True` | Advanced | عملکرد |
+| [ms_dpdk_hw_queue_weight](#ms_dpdk_hw_queue_weight) | `1` | Advanced | عملکرد |
+| [ms_dpdk_lro](#ms_dpdk_lro) | `True` | Advanced | عملکرد |
+| [ms_dpdk_memory_channel](#ms_dpdk_memory_channel) | `4` | Advanced | عملکرد |
+| [ms_dpdk_netmask_ipv4_addr](#ms_dpdk_netmask_ipv4_addr) | `(empty)` | Advanced | اتصال |
+| [ms_dpdk_pmd](#ms_dpdk_pmd) | `(empty)` | Advanced | عملکرد |
+| [ms_dpdk_port_id](#ms_dpdk_port_id) | `0` | Advanced | عملکرد |
+| [ms_dpdk_rx_buffer_count_per_core](#ms_dpdk_rx_buffer_count_per_core) | `8192` | Advanced | عملکرد |
+| [ms_dump_corrupt_message_level](#ms_dump_corrupt_message_level) | `1` | Advanced | عملکرد |
+| [ms_dump_on_send](#ms_dump_on_send) | `False` | Advanced | عملکرد |
+| [ms_initial_backoff](#ms_initial_backoff) | `0.2` | Advanced | عملکرد |
+| [ms_inject_delay_max](#ms_inject_delay_max) | `1` | Dev | توسعه |
+| [ms_inject_delay_probability](#ms_inject_delay_probability) | `0` | Dev | توسعه |
+| [ms_inject_delay_type](#ms_inject_delay_type) | `(empty)` | Dev | توسعه |
+| [ms_inject_internal_delays](#ms_inject_internal_delays) | `0` | Dev | توسعه |
+| [ms_inject_network_congestion](#ms_inject_network_congestion) | `0` | Dev | توسعه |
+| [ms_inject_socket_failures](#ms_inject_socket_failures) | `0` | Dev | توسعه |
+| [ms_learn_addr_from_peer](#ms_learn_addr_from_peer) | `True` | Advanced | عملکرد |
+| [ms_max_accept_failures](#ms_max_accept_failures) | `4` | Advanced | عملکرد |
+| [ms_max_backoff](#ms_max_backoff) | `15` | Advanced | عملکرد |
+| [ms_mon_client_mode](#ms_mon_client_mode) | `secure crc` | Basic | سیاست |
+| [ms_mon_cluster_mode](#ms_mon_cluster_mode) | `secure crc` | Basic | سیاست |
+| [ms_mon_service_mode](#ms_mon_service_mode) | `secure crc` | Basic | سیاست |
+| [ms_osd_compress_min_size](#ms_osd_compress_min_size) | `1_K` | Advanced | عملکرد |
+| [ms_osd_compress_mode](#ms_osd_compress_mode) | `none` | Advanced | عملکرد |
+| [ms_osd_compression_algorithm](#ms_osd_compression_algorithm) | `snappy` | Advanced | عملکرد |
+| [ms_pq_max_tokens_per_priority](#ms_pq_max_tokens_per_priority) | `16_M` | Dev | توسعه |
+| [ms_pq_min_cost](#ms_pq_min_cost) | `64_K` | Dev | توسعه |
+| [ms_public_type](#ms_public_type) | `(empty)` | Advanced | عملکرد |
+| [ms_service_mode](#ms_service_mode) | `crc secure` | Basic | سیاست |
+| [ms_tcp_listen_backlog](#ms_tcp_listen_backlog) | `512` | Advanced | عملکرد |
+| [ms_tcp_nodelay](#ms_tcp_nodelay) | `True` | Advanced | عملکرد |
+| [ms_tcp_prefetch_max_size](#ms_tcp_prefetch_max_size) | `64_K` | Advanced | عملکرد |
+| [ms_tcp_rcvbuf](#ms_tcp_rcvbuf) | `0` | Advanced | عملکرد |
+| [ms_time_events_min_wait_interval](#ms_time_events_min_wait_interval) | `1000` | Dev | توسعه |
+| [ms_type](#ms_type) | `async+posix` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -136,7 +136,7 @@ ceph config get global ms_async_op_threads
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -171,7 +171,7 @@ ceph config get global ms_async_rdma_buffer_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -204,7 +204,7 @@ ceph config get global ms_async_rdma_cm
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -237,7 +237,7 @@ ceph config get global ms_async_rdma_device_name
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -270,7 +270,7 @@ ceph config get global ms_async_rdma_dscp
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `96`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -303,7 +303,7 @@ ceph config get global ms_async_rdma_enable_hugepage
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -337,7 +337,7 @@ ceph config get global ms_async_rdma_gid_idx
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -370,7 +370,7 @@ ceph config get global ms_async_rdma_local_gid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -403,7 +403,7 @@ ceph config get global ms_async_rdma_polling_us
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -436,7 +436,7 @@ ceph config get global ms_async_rdma_port_num
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -469,7 +469,7 @@ ceph config get global ms_async_rdma_receive_buffers
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `32_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -502,7 +502,7 @@ ceph config get global ms_async_rdma_receive_queue_len
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -535,7 +535,7 @@ ceph config get global ms_async_rdma_roce_ver
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -568,7 +568,7 @@ ceph config get global ms_async_rdma_send_buffers
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -601,7 +601,7 @@ ceph config get global ms_async_rdma_sl
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -634,7 +634,7 @@ ceph config get global ms_async_rdma_support_srq
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -667,7 +667,7 @@ ceph config get global ms_async_rdma_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `ib`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -702,7 +702,7 @@ ceph config get global ms_async_reap_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -730,7 +730,7 @@ ceph config get global ms_bind_before_connect
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -765,7 +765,7 @@ ceph config get global ms_bind_ipv4
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -800,7 +800,7 @@ ceph config get global ms_bind_ipv6
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -835,7 +835,7 @@ ceph config get global ms_bind_msgr1
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -870,7 +870,7 @@ ceph config get global ms_bind_msgr2
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -905,7 +905,7 @@ ceph config get global ms_bind_port_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `7568`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -940,7 +940,7 @@ ceph config get global ms_bind_port_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `6800`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -975,7 +975,7 @@ ceph config get global ms_bind_prefer_ipv4
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1010,7 +1010,7 @@ ceph config get global ms_bind_retry_count
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1045,7 +1045,7 @@ ceph config get global ms_bind_retry_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1078,7 +1078,7 @@ ceph config get global ms_blackhole_client
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1104,7 +1104,7 @@ ceph config get global ms_blackhole_mds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1130,7 +1130,7 @@ ceph config get global ms_blackhole_mgr
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1156,7 +1156,7 @@ ceph config get global ms_blackhole_mon
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1182,7 +1182,7 @@ ceph config get global ms_blackhole_osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1210,7 +1210,7 @@ ceph config get global ms_client_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `crc secure` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -1244,7 +1244,7 @@ ceph config get global ms_client_throttle_retry_time_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5000`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1272,7 +1272,7 @@ ceph config get global ms_cluster_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `crc secure` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -1306,7 +1306,7 @@ ceph config get global ms_cluster_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1341,7 +1341,7 @@ ceph config get global ms_compress_secure
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1376,7 +1376,7 @@ ceph config get global ms_connection_idle_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `900`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1411,7 +1411,7 @@ ceph config get global ms_connection_ready_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1446,7 +1446,7 @@ ceph config get global ms_crc_data
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1474,7 +1474,7 @@ ceph config get global ms_crc_header
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1502,7 +1502,7 @@ ceph config get global ms_die_on_bad_msg
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1530,7 +1530,7 @@ ceph config get global ms_die_on_bug
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1558,7 +1558,7 @@ ceph config get global ms_die_on_old_message
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1586,7 +1586,7 @@ ceph config get global ms_die_on_skipped_message
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1614,7 +1614,7 @@ ceph config get global ms_die_on_unhandled_msg
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1642,7 +1642,7 @@ ceph config get global ms_dispatch_throttle_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1675,7 +1675,7 @@ ceph config get global ms_dpdk_coremask
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0xF`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1708,7 +1708,7 @@ ceph config get global ms_dpdk_debug_allow_loopback
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1736,7 +1736,7 @@ ceph config get global ms_dpdk_devs_allowlist
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1769,7 +1769,7 @@ ceph config get global ms_dpdk_enable_tso
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -1801,7 +1801,7 @@ ceph config get global ms_dpdk_gateway_ipv4_addr
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Connectivity
+**مدل تنظیم:** اتصال
 
 1. نقاط پایانی (endpoint) کاندید را از محیط خود فهرست کنید.
 2. دسترسی‌پذیری از هر نودی که دیمن روی آن اجرا می‌شود را بررسی کنید.
@@ -1834,7 +1834,7 @@ ceph config get global ms_dpdk_host_ipv4_addr
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Connectivity
+**مدل تنظیم:** اتصال
 
 1. نقاط پایانی (endpoint) کاندید را از محیط خود فهرست کنید.
 2. دسترسی‌پذیری از هر نودی که دیمن روی آن اجرا می‌شود را بررسی کنید.
@@ -1867,7 +1867,7 @@ ceph config get global ms_dpdk_hugepages
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1900,7 +1900,7 @@ ceph config get global ms_dpdk_hw_flow_control
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1933,7 +1933,7 @@ ceph config get global ms_dpdk_hw_queue_weight
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1966,7 +1966,7 @@ ceph config get global ms_dpdk_lro
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1999,7 +1999,7 @@ ceph config get global ms_dpdk_memory_channel
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2032,7 +2032,7 @@ ceph config get global ms_dpdk_netmask_ipv4_addr
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Connectivity
+**مدل تنظیم:** اتصال
 
 1. نقاط پایانی (endpoint) کاندید را از محیط خود فهرست کنید.
 2. دسترسی‌پذیری از هر نودی که دیمن روی آن اجرا می‌شود را بررسی کنید.
@@ -2065,7 +2065,7 @@ ceph config get global ms_dpdk_pmd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2098,7 +2098,7 @@ ceph config get global ms_dpdk_port_id
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2131,7 +2131,7 @@ ceph config get global ms_dpdk_rx_buffer_count_per_core
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `8192`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2166,7 +2166,7 @@ ceph config get global ms_dump_corrupt_message_level
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2201,7 +2201,7 @@ ceph config get global ms_dump_on_send
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2236,7 +2236,7 @@ ceph config get global ms_initial_backoff
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2271,7 +2271,7 @@ ceph config get global ms_inject_delay_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2297,7 +2297,7 @@ ceph config get global ms_inject_delay_probability
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2325,7 +2325,7 @@ ceph config get global ms_inject_delay_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`(empty)`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2353,7 +2353,7 @@ ceph config get global ms_inject_internal_delays
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2381,7 +2381,7 @@ ceph config get global ms_inject_network_congestion
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2409,7 +2409,7 @@ ceph config get global ms_inject_socket_failures
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2437,7 +2437,7 @@ ceph config get global ms_learn_addr_from_peer
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2472,7 +2472,7 @@ ceph config get global ms_max_accept_failures
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2507,7 +2507,7 @@ ceph config get global ms_max_backoff
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2542,7 +2542,7 @@ ceph config get global ms_mon_client_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `secure crc` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -2576,7 +2576,7 @@ ceph config get global ms_mon_cluster_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `secure crc` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -2610,7 +2610,7 @@ ceph config get global ms_mon_service_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `secure crc` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -2644,7 +2644,7 @@ ceph config get global ms_osd_compress_min_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2679,7 +2679,7 @@ ceph config get global ms_osd_compress_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `none`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2714,7 +2714,7 @@ ceph config get global ms_osd_compression_algorithm
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `snappy`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2747,7 +2747,7 @@ ceph config get global ms_pq_max_tokens_per_priority
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`16_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2773,7 +2773,7 @@ ceph config get global ms_pq_min_cost
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`64_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2801,7 +2801,7 @@ ceph config get global ms_public_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2836,7 +2836,7 @@ ceph config get global ms_service_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `crc secure` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -2870,7 +2870,7 @@ ceph config get global ms_tcp_listen_backlog
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `512`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2905,7 +2905,7 @@ ceph config get global ms_tcp_nodelay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2940,7 +2940,7 @@ ceph config get global ms_tcp_prefetch_max_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2975,7 +2975,7 @@ ceph config get global ms_tcp_rcvbuf
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3010,7 +3010,7 @@ ceph config get global ms_time_events_min_wait_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1000`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3038,7 +3038,7 @@ ceph config get global ms_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `async+posix`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

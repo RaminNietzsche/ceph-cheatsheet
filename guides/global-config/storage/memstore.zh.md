@@ -4,20 +4,20 @@ Global 配置深度指南 — 4 个选项。[← 概览](../OVERVIEW.md) · [调
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [memstore_debug_omit_block_device_write](#memstore_debug_omit_block_device_write) | `False` | Dev | Dev |
-| [memstore_device_bytes](#memstore_device_bytes) | `1_G` | Advanced | Performance |
-| [memstore_page_set](#memstore_page_set) | `False` | Advanced | Performance |
-| [memstore_page_size](#memstore_page_size) | `64_K` | Advanced | Performance |
+| [memstore_debug_omit_block_device_write](#memstore_debug_omit_block_device_write) | `False` | Dev | 开发 |
+| [memstore_device_bytes](#memstore_device_bytes) | `1_G` | Advanced | 性能 |
+| [memstore_page_set](#memstore_page_set) | `False` | Advanced | 性能 |
+| [memstore_page_size](#memstore_page_size) | `64_K` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -49,7 +49,7 @@ ceph config get global memstore_debug_omit_block_device_write
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -75,7 +75,7 @@ ceph config get global memstore_device_bytes
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `1_G` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -108,7 +108,7 @@ ceph config get global memstore_page_set
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -141,7 +141,7 @@ ceph config get global memstore_page_size
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `64_K` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

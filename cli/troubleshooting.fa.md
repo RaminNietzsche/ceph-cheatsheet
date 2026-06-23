@@ -1,8 +1,6 @@
-> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
+# دستورات عیب‌یابی
 
-# Troubleshooting Commands
-
-## Logs
+## Log
 
 ```bash
 # Cluster log (recent events)
@@ -21,7 +19,7 @@ ceph config set mon debug_mon 10/5
 ceph tell osd.* config set debug_osd 20/5
 ```
 
-## Performance & slow requests
+## عملکرد و درخواست‌های کند
 
 ```bash
 ceph daemon osd.<id> perf dump
@@ -31,7 +29,7 @@ ceph tell osd.<id> dump_ops_in_flight
 ceph health detail                     # SLOW_OPS warnings
 ```
 
-## Recovery & backfill
+## Recovery و backfill
 
 ```bash
 ceph -s                                # recovery progress
@@ -41,7 +39,7 @@ ceph osd blocked-by
 ceph tell osd.* injectargs '--osd_max_backfills=1'   # throttle (temporary)
 ```
 
-## Inconsistent PGs / objects
+## PG / شیء ناسازگار
 
 ```bash
 ceph pg dump | grep inconsistent
@@ -50,7 +48,7 @@ rados list-inconsistent-obj <pgid> --format json-pretty
 ceph pg repair <pgid>
 ```
 
-## Full / nearfull cluster
+## کلاستر full / nearfull
 
 ```bash
 ceph df detail
@@ -59,7 +57,7 @@ ceph osd pool set <pool> size <n>      # reduce if oversized (careful!)
 ceph osd reweight-by-utilization
 ```
 
-## Monitor issues
+## مشکلات مانیتور
 
 ```bash
 ceph mon stat
@@ -68,7 +66,7 @@ ceph daemon mon.<name> mon_status
 ceph mon dump
 ```
 
-## RGW issues
+## مشکلات RGW
 
 ```bash
 radosgw-admin sync status
@@ -78,7 +76,7 @@ ceph config show client.rgw.<instance>
 ceph daemon rgw.<id> perf dump          # local admin socket on RGW node
 ```
 
-## RBD issues
+## مشکلات RBD
 
 ```bash
 rbd status <pool>/<image>
@@ -86,13 +84,13 @@ rbd showmapped
 rbd mirror pool status <pool>
 ```
 
-## Config reference lookup
+## جستجوی مرجع config
 
-When tuning, look up option defaults and flags:
+هنگام تنظیم، پیش‌فرض و پرچم گزینه را ببینید:
 
 ```bash
 ./scripts/lookup-config.sh <option-name>
 ./scripts/search-config.sh <keyword>
 ```
 
-[← CLI overview](OVERVIEW.md)
+[← نمای کلی CLI](OVERVIEW.md)

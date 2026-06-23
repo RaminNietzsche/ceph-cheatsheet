@@ -1,0 +1,467 @@
+# General guide pages — fa / zh (CLI blocks stay English).
+
+guides/quickstart:
+  fa: |
+    # شروع سریع — روند کاری روزانهٔ مدیر
+
+    حداقل گام‌ها برای بهره‌برداری از کلاستر Ceph. با محیط خود (cephadm یا دستی، نسخهٔ release) تطبیق دهید.
+
+    ## ۱. بررسی سلامت کلاستر
+
+    ```bash
+    ceph -s
+    ceph health detail
+    ceph versions
+    ceph orch ps          # if using cephadm
+    ```
+
+    انتظار: `health: HEALTH_OK`، همه OSDها up، quorum سالم.
+
+    ## ۲. ظرفیت و مصرف
+
+    ```bash
+    ceph df
+    ceph df detail
+    ceph osd df tree
+    ```
+
+    به هشدارهای `nearfull` / `backfillfull` توجه کنید.
+
+    ## ۳. وضعیت PG
+
+    ```bash
+    ceph pg stat
+    ceph pg dump_stuck
+    ```
+
+    همه PGها باید `active+clean` باشند. `degraded`، `recovering`، `backfilling` یا `stuck` را بررسی کنید.
+
+    ## ۴. تغییرات رایج
+
+    ```bash
+    # Set a runtime config option
+    ceph config set osd osd_max_scrubs 2
+
+    # Create an RBD pool
+    ceph osd pool create rbd 128 128 replicated
+    ceph osd pool application enable rbd rbd
+
+    # Create an RBD image
+    rbd create rbd/myimage --size 10G
+
+    # Mark OSD out for maintenance
+    ceph osd out 5
+    # … wait for backfill …
+    ceph osd in 5
+    ```
+
+    ## ۵. پیش از ارتقا
+
+    ```bash
+    ceph versions                         # mixed versions?
+    ceph health detail
+    ceph osd ok-to-stop osd.0 osd.1 …    # check N OSDs at a time
+    ceph orch upgrade status              # cephadm path
+    ```
+
+    ## ۶. وقتی مشکلی پیش آمد
+
+    1. `ceph health detail` — متن هشدار/خطا را بخوانید
+    2. `ceph -w` — رویدادهای زنده را ببینید
+    3. [دستورات عیب‌یابی](../cli/troubleshooting.md)
+    4. پیکربندی مرتبط: `./scripts/lookup-config.sh <option>`
+
+    ## برگهٔ تقلب جستجو
+
+    ```bash
+    ./scripts/lookup-config.sh osd_max_scrubs
+    ./scripts/search-all.sh "full ratio"
+    ./scripts/search-config.sh -s rgw cache
+    ```
+
+    ## گام بعدی
+
+    - [نقش](OVERVIEW.md#by-role) یا [مقیاس](OVERVIEW.md#by-scale) خود را برای روندهای تخصصی‌تر انتخاب کنید.
+
+    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+  zh: |
+    # 快速入门 — 日常运维流程
+
+    操作 Ceph 集群的最小流程。请按环境调整（cephadm 或手动部署、发行版版本）。
+
+    ## 1. 检查集群健康
+
+    ```bash
+    ceph -s
+    ceph health detail
+    ceph versions
+    ceph orch ps          # if using cephadm
+    ```
+
+    期望：`health: HEALTH_OK`，所有 OSD 在线，quorum 正常。
+
+    ## 2. 容量与使用率
+
+    ```bash
+    ceph df
+    ceph df detail
+    ceph osd df tree
+    ```
+
+    关注 `nearfull` / `backfillfull` 警告。
+
+    ## 3. PG 状态
+
+    ```bash
+    ceph pg stat
+    ceph pg dump_stuck
+    ```
+
+    所有 PG 应为 `active+clean`。排查 `degraded`、`recovering`、`backfilling` 或 `stuck`。
+
+    ## 4. 常见变更
+
+    ```bash
+    # Set a runtime config option
+    ceph config set osd osd_max_scrubs 2
+
+    # Create an RBD pool
+    ceph osd pool create rbd 128 128 replicated
+    ceph osd pool application enable rbd rbd
+
+    # Create an RBD image
+    rbd create rbd/myimage --size 10G
+
+    # Mark OSD out for maintenance
+    ceph osd out 5
+    # … wait for backfill …
+    ceph osd in 5
+    ```
+
+    ## 5. 升级前
+
+    ```bash
+    ceph versions                         # mixed versions?
+    ceph health detail
+    ceph osd ok-to-stop osd.0 osd.1 …    # check N OSDs at a time
+    ceph orch upgrade status              # cephadm path
+    ```
+
+    ## 6. 出问题时
+
+    1. `ceph health detail` — 阅读警告/错误文本
+    2. `ceph -w` — 观察实时事件
+    3. [故障排查命令](../cli/troubleshooting.md)
+    4. 查找相关配置：`./scripts/lookup-config.sh <option>`
+
+    ## 查找速查
+
+    ```bash
+    ./scripts/lookup-config.sh osd_max_scrubs
+    ./scripts/search-all.sh "full ratio"
+    ./scripts/search-config.sh -s rgw cache
+    ```
+
+    ## 下一步
+
+    - 按 [角色](OVERVIEW.md#by-role) 或 [规模](OVERVIEW.md#by-scale) 选择更聚焦的流程。
+
+    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+
+guides/config-lookup:
+  fa: |
+    # استفاده از مرجع Config
+
+    بخش config به‌صورت خودکار از YAML upstream Ceph تولید می‌شود. هر گزینه یک سطر در جدول Markdown است.
+
+    ## یافتن یک گزینه
+
+    **با نام:**
+
+    ```bash
+    ./scripts/lookup-config.sh rgw_cache_enabled
+    ```
+
+    **با کلیدواژه:**
+
+    ```bash
+    ./scripts/search-config.sh scrub
+    ./scripts/search-config.sh -s osd mclock
+    ```
+
+    **مرور:**
+
+    1. [config/OVERVIEW.md](../config/OVERVIEW.md) را باز کنید
+    2. زیرسیستم را انتخاب کنید (مثلاً `rgw`)
+    3. `INDEX.md` برای فهرست لینک‌دار، یا `rgw.md` برای جدول کامل
+
+    ## خواندن سطر جدول
+
+    مثال: `osd_max_scrubs`
+
+    | ستون | معنی |
+    |--------|---------|
+    | **Name** | کلیدی که با `ceph config set osd osd_max_scrubs 2` استفاده می‌شود |
+    | **Desc** | توضیح کوتاه |
+    | **Level** | `Basic` (معمولاً تنظیم می‌شود) · `Advanced` · `Dev` |
+    | **Type** | `Int`، `Bool`، `Size`، `Str`، … |
+    | **non-Daemon / Daemon Default** | مقدار پیش‌فرض (ممکن است برای دیمن‌ها متفاوت باشد) |
+    | **Min / Max** | محدودهٔ عددی مجاز |
+    | **Valid Values** | مقادیر enum مجاز به‌صورت آرایهٔ JSON |
+    | **Flags** | `RUNTIME` = `ceph config set` زنده؛ `STARTUP` = نیاز به restart |
+    | **Services** | کدام اجزا این گزینه را مصرف می‌کنند |
+    | **See also** | گزینه‌های مرتبط (لینک‌دار) |
+    | **Long Desc** | توضیح مفصل |
+
+    ## اعمال تغییرات
+
+    ```bash
+    # Check current effective value
+    ceph config get osd.0 osd_max_scrubs
+
+    # Set for all OSDs (persistent)
+    ceph config set osd osd_max_scrubs 2
+
+    # Set for one daemon
+    ceph config set osd.0 osd_max_scrubs 1
+
+    # Remove override
+    ceph config rm osd osd_max_scrubs
+    ```
+
+    فقط گزینه‌های دارای پرچم `RUNTIME` با `ceph config set` زنده پذیرفته می‌شوند. بقیه restart یا `ceph.conf` می‌خواهند.
+
+    ## بازتولید از upstream
+
+    با release جدید Ceph:
+
+    ```bash
+    python3 scripts/generate-config.py --ref reef    # or squid, main, …
+    ```
+
+    ref فعلی در [VERSION](../version.md).
+
+    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+  zh: |
+    # 使用配置参考
+
+    config 部分由 Ceph upstream YAML 自动生成。每个选项对应 Markdown 表格中的一行。
+
+    ## 查找选项
+
+    **按名称：**
+
+    ```bash
+    ./scripts/lookup-config.sh rgw_cache_enabled
+    ```
+
+    **按关键词：**
+
+    ```bash
+    ./scripts/search-config.sh scrub
+    ./scripts/search-config.sh -s osd mclock
+    ```
+
+    **浏览：**
+
+    1. 打开 [config/OVERVIEW.md](../config/OVERVIEW.md)
+    2. 选择子系统（如 `rgw`）
+    3. 打开 `INDEX.md` 查看链接列表，或 `rgw.md` 查看完整表格
+
+    ## 阅读表格行
+
+    示例：`osd_max_scrubs`
+
+    | 列 | 含义 |
+    |--------|---------|
+    | **Name** | 与 `ceph config set osd osd_max_scrubs 2` 配合使用的键 |
+    | **Desc** | 简短说明 |
+    | **Level** | `Basic`（常调）· `Advanced` · `Dev` |
+    | **Type** | `Int`、`Bool`、`Size`、`Str` 等 |
+    | **non-Daemon / Daemon Default** | 默认值（守护进程可能不同） |
+    | **Min / Max** | 有效数值范围 |
+    | **Valid Values** | 允许的枚举值（JSON 数组） |
+    | **Flags** | `RUNTIME` = 可 `ceph config set` 热更新；`STARTUP` = 需重启 |
+    | **Services** | 使用该选项的组件 |
+    | **See also** | 相关选项（链接） |
+    | **Long Desc** | 详细说明 |
+
+    ## 应用变更
+
+    ```bash
+    # Check current effective value
+    ceph config get osd.0 osd_max_scrubs
+
+    # Set for all OSDs (persistent)
+    ceph config set osd osd_max_scrubs 2
+
+    # Set for one daemon
+    ceph config set osd.0 osd_max_scrubs 1
+
+    # Remove override
+    ceph config rm osd osd_max_scrubs
+    ```
+
+    仅带 `RUNTIME` 标志的选项支持 `ceph config set` 热更新；其余需重启或修改 `ceph.conf`。
+
+    ## 从 upstream 重新生成
+
+    Ceph 新版本发布后：
+
+    ```bash
+    python3 scripts/generate-config.py --ref reef    # or squid, main, …
+    ```
+
+    当前 ref 见 [VERSION](../version.md)。
+
+    [← Cheatsheet](../cheatsheet/OVERVIEW.md)
+
+guides/contributing:
+  fa: |
+    # مشارکت در مرجع
+
+    ساختار، نگهداری و گسترش این مخزن.
+
+    ## قوانین Cursor
+
+    قوانین پروژه در `.cursor/rules/`:
+
+    | قانون | محدوده |
+    |------|------------|
+    | `documentation.mdc` | `cli/`، `guides/`، REFERENCE.md |
+    | `config-generation.mdc` | `config/`، اسکریپت‌های generate |
+    | `no-cursor-coauthor.mdc` | همه commitها |
+
+    همه قوانین در `.cursor/rules/` در ریشهٔ مخزن هستند.
+
+    ## مهارت Cursor
+
+    `.cursor/skills/ceph-cheatsheet/SKILL.md` — روند agent برای بازتولید، جستجو، mkdocs و افزودن محتوا.
+
+    ## انواع محتوا
+
+    ```
+    cli/                    دستی — برگهٔ دستورات
+    guides/roles/           دستی — بر اساس نقش اپراتور
+    guides/scales/          دستی — بر اساس اندازهٔ کلاستر
+    guides/rgw-config/      تولیدشده — گزینه‌های RGW بر اساس nav
+    config/                 تولیدشده — جداول را دستی ویرایش نکنید
+    docs/                   پوسته MkDocs — sync index از REFERENCE.md
+    REFERENCE.md            هاب — sync به docs/index.md
+    ```
+
+    ## روندهای کاری
+
+    **به‌روزرسانی config از upstream Ceph:**
+
+    ```bash
+    python3 scripts/generate-config.py --ref main
+    python3 scripts/generate-role-scale-guides.py   # roles + scales (en/fa/zh)
+    python3 scripts/generate-rgw-guide.py
+    python3 scripts/generate-config-guide.py all   # OSD, MON, MGR, MDS, global, …
+    python3 scripts/sync-i18n-config.py            # fa/zh config tables
+    python3 scripts/sync-i18n-pages.py             # fa/zh hand-written pages
+    python3 scripts/sync-docs-index.py
+    ```
+
+    همه generatorها **انگلیسی** (`.md`) به‌علاوه **فارسی** (`.fa.md`) و **چینی** (`.zh.md`) می‌نویسند. رشته‌های قالب در `scripts/locales/strings.yaml`؛ ترجمهٔ صفحات دستی در `scripts/locales/pages/`.
+
+    generator راهنمای RGW از `config/rgw/*.md` می‌خواند، فایل‌های موضوعی زیر `guides/rgw-config/<category>/` می‌نویسد و `mkdocs.yml` را بین `# rgw-nav:start` / `# rgw-nav:end` به‌روز می‌کند.
+
+    `generate-config-guide.py` همین کار را برای زیرسیستم‌های دیگر انجام می‌دهد (پروفایل‌ها در همان اسکریپت؛ نشانگرهای nav `# osd-nav:start` / … داخل `# config-guides-nav:start` در `mkdocs.yml`). متن دست‌نویس گزینه‌های پرکاربرد OSD/MON در `scripts/subsystem_enrichments.py` است. URLهای flat راهنمای RGW و global از طریق `mkdocs-redirects` (توسط generatorها) redirect می‌شوند. پس از بازتولید config هر دو generator را دوباره اجرا کنید.
+
+    **ویرایش متن (CLI، guides، REFERENCE):**
+
+    1. فایل‌ها را ویرایش کنید
+    2. `python3 scripts/sync-docs-index.py`
+    3. `mkdocs serve` برای پیش‌نمایش
+
+    **CI:** push به `main` → `.github/workflows/docs.yml` build و deploy Pages.
+
+    ## افزودن صفحه CLI جدید
+
+    1. `cli/mytopic.md` طبق قانون documentation بسازید
+    2. از `cli/OVERVIEW.md`، `REFERENCE.md`، `mkdocs.yml` لینک دهید
+    3. از راهنمای نقش/مقیاس مرتبط cross-link کنید
+
+    ## افزودن راهنمای نقش یا مقیاس
+
+    1. زیر `guides/roles/` یا `guides/scales/` بسازید
+    2. `guides/OVERVIEW.md` و `REFERENCE.md` را به‌روز کنید
+    3. docs index و nav mkdocs را sync کنید
+
+    [← نمای کلی راهنما](OVERVIEW.md)
+  zh: |
+    # 贡献指南
+
+    本仓库的结构、维护与扩展方式。
+
+    ## Cursor 规则
+
+    项目规则位于 `.cursor/rules/`：
+
+    | 规则 | 适用范围 |
+    |------|------------|
+    | `documentation.mdc` | `cli/`、`guides/`、REFERENCE.md |
+    | `config-generation.mdc` | `config/`、generate 脚本 |
+    | `no-cursor-coauthor.mdc` | 所有 commit |
+
+    所有规则位于仓库根目录 `.cursor/rules/`。
+
+    ## Cursor 技能
+
+    `.cursor/skills/ceph-cheatsheet/SKILL.md` — agent 工作流：重新生成、搜索、mkdocs 与添加内容。
+
+    ## 内容类型
+
+    ```
+    cli/                    手动 — 命令速查
+    guides/roles/           手动 — 按运维角色
+    guides/scales/          手动 — 按集群规模
+    guides/rgw-config/      生成 — 按 nav 分类的 RGW 选项
+    config/                 生成 — 请勿手改表格
+    docs/                   MkDocs 外壳 — 从 REFERENCE.md 同步 index
+    REFERENCE.md            枢纽 — 同步到 docs/index.md
+    ```
+
+    ## 工作流
+
+    **从 upstream Ceph 更新 config：**
+
+    ```bash
+    python3 scripts/generate-config.py --ref main
+    python3 scripts/generate-role-scale-guides.py   # roles + scales (en/fa/zh)
+    python3 scripts/generate-rgw-guide.py
+    python3 scripts/generate-config-guide.py all   # OSD, MON, MGR, MDS, global, …
+    python3 scripts/sync-i18n-config.py            # fa/zh config tables
+    python3 scripts/sync-i18n-pages.py             # fa/zh hand-written pages
+    python3 scripts/sync-docs-index.py
+    ```
+
+    所有生成器输出 **英文**（`.md`）以及 **波斯语**（`.fa.md`）和 **中文**（`.zh.md`）。模板字符串在 `scripts/locales/strings.yaml`；手写页面翻译在 `scripts/locales/pages/`。
+
+    RGW 指南生成器读取 `config/rgw/*.md`，在 `guides/rgw-config/<category>/` 下写入主题文件，并在 `# rgw-nav:start` / `# rgw-nav:end` 之间更新 `mkdocs.yml`。
+
+    `generate-config-guide.py` 对其他子系统做同样的事（配置见该脚本；nav 标记 `# osd-nav:start` / … 位于 `mkdocs.yml` 的 `# config-guides-nav:start` 内）。OSD/MON 热点选项的手写说明在 `scripts/subsystem_enrichments.py`。RGW 与 global 扁平指南 URL 通过 `mkdocs-redirects`（由生成器维护）重定向。config 重新生成后请再次运行两个生成器。
+
+    **编辑正文（CLI、guides、REFERENCE）：**
+
+    1. 编辑文件
+    2. `python3 scripts/sync-docs-index.py`
+    3. `mkdocs serve` 预览
+
+    **CI：** push 到 `main` → `.github/workflows/docs.yml` 构建并部署 Pages。
+
+    ## 添加新 CLI 页面
+
+    1. 按 documentation 规则创建 `cli/mytopic.md`
+    2. 从 `cli/OVERVIEW.md`、`REFERENCE.md`、`mkdocs.yml` 链接
+    3. 从相关角色/规模指南交叉链接
+
+    ## 添加角色或规模指南
+
+    1. 在 `guides/roles/` 或 `guides/scales/` 下创建
+    2. 更新 `guides/OVERVIEW.md` 与 `REFERENCE.md`
+    3. 同步 docs index 与 mkdocs nav
+
+    [← 指南概览](OVERVIEW.md)

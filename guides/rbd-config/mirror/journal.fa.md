@@ -4,27 +4,27 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rbd_journal_commit_age](#rbd_journal_commit_age) | `5` | Advanced | Performance |
-| [rbd_journal_max_concurrent_object_sets](#rbd_journal_max_concurrent_object_sets) | `0` | Advanced | Performance |
-| [rbd_journal_max_payload_bytes](#rbd_journal_max_payload_bytes) | `16_K` | Advanced | Performance |
-| [rbd_journal_object_flush_age](#rbd_journal_object_flush_age) | `0` | Advanced | Performance |
-| [rbd_journal_object_flush_bytes](#rbd_journal_object_flush_bytes) | `1_M` | Advanced | Performance |
-| [rbd_journal_object_flush_interval](#rbd_journal_object_flush_interval) | `0` | Advanced | Performance |
-| [rbd_journal_object_max_in_flight_appends](#rbd_journal_object_max_in_flight_appends) | `0` | Advanced | Performance |
-| [rbd_journal_object_writethrough_until_flush](#rbd_journal_object_writethrough_until_flush) | `True` | Advanced | Performance |
-| [rbd_journal_order](#rbd_journal_order) | `24` | Advanced | Performance |
-| [rbd_journal_pool](#rbd_journal_pool) | `(empty)` | Advanced | Performance |
-| [rbd_journal_splay_width](#rbd_journal_splay_width) | `4` | Advanced | Performance |
+| [rbd_journal_commit_age](#rbd_journal_commit_age) | `5` | Advanced | عملکرد |
+| [rbd_journal_max_concurrent_object_sets](#rbd_journal_max_concurrent_object_sets) | `0` | Advanced | عملکرد |
+| [rbd_journal_max_payload_bytes](#rbd_journal_max_payload_bytes) | `16_K` | Advanced | عملکرد |
+| [rbd_journal_object_flush_age](#rbd_journal_object_flush_age) | `0` | Advanced | عملکرد |
+| [rbd_journal_object_flush_bytes](#rbd_journal_object_flush_bytes) | `1_M` | Advanced | عملکرد |
+| [rbd_journal_object_flush_interval](#rbd_journal_object_flush_interval) | `0` | Advanced | عملکرد |
+| [rbd_journal_object_max_in_flight_appends](#rbd_journal_object_max_in_flight_appends) | `0` | Advanced | عملکرد |
+| [rbd_journal_object_writethrough_until_flush](#rbd_journal_object_writethrough_until_flush) | `True` | Advanced | عملکرد |
+| [rbd_journal_order](#rbd_journal_order) | `24` | Advanced | عملکرد |
+| [rbd_journal_pool](#rbd_journal_pool) | `(empty)` | Advanced | عملکرد |
+| [rbd_journal_splay_width](#rbd_journal_splay_width) | `4` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -56,7 +56,7 @@ ceph config get client rbd_journal_commit_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -92,7 +92,7 @@ ceph config get client rbd_journal_max_concurrent_object_sets
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -128,7 +128,7 @@ ceph config get client rbd_journal_max_payload_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -164,7 +164,7 @@ ceph config get client rbd_journal_object_flush_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -200,7 +200,7 @@ ceph config get client rbd_journal_object_flush_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -236,7 +236,7 @@ ceph config get client rbd_journal_object_flush_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -272,7 +272,7 @@ ceph config get client rbd_journal_object_max_in_flight_appends
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -308,7 +308,7 @@ ceph config get client rbd_journal_object_writethrough_until_flush
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -344,7 +344,7 @@ ceph config get client rbd_journal_order
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `24`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -382,7 +382,7 @@ ceph config get client rbd_journal_pool
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -418,7 +418,7 @@ ceph config get client rbd_journal_splay_width
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

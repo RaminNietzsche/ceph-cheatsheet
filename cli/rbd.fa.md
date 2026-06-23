@@ -1,8 +1,6 @@
-> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
+# دستورات RBD
 
-# RBD Commands
-
-## Images
+## تصاویر
 
 ```bash
 rbd ls [-p pool]
@@ -21,7 +19,7 @@ rbd diff <pool>/<image> [--from-snap snap]
 rbd du [-p pool]
 ```
 
-## Snapshots
+## Snapshot
 
 ```bash
 rbd snap ls <pool>/<image>
@@ -33,7 +31,7 @@ rbd snap unprotect <pool>/<image>@<snap>
 rbd snap purge <pool>/<image>
 ```
 
-## Mapping (kernel / nbd)
+## Map (kernel / nbd)
 
 ```bash
 rbd map <pool>/<image>             # kernel krbd
@@ -42,7 +40,7 @@ rbd unmap <pool>/<image>|/dev/rbd*
 rbd map <pool>/<image> --device nbd   # nbd
 ```
 
-## Locking & mirroring
+## قفل و mirroring
 
 ```bash
 rbd lock ls <pool>/<image>
@@ -57,7 +55,7 @@ rbd mirror image promote <pool>/<image> [--force]
 rbd mirror image demote <pool>/<image>
 ```
 
-## Features & metadata
+## Feature و متادیتا
 
 ```bash
 rbd feature ls <pool>/<image>
@@ -67,18 +65,18 @@ rbd metadata ls <pool>/<image>
 rbd image-meta get/set/rm <pool>/<image> <key> [value]
 ```
 
-## Common image features
+## featureهای رایج تصویر
 
-| Feature | Bit | Notes |
+| Feature | Bit | توضیح |
 |---------|-----|-------|
-| layering | +1 | clones/snapshots |
-| exclusive-lock | +4 | required for live migration |
-| object-map | +8 | fast diff, deep-flatten |
-| fast-diff | +16 | efficient diff |
-| deep-flatten | +32 | flatten clones |
+| layering | +1 | clone/snapshot |
+| exclusive-lock | +4 | برای live migration لازم |
+| object-map | +8 | diff سریع، deep-flatten |
+| fast-diff | +16 | diff کارآمد |
+| deep-flatten | +32 | flatten cloneها |
 | journaling | +64 | RBD mirroring |
-| data-pool | +128 | separate data pool |
+| data-pool | +128 | pool داده جدا |
 
-Default features: see `rbd_default_features` in [config/rbd](../config/rbd/INDEX.md).
+پیش‌فرض featureها: `rbd_default_features` در [config/rbd](../config/rbd/INDEX.md).
 
-[← CLI overview](OVERVIEW.md)
+[← نمای کلی CLI](OVERVIEW.md)

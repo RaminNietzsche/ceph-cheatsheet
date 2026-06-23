@@ -1,49 +1,47 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# 使用配置参考
 
-# Using the Config Reference
+config 部分由 Ceph upstream YAML 自动生成。每个选项对应 Markdown 表格中的一行。
 
-The config section is auto-generated from Ceph upstream YAML. Each option is a row in a Markdown table.
+## 查找选项
 
-## Finding an option
-
-**By name:**
+**按名称：**
 
 ```bash
 ./scripts/lookup-config.sh rgw_cache_enabled
 ```
 
-**By keyword:**
+**按关键词：**
 
 ```bash
 ./scripts/search-config.sh scrub
 ./scripts/search-config.sh -s osd mclock
 ```
 
-**Browse:**
+**浏览：**
 
-1. Open [config/OVERVIEW.md](../config/OVERVIEW.md)
-2. Pick a subsystem (e.g. `rgw`)
-3. Open `INDEX.md` for a linked list, or open `rgw.md` for the full table
+1. 打开 [config/OVERVIEW.md](../config/OVERVIEW.md)
+2. 选择子系统（如 `rgw`）
+3. 打开 `INDEX.md` 查看链接列表，或 `rgw.md` 查看完整表格
 
-## Reading a table row
+## 阅读表格行
 
-Example: `osd_max_scrubs`
+示例：`osd_max_scrubs`
 
-| Column | Meaning |
+| 列 | 含义 |
 |--------|---------|
-| **Name** | Key used with `ceph config set osd osd_max_scrubs 2` |
-| **Desc** | Short description |
-| **Level** | `Basic` (commonly tuned) · `Advanced` · `Dev` |
-| **Type** | `Int`, `Bool`, `Size`, `Str`, … |
-| **non-Daemon / Daemon Default** | Default value (may differ for daemons) |
-| **Min / Max** | Valid numeric range |
-| **Valid Values** | Allowed enum values as JSON array |
-| **Flags** | `RUNTIME` = live `ceph config set`; `STARTUP` = needs restart |
-| **Services** | Which components consume the option |
-| **See also** | Related options (linked) |
-| **Long Desc** | Extended explanation |
+| **Name** | 与 `ceph config set osd osd_max_scrubs 2` 配合使用的键 |
+| **Desc** | 简短说明 |
+| **Level** | `Basic`（常调）· `Advanced` · `Dev` |
+| **Type** | `Int`、`Bool`、`Size`、`Str` 等 |
+| **non-Daemon / Daemon Default** | 默认值（守护进程可能不同） |
+| **Min / Max** | 有效数值范围 |
+| **Valid Values** | 允许的枚举值（JSON 数组） |
+| **Flags** | `RUNTIME` = 可 `ceph config set` 热更新；`STARTUP` = 需重启 |
+| **Services** | 使用该选项的组件 |
+| **See also** | 相关选项（链接） |
+| **Long Desc** | 详细说明 |
 
-## Applying changes
+## 应用变更
 
 ```bash
 # Check current effective value
@@ -59,16 +57,16 @@ ceph config set osd.0 osd_max_scrubs 1
 ceph config rm osd osd_max_scrubs
 ```
 
-Only options with the `RUNTIME` flag accept live `ceph config set`. Others require restart or `ceph.conf`.
+仅带 `RUNTIME` 标志的选项支持 `ceph config set` 热更新；其余需重启或修改 `ceph.conf`。
 
-## Regenerating from upstream
+## 从 upstream 重新生成
 
-When Ceph releases a new version:
+Ceph 新版本发布后：
 
 ```bash
 python3 scripts/generate-config.py --ref reef    # or squid, main, …
 ```
 
-See [VERSION](../version.md) for the current source ref.
+当前 ref 见 [VERSION](../version.md)。
 
-[← Main reference](../index.md)
+[← Cheatsheet](../cheatsheet/OVERVIEW.md)

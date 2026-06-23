@@ -1,29 +1,27 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# CLI 命令参考
 
-# CLI Command Reference
-
-<span class="badge badge-cli">CLI</span> Essential Ceph commands for day-to-day cluster administration. Commands assume a running cluster with `ceph` CLI access and appropriate credentials (`ceph.conf` / keyring).
+<span class="badge badge-cli">CLI</span> 日常集群管理必备 Ceph 命令。前提：集群运行中，可访问 `ceph` CLI 及相应凭据（`ceph.conf` / keyring）。
 
 <table class="guide-table">
 <thead>
-<tr><th>Section</th><th>Topics</th></tr>
+<tr><th>章节</th><th>主题</th></tr>
 </thead>
 <tbody>
-<tr class="row-cluster"><td><span class="badge badge-cli">cluster</span> <a href="cluster/">→</a></td><td>Status, health, monitors, versions</td></tr>
-<tr class="row-small"><td><span class="badge badge-cli">config</span> <a href="config/">→</a></td><td>Runtime configuration (<code>ceph config …</code>)</td></tr>
-<tr class="row-storage"><td><span class="badge badge-cli">osd-pool</span> <a href="osd-pool/">→</a></td><td>OSDs, pools, placement groups</td></tr>
-<tr class="row-lab"><td><span class="badge badge-cli">rados</span> <a href="rados/">→</a></td><td>Low-level RADOS objects and pools</td></tr>
-<tr class="row-large"><td><span class="badge badge-cli">rbd</span> <a href="rbd/">→</a></td><td>Block images, snapshots, mapping</td></tr>
-<tr class="row-rgw"><td><span class="badge badge-cli">rgw</span> <a href="rgw/">→</a></td><td>S3/Swift admin, users, buckets</td></tr>
-<tr class="row-cephfs"><td><span class="badge badge-cli">cephfs</span> <a href="cephfs/">→</a></td><td>File systems, MDS, mounts</td></tr>
-<tr class="row-multi"><td><span class="badge badge-cli">cephadm</span> <a href="cephadm/">→</a></td><td>Orchestrator, services, hosts</td></tr>
-<tr class="row-dev"><td><span class="badge badge-cli">troubleshooting</span> <a href="troubleshooting/">→</a></td><td>Logs, perf, recovery, common fixes</td></tr>
+<tr class="row-cluster"><td><span class="badge badge-cli">cluster</span> <a href="cluster/">→</a></td><td>状态、健康、Monitor、版本</td></tr>
+<tr class="row-small"><td><span class="badge badge-cli">config</span> <a href="config/">→</a></td><td>运行时配置（<code>ceph config …</code>）</td></tr>
+<tr class="row-storage"><td><span class="badge badge-cli">osd-pool</span> <a href="osd-pool/">→</a></td><td>OSD、池、PG</td></tr>
+<tr class="row-lab"><td><span class="badge badge-cli">rados</span> <a href="rados/">→</a></td><td>底层 RADOS 对象与池</td></tr>
+<tr class="row-large"><td><span class="badge badge-cli">rbd</span> <a href="rbd/">→</a></td><td>块镜像、快照、映射</td></tr>
+<tr class="row-rgw"><td><span class="badge badge-cli">rgw</span> <a href="rgw/">→</a></td><td>S3/Swift 管理、用户、bucket</td></tr>
+<tr class="row-cephfs"><td><span class="badge badge-cli">cephfs</span> <a href="cephfs/">→</a></td><td>文件系统、MDS、挂载</td></tr>
+<tr class="row-multi"><td><span class="badge badge-cli">cephadm</span> <a href="cephadm/">→</a></td><td>编排器、服务、主机</td></tr>
+<tr class="row-dev"><td><span class="badge badge-cli">troubleshooting</span> <a href="troubleshooting/">→</a></td><td>日志、性能、恢复、常见修复</td></tr>
 </tbody>
 </table>
 
-## Global flags
+## 全局选项
 
-Most commands accept:
+多数命令支持：
 
 ```bash
 ceph -s                          # short status
@@ -34,18 +32,18 @@ ceph -k /path/keyring …
 ceph -n client.admin …           # explicit entity name
 ```
 
-## Command families
+## 命令族
 
-| Binary | Purpose |
-|--------|---------|
-| `ceph` | Cluster admin — health, config, orch, tell |
-| `rados` | Direct pool/object I/O |
-| `rbd` | Block device management |
-| `radosgw-admin` | RGW users, buckets, zones |
-| `cephadm` | Bootstrap and node-level cephadm ops |
-| `cephfs` | CephFS shell (interactive) |
+| 二进制 | 用途 |
+|--------|------|
+| `ceph` | 集群管理 — 健康、配置、orch、tell |
+| `rados` | 直接 pool/对象 I/O |
+| `rbd` | 块设备管理 |
+| `radosgw-admin` | RGW 用户、bucket、zone |
+| `cephadm` | bootstrap 与节点级 cephadm 操作 |
+| `cephfs` | CephFS 交互 shell |
 
-## Quick examples
+## 快速示例
 
 ```bash
 ceph status
@@ -58,4 +56,4 @@ radosgw-admin user list
 ceph orch ps
 ```
 
-[← Back to main reference](../index.md)
+[← Cheatsheet](../cheatsheet/OVERVIEW.md)

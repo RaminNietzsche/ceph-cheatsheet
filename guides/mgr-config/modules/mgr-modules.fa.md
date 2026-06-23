@@ -4,47 +4,47 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [cephadm_path](#cephadm_path) | `/usr/sbin/cephadm` | Advanced | Capacity |
-| [mgr_client_bytes](#mgr_client_bytes) | `128_M` | Dev | Dev |
-| [mgr_client_messages](#mgr_client_messages) | `512` | Dev | Dev |
-| [mgr_data](#mgr_data) | `/var/lib/ceph/mgr/$cluster-$id` | Advanced | Performance |
-| [mgr_debug_aggressive_pg_num_changes](#mgr_debug_aggressive_pg_num_changes) | `False` | Dev | Dev |
-| [mgr_disabled_modules](#mgr_disabled_modules) | `0` | Advanced | Performance |
-| [mgr_initial_modules](#mgr_initial_modules) | `iostat nfs nvmeof` | Basic | Policy |
-| [mgr_max_pg_creating](#mgr_max_pg_creating) | `1024` | Advanced | Performance |
-| [mgr_max_pg_num_change](#mgr_max_pg_num_change) | `128` | Advanced | Performance |
-| [mgr_mds_bytes](#mgr_mds_bytes) | `128_M` | Dev | Dev |
-| [mgr_mds_messages](#mgr_mds_messages) | `128` | Dev | Dev |
-| [mgr_module_load_delay](#mgr_module_load_delay) | `0` | Dev | Dev |
-| [mgr_module_load_delay_name](#mgr_module_load_delay_name) | `(empty)` | Dev | Dev |
-| [mgr_module_load_expiration](#mgr_module_load_expiration) | `20000` | Dev | Dev |
-| [mgr_module_monitor_interval](#mgr_module_monitor_interval) | `5` | Advanced | Performance |
-| [mgr_module_path](#mgr_module_path) | `0/mgr` | Advanced | Capacity |
-| [mgr_mon_bytes](#mgr_mon_bytes) | `128_M` | Dev | Dev |
-| [mgr_mon_messages](#mgr_mon_messages) | `128` | Dev | Dev |
-| [mgr_osd_bytes](#mgr_osd_bytes) | `512_M` | Dev | Dev |
-| [mgr_osd_messages](#mgr_osd_messages) | `8_K` | Dev | Dev |
-| [mgr_osd_upgrade_check_convergence_factor](#mgr_osd_upgrade_check_convergence_factor) | `0.8` | Advanced | Performance |
-| [mgr_pool](#mgr_pool) | `True` | Dev | Dev |
-| [mgr_service_beacon_grace](#mgr_service_beacon_grace) | `1_min` | Advanced | Performance |
-| [mgr_standby_modules](#mgr_standby_modules) | `True` | Advanced | Performance |
-| [mgr_stats_period](#mgr_stats_period) | `5` | Basic | Policy |
-| [mgr_stats_period_autotune](#mgr_stats_period_autotune) | `True` | Basic | Policy |
-| [mgr_stats_period_autotune_queue_threshold](#mgr_stats_period_autotune_queue_threshold) | `100` | Advanced | Performance |
-| [mgr_stats_threshold](#mgr_stats_threshold) | `5` | Advanced | Performance |
-| [mgr_subinterpreter_modules](#mgr_subinterpreter_modules) | `0` | Advanced | Performance |
-| [mgr_test_metadata_error](#mgr_test_metadata_error) | `False` | Dev | Dev |
-| [mgr_tick_period](#mgr_tick_period) | `2` | Advanced | Performance |
+| [cephadm_path](#cephadm_path) | `/usr/sbin/cephadm` | Advanced | ظرفیت |
+| [mgr_client_bytes](#mgr_client_bytes) | `128_M` | Dev | توسعه |
+| [mgr_client_messages](#mgr_client_messages) | `512` | Dev | توسعه |
+| [mgr_data](#mgr_data) | `/var/lib/ceph/mgr/$cluster-$id` | Advanced | عملکرد |
+| [mgr_debug_aggressive_pg_num_changes](#mgr_debug_aggressive_pg_num_changes) | `False` | Dev | توسعه |
+| [mgr_disabled_modules](#mgr_disabled_modules) | `0` | Advanced | عملکرد |
+| [mgr_initial_modules](#mgr_initial_modules) | `iostat nfs nvmeof` | Basic | سیاست |
+| [mgr_max_pg_creating](#mgr_max_pg_creating) | `1024` | Advanced | عملکرد |
+| [mgr_max_pg_num_change](#mgr_max_pg_num_change) | `128` | Advanced | عملکرد |
+| [mgr_mds_bytes](#mgr_mds_bytes) | `128_M` | Dev | توسعه |
+| [mgr_mds_messages](#mgr_mds_messages) | `128` | Dev | توسعه |
+| [mgr_module_load_delay](#mgr_module_load_delay) | `0` | Dev | توسعه |
+| [mgr_module_load_delay_name](#mgr_module_load_delay_name) | `(empty)` | Dev | توسعه |
+| [mgr_module_load_expiration](#mgr_module_load_expiration) | `20000` | Dev | توسعه |
+| [mgr_module_monitor_interval](#mgr_module_monitor_interval) | `5` | Advanced | عملکرد |
+| [mgr_module_path](#mgr_module_path) | `0/mgr` | Advanced | ظرفیت |
+| [mgr_mon_bytes](#mgr_mon_bytes) | `128_M` | Dev | توسعه |
+| [mgr_mon_messages](#mgr_mon_messages) | `128` | Dev | توسعه |
+| [mgr_osd_bytes](#mgr_osd_bytes) | `512_M` | Dev | توسعه |
+| [mgr_osd_messages](#mgr_osd_messages) | `8_K` | Dev | توسعه |
+| [mgr_osd_upgrade_check_convergence_factor](#mgr_osd_upgrade_check_convergence_factor) | `0.8` | Advanced | عملکرد |
+| [mgr_pool](#mgr_pool) | `True` | Dev | توسعه |
+| [mgr_service_beacon_grace](#mgr_service_beacon_grace) | `1_min` | Advanced | عملکرد |
+| [mgr_standby_modules](#mgr_standby_modules) | `True` | Advanced | عملکرد |
+| [mgr_stats_period](#mgr_stats_period) | `5` | Basic | سیاست |
+| [mgr_stats_period_autotune](#mgr_stats_period_autotune) | `True` | Basic | سیاست |
+| [mgr_stats_period_autotune_queue_threshold](#mgr_stats_period_autotune_queue_threshold) | `100` | Advanced | عملکرد |
+| [mgr_stats_threshold](#mgr_stats_threshold) | `5` | Advanced | عملکرد |
+| [mgr_subinterpreter_modules](#mgr_subinterpreter_modules) | `0` | Advanced | عملکرد |
+| [mgr_test_metadata_error](#mgr_test_metadata_error) | `False` | Dev | توسعه |
+| [mgr_tick_period](#mgr_tick_period) | `2` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -76,7 +76,7 @@ ceph config get mgr cephadm_path
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `/usr/sbin/cephadm`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -109,7 +109,7 @@ ceph config get mgr mgr_client_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`128_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -135,7 +135,7 @@ ceph config get mgr mgr_client_messages
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`512`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -163,7 +163,7 @@ ceph config get mgr mgr_data
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `/var/lib/ceph/mgr/$cluster-$id`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -199,7 +199,7 @@ ceph config get mgr mgr_debug_aggressive_pg_num_changes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -228,7 +228,7 @@ ceph orch restart mgr
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -264,7 +264,7 @@ ceph config get mgr mgr_initial_modules
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `iostat nfs nvmeof` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -299,7 +299,7 @@ ceph config get mgr mgr_max_pg_creating
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1024`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -335,7 +335,7 @@ ceph config get mgr mgr_max_pg_num_change
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -369,7 +369,7 @@ ceph config get mgr mgr_mds_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`128_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -395,7 +395,7 @@ ceph config get mgr mgr_mds_messages
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`128`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -423,7 +423,7 @@ ceph config get mgr mgr_module_load_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -451,7 +451,7 @@ ceph config get mgr mgr_module_load_delay_name
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`(empty)`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -479,7 +479,7 @@ ceph config get mgr mgr_module_load_expiration
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`20000`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -507,7 +507,7 @@ ceph config get mgr mgr_module_monitor_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -545,7 +545,7 @@ ceph config get mgr mgr_module_path
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `0/mgr`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -578,7 +578,7 @@ ceph config get mgr mgr_mon_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`128_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -604,7 +604,7 @@ ceph config get mgr mgr_mon_messages
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`128`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -630,7 +630,7 @@ ceph config get mgr mgr_osd_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`512_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -656,7 +656,7 @@ ceph config get mgr mgr_osd_messages
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`8_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -684,7 +684,7 @@ ceph config get mgr mgr_osd_upgrade_check_convergence_factor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.8`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -723,7 +723,7 @@ ceph orch restart mgr
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -751,7 +751,7 @@ ceph config get mgr mgr_service_beacon_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -787,7 +787,7 @@ ceph config get mgr mgr_standby_modules
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -823,7 +823,7 @@ ceph config get mgr mgr_stats_period
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `5` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -858,7 +858,7 @@ ceph config get mgr mgr_stats_period_autotune
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -893,7 +893,7 @@ ceph config get mgr mgr_stats_period_autotune_queue_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -929,7 +929,7 @@ ceph config get mgr mgr_stats_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -968,7 +968,7 @@ ceph orch restart mgr
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1004,7 +1004,7 @@ ceph config get mgr mgr_test_metadata_error
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1032,7 +1032,7 @@ ceph config get mgr mgr_tick_period
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

@@ -4,90 +4,90 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mon_allow_pool_delete](#mon_allow_pool_delete) | `False` | Advanced | Policy |
-| [mon_client_bytes](#mon_client_bytes) | `100_M` | Advanced | Performance |
-| [mon_client_directed_command_retry](#mon_client_directed_command_retry) | `2` | Dev | Dev |
-| [mon_client_hunt_interval](#mon_client_hunt_interval) | `3` | Advanced | Performance |
-| [mon_client_hunt_interval_backoff](#mon_client_hunt_interval_backoff) | `1.5` | Advanced | Performance |
-| [mon_client_hunt_interval_max_multiple](#mon_client_hunt_interval_max_multiple) | `10` | Advanced | Performance |
-| [mon_client_hunt_interval_min_multiple](#mon_client_hunt_interval_min_multiple) | `1` | Advanced | Performance |
-| [mon_client_hunt_on_resend](#mon_client_hunt_on_resend) | `True` | Advanced | Performance |
-| [mon_client_hunt_parallel](#mon_client_hunt_parallel) | `3` | Advanced | Performance |
-| [mon_client_log_interval](#mon_client_log_interval) | `1` | Advanced | Performance |
-| [mon_client_max_log_entries_per_message](#mon_client_max_log_entries_per_message) | `1000` | Advanced | Performance |
-| [mon_client_ping_interval](#mon_client_ping_interval) | `10` | Advanced | Performance |
-| [mon_client_ping_timeout](#mon_client_ping_timeout) | `30` | Advanced | Performance |
-| [mon_client_target_rank](#mon_client_target_rank) | `-1` | Advanced | Performance |
-| [mon_config_key_max_entry_size](#mon_config_key_max_entry_size) | `64_K` | Advanced | Performance |
-| [mon_debug_block_osdmap_trim](#mon_debug_block_osdmap_trim) | `False` | Dev | Dev |
-| [mon_debug_deprecated_as_obsolete](#mon_debug_deprecated_as_obsolete) | `False` | Dev | Dev |
-| [mon_debug_dump_json](#mon_debug_dump_json) | `False` | Dev | Dev |
-| [mon_debug_dump_location](#mon_debug_dump_location) | `/var/log/ceph/$cluster-$name.tdump` | Dev | Dev |
-| [mon_debug_dump_transactions](#mon_debug_dump_transactions) | `False` | Dev | Dev |
-| [mon_debug_extra_checks](#mon_debug_extra_checks) | `False` | Dev | Dev |
-| [mon_debug_no_initial_persistent_features](#mon_debug_no_initial_persistent_features) | `False` | Dev | Dev |
-| [mon_debug_no_require_bluestore_for_ec_overwrites](#mon_debug_no_require_bluestore_for_ec_overwrites) | `False` | Dev | Dev |
-| [mon_debug_no_require_tentacle](#mon_debug_no_require_tentacle) | `False` | Dev | Dev |
-| [mon_debug_no_require_umbrella](#mon_debug_no_require_umbrella) | `False` | Dev | Dev |
-| [mon_debug_unsafe_allow_tier_with_nonempty_snaps](#mon_debug_unsafe_allow_tier_with_nonempty_snaps) | `False` | Dev | Dev |
-| [mon_dns_srv_name](#mon_dns_srv_name) | `ceph-mon` | Advanced | Performance |
-| [mon_fake_pool_delete](#mon_fake_pool_delete) | `False` | Advanced | Performance |
-| [mon_force_quorum_join](#mon_force_quorum_join) | `False` | Advanced | Performance |
-| [mon_globalid_prealloc](#mon_globalid_prealloc) | `10000` | Advanced | Performance |
-| [mon_host](#mon_host) | `(empty)` | Basic | Policy |
-| [mon_host_override](#mon_host_override) | `(empty)` | Advanced | Performance |
-| [mon_initial_members](#mon_initial_members) | `(empty)` | Advanced | Performance |
-| [mon_inject_pg_merge_bounce_probability](#mon_inject_pg_merge_bounce_probability) | `0` | Dev | Dev |
-| [mon_inject_sync_get_chunk_delay](#mon_inject_sync_get_chunk_delay) | `0` | Dev | Dev |
-| [mon_inject_transaction_delay_max](#mon_inject_transaction_delay_max) | `10` | Dev | Dev |
-| [mon_inject_transaction_delay_probability](#mon_inject_transaction_delay_probability) | `0` | Dev | Dev |
-| [mon_keyvaluedb](#mon_keyvaluedb) | `rocksdb` | Advanced | Performance |
-| [mon_max_log_epochs](#mon_max_log_epochs) | `500` | Advanced | Performance |
-| [mon_max_mdsmap_epochs](#mon_max_mdsmap_epochs) | `500` | Advanced | Performance |
-| [mon_max_mgrmap_epochs](#mon_max_mgrmap_epochs) | `500` | Advanced | Performance |
-| [mon_max_nvmeof_epochs](#mon_max_nvmeof_epochs) | `500` | Advanced | Performance |
-| [mon_max_osd](#mon_max_osd) | `10000` | Advanced | Performance |
-| [mon_max_pg_per_osd](#mon_max_pg_per_osd) | `500` | Advanced | Performance |
-| [mon_max_snap_prune_per_epoch](#mon_max_snap_prune_per_epoch) | `100` | Advanced | Performance |
-| [mon_min_osdmap_epochs](#mon_min_osdmap_epochs) | `500` | Advanced | Performance |
-| [mon_osd_backfillfull_ratio](#mon_osd_backfillfull_ratio) | `0.9` | Advanced | Performance |
-| [mon_osd_force_trim_to](#mon_osd_force_trim_to) | `0` | Dev | Dev |
-| [mon_osd_full_ratio](#mon_osd_full_ratio) | `0.95` | Advanced | Performance |
-| [mon_osd_initial_require_min_compat_client](#mon_osd_initial_require_min_compat_client) | `luminous` | Advanced | Performance |
-| [mon_osd_min_down_reporters](#mon_osd_min_down_reporters) | `2` | Advanced | Performance |
-| [mon_osd_nearfull_ratio](#mon_osd_nearfull_ratio) | `0.85` | Advanced | Performance |
-| [mon_osd_report_timeout](#mon_osd_report_timeout) | `15_min` | Advanced | Performance |
-| [mon_osd_reporter_subtree_level](#mon_osd_reporter_subtree_level) | `host` | Advanced | Performance |
-| [mon_osd_snap_trim_queue_warn_on](#mon_osd_snap_trim_queue_warn_on) | `32768` | Advanced | Performance |
-| [mon_probe_timeout](#mon_probe_timeout) | `2` | Advanced | Performance |
-| [mon_scrub_inject_crc_mismatch](#mon_scrub_inject_crc_mismatch) | `0` | Dev | Dev |
-| [mon_scrub_inject_missing_keys](#mon_scrub_inject_missing_keys) | `0` | Dev | Dev |
-| [mon_scrub_interval](#mon_scrub_interval) | `1_day` | Advanced | Performance |
-| [mon_scrub_max_keys](#mon_scrub_max_keys) | `100` | Advanced | Performance |
-| [mon_scrub_timeout](#mon_scrub_timeout) | `5_min` | Advanced | Performance |
-| [mon_sync_debug](#mon_sync_debug) | `False` | Dev | Dev |
-| [mon_sync_max_payload_keys](#mon_sync_max_payload_keys) | `2000` | Advanced | Performance |
-| [mon_sync_max_payload_size](#mon_sync_max_payload_size) | `1_M` | Advanced | Performance |
-| [mon_sync_provider_kill_at](#mon_sync_provider_kill_at) | `0` | Dev | Dev |
-| [mon_sync_requester_kill_at](#mon_sync_requester_kill_at) | `0` | Dev | Dev |
-| [mon_sync_timeout](#mon_sync_timeout) | `1_min` | Advanced | Performance |
-| [mon_warn_on_insecure_global_id_reclaim](#mon_warn_on_insecure_global_id_reclaim) | `True` | Advanced | Performance |
-| [mon_warn_on_insecure_global_id_reclaim_allowed](#mon_warn_on_insecure_global_id_reclaim_allowed) | `True` | Advanced | Policy |
-| [mon_warn_on_msgr2_not_enabled](#mon_warn_on_msgr2_not_enabled) | `True` | Advanced | Policy |
-| [mon_warn_on_slow_ping_ratio](#mon_warn_on_slow_ping_ratio) | `0.05` | Advanced | Performance |
-| [mon_warn_on_slow_ping_time](#mon_warn_on_slow_ping_time) | `0` | Advanced | Performance |
-| [mon_warn_pg_not_deep_scrubbed_ratio](#mon_warn_pg_not_deep_scrubbed_ratio) | `0.75` | Advanced | Performance |
-| [mon_warn_pg_not_scrubbed_ratio](#mon_warn_pg_not_scrubbed_ratio) | `0.5` | Advanced | Performance |
+| [mon_allow_pool_delete](#mon_allow_pool_delete) | `False` | Advanced | سیاست |
+| [mon_client_bytes](#mon_client_bytes) | `100_M` | Advanced | عملکرد |
+| [mon_client_directed_command_retry](#mon_client_directed_command_retry) | `2` | Dev | توسعه |
+| [mon_client_hunt_interval](#mon_client_hunt_interval) | `3` | Advanced | عملکرد |
+| [mon_client_hunt_interval_backoff](#mon_client_hunt_interval_backoff) | `1.5` | Advanced | عملکرد |
+| [mon_client_hunt_interval_max_multiple](#mon_client_hunt_interval_max_multiple) | `10` | Advanced | عملکرد |
+| [mon_client_hunt_interval_min_multiple](#mon_client_hunt_interval_min_multiple) | `1` | Advanced | عملکرد |
+| [mon_client_hunt_on_resend](#mon_client_hunt_on_resend) | `True` | Advanced | عملکرد |
+| [mon_client_hunt_parallel](#mon_client_hunt_parallel) | `3` | Advanced | عملکرد |
+| [mon_client_log_interval](#mon_client_log_interval) | `1` | Advanced | عملکرد |
+| [mon_client_max_log_entries_per_message](#mon_client_max_log_entries_per_message) | `1000` | Advanced | عملکرد |
+| [mon_client_ping_interval](#mon_client_ping_interval) | `10` | Advanced | عملکرد |
+| [mon_client_ping_timeout](#mon_client_ping_timeout) | `30` | Advanced | عملکرد |
+| [mon_client_target_rank](#mon_client_target_rank) | `-1` | Advanced | عملکرد |
+| [mon_config_key_max_entry_size](#mon_config_key_max_entry_size) | `64_K` | Advanced | عملکرد |
+| [mon_debug_block_osdmap_trim](#mon_debug_block_osdmap_trim) | `False` | Dev | توسعه |
+| [mon_debug_deprecated_as_obsolete](#mon_debug_deprecated_as_obsolete) | `False` | Dev | توسعه |
+| [mon_debug_dump_json](#mon_debug_dump_json) | `False` | Dev | توسعه |
+| [mon_debug_dump_location](#mon_debug_dump_location) | `/var/log/ceph/$cluster-$name.tdump` | Dev | توسعه |
+| [mon_debug_dump_transactions](#mon_debug_dump_transactions) | `False` | Dev | توسعه |
+| [mon_debug_extra_checks](#mon_debug_extra_checks) | `False` | Dev | توسعه |
+| [mon_debug_no_initial_persistent_features](#mon_debug_no_initial_persistent_features) | `False` | Dev | توسعه |
+| [mon_debug_no_require_bluestore_for_ec_overwrites](#mon_debug_no_require_bluestore_for_ec_overwrites) | `False` | Dev | توسعه |
+| [mon_debug_no_require_tentacle](#mon_debug_no_require_tentacle) | `False` | Dev | توسعه |
+| [mon_debug_no_require_umbrella](#mon_debug_no_require_umbrella) | `False` | Dev | توسعه |
+| [mon_debug_unsafe_allow_tier_with_nonempty_snaps](#mon_debug_unsafe_allow_tier_with_nonempty_snaps) | `False` | Dev | توسعه |
+| [mon_dns_srv_name](#mon_dns_srv_name) | `ceph-mon` | Advanced | عملکرد |
+| [mon_fake_pool_delete](#mon_fake_pool_delete) | `False` | Advanced | عملکرد |
+| [mon_force_quorum_join](#mon_force_quorum_join) | `False` | Advanced | عملکرد |
+| [mon_globalid_prealloc](#mon_globalid_prealloc) | `10000` | Advanced | عملکرد |
+| [mon_host](#mon_host) | `(empty)` | Basic | سیاست |
+| [mon_host_override](#mon_host_override) | `(empty)` | Advanced | عملکرد |
+| [mon_initial_members](#mon_initial_members) | `(empty)` | Advanced | عملکرد |
+| [mon_inject_pg_merge_bounce_probability](#mon_inject_pg_merge_bounce_probability) | `0` | Dev | توسعه |
+| [mon_inject_sync_get_chunk_delay](#mon_inject_sync_get_chunk_delay) | `0` | Dev | توسعه |
+| [mon_inject_transaction_delay_max](#mon_inject_transaction_delay_max) | `10` | Dev | توسعه |
+| [mon_inject_transaction_delay_probability](#mon_inject_transaction_delay_probability) | `0` | Dev | توسعه |
+| [mon_keyvaluedb](#mon_keyvaluedb) | `rocksdb` | Advanced | عملکرد |
+| [mon_max_log_epochs](#mon_max_log_epochs) | `500` | Advanced | عملکرد |
+| [mon_max_mdsmap_epochs](#mon_max_mdsmap_epochs) | `500` | Advanced | عملکرد |
+| [mon_max_mgrmap_epochs](#mon_max_mgrmap_epochs) | `500` | Advanced | عملکرد |
+| [mon_max_nvmeof_epochs](#mon_max_nvmeof_epochs) | `500` | Advanced | عملکرد |
+| [mon_max_osd](#mon_max_osd) | `10000` | Advanced | عملکرد |
+| [mon_max_pg_per_osd](#mon_max_pg_per_osd) | `500` | Advanced | عملکرد |
+| [mon_max_snap_prune_per_epoch](#mon_max_snap_prune_per_epoch) | `100` | Advanced | عملکرد |
+| [mon_min_osdmap_epochs](#mon_min_osdmap_epochs) | `500` | Advanced | عملکرد |
+| [mon_osd_backfillfull_ratio](#mon_osd_backfillfull_ratio) | `0.9` | Advanced | عملکرد |
+| [mon_osd_force_trim_to](#mon_osd_force_trim_to) | `0` | Dev | توسعه |
+| [mon_osd_full_ratio](#mon_osd_full_ratio) | `0.95` | Advanced | عملکرد |
+| [mon_osd_initial_require_min_compat_client](#mon_osd_initial_require_min_compat_client) | `luminous` | Advanced | عملکرد |
+| [mon_osd_min_down_reporters](#mon_osd_min_down_reporters) | `2` | Advanced | عملکرد |
+| [mon_osd_nearfull_ratio](#mon_osd_nearfull_ratio) | `0.85` | Advanced | عملکرد |
+| [mon_osd_report_timeout](#mon_osd_report_timeout) | `15_min` | Advanced | عملکرد |
+| [mon_osd_reporter_subtree_level](#mon_osd_reporter_subtree_level) | `host` | Advanced | عملکرد |
+| [mon_osd_snap_trim_queue_warn_on](#mon_osd_snap_trim_queue_warn_on) | `32768` | Advanced | عملکرد |
+| [mon_probe_timeout](#mon_probe_timeout) | `2` | Advanced | عملکرد |
+| [mon_scrub_inject_crc_mismatch](#mon_scrub_inject_crc_mismatch) | `0` | Dev | توسعه |
+| [mon_scrub_inject_missing_keys](#mon_scrub_inject_missing_keys) | `0` | Dev | توسعه |
+| [mon_scrub_interval](#mon_scrub_interval) | `1_day` | Advanced | عملکرد |
+| [mon_scrub_max_keys](#mon_scrub_max_keys) | `100` | Advanced | عملکرد |
+| [mon_scrub_timeout](#mon_scrub_timeout) | `5_min` | Advanced | عملکرد |
+| [mon_sync_debug](#mon_sync_debug) | `False` | Dev | توسعه |
+| [mon_sync_max_payload_keys](#mon_sync_max_payload_keys) | `2000` | Advanced | عملکرد |
+| [mon_sync_max_payload_size](#mon_sync_max_payload_size) | `1_M` | Advanced | عملکرد |
+| [mon_sync_provider_kill_at](#mon_sync_provider_kill_at) | `0` | Dev | توسعه |
+| [mon_sync_requester_kill_at](#mon_sync_requester_kill_at) | `0` | Dev | توسعه |
+| [mon_sync_timeout](#mon_sync_timeout) | `1_min` | Advanced | عملکرد |
+| [mon_warn_on_insecure_global_id_reclaim](#mon_warn_on_insecure_global_id_reclaim) | `True` | Advanced | عملکرد |
+| [mon_warn_on_insecure_global_id_reclaim_allowed](#mon_warn_on_insecure_global_id_reclaim_allowed) | `True` | Advanced | سیاست |
+| [mon_warn_on_msgr2_not_enabled](#mon_warn_on_msgr2_not_enabled) | `True` | Advanced | سیاست |
+| [mon_warn_on_slow_ping_ratio](#mon_warn_on_slow_ping_ratio) | `0.05` | Advanced | عملکرد |
+| [mon_warn_on_slow_ping_time](#mon_warn_on_slow_ping_time) | `0` | Advanced | عملکرد |
+| [mon_warn_pg_not_deep_scrubbed_ratio](#mon_warn_pg_not_deep_scrubbed_ratio) | `0.75` | Advanced | عملکرد |
+| [mon_warn_pg_not_scrubbed_ratio](#mon_warn_pg_not_scrubbed_ratio) | `0.5` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -119,7 +119,7 @@ ceph config get mon mon_allow_pool_delete
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -154,7 +154,7 @@ ceph config get mon mon_client_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -190,7 +190,7 @@ ceph config get mon mon_client_directed_command_retry
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`2`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -216,7 +216,7 @@ ceph config get mon mon_client_hunt_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -250,7 +250,7 @@ ceph config get mon mon_client_hunt_interval_backoff
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -284,7 +284,7 @@ ceph config get mon mon_client_hunt_interval_max_multiple
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -318,7 +318,7 @@ ceph config get mon mon_client_hunt_interval_min_multiple
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -352,7 +352,7 @@ ceph config get mon mon_client_hunt_on_resend
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -386,7 +386,7 @@ ceph config get mon mon_client_hunt_parallel
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -422,7 +422,7 @@ ceph config get mon mon_client_log_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -456,7 +456,7 @@ ceph config get mon mon_client_max_log_entries_per_message
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -490,7 +490,7 @@ ceph config get mon mon_client_ping_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -524,7 +524,7 @@ ceph config get mon mon_client_ping_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -558,7 +558,7 @@ ceph config get mon mon_client_target_rank
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `-1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -596,7 +596,7 @@ ceph config get mon mon_config_key_max_entry_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -632,7 +632,7 @@ ceph config get mon mon_debug_block_osdmap_trim
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -660,7 +660,7 @@ ceph config get mon mon_debug_deprecated_as_obsolete
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -688,7 +688,7 @@ ceph config get mon mon_debug_dump_json
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -716,7 +716,7 @@ ceph config get mon mon_debug_dump_location
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`/var/log/ceph/$cluster-$name.tdump`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -744,7 +744,7 @@ ceph config get mon mon_debug_dump_transactions
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -772,7 +772,7 @@ ceph config get mon mon_debug_extra_checks
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -800,7 +800,7 @@ ceph config get mon mon_debug_no_initial_persistent_features
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -828,7 +828,7 @@ ceph config get mon mon_debug_no_require_bluestore_for_ec_overwrites
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -856,7 +856,7 @@ ceph config get mon mon_debug_no_require_tentacle
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -884,7 +884,7 @@ ceph config get mon mon_debug_no_require_umbrella
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -910,7 +910,7 @@ ceph config get mon mon_debug_unsafe_allow_tier_with_nonempty_snaps
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -938,7 +938,7 @@ ceph config get mon mon_dns_srv_name
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `ceph-mon`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -974,7 +974,7 @@ ceph config get mon mon_fake_pool_delete
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1010,7 +1010,7 @@ ceph config get mon mon_force_quorum_join
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1046,7 +1046,7 @@ ceph config get mon mon_globalid_prealloc
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1082,7 +1082,7 @@ ceph config get mon mon_host
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `(empty)` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -1117,7 +1117,7 @@ ceph config get mon mon_host_override
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1151,7 +1151,7 @@ ceph config get mon mon_initial_members
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1187,7 +1187,7 @@ ceph config get mon mon_inject_pg_merge_bounce_probability
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1215,7 +1215,7 @@ ceph config get mon mon_inject_sync_get_chunk_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1243,7 +1243,7 @@ ceph config get mon mon_inject_transaction_delay_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`10`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1271,7 +1271,7 @@ ceph config get mon mon_inject_transaction_delay_probability
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1299,7 +1299,7 @@ ceph config get mon mon_keyvaluedb
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `rocksdb`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1335,7 +1335,7 @@ ceph config get mon mon_max_log_epochs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1371,7 +1371,7 @@ ceph config get mon mon_max_mdsmap_epochs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1407,7 +1407,7 @@ ceph config get mon mon_max_mgrmap_epochs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1443,7 +1443,7 @@ ceph config get mon mon_max_nvmeof_epochs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1479,7 +1479,7 @@ ceph config get mon mon_max_osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1515,7 +1515,7 @@ ceph config get mon mon_max_pg_per_osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1553,7 +1553,7 @@ ceph config get mon mon_max_snap_prune_per_epoch
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1589,7 +1589,7 @@ ceph config get mon mon_min_osdmap_epochs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1623,7 +1623,7 @@ ceph config get mon mon_osd_backfillfull_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.9`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1659,7 +1659,7 @@ ceph config get mon mon_osd_force_trim_to
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1687,7 +1687,7 @@ ceph config get mon mon_osd_full_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.95`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1721,7 +1721,7 @@ ceph config get mon mon_osd_initial_require_min_compat_client
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `luminous`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1757,7 +1757,7 @@ ceph config get mon mon_osd_min_down_reporters
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1793,7 +1793,7 @@ ceph config get mon mon_osd_nearfull_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.85`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1829,7 +1829,7 @@ ceph config get mon mon_osd_report_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1865,7 +1865,7 @@ ceph config get mon mon_osd_reporter_subtree_level
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `host`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1901,7 +1901,7 @@ ceph config get mon mon_osd_snap_trim_queue_warn_on
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `32768`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1937,7 +1937,7 @@ ceph config get mon mon_probe_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1973,7 +1973,7 @@ ceph config get mon mon_scrub_inject_crc_mismatch
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2001,7 +2001,7 @@ ceph config get mon mon_scrub_inject_missing_keys
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2029,7 +2029,7 @@ ceph config get mon mon_scrub_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_day`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2065,7 +2065,7 @@ ceph config get mon mon_scrub_max_keys
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2101,7 +2101,7 @@ ceph config get mon mon_scrub_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2137,7 +2137,7 @@ ceph config get mon mon_sync_debug
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2165,7 +2165,7 @@ ceph config get mon mon_sync_max_payload_keys
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2201,7 +2201,7 @@ ceph config get mon mon_sync_max_payload_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2237,7 +2237,7 @@ ceph config get mon mon_sync_provider_kill_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2265,7 +2265,7 @@ ceph config get mon mon_sync_requester_kill_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2293,7 +2293,7 @@ ceph config get mon mon_sync_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2329,7 +2329,7 @@ ceph config get mon mon_warn_on_insecure_global_id_reclaim
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2365,7 +2365,7 @@ ceph config get mon mon_warn_on_insecure_global_id_reclaim_allowed
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -2400,7 +2400,7 @@ ceph config get mon mon_warn_on_msgr2_not_enabled
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -2435,7 +2435,7 @@ ceph config get mon mon_warn_on_slow_ping_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.05`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2471,7 +2471,7 @@ ceph config get mon mon_warn_on_slow_ping_time
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2507,7 +2507,7 @@ ceph config get mon mon_warn_pg_not_deep_scrubbed_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.75`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2545,7 +2545,7 @@ ceph config get mon mon_warn_pg_not_scrubbed_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

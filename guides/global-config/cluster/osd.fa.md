@@ -4,190 +4,190 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [osd_asio_thread_count](#osd_asio_thread_count) | `2` | Advanced | Performance |
-| [osd_async_recovery_min_cost](#osd_async_recovery_min_cost) | `100` | Advanced | Performance |
-| [osd_auto_mark_unfound_lost](#osd_auto_mark_unfound_lost) | `False` | Advanced | Performance |
-| [osd_backoff_on_degraded](#osd_backoff_on_degraded) | `False` | Advanced | Performance |
-| [osd_backoff_on_peering](#osd_backoff_on_peering) | `False` | Advanced | Performance |
-| [osd_backoff_on_unfound](#osd_backoff_on_unfound) | `True` | Advanced | Performance |
-| [osd_beacon_report_interval](#osd_beacon_report_interval) | `5_min` | Advanced | Performance |
-| [osd_bench_duration](#osd_bench_duration) | `30` | Advanced | Performance |
-| [osd_bench_large_size_max_throughput](#osd_bench_large_size_max_throughput) | `100_M` | Advanced | Performance |
-| [osd_bench_max_block_size](#osd_bench_max_block_size) | `64_M` | Advanced | Performance |
-| [osd_bench_small_size_max_iops](#osd_bench_small_size_max_iops) | `100` | Advanced | Performance |
-| [osd_blkin_trace_all](#osd_blkin_trace_all) | `False` | Advanced | Performance |
-| [osd_calc_pg_upmaps_aggressively](#osd_calc_pg_upmaps_aggressively) | `True` | Advanced | Performance |
-| [osd_calc_pg_upmaps_aggressively_fast](#osd_calc_pg_upmaps_aggressively_fast) | `True` | Advanced | Performance |
-| [osd_calc_pg_upmaps_local_fallback_retries](#osd_calc_pg_upmaps_local_fallback_retries) | `100` | Advanced | Performance |
-| [osd_check_for_log_corruption](#osd_check_for_log_corruption) | `False` | Advanced | Performance |
-| [osd_client_op_priority](#osd_client_op_priority) | `63` | Advanced | Performance |
-| [osd_command_max_records](#osd_command_max_records) | `256` | Advanced | Performance |
-| [osd_crush_chooseleaf_type](#osd_crush_chooseleaf_type) | `1` | Dev | Dev |
-| [osd_debug_crash_on_ignored_backoff](#osd_debug_crash_on_ignored_backoff) | `False` | Dev | Dev |
-| [osd_debug_deep_scrub_sleep](#osd_debug_deep_scrub_sleep) | `0` | Dev | Dev |
-| [osd_debug_drop_ping_duration](#osd_debug_drop_ping_duration) | `0` | Dev | Dev |
-| [osd_debug_drop_ping_probability](#osd_debug_drop_ping_probability) | `0` | Dev | Dev |
-| [osd_debug_inject_copyfrom_error](#osd_debug_inject_copyfrom_error) | `False` | Dev | Dev |
-| [osd_debug_inject_dispatch_delay_duration](#osd_debug_inject_dispatch_delay_duration) | `0.1` | Dev | Dev |
-| [osd_debug_inject_dispatch_delay_probability](#osd_debug_inject_dispatch_delay_probability) | `0` | Dev | Dev |
-| [osd_debug_misdirected_ops](#osd_debug_misdirected_ops) | `False` | Dev | Dev |
-| [osd_debug_no_acting_change](#osd_debug_no_acting_change) | `False` | Dev | Dev |
-| [osd_debug_no_purge_strays](#osd_debug_no_purge_strays) | `False` | Dev | Dev |
-| [osd_debug_op_order](#osd_debug_op_order) | `False` | Dev | Dev |
-| [osd_debug_pg_log_writeout](#osd_debug_pg_log_writeout) | `False` | Dev | Dev |
-| [osd_debug_pretend_recovery_active](#osd_debug_pretend_recovery_active) | `False` | Dev | Dev |
-| [osd_debug_random_push_read_error](#osd_debug_random_push_read_error) | `0` | Dev | Dev |
-| [osd_debug_reject_backfill_probability](#osd_debug_reject_backfill_probability) | `0` | Dev | Dev |
-| [osd_debug_shutdown](#osd_debug_shutdown) | `False` | Dev | Dev |
-| [osd_debug_skip_full_check_in_backfill_reservation](#osd_debug_skip_full_check_in_backfill_reservation) | `False` | Dev | Dev |
-| [osd_debug_skip_full_check_in_recovery](#osd_debug_skip_full_check_in_recovery) | `False` | Dev | Dev |
-| [osd_debug_verify_cached_snaps](#osd_debug_verify_cached_snaps) | `False` | Dev | Dev |
-| [osd_debug_verify_missing_on_start](#osd_debug_verify_missing_on_start) | `False` | Dev | Dev |
-| [osd_debug_verify_snaps](#osd_debug_verify_snaps) | `False` | Dev | Dev |
-| [osd_debug_verify_stray_on_activate](#osd_debug_verify_stray_on_activate) | `False` | Dev | Dev |
-| [osd_default_data_pool_replay_window](#osd_default_data_pool_replay_window) | `45` | Advanced | Performance |
-| [osd_default_notify_timeout](#osd_default_notify_timeout) | `30` | Advanced | Performance |
-| [osd_discard_disconnected_ops](#osd_discard_disconnected_ops) | `True` | Advanced | Performance |
-| [osd_enable_op_tracker](#osd_enable_op_tracker) | `True` | Advanced | Policy |
-| [osd_erasure_code_plugins](#osd_erasure_code_plugins) | `0` | Advanced | Performance |
-| [osd_failsafe_full_ratio](#osd_failsafe_full_ratio) | `0.97` | Advanced | Performance |
-| [osd_fast_fail_on_connection_refused](#osd_fast_fail_on_connection_refused) | `True` | Advanced | Performance |
-| [osd_fast_info](#osd_fast_info) | `True` | Advanced | Performance |
-| [osd_fast_shutdown](#osd_fast_shutdown) | `True` | Advanced | Performance |
-| [osd_fast_shutdown_notify_mon](#osd_fast_shutdown_notify_mon) | `True` | Advanced | Performance |
-| [osd_fast_shutdown_timeout](#osd_fast_shutdown_timeout) | `15` | Advanced | Performance |
-| [osd_force_auth_primary_missing_objects](#osd_force_auth_primary_missing_objects) | `100` | Advanced | Performance |
-| [osd_force_recovery_pg_log_entries_factor](#osd_force_recovery_pg_log_entries_factor) | `1.3` | Dev | Dev |
-| [osd_function_tracing](#osd_function_tracing) | `False` | Advanced | Performance |
-| [osd_heartbeat_grace](#osd_heartbeat_grace) | `20` | Advanced | Performance |
-| [osd_heartbeat_interval](#osd_heartbeat_interval) | `6` | Dev | Dev |
-| [osd_heartbeat_min_healthy_ratio](#osd_heartbeat_min_healthy_ratio) | `0.33` | Advanced | Performance |
-| [osd_heartbeat_min_size](#osd_heartbeat_min_size) | `2000` | Advanced | Performance |
-| [osd_heartbeat_stale](#osd_heartbeat_stale) | `10_min` | Advanced | Performance |
-| [osd_heartbeat_use_min_delay_socket](#osd_heartbeat_use_min_delay_socket) | `False` | Advanced | Performance |
-| [osd_hit_set_max_size](#osd_hit_set_max_size) | `100000` | Advanced | Performance |
-| [osd_hit_set_min_size](#osd_hit_set_min_size) | `1000` | Advanced | Performance |
-| [osd_hit_set_namespace](#osd_hit_set_namespace) | `.ceph-internal` | Advanced | Performance |
-| [osd_ignore_stale_divergent_priors](#osd_ignore_stale_divergent_priors) | `False` | Advanced | Performance |
-| [osd_kill_backfill_at](#osd_kill_backfill_at) | `0` | Dev | Dev |
-| [osd_loop_before_reset_tphandle](#osd_loop_before_reset_tphandle) | `64` | Advanced | Performance |
-| [osd_map_dedup](#osd_map_dedup) | `True` | Advanced | Performance |
-| [osd_map_message_max](#osd_map_message_max) | `40` | Advanced | Performance |
-| [osd_map_message_max_bytes](#osd_map_message_max_bytes) | `10_M` | Advanced | Performance |
-| [osd_max_attr_name_len](#osd_max_attr_name_len) | `100` | Advanced | Performance |
-| [osd_max_attr_size](#osd_max_attr_size) | `0` | Advanced | Performance |
-| [osd_max_object_name_len](#osd_max_object_name_len) | `2_K` | Advanced | Performance |
-| [osd_max_object_namespace_len](#osd_max_object_namespace_len) | `256` | Advanced | Performance |
-| [osd_max_object_size](#osd_max_object_size) | `128_M` | Advanced | Performance |
-| [osd_max_omap_bytes_per_request](#osd_max_omap_bytes_per_request) | `1_G` | Advanced | Performance |
-| [osd_max_omap_entries_per_request](#osd_max_omap_entries_per_request) | `1_K` | Advanced | Performance |
-| [osd_max_pg_blocked_by](#osd_max_pg_blocked_by) | `16` | Advanced | Performance |
-| [osd_max_pg_log_entries](#osd_max_pg_log_entries) | `10000` | Dev | Dev |
-| [osd_max_pg_per_osd_hard_ratio](#osd_max_pg_per_osd_hard_ratio) | `3` | Advanced | Performance |
-| [osd_max_snap_prune_intervals_per_epoch](#osd_max_snap_prune_intervals_per_epoch) | `512` | Dev | Dev |
-| [osd_max_trimming_pgs](#osd_max_trimming_pgs) | `2` | Advanced | Performance |
-| [osd_max_write_op_reply_len](#osd_max_write_op_reply_len) | `64` | Advanced | Performance |
-| [osd_memory_base](#osd_memory_base) | `768_M` | Dev | Dev |
-| [osd_memory_cache_min](#osd_memory_cache_min) | `128_M` | Dev | Dev |
-| [osd_memory_cache_resize_interval](#osd_memory_cache_resize_interval) | `1` | Dev | Dev |
-| [osd_memory_expected_fragmentation](#osd_memory_expected_fragmentation) | `0.15` | Dev | Dev |
-| [osd_memory_target](#osd_memory_target) | `4_G` | Basic | Policy |
-| [osd_memory_target_autotune](#osd_memory_target_autotune) | `False` | Advanced | Performance |
-| [osd_memory_target_cgroup_limit_ratio](#osd_memory_target_cgroup_limit_ratio) | `0.8` | Advanced | Performance |
-| [osd_min_pg_log_entries](#osd_min_pg_log_entries) | `250` | Dev | Dev |
-| [osd_min_split_replica_read_size](#osd_min_split_replica_read_size) | `0` | Advanced | Performance |
-| [osd_mon_heartbeat_interval](#osd_mon_heartbeat_interval) | `30` | Advanced | Performance |
-| [osd_mon_heartbeat_stat_stale](#osd_mon_heartbeat_stat_stale) | `1_hr` | Advanced | Performance |
-| [osd_mon_report_interval](#osd_mon_report_interval) | `5` | Advanced | Performance |
-| [osd_mon_report_max_in_flight](#osd_mon_report_max_in_flight) | `2` | Advanced | Performance |
-| [osd_mon_shutdown_timeout](#osd_mon_shutdown_timeout) | `5` | Advanced | Performance |
-| [osd_num_op_tracker_shard](#osd_num_op_tracker_shard) | `32` | Advanced | Performance |
-| [osd_object_clean_region_max_num_intervals](#osd_object_clean_region_max_num_intervals) | `10` | Dev | Dev |
-| [osd_objecter_finishers](#osd_objecter_finishers) | `1` | Advanced | Performance |
-| [osd_objectstore](#osd_objectstore) | `bluestore` | Advanced | Performance |
-| [osd_objectstore_fuse](#osd_objectstore_fuse) | `False` | Advanced | Performance |
-| [osd_objectstore_ideal_list_max](#osd_objectstore_ideal_list_max) | `64` | Advanced | Performance |
-| [osd_objectstore_tracing](#osd_objectstore_tracing) | `False` | Advanced | Performance |
-| [osd_op_complaint_time](#osd_op_complaint_time) | `30` | Advanced | Performance |
-| [osd_op_history_duration](#osd_op_history_duration) | `600` | Advanced | Performance |
-| [osd_op_history_size](#osd_op_history_size) | `20` | Advanced | Performance |
-| [osd_op_history_slow_op_size](#osd_op_history_slow_op_size) | `20` | Advanced | Performance |
-| [osd_op_history_slow_op_threshold](#osd_op_history_slow_op_threshold) | `10` | Advanced | Performance |
-| [osd_op_log_threshold](#osd_op_log_threshold) | `5` | Advanced | Performance |
-| [osd_peering_op_priority](#osd_peering_op_priority) | `255` | Dev | Dev |
-| [osd_pg_delete_cost](#osd_pg_delete_cost) | `1_M` | Advanced | Performance |
-| [osd_pg_delete_priority](#osd_pg_delete_priority) | `5` | Advanced | Performance |
-| [osd_pg_epoch_persisted_max_stale](#osd_pg_epoch_persisted_max_stale) | `40` | Advanced | Performance |
-| [osd_pg_log_dups_tracked](#osd_pg_log_dups_tracked) | `3000` | Dev | Dev |
-| [osd_pg_log_trim_max](#osd_pg_log_trim_max) | `10000` | Advanced | Performance |
-| [osd_pg_log_trim_min](#osd_pg_log_trim_min) | `100` | Dev | Dev |
-| [osd_pg_max_concurrent_snap_trims](#osd_pg_max_concurrent_snap_trims) | `2` | Advanced | Performance |
-| [osd_pg_object_context_cache_count](#osd_pg_object_context_cache_count) | `64` | Advanced | Performance |
-| [osd_pg_stat_report_interval_max_epochs](#osd_pg_stat_report_interval_max_epochs) | `500` | Advanced | Performance |
-| [osd_pg_stat_report_interval_max_seconds](#osd_pg_stat_report_interval_max_seconds) | `5` | Advanced | Performance |
-| [osd_pool_default_cache_max_evict_check_size](#osd_pool_default_cache_max_evict_check_size) | `10` | Advanced | Performance |
-| [osd_pool_default_cache_min_evict_age](#osd_pool_default_cache_min_evict_age) | `0` | Advanced | Performance |
-| [osd_pool_default_cache_min_flush_age](#osd_pool_default_cache_min_flush_age) | `0` | Advanced | Performance |
-| [osd_pool_default_cache_target_dirty_high_ratio](#osd_pool_default_cache_target_dirty_high_ratio) | `0.6` | Advanced | Performance |
-| [osd_pool_default_cache_target_dirty_ratio](#osd_pool_default_cache_target_dirty_ratio) | `0.4` | Advanced | Performance |
-| [osd_pool_default_cache_target_full_ratio](#osd_pool_default_cache_target_full_ratio) | `0.8` | Advanced | Performance |
-| [osd_pool_default_crush_rule](#osd_pool_default_crush_rule) | `-1` | Advanced | Performance |
-| [osd_pool_default_ec_fast_read](#osd_pool_default_ec_fast_read) | `False` | Advanced | Performance |
-| [osd_pool_default_erasure_code_profile](#osd_pool_default_erasure_code_profile) | `plugin=isa technique=reed_sol_van k=2 m=2` | Advanced | Performance |
-| [osd_pool_default_flag_bulk](#osd_pool_default_flag_bulk) | `False` | Advanced | Performance |
-| [osd_pool_default_flag_ec_optimizations](#osd_pool_default_flag_ec_optimizations) | `False` | Advanced | Performance |
-| [osd_pool_default_flag_hashpspool](#osd_pool_default_flag_hashpspool) | `True` | Advanced | Performance |
-| [osd_pool_default_flag_nodelete](#osd_pool_default_flag_nodelete) | `False` | Advanced | Performance |
-| [osd_pool_default_flag_nopgchange](#osd_pool_default_flag_nopgchange) | `False` | Advanced | Performance |
-| [osd_pool_default_flag_nosizechange](#osd_pool_default_flag_nosizechange) | `False` | Advanced | Performance |
-| [osd_pool_default_flags](#osd_pool_default_flags) | `0` | Dev | Dev |
-| [osd_pool_default_hit_set_bloom_fpp](#osd_pool_default_hit_set_bloom_fpp) | `0.05` | Advanced | Performance |
-| [osd_pool_default_min_size](#osd_pool_default_min_size) | `0` | Advanced | Performance |
-| [osd_pool_default_pg_autoscale_mode](#osd_pool_default_pg_autoscale_mode) | `on` | Advanced | Performance |
-| [osd_pool_default_pg_num](#osd_pool_default_pg_num) | `32` | Advanced | Performance |
-| [osd_pool_default_pgp_num](#osd_pool_default_pgp_num) | `0` | Advanced | Performance |
-| [osd_pool_default_read_lease_ratio](#osd_pool_default_read_lease_ratio) | `0.8` | Dev | Dev |
-| [osd_pool_default_read_ratio](#osd_pool_default_read_ratio) | `70` | Advanced | Performance |
-| [osd_pool_default_size](#osd_pool_default_size) | `3` | Advanced | Performance |
-| [osd_pool_default_type](#osd_pool_default_type) | `replicated` | Advanced | Performance |
-| [osd_pool_use_gmt_hitset](#osd_pool_use_gmt_hitset) | `True` | Dev | Dev |
-| [osd_recovery_cost](#osd_recovery_cost) | `20_M` | Advanced | Performance |
-| [osd_recovery_op_priority](#osd_recovery_op_priority) | `3` | Advanced | Performance |
-| [osd_recovery_op_warn_multiple](#osd_recovery_op_warn_multiple) | `16` | Advanced | Performance |
-| [osd_recovery_priority](#osd_recovery_priority) | `5` | Advanced | Performance |
-| [osd_requested_scrub_priority](#osd_requested_scrub_priority) | `5` | Advanced | Performance |
-| [osd_rollback_to_cluster_snap](#osd_rollback_to_cluster_snap) | `(empty)` | Advanced | Performance |
-| [osd_scrub_cost](#osd_scrub_cost) | `50_M` | Advanced | Performance |
-| [osd_scrub_event_cost](#osd_scrub_event_cost) | `4_K` | Advanced | Performance |
-| [osd_scrub_priority](#osd_scrub_priority) | `5` | Advanced | Performance |
-| [osd_shutdown_pgref_assert](#osd_shutdown_pgref_assert) | `False` | Advanced | Performance |
-| [osd_skip_check_past_interval_bounds](#osd_skip_check_past_interval_bounds) | `False` | Dev | Dev |
-| [osd_snap_trim_cost](#osd_snap_trim_cost) | `1_M` | Advanced | Performance |
-| [osd_snap_trim_priority](#osd_snap_trim_priority) | `5` | Advanced | Performance |
-| [osd_target_pg_log_entries_per_osd](#osd_target_pg_log_entries_per_osd) | `300000` | Dev | Dev |
-| [osd_target_transaction_size](#osd_target_transaction_size) | `30` | Advanced | Performance |
-| [osd_tier_default_cache_hit_set_count](#osd_tier_default_cache_hit_set_count) | `4` | Advanced | Performance |
-| [osd_tier_default_cache_hit_set_grade_decay_rate](#osd_tier_default_cache_hit_set_grade_decay_rate) | `20` | Advanced | Performance |
-| [osd_tier_default_cache_hit_set_period](#osd_tier_default_cache_hit_set_period) | `1200` | Advanced | Performance |
-| [osd_tier_default_cache_hit_set_search_last_n](#osd_tier_default_cache_hit_set_search_last_n) | `1` | Advanced | Performance |
-| [osd_tier_default_cache_hit_set_type](#osd_tier_default_cache_hit_set_type) | `bloom` | Advanced | Performance |
-| [osd_tier_default_cache_min_read_recency_for_promote](#osd_tier_default_cache_min_read_recency_for_promote) | `1` | Advanced | Performance |
-| [osd_tier_default_cache_min_write_recency_for_promote](#osd_tier_default_cache_min_write_recency_for_promote) | `1` | Advanced | Performance |
-| [osd_tier_default_cache_mode](#osd_tier_default_cache_mode) | `writeback` | Advanced | Performance |
-| [osd_tier_promote_max_bytes_sec](#osd_tier_promote_max_bytes_sec) | `5_M` | Advanced | Performance |
-| [osd_tier_promote_max_objects_sec](#osd_tier_promote_max_objects_sec) | `25` | Advanced | Performance |
-| [osd_tracing](#osd_tracing) | `False` | Advanced | Performance |
-| [osd_use_stale_snap](#osd_use_stale_snap) | `False` | Advanced | Performance |
+| [osd_asio_thread_count](#osd_asio_thread_count) | `2` | Advanced | عملکرد |
+| [osd_async_recovery_min_cost](#osd_async_recovery_min_cost) | `100` | Advanced | عملکرد |
+| [osd_auto_mark_unfound_lost](#osd_auto_mark_unfound_lost) | `False` | Advanced | عملکرد |
+| [osd_backoff_on_degraded](#osd_backoff_on_degraded) | `False` | Advanced | عملکرد |
+| [osd_backoff_on_peering](#osd_backoff_on_peering) | `False` | Advanced | عملکرد |
+| [osd_backoff_on_unfound](#osd_backoff_on_unfound) | `True` | Advanced | عملکرد |
+| [osd_beacon_report_interval](#osd_beacon_report_interval) | `5_min` | Advanced | عملکرد |
+| [osd_bench_duration](#osd_bench_duration) | `30` | Advanced | عملکرد |
+| [osd_bench_large_size_max_throughput](#osd_bench_large_size_max_throughput) | `100_M` | Advanced | عملکرد |
+| [osd_bench_max_block_size](#osd_bench_max_block_size) | `64_M` | Advanced | عملکرد |
+| [osd_bench_small_size_max_iops](#osd_bench_small_size_max_iops) | `100` | Advanced | عملکرد |
+| [osd_blkin_trace_all](#osd_blkin_trace_all) | `False` | Advanced | عملکرد |
+| [osd_calc_pg_upmaps_aggressively](#osd_calc_pg_upmaps_aggressively) | `True` | Advanced | عملکرد |
+| [osd_calc_pg_upmaps_aggressively_fast](#osd_calc_pg_upmaps_aggressively_fast) | `True` | Advanced | عملکرد |
+| [osd_calc_pg_upmaps_local_fallback_retries](#osd_calc_pg_upmaps_local_fallback_retries) | `100` | Advanced | عملکرد |
+| [osd_check_for_log_corruption](#osd_check_for_log_corruption) | `False` | Advanced | عملکرد |
+| [osd_client_op_priority](#osd_client_op_priority) | `63` | Advanced | عملکرد |
+| [osd_command_max_records](#osd_command_max_records) | `256` | Advanced | عملکرد |
+| [osd_crush_chooseleaf_type](#osd_crush_chooseleaf_type) | `1` | Dev | توسعه |
+| [osd_debug_crash_on_ignored_backoff](#osd_debug_crash_on_ignored_backoff) | `False` | Dev | توسعه |
+| [osd_debug_deep_scrub_sleep](#osd_debug_deep_scrub_sleep) | `0` | Dev | توسعه |
+| [osd_debug_drop_ping_duration](#osd_debug_drop_ping_duration) | `0` | Dev | توسعه |
+| [osd_debug_drop_ping_probability](#osd_debug_drop_ping_probability) | `0` | Dev | توسعه |
+| [osd_debug_inject_copyfrom_error](#osd_debug_inject_copyfrom_error) | `False` | Dev | توسعه |
+| [osd_debug_inject_dispatch_delay_duration](#osd_debug_inject_dispatch_delay_duration) | `0.1` | Dev | توسعه |
+| [osd_debug_inject_dispatch_delay_probability](#osd_debug_inject_dispatch_delay_probability) | `0` | Dev | توسعه |
+| [osd_debug_misdirected_ops](#osd_debug_misdirected_ops) | `False` | Dev | توسعه |
+| [osd_debug_no_acting_change](#osd_debug_no_acting_change) | `False` | Dev | توسعه |
+| [osd_debug_no_purge_strays](#osd_debug_no_purge_strays) | `False` | Dev | توسعه |
+| [osd_debug_op_order](#osd_debug_op_order) | `False` | Dev | توسعه |
+| [osd_debug_pg_log_writeout](#osd_debug_pg_log_writeout) | `False` | Dev | توسعه |
+| [osd_debug_pretend_recovery_active](#osd_debug_pretend_recovery_active) | `False` | Dev | توسعه |
+| [osd_debug_random_push_read_error](#osd_debug_random_push_read_error) | `0` | Dev | توسعه |
+| [osd_debug_reject_backfill_probability](#osd_debug_reject_backfill_probability) | `0` | Dev | توسعه |
+| [osd_debug_shutdown](#osd_debug_shutdown) | `False` | Dev | توسعه |
+| [osd_debug_skip_full_check_in_backfill_reservation](#osd_debug_skip_full_check_in_backfill_reservation) | `False` | Dev | توسعه |
+| [osd_debug_skip_full_check_in_recovery](#osd_debug_skip_full_check_in_recovery) | `False` | Dev | توسعه |
+| [osd_debug_verify_cached_snaps](#osd_debug_verify_cached_snaps) | `False` | Dev | توسعه |
+| [osd_debug_verify_missing_on_start](#osd_debug_verify_missing_on_start) | `False` | Dev | توسعه |
+| [osd_debug_verify_snaps](#osd_debug_verify_snaps) | `False` | Dev | توسعه |
+| [osd_debug_verify_stray_on_activate](#osd_debug_verify_stray_on_activate) | `False` | Dev | توسعه |
+| [osd_default_data_pool_replay_window](#osd_default_data_pool_replay_window) | `45` | Advanced | عملکرد |
+| [osd_default_notify_timeout](#osd_default_notify_timeout) | `30` | Advanced | عملکرد |
+| [osd_discard_disconnected_ops](#osd_discard_disconnected_ops) | `True` | Advanced | عملکرد |
+| [osd_enable_op_tracker](#osd_enable_op_tracker) | `True` | Advanced | سیاست |
+| [osd_erasure_code_plugins](#osd_erasure_code_plugins) | `0` | Advanced | عملکرد |
+| [osd_failsafe_full_ratio](#osd_failsafe_full_ratio) | `0.97` | Advanced | عملکرد |
+| [osd_fast_fail_on_connection_refused](#osd_fast_fail_on_connection_refused) | `True` | Advanced | عملکرد |
+| [osd_fast_info](#osd_fast_info) | `True` | Advanced | عملکرد |
+| [osd_fast_shutdown](#osd_fast_shutdown) | `True` | Advanced | عملکرد |
+| [osd_fast_shutdown_notify_mon](#osd_fast_shutdown_notify_mon) | `True` | Advanced | عملکرد |
+| [osd_fast_shutdown_timeout](#osd_fast_shutdown_timeout) | `15` | Advanced | عملکرد |
+| [osd_force_auth_primary_missing_objects](#osd_force_auth_primary_missing_objects) | `100` | Advanced | عملکرد |
+| [osd_force_recovery_pg_log_entries_factor](#osd_force_recovery_pg_log_entries_factor) | `1.3` | Dev | توسعه |
+| [osd_function_tracing](#osd_function_tracing) | `False` | Advanced | عملکرد |
+| [osd_heartbeat_grace](#osd_heartbeat_grace) | `20` | Advanced | عملکرد |
+| [osd_heartbeat_interval](#osd_heartbeat_interval) | `6` | Dev | توسعه |
+| [osd_heartbeat_min_healthy_ratio](#osd_heartbeat_min_healthy_ratio) | `0.33` | Advanced | عملکرد |
+| [osd_heartbeat_min_size](#osd_heartbeat_min_size) | `2000` | Advanced | عملکرد |
+| [osd_heartbeat_stale](#osd_heartbeat_stale) | `10_min` | Advanced | عملکرد |
+| [osd_heartbeat_use_min_delay_socket](#osd_heartbeat_use_min_delay_socket) | `False` | Advanced | عملکرد |
+| [osd_hit_set_max_size](#osd_hit_set_max_size) | `100000` | Advanced | عملکرد |
+| [osd_hit_set_min_size](#osd_hit_set_min_size) | `1000` | Advanced | عملکرد |
+| [osd_hit_set_namespace](#osd_hit_set_namespace) | `.ceph-internal` | Advanced | عملکرد |
+| [osd_ignore_stale_divergent_priors](#osd_ignore_stale_divergent_priors) | `False` | Advanced | عملکرد |
+| [osd_kill_backfill_at](#osd_kill_backfill_at) | `0` | Dev | توسعه |
+| [osd_loop_before_reset_tphandle](#osd_loop_before_reset_tphandle) | `64` | Advanced | عملکرد |
+| [osd_map_dedup](#osd_map_dedup) | `True` | Advanced | عملکرد |
+| [osd_map_message_max](#osd_map_message_max) | `40` | Advanced | عملکرد |
+| [osd_map_message_max_bytes](#osd_map_message_max_bytes) | `10_M` | Advanced | عملکرد |
+| [osd_max_attr_name_len](#osd_max_attr_name_len) | `100` | Advanced | عملکرد |
+| [osd_max_attr_size](#osd_max_attr_size) | `0` | Advanced | عملکرد |
+| [osd_max_object_name_len](#osd_max_object_name_len) | `2_K` | Advanced | عملکرد |
+| [osd_max_object_namespace_len](#osd_max_object_namespace_len) | `256` | Advanced | عملکرد |
+| [osd_max_object_size](#osd_max_object_size) | `128_M` | Advanced | عملکرد |
+| [osd_max_omap_bytes_per_request](#osd_max_omap_bytes_per_request) | `1_G` | Advanced | عملکرد |
+| [osd_max_omap_entries_per_request](#osd_max_omap_entries_per_request) | `1_K` | Advanced | عملکرد |
+| [osd_max_pg_blocked_by](#osd_max_pg_blocked_by) | `16` | Advanced | عملکرد |
+| [osd_max_pg_log_entries](#osd_max_pg_log_entries) | `10000` | Dev | توسعه |
+| [osd_max_pg_per_osd_hard_ratio](#osd_max_pg_per_osd_hard_ratio) | `3` | Advanced | عملکرد |
+| [osd_max_snap_prune_intervals_per_epoch](#osd_max_snap_prune_intervals_per_epoch) | `512` | Dev | توسعه |
+| [osd_max_trimming_pgs](#osd_max_trimming_pgs) | `2` | Advanced | عملکرد |
+| [osd_max_write_op_reply_len](#osd_max_write_op_reply_len) | `64` | Advanced | عملکرد |
+| [osd_memory_base](#osd_memory_base) | `768_M` | Dev | توسعه |
+| [osd_memory_cache_min](#osd_memory_cache_min) | `128_M` | Dev | توسعه |
+| [osd_memory_cache_resize_interval](#osd_memory_cache_resize_interval) | `1` | Dev | توسعه |
+| [osd_memory_expected_fragmentation](#osd_memory_expected_fragmentation) | `0.15` | Dev | توسعه |
+| [osd_memory_target](#osd_memory_target) | `4_G` | Basic | سیاست |
+| [osd_memory_target_autotune](#osd_memory_target_autotune) | `False` | Advanced | عملکرد |
+| [osd_memory_target_cgroup_limit_ratio](#osd_memory_target_cgroup_limit_ratio) | `0.8` | Advanced | عملکرد |
+| [osd_min_pg_log_entries](#osd_min_pg_log_entries) | `250` | Dev | توسعه |
+| [osd_min_split_replica_read_size](#osd_min_split_replica_read_size) | `0` | Advanced | عملکرد |
+| [osd_mon_heartbeat_interval](#osd_mon_heartbeat_interval) | `30` | Advanced | عملکرد |
+| [osd_mon_heartbeat_stat_stale](#osd_mon_heartbeat_stat_stale) | `1_hr` | Advanced | عملکرد |
+| [osd_mon_report_interval](#osd_mon_report_interval) | `5` | Advanced | عملکرد |
+| [osd_mon_report_max_in_flight](#osd_mon_report_max_in_flight) | `2` | Advanced | عملکرد |
+| [osd_mon_shutdown_timeout](#osd_mon_shutdown_timeout) | `5` | Advanced | عملکرد |
+| [osd_num_op_tracker_shard](#osd_num_op_tracker_shard) | `32` | Advanced | عملکرد |
+| [osd_object_clean_region_max_num_intervals](#osd_object_clean_region_max_num_intervals) | `10` | Dev | توسعه |
+| [osd_objecter_finishers](#osd_objecter_finishers) | `1` | Advanced | عملکرد |
+| [osd_objectstore](#osd_objectstore) | `bluestore` | Advanced | عملکرد |
+| [osd_objectstore_fuse](#osd_objectstore_fuse) | `False` | Advanced | عملکرد |
+| [osd_objectstore_ideal_list_max](#osd_objectstore_ideal_list_max) | `64` | Advanced | عملکرد |
+| [osd_objectstore_tracing](#osd_objectstore_tracing) | `False` | Advanced | عملکرد |
+| [osd_op_complaint_time](#osd_op_complaint_time) | `30` | Advanced | عملکرد |
+| [osd_op_history_duration](#osd_op_history_duration) | `600` | Advanced | عملکرد |
+| [osd_op_history_size](#osd_op_history_size) | `20` | Advanced | عملکرد |
+| [osd_op_history_slow_op_size](#osd_op_history_slow_op_size) | `20` | Advanced | عملکرد |
+| [osd_op_history_slow_op_threshold](#osd_op_history_slow_op_threshold) | `10` | Advanced | عملکرد |
+| [osd_op_log_threshold](#osd_op_log_threshold) | `5` | Advanced | عملکرد |
+| [osd_peering_op_priority](#osd_peering_op_priority) | `255` | Dev | توسعه |
+| [osd_pg_delete_cost](#osd_pg_delete_cost) | `1_M` | Advanced | عملکرد |
+| [osd_pg_delete_priority](#osd_pg_delete_priority) | `5` | Advanced | عملکرد |
+| [osd_pg_epoch_persisted_max_stale](#osd_pg_epoch_persisted_max_stale) | `40` | Advanced | عملکرد |
+| [osd_pg_log_dups_tracked](#osd_pg_log_dups_tracked) | `3000` | Dev | توسعه |
+| [osd_pg_log_trim_max](#osd_pg_log_trim_max) | `10000` | Advanced | عملکرد |
+| [osd_pg_log_trim_min](#osd_pg_log_trim_min) | `100` | Dev | توسعه |
+| [osd_pg_max_concurrent_snap_trims](#osd_pg_max_concurrent_snap_trims) | `2` | Advanced | عملکرد |
+| [osd_pg_object_context_cache_count](#osd_pg_object_context_cache_count) | `64` | Advanced | عملکرد |
+| [osd_pg_stat_report_interval_max_epochs](#osd_pg_stat_report_interval_max_epochs) | `500` | Advanced | عملکرد |
+| [osd_pg_stat_report_interval_max_seconds](#osd_pg_stat_report_interval_max_seconds) | `5` | Advanced | عملکرد |
+| [osd_pool_default_cache_max_evict_check_size](#osd_pool_default_cache_max_evict_check_size) | `10` | Advanced | عملکرد |
+| [osd_pool_default_cache_min_evict_age](#osd_pool_default_cache_min_evict_age) | `0` | Advanced | عملکرد |
+| [osd_pool_default_cache_min_flush_age](#osd_pool_default_cache_min_flush_age) | `0` | Advanced | عملکرد |
+| [osd_pool_default_cache_target_dirty_high_ratio](#osd_pool_default_cache_target_dirty_high_ratio) | `0.6` | Advanced | عملکرد |
+| [osd_pool_default_cache_target_dirty_ratio](#osd_pool_default_cache_target_dirty_ratio) | `0.4` | Advanced | عملکرد |
+| [osd_pool_default_cache_target_full_ratio](#osd_pool_default_cache_target_full_ratio) | `0.8` | Advanced | عملکرد |
+| [osd_pool_default_crush_rule](#osd_pool_default_crush_rule) | `-1` | Advanced | عملکرد |
+| [osd_pool_default_ec_fast_read](#osd_pool_default_ec_fast_read) | `False` | Advanced | عملکرد |
+| [osd_pool_default_erasure_code_profile](#osd_pool_default_erasure_code_profile) | `plugin=isa technique=reed_sol_van k=2 m=2` | Advanced | عملکرد |
+| [osd_pool_default_flag_bulk](#osd_pool_default_flag_bulk) | `False` | Advanced | عملکرد |
+| [osd_pool_default_flag_ec_optimizations](#osd_pool_default_flag_ec_optimizations) | `False` | Advanced | عملکرد |
+| [osd_pool_default_flag_hashpspool](#osd_pool_default_flag_hashpspool) | `True` | Advanced | عملکرد |
+| [osd_pool_default_flag_nodelete](#osd_pool_default_flag_nodelete) | `False` | Advanced | عملکرد |
+| [osd_pool_default_flag_nopgchange](#osd_pool_default_flag_nopgchange) | `False` | Advanced | عملکرد |
+| [osd_pool_default_flag_nosizechange](#osd_pool_default_flag_nosizechange) | `False` | Advanced | عملکرد |
+| [osd_pool_default_flags](#osd_pool_default_flags) | `0` | Dev | توسعه |
+| [osd_pool_default_hit_set_bloom_fpp](#osd_pool_default_hit_set_bloom_fpp) | `0.05` | Advanced | عملکرد |
+| [osd_pool_default_min_size](#osd_pool_default_min_size) | `0` | Advanced | عملکرد |
+| [osd_pool_default_pg_autoscale_mode](#osd_pool_default_pg_autoscale_mode) | `on` | Advanced | عملکرد |
+| [osd_pool_default_pg_num](#osd_pool_default_pg_num) | `32` | Advanced | عملکرد |
+| [osd_pool_default_pgp_num](#osd_pool_default_pgp_num) | `0` | Advanced | عملکرد |
+| [osd_pool_default_read_lease_ratio](#osd_pool_default_read_lease_ratio) | `0.8` | Dev | توسعه |
+| [osd_pool_default_read_ratio](#osd_pool_default_read_ratio) | `70` | Advanced | عملکرد |
+| [osd_pool_default_size](#osd_pool_default_size) | `3` | Advanced | عملکرد |
+| [osd_pool_default_type](#osd_pool_default_type) | `replicated` | Advanced | عملکرد |
+| [osd_pool_use_gmt_hitset](#osd_pool_use_gmt_hitset) | `True` | Dev | توسعه |
+| [osd_recovery_cost](#osd_recovery_cost) | `20_M` | Advanced | عملکرد |
+| [osd_recovery_op_priority](#osd_recovery_op_priority) | `3` | Advanced | عملکرد |
+| [osd_recovery_op_warn_multiple](#osd_recovery_op_warn_multiple) | `16` | Advanced | عملکرد |
+| [osd_recovery_priority](#osd_recovery_priority) | `5` | Advanced | عملکرد |
+| [osd_requested_scrub_priority](#osd_requested_scrub_priority) | `5` | Advanced | عملکرد |
+| [osd_rollback_to_cluster_snap](#osd_rollback_to_cluster_snap) | `(empty)` | Advanced | عملکرد |
+| [osd_scrub_cost](#osd_scrub_cost) | `50_M` | Advanced | عملکرد |
+| [osd_scrub_event_cost](#osd_scrub_event_cost) | `4_K` | Advanced | عملکرد |
+| [osd_scrub_priority](#osd_scrub_priority) | `5` | Advanced | عملکرد |
+| [osd_shutdown_pgref_assert](#osd_shutdown_pgref_assert) | `False` | Advanced | عملکرد |
+| [osd_skip_check_past_interval_bounds](#osd_skip_check_past_interval_bounds) | `False` | Dev | توسعه |
+| [osd_snap_trim_cost](#osd_snap_trim_cost) | `1_M` | Advanced | عملکرد |
+| [osd_snap_trim_priority](#osd_snap_trim_priority) | `5` | Advanced | عملکرد |
+| [osd_target_pg_log_entries_per_osd](#osd_target_pg_log_entries_per_osd) | `300000` | Dev | توسعه |
+| [osd_target_transaction_size](#osd_target_transaction_size) | `30` | Advanced | عملکرد |
+| [osd_tier_default_cache_hit_set_count](#osd_tier_default_cache_hit_set_count) | `4` | Advanced | عملکرد |
+| [osd_tier_default_cache_hit_set_grade_decay_rate](#osd_tier_default_cache_hit_set_grade_decay_rate) | `20` | Advanced | عملکرد |
+| [osd_tier_default_cache_hit_set_period](#osd_tier_default_cache_hit_set_period) | `1200` | Advanced | عملکرد |
+| [osd_tier_default_cache_hit_set_search_last_n](#osd_tier_default_cache_hit_set_search_last_n) | `1` | Advanced | عملکرد |
+| [osd_tier_default_cache_hit_set_type](#osd_tier_default_cache_hit_set_type) | `bloom` | Advanced | عملکرد |
+| [osd_tier_default_cache_min_read_recency_for_promote](#osd_tier_default_cache_min_read_recency_for_promote) | `1` | Advanced | عملکرد |
+| [osd_tier_default_cache_min_write_recency_for_promote](#osd_tier_default_cache_min_write_recency_for_promote) | `1` | Advanced | عملکرد |
+| [osd_tier_default_cache_mode](#osd_tier_default_cache_mode) | `writeback` | Advanced | عملکرد |
+| [osd_tier_promote_max_bytes_sec](#osd_tier_promote_max_bytes_sec) | `5_M` | Advanced | عملکرد |
+| [osd_tier_promote_max_objects_sec](#osd_tier_promote_max_objects_sec) | `25` | Advanced | عملکرد |
+| [osd_tracing](#osd_tracing) | `False` | Advanced | عملکرد |
+| [osd_use_stale_snap](#osd_use_stale_snap) | `False` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -219,7 +219,7 @@ ceph config get osd osd_asio_thread_count
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -258,7 +258,7 @@ ceph config get osd osd_async_recovery_min_cost
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -293,7 +293,7 @@ ceph config get osd osd_auto_mark_unfound_lost
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -328,7 +328,7 @@ ceph config get osd osd_backoff_on_degraded
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -363,7 +363,7 @@ ceph config get osd osd_backoff_on_peering
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -398,7 +398,7 @@ ceph config get osd osd_backoff_on_unfound
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -433,7 +433,7 @@ ceph config get osd osd_beacon_report_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -468,7 +468,7 @@ ceph config get osd osd_bench_duration
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -503,7 +503,7 @@ ceph config get osd osd_bench_large_size_max_throughput
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -538,7 +538,7 @@ ceph config get osd osd_bench_max_block_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -573,7 +573,7 @@ ceph config get osd osd_bench_small_size_max_iops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -608,7 +608,7 @@ ceph config get osd osd_blkin_trace_all
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -645,7 +645,7 @@ ceph config get osd osd_calc_pg_upmaps_aggressively
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -682,7 +682,7 @@ ceph config get osd osd_calc_pg_upmaps_aggressively_fast
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -719,7 +719,7 @@ ceph config get osd osd_calc_pg_upmaps_local_fallback_retries
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -754,7 +754,7 @@ ceph config get osd osd_check_for_log_corruption
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -789,7 +789,7 @@ ceph config get osd osd_client_op_priority
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `63`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -824,7 +824,7 @@ ceph config get osd osd_command_max_records
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `256`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -861,7 +861,7 @@ ceph config get osd osd_crush_chooseleaf_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -887,7 +887,7 @@ ceph config get osd osd_debug_crash_on_ignored_backoff
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -915,7 +915,7 @@ ceph config get osd osd_debug_deep_scrub_sleep
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -943,7 +943,7 @@ ceph config get osd osd_debug_drop_ping_duration
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -971,7 +971,7 @@ ceph config get osd osd_debug_drop_ping_probability
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -997,7 +997,7 @@ ceph config get osd osd_debug_inject_copyfrom_error
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1023,7 +1023,7 @@ ceph config get osd osd_debug_inject_dispatch_delay_duration
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1049,7 +1049,7 @@ ceph config get osd osd_debug_inject_dispatch_delay_probability
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1075,7 +1075,7 @@ ceph config get osd osd_debug_misdirected_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1101,7 +1101,7 @@ ceph config get osd osd_debug_no_acting_change
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1127,7 +1127,7 @@ ceph config get osd osd_debug_no_purge_strays
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1153,7 +1153,7 @@ ceph config get osd osd_debug_op_order
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1179,7 +1179,7 @@ ceph config get osd osd_debug_pg_log_writeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1205,7 +1205,7 @@ ceph config get osd osd_debug_pretend_recovery_active
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1231,7 +1231,7 @@ ceph config get osd osd_debug_random_push_read_error
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1257,7 +1257,7 @@ ceph config get osd osd_debug_reject_backfill_probability
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1285,7 +1285,7 @@ ceph config get osd osd_debug_shutdown
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1311,7 +1311,7 @@ ceph config get osd osd_debug_skip_full_check_in_backfill_reservation
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1337,7 +1337,7 @@ ceph config get osd osd_debug_skip_full_check_in_recovery
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1363,7 +1363,7 @@ ceph config get osd osd_debug_verify_cached_snaps
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1389,7 +1389,7 @@ ceph config get osd osd_debug_verify_missing_on_start
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1415,7 +1415,7 @@ ceph config get osd osd_debug_verify_snaps
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1441,7 +1441,7 @@ ceph config get osd osd_debug_verify_stray_on_activate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1467,7 +1467,7 @@ ceph config get osd osd_default_data_pool_replay_window
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `45`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1504,7 +1504,7 @@ ceph config get osd osd_default_notify_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1539,7 +1539,7 @@ ceph config get osd osd_discard_disconnected_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1574,7 +1574,7 @@ ceph config get osd osd_enable_op_tracker
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -1610,7 +1610,7 @@ ceph config get osd osd_erasure_code_plugins
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1645,7 +1645,7 @@ ceph config get osd osd_failsafe_full_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.97`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1680,7 +1680,7 @@ ceph config get osd osd_fast_fail_on_connection_refused
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1715,7 +1715,7 @@ ceph config get osd osd_fast_info
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1752,7 +1752,7 @@ ceph config get osd osd_fast_shutdown
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1789,7 +1789,7 @@ ceph config get osd osd_fast_shutdown_notify_mon
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1826,7 +1826,7 @@ ceph config get osd osd_fast_shutdown_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1865,7 +1865,7 @@ ceph config get osd osd_force_auth_primary_missing_objects
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1900,7 +1900,7 @@ ceph config get osd osd_force_recovery_pg_log_entries_factor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1.3`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1926,7 +1926,7 @@ ceph config get osd osd_function_tracing
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1961,7 +1961,7 @@ ceph config get osd osd_heartbeat_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1998,7 +1998,7 @@ ceph config get osd osd_heartbeat_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`6`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2024,7 +2024,7 @@ ceph config get osd osd_heartbeat_min_healthy_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.33`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2061,7 +2061,7 @@ ceph config get osd osd_heartbeat_min_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2098,7 +2098,7 @@ ceph config get osd osd_heartbeat_stale
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2133,7 +2133,7 @@ ceph config get osd osd_heartbeat_use_min_delay_socket
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2168,7 +2168,7 @@ ceph config get osd osd_hit_set_max_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2203,7 +2203,7 @@ ceph config get osd osd_hit_set_min_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2238,7 +2238,7 @@ ceph config get osd osd_hit_set_namespace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `.ceph-internal`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2273,7 +2273,7 @@ ceph config get osd osd_ignore_stale_divergent_priors
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2308,7 +2308,7 @@ ceph config get osd osd_kill_backfill_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2334,7 +2334,7 @@ ceph config get osd osd_loop_before_reset_tphandle
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2369,7 +2369,7 @@ ceph config get osd osd_map_dedup
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2406,7 +2406,7 @@ ceph config get osd osd_map_message_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `40`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2443,7 +2443,7 @@ ceph config get osd osd_map_message_max_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2478,7 +2478,7 @@ ceph config get osd osd_max_attr_name_len
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2513,7 +2513,7 @@ ceph config get osd osd_max_attr_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2548,7 +2548,7 @@ ceph config get osd osd_max_object_name_len
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2583,7 +2583,7 @@ ceph config get osd osd_max_object_namespace_len
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `256`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2618,7 +2618,7 @@ ceph config get osd osd_max_object_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2653,7 +2653,7 @@ ceph config get osd osd_max_omap_bytes_per_request
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_G`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2688,7 +2688,7 @@ ceph config get osd osd_max_omap_entries_per_request
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2723,7 +2723,7 @@ ceph config get osd osd_max_pg_blocked_by
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2760,7 +2760,7 @@ ceph config get osd osd_max_pg_log_entries
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`10000`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2788,7 +2788,7 @@ ceph config get osd osd_max_pg_per_osd_hard_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2827,7 +2827,7 @@ ceph config get osd osd_max_snap_prune_intervals_per_epoch
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`512`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2853,7 +2853,7 @@ ceph config get osd osd_max_trimming_pgs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2890,7 +2890,7 @@ ceph config get osd osd_max_write_op_reply_len
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2927,7 +2927,7 @@ ceph config get osd osd_memory_base
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`768_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2955,7 +2955,7 @@ ceph config get osd osd_memory_cache_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`128_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2983,7 +2983,7 @@ ceph config get osd osd_memory_cache_resize_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3011,7 +3011,7 @@ ceph config get osd osd_memory_expected_fragmentation
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.15`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3039,7 +3039,7 @@ ceph config get osd osd_memory_target
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `4_G` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -3075,7 +3075,7 @@ ceph config get osd osd_memory_target_autotune
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3112,7 +3112,7 @@ ceph config get osd osd_memory_target_cgroup_limit_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.8`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3151,7 +3151,7 @@ ceph config get osd osd_min_pg_log_entries
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`250`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3177,7 +3177,7 @@ ceph config get osd osd_min_split_replica_read_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3212,7 +3212,7 @@ ceph config get osd osd_mon_heartbeat_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3249,7 +3249,7 @@ ceph config get osd osd_mon_heartbeat_stat_stale
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_hr`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3286,7 +3286,7 @@ ceph config get osd osd_mon_report_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3321,7 +3321,7 @@ ceph config get osd osd_mon_report_max_in_flight
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3356,7 +3356,7 @@ ceph config get osd osd_mon_shutdown_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3391,7 +3391,7 @@ ceph config get osd osd_num_op_tracker_shard
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `32`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3428,7 +3428,7 @@ ceph config get osd osd_object_clean_region_max_num_intervals
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`10`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3454,7 +3454,7 @@ ceph config get osd osd_objecter_finishers
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3491,7 +3491,7 @@ ceph config get osd osd_objectstore
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `bluestore`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3526,7 +3526,7 @@ ceph config get osd osd_objectstore_fuse
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3563,7 +3563,7 @@ ceph config get osd osd_objectstore_ideal_list_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3598,7 +3598,7 @@ ceph config get osd osd_objectstore_tracing
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3633,7 +3633,7 @@ ceph config get osd osd_op_complaint_time
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3668,7 +3668,7 @@ ceph config get osd osd_op_history_duration
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `600`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3703,7 +3703,7 @@ ceph config get osd osd_op_history_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3738,7 +3738,7 @@ ceph config get osd osd_op_history_slow_op_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3773,7 +3773,7 @@ ceph config get osd osd_op_history_slow_op_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3808,7 +3808,7 @@ ceph config get osd osd_op_log_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3843,7 +3843,7 @@ ceph config get osd osd_peering_op_priority
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`255`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3869,7 +3869,7 @@ ceph config get osd osd_pg_delete_cost
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3904,7 +3904,7 @@ ceph config get osd osd_pg_delete_priority
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3939,7 +3939,7 @@ ceph config get osd osd_pg_epoch_persisted_max_stale
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `40`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3976,7 +3976,7 @@ ceph config get osd osd_pg_log_dups_tracked
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`3000`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4004,7 +4004,7 @@ ceph config get osd osd_pg_log_trim_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4041,7 +4041,7 @@ ceph config get osd osd_pg_log_trim_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`100`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4067,7 +4067,7 @@ ceph config get osd osd_pg_max_concurrent_snap_trims
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4104,7 +4104,7 @@ ceph config get osd osd_pg_object_context_cache_count
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4141,7 +4141,7 @@ ceph config get osd osd_pg_stat_report_interval_max_epochs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4178,7 +4178,7 @@ ceph config get osd osd_pg_stat_report_interval_max_seconds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4213,7 +4213,7 @@ ceph config get osd osd_pool_default_cache_max_evict_check_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4248,7 +4248,7 @@ ceph config get osd osd_pool_default_cache_min_evict_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4283,7 +4283,7 @@ ceph config get osd osd_pool_default_cache_min_flush_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4318,7 +4318,7 @@ ceph config get osd osd_pool_default_cache_target_dirty_high_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.6`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4353,7 +4353,7 @@ ceph config get osd osd_pool_default_cache_target_dirty_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4388,7 +4388,7 @@ ceph config get osd osd_pool_default_cache_target_full_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.8`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4425,7 +4425,7 @@ ceph config get osd osd_pool_default_crush_rule
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `-1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4462,7 +4462,7 @@ ceph config get osd osd_pool_default_ec_fast_read
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4499,7 +4499,7 @@ ceph config get osd osd_pool_default_erasure_code_profile
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `plugin=isa technique=reed_sol_van k=2 m=2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4536,7 +4536,7 @@ ceph config get osd osd_pool_default_flag_bulk
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4573,7 +4573,7 @@ ceph config get osd osd_pool_default_flag_ec_optimizations
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4610,7 +4610,7 @@ ceph config get osd osd_pool_default_flag_hashpspool
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4647,7 +4647,7 @@ ceph config get osd osd_pool_default_flag_nodelete
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4684,7 +4684,7 @@ ceph config get osd osd_pool_default_flag_nopgchange
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4721,7 +4721,7 @@ ceph config get osd osd_pool_default_flag_nosizechange
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4758,7 +4758,7 @@ ceph config get osd osd_pool_default_flags
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4784,7 +4784,7 @@ ceph config get osd osd_pool_default_hit_set_bloom_fpp
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.05`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4821,7 +4821,7 @@ ceph config get osd osd_pool_default_min_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4860,7 +4860,7 @@ ceph config get osd osd_pool_default_pg_autoscale_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `on`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4897,7 +4897,7 @@ ceph config get osd osd_pool_default_pg_num
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `32`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4934,7 +4934,7 @@ ceph config get osd osd_pool_default_pgp_num
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4971,7 +4971,7 @@ ceph config get osd osd_pool_default_read_lease_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.8`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4999,7 +4999,7 @@ ceph config get osd osd_pool_default_read_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `70`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5036,7 +5036,7 @@ ceph config get osd osd_pool_default_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5075,7 +5075,7 @@ ceph config get osd osd_pool_default_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `replicated`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5112,7 +5112,7 @@ ceph config get osd osd_pool_use_gmt_hitset
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -5138,7 +5138,7 @@ ceph config get osd osd_recovery_cost
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5175,7 +5175,7 @@ ceph config get osd osd_recovery_op_priority
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5210,7 +5210,7 @@ ceph config get osd osd_recovery_op_warn_multiple
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5247,7 +5247,7 @@ ceph config get osd osd_recovery_priority
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5282,7 +5282,7 @@ ceph config get osd osd_requested_scrub_priority
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5317,7 +5317,7 @@ ceph config get osd osd_rollback_to_cluster_snap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5354,7 +5354,7 @@ ceph config get osd osd_scrub_cost
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `50_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5391,7 +5391,7 @@ ceph config get osd osd_scrub_event_cost
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5428,7 +5428,7 @@ ceph config get osd osd_scrub_priority
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5463,7 +5463,7 @@ ceph config get osd osd_shutdown_pgref_assert
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5500,7 +5500,7 @@ ceph config get osd osd_skip_check_past_interval_bounds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -5526,7 +5526,7 @@ ceph config get osd osd_snap_trim_cost
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5561,7 +5561,7 @@ ceph config get osd osd_snap_trim_priority
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5598,7 +5598,7 @@ ceph config get osd osd_target_pg_log_entries_per_osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`300000`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -5624,7 +5624,7 @@ ceph config get osd osd_target_transaction_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5659,7 +5659,7 @@ ceph config get osd osd_tier_default_cache_hit_set_count
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5694,7 +5694,7 @@ ceph config get osd osd_tier_default_cache_hit_set_grade_decay_rate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5729,7 +5729,7 @@ ceph config get osd osd_tier_default_cache_hit_set_period
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1200`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5764,7 +5764,7 @@ ceph config get osd osd_tier_default_cache_hit_set_search_last_n
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5799,7 +5799,7 @@ ceph config get osd osd_tier_default_cache_hit_set_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `bloom`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5836,7 +5836,7 @@ ceph config get osd osd_tier_default_cache_min_read_recency_for_promote
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5873,7 +5873,7 @@ ceph config get osd osd_tier_default_cache_min_write_recency_for_promote
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5908,7 +5908,7 @@ ceph config get osd osd_tier_default_cache_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `writeback`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5943,7 +5943,7 @@ ceph config get osd osd_tier_promote_max_bytes_sec
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5978,7 +5978,7 @@ ceph config get osd osd_tier_promote_max_objects_sec
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `25`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -6013,7 +6013,7 @@ ceph config get osd osd_tracing
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -6048,7 +6048,7 @@ ceph config get osd osd_use_stale_snap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

@@ -4,23 +4,23 @@ Global 配置深度指南 — 7 个选项。[← 概览](../OVERVIEW.md) · [调
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [cephx_cluster_require_signatures](#cephx_cluster_require_signatures) | `False` | Advanced | Performance |
-| [cephx_cluster_require_version](#cephx_cluster_require_version) | `2` | Advanced | Performance |
-| [cephx_require_signatures](#cephx_require_signatures) | `False` | Advanced | Performance |
-| [cephx_require_version](#cephx_require_version) | `2` | Advanced | Performance |
-| [cephx_service_require_signatures](#cephx_service_require_signatures) | `False` | Advanced | Performance |
-| [cephx_service_require_version](#cephx_service_require_version) | `2` | Advanced | Performance |
-| [cephx_sign_messages](#cephx_sign_messages) | `True` | Advanced | Performance |
+| [cephx_cluster_require_signatures](#cephx_cluster_require_signatures) | `False` | Advanced | 性能 |
+| [cephx_cluster_require_version](#cephx_cluster_require_version) | `2` | Advanced | 性能 |
+| [cephx_require_signatures](#cephx_require_signatures) | `False` | Advanced | 性能 |
+| [cephx_require_version](#cephx_require_version) | `2` | Advanced | 性能 |
+| [cephx_service_require_signatures](#cephx_service_require_signatures) | `False` | Advanced | 性能 |
+| [cephx_service_require_version](#cephx_service_require_version) | `2` | Advanced | 性能 |
+| [cephx_sign_messages](#cephx_sign_messages) | `True` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -50,7 +50,7 @@ ceph config get global cephx_cluster_require_signatures
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -85,7 +85,7 @@ ceph config get global cephx_cluster_require_version
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `2` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -118,7 +118,7 @@ ceph config get global cephx_require_signatures
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -153,7 +153,7 @@ ceph config get global cephx_require_version
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `2` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -186,7 +186,7 @@ ceph config get global cephx_service_require_signatures
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -221,7 +221,7 @@ ceph config get global cephx_service_require_version
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `2` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -254,7 +254,7 @@ ceph config get global cephx_sign_messages
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

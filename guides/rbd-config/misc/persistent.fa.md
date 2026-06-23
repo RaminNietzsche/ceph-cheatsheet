@@ -4,19 +4,19 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rbd_persistent_cache_mode](#rbd_persistent_cache_mode) | `disabled` | Advanced | Performance |
-| [rbd_persistent_cache_path](#rbd_persistent_cache_path) | `/tmp` | Advanced | Capacity |
-| [rbd_persistent_cache_size](#rbd_persistent_cache_size) | `1_G` | Advanced | Performance |
+| [rbd_persistent_cache_mode](#rbd_persistent_cache_mode) | `disabled` | Advanced | عملکرد |
+| [rbd_persistent_cache_path](#rbd_persistent_cache_path) | `/tmp` | Advanced | ظرفیت |
+| [rbd_persistent_cache_size](#rbd_persistent_cache_size) | `1_G` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -48,7 +48,7 @@ ceph config get client rbd_persistent_cache_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `disabled`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -84,7 +84,7 @@ ceph config get client rbd_persistent_cache_path
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `/tmp`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -119,7 +119,7 @@ ceph config get client rbd_persistent_cache_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_G`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

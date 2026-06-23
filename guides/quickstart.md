@@ -79,4 +79,4 @@ ceph orch upgrade status              # cephadm path
 
 - Pick your [role](OVERVIEW.md#by-role) or [scale](OVERVIEW.md#by-scale) for focused workflows.
 
-[← Main reference](../index.md)
+[← Cheatsheet](../cheatsheet/OVERVIEW.md)

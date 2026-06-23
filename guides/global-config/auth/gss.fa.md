@@ -4,18 +4,18 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [gss_ktab_client_file](#gss_ktab_client_file) | `/var/lib/ceph/$name/gss_client_$name.ktab` | Advanced | Capacity |
-| [gss_target_name](#gss_target_name) | `ceph` | Advanced | Performance |
+| [gss_ktab_client_file](#gss_ktab_client_file) | `/var/lib/ceph/$name/gss_client_$name.ktab` | Advanced | ظرفیت |
+| [gss_target_name](#gss_target_name) | `ceph` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -47,7 +47,7 @@ ceph config get global gss_ktab_client_file
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `/var/lib/ceph/$name/gss_client_$name.ktab`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -79,7 +79,7 @@ ceph config get global gss_target_name
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `ceph`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

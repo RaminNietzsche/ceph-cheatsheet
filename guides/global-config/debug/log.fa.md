@@ -4,30 +4,30 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [log_coarse_timestamps](#log_coarse_timestamps) | `True` | Advanced | Performance |
-| [log_file](#log_file) | `/var/log/ceph/$cluster-$name.log` | Basic | Capacity |
-| [log_flush_on_exit](#log_flush_on_exit) | `False` | Advanced | Performance |
-| [log_graylog_host](#log_graylog_host) | `127.0.0.1` | Basic | Policy |
-| [log_graylog_port](#log_graylog_port) | `12201` | Basic | Policy |
-| [log_max_new](#log_max_new) | `1000` | Advanced | Performance |
-| [log_max_recent](#log_max_recent) | `10000` | Advanced | Performance |
-| [log_stderr_prefix](#log_stderr_prefix) | `(empty)` | Advanced | Performance |
-| [log_stop_at_utilization](#log_stop_at_utilization) | `0.97` | Basic | Policy |
-| [log_to_file](#log_to_file) | `True` | Basic | Capacity |
-| [log_to_graylog](#log_to_graylog) | `False` | Basic | Policy |
-| [log_to_journald](#log_to_journald) | `False` | Basic | Policy |
-| [log_to_stderr](#log_to_stderr) | `False` | Basic | Policy |
-| [log_to_syslog](#log_to_syslog) | `False` | Basic | Policy |
+| [log_coarse_timestamps](#log_coarse_timestamps) | `True` | Advanced | عملکرد |
+| [log_file](#log_file) | `/var/log/ceph/$cluster-$name.log` | Basic | ظرفیت |
+| [log_flush_on_exit](#log_flush_on_exit) | `False` | Advanced | عملکرد |
+| [log_graylog_host](#log_graylog_host) | `127.0.0.1` | Basic | سیاست |
+| [log_graylog_port](#log_graylog_port) | `12201` | Basic | سیاست |
+| [log_max_new](#log_max_new) | `1000` | Advanced | عملکرد |
+| [log_max_recent](#log_max_recent) | `10000` | Advanced | عملکرد |
+| [log_stderr_prefix](#log_stderr_prefix) | `(empty)` | Advanced | عملکرد |
+| [log_stop_at_utilization](#log_stop_at_utilization) | `0.97` | Basic | سیاست |
+| [log_to_file](#log_to_file) | `True` | Basic | ظرفیت |
+| [log_to_graylog](#log_to_graylog) | `False` | Basic | سیاست |
+| [log_to_journald](#log_to_journald) | `False` | Basic | سیاست |
+| [log_to_stderr](#log_to_stderr) | `False` | Basic | سیاست |
+| [log_to_syslog](#log_to_syslog) | `False` | Basic | سیاست |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -59,7 +59,7 @@ ceph config get global log_coarse_timestamps
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -94,7 +94,7 @@ ceph config get global log_file
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `/var/log/ceph/$cluster-$name.log`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -128,7 +128,7 @@ ceph config get global log_flush_on_exit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -163,7 +163,7 @@ ceph config get global log_graylog_host
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `127.0.0.1` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -197,7 +197,7 @@ ceph config get global log_graylog_port
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `12201` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -231,7 +231,7 @@ ceph config get global log_max_new
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -266,7 +266,7 @@ ceph config get global log_max_recent
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -303,7 +303,7 @@ ceph config get global log_stderr_prefix
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -338,7 +338,7 @@ ceph config get global log_stop_at_utilization
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `0.97` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -372,7 +372,7 @@ ceph config get global log_to_file
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `True`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -406,7 +406,7 @@ ceph config get global log_to_graylog
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -440,7 +440,7 @@ ceph config get global log_to_journald
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -474,7 +474,7 @@ ceph config get global log_to_stderr
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -508,7 +508,7 @@ ceph config get global log_to_syslog
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.

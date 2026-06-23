@@ -4,21 +4,21 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rados_mon_op_timeout](#rados_mon_op_timeout) | `0` | Advanced | Performance |
-| [rados_osd_op_timeout](#rados_osd_op_timeout) | `0` | Advanced | Performance |
-| [rados_replica_read_policy](#rados_replica_read_policy) | `default` | Advanced | Performance |
-| [rados_replica_read_policy_on_objclass](#rados_replica_read_policy_on_objclass) | `False` | Advanced | Performance |
-| [rados_tracing](#rados_tracing) | `False` | Advanced | Performance |
+| [rados_mon_op_timeout](#rados_mon_op_timeout) | `0` | Advanced | عملکرد |
+| [rados_osd_op_timeout](#rados_osd_op_timeout) | `0` | Advanced | عملکرد |
+| [rados_replica_read_policy](#rados_replica_read_policy) | `default` | Advanced | عملکرد |
+| [rados_replica_read_policy_on_objclass](#rados_replica_read_policy_on_objclass) | `False` | Advanced | عملکرد |
+| [rados_tracing](#rados_tracing) | `False` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -50,7 +50,7 @@ ceph config get global rados_mon_op_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -87,7 +87,7 @@ ceph config get global rados_osd_op_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -124,7 +124,7 @@ ceph config get global rados_replica_read_policy
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `default`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -159,7 +159,7 @@ ceph config get global rados_replica_read_policy_on_objclass
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -194,7 +194,7 @@ ceph config get global rados_tracing
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

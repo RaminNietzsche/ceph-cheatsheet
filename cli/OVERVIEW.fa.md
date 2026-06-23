@@ -1,29 +1,27 @@
-> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
+# مرجع دستورات CLI
 
-# CLI Command Reference
-
-<span class="badge badge-cli">CLI</span> Essential Ceph commands for day-to-day cluster administration. Commands assume a running cluster with `ceph` CLI access and appropriate credentials (`ceph.conf` / keyring).
+<span class="badge badge-cli">CLI</span> دستورات ضروری Ceph برای مدیریت روزانهٔ کلاستر. فرض: کلاستر در حال اجرا، دسترسی به `ceph` و credential مناسب (`ceph.conf` / keyring).
 
 <table class="guide-table">
 <thead>
-<tr><th>Section</th><th>Topics</th></tr>
+<tr><th>بخش</th><th>موضوعات</th></tr>
 </thead>
 <tbody>
-<tr class="row-cluster"><td><span class="badge badge-cli">cluster</span> <a href="cluster/">→</a></td><td>Status, health, monitors, versions</td></tr>
-<tr class="row-small"><td><span class="badge badge-cli">config</span> <a href="config/">→</a></td><td>Runtime configuration (<code>ceph config …</code>)</td></tr>
-<tr class="row-storage"><td><span class="badge badge-cli">osd-pool</span> <a href="osd-pool/">→</a></td><td>OSDs, pools, placement groups</td></tr>
-<tr class="row-lab"><td><span class="badge badge-cli">rados</span> <a href="rados/">→</a></td><td>Low-level RADOS objects and pools</td></tr>
-<tr class="row-large"><td><span class="badge badge-cli">rbd</span> <a href="rbd/">→</a></td><td>Block images, snapshots, mapping</td></tr>
-<tr class="row-rgw"><td><span class="badge badge-cli">rgw</span> <a href="rgw/">→</a></td><td>S3/Swift admin, users, buckets</td></tr>
-<tr class="row-cephfs"><td><span class="badge badge-cli">cephfs</span> <a href="cephfs/">→</a></td><td>File systems, MDS, mounts</td></tr>
-<tr class="row-multi"><td><span class="badge badge-cli">cephadm</span> <a href="cephadm/">→</a></td><td>Orchestrator, services, hosts</td></tr>
-<tr class="row-dev"><td><span class="badge badge-cli">troubleshooting</span> <a href="troubleshooting/">→</a></td><td>Logs, perf, recovery, common fixes</td></tr>
+<tr class="row-cluster"><td><span class="badge badge-cli">cluster</span> <a href="cluster/">→</a></td><td>وضعیت، سلامت، مانیتور، نسخه‌ها</td></tr>
+<tr class="row-small"><td><span class="badge badge-cli">config</span> <a href="config/">→</a></td><td>پیکربندی runtime (<code>ceph config …</code>)</td></tr>
+<tr class="row-storage"><td><span class="badge badge-cli">osd-pool</span> <a href="osd-pool/">→</a></td><td>OSD، pool، placement group</td></tr>
+<tr class="row-lab"><td><span class="badge badge-cli">rados</span> <a href="rados/">→</a></td><td>شیء و pool در سطح پایین RADOS</td></tr>
+<tr class="row-large"><td><span class="badge badge-cli">rbd</span> <a href="rbd/">→</a></td><td>تصویر بلوکی، snapshot، map</td></tr>
+<tr class="row-rgw"><td><span class="badge badge-cli">rgw</span> <a href="rgw/">→</a></td><td>مدیریت S3/Swift، کاربر، bucket</td></tr>
+<tr class="row-cephfs"><td><span class="badge badge-cli">cephfs</span> <a href="cephfs/">→</a></td><td>فایل‌سیستم، MDS، mount</td></tr>
+<tr class="row-multi"><td><span class="badge badge-cli">cephadm</span> <a href="cephadm/">→</a></td><td>ارکستراتور، سرویس، میزبان</td></tr>
+<tr class="row-dev"><td><span class="badge badge-cli">troubleshooting</span> <a href="troubleshooting/">→</a></td><td>log، عملکرد، recovery، رفع مشکلات رایج</td></tr>
 </tbody>
 </table>
 
-## Global flags
+## پرچم‌های سراسری
 
-Most commands accept:
+بیشتر دستورات این‌ها را می‌پذیرند:
 
 ```bash
 ceph -s                          # short status
@@ -34,18 +32,18 @@ ceph -k /path/keyring …
 ceph -n client.admin …           # explicit entity name
 ```
 
-## Command families
+## خانوادهٔ دستورات
 
-| Binary | Purpose |
+| باینری | کاربرد |
 |--------|---------|
-| `ceph` | Cluster admin — health, config, orch, tell |
-| `rados` | Direct pool/object I/O |
-| `rbd` | Block device management |
-| `radosgw-admin` | RGW users, buckets, zones |
-| `cephadm` | Bootstrap and node-level cephadm ops |
-| `cephfs` | CephFS shell (interactive) |
+| `ceph` | مدیریت کلاستر — health، config، orch، tell |
+| `rados` | I/O مستقیم pool/شیء |
+| `rbd` | مدیریت block device |
+| `radosgw-admin` | کاربر، bucket و zoneهای RGW |
+| `cephadm` | bootstrap و عملیات cephadm روی نود |
+| `cephfs` | shell تعاملی CephFS |
 
-## Quick examples
+## مثال‌های سریع
 
 ```bash
 ceph status
@@ -58,4 +56,4 @@ radosgw-admin user list
 ceph orch ps
 ```
 
-[← Back to main reference](../index.md)
+[← Cheatsheet](../cheatsheet/OVERVIEW.md)

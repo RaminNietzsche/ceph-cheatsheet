@@ -1,6 +1,6 @@
-# مقیاس Lab / توسعه
+# مقیاس آزمایشگاه / توسعه
 
-<span class="badge badge-scale-lab">آزمایشگاه / توسعه</span> ۱–۳ نود، تست و یادگیری — **نه برای دادهٔ عملیاتی**.
+<span class="badge badge-scale-lab">آزمایشگاه / توسعه</span> ۱–۳ نود، تست، یادگیری و CI — **نه برای دادهٔ عملیاتی**.
 
 ## اهداف
 
@@ -21,13 +21,14 @@ ceph orch apply osd --all-available-devices
 
 | حوزه | رویکرد lab |
 |------|------------|
-| Replication | `size=2` با `--single-host-defaults` |
-| PG | autoscale؛ pool کوچک |
-| حافظه OSD | `osd_memory_target` پایین‌تر |
-| Scrub | interval بلندتر |
+| Replication | `size=2` با `--single-host-defaults` روی یک host |
+| PG | autoscale روشن؛ pool کوچک |
+| حافظه OSD | `osd_memory_target` پایین‌تر اگر RAM محدود است |
+| Scrub | interval بلندتر برای کاهش فشار دیسک |
 
 ```bash
 ./scripts/lookup-config.sh osd_memory_target
+./scripts/lookup-config.sh osd_pool_default_pg_autoscale_mode
 ```
 
 ## راهنمای نقش
@@ -36,5 +37,11 @@ ceph orch apply osd --all-available-devices
 |------|--------|
 | Cluster | [cluster-admin.md](../roles/cluster-admin.md) |
 | Storage | [storage-operator.md](../roles/storage-operator.md) |
+| RGW (اختیاری) | [rgw-admin.md](../roles/rgw-admin.md) |
+| CephFS (اختیاری) | [cephfs-admin.md](../roles/cephfs-admin.md) |
+
+## مرجع سریع CLI
+
+[cli/cluster.md](../../cli/cluster.md) · [cli/osd-pool.md](../../cli/osd-pool.md)
 
 [← نمای کلی راهنما](../OVERVIEW.md)

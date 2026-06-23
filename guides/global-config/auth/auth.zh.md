@@ -4,25 +4,25 @@ Global 配置深度指南 — 9 个选项。[← 概览](../OVERVIEW.md) · [调
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [auth_allow_insecure_global_id_reclaim](#auth_allow_insecure_global_id_reclaim) | `True` | Advanced | Policy |
-| [auth_client_required](#auth_client_required) | `cephx, none` | Advanced | Performance |
-| [auth_cluster_required](#auth_cluster_required) | `cephx` | Advanced | Performance |
-| [auth_debug](#auth_debug) | `False` | Dev | Dev |
-| [auth_expose_insecure_global_id_reclaim](#auth_expose_insecure_global_id_reclaim) | `True` | Advanced | Policy |
-| [auth_mon_ticket_ttl](#auth_mon_ticket_ttl) | `72_hr` | Advanced | Performance |
-| [auth_service_required](#auth_service_required) | `cephx` | Advanced | Performance |
-| [auth_service_ticket_ttl](#auth_service_ticket_ttl) | `1_hr` | Advanced | Performance |
-| [auth_supported](#auth_supported) | `(empty)` | Advanced | Performance |
+| [auth_allow_insecure_global_id_reclaim](#auth_allow_insecure_global_id_reclaim) | `True` | Advanced | 策略 |
+| [auth_client_required](#auth_client_required) | `cephx, none` | Advanced | 性能 |
+| [auth_cluster_required](#auth_cluster_required) | `cephx` | Advanced | 性能 |
+| [auth_debug](#auth_debug) | `False` | Dev | 开发 |
+| [auth_expose_insecure_global_id_reclaim](#auth_expose_insecure_global_id_reclaim) | `True` | Advanced | 策略 |
+| [auth_mon_ticket_ttl](#auth_mon_ticket_ttl) | `72_hr` | Advanced | 性能 |
+| [auth_service_required](#auth_service_required) | `cephx` | Advanced | 性能 |
+| [auth_service_ticket_ttl](#auth_service_ticket_ttl) | `1_hr` | Advanced | 性能 |
+| [auth_supported](#auth_supported) | `(empty)` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -54,7 +54,7 @@ ceph config get global auth_allow_insecure_global_id_reclaim
 
 **寻找最优值：**
 
-**调优模型：** Policy
+**调优模型：** 策略
 
 1. 记录 `True` 为何符合您的策略。
 2. 仅为兼容性或安全要求而变更。
@@ -88,7 +88,7 @@ ceph config get global auth_client_required
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `cephx, none` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -123,7 +123,7 @@ ceph config get global auth_cluster_required
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `cephx` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -156,7 +156,7 @@ ceph config get global auth_debug
 
 **寻找最优值：**
 
-**调优模型：** Dev
+**调优模型：** 开发
 
 1. 生产环境保持 upstream 默认值（`False`）。
 2. 仅在实验室复现特定问题时修改。
@@ -184,7 +184,7 @@ ceph config get global auth_expose_insecure_global_id_reclaim
 
 **寻找最优值：**
 
-**调优模型：** Policy
+**调优模型：** 策略
 
 1. 记录 `True` 为何符合您的策略。
 2. 仅为兼容性或安全要求而变更。
@@ -216,7 +216,7 @@ ceph config get global auth_mon_ticket_ttl
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `72_hr` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -251,7 +251,7 @@ ceph config get global auth_service_required
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `cephx` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -284,7 +284,7 @@ ceph config get global auth_service_ticket_ttl
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `1_hr` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -319,7 +319,7 @@ ceph config get global auth_supported
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `(empty)` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

@@ -4,33 +4,33 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [journal_aio](#journal_aio) | `True` | Dev | Dev |
-| [journal_align_min_size](#journal_align_min_size) | `64_K` | Dev | Dev |
-| [journal_block_align](#journal_block_align) | `True` | Dev | Dev |
-| [journal_block_size](#journal_block_size) | `4_K` | Dev | Dev |
-| [journal_dio](#journal_dio) | `True` | Dev | Dev |
-| [journal_discard](#journal_discard) | `False` | Dev | Dev |
-| [journal_force_aio](#journal_force_aio) | `False` | Dev | Dev |
-| [journal_ignore_corruption](#journal_ignore_corruption) | `False` | Dev | Dev |
-| [journal_max_write_bytes](#journal_max_write_bytes) | `10_M` | Advanced | Performance |
-| [journal_max_write_entries](#journal_max_write_entries) | `100` | Advanced | Performance |
-| [journal_replay_from](#journal_replay_from) | `0` | Dev | Dev |
-| [journal_throttle_high_multiple](#journal_throttle_high_multiple) | `0` | Dev | Dev |
-| [journal_throttle_high_threshhold](#journal_throttle_high_threshhold) | `0.9` | Dev | Dev |
-| [journal_throttle_low_threshhold](#journal_throttle_low_threshhold) | `0.6` | Dev | Dev |
-| [journal_throttle_max_multiple](#journal_throttle_max_multiple) | `0` | Dev | Dev |
-| [journal_write_header_frequency](#journal_write_header_frequency) | `0` | Dev | Dev |
-| [journal_zero_on_create](#journal_zero_on_create) | `False` | Dev | Dev |
+| [journal_aio](#journal_aio) | `True` | Dev | توسعه |
+| [journal_align_min_size](#journal_align_min_size) | `64_K` | Dev | توسعه |
+| [journal_block_align](#journal_block_align) | `True` | Dev | توسعه |
+| [journal_block_size](#journal_block_size) | `4_K` | Dev | توسعه |
+| [journal_dio](#journal_dio) | `True` | Dev | توسعه |
+| [journal_discard](#journal_discard) | `False` | Dev | توسعه |
+| [journal_force_aio](#journal_force_aio) | `False` | Dev | توسعه |
+| [journal_ignore_corruption](#journal_ignore_corruption) | `False` | Dev | توسعه |
+| [journal_max_write_bytes](#journal_max_write_bytes) | `10_M` | Advanced | عملکرد |
+| [journal_max_write_entries](#journal_max_write_entries) | `100` | Advanced | عملکرد |
+| [journal_replay_from](#journal_replay_from) | `0` | Dev | توسعه |
+| [journal_throttle_high_multiple](#journal_throttle_high_multiple) | `0` | Dev | توسعه |
+| [journal_throttle_high_threshhold](#journal_throttle_high_threshhold) | `0.9` | Dev | توسعه |
+| [journal_throttle_low_threshhold](#journal_throttle_low_threshhold) | `0.6` | Dev | توسعه |
+| [journal_throttle_max_multiple](#journal_throttle_max_multiple) | `0` | Dev | توسعه |
+| [journal_write_header_frequency](#journal_write_header_frequency) | `0` | Dev | توسعه |
+| [journal_zero_on_create](#journal_zero_on_create) | `False` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -60,7 +60,7 @@ ceph config get global journal_aio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -88,7 +88,7 @@ ceph config get global journal_align_min_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`64_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -114,7 +114,7 @@ ceph config get global journal_block_align
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -142,7 +142,7 @@ ceph config get global journal_block_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`4_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -168,7 +168,7 @@ ceph config get global journal_dio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -196,7 +196,7 @@ ceph config get global journal_discard
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -224,7 +224,7 @@ ceph config get global journal_force_aio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -252,7 +252,7 @@ ceph config get global journal_ignore_corruption
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -280,7 +280,7 @@ ceph config get global journal_max_write_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -315,7 +315,7 @@ ceph config get global journal_max_write_entries
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -350,7 +350,7 @@ ceph config get global journal_replay_from
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -378,7 +378,7 @@ ceph config get global journal_throttle_high_multiple
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -406,7 +406,7 @@ ceph config get global journal_throttle_high_threshhold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.9`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -434,7 +434,7 @@ ceph config get global journal_throttle_low_threshhold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.6`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -462,7 +462,7 @@ ceph config get global journal_throttle_max_multiple
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -488,7 +488,7 @@ ceph config get global journal_write_header_frequency
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -516,7 +516,7 @@ ceph config get global journal_zero_on_create
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

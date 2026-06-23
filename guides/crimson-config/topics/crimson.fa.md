@@ -4,30 +4,30 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [crimson_allow_pg_split](#crimson_allow_pg_split) | `True` | Advanced | Policy |
-| [crimson_bluestore_cpu_set](#crimson_bluestore_cpu_set) | `(empty)` | Advanced | Performance |
-| [crimson_bluestore_num_threads](#crimson_bluestore_num_threads) | `6` | Advanced | Performance |
-| [crimson_cpu_num](#crimson_cpu_num) | `0` | Advanced | Performance |
-| [crimson_cpu_set](#crimson_cpu_set) | `(empty)` | Advanced | Performance |
-| [crimson_memory](#crimson_memory) | `0` | Advanced | Performance |
-| [crimson_osd_obc_lru_size](#crimson_osd_obc_lru_size) | `512` | Advanced | Performance |
-| [crimson_osd_scheduler_concurrency](#crimson_osd_scheduler_concurrency) | `0` | Advanced | Performance |
-| [crimson_osd_stat_interval](#crimson_osd_stat_interval) | `0` | Advanced | Performance |
-| [crimson_poll_mode](#crimson_poll_mode) | `False` | Advanced | Performance |
-| [crimson_reactor_backend](#crimson_reactor_backend) | `(empty)` | Advanced | Performance |
-| [crimson_reactor_idle_poll_time_us](#crimson_reactor_idle_poll_time_us) | `200` | Advanced | Performance |
-| [crimson_reactor_io_latency_goal_ms](#crimson_reactor_io_latency_goal_ms) | `0` | Advanced | Performance |
-| [crimson_reactor_task_quota_ms](#crimson_reactor_task_quota_ms) | `0.5` | Advanced | Performance |
+| [crimson_allow_pg_split](#crimson_allow_pg_split) | `True` | Advanced | سیاست |
+| [crimson_bluestore_cpu_set](#crimson_bluestore_cpu_set) | `(empty)` | Advanced | عملکرد |
+| [crimson_bluestore_num_threads](#crimson_bluestore_num_threads) | `6` | Advanced | عملکرد |
+| [crimson_cpu_num](#crimson_cpu_num) | `0` | Advanced | عملکرد |
+| [crimson_cpu_set](#crimson_cpu_set) | `(empty)` | Advanced | عملکرد |
+| [crimson_memory](#crimson_memory) | `0` | Advanced | عملکرد |
+| [crimson_osd_obc_lru_size](#crimson_osd_obc_lru_size) | `512` | Advanced | عملکرد |
+| [crimson_osd_scheduler_concurrency](#crimson_osd_scheduler_concurrency) | `0` | Advanced | عملکرد |
+| [crimson_osd_stat_interval](#crimson_osd_stat_interval) | `0` | Advanced | عملکرد |
+| [crimson_poll_mode](#crimson_poll_mode) | `False` | Advanced | عملکرد |
+| [crimson_reactor_backend](#crimson_reactor_backend) | `(empty)` | Advanced | عملکرد |
+| [crimson_reactor_idle_poll_time_us](#crimson_reactor_idle_poll_time_us) | `200` | Advanced | عملکرد |
+| [crimson_reactor_io_latency_goal_ms](#crimson_reactor_io_latency_goal_ms) | `0` | Advanced | عملکرد |
+| [crimson_reactor_task_quota_ms](#crimson_reactor_task_quota_ms) | `0.5` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -59,7 +59,7 @@ ceph config get osd crimson_allow_pg_split
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -96,7 +96,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -134,7 +134,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `6`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -172,7 +172,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -212,7 +212,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -250,7 +250,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -287,7 +287,7 @@ ceph config get osd crimson_osd_obc_lru_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `512`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -324,7 +324,7 @@ ceph config get osd crimson_osd_scheduler_concurrency
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -361,7 +361,7 @@ ceph config get osd crimson_osd_stat_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -399,7 +399,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -437,7 +437,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -475,7 +475,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `200`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -513,7 +513,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -551,7 +551,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

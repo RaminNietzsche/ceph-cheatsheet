@@ -1,17 +1,15 @@
-> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
+# دستورات Cephadm و Orchestrator
 
-# Cephadm & Orchestrator Commands
+نیاز به ماژول فعال `ceph mgr`: `ceph mgr module enable cephadm`.
 
-Requires active `ceph mgr` module: `ceph mgr module enable cephadm`.
-
-## Cluster bootstrap
+## Bootstrap کلاستر
 
 ```bash
 cephadm bootstrap --mon-ip <ip> [--cluster-network …] [--single-host-defaults]
 cephadm install                        # install cephadm on local host
 ```
 
-## Host management
+## مدیریت میزبان
 
 ```bash
 ceph orch host ls
@@ -21,7 +19,7 @@ ceph orch host label add|rm <hostname> <label>
 ceph orch host maintenance enter|exit <hostname>
 ```
 
-## Service deployment
+## استقرار سرویس
 
 ```bash
 ceph orch ls
@@ -40,7 +38,7 @@ ceph orch daemon redeploy <daemon>
 ceph orch daemon rm <daemon> [--force]
 ```
 
-## Upgrades
+## ارتقا
 
 ```bash
 ceph orch upgrade ls
@@ -49,7 +47,7 @@ ceph orch upgrade status
 ceph orch upgrade pause|resume|stop
 ```
 
-## Device / OSD
+## دستگاه / OSD
 
 ```bash
 ceph orch device ls
@@ -57,7 +55,7 @@ ceph orch device zap <hostname> <path> [--force]
 ceph orch daemon add osd <hostname>:<device-path>
 ```
 
-## Logs & shell
+## Log و shell
 
 ```bash
 ceph orch logs <svc-type>.<hostname>.<id> [--follow]
@@ -65,6 +63,6 @@ cephadm shell                              # run ceph commands in container
 cephadm enter --name <daemon-name>
 ```
 
-See [config/mgr/cephadm](../config/mgr/INDEX.md) for cephadm-related config options.
+گزینه‌های مرتبط cephadm: [config/mgr/cephadm](../config/mgr/cephadm.md).
 
-[← CLI overview](OVERVIEW.md)
+[← نمای کلی CLI](OVERVIEW.md)

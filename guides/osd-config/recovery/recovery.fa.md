@@ -4,44 +4,44 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [osd_allow_recovery_below_min_size](#osd_allow_recovery_below_min_size) | `True` | Dev | Dev |
-| [osd_backfill_retry_interval](#osd_backfill_retry_interval) | `30` | Advanced | Performance |
-| [osd_backfill_scan_max](#osd_backfill_scan_max) | `512` | Advanced | Performance |
-| [osd_backfill_scan_min](#osd_backfill_scan_min) | `64` | Advanced | Performance |
-| [osd_max_backfills](#osd_max_backfills) | `1` | Advanced | Performance |
-| [osd_mclock_override_recovery_settings](#osd_mclock_override_recovery_settings) | `False` | Advanced | Performance |
-| [osd_mclock_scheduler_background_recovery_lim](#osd_mclock_scheduler_background_recovery_lim) | `0` | Advanced | Performance |
-| [osd_mclock_scheduler_background_recovery_res](#osd_mclock_scheduler_background_recovery_res) | `0` | Advanced | Performance |
-| [osd_mclock_scheduler_background_recovery_wgt](#osd_mclock_scheduler_background_recovery_wgt) | `1` | Advanced | Performance |
-| [osd_min_recovery_priority](#osd_min_recovery_priority) | `0` | Advanced | Performance |
-| [osd_recover_clone_overlap](#osd_recover_clone_overlap) | `True` | Advanced | Performance |
-| [osd_recover_clone_overlap_limit](#osd_recover_clone_overlap_limit) | `10` | Advanced | Performance |
-| [osd_recovery_delay_start](#osd_recovery_delay_start) | `0` | Advanced | Performance |
-| [osd_recovery_max_active](#osd_recovery_max_active) | `0` | Advanced | Performance |
-| [osd_recovery_max_active_hdd](#osd_recovery_max_active_hdd) | `3` | Advanced | Performance |
-| [osd_recovery_max_active_ssd](#osd_recovery_max_active_ssd) | `10` | Advanced | Performance |
-| [osd_recovery_max_chunk](#osd_recovery_max_chunk) | `8_M` | Advanced | Performance |
-| [osd_recovery_max_omap_entries_per_chunk](#osd_recovery_max_omap_entries_per_chunk) | `8096` | Advanced | Performance |
-| [osd_recovery_max_single_start](#osd_recovery_max_single_start) | `1` | Advanced | Performance |
-| [osd_recovery_retry_interval](#osd_recovery_retry_interval) | `30` | Advanced | Performance |
-| [osd_recovery_sleep](#osd_recovery_sleep) | `0` | Advanced | Performance |
-| [osd_recovery_sleep_degraded](#osd_recovery_sleep_degraded) | `0` | Advanced | Performance |
-| [osd_recovery_sleep_degraded_hdd](#osd_recovery_sleep_degraded_hdd) | `0.1` | Advanced | Performance |
-| [osd_recovery_sleep_degraded_hybrid](#osd_recovery_sleep_degraded_hybrid) | `0.025` | Advanced | Performance |
-| [osd_recovery_sleep_degraded_ssd](#osd_recovery_sleep_degraded_ssd) | `0` | Advanced | Performance |
-| [osd_recovery_sleep_hdd](#osd_recovery_sleep_hdd) | `0.1` | Advanced | Performance |
-| [osd_recovery_sleep_hybrid](#osd_recovery_sleep_hybrid) | `0.025` | Advanced | Performance |
-| [osd_recovery_sleep_ssd](#osd_recovery_sleep_ssd) | `0` | Advanced | Performance |
+| [osd_allow_recovery_below_min_size](#osd_allow_recovery_below_min_size) | `True` | Dev | توسعه |
+| [osd_backfill_retry_interval](#osd_backfill_retry_interval) | `30` | Advanced | عملکرد |
+| [osd_backfill_scan_max](#osd_backfill_scan_max) | `512` | Advanced | عملکرد |
+| [osd_backfill_scan_min](#osd_backfill_scan_min) | `64` | Advanced | عملکرد |
+| [osd_max_backfills](#osd_max_backfills) | `1` | Advanced | عملکرد |
+| [osd_mclock_override_recovery_settings](#osd_mclock_override_recovery_settings) | `False` | Advanced | عملکرد |
+| [osd_mclock_scheduler_background_recovery_lim](#osd_mclock_scheduler_background_recovery_lim) | `0` | Advanced | عملکرد |
+| [osd_mclock_scheduler_background_recovery_res](#osd_mclock_scheduler_background_recovery_res) | `0` | Advanced | عملکرد |
+| [osd_mclock_scheduler_background_recovery_wgt](#osd_mclock_scheduler_background_recovery_wgt) | `1` | Advanced | عملکرد |
+| [osd_min_recovery_priority](#osd_min_recovery_priority) | `0` | Advanced | عملکرد |
+| [osd_recover_clone_overlap](#osd_recover_clone_overlap) | `True` | Advanced | عملکرد |
+| [osd_recover_clone_overlap_limit](#osd_recover_clone_overlap_limit) | `10` | Advanced | عملکرد |
+| [osd_recovery_delay_start](#osd_recovery_delay_start) | `0` | Advanced | عملکرد |
+| [osd_recovery_max_active](#osd_recovery_max_active) | `0` | Advanced | عملکرد |
+| [osd_recovery_max_active_hdd](#osd_recovery_max_active_hdd) | `3` | Advanced | عملکرد |
+| [osd_recovery_max_active_ssd](#osd_recovery_max_active_ssd) | `10` | Advanced | عملکرد |
+| [osd_recovery_max_chunk](#osd_recovery_max_chunk) | `8_M` | Advanced | عملکرد |
+| [osd_recovery_max_omap_entries_per_chunk](#osd_recovery_max_omap_entries_per_chunk) | `8096` | Advanced | عملکرد |
+| [osd_recovery_max_single_start](#osd_recovery_max_single_start) | `1` | Advanced | عملکرد |
+| [osd_recovery_retry_interval](#osd_recovery_retry_interval) | `30` | Advanced | عملکرد |
+| [osd_recovery_sleep](#osd_recovery_sleep) | `0` | Advanced | عملکرد |
+| [osd_recovery_sleep_degraded](#osd_recovery_sleep_degraded) | `0` | Advanced | عملکرد |
+| [osd_recovery_sleep_degraded_hdd](#osd_recovery_sleep_degraded_hdd) | `0.1` | Advanced | عملکرد |
+| [osd_recovery_sleep_degraded_hybrid](#osd_recovery_sleep_degraded_hybrid) | `0.025` | Advanced | عملکرد |
+| [osd_recovery_sleep_degraded_ssd](#osd_recovery_sleep_degraded_ssd) | `0` | Advanced | عملکرد |
+| [osd_recovery_sleep_hdd](#osd_recovery_sleep_hdd) | `0.1` | Advanced | عملکرد |
+| [osd_recovery_sleep_hybrid](#osd_recovery_sleep_hybrid) | `0.025` | Advanced | عملکرد |
+| [osd_recovery_sleep_ssd](#osd_recovery_sleep_ssd) | `0` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -73,7 +73,7 @@ ceph config get osd osd_allow_recovery_below_min_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -101,7 +101,7 @@ ceph config get osd osd_backfill_retry_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -136,7 +136,7 @@ ceph config get osd osd_backfill_scan_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `512`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -171,7 +171,7 @@ ceph config get osd osd_backfill_scan_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -208,7 +208,7 @@ ceph config get osd osd_max_backfills
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -245,7 +245,7 @@ ceph config get osd osd_mclock_override_recovery_settings
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -282,7 +282,7 @@ ceph config get osd osd_mclock_scheduler_background_recovery_lim
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -321,7 +321,7 @@ ceph config get osd osd_mclock_scheduler_background_recovery_res
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -360,7 +360,7 @@ ceph config get osd osd_mclock_scheduler_background_recovery_wgt
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -397,7 +397,7 @@ ceph config get osd osd_min_recovery_priority
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -432,7 +432,7 @@ ceph config get osd osd_recover_clone_overlap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -467,7 +467,7 @@ ceph config get osd osd_recover_clone_overlap_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -502,7 +502,7 @@ ceph config get osd osd_recovery_delay_start
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -539,7 +539,7 @@ ceph config get osd osd_recovery_max_active
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -578,7 +578,7 @@ ceph config get osd osd_recovery_max_active_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -615,7 +615,7 @@ ceph config get osd osd_recovery_max_active_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -650,7 +650,7 @@ ceph config get osd osd_recovery_max_chunk
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `8_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -685,7 +685,7 @@ ceph config get osd osd_recovery_max_omap_entries_per_chunk
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `8096`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -720,7 +720,7 @@ ceph config get osd osd_recovery_max_single_start
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -757,7 +757,7 @@ ceph config get osd osd_recovery_retry_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -794,7 +794,7 @@ ceph config get osd osd_recovery_sleep
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -831,7 +831,7 @@ ceph config get osd osd_recovery_sleep_degraded
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -868,7 +868,7 @@ ceph config get osd osd_recovery_sleep_degraded_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -905,7 +905,7 @@ ceph config get osd osd_recovery_sleep_degraded_hybrid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.025`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -942,7 +942,7 @@ ceph config get osd osd_recovery_sleep_degraded_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -979,7 +979,7 @@ ceph config get osd osd_recovery_sleep_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1016,7 +1016,7 @@ ceph config get osd osd_recovery_sleep_hybrid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.025`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1053,7 +1053,7 @@ ceph config get osd osd_recovery_sleep_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

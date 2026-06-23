@@ -4,154 +4,154 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mds_abort_on_newly_corrupt_dentry](#mds_abort_on_newly_corrupt_dentry) | `True` | Advanced | Performance |
-| [mds_action_on_write_error](#mds_action_on_write_error) | `1` | Advanced | Performance |
-| [mds_allow_async_dirops](#mds_allow_async_dirops) | `True` | Advanced | Policy |
-| [mds_allow_batched_ops](#mds_allow_batched_ops) | `True` | Advanced | Policy |
-| [mds_alternate_name_max](#mds_alternate_name_max) | `8_K` | Advanced | Performance |
-| [mds_asio_thread_count](#mds_asio_thread_count) | `2` | Advanced | Performance |
-| [mds_bal_export_pin](#mds_bal_export_pin) | `True` | Advanced | Performance |
-| [mds_bal_fragment_dirs](#mds_bal_fragment_dirs) | `True` | Advanced | Performance |
-| [mds_bal_fragment_fast_factor](#mds_bal_fragment_fast_factor) | `1.5` | Advanced | Performance |
-| [mds_bal_fragment_size_max](#mds_bal_fragment_size_max) | `100000` | Advanced | Performance |
-| [mds_bal_idle_threshold](#mds_bal_idle_threshold) | `0` | Advanced | Performance |
-| [mds_bal_max](#mds_bal_max) | `-1` | Dev | Dev |
-| [mds_bal_max_until](#mds_bal_max_until) | `-1` | Dev | Dev |
-| [mds_bal_merge_size](#mds_bal_merge_size) | `50` | Advanced | Performance |
-| [mds_bal_midchunk](#mds_bal_midchunk) | `0.3` | Dev | Dev |
-| [mds_bal_min_rebalance](#mds_bal_min_rebalance) | `0.1` | Dev | Dev |
-| [mds_bal_min_start](#mds_bal_min_start) | `0.2` | Dev | Dev |
-| [mds_bal_minchunk](#mds_bal_minchunk) | `0.001` | Dev | Dev |
-| [mds_bal_mode](#mds_bal_mode) | `0` | Dev | Dev |
-| [mds_bal_need_max](#mds_bal_need_max) | `1.2` | Dev | Dev |
-| [mds_bal_need_min](#mds_bal_need_min) | `0.8` | Dev | Dev |
-| [mds_bal_overload_epochs](#mds_bal_overload_epochs) | `2` | Dev | Dev |
-| [mds_bal_replicate_threshold](#mds_bal_replicate_threshold) | `8000` | Advanced | Performance |
-| [mds_bal_split_bits](#mds_bal_split_bits) | `3` | Advanced | Performance |
-| [mds_bal_split_rd](#mds_bal_split_rd) | `25000` | Advanced | Performance |
-| [mds_bal_split_size](#mds_bal_split_size) | `10000` | Advanced | Performance |
-| [mds_bal_split_wr](#mds_bal_split_wr) | `10000` | Advanced | Performance |
-| [mds_bal_target_decay](#mds_bal_target_decay) | `10` | Advanced | Performance |
-| [mds_bal_unreplicate_threshold](#mds_bal_unreplicate_threshold) | `0` | Advanced | Performance |
-| [mds_beacon_grace](#mds_beacon_grace) | `15` | Advanced | Performance |
-| [mds_cache_memory_limit](#mds_cache_memory_limit) | `4_G` | Basic | Performance |
-| [mds_cache_mid](#mds_cache_mid) | `0.7` | Advanced | Performance |
-| [mds_cache_quiesce_decay_rate](#mds_cache_quiesce_decay_rate) | `1` | Advanced | Performance |
-| [mds_cache_quiesce_delay](#mds_cache_quiesce_delay) | `0` | Dev | Dev |
-| [mds_cache_quiesce_sleep](#mds_cache_quiesce_sleep) | `200` | Advanced | Performance |
-| [mds_cache_quiesce_threshold](#mds_cache_quiesce_threshold) | `512_K` | Advanced | Performance |
-| [mds_cache_reservation](#mds_cache_reservation) | `0.05` | Advanced | Performance |
-| [mds_cache_trim_decay_rate](#mds_cache_trim_decay_rate) | `1` | Advanced | Performance |
-| [mds_cache_trim_threshold](#mds_cache_trim_threshold) | `256_K` | Advanced | Performance |
-| [mds_client_delegate_inos_pct](#mds_client_delegate_inos_pct) | `50` | Advanced | Performance |
-| [mds_client_prealloc_inos](#mds_client_prealloc_inos) | `1000` | Advanced | Performance |
-| [mds_client_writeable_range_max_inc_objs](#mds_client_writeable_range_max_inc_objs) | `1_K` | Advanced | Performance |
-| [mds_connect_bootstrapping](#mds_connect_bootstrapping) | `False` | Dev | Dev |
-| [mds_damage_table_max_entries](#mds_damage_table_max_entries) | `10000` | Advanced | Performance |
-| [mds_data](#mds_data) | `/var/lib/ceph/mds/$cluster-$id` | Advanced | Performance |
-| [mds_decay_halflife](#mds_decay_halflife) | `5` | Advanced | Performance |
-| [mds_default_dir_hash](#mds_default_dir_hash) | `2` | Advanced | Performance |
-| [mds_defer_session_stale](#mds_defer_session_stale) | `True` | Dev | Dev |
-| [mds_delay_journal_replay_for_testing](#mds_delay_journal_replay_for_testing) | `0` | Dev | Dev |
-| [mds_deny_all_reconnect](#mds_deny_all_reconnect) | `False` | Advanced | Performance |
-| [mds_dir_keys_per_op](#mds_dir_keys_per_op) | `16384` | Advanced | Performance |
-| [mds_dir_max_commit_size](#mds_dir_max_commit_size) | `10` | Advanced | Performance |
-| [mds_dir_max_entries](#mds_dir_max_entries) | `0` | Advanced | Performance |
-| [mds_dir_prefetch](#mds_dir_prefetch) | `True` | Advanced | Performance |
-| [mds_dump_cache_after_rejoin](#mds_dump_cache_after_rejoin) | `False` | Dev | Dev |
-| [mds_dump_cache_on_map](#mds_dump_cache_on_map) | `False` | Dev | Dev |
-| [mds_dump_cache_threshold_file](#mds_dump_cache_threshold_file) | `0` | Dev | Dev |
-| [mds_dump_cache_threshold_formatter](#mds_dump_cache_threshold_formatter) | `1_G` | Dev | Dev |
-| [mds_early_reply](#mds_early_reply) | `True` | Advanced | Performance |
-| [mds_enable_op_tracker](#mds_enable_op_tracker) | `True` | Advanced | Policy |
-| [mds_enforce_unique_name](#mds_enforce_unique_name) | `True` | Advanced | Policy |
-| [mds_export_ephemeral_distributed](#mds_export_ephemeral_distributed) | `True` | Advanced | Performance |
-| [mds_export_ephemeral_distributed_factor](#mds_export_ephemeral_distributed_factor) | `2` | Advanced | Performance |
-| [mds_export_ephemeral_random](#mds_export_ephemeral_random) | `True` | Advanced | Performance |
-| [mds_export_ephemeral_random_max](#mds_export_ephemeral_random_max) | `0.01` | Advanced | Performance |
-| [mds_file_blockdiff_max_concurrent_object_scans](#mds_file_blockdiff_max_concurrent_object_scans) | `16` | Advanced | Performance |
-| [mds_fscrypt_last_block_max_size](#mds_fscrypt_last_block_max_size) | `4_K` | Advanced | Performance |
-| [mds_go_bad_corrupt_dentry](#mds_go_bad_corrupt_dentry) | `True` | Advanced | Performance |
-| [mds_hack_allow_loading_invalid_metadata](#mds_hack_allow_loading_invalid_metadata) | `False` | Advanced | Policy |
-| [mds_health_cache_threshold](#mds_health_cache_threshold) | `1.5` | Advanced | Performance |
-| [mds_health_summarize_threshold](#mds_health_summarize_threshold) | `10` | Advanced | Performance |
-| [mds_heartbeat_grace](#mds_heartbeat_grace) | `15` | Advanced | Performance |
-| [mds_heartbeat_reset_grace](#mds_heartbeat_reset_grace) | `1000` | Advanced | Performance |
-| [mds_join_fs](#mds_join_fs) | `(empty)` | Basic | Policy |
-| [mds_journal_format](#mds_journal_format) | `1` | Dev | Dev |
-| [mds_kill_create_at](#mds_kill_create_at) | `0` | Dev | Dev |
-| [mds_kill_dirfrag_at](#mds_kill_dirfrag_at) | `0` | Dev | Dev |
-| [mds_kill_export_at](#mds_kill_export_at) | `0` | Dev | Dev |
-| [mds_kill_import_at](#mds_kill_import_at) | `0` | Dev | Dev |
-| [mds_kill_journal_at](#mds_kill_journal_at) | `0` | Dev | Dev |
-| [mds_kill_journal_expire_at](#mds_kill_journal_expire_at) | `0` | Dev | Dev |
-| [mds_kill_journal_replay_at](#mds_kill_journal_replay_at) | `0` | Dev | Dev |
-| [mds_kill_link_at](#mds_kill_link_at) | `0` | Dev | Dev |
-| [mds_kill_mdstable_at](#mds_kill_mdstable_at) | `0` | Dev | Dev |
-| [mds_kill_openc_at](#mds_kill_openc_at) | `0` | Dev | Dev |
-| [mds_kill_rename_at](#mds_kill_rename_at) | `0` | Dev | Dev |
-| [mds_kill_shutdown_at](#mds_kill_shutdown_at) | `0` | Dev | Dev |
-| [mds_max_completed_flushes](#mds_max_completed_flushes) | `100000` | Dev | Dev |
-| [mds_max_completed_requests](#mds_max_completed_requests) | `100000` | Dev | Dev |
-| [mds_max_export_size](#mds_max_export_size) | `20_M` | Dev | Dev |
-| [mds_max_file_recover](#mds_max_file_recover) | `32` | Advanced | Performance |
-| [mds_max_purge_files](#mds_max_purge_files) | `64` | Advanced | Performance |
-| [mds_max_purge_ops](#mds_max_purge_ops) | `8_K` | Advanced | Performance |
-| [mds_max_purge_ops_per_pg](#mds_max_purge_ops_per_pg) | `0.5` | Advanced | Performance |
-| [mds_max_scrub_ops_in_progress](#mds_max_scrub_ops_in_progress) | `5` | Advanced | Performance |
-| [mds_max_snaps_per_dir](#mds_max_snaps_per_dir) | `100` | Advanced | Capacity |
-| [mds_numa_node](#mds_numa_node) | `-1` | Advanced | Performance |
-| [mds_oft_prefetch_dirfrags](#mds_oft_prefetch_dirfrags) | `False` | Advanced | Performance |
-| [mds_op_complaint_time](#mds_op_complaint_time) | `30` | Advanced | Performance |
-| [mds_op_history_duration](#mds_op_history_duration) | `600` | Advanced | Performance |
-| [mds_op_history_size](#mds_op_history_size) | `20` | Advanced | Performance |
-| [mds_op_history_slow_op_size](#mds_op_history_slow_op_size) | `20` | Advanced | Performance |
-| [mds_op_history_slow_op_threshold](#mds_op_history_slow_op_threshold) | `10` | Advanced | Performance |
-| [mds_ping_grace](#mds_ping_grace) | `15` | Advanced | Performance |
-| [mds_purge_queue_busy_flush_period](#mds_purge_queue_busy_flush_period) | `1` | Dev | Dev |
-| [mds_recall_global_max_decay_threshold](#mds_recall_global_max_decay_threshold) | `128_K` | Advanced | Performance |
-| [mds_recall_max_decay_rate](#mds_recall_max_decay_rate) | `1.5` | Advanced | Performance |
-| [mds_recall_max_decay_threshold](#mds_recall_max_decay_threshold) | `128_K` | Advanced | Performance |
-| [mds_recall_warning_decay_rate](#mds_recall_warning_decay_rate) | `60` | Advanced | Performance |
-| [mds_recall_warning_threshold](#mds_recall_warning_threshold) | `256_K` | Advanced | Performance |
-| [mds_replay_unsafe_with_closed_session](#mds_replay_unsafe_with_closed_session) | `False` | Advanced | Performance |
-| [mds_request_load_average_decay_rate](#mds_request_load_average_decay_rate) | `1_min` | Advanced | Performance |
-| [mds_root_ino_gid](#mds_root_ino_gid) | `0` | Advanced | Performance |
-| [mds_root_ino_uid](#mds_root_ino_uid) | `0` | Advanced | Performance |
-| [mds_scrub_stats_review_period](#mds_scrub_stats_review_period) | `1` | Advanced | Performance |
-| [mds_server_dispatch_client_request_delay](#mds_server_dispatch_client_request_delay) | `0` | Dev | Dev |
-| [mds_server_dispatch_killpoint_random](#mds_server_dispatch_killpoint_random) | `0.0` | Dev | Dev |
-| [mds_session_blocklist_on_evict](#mds_session_blocklist_on_evict) | `True` | Advanced | Performance |
-| [mds_session_cache_liveness_decay_rate](#mds_session_cache_liveness_decay_rate) | `5_min` | Advanced | Performance |
-| [mds_session_cache_liveness_magnitude](#mds_session_cache_liveness_magnitude) | `10` | Advanced | Performance |
-| [mds_session_metadata_threshold](#mds_session_metadata_threshold) | `16_M` | Advanced | Performance |
-| [mds_sessionmap_keys_per_op](#mds_sessionmap_keys_per_op) | `1_K` | Advanced | Performance |
-| [mds_shutdown_check](#mds_shutdown_check) | `0` | Dev | Dev |
-| [mds_skip_ino](#mds_skip_ino) | `0` | Dev | Dev |
-| [mds_sleep_rank_change](#mds_sleep_rank_change) | `0.0` | Dev | Dev |
-| [mds_snap_max_uid](#mds_snap_max_uid) | `4294967294` | Advanced | Performance |
-| [mds_snap_min_uid](#mds_snap_min_uid) | `0` | Advanced | Performance |
-| [mds_snap_rstat](#mds_snap_rstat) | `False` | Advanced | Performance |
-| [mds_standby_replay_damaged](#mds_standby_replay_damaged) | `False` | Dev | Dev |
-| [mds_symlink_recovery](#mds_symlink_recovery) | `True` | Advanced | Performance |
-| [mds_thrash_exports](#mds_thrash_exports) | `0` | Dev | Dev |
-| [mds_thrash_fragments](#mds_thrash_fragments) | `0` | Dev | Dev |
-| [mds_use_global_snaprealm_seq_for_subvol](#mds_use_global_snaprealm_seq_for_subvol) | `True` | Advanced | Performance |
-| [mds_valgrind_exit](#mds_valgrind_exit) | `False` | Dev | Dev |
-| [mds_verify_backtrace](#mds_verify_backtrace) | `1` | Dev | Dev |
-| [mds_verify_scatter](#mds_verify_scatter) | `False` | Dev | Dev |
-| [mds_wipe_ino_prealloc](#mds_wipe_ino_prealloc) | `False` | Dev | Dev |
-| [mds_wipe_sessions](#mds_wipe_sessions) | `False` | Dev | Dev |
+| [mds_abort_on_newly_corrupt_dentry](#mds_abort_on_newly_corrupt_dentry) | `True` | Advanced | عملکرد |
+| [mds_action_on_write_error](#mds_action_on_write_error) | `1` | Advanced | عملکرد |
+| [mds_allow_async_dirops](#mds_allow_async_dirops) | `True` | Advanced | سیاست |
+| [mds_allow_batched_ops](#mds_allow_batched_ops) | `True` | Advanced | سیاست |
+| [mds_alternate_name_max](#mds_alternate_name_max) | `8_K` | Advanced | عملکرد |
+| [mds_asio_thread_count](#mds_asio_thread_count) | `2` | Advanced | عملکرد |
+| [mds_bal_export_pin](#mds_bal_export_pin) | `True` | Advanced | عملکرد |
+| [mds_bal_fragment_dirs](#mds_bal_fragment_dirs) | `True` | Advanced | عملکرد |
+| [mds_bal_fragment_fast_factor](#mds_bal_fragment_fast_factor) | `1.5` | Advanced | عملکرد |
+| [mds_bal_fragment_size_max](#mds_bal_fragment_size_max) | `100000` | Advanced | عملکرد |
+| [mds_bal_idle_threshold](#mds_bal_idle_threshold) | `0` | Advanced | عملکرد |
+| [mds_bal_max](#mds_bal_max) | `-1` | Dev | توسعه |
+| [mds_bal_max_until](#mds_bal_max_until) | `-1` | Dev | توسعه |
+| [mds_bal_merge_size](#mds_bal_merge_size) | `50` | Advanced | عملکرد |
+| [mds_bal_midchunk](#mds_bal_midchunk) | `0.3` | Dev | توسعه |
+| [mds_bal_min_rebalance](#mds_bal_min_rebalance) | `0.1` | Dev | توسعه |
+| [mds_bal_min_start](#mds_bal_min_start) | `0.2` | Dev | توسعه |
+| [mds_bal_minchunk](#mds_bal_minchunk) | `0.001` | Dev | توسعه |
+| [mds_bal_mode](#mds_bal_mode) | `0` | Dev | توسعه |
+| [mds_bal_need_max](#mds_bal_need_max) | `1.2` | Dev | توسعه |
+| [mds_bal_need_min](#mds_bal_need_min) | `0.8` | Dev | توسعه |
+| [mds_bal_overload_epochs](#mds_bal_overload_epochs) | `2` | Dev | توسعه |
+| [mds_bal_replicate_threshold](#mds_bal_replicate_threshold) | `8000` | Advanced | عملکرد |
+| [mds_bal_split_bits](#mds_bal_split_bits) | `3` | Advanced | عملکرد |
+| [mds_bal_split_rd](#mds_bal_split_rd) | `25000` | Advanced | عملکرد |
+| [mds_bal_split_size](#mds_bal_split_size) | `10000` | Advanced | عملکرد |
+| [mds_bal_split_wr](#mds_bal_split_wr) | `10000` | Advanced | عملکرد |
+| [mds_bal_target_decay](#mds_bal_target_decay) | `10` | Advanced | عملکرد |
+| [mds_bal_unreplicate_threshold](#mds_bal_unreplicate_threshold) | `0` | Advanced | عملکرد |
+| [mds_beacon_grace](#mds_beacon_grace) | `15` | Advanced | عملکرد |
+| [mds_cache_memory_limit](#mds_cache_memory_limit) | `4_G` | Basic | عملکرد |
+| [mds_cache_mid](#mds_cache_mid) | `0.7` | Advanced | عملکرد |
+| [mds_cache_quiesce_decay_rate](#mds_cache_quiesce_decay_rate) | `1` | Advanced | عملکرد |
+| [mds_cache_quiesce_delay](#mds_cache_quiesce_delay) | `0` | Dev | توسعه |
+| [mds_cache_quiesce_sleep](#mds_cache_quiesce_sleep) | `200` | Advanced | عملکرد |
+| [mds_cache_quiesce_threshold](#mds_cache_quiesce_threshold) | `512_K` | Advanced | عملکرد |
+| [mds_cache_reservation](#mds_cache_reservation) | `0.05` | Advanced | عملکرد |
+| [mds_cache_trim_decay_rate](#mds_cache_trim_decay_rate) | `1` | Advanced | عملکرد |
+| [mds_cache_trim_threshold](#mds_cache_trim_threshold) | `256_K` | Advanced | عملکرد |
+| [mds_client_delegate_inos_pct](#mds_client_delegate_inos_pct) | `50` | Advanced | عملکرد |
+| [mds_client_prealloc_inos](#mds_client_prealloc_inos) | `1000` | Advanced | عملکرد |
+| [mds_client_writeable_range_max_inc_objs](#mds_client_writeable_range_max_inc_objs) | `1_K` | Advanced | عملکرد |
+| [mds_connect_bootstrapping](#mds_connect_bootstrapping) | `False` | Dev | توسعه |
+| [mds_damage_table_max_entries](#mds_damage_table_max_entries) | `10000` | Advanced | عملکرد |
+| [mds_data](#mds_data) | `/var/lib/ceph/mds/$cluster-$id` | Advanced | عملکرد |
+| [mds_decay_halflife](#mds_decay_halflife) | `5` | Advanced | عملکرد |
+| [mds_default_dir_hash](#mds_default_dir_hash) | `2` | Advanced | عملکرد |
+| [mds_defer_session_stale](#mds_defer_session_stale) | `True` | Dev | توسعه |
+| [mds_delay_journal_replay_for_testing](#mds_delay_journal_replay_for_testing) | `0` | Dev | توسعه |
+| [mds_deny_all_reconnect](#mds_deny_all_reconnect) | `False` | Advanced | عملکرد |
+| [mds_dir_keys_per_op](#mds_dir_keys_per_op) | `16384` | Advanced | عملکرد |
+| [mds_dir_max_commit_size](#mds_dir_max_commit_size) | `10` | Advanced | عملکرد |
+| [mds_dir_max_entries](#mds_dir_max_entries) | `0` | Advanced | عملکرد |
+| [mds_dir_prefetch](#mds_dir_prefetch) | `True` | Advanced | عملکرد |
+| [mds_dump_cache_after_rejoin](#mds_dump_cache_after_rejoin) | `False` | Dev | توسعه |
+| [mds_dump_cache_on_map](#mds_dump_cache_on_map) | `False` | Dev | توسعه |
+| [mds_dump_cache_threshold_file](#mds_dump_cache_threshold_file) | `0` | Dev | توسعه |
+| [mds_dump_cache_threshold_formatter](#mds_dump_cache_threshold_formatter) | `1_G` | Dev | توسعه |
+| [mds_early_reply](#mds_early_reply) | `True` | Advanced | عملکرد |
+| [mds_enable_op_tracker](#mds_enable_op_tracker) | `True` | Advanced | سیاست |
+| [mds_enforce_unique_name](#mds_enforce_unique_name) | `True` | Advanced | سیاست |
+| [mds_export_ephemeral_distributed](#mds_export_ephemeral_distributed) | `True` | Advanced | عملکرد |
+| [mds_export_ephemeral_distributed_factor](#mds_export_ephemeral_distributed_factor) | `2` | Advanced | عملکرد |
+| [mds_export_ephemeral_random](#mds_export_ephemeral_random) | `True` | Advanced | عملکرد |
+| [mds_export_ephemeral_random_max](#mds_export_ephemeral_random_max) | `0.01` | Advanced | عملکرد |
+| [mds_file_blockdiff_max_concurrent_object_scans](#mds_file_blockdiff_max_concurrent_object_scans) | `16` | Advanced | عملکرد |
+| [mds_fscrypt_last_block_max_size](#mds_fscrypt_last_block_max_size) | `4_K` | Advanced | عملکرد |
+| [mds_go_bad_corrupt_dentry](#mds_go_bad_corrupt_dentry) | `True` | Advanced | عملکرد |
+| [mds_hack_allow_loading_invalid_metadata](#mds_hack_allow_loading_invalid_metadata) | `False` | Advanced | سیاست |
+| [mds_health_cache_threshold](#mds_health_cache_threshold) | `1.5` | Advanced | عملکرد |
+| [mds_health_summarize_threshold](#mds_health_summarize_threshold) | `10` | Advanced | عملکرد |
+| [mds_heartbeat_grace](#mds_heartbeat_grace) | `15` | Advanced | عملکرد |
+| [mds_heartbeat_reset_grace](#mds_heartbeat_reset_grace) | `1000` | Advanced | عملکرد |
+| [mds_join_fs](#mds_join_fs) | `(empty)` | Basic | سیاست |
+| [mds_journal_format](#mds_journal_format) | `1` | Dev | توسعه |
+| [mds_kill_create_at](#mds_kill_create_at) | `0` | Dev | توسعه |
+| [mds_kill_dirfrag_at](#mds_kill_dirfrag_at) | `0` | Dev | توسعه |
+| [mds_kill_export_at](#mds_kill_export_at) | `0` | Dev | توسعه |
+| [mds_kill_import_at](#mds_kill_import_at) | `0` | Dev | توسعه |
+| [mds_kill_journal_at](#mds_kill_journal_at) | `0` | Dev | توسعه |
+| [mds_kill_journal_expire_at](#mds_kill_journal_expire_at) | `0` | Dev | توسعه |
+| [mds_kill_journal_replay_at](#mds_kill_journal_replay_at) | `0` | Dev | توسعه |
+| [mds_kill_link_at](#mds_kill_link_at) | `0` | Dev | توسعه |
+| [mds_kill_mdstable_at](#mds_kill_mdstable_at) | `0` | Dev | توسعه |
+| [mds_kill_openc_at](#mds_kill_openc_at) | `0` | Dev | توسعه |
+| [mds_kill_rename_at](#mds_kill_rename_at) | `0` | Dev | توسعه |
+| [mds_kill_shutdown_at](#mds_kill_shutdown_at) | `0` | Dev | توسعه |
+| [mds_max_completed_flushes](#mds_max_completed_flushes) | `100000` | Dev | توسعه |
+| [mds_max_completed_requests](#mds_max_completed_requests) | `100000` | Dev | توسعه |
+| [mds_max_export_size](#mds_max_export_size) | `20_M` | Dev | توسعه |
+| [mds_max_file_recover](#mds_max_file_recover) | `32` | Advanced | عملکرد |
+| [mds_max_purge_files](#mds_max_purge_files) | `64` | Advanced | عملکرد |
+| [mds_max_purge_ops](#mds_max_purge_ops) | `8_K` | Advanced | عملکرد |
+| [mds_max_purge_ops_per_pg](#mds_max_purge_ops_per_pg) | `0.5` | Advanced | عملکرد |
+| [mds_max_scrub_ops_in_progress](#mds_max_scrub_ops_in_progress) | `5` | Advanced | عملکرد |
+| [mds_max_snaps_per_dir](#mds_max_snaps_per_dir) | `100` | Advanced | ظرفیت |
+| [mds_numa_node](#mds_numa_node) | `-1` | Advanced | عملکرد |
+| [mds_oft_prefetch_dirfrags](#mds_oft_prefetch_dirfrags) | `False` | Advanced | عملکرد |
+| [mds_op_complaint_time](#mds_op_complaint_time) | `30` | Advanced | عملکرد |
+| [mds_op_history_duration](#mds_op_history_duration) | `600` | Advanced | عملکرد |
+| [mds_op_history_size](#mds_op_history_size) | `20` | Advanced | عملکرد |
+| [mds_op_history_slow_op_size](#mds_op_history_slow_op_size) | `20` | Advanced | عملکرد |
+| [mds_op_history_slow_op_threshold](#mds_op_history_slow_op_threshold) | `10` | Advanced | عملکرد |
+| [mds_ping_grace](#mds_ping_grace) | `15` | Advanced | عملکرد |
+| [mds_purge_queue_busy_flush_period](#mds_purge_queue_busy_flush_period) | `1` | Dev | توسعه |
+| [mds_recall_global_max_decay_threshold](#mds_recall_global_max_decay_threshold) | `128_K` | Advanced | عملکرد |
+| [mds_recall_max_decay_rate](#mds_recall_max_decay_rate) | `1.5` | Advanced | عملکرد |
+| [mds_recall_max_decay_threshold](#mds_recall_max_decay_threshold) | `128_K` | Advanced | عملکرد |
+| [mds_recall_warning_decay_rate](#mds_recall_warning_decay_rate) | `60` | Advanced | عملکرد |
+| [mds_recall_warning_threshold](#mds_recall_warning_threshold) | `256_K` | Advanced | عملکرد |
+| [mds_replay_unsafe_with_closed_session](#mds_replay_unsafe_with_closed_session) | `False` | Advanced | عملکرد |
+| [mds_request_load_average_decay_rate](#mds_request_load_average_decay_rate) | `1_min` | Advanced | عملکرد |
+| [mds_root_ino_gid](#mds_root_ino_gid) | `0` | Advanced | عملکرد |
+| [mds_root_ino_uid](#mds_root_ino_uid) | `0` | Advanced | عملکرد |
+| [mds_scrub_stats_review_period](#mds_scrub_stats_review_period) | `1` | Advanced | عملکرد |
+| [mds_server_dispatch_client_request_delay](#mds_server_dispatch_client_request_delay) | `0` | Dev | توسعه |
+| [mds_server_dispatch_killpoint_random](#mds_server_dispatch_killpoint_random) | `0.0` | Dev | توسعه |
+| [mds_session_blocklist_on_evict](#mds_session_blocklist_on_evict) | `True` | Advanced | عملکرد |
+| [mds_session_cache_liveness_decay_rate](#mds_session_cache_liveness_decay_rate) | `5_min` | Advanced | عملکرد |
+| [mds_session_cache_liveness_magnitude](#mds_session_cache_liveness_magnitude) | `10` | Advanced | عملکرد |
+| [mds_session_metadata_threshold](#mds_session_metadata_threshold) | `16_M` | Advanced | عملکرد |
+| [mds_sessionmap_keys_per_op](#mds_sessionmap_keys_per_op) | `1_K` | Advanced | عملکرد |
+| [mds_shutdown_check](#mds_shutdown_check) | `0` | Dev | توسعه |
+| [mds_skip_ino](#mds_skip_ino) | `0` | Dev | توسعه |
+| [mds_sleep_rank_change](#mds_sleep_rank_change) | `0.0` | Dev | توسعه |
+| [mds_snap_max_uid](#mds_snap_max_uid) | `4294967294` | Advanced | عملکرد |
+| [mds_snap_min_uid](#mds_snap_min_uid) | `0` | Advanced | عملکرد |
+| [mds_snap_rstat](#mds_snap_rstat) | `False` | Advanced | عملکرد |
+| [mds_standby_replay_damaged](#mds_standby_replay_damaged) | `False` | Dev | توسعه |
+| [mds_symlink_recovery](#mds_symlink_recovery) | `True` | Advanced | عملکرد |
+| [mds_thrash_exports](#mds_thrash_exports) | `0` | Dev | توسعه |
+| [mds_thrash_fragments](#mds_thrash_fragments) | `0` | Dev | توسعه |
+| [mds_use_global_snaprealm_seq_for_subvol](#mds_use_global_snaprealm_seq_for_subvol) | `True` | Advanced | عملکرد |
+| [mds_valgrind_exit](#mds_valgrind_exit) | `False` | Dev | توسعه |
+| [mds_verify_backtrace](#mds_verify_backtrace) | `1` | Dev | توسعه |
+| [mds_verify_scatter](#mds_verify_scatter) | `False` | Dev | توسعه |
+| [mds_wipe_ino_prealloc](#mds_wipe_ino_prealloc) | `False` | Dev | توسعه |
+| [mds_wipe_sessions](#mds_wipe_sessions) | `False` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -181,7 +181,7 @@ ceph config get mds mds_abort_on_newly_corrupt_dentry
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -218,7 +218,7 @@ ceph config get mds mds_action_on_write_error
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -253,7 +253,7 @@ ceph config get mds mds_allow_async_dirops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -289,7 +289,7 @@ ceph config get mds mds_allow_batched_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -325,7 +325,7 @@ ceph config get mds mds_alternate_name_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `8_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -362,7 +362,7 @@ ceph config get mds mds_asio_thread_count
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -401,7 +401,7 @@ ceph config get mds mds_bal_export_pin
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -438,7 +438,7 @@ ceph config get mds mds_bal_fragment_dirs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -475,7 +475,7 @@ ceph config get mds mds_bal_fragment_fast_factor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -512,7 +512,7 @@ ceph config get mds mds_bal_fragment_size_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -549,7 +549,7 @@ ceph config get mds mds_bal_idle_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -584,7 +584,7 @@ ceph config get mds mds_bal_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`-1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -610,7 +610,7 @@ ceph config get mds mds_bal_max_until
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`-1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -638,7 +638,7 @@ ceph config get mds mds_bal_merge_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `50`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -673,7 +673,7 @@ ceph config get mds mds_bal_midchunk
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.3`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -701,7 +701,7 @@ ceph config get mds mds_bal_min_rebalance
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -727,7 +727,7 @@ ceph config get mds mds_bal_min_start
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.2`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -753,7 +753,7 @@ ceph config get mds mds_bal_minchunk
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.001`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -781,7 +781,7 @@ ceph fs status
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -807,7 +807,7 @@ ceph config get mds mds_bal_need_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1.2`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -833,7 +833,7 @@ ceph config get mds mds_bal_need_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.8`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -859,7 +859,7 @@ ceph config get mds mds_bal_overload_epochs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`2`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -887,7 +887,7 @@ ceph config get mds mds_bal_replicate_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `8000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -924,7 +924,7 @@ ceph config get mds mds_bal_split_bits
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -963,7 +963,7 @@ ceph config get mds mds_bal_split_rd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `25000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1000,7 +1000,7 @@ ceph config get mds mds_bal_split_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1037,7 +1037,7 @@ ceph config get mds mds_bal_split_wr
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1074,7 +1074,7 @@ ceph config get mds mds_bal_target_decay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1111,7 +1111,7 @@ ceph config get mds mds_bal_unreplicate_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1148,7 +1148,7 @@ ceph config get mds mds_beacon_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1185,7 +1185,7 @@ ceph config get mds mds_cache_memory_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4_G`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1224,7 +1224,7 @@ ceph config get mds mds_cache_mid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.7`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1261,7 +1261,7 @@ ceph config get mds mds_cache_quiesce_decay_rate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1298,7 +1298,7 @@ ceph config get mds mds_cache_quiesce_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1326,7 +1326,7 @@ ceph config get mds mds_cache_quiesce_sleep
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `200`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1363,7 +1363,7 @@ ceph config get mds mds_cache_quiesce_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `512_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1400,7 +1400,7 @@ ceph config get mds mds_cache_reservation
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.05`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1437,7 +1437,7 @@ ceph config get mds mds_cache_trim_decay_rate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1474,7 +1474,7 @@ ceph config get mds mds_cache_trim_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `256_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1511,7 +1511,7 @@ ceph config get mds mds_client_delegate_inos_pct
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `50`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1548,7 +1548,7 @@ ceph config get mds mds_client_prealloc_inos
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1585,7 +1585,7 @@ ceph config get mds mds_client_writeable_range_max_inc_objs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1620,7 +1620,7 @@ ceph config get mds mds_connect_bootstrapping
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1648,7 +1648,7 @@ ceph config get mds mds_damage_table_max_entries
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1685,7 +1685,7 @@ ceph config get mds mds_data
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `/var/lib/ceph/mds/$cluster-$id`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1722,7 +1722,7 @@ ceph config get mds mds_decay_halflife
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1759,7 +1759,7 @@ ceph config get mds mds_default_dir_hash
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1794,7 +1794,7 @@ ceph config get mds mds_defer_session_stale
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1822,7 +1822,7 @@ ceph config get mds mds_delay_journal_replay_for_testing
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1850,7 +1850,7 @@ ceph config get mds mds_deny_all_reconnect
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1887,7 +1887,7 @@ ceph config get mds mds_dir_keys_per_op
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16384`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1924,7 +1924,7 @@ ceph config get mds mds_dir_max_commit_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1961,7 +1961,7 @@ ceph config get mds mds_dir_max_entries
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1998,7 +1998,7 @@ ceph config get mds mds_dir_prefetch
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2033,7 +2033,7 @@ ceph config get mds mds_dump_cache_after_rejoin
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2059,7 +2059,7 @@ ceph config get mds mds_dump_cache_on_map
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2087,7 +2087,7 @@ ceph config get mds mds_dump_cache_threshold_file
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2115,7 +2115,7 @@ ceph config get mds mds_dump_cache_threshold_formatter
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_G`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2143,7 +2143,7 @@ ceph config get mds mds_early_reply
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2180,7 +2180,7 @@ ceph config get mds mds_enable_op_tracker
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -2216,7 +2216,7 @@ ceph config get mds mds_enforce_unique_name
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -2252,7 +2252,7 @@ ceph config get mds mds_export_ephemeral_distributed
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2289,7 +2289,7 @@ ceph config get mds mds_export_ephemeral_distributed_factor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2328,7 +2328,7 @@ ceph config get mds mds_export_ephemeral_random
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2365,7 +2365,7 @@ ceph config get mds mds_export_ephemeral_random_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.01`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2404,7 +2404,7 @@ ceph config get mds mds_file_blockdiff_max_concurrent_object_scans
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2443,7 +2443,7 @@ ceph config get mds mds_fscrypt_last_block_max_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2478,7 +2478,7 @@ ceph config get mds mds_go_bad_corrupt_dentry
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2515,7 +2515,7 @@ ceph config get mds mds_hack_allow_loading_invalid_metadata
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -2551,7 +2551,7 @@ ceph config get mds mds_health_cache_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2588,7 +2588,7 @@ ceph config get mds mds_health_summarize_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2625,7 +2625,7 @@ ceph config get mds mds_heartbeat_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2662,7 +2662,7 @@ ceph config get mds mds_heartbeat_reset_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2699,7 +2699,7 @@ ceph config get mds mds_join_fs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `(empty)` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -2733,7 +2733,7 @@ ceph config get mds mds_journal_format
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2759,7 +2759,7 @@ ceph config get mds mds_kill_create_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2785,7 +2785,7 @@ ceph config get mds mds_kill_dirfrag_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2811,7 +2811,7 @@ ceph config get mds mds_kill_export_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2837,7 +2837,7 @@ ceph config get mds mds_kill_import_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2863,7 +2863,7 @@ ceph config get mds mds_kill_journal_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2889,7 +2889,7 @@ ceph config get mds mds_kill_journal_expire_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2915,7 +2915,7 @@ ceph config get mds mds_kill_journal_replay_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2941,7 +2941,7 @@ ceph config get mds mds_kill_link_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2967,7 +2967,7 @@ ceph config get mds mds_kill_mdstable_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2993,7 +2993,7 @@ ceph config get mds mds_kill_openc_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3019,7 +3019,7 @@ ceph config get mds mds_kill_rename_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3045,7 +3045,7 @@ ceph config get mds mds_kill_shutdown_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3071,7 +3071,7 @@ ceph config get mds mds_max_completed_flushes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`100000`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3097,7 +3097,7 @@ ceph config get mds mds_max_completed_requests
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`100000`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3125,7 +3125,7 @@ ceph config get mds mds_max_export_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`20_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3153,7 +3153,7 @@ ceph config get mds mds_max_file_recover
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `32`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3190,7 +3190,7 @@ ceph config get mds mds_max_purge_files
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3227,7 +3227,7 @@ ceph config get mds mds_max_purge_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `8_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3264,7 +3264,7 @@ ceph config get mds mds_max_purge_ops_per_pg
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3301,7 +3301,7 @@ ceph config get mds mds_max_scrub_ops_in_progress
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3338,7 +3338,7 @@ ceph config get mds mds_max_snaps_per_dir
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Capacity
+**مدل تنظیم:** ظرفیت
 
 1. خط پایه روی `100`.
 2. قبل از تغییر مسیرها ظرفیت و چیدمان filesystem را برنامه‌ریزی کنید.
@@ -3375,7 +3375,7 @@ ceph orch restart mds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `-1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3413,7 +3413,7 @@ ceph orch restart mds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3450,7 +3450,7 @@ ceph config get mds mds_op_complaint_time
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3487,7 +3487,7 @@ ceph config get mds mds_op_history_duration
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `600`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3524,7 +3524,7 @@ ceph config get mds mds_op_history_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3561,7 +3561,7 @@ ceph config get mds mds_op_history_slow_op_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3598,7 +3598,7 @@ ceph config get mds mds_op_history_slow_op_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3635,7 +3635,7 @@ ceph config get mds mds_ping_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3670,7 +3670,7 @@ ceph config get mds mds_purge_queue_busy_flush_period
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3698,7 +3698,7 @@ ceph config get mds mds_recall_global_max_decay_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3735,7 +3735,7 @@ ceph config get mds mds_recall_max_decay_rate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3772,7 +3772,7 @@ ceph config get mds mds_recall_max_decay_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3809,7 +3809,7 @@ ceph config get mds mds_recall_warning_decay_rate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `60`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3846,7 +3846,7 @@ ceph config get mds mds_recall_warning_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `256_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3884,7 +3884,7 @@ ceph orch restart mds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3921,7 +3921,7 @@ ceph config get mds mds_request_load_average_decay_rate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3958,7 +3958,7 @@ ceph config get mds mds_root_ino_gid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3995,7 +3995,7 @@ ceph config get mds mds_root_ino_uid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4032,7 +4032,7 @@ ceph config get mds mds_scrub_stats_review_period
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4069,7 +4069,7 @@ ceph config get mds mds_server_dispatch_client_request_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4095,7 +4095,7 @@ ceph config get mds mds_server_dispatch_killpoint_random
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4123,7 +4123,7 @@ ceph config get mds mds_session_blocklist_on_evict
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4160,7 +4160,7 @@ ceph config get mds mds_session_cache_liveness_decay_rate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4197,7 +4197,7 @@ ceph config get mds mds_session_cache_liveness_magnitude
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4234,7 +4234,7 @@ ceph config get mds mds_session_metadata_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4271,7 +4271,7 @@ ceph config get mds mds_sessionmap_keys_per_op
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4306,7 +4306,7 @@ ceph config get mds mds_shutdown_check
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4332,7 +4332,7 @@ ceph config get mds mds_skip_ino
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4358,7 +4358,7 @@ ceph config get mds mds_sleep_rank_change
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4386,7 +4386,7 @@ ceph config get mds mds_snap_max_uid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4294967294`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4423,7 +4423,7 @@ ceph config get mds mds_snap_min_uid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4460,7 +4460,7 @@ ceph config get mds mds_snap_rstat
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4495,7 +4495,7 @@ ceph config get mds mds_standby_replay_damaged
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4523,7 +4523,7 @@ ceph config get mds mds_symlink_recovery
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4558,7 +4558,7 @@ ceph config get mds mds_thrash_exports
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4584,7 +4584,7 @@ ceph config get mds mds_thrash_fragments
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4610,7 +4610,7 @@ ceph config get mds mds_use_global_snaprealm_seq_for_subvol
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4645,7 +4645,7 @@ ceph config get mds mds_valgrind_exit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4671,7 +4671,7 @@ ceph config get mds mds_verify_backtrace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4697,7 +4697,7 @@ ceph config get mds mds_verify_scatter
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4723,7 +4723,7 @@ ceph config get mds mds_wipe_ino_prealloc
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4749,7 +4749,7 @@ ceph config get mds mds_wipe_sessions
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

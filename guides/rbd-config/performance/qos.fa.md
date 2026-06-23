@@ -4,36 +4,36 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rbd_qos_bps_burst](#rbd_qos_bps_burst) | `0` | Advanced | Performance |
-| [rbd_qos_bps_burst_seconds](#rbd_qos_bps_burst_seconds) | `1` | Advanced | Performance |
-| [rbd_qos_bps_limit](#rbd_qos_bps_limit) | `0` | Advanced | Performance |
-| [rbd_qos_exclude_ops](#rbd_qos_exclude_ops) | `(empty)` | Advanced | Performance |
-| [rbd_qos_iops_burst](#rbd_qos_iops_burst) | `0` | Advanced | Performance |
-| [rbd_qos_iops_burst_seconds](#rbd_qos_iops_burst_seconds) | `1` | Advanced | Performance |
-| [rbd_qos_iops_limit](#rbd_qos_iops_limit) | `0` | Advanced | Performance |
-| [rbd_qos_read_bps_burst](#rbd_qos_read_bps_burst) | `0` | Advanced | Performance |
-| [rbd_qos_read_bps_burst_seconds](#rbd_qos_read_bps_burst_seconds) | `1` | Advanced | Performance |
-| [rbd_qos_read_bps_limit](#rbd_qos_read_bps_limit) | `0` | Advanced | Performance |
-| [rbd_qos_read_iops_burst](#rbd_qos_read_iops_burst) | `0` | Advanced | Performance |
-| [rbd_qos_read_iops_burst_seconds](#rbd_qos_read_iops_burst_seconds) | `1` | Advanced | Performance |
-| [rbd_qos_read_iops_limit](#rbd_qos_read_iops_limit) | `0` | Advanced | Performance |
-| [rbd_qos_schedule_tick_min](#rbd_qos_schedule_tick_min) | `50` | Advanced | Performance |
-| [rbd_qos_write_bps_burst](#rbd_qos_write_bps_burst) | `0` | Advanced | Performance |
-| [rbd_qos_write_bps_burst_seconds](#rbd_qos_write_bps_burst_seconds) | `1` | Advanced | Performance |
-| [rbd_qos_write_bps_limit](#rbd_qos_write_bps_limit) | `0` | Advanced | Performance |
-| [rbd_qos_write_iops_burst](#rbd_qos_write_iops_burst) | `0` | Advanced | Performance |
-| [rbd_qos_write_iops_burst_seconds](#rbd_qos_write_iops_burst_seconds) | `1` | Advanced | Performance |
-| [rbd_qos_write_iops_limit](#rbd_qos_write_iops_limit) | `0` | Advanced | Performance |
+| [rbd_qos_bps_burst](#rbd_qos_bps_burst) | `0` | Advanced | عملکرد |
+| [rbd_qos_bps_burst_seconds](#rbd_qos_bps_burst_seconds) | `1` | Advanced | عملکرد |
+| [rbd_qos_bps_limit](#rbd_qos_bps_limit) | `0` | Advanced | عملکرد |
+| [rbd_qos_exclude_ops](#rbd_qos_exclude_ops) | `(empty)` | Advanced | عملکرد |
+| [rbd_qos_iops_burst](#rbd_qos_iops_burst) | `0` | Advanced | عملکرد |
+| [rbd_qos_iops_burst_seconds](#rbd_qos_iops_burst_seconds) | `1` | Advanced | عملکرد |
+| [rbd_qos_iops_limit](#rbd_qos_iops_limit) | `0` | Advanced | عملکرد |
+| [rbd_qos_read_bps_burst](#rbd_qos_read_bps_burst) | `0` | Advanced | عملکرد |
+| [rbd_qos_read_bps_burst_seconds](#rbd_qos_read_bps_burst_seconds) | `1` | Advanced | عملکرد |
+| [rbd_qos_read_bps_limit](#rbd_qos_read_bps_limit) | `0` | Advanced | عملکرد |
+| [rbd_qos_read_iops_burst](#rbd_qos_read_iops_burst) | `0` | Advanced | عملکرد |
+| [rbd_qos_read_iops_burst_seconds](#rbd_qos_read_iops_burst_seconds) | `1` | Advanced | عملکرد |
+| [rbd_qos_read_iops_limit](#rbd_qos_read_iops_limit) | `0` | Advanced | عملکرد |
+| [rbd_qos_schedule_tick_min](#rbd_qos_schedule_tick_min) | `50` | Advanced | عملکرد |
+| [rbd_qos_write_bps_burst](#rbd_qos_write_bps_burst) | `0` | Advanced | عملکرد |
+| [rbd_qos_write_bps_burst_seconds](#rbd_qos_write_bps_burst_seconds) | `1` | Advanced | عملکرد |
+| [rbd_qos_write_bps_limit](#rbd_qos_write_bps_limit) | `0` | Advanced | عملکرد |
+| [rbd_qos_write_iops_burst](#rbd_qos_write_iops_burst) | `0` | Advanced | عملکرد |
+| [rbd_qos_write_iops_burst_seconds](#rbd_qos_write_iops_burst_seconds) | `1` | Advanced | عملکرد |
+| [rbd_qos_write_iops_limit](#rbd_qos_write_iops_limit) | `0` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -65,7 +65,7 @@ ceph config get client rbd_qos_bps_burst
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -101,7 +101,7 @@ ceph config get client rbd_qos_bps_burst_seconds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -139,7 +139,7 @@ ceph config get client rbd_qos_bps_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -175,7 +175,7 @@ ceph config get client rbd_qos_exclude_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -211,7 +211,7 @@ ceph config get client rbd_qos_iops_burst
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -247,7 +247,7 @@ ceph config get client rbd_qos_iops_burst_seconds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -285,7 +285,7 @@ ceph config get client rbd_qos_iops_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -321,7 +321,7 @@ ceph config get client rbd_qos_read_bps_burst
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -357,7 +357,7 @@ ceph config get client rbd_qos_read_bps_burst_seconds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -395,7 +395,7 @@ ceph config get client rbd_qos_read_bps_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -431,7 +431,7 @@ ceph config get client rbd_qos_read_iops_burst
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -467,7 +467,7 @@ ceph config get client rbd_qos_read_iops_burst_seconds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -505,7 +505,7 @@ ceph config get client rbd_qos_read_iops_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -541,7 +541,7 @@ ceph config get client rbd_qos_schedule_tick_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `50`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -579,7 +579,7 @@ ceph config get client rbd_qos_write_bps_burst
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -615,7 +615,7 @@ ceph config get client rbd_qos_write_bps_burst_seconds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -653,7 +653,7 @@ ceph config get client rbd_qos_write_bps_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -689,7 +689,7 @@ ceph config get client rbd_qos_write_iops_burst
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -725,7 +725,7 @@ ceph config get client rbd_qos_write_iops_burst_seconds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -763,7 +763,7 @@ ceph config get client rbd_qos_write_iops_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

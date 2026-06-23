@@ -4,20 +4,20 @@ Global 配置深度指南 — 4 个选项。[← 概览](../OVERVIEW.md) · [调
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [err_to_graylog](#err_to_graylog) | `False` | Basic | Policy |
-| [err_to_journald](#err_to_journald) | `False` | Basic | Policy |
-| [err_to_stderr](#err_to_stderr) | `True` | Basic | Policy |
-| [err_to_syslog](#err_to_syslog) | `False` | Basic | Policy |
+| [err_to_graylog](#err_to_graylog) | `False` | Basic | 策略 |
+| [err_to_journald](#err_to_journald) | `False` | Basic | 策略 |
+| [err_to_stderr](#err_to_stderr) | `True` | Basic | 策略 |
+| [err_to_syslog](#err_to_syslog) | `False` | Basic | 策略 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -49,7 +49,7 @@ ceph config get global err_to_graylog
 
 **寻找最优值：**
 
-**调优模型：** Policy
+**调优模型：** 策略
 
 1. 记录 `False` 为何符合您的策略。
 2. 仅为兼容性或安全要求而变更。
@@ -83,7 +83,7 @@ ceph config get global err_to_journald
 
 **寻找最优值：**
 
-**调优模型：** Policy
+**调优模型：** 策略
 
 1. 记录 `False` 为何符合您的策略。
 2. 仅为兼容性或安全要求而变更。
@@ -117,7 +117,7 @@ ceph config get global err_to_stderr
 
 **寻找最优值：**
 
-**调优模型：** Policy
+**调优模型：** 策略
 
 1. 记录 `True` 为何符合您的策略。
 2. 仅为兼容性或安全要求而变更。
@@ -151,7 +151,7 @@ ceph config get global err_to_syslog
 
 **寻找最优值：**
 
-**调优模型：** Policy
+**调优模型：** 策略
 
 1. 记录 `False` 为何符合您的策略。
 2. 仅为兼容性或安全要求而变更。

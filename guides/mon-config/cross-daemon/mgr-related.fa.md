@@ -4,22 +4,22 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mon_mgr_beacon_grace](#mon_mgr_beacon_grace) | `30` | Advanced | Performance |
-| [mon_mgr_blocklist_interval](#mon_mgr_blocklist_interval) | `1_day` | Dev | Dev |
-| [mon_mgr_digest_period](#mon_mgr_digest_period) | `5` | Dev | Dev |
-| [mon_mgr_inactive_grace](#mon_mgr_inactive_grace) | `1_min` | Advanced | Performance |
-| [mon_mgr_mkfs_grace](#mon_mgr_mkfs_grace) | `2_min` | Advanced | Performance |
-| [mon_mgr_proxy_client_bytes_ratio](#mon_mgr_proxy_client_bytes_ratio) | `0.3` | Dev | Dev |
+| [mon_mgr_beacon_grace](#mon_mgr_beacon_grace) | `30` | Advanced | عملکرد |
+| [mon_mgr_blocklist_interval](#mon_mgr_blocklist_interval) | `1_day` | Dev | توسعه |
+| [mon_mgr_digest_period](#mon_mgr_digest_period) | `5` | Dev | توسعه |
+| [mon_mgr_inactive_grace](#mon_mgr_inactive_grace) | `1_min` | Advanced | عملکرد |
+| [mon_mgr_mkfs_grace](#mon_mgr_mkfs_grace) | `2_min` | Advanced | عملکرد |
+| [mon_mgr_proxy_client_bytes_ratio](#mon_mgr_proxy_client_bytes_ratio) | `0.3` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -51,7 +51,7 @@ ceph config get mon mon_mgr_beacon_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -87,7 +87,7 @@ ceph config get mon mon_mgr_blocklist_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_day`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -115,7 +115,7 @@ ceph config get mon mon_mgr_digest_period
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -143,7 +143,7 @@ ceph config get mon mon_mgr_inactive_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -179,7 +179,7 @@ ceph config get mon mon_mgr_mkfs_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -215,7 +215,7 @@ ceph config get mon mon_mgr_proxy_client_bytes_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.3`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

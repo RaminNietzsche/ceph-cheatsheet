@@ -4,40 +4,40 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [bluefs_alloc_size](#bluefs_alloc_size) | `1_M` | Advanced | Performance |
-| [bluefs_allocator](#bluefs_allocator) | `hybrid` | Dev | Dev |
-| [bluefs_buffered_io](#bluefs_buffered_io) | `True` | Advanced | Performance |
-| [bluefs_check_for_zeros](#bluefs_check_for_zeros) | `False` | Dev | Dev |
-| [bluefs_check_volume_selector_often](#bluefs_check_volume_selector_often) | `False` | Dev | Dev |
-| [bluefs_check_volume_selector_on_mount](#bluefs_check_volume_selector_on_mount) | `False` | Dev | Dev |
-| [bluefs_compact_log_sync](#bluefs_compact_log_sync) | `False` | Advanced | Performance |
-| [bluefs_debug_force_slow](#bluefs_debug_force_slow) | `False` | Dev | Dev |
-| [bluefs_failed_shared_alloc_cooldown](#bluefs_failed_shared_alloc_cooldown) | `600` | Advanced | Performance |
-| [bluefs_log_compact_min_ratio](#bluefs_log_compact_min_ratio) | `5` | Advanced | Performance |
-| [bluefs_log_compact_min_size](#bluefs_log_compact_min_size) | `16_M` | Advanced | Performance |
-| [bluefs_log_replay_check_allocations](#bluefs_log_replay_check_allocations) | `True` | Advanced | Performance |
-| [bluefs_max_log_runway](#bluefs_max_log_runway) | `4_M` | Advanced | Performance |
-| [bluefs_max_prefetch](#bluefs_max_prefetch) | `1_M` | Advanced | Performance |
-| [bluefs_min_flush_size](#bluefs_min_flush_size) | `512_K` | Advanced | Performance |
-| [bluefs_min_log_runway](#bluefs_min_log_runway) | `1_M` | Advanced | Performance |
-| [bluefs_replay_recovery](#bluefs_replay_recovery) | `False` | Dev | Dev |
-| [bluefs_replay_recovery_disable_compact](#bluefs_replay_recovery_disable_compact) | `False` | Advanced | Policy |
-| [bluefs_shared_alloc_size](#bluefs_shared_alloc_size) | `64_K` | Advanced | Performance |
-| [bluefs_spillover_cleaner](#bluefs_spillover_cleaner) | `False` | Advanced | Performance |
-| [bluefs_spillover_cleaner_work_ratio](#bluefs_spillover_cleaner_work_ratio) | `0.1` | Advanced | Performance |
-| [bluefs_spillover_idle_time](#bluefs_spillover_idle_time) | `1200` | Advanced | Performance |
-| [bluefs_sync_write](#bluefs_sync_write) | `False` | Advanced | Performance |
-| [bluefs_wal_envelope_mode](#bluefs_wal_envelope_mode) | `True` | Advanced | Performance |
+| [bluefs_alloc_size](#bluefs_alloc_size) | `1_M` | Advanced | عملکرد |
+| [bluefs_allocator](#bluefs_allocator) | `hybrid` | Dev | توسعه |
+| [bluefs_buffered_io](#bluefs_buffered_io) | `True` | Advanced | عملکرد |
+| [bluefs_check_for_zeros](#bluefs_check_for_zeros) | `False` | Dev | توسعه |
+| [bluefs_check_volume_selector_often](#bluefs_check_volume_selector_often) | `False` | Dev | توسعه |
+| [bluefs_check_volume_selector_on_mount](#bluefs_check_volume_selector_on_mount) | `False` | Dev | توسعه |
+| [bluefs_compact_log_sync](#bluefs_compact_log_sync) | `False` | Advanced | عملکرد |
+| [bluefs_debug_force_slow](#bluefs_debug_force_slow) | `False` | Dev | توسعه |
+| [bluefs_failed_shared_alloc_cooldown](#bluefs_failed_shared_alloc_cooldown) | `600` | Advanced | عملکرد |
+| [bluefs_log_compact_min_ratio](#bluefs_log_compact_min_ratio) | `5` | Advanced | عملکرد |
+| [bluefs_log_compact_min_size](#bluefs_log_compact_min_size) | `16_M` | Advanced | عملکرد |
+| [bluefs_log_replay_check_allocations](#bluefs_log_replay_check_allocations) | `True` | Advanced | عملکرد |
+| [bluefs_max_log_runway](#bluefs_max_log_runway) | `4_M` | Advanced | عملکرد |
+| [bluefs_max_prefetch](#bluefs_max_prefetch) | `1_M` | Advanced | عملکرد |
+| [bluefs_min_flush_size](#bluefs_min_flush_size) | `512_K` | Advanced | عملکرد |
+| [bluefs_min_log_runway](#bluefs_min_log_runway) | `1_M` | Advanced | عملکرد |
+| [bluefs_replay_recovery](#bluefs_replay_recovery) | `False` | Dev | توسعه |
+| [bluefs_replay_recovery_disable_compact](#bluefs_replay_recovery_disable_compact) | `False` | Advanced | سیاست |
+| [bluefs_shared_alloc_size](#bluefs_shared_alloc_size) | `64_K` | Advanced | عملکرد |
+| [bluefs_spillover_cleaner](#bluefs_spillover_cleaner) | `False` | Advanced | عملکرد |
+| [bluefs_spillover_cleaner_work_ratio](#bluefs_spillover_cleaner_work_ratio) | `0.1` | Advanced | عملکرد |
+| [bluefs_spillover_idle_time](#bluefs_spillover_idle_time) | `1200` | Advanced | عملکرد |
+| [bluefs_sync_write](#bluefs_sync_write) | `False` | Advanced | عملکرد |
+| [bluefs_wal_envelope_mode](#bluefs_wal_envelope_mode) | `True` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -69,7 +69,7 @@ ceph config get global bluefs_alloc_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -102,7 +102,7 @@ ceph config get global bluefs_allocator
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`hybrid`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -130,7 +130,7 @@ ceph config get global bluefs_buffered_io
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -165,7 +165,7 @@ ceph config get global bluefs_check_for_zeros
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -193,7 +193,7 @@ ceph config get global bluefs_check_volume_selector_often
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -221,7 +221,7 @@ ceph config get global bluefs_check_volume_selector_on_mount
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -247,7 +247,7 @@ ceph config get global bluefs_compact_log_sync
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -282,7 +282,7 @@ ceph config get global bluefs_debug_force_slow
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -310,7 +310,7 @@ ceph config get global bluefs_failed_shared_alloc_cooldown
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `600`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -343,7 +343,7 @@ ceph config get global bluefs_log_compact_min_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -376,7 +376,7 @@ ceph config get global bluefs_log_compact_min_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -411,7 +411,7 @@ ceph config get global bluefs_log_replay_check_allocations
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -444,7 +444,7 @@ ceph config get global bluefs_max_log_runway
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -477,7 +477,7 @@ ceph config get global bluefs_max_prefetch
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -510,7 +510,7 @@ ceph config get global bluefs_min_flush_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `512_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -543,7 +543,7 @@ ceph config get global bluefs_min_log_runway
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -578,7 +578,7 @@ ceph config get global bluefs_replay_recovery
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -604,7 +604,7 @@ ceph config get global bluefs_replay_recovery_disable_compact
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -638,7 +638,7 @@ ceph config get global bluefs_shared_alloc_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -673,7 +673,7 @@ ceph config get global bluefs_spillover_cleaner
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -708,7 +708,7 @@ ceph config get global bluefs_spillover_cleaner_work_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -743,7 +743,7 @@ ceph config get global bluefs_spillover_idle_time
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1200`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -776,7 +776,7 @@ ceph config get global bluefs_sync_write
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -811,7 +811,7 @@ ceph config get global bluefs_wal_envelope_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

@@ -4,28 +4,28 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [osd_delete_sleep](#osd_delete_sleep) | `0` | Advanced | Performance |
-| [osd_delete_sleep_hdd](#osd_delete_sleep_hdd) | `5` | Advanced | Performance |
-| [osd_delete_sleep_hybrid](#osd_delete_sleep_hybrid) | `1` | Advanced | Performance |
-| [osd_delete_sleep_ssd](#osd_delete_sleep_ssd) | `1` | Advanced | Performance |
-| [osd_max_markdown_period](#osd_max_markdown_period) | `10_min` | Advanced | Performance |
-| [osd_op_thread_suicide_timeout](#osd_op_thread_suicide_timeout) | `150` | Advanced | Performance |
-| [osd_op_thread_timeout](#osd_op_thread_timeout) | `15` | Advanced | Performance |
-| [osd_smart_report_timeout](#osd_smart_report_timeout) | `5` | Advanced | Performance |
-| [osd_snap_trim_sleep](#osd_snap_trim_sleep) | `0` | Advanced | Performance |
-| [osd_snap_trim_sleep_hdd](#osd_snap_trim_sleep_hdd) | `5` | Advanced | Performance |
-| [osd_snap_trim_sleep_hybrid](#osd_snap_trim_sleep_hybrid) | `2` | Advanced | Performance |
-| [osd_snap_trim_sleep_ssd](#osd_snap_trim_sleep_ssd) | `0` | Advanced | Performance |
+| [osd_delete_sleep](#osd_delete_sleep) | `0` | Advanced | عملکرد |
+| [osd_delete_sleep_hdd](#osd_delete_sleep_hdd) | `5` | Advanced | عملکرد |
+| [osd_delete_sleep_hybrid](#osd_delete_sleep_hybrid) | `1` | Advanced | عملکرد |
+| [osd_delete_sleep_ssd](#osd_delete_sleep_ssd) | `1` | Advanced | عملکرد |
+| [osd_max_markdown_period](#osd_max_markdown_period) | `10_min` | Advanced | عملکرد |
+| [osd_op_thread_suicide_timeout](#osd_op_thread_suicide_timeout) | `150` | Advanced | عملکرد |
+| [osd_op_thread_timeout](#osd_op_thread_timeout) | `15` | Advanced | عملکرد |
+| [osd_smart_report_timeout](#osd_smart_report_timeout) | `5` | Advanced | عملکرد |
+| [osd_snap_trim_sleep](#osd_snap_trim_sleep) | `0` | Advanced | عملکرد |
+| [osd_snap_trim_sleep_hdd](#osd_snap_trim_sleep_hdd) | `5` | Advanced | عملکرد |
+| [osd_snap_trim_sleep_hybrid](#osd_snap_trim_sleep_hybrid) | `2` | Advanced | عملکرد |
+| [osd_snap_trim_sleep_ssd](#osd_snap_trim_sleep_ssd) | `0` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -57,7 +57,7 @@ ceph config get osd osd_delete_sleep
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -94,7 +94,7 @@ ceph config get osd osd_delete_sleep_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -131,7 +131,7 @@ ceph config get osd osd_delete_sleep_hybrid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -168,7 +168,7 @@ ceph config get osd osd_delete_sleep_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -203,7 +203,7 @@ ceph config get osd osd_max_markdown_period
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -238,7 +238,7 @@ ceph config get osd osd_op_thread_suicide_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `150`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -273,7 +273,7 @@ ceph config get osd osd_op_thread_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -310,7 +310,7 @@ ceph config get osd osd_smart_report_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -347,7 +347,7 @@ ceph config get osd osd_snap_trim_sleep
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -384,7 +384,7 @@ ceph config get osd osd_snap_trim_sleep_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -421,7 +421,7 @@ ceph config get osd osd_snap_trim_sleep_hybrid
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -458,7 +458,7 @@ ceph config get osd osd_snap_trim_sleep_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

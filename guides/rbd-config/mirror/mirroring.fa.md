@@ -4,20 +4,20 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rbd_mirroring_delete_delay](#rbd_mirroring_delete_delay) | `0` | Advanced | Performance |
-| [rbd_mirroring_max_mirroring_snapshots](#rbd_mirroring_max_mirroring_snapshots) | `5` | Advanced | Performance |
-| [rbd_mirroring_replay_delay](#rbd_mirroring_replay_delay) | `0` | Advanced | Performance |
-| [rbd_mirroring_resync_after_disconnect](#rbd_mirroring_resync_after_disconnect) | `False` | Advanced | Performance |
+| [rbd_mirroring_delete_delay](#rbd_mirroring_delete_delay) | `0` | Advanced | عملکرد |
+| [rbd_mirroring_max_mirroring_snapshots](#rbd_mirroring_max_mirroring_snapshots) | `5` | Advanced | عملکرد |
+| [rbd_mirroring_replay_delay](#rbd_mirroring_replay_delay) | `0` | Advanced | عملکرد |
+| [rbd_mirroring_resync_after_disconnect](#rbd_mirroring_resync_after_disconnect) | `False` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -49,7 +49,7 @@ ceph config get client rbd_mirroring_delete_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -85,7 +85,7 @@ ceph config get client rbd_mirroring_max_mirroring_snapshots
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -123,7 +123,7 @@ ceph config get client rbd_mirroring_replay_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -159,7 +159,7 @@ ceph config get client rbd_mirroring_resync_after_disconnect
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

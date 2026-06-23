@@ -4,20 +4,20 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [osd_debug_feed_pullee](#osd_debug_feed_pullee) | `-1` | Dev | Dev |
-| [osd_debug_trim_objects](#osd_debug_trim_objects) | `False` | Advanced | Performance |
-| [osd_inject_bad_map_crc_probability](#osd_inject_bad_map_crc_probability) | `0` | Dev | Dev |
-| [osd_inject_failure_on_pg_removal](#osd_inject_failure_on_pg_removal) | `False` | Dev | Dev |
+| [osd_debug_feed_pullee](#osd_debug_feed_pullee) | `-1` | Dev | توسعه |
+| [osd_debug_trim_objects](#osd_debug_trim_objects) | `False` | Advanced | عملکرد |
+| [osd_inject_bad_map_crc_probability](#osd_inject_bad_map_crc_probability) | `0` | Dev | توسعه |
+| [osd_inject_failure_on_pg_removal](#osd_inject_failure_on_pg_removal) | `False` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -49,7 +49,7 @@ ceph config get osd osd_debug_feed_pullee
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`-1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -77,7 +77,7 @@ ceph config get osd osd_debug_trim_objects
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -112,7 +112,7 @@ ceph config get osd osd_inject_bad_map_crc_probability
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -138,7 +138,7 @@ ceph config get osd osd_inject_failure_on_pg_removal
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

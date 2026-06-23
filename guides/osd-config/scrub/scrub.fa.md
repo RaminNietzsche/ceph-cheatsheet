@@ -4,55 +4,55 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [osd_blocked_scrub_grace_period](#osd_blocked_scrub_grace_period) | `120` | Advanced | Performance |
-| [osd_deep_scrub_interval](#osd_deep_scrub_interval) | `7_day` | Advanced | Performance |
-| [osd_deep_scrub_interval_cv](#osd_deep_scrub_interval_cv) | `0.2` | Advanced | Performance |
-| [osd_deep_scrub_keys](#osd_deep_scrub_keys) | `1024` | Advanced | Performance |
-| [osd_deep_scrub_large_omap_object_key_threshold](#osd_deep_scrub_large_omap_object_key_threshold) | `200000` | Advanced | Performance |
-| [osd_deep_scrub_large_omap_object_value_sum_threshold](#osd_deep_scrub_large_omap_object_value_sum_threshold) | `1_G` | Advanced | Performance |
-| [osd_deep_scrub_randomize_ratio](#osd_deep_scrub_randomize_ratio) | `0.15` | Advanced | Performance |
-| [osd_deep_scrub_stride](#osd_deep_scrub_stride) | `4_M` | Advanced | Performance |
-| [osd_deep_scrub_update_digest_min_age](#osd_deep_scrub_update_digest_min_age) | `2_hr` | Advanced | Performance |
-| [osd_max_scrubs](#osd_max_scrubs) | `3` | Advanced | Performance |
-| [osd_scrub_auto_repair](#osd_scrub_auto_repair) | `False` | Advanced | Performance |
-| [osd_scrub_auto_repair_num_errors](#osd_scrub_auto_repair_num_errors) | `5` | Advanced | Performance |
-| [osd_scrub_backoff_ratio](#osd_scrub_backoff_ratio) | `0.66` | Dev | Dev |
-| [osd_scrub_begin_hour](#osd_scrub_begin_hour) | `0` | Advanced | Performance |
-| [osd_scrub_begin_week_day](#osd_scrub_begin_week_day) | `0` | Advanced | Performance |
-| [osd_scrub_chunk_max](#osd_scrub_chunk_max) | `15` | Advanced | Performance |
-| [osd_scrub_chunk_min](#osd_scrub_chunk_min) | `5` | Advanced | Performance |
-| [osd_scrub_disable_reservation_queuing](#osd_scrub_disable_reservation_queuing) | `False` | Advanced | Policy |
-| [osd_scrub_during_recovery](#osd_scrub_during_recovery) | `False` | Advanced | Performance |
-| [osd_scrub_end_hour](#osd_scrub_end_hour) | `0` | Advanced | Performance |
-| [osd_scrub_end_week_day](#osd_scrub_end_week_day) | `0` | Advanced | Performance |
-| [osd_scrub_extended_sleep](#osd_scrub_extended_sleep) | `0` | Advanced | Performance |
-| [osd_scrub_interval_randomize_ratio](#osd_scrub_interval_randomize_ratio) | `0.5` | Advanced | Performance |
-| [osd_scrub_invalid_stats](#osd_scrub_invalid_stats) | `True` | Advanced | Performance |
-| [osd_scrub_load_threshold](#osd_scrub_load_threshold) | `10.0` | Advanced | Performance |
-| [osd_scrub_max_interval](#osd_scrub_max_interval) | `7_day` | Advanced | Performance |
-| [osd_scrub_max_preemptions](#osd_scrub_max_preemptions) | `5` | Advanced | Performance |
-| [osd_scrub_min_interval](#osd_scrub_min_interval) | `1_day` | Advanced | Performance |
-| [osd_scrub_queued_snaptrims_limit](#osd_scrub_queued_snaptrims_limit) | `500` | Advanced | Performance |
-| [osd_scrub_retry_after_noscrub](#osd_scrub_retry_after_noscrub) | `60` | Advanced | Performance |
-| [osd_scrub_retry_delay](#osd_scrub_retry_delay) | `30` | Advanced | Performance |
-| [osd_scrub_retry_new_interval](#osd_scrub_retry_new_interval) | `10` | Advanced | Performance |
-| [osd_scrub_retry_pg_state](#osd_scrub_retry_pg_state) | `60` | Advanced | Performance |
-| [osd_scrub_retry_trimming](#osd_scrub_retry_trimming) | `10` | Advanced | Performance |
-| [osd_scrub_sleep](#osd_scrub_sleep) | `0` | Advanced | Performance |
-| [osd_shallow_scrub_chunk_max](#osd_shallow_scrub_chunk_max) | `100` | Advanced | Performance |
-| [osd_shallow_scrub_chunk_min](#osd_shallow_scrub_chunk_min) | `50` | Advanced | Performance |
-| [osd_stats_update_period_not_scrubbing](#osd_stats_update_period_not_scrubbing) | `120` | Advanced | Performance |
-| [osd_stats_update_period_scrubbing](#osd_stats_update_period_scrubbing) | `15` | Advanced | Performance |
+| [osd_blocked_scrub_grace_period](#osd_blocked_scrub_grace_period) | `120` | Advanced | عملکرد |
+| [osd_deep_scrub_interval](#osd_deep_scrub_interval) | `7_day` | Advanced | عملکرد |
+| [osd_deep_scrub_interval_cv](#osd_deep_scrub_interval_cv) | `0.2` | Advanced | عملکرد |
+| [osd_deep_scrub_keys](#osd_deep_scrub_keys) | `1024` | Advanced | عملکرد |
+| [osd_deep_scrub_large_omap_object_key_threshold](#osd_deep_scrub_large_omap_object_key_threshold) | `200000` | Advanced | عملکرد |
+| [osd_deep_scrub_large_omap_object_value_sum_threshold](#osd_deep_scrub_large_omap_object_value_sum_threshold) | `1_G` | Advanced | عملکرد |
+| [osd_deep_scrub_randomize_ratio](#osd_deep_scrub_randomize_ratio) | `0.15` | Advanced | عملکرد |
+| [osd_deep_scrub_stride](#osd_deep_scrub_stride) | `4_M` | Advanced | عملکرد |
+| [osd_deep_scrub_update_digest_min_age](#osd_deep_scrub_update_digest_min_age) | `2_hr` | Advanced | عملکرد |
+| [osd_max_scrubs](#osd_max_scrubs) | `3` | Advanced | عملکرد |
+| [osd_scrub_auto_repair](#osd_scrub_auto_repair) | `False` | Advanced | عملکرد |
+| [osd_scrub_auto_repair_num_errors](#osd_scrub_auto_repair_num_errors) | `5` | Advanced | عملکرد |
+| [osd_scrub_backoff_ratio](#osd_scrub_backoff_ratio) | `0.66` | Dev | توسعه |
+| [osd_scrub_begin_hour](#osd_scrub_begin_hour) | `0` | Advanced | عملکرد |
+| [osd_scrub_begin_week_day](#osd_scrub_begin_week_day) | `0` | Advanced | عملکرد |
+| [osd_scrub_chunk_max](#osd_scrub_chunk_max) | `15` | Advanced | عملکرد |
+| [osd_scrub_chunk_min](#osd_scrub_chunk_min) | `5` | Advanced | عملکرد |
+| [osd_scrub_disable_reservation_queuing](#osd_scrub_disable_reservation_queuing) | `False` | Advanced | سیاست |
+| [osd_scrub_during_recovery](#osd_scrub_during_recovery) | `False` | Advanced | عملکرد |
+| [osd_scrub_end_hour](#osd_scrub_end_hour) | `0` | Advanced | عملکرد |
+| [osd_scrub_end_week_day](#osd_scrub_end_week_day) | `0` | Advanced | عملکرد |
+| [osd_scrub_extended_sleep](#osd_scrub_extended_sleep) | `0` | Advanced | عملکرد |
+| [osd_scrub_interval_randomize_ratio](#osd_scrub_interval_randomize_ratio) | `0.5` | Advanced | عملکرد |
+| [osd_scrub_invalid_stats](#osd_scrub_invalid_stats) | `True` | Advanced | عملکرد |
+| [osd_scrub_load_threshold](#osd_scrub_load_threshold) | `10.0` | Advanced | عملکرد |
+| [osd_scrub_max_interval](#osd_scrub_max_interval) | `7_day` | Advanced | عملکرد |
+| [osd_scrub_max_preemptions](#osd_scrub_max_preemptions) | `5` | Advanced | عملکرد |
+| [osd_scrub_min_interval](#osd_scrub_min_interval) | `1_day` | Advanced | عملکرد |
+| [osd_scrub_queued_snaptrims_limit](#osd_scrub_queued_snaptrims_limit) | `500` | Advanced | عملکرد |
+| [osd_scrub_retry_after_noscrub](#osd_scrub_retry_after_noscrub) | `60` | Advanced | عملکرد |
+| [osd_scrub_retry_delay](#osd_scrub_retry_delay) | `30` | Advanced | عملکرد |
+| [osd_scrub_retry_new_interval](#osd_scrub_retry_new_interval) | `10` | Advanced | عملکرد |
+| [osd_scrub_retry_pg_state](#osd_scrub_retry_pg_state) | `60` | Advanced | عملکرد |
+| [osd_scrub_retry_trimming](#osd_scrub_retry_trimming) | `10` | Advanced | عملکرد |
+| [osd_scrub_sleep](#osd_scrub_sleep) | `0` | Advanced | عملکرد |
+| [osd_shallow_scrub_chunk_max](#osd_shallow_scrub_chunk_max) | `100` | Advanced | عملکرد |
+| [osd_shallow_scrub_chunk_min](#osd_shallow_scrub_chunk_min) | `50` | Advanced | عملکرد |
+| [osd_stats_update_period_not_scrubbing](#osd_stats_update_period_not_scrubbing) | `120` | Advanced | عملکرد |
+| [osd_stats_update_period_scrubbing](#osd_stats_update_period_scrubbing) | `15` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -84,7 +84,7 @@ ceph config get osd osd_blocked_scrub_grace_period
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `120`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -121,7 +121,7 @@ ceph config get osd osd_deep_scrub_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `7_day`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -158,7 +158,7 @@ ceph config get osd osd_deep_scrub_interval_cv
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -197,7 +197,7 @@ ceph config get osd osd_deep_scrub_keys
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1024`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -234,7 +234,7 @@ ceph config get osd osd_deep_scrub_large_omap_object_key_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `200000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -271,7 +271,7 @@ ceph config get osd osd_deep_scrub_large_omap_object_value_sum_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_G`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -308,7 +308,7 @@ ceph config get osd osd_deep_scrub_randomize_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -345,7 +345,7 @@ ceph config get osd osd_deep_scrub_stride
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -382,7 +382,7 @@ ceph config get osd osd_deep_scrub_update_digest_min_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2_hr`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -419,7 +419,7 @@ ceph config get osd osd_max_scrubs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -458,7 +458,7 @@ ceph config get osd osd_scrub_auto_repair
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -495,7 +495,7 @@ ceph config get osd osd_scrub_auto_repair_num_errors
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -532,7 +532,7 @@ ceph config get osd osd_scrub_backoff_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.66`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -560,7 +560,7 @@ ceph config get osd osd_scrub_begin_hour
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -599,7 +599,7 @@ ceph config get osd osd_scrub_begin_week_day
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -638,7 +638,7 @@ ceph config get osd osd_scrub_chunk_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -675,7 +675,7 @@ ceph config get osd osd_scrub_chunk_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -712,7 +712,7 @@ ceph config get osd osd_scrub_disable_reservation_queuing
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -748,7 +748,7 @@ ceph config get osd osd_scrub_during_recovery
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -785,7 +785,7 @@ ceph config get osd osd_scrub_end_hour
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -824,7 +824,7 @@ ceph config get osd osd_scrub_end_week_day
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -863,7 +863,7 @@ ceph config get osd osd_scrub_extended_sleep
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -900,7 +900,7 @@ ceph config get osd osd_scrub_interval_randomize_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -935,7 +935,7 @@ ceph config get osd osd_scrub_invalid_stats
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -972,7 +972,7 @@ ceph config get osd osd_scrub_load_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10.0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1009,7 +1009,7 @@ ceph config get osd osd_scrub_max_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `7_day`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1046,7 +1046,7 @@ ceph config get osd osd_scrub_max_preemptions
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1085,7 +1085,7 @@ ceph config get osd osd_scrub_min_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_day`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1122,7 +1122,7 @@ ceph config get osd osd_scrub_queued_snaptrims_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1159,7 +1159,7 @@ ceph config get osd osd_scrub_retry_after_noscrub
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `60`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1198,7 +1198,7 @@ ceph config get osd osd_scrub_retry_delay
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1237,7 +1237,7 @@ ceph config get osd osd_scrub_retry_new_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1276,7 +1276,7 @@ ceph config get osd osd_scrub_retry_pg_state
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `60`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1315,7 +1315,7 @@ ceph config get osd osd_scrub_retry_trimming
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1354,7 +1354,7 @@ ceph config get osd osd_scrub_sleep
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1391,7 +1391,7 @@ ceph config get osd osd_shallow_scrub_chunk_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1428,7 +1428,7 @@ ceph config get osd osd_shallow_scrub_chunk_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `50`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1465,7 +1465,7 @@ ceph config get osd osd_stats_update_period_not_scrubbing
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `120`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1502,7 +1502,7 @@ ceph config get osd osd_stats_update_period_scrubbing
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `15`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

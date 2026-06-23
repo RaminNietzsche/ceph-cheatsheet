@@ -1,8 +1,6 @@
-> **یادداشت:** متن این صفحه هنوز به فارسی ترجمه نشده است؛ نسخهٔ انگلیسی در ادامه آمده است.
+# دستورات CephFS
 
-# CephFS Commands
-
-## File system management
+## مدیریت فایل‌سیستم
 
 ```bash
 ceph fs ls
@@ -26,7 +24,7 @@ ceph mds repaired <rank>           # after damage repair
 ceph tell mds.<name> command …
 ```
 
-## Subvolumes & quotas (volumes)
+## Subvolume و quota (volumes)
 
 ```bash
 ceph fs subvolume create <vol> <subvol> [--size bytes] [--group=<group>]
@@ -36,7 +34,7 @@ ceph fs subvolume info <vol> <subvol>
 ceph fs subvolumegroup create <vol> <group>
 ```
 
-## Snapshots
+## Snapshot
 
 ```bash
 ceph fs snap-schedule status [<path>]
@@ -66,6 +64,6 @@ ceph fs snapshot mirror add <fs> <peer_fsid>/<remote_fs>
 ceph fs snapshot mirror info <fs>
 ```
 
-See [config/mds](../config/mds/INDEX.md) and [config/cephfs-mirror](../config/cephfs-mirror/INDEX.md).
+[config/mds](../config/mds/INDEX.md) و [config/cephfs-mirror](../config/cephfs-mirror/INDEX.md).
 
-[← CLI overview](OVERVIEW.md)
+[← نمای کلی CLI](OVERVIEW.md)

@@ -4,21 +4,21 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [public_addr](#public_addr) | `(empty)` | Basic | Connectivity |
-| [public_addrv](#public_addrv) | `(empty)` | Basic | Policy |
-| [public_bind_addr](#public_bind_addr) | `(empty)` | Advanced | Connectivity |
-| [public_network](#public_network) | `(empty)` | Advanced | Performance |
-| [public_network_interface](#public_network_interface) | `(empty)` | Advanced | Performance |
+| [public_addr](#public_addr) | `(empty)` | Basic | اتصال |
+| [public_addrv](#public_addrv) | `(empty)` | Basic | سیاست |
+| [public_bind_addr](#public_bind_addr) | `(empty)` | Advanced | اتصال |
+| [public_network](#public_network) | `(empty)` | Advanced | عملکرد |
+| [public_network_interface](#public_network_interface) | `(empty)` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -50,7 +50,7 @@ ceph config get global public_addr
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Connectivity
+**مدل تنظیم:** اتصال
 
 1. نقاط پایانی (endpoint) کاندید را از محیط خود فهرست کنید.
 2. دسترسی‌پذیری از هر نودی که دیمن روی آن اجرا می‌شود را بررسی کنید.
@@ -85,7 +85,7 @@ ceph config get global public_addrv
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `(empty)` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -117,7 +117,7 @@ ceph config get global public_bind_addr
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Connectivity
+**مدل تنظیم:** اتصال
 
 1. نقاط پایانی (endpoint) کاندید را از محیط خود فهرست کنید.
 2. دسترسی‌پذیری از هر نودی که دیمن روی آن اجرا می‌شود را بررسی کنید.
@@ -152,7 +152,7 @@ ceph config get global public_network
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -187,7 +187,7 @@ ceph config get global public_network_interface
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

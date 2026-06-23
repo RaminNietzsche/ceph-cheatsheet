@@ -1,40 +1,38 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# 贡献指南
 
-# Contributing to the Reference
+本仓库的结构、维护与扩展方式。
 
-How this repository is structured, maintained, and extended.
+## Cursor 规则
 
-## Cursor rules
+项目规则位于 `.cursor/rules/`：
 
-Project rules in `.cursor/rules/`:
-
-| Rule | Applies to |
+| 规则 | 适用范围 |
 |------|------------|
-| `documentation.mdc` | `cli/`, `guides/`, REFERENCE.md |
-| `config-generation.mdc` | `config/`, generate scripts |
-| `no-cursor-coauthor.mdc` | All commits |
+| `documentation.mdc` | `cli/`、`guides/`、REFERENCE.md |
+| `config-generation.mdc` | `config/`、generate 脚本 |
+| `no-cursor-coauthor.mdc` | 所有 commit |
 
-All rules live under `.cursor/rules/` in the repository root.
+所有规则位于仓库根目录 `.cursor/rules/`。
 
-## Cursor skill
+## Cursor 技能
 
-`.cursor/skills/ceph-cheatsheet/SKILL.md` — agent workflow for regenerate, search, mkdocs, and adding content.
+`.cursor/skills/ceph-cheatsheet/SKILL.md` — agent 工作流：重新生成、搜索、mkdocs 与添加内容。
 
-## Content types
+## 内容类型
 
 ```
-cli/                    Manual — command cheatsheets
-guides/roles/           Manual — by operator role
-guides/scales/          Manual — by cluster size
-guides/rgw-config/      Generated — RGW options by nav category (see below)
-config/                 Generated — do not hand-edit tables
-docs/                   MkDocs shell — sync index from REFERENCE.md
-REFERENCE.md            Hub — sync to docs/index.md
+cli/                    手动 — 命令速查
+guides/roles/           手动 — 按运维角色
+guides/scales/          手动 — 按集群规模
+guides/rgw-config/      生成 — 按 nav 分类的 RGW 选项
+config/                 生成 — 请勿手改表格
+docs/                   MkDocs 外壳 — 从 REFERENCE.md 同步 index
+REFERENCE.md            枢纽 — 同步到 docs/index.md
 ```
 
-## Workflows
+## 工作流
 
-**Update config from upstream Ceph:**
+**从 upstream Ceph 更新 config：**
 
 ```bash
 python3 scripts/generate-config.py --ref main
@@ -46,36 +44,30 @@ python3 scripts/sync-i18n-pages.py             # fa/zh hand-written pages
 python3 scripts/sync-docs-index.py
 ```
 
-All generators write **English** (`.md`) plus **Persian** (`.fa.md`) and **Chinese** (`.zh.md`) variants. Template strings live in `scripts/locales/strings.yaml`; hand-page translations in `scripts/locales/pages/`.
+所有生成器输出 **英文**（`.md`）以及 **波斯语**（`.fa.md`）和 **中文**（`.zh.md`）。模板字符串在 `scripts/locales/strings.yaml`；手写页面翻译在 `scripts/locales/pages/`。
 
-The RGW guide generator reads `config/rgw/*.md`, writes topic files under
-`guides/rgw-config/<category>/`, and patches `mkdocs.yml` between `# rgw-nav:start` /
-`# rgw-nav:end`.
+RGW 指南生成器读取 `config/rgw/*.md`，在 `guides/rgw-config/<category>/` 下写入主题文件，并在 `# rgw-nav:start` / `# rgw-nav:end` 之间更新 `mkdocs.yml`。
 
-`generate-config-guide.py` does the same for other subsystems (profiles in that
-script; nav markers `# osd-nav:start` / … inside `# config-guides-nav:start` in
-`mkdocs.yml`). Hand-tuned text for hot OSD/MON options lives in
-`scripts/subsystem_enrichments.py`. RGW and global flat guide URLs redirect via
-`mkdocs-redirects` (patched by the generators). Re-run both generators after config regeneration.
+`generate-config-guide.py` 对其他子系统做同样的事（配置见该脚本；nav 标记 `# osd-nav:start` / … 位于 `mkdocs.yml` 的 `# config-guides-nav:start` 内）。OSD/MON 热点选项的手写说明在 `scripts/subsystem_enrichments.py`。RGW 与 global 扁平指南 URL 通过 `mkdocs-redirects`（由生成器维护）重定向。config 重新生成后请再次运行两个生成器。
 
-**Edit prose (CLI, guides, REFERENCE):**
+**编辑正文（CLI、guides、REFERENCE）：**
 
-1. Edit files
+1. 编辑文件
 2. `python3 scripts/sync-docs-index.py`
-3. `mkdocs serve` to preview
+3. `mkdocs serve` 预览
 
-**CI:** push to `main` → `.github/workflows/docs.yml` builds and deploys Pages.
+**CI：** push 到 `main` → `.github/workflows/docs.yml` 构建并部署 Pages。
 
-## Adding a new CLI page
+## 添加新 CLI 页面
 
-1. Create `cli/mytopic.md` per documentation rule
-2. Link from `cli/OVERVIEW.md`, `REFERENCE.md`, `mkdocs.yml`
-3. Cross-link from relevant role/scale guide
+1. 按 documentation 规则创建 `cli/mytopic.md`
+2. 从 `cli/OVERVIEW.md`、`REFERENCE.md`、`mkdocs.yml` 链接
+3. 从相关角色/规模指南交叉链接
 
-## Adding a role or scale guide
+## 添加角色或规模指南
 
-1. Create under `guides/roles/` or `guides/scales/`
-2. Update `guides/OVERVIEW.md` and `REFERENCE.md`
-3. Sync docs index and mkdocs nav
+1. 在 `guides/roles/` 或 `guides/scales/` 下创建
+2. 更新 `guides/OVERVIEW.md` 与 `REFERENCE.md`
+3. 同步 docs index 与 mkdocs nav
 
-[← Guides overview](OVERVIEW.md)
+[← 指南概览](OVERVIEW.md)

@@ -58,11 +58,11 @@ ceph orch apply mon --placement="host1 host2 host3"
 |-------|--------|
 | [Lab](../scales/lab.md) | یک mon، `--single-host-defaults` |
 | [محیط عملیاتی کوچک](../scales/small-production.md) | ۳ mon، ۲ mgr، یک DC |
-| [محیط عملیاتی بزرگ](../scales/large-production.md) | stretch، شبکه جدا |
-| [Multisite](../scales/multisite.md) | quorum هر سایت یا stretch |
+| [محیط عملیاتی بزرگ](../scales/large-production.md) | stretch، شبکهٔ جدا |
+| [چندسایته](../scales/multisite.md) | quorum هر سایت یا stretch |
 
 ## عیب‌یابی
 
-[cli/troubleshooting.md](../../cli/troubleshooting.md)
+[cli/troubleshooting.md](../../cli/troubleshooting.md) — logها، quorum مانیتور، توقف ارتقا
 
 [← نمای کلی راهنما](../OVERVIEW.md)

@@ -1,6 +1,6 @@
-# مقیاس Multisite
+# مقیاس چندسایته
 
-<span class="badge badge-scale-multi">Multisite</span> چند datacenter یا region — zoneهای RGW، mirroring اختیاری RBD / CephFS.
+<span class="badge badge-scale-multi">چندسایته</span> چند datacenter یا region — zoneهای RGW، mirroring اختیاری RBD / CephFS.
 
 ## الگوها
 
@@ -10,7 +10,7 @@
 | DR بلوک | RBD mirroring |
 | DR CephFS | cephfs-mirror |
 
-## RGW multisite
+## RGW چندسایته
 
 ```bash
 radosgw-admin realm list
@@ -19,7 +19,9 @@ radosgw-admin period update --commit
 ceph config get client.rgw rgw_zone
 ```
 
-[cli/rgw.md](../../cli/rgw.md) · [multisite-zones.md](../rgw-config/multisite/multisite-zones.md)
+CLI: [cli/rgw.md](../../cli/rgw.md)  
+Config: [config/rgw/INDEX.md](../../config/rgw/INDEX.md)  
+راهنمای عمیق: [multisite-zones.md](../rgw-config/multisite/multisite-zones.md) · [multisite-sync.md](../rgw-config/multisite/multisite-sync.md)
 
 ```bash
 ./scripts/search-config.sh -s rgw zone
@@ -33,6 +35,8 @@ rbd mirror pool status rbd
 rbd mirror image promote rbd/image --force
 ```
 
+Config: [config/rbd-mirror/INDEX.md](../../config/rbd-mirror/INDEX.md)
+
 ## CephFS mirror
 
 ```bash
@@ -40,13 +44,20 @@ ceph fs snapshot mirror enable myfs
 ceph fs snapshot mirror info myfs
 ```
 
+Config: [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md)
+
 ## راهنمای نقش
 
-[rgw-admin.md](../roles/rgw-admin.md) · [cephfs-admin.md](../roles/cephfs-admin.md)
+| نقش | راهنما |
+|------|--------|
+| RGW چندسایته | [rgw-admin.md](../roles/rgw-admin.md) |
+| DR CephFS | [cephfs-admin.md](../roles/cephfs-admin.md) |
+| Cluster / mon | [cluster-admin.md](../roles/cluster-admin.md) |
 
-## هشدار
+## هشدارها
 
-- latency بین سایت‌ها روی sync RGW اثر دارد
-- failover را در پنجره نگهداری تست کنید
+- latency بین سایت‌ها روی sync RGW و lag journal RBD اثر دارد
+- failover (`promote`) را در پنجره نگهداری تست کنید
+- CRUSH و pool را برای erasure + چندسایته برنامه‌ریزی کنید
 
 [← نمای کلی راهنما](../OVERVIEW.md)

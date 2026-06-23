@@ -4,34 +4,34 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [osd_mclock_force_run_benchmark_on_init](#osd_mclock_force_run_benchmark_on_init) | `False` | Advanced | Performance |
-| [osd_mclock_iops_capacity_low_threshold_hdd](#osd_mclock_iops_capacity_low_threshold_hdd) | `50` | Basic | Performance |
-| [osd_mclock_iops_capacity_low_threshold_ssd](#osd_mclock_iops_capacity_low_threshold_ssd) | `1000` | Basic | Performance |
-| [osd_mclock_iops_capacity_threshold_hdd](#osd_mclock_iops_capacity_threshold_hdd) | `500` | Basic | Performance |
-| [osd_mclock_iops_capacity_threshold_ssd](#osd_mclock_iops_capacity_threshold_ssd) | `80000` | Basic | Performance |
-| [osd_mclock_max_capacity_iops_hdd](#osd_mclock_max_capacity_iops_hdd) | `315` | Basic | Performance |
-| [osd_mclock_max_capacity_iops_ssd](#osd_mclock_max_capacity_iops_ssd) | `21500` | Basic | Performance |
-| [osd_mclock_max_sequential_bandwidth_hdd](#osd_mclock_max_sequential_bandwidth_hdd) | `150_M` | Basic | Performance |
-| [osd_mclock_max_sequential_bandwidth_ssd](#osd_mclock_max_sequential_bandwidth_ssd) | `1200_M` | Basic | Performance |
-| [osd_mclock_profile](#osd_mclock_profile) | `balanced` | Advanced | Performance |
-| [osd_mclock_scheduler_anticipation_timeout](#osd_mclock_scheduler_anticipation_timeout) | `0` | Advanced | Performance |
-| [osd_mclock_scheduler_background_best_effort_lim](#osd_mclock_scheduler_background_best_effort_lim) | `0` | Advanced | Performance |
-| [osd_mclock_scheduler_background_best_effort_res](#osd_mclock_scheduler_background_best_effort_res) | `0` | Advanced | Performance |
-| [osd_mclock_scheduler_background_best_effort_wgt](#osd_mclock_scheduler_background_best_effort_wgt) | `1` | Advanced | Performance |
-| [osd_mclock_scheduler_client_lim](#osd_mclock_scheduler_client_lim) | `0` | Advanced | Performance |
-| [osd_mclock_scheduler_client_res](#osd_mclock_scheduler_client_res) | `0` | Advanced | Performance |
-| [osd_mclock_scheduler_client_wgt](#osd_mclock_scheduler_client_wgt) | `1` | Advanced | Performance |
-| [osd_mclock_skip_benchmark](#osd_mclock_skip_benchmark) | `False` | Dev | Dev |
+| [osd_mclock_force_run_benchmark_on_init](#osd_mclock_force_run_benchmark_on_init) | `False` | Advanced | عملکرد |
+| [osd_mclock_iops_capacity_low_threshold_hdd](#osd_mclock_iops_capacity_low_threshold_hdd) | `50` | Basic | عملکرد |
+| [osd_mclock_iops_capacity_low_threshold_ssd](#osd_mclock_iops_capacity_low_threshold_ssd) | `1000` | Basic | عملکرد |
+| [osd_mclock_iops_capacity_threshold_hdd](#osd_mclock_iops_capacity_threshold_hdd) | `500` | Basic | عملکرد |
+| [osd_mclock_iops_capacity_threshold_ssd](#osd_mclock_iops_capacity_threshold_ssd) | `80000` | Basic | عملکرد |
+| [osd_mclock_max_capacity_iops_hdd](#osd_mclock_max_capacity_iops_hdd) | `315` | Basic | عملکرد |
+| [osd_mclock_max_capacity_iops_ssd](#osd_mclock_max_capacity_iops_ssd) | `21500` | Basic | عملکرد |
+| [osd_mclock_max_sequential_bandwidth_hdd](#osd_mclock_max_sequential_bandwidth_hdd) | `150_M` | Basic | عملکرد |
+| [osd_mclock_max_sequential_bandwidth_ssd](#osd_mclock_max_sequential_bandwidth_ssd) | `1200_M` | Basic | عملکرد |
+| [osd_mclock_profile](#osd_mclock_profile) | `balanced` | Advanced | عملکرد |
+| [osd_mclock_scheduler_anticipation_timeout](#osd_mclock_scheduler_anticipation_timeout) | `0` | Advanced | عملکرد |
+| [osd_mclock_scheduler_background_best_effort_lim](#osd_mclock_scheduler_background_best_effort_lim) | `0` | Advanced | عملکرد |
+| [osd_mclock_scheduler_background_best_effort_res](#osd_mclock_scheduler_background_best_effort_res) | `0` | Advanced | عملکرد |
+| [osd_mclock_scheduler_background_best_effort_wgt](#osd_mclock_scheduler_background_best_effort_wgt) | `1` | Advanced | عملکرد |
+| [osd_mclock_scheduler_client_lim](#osd_mclock_scheduler_client_lim) | `0` | Advanced | عملکرد |
+| [osd_mclock_scheduler_client_res](#osd_mclock_scheduler_client_res) | `0` | Advanced | عملکرد |
+| [osd_mclock_scheduler_client_wgt](#osd_mclock_scheduler_client_wgt) | `1` | Advanced | عملکرد |
+| [osd_mclock_skip_benchmark](#osd_mclock_skip_benchmark) | `False` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -64,7 +64,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -101,7 +101,7 @@ ceph config get osd osd_mclock_iops_capacity_low_threshold_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `50`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -138,7 +138,7 @@ ceph config get osd osd_mclock_iops_capacity_low_threshold_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -175,7 +175,7 @@ ceph config get osd osd_mclock_iops_capacity_threshold_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -212,7 +212,7 @@ ceph config get osd osd_mclock_iops_capacity_threshold_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `80000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -249,7 +249,7 @@ ceph config get osd osd_mclock_max_capacity_iops_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `315`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -286,7 +286,7 @@ ceph config get osd osd_mclock_max_capacity_iops_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `21500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -323,7 +323,7 @@ ceph config get osd osd_mclock_max_sequential_bandwidth_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `150_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -360,7 +360,7 @@ ceph config get osd osd_mclock_max_sequential_bandwidth_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1200_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -398,7 +398,7 @@ ceph daemon osd.<id> config show | grep mclock
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `balanced`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -435,7 +435,7 @@ ceph config get osd osd_mclock_scheduler_anticipation_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -472,7 +472,7 @@ ceph config get osd osd_mclock_scheduler_background_best_effort_lim
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -511,7 +511,7 @@ ceph config get osd osd_mclock_scheduler_background_best_effort_res
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -550,7 +550,7 @@ ceph config get osd osd_mclock_scheduler_background_best_effort_wgt
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -587,7 +587,7 @@ ceph config get osd osd_mclock_scheduler_client_lim
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -626,7 +626,7 @@ ceph config get osd osd_mclock_scheduler_client_res
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -665,7 +665,7 @@ ceph config get osd osd_mclock_scheduler_client_wgt
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -702,7 +702,7 @@ ceph config get osd osd_mclock_skip_benchmark
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

@@ -1,10 +1,8 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# 快速入门 — 日常运维流程
 
-# Quick Start — Daily Admin Workflow
+操作 Ceph 集群的最小流程。请按环境调整（cephadm 或手动部署、发行版版本）。
 
-A minimal workflow for operating a Ceph cluster. Adjust for your environment (cephadm vs manual, release version).
-
-## 1. Check cluster health
+## 1. 检查集群健康
 
 ```bash
 ceph -s
@@ -13,9 +11,9 @@ ceph versions
 ceph orch ps          # if using cephadm
 ```
 
-Expected: `health: HEALTH_OK`, all OSDs up, quorum intact.
+期望：`health: HEALTH_OK`，所有 OSD 在线，quorum 正常。
 
-## 2. Capacity and usage
+## 2. 容量与使用率
 
 ```bash
 ceph df
@@ -23,18 +21,18 @@ ceph df detail
 ceph osd df tree
 ```
 
-Watch for `nearfull` / `backfillfull` warnings.
+关注 `nearfull` / `backfillfull` 警告。
 
-## 3. PG state
+## 3. PG 状态
 
 ```bash
 ceph pg stat
 ceph pg dump_stuck
 ```
 
-All PGs should be `active+clean`. Investigate `degraded`, `recovering`, `backfilling`, or `stuck`.
+所有 PG 应为 `active+clean`。排查 `degraded`、`recovering`、`backfilling` 或 `stuck`。
 
-## 4. Common changes
+## 4. 常见变更
 
 ```bash
 # Set a runtime config option
@@ -53,7 +51,7 @@ ceph osd out 5
 ceph osd in 5
 ```
 
-## 5. Before upgrades
+## 5. 升级前
 
 ```bash
 ceph versions                         # mixed versions?
@@ -62,14 +60,14 @@ ceph osd ok-to-stop osd.0 osd.1 …    # check N OSDs at a time
 ceph orch upgrade status              # cephadm path
 ```
 
-## 6. When something breaks
+## 6. 出问题时
 
-1. `ceph health detail` — read the warning/error text
-2. `ceph -w` — watch live events
-3. [Troubleshooting commands](../cli/troubleshooting.md)
-4. Look up related config: `./scripts/lookup-config.sh <option>`
+1. `ceph health detail` — 阅读警告/错误文本
+2. `ceph -w` — 观察实时事件
+3. [故障排查命令](../cli/troubleshooting.md)
+4. 查找相关配置：`./scripts/lookup-config.sh <option>`
 
-## Lookup cheat sheet
+## 查找速查
 
 ```bash
 ./scripts/lookup-config.sh osd_max_scrubs
@@ -77,8 +75,8 @@ ceph orch upgrade status              # cephadm path
 ./scripts/search-config.sh -s rgw cache
 ```
 
-## Next steps
+## 下一步
 
-- Pick your [role](OVERVIEW.md#by-role) or [scale](OVERVIEW.md#by-scale) for focused workflows.
+- 按 [角色](OVERVIEW.md#by-role) 或 [规模](OVERVIEW.md#by-scale) 选择更聚焦的流程。
 
-[← Main reference](../index.md)
+[← Cheatsheet](../cheatsheet/OVERVIEW.md)

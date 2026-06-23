@@ -4,44 +4,44 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mon_osd_adjust_down_out_interval](#mon_osd_adjust_down_out_interval) | `True` | Advanced | Performance |
-| [mon_osd_adjust_heartbeat_grace](#mon_osd_adjust_heartbeat_grace) | `True` | Advanced | Performance |
-| [mon_osd_auto_mark_auto_out_in](#mon_osd_auto_mark_auto_out_in) | `True` | Advanced | Performance |
-| [mon_osd_auto_mark_in](#mon_osd_auto_mark_in) | `False` | Advanced | Performance |
-| [mon_osd_auto_mark_new_in](#mon_osd_auto_mark_new_in) | `True` | Advanced | Performance |
-| [mon_osd_blocklist_default_expire](#mon_osd_blocklist_default_expire) | `1_hr` | Advanced | Performance |
-| [mon_osd_cache_size](#mon_osd_cache_size) | `500` | Advanced | Performance |
-| [mon_osd_cache_size_min](#mon_osd_cache_size_min) | `128_M` | Advanced | Performance |
-| [mon_osd_crush_smoke_test](#mon_osd_crush_smoke_test) | `True` | Advanced | Performance |
-| [mon_osd_destroyed_out_interval](#mon_osd_destroyed_out_interval) | `10_min` | Advanced | Performance |
-| [mon_osd_down_out_interval](#mon_osd_down_out_interval) | `10_min` | Advanced | Performance |
-| [mon_osd_down_out_subtree_limit](#mon_osd_down_out_subtree_limit) | `rack` | Advanced | Performance |
-| [mon_osd_laggy_halflife](#mon_osd_laggy_halflife) | `1_hr` | Advanced | Performance |
-| [mon_osd_laggy_max_interval](#mon_osd_laggy_max_interval) | `5_min` | Advanced | Performance |
-| [mon_osd_laggy_weight](#mon_osd_laggy_weight) | `0.3` | Advanced | Performance |
-| [mon_osd_mapping_pgs_per_chunk](#mon_osd_mapping_pgs_per_chunk) | `4096` | Dev | Dev |
-| [mon_osd_max_initial_pgs](#mon_osd_max_initial_pgs) | `1024` | Advanced | Performance |
-| [mon_osd_min_in_ratio](#mon_osd_min_in_ratio) | `0.75` | Advanced | Performance |
-| [mon_osd_min_up_ratio](#mon_osd_min_up_ratio) | `0.3` | Advanced | Performance |
-| [mon_osd_warn_num_repaired](#mon_osd_warn_num_repaired) | `10` | Advanced | Performance |
-| [mon_osd_warn_op_age](#mon_osd_warn_op_age) | `32` | Advanced | Performance |
-| [mon_osdmap_full_prune_enabled](#mon_osdmap_full_prune_enabled) | `True` | Advanced | Policy |
-| [mon_osdmap_full_prune_interval](#mon_osdmap_full_prune_interval) | `10` | Advanced | Performance |
-| [mon_osdmap_full_prune_min](#mon_osdmap_full_prune_min) | `10000` | Advanced | Performance |
-| [mon_osdmap_full_prune_txsize](#mon_osdmap_full_prune_txsize) | `100` | Advanced | Performance |
-| [mon_warn_on_filestore_osds](#mon_warn_on_filestore_osds) | `True` | Dev | Dev |
-| [mon_warn_on_osd_down_out_interval_zero](#mon_warn_on_osd_down_out_interval_zero) | `True` | Advanced | Performance |
-| [osd_crush_update_weight_set](#osd_crush_update_weight_set) | `True` | Advanced | Performance |
+| [mon_osd_adjust_down_out_interval](#mon_osd_adjust_down_out_interval) | `True` | Advanced | عملکرد |
+| [mon_osd_adjust_heartbeat_grace](#mon_osd_adjust_heartbeat_grace) | `True` | Advanced | عملکرد |
+| [mon_osd_auto_mark_auto_out_in](#mon_osd_auto_mark_auto_out_in) | `True` | Advanced | عملکرد |
+| [mon_osd_auto_mark_in](#mon_osd_auto_mark_in) | `False` | Advanced | عملکرد |
+| [mon_osd_auto_mark_new_in](#mon_osd_auto_mark_new_in) | `True` | Advanced | عملکرد |
+| [mon_osd_blocklist_default_expire](#mon_osd_blocklist_default_expire) | `1_hr` | Advanced | عملکرد |
+| [mon_osd_cache_size](#mon_osd_cache_size) | `500` | Advanced | عملکرد |
+| [mon_osd_cache_size_min](#mon_osd_cache_size_min) | `128_M` | Advanced | عملکرد |
+| [mon_osd_crush_smoke_test](#mon_osd_crush_smoke_test) | `True` | Advanced | عملکرد |
+| [mon_osd_destroyed_out_interval](#mon_osd_destroyed_out_interval) | `10_min` | Advanced | عملکرد |
+| [mon_osd_down_out_interval](#mon_osd_down_out_interval) | `10_min` | Advanced | عملکرد |
+| [mon_osd_down_out_subtree_limit](#mon_osd_down_out_subtree_limit) | `rack` | Advanced | عملکرد |
+| [mon_osd_laggy_halflife](#mon_osd_laggy_halflife) | `1_hr` | Advanced | عملکرد |
+| [mon_osd_laggy_max_interval](#mon_osd_laggy_max_interval) | `5_min` | Advanced | عملکرد |
+| [mon_osd_laggy_weight](#mon_osd_laggy_weight) | `0.3` | Advanced | عملکرد |
+| [mon_osd_mapping_pgs_per_chunk](#mon_osd_mapping_pgs_per_chunk) | `4096` | Dev | توسعه |
+| [mon_osd_max_initial_pgs](#mon_osd_max_initial_pgs) | `1024` | Advanced | عملکرد |
+| [mon_osd_min_in_ratio](#mon_osd_min_in_ratio) | `0.75` | Advanced | عملکرد |
+| [mon_osd_min_up_ratio](#mon_osd_min_up_ratio) | `0.3` | Advanced | عملکرد |
+| [mon_osd_warn_num_repaired](#mon_osd_warn_num_repaired) | `10` | Advanced | عملکرد |
+| [mon_osd_warn_op_age](#mon_osd_warn_op_age) | `32` | Advanced | عملکرد |
+| [mon_osdmap_full_prune_enabled](#mon_osdmap_full_prune_enabled) | `True` | Advanced | سیاست |
+| [mon_osdmap_full_prune_interval](#mon_osdmap_full_prune_interval) | `10` | Advanced | عملکرد |
+| [mon_osdmap_full_prune_min](#mon_osdmap_full_prune_min) | `10000` | Advanced | عملکرد |
+| [mon_osdmap_full_prune_txsize](#mon_osdmap_full_prune_txsize) | `100` | Advanced | عملکرد |
+| [mon_warn_on_filestore_osds](#mon_warn_on_filestore_osds) | `True` | Dev | توسعه |
+| [mon_warn_on_osd_down_out_interval_zero](#mon_warn_on_osd_down_out_interval_zero) | `True` | Advanced | عملکرد |
+| [osd_crush_update_weight_set](#osd_crush_update_weight_set) | `True` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -73,7 +73,7 @@ ceph config get mon mon_osd_adjust_down_out_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -109,7 +109,7 @@ ceph config get mon mon_osd_adjust_heartbeat_grace
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -145,7 +145,7 @@ ceph config get mon mon_osd_auto_mark_auto_out_in
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -181,7 +181,7 @@ ceph config get mon mon_osd_auto_mark_in
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -217,7 +217,7 @@ ceph config get mon mon_osd_auto_mark_new_in
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -253,7 +253,7 @@ ceph config get mon mon_osd_blocklist_default_expire
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_hr`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -289,7 +289,7 @@ ceph config get mon mon_osd_cache_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -325,7 +325,7 @@ ceph config get mon mon_osd_cache_size_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -361,7 +361,7 @@ ceph config get mon mon_osd_crush_smoke_test
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -397,7 +397,7 @@ ceph config get mon mon_osd_destroyed_out_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -433,7 +433,7 @@ ceph config get mon mon_osd_down_out_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -471,7 +471,7 @@ ceph config get mon mon_osd_down_out_subtree_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `rack`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -507,7 +507,7 @@ ceph config get mon mon_osd_laggy_halflife
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_hr`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -543,7 +543,7 @@ ceph config get mon mon_osd_laggy_max_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -579,7 +579,7 @@ ceph config get mon mon_osd_laggy_weight
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -617,7 +617,7 @@ ceph config get mon mon_osd_mapping_pgs_per_chunk
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`4096`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -645,7 +645,7 @@ ceph config get mon mon_osd_max_initial_pgs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1024`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -681,7 +681,7 @@ ceph config get mon mon_osd_min_in_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.75`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -717,7 +717,7 @@ ceph config get mon mon_osd_min_up_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -753,7 +753,7 @@ ceph config get mon mon_osd_warn_num_repaired
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -789,7 +789,7 @@ ceph config get mon mon_osd_warn_op_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `32`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -825,7 +825,7 @@ ceph config get mon mon_osdmap_full_prune_enabled
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -860,7 +860,7 @@ ceph config get mon mon_osdmap_full_prune_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -896,7 +896,7 @@ ceph config get mon mon_osdmap_full_prune_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -932,7 +932,7 @@ ceph config get mon mon_osdmap_full_prune_txsize
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `100`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -968,7 +968,7 @@ ceph config get mon mon_warn_on_filestore_osds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -996,7 +996,7 @@ ceph config get mon mon_warn_on_osd_down_out_interval_zero
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1032,7 +1032,7 @@ ceph config get osd osd_crush_update_weight_set
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

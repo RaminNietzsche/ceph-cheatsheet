@@ -4,20 +4,20 @@ RBD 配置深度指南 — 4 个选项。[← 概览](../OVERVIEW.md) · [调优
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [rbd_mirroring_delete_delay](#rbd_mirroring_delete_delay) | `0` | Advanced | Performance |
-| [rbd_mirroring_max_mirroring_snapshots](#rbd_mirroring_max_mirroring_snapshots) | `5` | Advanced | Performance |
-| [rbd_mirroring_replay_delay](#rbd_mirroring_replay_delay) | `0` | Advanced | Performance |
-| [rbd_mirroring_resync_after_disconnect](#rbd_mirroring_resync_after_disconnect) | `False` | Advanced | Performance |
+| [rbd_mirroring_delete_delay](#rbd_mirroring_delete_delay) | `0` | Advanced | 性能 |
+| [rbd_mirroring_max_mirroring_snapshots](#rbd_mirroring_max_mirroring_snapshots) | `5` | Advanced | 性能 |
+| [rbd_mirroring_replay_delay](#rbd_mirroring_replay_delay) | `0` | Advanced | 性能 |
+| [rbd_mirroring_resync_after_disconnect](#rbd_mirroring_resync_after_disconnect) | `False` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -49,7 +49,7 @@ ceph config get client rbd_mirroring_delete_delay
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -85,7 +85,7 @@ ceph config get client rbd_mirroring_max_mirroring_snapshots
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `5` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -123,7 +123,7 @@ ceph config get client rbd_mirroring_replay_delay
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `0` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -159,7 +159,7 @@ ceph config get client rbd_mirroring_resync_after_disconnect
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `False` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

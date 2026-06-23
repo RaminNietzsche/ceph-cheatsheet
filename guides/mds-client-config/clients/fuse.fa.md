@@ -4,31 +4,31 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [fuse_allow_other](#fuse_allow_other) | `True` | Advanced | Policy |
-| [fuse_atomic_o_trunc](#fuse_atomic_o_trunc) | `True` | Advanced | Performance |
-| [fuse_big_writes](#fuse_big_writes) | `True` | Advanced | Performance |
-| [fuse_debug](#fuse_debug) | `False` | Advanced | Performance |
-| [fuse_default_permissions](#fuse_default_permissions) | `False` | Advanced | Performance |
-| [fuse_disable_pagecache](#fuse_disable_pagecache) | `False` | Advanced | Policy |
-| [fuse_max_write](#fuse_max_write) | `0` | Advanced | Performance |
-| [fuse_multithreaded](#fuse_multithreaded) | `True` | Advanced | Performance |
-| [fuse_require_active_mds](#fuse_require_active_mds) | `True` | Advanced | Performance |
-| [fuse_set_user_groups](#fuse_set_user_groups) | `True` | Advanced | Performance |
-| [fuse_splice_move](#fuse_splice_move) | `True` | Advanced | Performance |
-| [fuse_splice_read](#fuse_splice_read) | `True` | Advanced | Performance |
-| [fuse_splice_write](#fuse_splice_write) | `True` | Advanced | Performance |
-| [fuse_syncfs_on_mksnap](#fuse_syncfs_on_mksnap) | `True` | Advanced | Performance |
-| [fuse_use_invalidate_cb](#fuse_use_invalidate_cb) | `True` | Advanced | Performance |
+| [fuse_allow_other](#fuse_allow_other) | `True` | Advanced | سیاست |
+| [fuse_atomic_o_trunc](#fuse_atomic_o_trunc) | `True` | Advanced | عملکرد |
+| [fuse_big_writes](#fuse_big_writes) | `True` | Advanced | عملکرد |
+| [fuse_debug](#fuse_debug) | `False` | Advanced | عملکرد |
+| [fuse_default_permissions](#fuse_default_permissions) | `False` | Advanced | عملکرد |
+| [fuse_disable_pagecache](#fuse_disable_pagecache) | `False` | Advanced | سیاست |
+| [fuse_max_write](#fuse_max_write) | `0` | Advanced | عملکرد |
+| [fuse_multithreaded](#fuse_multithreaded) | `True` | Advanced | عملکرد |
+| [fuse_require_active_mds](#fuse_require_active_mds) | `True` | Advanced | عملکرد |
+| [fuse_set_user_groups](#fuse_set_user_groups) | `True` | Advanced | عملکرد |
+| [fuse_splice_move](#fuse_splice_move) | `True` | Advanced | عملکرد |
+| [fuse_splice_read](#fuse_splice_read) | `True` | Advanced | عملکرد |
+| [fuse_splice_write](#fuse_splice_write) | `True` | Advanced | عملکرد |
+| [fuse_syncfs_on_mksnap](#fuse_syncfs_on_mksnap) | `True` | Advanced | عملکرد |
+| [fuse_use_invalidate_cb](#fuse_use_invalidate_cb) | `True` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -60,7 +60,7 @@ ceph config get client fuse_allow_other
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -95,7 +95,7 @@ ceph config get client fuse_atomic_o_trunc
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -131,7 +131,7 @@ ceph config get client fuse_big_writes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -167,7 +167,7 @@ ceph config get client fuse_debug
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -203,7 +203,7 @@ ceph config get client fuse_default_permissions
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -239,7 +239,7 @@ ceph config get client fuse_disable_pagecache
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `False` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -274,7 +274,7 @@ ceph config get client fuse_max_write
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -310,7 +310,7 @@ ceph config get client fuse_multithreaded
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -346,7 +346,7 @@ ceph config get client fuse_require_active_mds
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -382,7 +382,7 @@ ceph config get client fuse_set_user_groups
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -418,7 +418,7 @@ ceph config get client fuse_splice_move
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -454,7 +454,7 @@ ceph config get client fuse_splice_read
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -490,7 +490,7 @@ ceph config get client fuse_splice_write
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -526,7 +526,7 @@ ceph config get client fuse_syncfs_on_mksnap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -562,7 +562,7 @@ ceph config get client fuse_use_invalidate_cb
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

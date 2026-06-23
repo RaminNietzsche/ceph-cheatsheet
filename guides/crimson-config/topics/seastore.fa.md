@@ -4,44 +4,44 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [seastore_block_create](#seastore_block_create) | `True` | Dev | Dev |
-| [seastore_cachepin_2q_in_ratio](#seastore_cachepin_2q_in_ratio) | `0.5` | Advanced | Performance |
-| [seastore_cachepin_2q_out_ratio](#seastore_cachepin_2q_out_ratio) | `0.5` | Advanced | Performance |
-| [seastore_cachepin_size_pershard](#seastore_cachepin_size_pershard) | `2_G` | Advanced | Performance |
-| [seastore_cachepin_type](#seastore_cachepin_type) | `LRU` | Dev | Dev |
-| [seastore_cbjournal_size](#seastore_cbjournal_size) | `5_G` | Dev | Dev |
-| [seastore_cold_tier_generations](#seastore_cold_tier_generations) | `3` | Advanced | Performance |
-| [seastore_data_delta_based_overwrite](#seastore_data_delta_based_overwrite) | `0` | Dev | Dev |
-| [seastore_default_max_object_size](#seastore_default_max_object_size) | `16777216` | Dev | Dev |
-| [seastore_device_size](#seastore_device_size) | `50_G` | Dev | Dev |
-| [seastore_disable_end_to_end_data_protection](#seastore_disable_end_to_end_data_protection) | `True` | Dev | Dev |
-| [seastore_full_integrity_check](#seastore_full_integrity_check) | `False` | Dev | Dev |
-| [seastore_hot_tier_generations](#seastore_hot_tier_generations) | `5` | Advanced | Performance |
-| [seastore_journal_batch_capacity](#seastore_journal_batch_capacity) | `16` | Dev | Dev |
-| [seastore_journal_batch_flush_size](#seastore_journal_batch_flush_size) | `16_M` | Dev | Dev |
-| [seastore_journal_batch_preferred_fullness](#seastore_journal_batch_preferred_fullness) | `0.95` | Dev | Dev |
-| [seastore_journal_iodepth_limit](#seastore_journal_iodepth_limit) | `5` | Dev | Dev |
-| [seastore_main_device_type](#seastore_main_device_type) | `SSD` | Dev | Dev |
-| [seastore_max_concurrent_transactions](#seastore_max_concurrent_transactions) | `128` | Advanced | Performance |
-| [seastore_max_data_allocation_size](#seastore_max_data_allocation_size) | `0` | Advanced | Performance |
-| [seastore_multiple_tiers_default_evict_ratio](#seastore_multiple_tiers_default_evict_ratio) | `0.6` | Advanced | Performance |
-| [seastore_multiple_tiers_fast_evict_ratio](#seastore_multiple_tiers_fast_evict_ratio) | `0.7` | Advanced | Performance |
-| [seastore_multiple_tiers_stop_evict_ratio](#seastore_multiple_tiers_stop_evict_ratio) | `0.5` | Advanced | Performance |
-| [seastore_require_partition_count_match_reactor_count](#seastore_require_partition_count_match_reactor_count) | `True` | Advanced | Performance |
-| [seastore_segment_cleaner_gc_autotune](#seastore_segment_cleaner_gc_autotune) | `True` | Advanced | Performance |
-| [seastore_segment_cleaner_gc_autotune_ratio](#seastore_segment_cleaner_gc_autotune_ratio) | `2.0` | Advanced | Performance |
-| [seastore_segment_cleaner_gc_formula](#seastore_segment_cleaner_gc_formula) | `cost_benefit` | Advanced | Performance |
-| [seastore_segment_size](#seastore_segment_size) | `64_M` | Advanced | Performance |
+| [seastore_block_create](#seastore_block_create) | `True` | Dev | توسعه |
+| [seastore_cachepin_2q_in_ratio](#seastore_cachepin_2q_in_ratio) | `0.5` | Advanced | عملکرد |
+| [seastore_cachepin_2q_out_ratio](#seastore_cachepin_2q_out_ratio) | `0.5` | Advanced | عملکرد |
+| [seastore_cachepin_size_pershard](#seastore_cachepin_size_pershard) | `2_G` | Advanced | عملکرد |
+| [seastore_cachepin_type](#seastore_cachepin_type) | `LRU` | Dev | توسعه |
+| [seastore_cbjournal_size](#seastore_cbjournal_size) | `5_G` | Dev | توسعه |
+| [seastore_cold_tier_generations](#seastore_cold_tier_generations) | `3` | Advanced | عملکرد |
+| [seastore_data_delta_based_overwrite](#seastore_data_delta_based_overwrite) | `0` | Dev | توسعه |
+| [seastore_default_max_object_size](#seastore_default_max_object_size) | `16777216` | Dev | توسعه |
+| [seastore_device_size](#seastore_device_size) | `50_G` | Dev | توسعه |
+| [seastore_disable_end_to_end_data_protection](#seastore_disable_end_to_end_data_protection) | `True` | Dev | توسعه |
+| [seastore_full_integrity_check](#seastore_full_integrity_check) | `False` | Dev | توسعه |
+| [seastore_hot_tier_generations](#seastore_hot_tier_generations) | `5` | Advanced | عملکرد |
+| [seastore_journal_batch_capacity](#seastore_journal_batch_capacity) | `16` | Dev | توسعه |
+| [seastore_journal_batch_flush_size](#seastore_journal_batch_flush_size) | `16_M` | Dev | توسعه |
+| [seastore_journal_batch_preferred_fullness](#seastore_journal_batch_preferred_fullness) | `0.95` | Dev | توسعه |
+| [seastore_journal_iodepth_limit](#seastore_journal_iodepth_limit) | `5` | Dev | توسعه |
+| [seastore_main_device_type](#seastore_main_device_type) | `SSD` | Dev | توسعه |
+| [seastore_max_concurrent_transactions](#seastore_max_concurrent_transactions) | `128` | Advanced | عملکرد |
+| [seastore_max_data_allocation_size](#seastore_max_data_allocation_size) | `0` | Advanced | عملکرد |
+| [seastore_multiple_tiers_default_evict_ratio](#seastore_multiple_tiers_default_evict_ratio) | `0.6` | Advanced | عملکرد |
+| [seastore_multiple_tiers_fast_evict_ratio](#seastore_multiple_tiers_fast_evict_ratio) | `0.7` | Advanced | عملکرد |
+| [seastore_multiple_tiers_stop_evict_ratio](#seastore_multiple_tiers_stop_evict_ratio) | `0.5` | Advanced | عملکرد |
+| [seastore_require_partition_count_match_reactor_count](#seastore_require_partition_count_match_reactor_count) | `True` | Advanced | عملکرد |
+| [seastore_segment_cleaner_gc_autotune](#seastore_segment_cleaner_gc_autotune) | `True` | Advanced | عملکرد |
+| [seastore_segment_cleaner_gc_autotune_ratio](#seastore_segment_cleaner_gc_autotune_ratio) | `2.0` | Advanced | عملکرد |
+| [seastore_segment_cleaner_gc_formula](#seastore_segment_cleaner_gc_formula) | `cost_benefit` | Advanced | عملکرد |
+| [seastore_segment_size](#seastore_segment_size) | `64_M` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -73,7 +73,7 @@ ceph config get osd seastore_block_create
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -101,7 +101,7 @@ ceph config get osd seastore_cachepin_2q_in_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -138,7 +138,7 @@ ceph config get osd seastore_cachepin_2q_out_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -175,7 +175,7 @@ ceph config get osd seastore_cachepin_size_pershard
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2_G`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -212,7 +212,7 @@ ceph config get osd seastore_cachepin_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`LRU`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -240,7 +240,7 @@ ceph config get osd seastore_cbjournal_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5_G`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -268,7 +268,7 @@ ceph config get osd seastore_cold_tier_generations
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -305,7 +305,7 @@ ceph config get osd seastore_data_delta_based_overwrite
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -333,7 +333,7 @@ ceph config get osd seastore_default_max_object_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`16777216`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -361,7 +361,7 @@ ceph config get osd seastore_device_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`50_G`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -389,7 +389,7 @@ ceph config get osd seastore_disable_end_to_end_data_protection
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -417,7 +417,7 @@ ceph config get osd seastore_full_integrity_check
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -445,7 +445,7 @@ ceph config get osd seastore_hot_tier_generations
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -484,7 +484,7 @@ ceph config get osd seastore_journal_batch_capacity
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`16`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -512,7 +512,7 @@ ceph config get osd seastore_journal_batch_flush_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`16_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -540,7 +540,7 @@ ceph config get osd seastore_journal_batch_preferred_fullness
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.95`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -568,7 +568,7 @@ ceph config get osd seastore_journal_iodepth_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -596,7 +596,7 @@ ceph config get osd seastore_main_device_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`SSD`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -624,7 +624,7 @@ ceph config get osd seastore_max_concurrent_transactions
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -661,7 +661,7 @@ ceph config get osd seastore_max_data_allocation_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -698,7 +698,7 @@ ceph config get osd seastore_multiple_tiers_default_evict_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.6`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -735,7 +735,7 @@ ceph config get osd seastore_multiple_tiers_fast_evict_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.7`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -772,7 +772,7 @@ ceph config get osd seastore_multiple_tiers_stop_evict_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -810,7 +810,7 @@ ceph orch restart osd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -847,7 +847,7 @@ ceph config get osd seastore_segment_cleaner_gc_autotune
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -884,7 +884,7 @@ ceph config get osd seastore_segment_cleaner_gc_autotune_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2.0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -923,7 +923,7 @@ ceph config get osd seastore_segment_cleaner_gc_formula
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `cost_benefit`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -960,7 +960,7 @@ ceph config get osd seastore_segment_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

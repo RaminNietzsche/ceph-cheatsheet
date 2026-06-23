@@ -4,30 +4,30 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mon_accept_timeout_factor](#mon_accept_timeout_factor) | `2` | Advanced | Performance |
-| [mon_election_default_strategy](#mon_election_default_strategy) | `1` | Advanced | Performance |
-| [mon_election_timeout](#mon_election_timeout) | `5` | Advanced | Performance |
-| [paxos_kill_at](#paxos_kill_at) | `0` | Dev | Dev |
-| [paxos_max_join_drift](#paxos_max_join_drift) | `10` | Advanced | Performance |
-| [paxos_min](#paxos_min) | `500` | Advanced | Performance |
-| [paxos_min_wait](#paxos_min_wait) | `0.05` | Advanced | Performance |
-| [paxos_propose_interval](#paxos_propose_interval) | `1` | Advanced | Performance |
-| [paxos_service_trim_max](#paxos_service_trim_max) | `500` | Advanced | Performance |
-| [paxos_service_trim_max_multiplier](#paxos_service_trim_max_multiplier) | `20` | Advanced | Performance |
-| [paxos_service_trim_min](#paxos_service_trim_min) | `250` | Advanced | Performance |
-| [paxos_stash_full_interval](#paxos_stash_full_interval) | `25` | Advanced | Performance |
-| [paxos_trim_max](#paxos_trim_max) | `500` | Advanced | Performance |
-| [paxos_trim_min](#paxos_trim_min) | `250` | Advanced | Performance |
+| [mon_accept_timeout_factor](#mon_accept_timeout_factor) | `2` | Advanced | عملکرد |
+| [mon_election_default_strategy](#mon_election_default_strategy) | `1` | Advanced | عملکرد |
+| [mon_election_timeout](#mon_election_timeout) | `5` | Advanced | عملکرد |
+| [paxos_kill_at](#paxos_kill_at) | `0` | Dev | توسعه |
+| [paxos_max_join_drift](#paxos_max_join_drift) | `10` | Advanced | عملکرد |
+| [paxos_min](#paxos_min) | `500` | Advanced | عملکرد |
+| [paxos_min_wait](#paxos_min_wait) | `0.05` | Advanced | عملکرد |
+| [paxos_propose_interval](#paxos_propose_interval) | `1` | Advanced | عملکرد |
+| [paxos_service_trim_max](#paxos_service_trim_max) | `500` | Advanced | عملکرد |
+| [paxos_service_trim_max_multiplier](#paxos_service_trim_max_multiplier) | `20` | Advanced | عملکرد |
+| [paxos_service_trim_min](#paxos_service_trim_min) | `250` | Advanced | عملکرد |
+| [paxos_stash_full_interval](#paxos_stash_full_interval) | `25` | Advanced | عملکرد |
+| [paxos_trim_max](#paxos_trim_max) | `500` | Advanced | عملکرد |
+| [paxos_trim_min](#paxos_trim_min) | `250` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -59,7 +59,7 @@ ceph config get mon mon_accept_timeout_factor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -95,7 +95,7 @@ ceph config get mon mon_election_default_strategy
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -133,7 +133,7 @@ ceph config get mon mon_election_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -167,7 +167,7 @@ ceph config get mon paxos_kill_at
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -193,7 +193,7 @@ ceph config get mon paxos_max_join_drift
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -227,7 +227,7 @@ ceph config get mon paxos_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -261,7 +261,7 @@ ceph config get mon paxos_min_wait
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.05`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -295,7 +295,7 @@ ceph config get mon paxos_propose_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -329,7 +329,7 @@ ceph config get mon paxos_service_trim_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -365,7 +365,7 @@ ceph config get mon paxos_service_trim_max_multiplier
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -401,7 +401,7 @@ ceph config get mon paxos_service_trim_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `250`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -435,7 +435,7 @@ ceph config get mon paxos_stash_full_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `25`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -469,7 +469,7 @@ ceph config get mon paxos_trim_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `500`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -503,7 +503,7 @@ ceph config get mon paxos_trim_min
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `250`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

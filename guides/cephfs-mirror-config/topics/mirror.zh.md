@@ -4,31 +4,31 @@ CephFS mirror 配置深度指南 — 15 个选项。[← 概览](../OVERVIEW.md)
 
 | 选项 | 默认值 | 级别 | 调优 |
 |--------|---------|-------|--------|
-| [cephfs_mirror_action_update_interval](#cephfs_mirror_action_update_interval) | `2` | Advanced | Performance |
-| [cephfs_mirror_blockdiff_min_file_size](#cephfs_mirror_blockdiff_min_file_size) | `16_M` | Advanced | Performance |
-| [cephfs_mirror_datasync_files_per_batch](#cephfs_mirror_datasync_files_per_batch) | `64` | Advanced | Performance |
-| [cephfs_mirror_directory_scan_interval](#cephfs_mirror_directory_scan_interval) | `10` | Advanced | Performance |
-| [cephfs_mirror_distribute_datasync_threads](#cephfs_mirror_distribute_datasync_threads) | `True` | Advanced | Performance |
-| [cephfs_mirror_max_concurrent_directory_syncs](#cephfs_mirror_max_concurrent_directory_syncs) | `3` | Advanced | Performance |
-| [cephfs_mirror_max_consecutive_failures_per_directory](#cephfs_mirror_max_consecutive_failures_per_directory) | `10` | Advanced | Performance |
-| [cephfs_mirror_max_datasync_threads](#cephfs_mirror_max_datasync_threads) | `6` | Advanced | Performance |
-| [cephfs_mirror_max_snapshot_sync_per_cycle](#cephfs_mirror_max_snapshot_sync_per_cycle) | `3` | Advanced | Performance |
-| [cephfs_mirror_mount_timeout](#cephfs_mirror_mount_timeout) | `10` | Advanced | Performance |
-| [cephfs_mirror_perf_stats_prio](#cephfs_mirror_perf_stats_prio) | `5` | Advanced | Performance |
-| [cephfs_mirror_restart_mirror_on_blocklist_interval](#cephfs_mirror_restart_mirror_on_blocklist_interval) | `30` | Advanced | Performance |
-| [cephfs_mirror_restart_mirror_on_failure_interval](#cephfs_mirror_restart_mirror_on_failure_interval) | `20` | Advanced | Performance |
-| [cephfs_mirror_retry_failed_directories_interval](#cephfs_mirror_retry_failed_directories_interval) | `60` | Advanced | Performance |
-| [cephfs_mirror_tick_interval](#cephfs_mirror_tick_interval) | `5` | Advanced | Performance |
+| [cephfs_mirror_action_update_interval](#cephfs_mirror_action_update_interval) | `2` | Advanced | 性能 |
+| [cephfs_mirror_blockdiff_min_file_size](#cephfs_mirror_blockdiff_min_file_size) | `16_M` | Advanced | 性能 |
+| [cephfs_mirror_datasync_files_per_batch](#cephfs_mirror_datasync_files_per_batch) | `64` | Advanced | 性能 |
+| [cephfs_mirror_directory_scan_interval](#cephfs_mirror_directory_scan_interval) | `10` | Advanced | 性能 |
+| [cephfs_mirror_distribute_datasync_threads](#cephfs_mirror_distribute_datasync_threads) | `True` | Advanced | 性能 |
+| [cephfs_mirror_max_concurrent_directory_syncs](#cephfs_mirror_max_concurrent_directory_syncs) | `3` | Advanced | 性能 |
+| [cephfs_mirror_max_consecutive_failures_per_directory](#cephfs_mirror_max_consecutive_failures_per_directory) | `10` | Advanced | 性能 |
+| [cephfs_mirror_max_datasync_threads](#cephfs_mirror_max_datasync_threads) | `6` | Advanced | 性能 |
+| [cephfs_mirror_max_snapshot_sync_per_cycle](#cephfs_mirror_max_snapshot_sync_per_cycle) | `3` | Advanced | 性能 |
+| [cephfs_mirror_mount_timeout](#cephfs_mirror_mount_timeout) | `10` | Advanced | 性能 |
+| [cephfs_mirror_perf_stats_prio](#cephfs_mirror_perf_stats_prio) | `5` | Advanced | 性能 |
+| [cephfs_mirror_restart_mirror_on_blocklist_interval](#cephfs_mirror_restart_mirror_on_blocklist_interval) | `30` | Advanced | 性能 |
+| [cephfs_mirror_restart_mirror_on_failure_interval](#cephfs_mirror_restart_mirror_on_failure_interval) | `20` | Advanced | 性能 |
+| [cephfs_mirror_retry_failed_directories_interval](#cephfs_mirror_retry_failed_directories_interval) | `60` | Advanced | 性能 |
+| [cephfs_mirror_tick_interval](#cephfs_mirror_tick_interval) | `5` | Advanced | 性能 |
 
 ## 寻找最优值
 
 | 模型 | 如何选择 |
 |-------|---------------|
-| **Policy** | 安全、兼容性、运维默认值 |
-| **Capacity** | 磁盘布局、路径、容量规划 |
-| **Performance** | 基线 → 逐步调整 → 监控集群 |
-| **Connectivity** | 最近且稳定的外部端点 |
-| **Dev** | 生产环境保持 upstream 默认值 |
+| **策略** | 安全、兼容性、运维默认值 |
+| **容量** | 磁盘布局、路径、容量规划 |
+| **性能** | 基线 → 逐步调整 → 监控集群 |
+| **连通性** | 最近且稳定的外部端点 |
+| **开发** | 生产环境保持 upstream 默认值 |
 
 **常用工具：**
 
@@ -60,7 +60,7 @@ ceph config get cephfs_mirror cephfs_mirror_action_update_interval
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `2` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -97,7 +97,7 @@ ceph config get cephfs_mirror cephfs_mirror_blockdiff_min_file_size
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `16_M` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -132,7 +132,7 @@ ceph config get cephfs_mirror cephfs_mirror_datasync_files_per_batch
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `64` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -169,7 +169,7 @@ ceph config get cephfs_mirror cephfs_mirror_directory_scan_interval
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `10` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -206,7 +206,7 @@ ceph config get cephfs_mirror cephfs_mirror_distribute_datasync_threads
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `True` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -241,7 +241,7 @@ ceph config get cephfs_mirror cephfs_mirror_max_concurrent_directory_syncs
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `3` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -278,7 +278,7 @@ ceph config get cephfs_mirror cephfs_mirror_max_consecutive_failures_per_directo
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `10` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -315,7 +315,7 @@ ceph config get cephfs_mirror cephfs_mirror_max_datasync_threads
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `6` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -352,7 +352,7 @@ ceph config get cephfs_mirror cephfs_mirror_max_snapshot_sync_per_cycle
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `3` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -389,7 +389,7 @@ ceph config get cephfs_mirror cephfs_mirror_mount_timeout
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `10` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -426,7 +426,7 @@ ceph config get cephfs_mirror cephfs_mirror_perf_stats_prio
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `5` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -463,7 +463,7 @@ ceph config get cephfs_mirror cephfs_mirror_restart_mirror_on_blocklist_interval
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `30` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -500,7 +500,7 @@ ceph config get cephfs_mirror cephfs_mirror_restart_mirror_on_failure_interval
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `20` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -537,7 +537,7 @@ ceph config get cephfs_mirror cephfs_mirror_retry_failed_directories_interval
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `60` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。
@@ -574,7 +574,7 @@ ceph config get cephfs_mirror cephfs_mirror_tick_interval
 
 **寻找最优值：**
 
-**调优模型：** Performance
+**调优模型：** 性能
 
 1. 以 upstream 默认值 `5` 为基线。
 2. 在代表性负载下每个测试窗口只改 **一个** 选项。

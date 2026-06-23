@@ -1,8 +1,6 @@
-> **说明：** 本页尚未提供中文翻译，以下为英文原文。
+# CephFS 命令
 
-# CephFS Commands
-
-## File system management
+## 文件系统管理
 
 ```bash
 ceph fs ls
@@ -16,7 +14,7 @@ ceph fs status [<fs-name>]
 ceph fs dump
 ```
 
-## MDS (metadata server)
+## MDS（元数据服务器）
 
 ```bash
 ceph mds stat
@@ -26,7 +24,7 @@ ceph mds repaired <rank>           # after damage repair
 ceph tell mds.<name> command …
 ```
 
-## Subvolumes & quotas (volumes)
+## 子卷与配额（volumes）
 
 ```bash
 ceph fs subvolume create <vol> <subvol> [--size bytes] [--group=<group>]
@@ -36,7 +34,7 @@ ceph fs subvolume info <vol> <subvol>
 ceph fs subvolumegroup create <vol> <group>
 ```
 
-## Snapshots
+## 快照
 
 ```bash
 ceph fs snap-schedule status [<path>]
@@ -44,7 +42,7 @@ ceph fs snap-schedule list [<path>]
 ceph fs snap-schedule add <path> <interval> [--start-time …]
 ```
 
-## Mount
+## 挂载
 
 ```bash
 # Kernel mount
@@ -57,7 +55,7 @@ ceph-fuse /mnt/cephfs -n client.admin
 ceph fs volume info <vol>
 ```
 
-## CephFS mirroring
+## CephFS 镜像
 
 ```bash
 ceph fs snapshot mirror enable <fs>
@@ -66,6 +64,6 @@ ceph fs snapshot mirror add <fs> <peer_fsid>/<remote_fs>
 ceph fs snapshot mirror info <fs>
 ```
 
-See [config/mds](../config/mds/INDEX.md) and [config/cephfs-mirror](../config/cephfs-mirror/INDEX.md).
+见 [config/mds](../config/mds/INDEX.md) 与 [config/cephfs-mirror](../config/cephfs-mirror/INDEX.md)。
 
-[← CLI overview](OVERVIEW.md)
+[← CLI 概览](OVERVIEW.md)

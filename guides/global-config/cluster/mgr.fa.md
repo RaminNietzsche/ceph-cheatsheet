@@ -4,27 +4,27 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [mgr_client_service_daemon_unregister_timeout](#mgr_client_service_daemon_unregister_timeout) | `1` | Dev | Dev |
-| [mgr_connect_retry_interval](#mgr_connect_retry_interval) | `1` | Dev | Dev |
-| [mgr_enable_op_tracker](#mgr_enable_op_tracker) | `True` | Advanced | Policy |
-| [mgr_map_cache_enabled](#mgr_map_cache_enabled) | `True` | Dev | Dev |
-| [mgr_num_op_tracker_shard](#mgr_num_op_tracker_shard) | `32` | Advanced | Performance |
-| [mgr_op_complaint_time](#mgr_op_complaint_time) | `30` | Advanced | Performance |
-| [mgr_op_history_duration](#mgr_op_history_duration) | `600` | Advanced | Performance |
-| [mgr_op_history_size](#mgr_op_history_size) | `20` | Advanced | Performance |
-| [mgr_op_history_slow_op_size](#mgr_op_history_slow_op_size) | `20` | Advanced | Performance |
-| [mgr_op_history_slow_op_threshold](#mgr_op_history_slow_op_threshold) | `10` | Advanced | Performance |
-| [mgr_op_log_threshold](#mgr_op_log_threshold) | `5` | Advanced | Performance |
+| [mgr_client_service_daemon_unregister_timeout](#mgr_client_service_daemon_unregister_timeout) | `1` | Dev | توسعه |
+| [mgr_connect_retry_interval](#mgr_connect_retry_interval) | `1` | Dev | توسعه |
+| [mgr_enable_op_tracker](#mgr_enable_op_tracker) | `True` | Advanced | سیاست |
+| [mgr_map_cache_enabled](#mgr_map_cache_enabled) | `True` | Dev | توسعه |
+| [mgr_num_op_tracker_shard](#mgr_num_op_tracker_shard) | `32` | Advanced | عملکرد |
+| [mgr_op_complaint_time](#mgr_op_complaint_time) | `30` | Advanced | عملکرد |
+| [mgr_op_history_duration](#mgr_op_history_duration) | `600` | Advanced | عملکرد |
+| [mgr_op_history_size](#mgr_op_history_size) | `20` | Advanced | عملکرد |
+| [mgr_op_history_slow_op_size](#mgr_op_history_slow_op_size) | `20` | Advanced | عملکرد |
+| [mgr_op_history_slow_op_threshold](#mgr_op_history_slow_op_threshold) | `10` | Advanced | عملکرد |
+| [mgr_op_log_threshold](#mgr_op_log_threshold) | `5` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -56,7 +56,7 @@ ceph config get mgr mgr_client_service_daemon_unregister_timeout
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -84,7 +84,7 @@ ceph config get mgr mgr_connect_retry_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -112,7 +112,7 @@ ceph config get mgr mgr_enable_op_tracker
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `True` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -147,7 +147,7 @@ ceph config get mgr mgr_map_cache_enabled
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -175,7 +175,7 @@ ceph config get mgr mgr_num_op_tracker_shard
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `32`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -211,7 +211,7 @@ ceph config get mgr mgr_op_complaint_time
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `30`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -247,7 +247,7 @@ ceph config get mgr mgr_op_history_duration
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `600`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -281,7 +281,7 @@ ceph config get mgr mgr_op_history_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -317,7 +317,7 @@ ceph config get mgr mgr_op_history_slow_op_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `20`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -353,7 +353,7 @@ ceph config get mgr mgr_op_history_slow_op_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -387,7 +387,7 @@ ceph config get mgr mgr_op_log_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.

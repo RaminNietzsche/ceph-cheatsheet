@@ -4,190 +4,190 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [bluestore_2q_cache_kin_ratio](#bluestore_2q_cache_kin_ratio) | `0.5` | Dev | Dev |
-| [bluestore_2q_cache_kout_ratio](#bluestore_2q_cache_kout_ratio) | `0.5` | Dev | Dev |
-| [bluestore_alloc_stats_dump_interval](#bluestore_alloc_stats_dump_interval) | `1_day` | Dev | Dev |
-| [bluestore_allocation_from_file](#bluestore_allocation_from_file) | `True` | Dev | Dev |
-| [bluestore_allocation_recovery_threads](#bluestore_allocation_recovery_threads) | `0` | Basic | Performance |
-| [bluestore_allocator](#bluestore_allocator) | `hybrid` | Advanced | Performance |
-| [bluestore_allocator_lookup_policy](#bluestore_allocator_lookup_policy) | `auto` | Advanced | Performance |
-| [bluestore_async_db_compaction](#bluestore_async_db_compaction) | `True` | Dev | Dev |
-| [bluestore_avl_alloc_bf_free_pct](#bluestore_avl_alloc_bf_free_pct) | `4` | Dev | Dev |
-| [bluestore_avl_alloc_bf_threshold](#bluestore_avl_alloc_bf_threshold) | `128_K` | Dev | Dev |
-| [bluestore_avl_alloc_ff_max_search_bytes](#bluestore_avl_alloc_ff_max_search_bytes) | `16_M` | Dev | Dev |
-| [bluestore_avl_alloc_ff_max_search_count](#bluestore_avl_alloc_ff_max_search_count) | `100` | Dev | Dev |
-| [bluestore_bdev_label_multi](#bluestore_bdev_label_multi) | `True` | Advanced | Performance |
-| [bluestore_bdev_label_multi_upgrade](#bluestore_bdev_label_multi_upgrade) | `False` | Advanced | Performance |
-| [bluestore_bdev_label_require_all](#bluestore_bdev_label_require_all) | `True` | Advanced | Performance |
-| [bluestore_bitmapallocator_blocks_per_zone](#bluestore_bitmapallocator_blocks_per_zone) | `1_K` | Dev | Dev |
-| [bluestore_bitmapallocator_span_size](#bluestore_bitmapallocator_span_size) | `1_K` | Dev | Dev |
-| [bluestore_blobid_prealloc](#bluestore_blobid_prealloc) | `10_K` | Dev | Dev |
-| [bluestore_block_create](#bluestore_block_create) | `True` | Dev | Dev |
-| [bluestore_block_db_create](#bluestore_block_db_create) | `False` | Dev | Dev |
-| [bluestore_block_db_path](#bluestore_block_db_path) | `(empty)` | Dev | Dev |
-| [bluestore_block_db_size](#bluestore_block_db_size) | `0` | Dev | Dev |
-| [bluestore_block_path](#bluestore_block_path) | `(empty)` | Dev | Dev |
-| [bluestore_block_preallocate_file](#bluestore_block_preallocate_file) | `False` | Dev | Dev |
-| [bluestore_block_size](#bluestore_block_size) | `100_G` | Dev | Dev |
-| [bluestore_block_wal_create](#bluestore_block_wal_create) | `False` | Dev | Dev |
-| [bluestore_block_wal_path](#bluestore_block_wal_path) | `(empty)` | Dev | Dev |
-| [bluestore_block_wal_size](#bluestore_block_wal_size) | `96_M` | Dev | Dev |
-| [bluestore_bluefs](#bluestore_bluefs) | `True` | Dev | Dev |
-| [bluestore_bluefs_alloc_failure_dump_interval](#bluestore_bluefs_alloc_failure_dump_interval) | `0` | Advanced | Performance |
-| [bluestore_bluefs_env_mirror](#bluestore_bluefs_env_mirror) | `False` | Dev | Dev |
-| [bluestore_bluefs_max_free](#bluestore_bluefs_max_free) | `10_G` | Advanced | Performance |
-| [bluestore_bluefs_warn_ratio](#bluestore_bluefs_warn_ratio) | `0.06` | Basic | Policy |
-| [bluestore_btree2_alloc_weight_factor](#bluestore_btree2_alloc_weight_factor) | `2` | Dev | Dev |
-| [bluestore_cache_age_bin_interval](#bluestore_cache_age_bin_interval) | `1` | Dev | Dev |
-| [bluestore_cache_age_bins_data](#bluestore_cache_age_bins_data) | `1 2 6 24 120 720 0 0 0 0` | Dev | Dev |
-| [bluestore_cache_age_bins_kv](#bluestore_cache_age_bins_kv) | `1 2 6 24 120 720 0 0 0 0` | Dev | Dev |
-| [bluestore_cache_age_bins_kv_onode](#bluestore_cache_age_bins_kv_onode) | `0 0 0 0 0 0 0 0 0 720` | Dev | Dev |
-| [bluestore_cache_age_bins_meta](#bluestore_cache_age_bins_meta) | `1 2 6 24 120 720 0 0 0 0` | Dev | Dev |
-| [bluestore_cache_autotune](#bluestore_cache_autotune) | `True` | Dev | Dev |
-| [bluestore_cache_autotune_interval](#bluestore_cache_autotune_interval) | `5` | Dev | Dev |
-| [bluestore_cache_kv_onode_ratio](#bluestore_cache_kv_onode_ratio) | `0.04` | Dev | Dev |
-| [bluestore_cache_kv_ratio](#bluestore_cache_kv_ratio) | `0.45` | Dev | Dev |
-| [bluestore_cache_meta_evict_in_autotune](#bluestore_cache_meta_evict_in_autotune) | `True` | Advanced | Performance |
-| [bluestore_cache_meta_evict_limit](#bluestore_cache_meta_evict_limit) | `10` | Advanced | Performance |
-| [bluestore_cache_meta_ratio](#bluestore_cache_meta_ratio) | `0.45` | Dev | Dev |
-| [bluestore_cache_size](#bluestore_cache_size) | `0` | Dev | Dev |
-| [bluestore_cache_size_hdd](#bluestore_cache_size_hdd) | `1_G` | Dev | Dev |
-| [bluestore_cache_size_ssd](#bluestore_cache_size_ssd) | `3_G` | Dev | Dev |
-| [bluestore_cache_trim_interval](#bluestore_cache_trim_interval) | `0.05` | Advanced | Performance |
-| [bluestore_cache_trim_max_skip_pinned](#bluestore_cache_trim_max_skip_pinned) | `1000` | Dev | Dev |
-| [bluestore_cache_type](#bluestore_cache_type) | `2q` | Dev | Dev |
-| [bluestore_cleaner_sleep_interval](#bluestore_cleaner_sleep_interval) | `5` | Advanced | Performance |
-| [bluestore_clone_cow](#bluestore_clone_cow) | `True` | Advanced | Performance |
-| [bluestore_compression_algorithm](#bluestore_compression_algorithm) | `snappy` | Advanced | Performance |
-| [bluestore_compression_max_blob_size](#bluestore_compression_max_blob_size) | `0` | Advanced | Performance |
-| [bluestore_compression_max_blob_size_hdd](#bluestore_compression_max_blob_size_hdd) | `64_K` | Advanced | Performance |
-| [bluestore_compression_max_blob_size_ssd](#bluestore_compression_max_blob_size_ssd) | `64_K` | Advanced | Performance |
-| [bluestore_compression_min_blob_size](#bluestore_compression_min_blob_size) | `0` | Advanced | Performance |
-| [bluestore_compression_min_blob_size_hdd](#bluestore_compression_min_blob_size_hdd) | `64_K` | Advanced | Performance |
-| [bluestore_compression_min_blob_size_ssd](#bluestore_compression_min_blob_size_ssd) | `64_K` | Advanced | Performance |
-| [bluestore_compression_mode](#bluestore_compression_mode) | `none` | Advanced | Performance |
-| [bluestore_compression_required_ratio](#bluestore_compression_required_ratio) | `0.875` | Advanced | Performance |
-| [bluestore_csum_type](#bluestore_csum_type) | `crc32c` | Advanced | Performance |
-| [bluestore_debug_enforce_min_alloc_size](#bluestore_debug_enforce_min_alloc_size) | `0` | Dev | Dev |
-| [bluestore_debug_enforce_settings](#bluestore_debug_enforce_settings) | `default` | Dev | Dev |
-| [bluestore_debug_extent_map_encode_check](#bluestore_debug_extent_map_encode_check) | `False` | Dev | Dev |
-| [bluestore_debug_fast_recovery_compare_chance](#bluestore_debug_fast_recovery_compare_chance) | `0` | Dev | Dev |
-| [bluestore_debug_freelist](#bluestore_debug_freelist) | `False` | Dev | Dev |
-| [bluestore_debug_fsck_abort](#bluestore_debug_fsck_abort) | `False` | Dev | Dev |
-| [bluestore_debug_inject_allocation_from_file_failure](#bluestore_debug_inject_allocation_from_file_failure) | `0` | Dev | Dev |
-| [bluestore_debug_inject_csum_err_probability](#bluestore_debug_inject_csum_err_probability) | `0` | Dev | Dev |
-| [bluestore_debug_inject_read_err](#bluestore_debug_inject_read_err) | `False` | Dev | Dev |
-| [bluestore_debug_legacy_omap](#bluestore_debug_legacy_omap) | `False` | Dev | Dev |
-| [bluestore_debug_no_reuse_blocks](#bluestore_debug_no_reuse_blocks) | `False` | Dev | Dev |
-| [bluestore_debug_omit_block_device_write](#bluestore_debug_omit_block_device_write) | `False` | Dev | Dev |
-| [bluestore_debug_omit_kv_commit](#bluestore_debug_omit_kv_commit) | `False` | Dev | Dev |
-| [bluestore_debug_onode_segmentation_random](#bluestore_debug_onode_segmentation_random) | `False` | Dev | Dev |
-| [bluestore_debug_permit_any_bdev_label](#bluestore_debug_permit_any_bdev_label) | `False` | Dev | Dev |
-| [bluestore_debug_prefragment_max](#bluestore_debug_prefragment_max) | `1_M` | Dev | Dev |
-| [bluestore_debug_random_read_err](#bluestore_debug_random_read_err) | `0` | Dev | Dev |
-| [bluestore_debug_randomize_serial_transaction](#bluestore_debug_randomize_serial_transaction) | `0` | Dev | Dev |
-| [bluestore_debug_small_allocations](#bluestore_debug_small_allocations) | `0` | Dev | Dev |
-| [bluestore_debug_too_many_blobs_threshold](#bluestore_debug_too_many_blobs_threshold) | `24576` | Dev | Dev |
-| [bluestore_default_buffered_read](#bluestore_default_buffered_read) | `True` | Advanced | Performance |
-| [bluestore_default_buffered_write](#bluestore_default_buffered_write) | `False` | Advanced | Performance |
-| [bluestore_deferred_batch_ops](#bluestore_deferred_batch_ops) | `0` | Advanced | Performance |
-| [bluestore_deferred_batch_ops_hdd](#bluestore_deferred_batch_ops_hdd) | `64` | Advanced | Performance |
-| [bluestore_deferred_batch_ops_ssd](#bluestore_deferred_batch_ops_ssd) | `16` | Advanced | Performance |
-| [bluestore_discard_on_mkfs](#bluestore_discard_on_mkfs) | `True` | Advanced | Performance |
-| [bluestore_elastic_shared_blobs](#bluestore_elastic_shared_blobs) | `True` | Advanced | Performance |
-| [bluestore_extent_map_inline_shard_prealloc_size](#bluestore_extent_map_inline_shard_prealloc_size) | `256` | Dev | Dev |
-| [bluestore_extent_map_shard_max_size](#bluestore_extent_map_shard_max_size) | `1200` | Dev | Dev |
-| [bluestore_extent_map_shard_min_size](#bluestore_extent_map_shard_min_size) | `150` | Dev | Dev |
-| [bluestore_extent_map_shard_target_size](#bluestore_extent_map_shard_target_size) | `500` | Dev | Dev |
-| [bluestore_extent_map_shard_target_size_slop](#bluestore_extent_map_shard_target_size_slop) | `0.2` | Dev | Dev |
-| [bluestore_fail_eio](#bluestore_fail_eio) | `False` | Dev | Dev |
-| [bluestore_frag_runtime](#bluestore_frag_runtime) | `False` | Advanced | Performance |
-| [bluestore_frag_static](#bluestore_frag_static) | `False` | Advanced | Performance |
-| [bluestore_fragmentation_check_period](#bluestore_fragmentation_check_period) | `3600` | Basic | Policy |
-| [bluestore_freelist_blocks_per_key](#bluestore_freelist_blocks_per_key) | `128` | Dev | Dev |
-| [bluestore_fsck_error_on_no_per_pg_omap](#bluestore_fsck_error_on_no_per_pg_omap) | `False` | Advanced | Performance |
-| [bluestore_fsck_error_on_no_per_pool_omap](#bluestore_fsck_error_on_no_per_pool_omap) | `False` | Advanced | Performance |
-| [bluestore_fsck_error_on_no_per_pool_stats](#bluestore_fsck_error_on_no_per_pool_stats) | `False` | Advanced | Performance |
-| [bluestore_fsck_on_mkfs](#bluestore_fsck_on_mkfs) | `True` | Dev | Dev |
-| [bluestore_fsck_on_mkfs_deep](#bluestore_fsck_on_mkfs_deep) | `False` | Dev | Dev |
-| [bluestore_fsck_on_mount](#bluestore_fsck_on_mount) | `False` | Dev | Dev |
-| [bluestore_fsck_on_mount_deep](#bluestore_fsck_on_mount_deep) | `False` | Dev | Dev |
-| [bluestore_fsck_on_umount](#bluestore_fsck_on_umount) | `False` | Dev | Dev |
-| [bluestore_fsck_on_umount_deep](#bluestore_fsck_on_umount_deep) | `False` | Dev | Dev |
-| [bluestore_fsck_quick_fix_on_mount](#bluestore_fsck_quick_fix_on_mount) | `False` | Dev | Dev |
-| [bluestore_fsck_quick_fix_threads](#bluestore_fsck_quick_fix_threads) | `2` | Advanced | Performance |
-| [bluestore_fsck_read_bytes_cap](#bluestore_fsck_read_bytes_cap) | `64_M` | Advanced | Performance |
-| [bluestore_fsck_shared_blob_tracker_size](#bluestore_fsck_shared_blob_tracker_size) | `0.03125` | Dev | Dev |
-| [bluestore_gc_enable_blob_threshold](#bluestore_gc_enable_blob_threshold) | `0` | Dev | Dev |
-| [bluestore_gc_enable_total_threshold](#bluestore_gc_enable_total_threshold) | `0` | Dev | Dev |
-| [bluestore_hybrid_alloc_mem_cap](#bluestore_hybrid_alloc_mem_cap) | `64_M` | Dev | Dev |
-| [bluestore_ignore_data_csum](#bluestore_ignore_data_csum) | `False` | Dev | Dev |
-| [bluestore_kv_sync_util_logging_s](#bluestore_kv_sync_util_logging_s) | `10` | Advanced | Performance |
-| [bluestore_kvbackend](#bluestore_kvbackend) | `rocksdb` | Dev | Dev |
-| [bluestore_log_collection_list_age](#bluestore_log_collection_list_age) | `1_min` | Advanced | Performance |
-| [bluestore_log_omap_iterator_age](#bluestore_log_omap_iterator_age) | `5` | Advanced | Performance |
-| [bluestore_log_op_age](#bluestore_log_op_age) | `5` | Advanced | Performance |
-| [bluestore_log_scrub_op_age](#bluestore_log_scrub_op_age) | `5` | Advanced | Performance |
-| [bluestore_max_alloc_size](#bluestore_max_alloc_size) | `0` | Advanced | Performance |
-| [bluestore_max_blob_size](#bluestore_max_blob_size) | `0` | Dev | Dev |
-| [bluestore_max_blob_size_hdd](#bluestore_max_blob_size_hdd) | `64_K` | Dev | Dev |
-| [bluestore_max_blob_size_ssd](#bluestore_max_blob_size_ssd) | `64_K` | Dev | Dev |
-| [bluestore_max_defer_interval](#bluestore_max_defer_interval) | `3` | Advanced | Performance |
-| [bluestore_max_deferred_txc](#bluestore_max_deferred_txc) | `32` | Advanced | Performance |
-| [bluestore_min_alloc_size](#bluestore_min_alloc_size) | `0` | Advanced | Performance |
-| [bluestore_min_alloc_size_hdd](#bluestore_min_alloc_size_hdd) | `4_K` | Advanced | Performance |
-| [bluestore_min_alloc_size_ssd](#bluestore_min_alloc_size_ssd) | `4_K` | Advanced | Performance |
-| [bluestore_nid_prealloc](#bluestore_nid_prealloc) | `1024` | Dev | Dev |
-| [bluestore_onode_segment_size](#bluestore_onode_segment_size) | `0` | Advanced | Performance |
-| [bluestore_prefer_deferred_size](#bluestore_prefer_deferred_size) | `0` | Advanced | Performance |
-| [bluestore_prefer_deferred_size_hdd](#bluestore_prefer_deferred_size_hdd) | `64_K` | Advanced | Performance |
-| [bluestore_prefer_deferred_size_ssd](#bluestore_prefer_deferred_size_ssd) | `0` | Advanced | Performance |
-| [bluestore_qfsck_on_mount](#bluestore_qfsck_on_mount) | `True` | Dev | Dev |
-| [bluestore_recompression_min_gain](#bluestore_recompression_min_gain) | `1.2` | Advanced | Performance |
-| [bluestore_retry_disk_reads](#bluestore_retry_disk_reads) | `3` | Advanced | Performance |
-| [bluestore_rocksdb_cf](#bluestore_rocksdb_cf) | `True` | Advanced | Performance |
-| [bluestore_rocksdb_cfs](#bluestore_rocksdb_cfs) | `m(3) p(3,0-12) O(3,0-13)=block_cache={type=binned_lru} L=min_write_buffer_number_to_merge=32 P=min_write_buffer_number_to_merge=32` | Dev | Dev |
-| [bluestore_rocksdb_options](#bluestore_rocksdb_options) | `compression=kLZ4Compression,max_write_buffer_number=64,min_write_buffer_number_to_merge=6,compaction_style=kCompactionStyleLevel,write_buffer_size=16777216,max_background_jobs=4,level0_file_num_compaction_trigger=8,max_bytes_for_level_base=1073741824,max_bytes_for_level_multiplier=8,compaction_readahead_size=2MB,max_total_wal_size=1073741824,writable_file_max_buffer_size=0` | Advanced | Performance |
-| [bluestore_rocksdb_options_annex](#bluestore_rocksdb_options_annex) | `(empty)` | Advanced | Performance |
-| [bluestore_slow_ops_warn_lifetime](#bluestore_slow_ops_warn_lifetime) | `86400` | Advanced | Performance |
-| [bluestore_slow_ops_warn_threshold](#bluestore_slow_ops_warn_threshold) | `1` | Advanced | Performance |
-| [bluestore_slow_scrub_ops_warn_threshold](#bluestore_slow_scrub_ops_warn_threshold) | `1` | Advanced | Performance |
-| [bluestore_spdk_coremask](#bluestore_spdk_coremask) | `0x1` | Dev | Dev |
-| [bluestore_spdk_io_sleep](#bluestore_spdk_io_sleep) | `5` | Dev | Dev |
-| [bluestore_spdk_max_io_completion](#bluestore_spdk_max_io_completion) | `0` | Dev | Dev |
-| [bluestore_spdk_mem](#bluestore_spdk_mem) | `512` | Dev | Dev |
-| [bluestore_sync_submit_transaction](#bluestore_sync_submit_transaction) | `False` | Dev | Dev |
-| [bluestore_throttle_bytes](#bluestore_throttle_bytes) | `64_M` | Advanced | Performance |
-| [bluestore_throttle_cost_per_io](#bluestore_throttle_cost_per_io) | `0` | Advanced | Performance |
-| [bluestore_throttle_cost_per_io_hdd](#bluestore_throttle_cost_per_io_hdd) | `670000` | Advanced | Performance |
-| [bluestore_throttle_cost_per_io_ssd](#bluestore_throttle_cost_per_io_ssd) | `4000` | Advanced | Performance |
-| [bluestore_throttle_deferred_bytes](#bluestore_throttle_deferred_bytes) | `128_M` | Advanced | Performance |
-| [bluestore_throttle_trace_rate](#bluestore_throttle_trace_rate) | `0` | Advanced | Performance |
-| [bluestore_tracing](#bluestore_tracing) | `False` | Advanced | Performance |
-| [bluestore_use_ebd](#bluestore_use_ebd) | `True` | Advanced | Performance |
-| [bluestore_use_optimal_io_size_for_min_alloc_size](#bluestore_use_optimal_io_size_for_min_alloc_size) | `False` | Advanced | Performance |
-| [bluestore_volume_selection_policy](#bluestore_volume_selection_policy) | `use_some_extra` | Dev | Dev |
-| [bluestore_volume_selection_reserved](#bluestore_volume_selection_reserved) | `0` | Advanced | Performance |
-| [bluestore_volume_selection_reserved_factor](#bluestore_volume_selection_reserved_factor) | `2` | Advanced | Performance |
-| [bluestore_warn_on_bluefs_spillover](#bluestore_warn_on_bluefs_spillover) | `True` | Advanced | Performance |
-| [bluestore_warn_on_free_fragmentation](#bluestore_warn_on_free_fragmentation) | `0.8` | Basic | Policy |
-| [bluestore_warn_on_legacy_statfs](#bluestore_warn_on_legacy_statfs) | `True` | Advanced | Performance |
-| [bluestore_warn_on_no_per_pg_omap](#bluestore_warn_on_no_per_pg_omap) | `False` | Advanced | Performance |
-| [bluestore_warn_on_no_per_pool_omap](#bluestore_warn_on_no_per_pool_omap) | `True` | Advanced | Performance |
-| [bluestore_warn_on_spurious_read_errors](#bluestore_warn_on_spurious_read_errors) | `True` | Advanced | Performance |
-| [bluestore_write_v2](#bluestore_write_v2) | `False` | Advanced | Performance |
-| [bluestore_write_v2_random](#bluestore_write_v2_random) | `False` | Advanced | Performance |
-| [bluestore_zero_block_detection](#bluestore_zero_block_detection) | `False` | Dev | Dev |
+| [bluestore_2q_cache_kin_ratio](#bluestore_2q_cache_kin_ratio) | `0.5` | Dev | توسعه |
+| [bluestore_2q_cache_kout_ratio](#bluestore_2q_cache_kout_ratio) | `0.5` | Dev | توسعه |
+| [bluestore_alloc_stats_dump_interval](#bluestore_alloc_stats_dump_interval) | `1_day` | Dev | توسعه |
+| [bluestore_allocation_from_file](#bluestore_allocation_from_file) | `True` | Dev | توسعه |
+| [bluestore_allocation_recovery_threads](#bluestore_allocation_recovery_threads) | `0` | Basic | عملکرد |
+| [bluestore_allocator](#bluestore_allocator) | `hybrid` | Advanced | عملکرد |
+| [bluestore_allocator_lookup_policy](#bluestore_allocator_lookup_policy) | `auto` | Advanced | عملکرد |
+| [bluestore_async_db_compaction](#bluestore_async_db_compaction) | `True` | Dev | توسعه |
+| [bluestore_avl_alloc_bf_free_pct](#bluestore_avl_alloc_bf_free_pct) | `4` | Dev | توسعه |
+| [bluestore_avl_alloc_bf_threshold](#bluestore_avl_alloc_bf_threshold) | `128_K` | Dev | توسعه |
+| [bluestore_avl_alloc_ff_max_search_bytes](#bluestore_avl_alloc_ff_max_search_bytes) | `16_M` | Dev | توسعه |
+| [bluestore_avl_alloc_ff_max_search_count](#bluestore_avl_alloc_ff_max_search_count) | `100` | Dev | توسعه |
+| [bluestore_bdev_label_multi](#bluestore_bdev_label_multi) | `True` | Advanced | عملکرد |
+| [bluestore_bdev_label_multi_upgrade](#bluestore_bdev_label_multi_upgrade) | `False` | Advanced | عملکرد |
+| [bluestore_bdev_label_require_all](#bluestore_bdev_label_require_all) | `True` | Advanced | عملکرد |
+| [bluestore_bitmapallocator_blocks_per_zone](#bluestore_bitmapallocator_blocks_per_zone) | `1_K` | Dev | توسعه |
+| [bluestore_bitmapallocator_span_size](#bluestore_bitmapallocator_span_size) | `1_K` | Dev | توسعه |
+| [bluestore_blobid_prealloc](#bluestore_blobid_prealloc) | `10_K` | Dev | توسعه |
+| [bluestore_block_create](#bluestore_block_create) | `True` | Dev | توسعه |
+| [bluestore_block_db_create](#bluestore_block_db_create) | `False` | Dev | توسعه |
+| [bluestore_block_db_path](#bluestore_block_db_path) | `(empty)` | Dev | توسعه |
+| [bluestore_block_db_size](#bluestore_block_db_size) | `0` | Dev | توسعه |
+| [bluestore_block_path](#bluestore_block_path) | `(empty)` | Dev | توسعه |
+| [bluestore_block_preallocate_file](#bluestore_block_preallocate_file) | `False` | Dev | توسعه |
+| [bluestore_block_size](#bluestore_block_size) | `100_G` | Dev | توسعه |
+| [bluestore_block_wal_create](#bluestore_block_wal_create) | `False` | Dev | توسعه |
+| [bluestore_block_wal_path](#bluestore_block_wal_path) | `(empty)` | Dev | توسعه |
+| [bluestore_block_wal_size](#bluestore_block_wal_size) | `96_M` | Dev | توسعه |
+| [bluestore_bluefs](#bluestore_bluefs) | `True` | Dev | توسعه |
+| [bluestore_bluefs_alloc_failure_dump_interval](#bluestore_bluefs_alloc_failure_dump_interval) | `0` | Advanced | عملکرد |
+| [bluestore_bluefs_env_mirror](#bluestore_bluefs_env_mirror) | `False` | Dev | توسعه |
+| [bluestore_bluefs_max_free](#bluestore_bluefs_max_free) | `10_G` | Advanced | عملکرد |
+| [bluestore_bluefs_warn_ratio](#bluestore_bluefs_warn_ratio) | `0.06` | Basic | سیاست |
+| [bluestore_btree2_alloc_weight_factor](#bluestore_btree2_alloc_weight_factor) | `2` | Dev | توسعه |
+| [bluestore_cache_age_bin_interval](#bluestore_cache_age_bin_interval) | `1` | Dev | توسعه |
+| [bluestore_cache_age_bins_data](#bluestore_cache_age_bins_data) | `1 2 6 24 120 720 0 0 0 0` | Dev | توسعه |
+| [bluestore_cache_age_bins_kv](#bluestore_cache_age_bins_kv) | `1 2 6 24 120 720 0 0 0 0` | Dev | توسعه |
+| [bluestore_cache_age_bins_kv_onode](#bluestore_cache_age_bins_kv_onode) | `0 0 0 0 0 0 0 0 0 720` | Dev | توسعه |
+| [bluestore_cache_age_bins_meta](#bluestore_cache_age_bins_meta) | `1 2 6 24 120 720 0 0 0 0` | Dev | توسعه |
+| [bluestore_cache_autotune](#bluestore_cache_autotune) | `True` | Dev | توسعه |
+| [bluestore_cache_autotune_interval](#bluestore_cache_autotune_interval) | `5` | Dev | توسعه |
+| [bluestore_cache_kv_onode_ratio](#bluestore_cache_kv_onode_ratio) | `0.04` | Dev | توسعه |
+| [bluestore_cache_kv_ratio](#bluestore_cache_kv_ratio) | `0.45` | Dev | توسعه |
+| [bluestore_cache_meta_evict_in_autotune](#bluestore_cache_meta_evict_in_autotune) | `True` | Advanced | عملکرد |
+| [bluestore_cache_meta_evict_limit](#bluestore_cache_meta_evict_limit) | `10` | Advanced | عملکرد |
+| [bluestore_cache_meta_ratio](#bluestore_cache_meta_ratio) | `0.45` | Dev | توسعه |
+| [bluestore_cache_size](#bluestore_cache_size) | `0` | Dev | توسعه |
+| [bluestore_cache_size_hdd](#bluestore_cache_size_hdd) | `1_G` | Dev | توسعه |
+| [bluestore_cache_size_ssd](#bluestore_cache_size_ssd) | `3_G` | Dev | توسعه |
+| [bluestore_cache_trim_interval](#bluestore_cache_trim_interval) | `0.05` | Advanced | عملکرد |
+| [bluestore_cache_trim_max_skip_pinned](#bluestore_cache_trim_max_skip_pinned) | `1000` | Dev | توسعه |
+| [bluestore_cache_type](#bluestore_cache_type) | `2q` | Dev | توسعه |
+| [bluestore_cleaner_sleep_interval](#bluestore_cleaner_sleep_interval) | `5` | Advanced | عملکرد |
+| [bluestore_clone_cow](#bluestore_clone_cow) | `True` | Advanced | عملکرد |
+| [bluestore_compression_algorithm](#bluestore_compression_algorithm) | `snappy` | Advanced | عملکرد |
+| [bluestore_compression_max_blob_size](#bluestore_compression_max_blob_size) | `0` | Advanced | عملکرد |
+| [bluestore_compression_max_blob_size_hdd](#bluestore_compression_max_blob_size_hdd) | `64_K` | Advanced | عملکرد |
+| [bluestore_compression_max_blob_size_ssd](#bluestore_compression_max_blob_size_ssd) | `64_K` | Advanced | عملکرد |
+| [bluestore_compression_min_blob_size](#bluestore_compression_min_blob_size) | `0` | Advanced | عملکرد |
+| [bluestore_compression_min_blob_size_hdd](#bluestore_compression_min_blob_size_hdd) | `64_K` | Advanced | عملکرد |
+| [bluestore_compression_min_blob_size_ssd](#bluestore_compression_min_blob_size_ssd) | `64_K` | Advanced | عملکرد |
+| [bluestore_compression_mode](#bluestore_compression_mode) | `none` | Advanced | عملکرد |
+| [bluestore_compression_required_ratio](#bluestore_compression_required_ratio) | `0.875` | Advanced | عملکرد |
+| [bluestore_csum_type](#bluestore_csum_type) | `crc32c` | Advanced | عملکرد |
+| [bluestore_debug_enforce_min_alloc_size](#bluestore_debug_enforce_min_alloc_size) | `0` | Dev | توسعه |
+| [bluestore_debug_enforce_settings](#bluestore_debug_enforce_settings) | `default` | Dev | توسعه |
+| [bluestore_debug_extent_map_encode_check](#bluestore_debug_extent_map_encode_check) | `False` | Dev | توسعه |
+| [bluestore_debug_fast_recovery_compare_chance](#bluestore_debug_fast_recovery_compare_chance) | `0` | Dev | توسعه |
+| [bluestore_debug_freelist](#bluestore_debug_freelist) | `False` | Dev | توسعه |
+| [bluestore_debug_fsck_abort](#bluestore_debug_fsck_abort) | `False` | Dev | توسعه |
+| [bluestore_debug_inject_allocation_from_file_failure](#bluestore_debug_inject_allocation_from_file_failure) | `0` | Dev | توسعه |
+| [bluestore_debug_inject_csum_err_probability](#bluestore_debug_inject_csum_err_probability) | `0` | Dev | توسعه |
+| [bluestore_debug_inject_read_err](#bluestore_debug_inject_read_err) | `False` | Dev | توسعه |
+| [bluestore_debug_legacy_omap](#bluestore_debug_legacy_omap) | `False` | Dev | توسعه |
+| [bluestore_debug_no_reuse_blocks](#bluestore_debug_no_reuse_blocks) | `False` | Dev | توسعه |
+| [bluestore_debug_omit_block_device_write](#bluestore_debug_omit_block_device_write) | `False` | Dev | توسعه |
+| [bluestore_debug_omit_kv_commit](#bluestore_debug_omit_kv_commit) | `False` | Dev | توسعه |
+| [bluestore_debug_onode_segmentation_random](#bluestore_debug_onode_segmentation_random) | `False` | Dev | توسعه |
+| [bluestore_debug_permit_any_bdev_label](#bluestore_debug_permit_any_bdev_label) | `False` | Dev | توسعه |
+| [bluestore_debug_prefragment_max](#bluestore_debug_prefragment_max) | `1_M` | Dev | توسعه |
+| [bluestore_debug_random_read_err](#bluestore_debug_random_read_err) | `0` | Dev | توسعه |
+| [bluestore_debug_randomize_serial_transaction](#bluestore_debug_randomize_serial_transaction) | `0` | Dev | توسعه |
+| [bluestore_debug_small_allocations](#bluestore_debug_small_allocations) | `0` | Dev | توسعه |
+| [bluestore_debug_too_many_blobs_threshold](#bluestore_debug_too_many_blobs_threshold) | `24576` | Dev | توسعه |
+| [bluestore_default_buffered_read](#bluestore_default_buffered_read) | `True` | Advanced | عملکرد |
+| [bluestore_default_buffered_write](#bluestore_default_buffered_write) | `False` | Advanced | عملکرد |
+| [bluestore_deferred_batch_ops](#bluestore_deferred_batch_ops) | `0` | Advanced | عملکرد |
+| [bluestore_deferred_batch_ops_hdd](#bluestore_deferred_batch_ops_hdd) | `64` | Advanced | عملکرد |
+| [bluestore_deferred_batch_ops_ssd](#bluestore_deferred_batch_ops_ssd) | `16` | Advanced | عملکرد |
+| [bluestore_discard_on_mkfs](#bluestore_discard_on_mkfs) | `True` | Advanced | عملکرد |
+| [bluestore_elastic_shared_blobs](#bluestore_elastic_shared_blobs) | `True` | Advanced | عملکرد |
+| [bluestore_extent_map_inline_shard_prealloc_size](#bluestore_extent_map_inline_shard_prealloc_size) | `256` | Dev | توسعه |
+| [bluestore_extent_map_shard_max_size](#bluestore_extent_map_shard_max_size) | `1200` | Dev | توسعه |
+| [bluestore_extent_map_shard_min_size](#bluestore_extent_map_shard_min_size) | `150` | Dev | توسعه |
+| [bluestore_extent_map_shard_target_size](#bluestore_extent_map_shard_target_size) | `500` | Dev | توسعه |
+| [bluestore_extent_map_shard_target_size_slop](#bluestore_extent_map_shard_target_size_slop) | `0.2` | Dev | توسعه |
+| [bluestore_fail_eio](#bluestore_fail_eio) | `False` | Dev | توسعه |
+| [bluestore_frag_runtime](#bluestore_frag_runtime) | `False` | Advanced | عملکرد |
+| [bluestore_frag_static](#bluestore_frag_static) | `False` | Advanced | عملکرد |
+| [bluestore_fragmentation_check_period](#bluestore_fragmentation_check_period) | `3600` | Basic | سیاست |
+| [bluestore_freelist_blocks_per_key](#bluestore_freelist_blocks_per_key) | `128` | Dev | توسعه |
+| [bluestore_fsck_error_on_no_per_pg_omap](#bluestore_fsck_error_on_no_per_pg_omap) | `False` | Advanced | عملکرد |
+| [bluestore_fsck_error_on_no_per_pool_omap](#bluestore_fsck_error_on_no_per_pool_omap) | `False` | Advanced | عملکرد |
+| [bluestore_fsck_error_on_no_per_pool_stats](#bluestore_fsck_error_on_no_per_pool_stats) | `False` | Advanced | عملکرد |
+| [bluestore_fsck_on_mkfs](#bluestore_fsck_on_mkfs) | `True` | Dev | توسعه |
+| [bluestore_fsck_on_mkfs_deep](#bluestore_fsck_on_mkfs_deep) | `False` | Dev | توسعه |
+| [bluestore_fsck_on_mount](#bluestore_fsck_on_mount) | `False` | Dev | توسعه |
+| [bluestore_fsck_on_mount_deep](#bluestore_fsck_on_mount_deep) | `False` | Dev | توسعه |
+| [bluestore_fsck_on_umount](#bluestore_fsck_on_umount) | `False` | Dev | توسعه |
+| [bluestore_fsck_on_umount_deep](#bluestore_fsck_on_umount_deep) | `False` | Dev | توسعه |
+| [bluestore_fsck_quick_fix_on_mount](#bluestore_fsck_quick_fix_on_mount) | `False` | Dev | توسعه |
+| [bluestore_fsck_quick_fix_threads](#bluestore_fsck_quick_fix_threads) | `2` | Advanced | عملکرد |
+| [bluestore_fsck_read_bytes_cap](#bluestore_fsck_read_bytes_cap) | `64_M` | Advanced | عملکرد |
+| [bluestore_fsck_shared_blob_tracker_size](#bluestore_fsck_shared_blob_tracker_size) | `0.03125` | Dev | توسعه |
+| [bluestore_gc_enable_blob_threshold](#bluestore_gc_enable_blob_threshold) | `0` | Dev | توسعه |
+| [bluestore_gc_enable_total_threshold](#bluestore_gc_enable_total_threshold) | `0` | Dev | توسعه |
+| [bluestore_hybrid_alloc_mem_cap](#bluestore_hybrid_alloc_mem_cap) | `64_M` | Dev | توسعه |
+| [bluestore_ignore_data_csum](#bluestore_ignore_data_csum) | `False` | Dev | توسعه |
+| [bluestore_kv_sync_util_logging_s](#bluestore_kv_sync_util_logging_s) | `10` | Advanced | عملکرد |
+| [bluestore_kvbackend](#bluestore_kvbackend) | `rocksdb` | Dev | توسعه |
+| [bluestore_log_collection_list_age](#bluestore_log_collection_list_age) | `1_min` | Advanced | عملکرد |
+| [bluestore_log_omap_iterator_age](#bluestore_log_omap_iterator_age) | `5` | Advanced | عملکرد |
+| [bluestore_log_op_age](#bluestore_log_op_age) | `5` | Advanced | عملکرد |
+| [bluestore_log_scrub_op_age](#bluestore_log_scrub_op_age) | `5` | Advanced | عملکرد |
+| [bluestore_max_alloc_size](#bluestore_max_alloc_size) | `0` | Advanced | عملکرد |
+| [bluestore_max_blob_size](#bluestore_max_blob_size) | `0` | Dev | توسعه |
+| [bluestore_max_blob_size_hdd](#bluestore_max_blob_size_hdd) | `64_K` | Dev | توسعه |
+| [bluestore_max_blob_size_ssd](#bluestore_max_blob_size_ssd) | `64_K` | Dev | توسعه |
+| [bluestore_max_defer_interval](#bluestore_max_defer_interval) | `3` | Advanced | عملکرد |
+| [bluestore_max_deferred_txc](#bluestore_max_deferred_txc) | `32` | Advanced | عملکرد |
+| [bluestore_min_alloc_size](#bluestore_min_alloc_size) | `0` | Advanced | عملکرد |
+| [bluestore_min_alloc_size_hdd](#bluestore_min_alloc_size_hdd) | `4_K` | Advanced | عملکرد |
+| [bluestore_min_alloc_size_ssd](#bluestore_min_alloc_size_ssd) | `4_K` | Advanced | عملکرد |
+| [bluestore_nid_prealloc](#bluestore_nid_prealloc) | `1024` | Dev | توسعه |
+| [bluestore_onode_segment_size](#bluestore_onode_segment_size) | `0` | Advanced | عملکرد |
+| [bluestore_prefer_deferred_size](#bluestore_prefer_deferred_size) | `0` | Advanced | عملکرد |
+| [bluestore_prefer_deferred_size_hdd](#bluestore_prefer_deferred_size_hdd) | `64_K` | Advanced | عملکرد |
+| [bluestore_prefer_deferred_size_ssd](#bluestore_prefer_deferred_size_ssd) | `0` | Advanced | عملکرد |
+| [bluestore_qfsck_on_mount](#bluestore_qfsck_on_mount) | `True` | Dev | توسعه |
+| [bluestore_recompression_min_gain](#bluestore_recompression_min_gain) | `1.2` | Advanced | عملکرد |
+| [bluestore_retry_disk_reads](#bluestore_retry_disk_reads) | `3` | Advanced | عملکرد |
+| [bluestore_rocksdb_cf](#bluestore_rocksdb_cf) | `True` | Advanced | عملکرد |
+| [bluestore_rocksdb_cfs](#bluestore_rocksdb_cfs) | `m(3) p(3,0-12) O(3,0-13)=block_cache={type=binned_lru} L=min_write_buffer_number_to_merge=32 P=min_write_buffer_number_to_merge=32` | Dev | توسعه |
+| [bluestore_rocksdb_options](#bluestore_rocksdb_options) | `compression=kLZ4Compression,max_write_buffer_number=64,min_write_buffer_number_to_merge=6,compaction_style=kCompactionStyleLevel,write_buffer_size=16777216,max_background_jobs=4,level0_file_num_compaction_trigger=8,max_bytes_for_level_base=1073741824,max_bytes_for_level_multiplier=8,compaction_readahead_size=2MB,max_total_wal_size=1073741824,writable_file_max_buffer_size=0` | Advanced | عملکرد |
+| [bluestore_rocksdb_options_annex](#bluestore_rocksdb_options_annex) | `(empty)` | Advanced | عملکرد |
+| [bluestore_slow_ops_warn_lifetime](#bluestore_slow_ops_warn_lifetime) | `86400` | Advanced | عملکرد |
+| [bluestore_slow_ops_warn_threshold](#bluestore_slow_ops_warn_threshold) | `1` | Advanced | عملکرد |
+| [bluestore_slow_scrub_ops_warn_threshold](#bluestore_slow_scrub_ops_warn_threshold) | `1` | Advanced | عملکرد |
+| [bluestore_spdk_coremask](#bluestore_spdk_coremask) | `0x1` | Dev | توسعه |
+| [bluestore_spdk_io_sleep](#bluestore_spdk_io_sleep) | `5` | Dev | توسعه |
+| [bluestore_spdk_max_io_completion](#bluestore_spdk_max_io_completion) | `0` | Dev | توسعه |
+| [bluestore_spdk_mem](#bluestore_spdk_mem) | `512` | Dev | توسعه |
+| [bluestore_sync_submit_transaction](#bluestore_sync_submit_transaction) | `False` | Dev | توسعه |
+| [bluestore_throttle_bytes](#bluestore_throttle_bytes) | `64_M` | Advanced | عملکرد |
+| [bluestore_throttle_cost_per_io](#bluestore_throttle_cost_per_io) | `0` | Advanced | عملکرد |
+| [bluestore_throttle_cost_per_io_hdd](#bluestore_throttle_cost_per_io_hdd) | `670000` | Advanced | عملکرد |
+| [bluestore_throttle_cost_per_io_ssd](#bluestore_throttle_cost_per_io_ssd) | `4000` | Advanced | عملکرد |
+| [bluestore_throttle_deferred_bytes](#bluestore_throttle_deferred_bytes) | `128_M` | Advanced | عملکرد |
+| [bluestore_throttle_trace_rate](#bluestore_throttle_trace_rate) | `0` | Advanced | عملکرد |
+| [bluestore_tracing](#bluestore_tracing) | `False` | Advanced | عملکرد |
+| [bluestore_use_ebd](#bluestore_use_ebd) | `True` | Advanced | عملکرد |
+| [bluestore_use_optimal_io_size_for_min_alloc_size](#bluestore_use_optimal_io_size_for_min_alloc_size) | `False` | Advanced | عملکرد |
+| [bluestore_volume_selection_policy](#bluestore_volume_selection_policy) | `use_some_extra` | Dev | توسعه |
+| [bluestore_volume_selection_reserved](#bluestore_volume_selection_reserved) | `0` | Advanced | عملکرد |
+| [bluestore_volume_selection_reserved_factor](#bluestore_volume_selection_reserved_factor) | `2` | Advanced | عملکرد |
+| [bluestore_warn_on_bluefs_spillover](#bluestore_warn_on_bluefs_spillover) | `True` | Advanced | عملکرد |
+| [bluestore_warn_on_free_fragmentation](#bluestore_warn_on_free_fragmentation) | `0.8` | Basic | سیاست |
+| [bluestore_warn_on_legacy_statfs](#bluestore_warn_on_legacy_statfs) | `True` | Advanced | عملکرد |
+| [bluestore_warn_on_no_per_pg_omap](#bluestore_warn_on_no_per_pg_omap) | `False` | Advanced | عملکرد |
+| [bluestore_warn_on_no_per_pool_omap](#bluestore_warn_on_no_per_pool_omap) | `True` | Advanced | عملکرد |
+| [bluestore_warn_on_spurious_read_errors](#bluestore_warn_on_spurious_read_errors) | `True` | Advanced | عملکرد |
+| [bluestore_write_v2](#bluestore_write_v2) | `False` | Advanced | عملکرد |
+| [bluestore_write_v2_random](#bluestore_write_v2_random) | `False` | Advanced | عملکرد |
+| [bluestore_zero_block_detection](#bluestore_zero_block_detection) | `False` | Dev | توسعه |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -219,7 +219,7 @@ ceph config get global bluestore_2q_cache_kin_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -247,7 +247,7 @@ ceph config get global bluestore_2q_cache_kout_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -275,7 +275,7 @@ ceph config get global bluestore_alloc_stats_dump_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_day`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -303,7 +303,7 @@ ceph config get global bluestore_allocation_from_file
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -331,7 +331,7 @@ ceph config get global bluestore_allocation_recovery_threads
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -366,7 +366,7 @@ ceph config get global bluestore_allocator
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `hybrid`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -401,7 +401,7 @@ ceph config get global bluestore_allocator_lookup_policy
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `auto`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -436,7 +436,7 @@ ceph config get global bluestore_async_db_compaction
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -464,7 +464,7 @@ ceph config get global bluestore_avl_alloc_bf_free_pct
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`4`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -492,7 +492,7 @@ ceph config get global bluestore_avl_alloc_bf_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`128_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -520,7 +520,7 @@ ceph config get global bluestore_avl_alloc_ff_max_search_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`16_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -548,7 +548,7 @@ ceph config get global bluestore_avl_alloc_ff_max_search_count
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`100`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -576,7 +576,7 @@ ceph config get global bluestore_bdev_label_multi
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -611,7 +611,7 @@ ceph config get global bluestore_bdev_label_multi_upgrade
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -646,7 +646,7 @@ ceph config get global bluestore_bdev_label_require_all
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -679,7 +679,7 @@ ceph config get global bluestore_bitmapallocator_blocks_per_zone
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -705,7 +705,7 @@ ceph config get global bluestore_bitmapallocator_span_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -733,7 +733,7 @@ ceph config get global bluestore_blobid_prealloc
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`10_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -761,7 +761,7 @@ ceph config get global bluestore_block_create
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -789,7 +789,7 @@ ceph config get global bluestore_block_db_create
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -817,7 +817,7 @@ ceph config get global bluestore_block_db_path
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`(empty)`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -845,7 +845,7 @@ ceph config get global bluestore_block_db_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -873,7 +873,7 @@ ceph config get global bluestore_block_path
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`(empty)`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -901,7 +901,7 @@ ceph config get global bluestore_block_preallocate_file
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -929,7 +929,7 @@ ceph config get global bluestore_block_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`100_G`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -957,7 +957,7 @@ ceph config get global bluestore_block_wal_create
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -985,7 +985,7 @@ ceph config get global bluestore_block_wal_path
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`(empty)`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1013,7 +1013,7 @@ ceph config get global bluestore_block_wal_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`96_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1041,7 +1041,7 @@ ceph config get global bluestore_bluefs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1069,7 +1069,7 @@ ceph config get global bluestore_bluefs_alloc_failure_dump_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1104,7 +1104,7 @@ ceph config get global bluestore_bluefs_env_mirror
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1132,7 +1132,7 @@ ceph config get global bluestore_bluefs_max_free
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10_G`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1167,7 +1167,7 @@ ceph config get global bluestore_bluefs_warn_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `0.06` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -1201,7 +1201,7 @@ ceph config get global bluestore_btree2_alloc_weight_factor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`2`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1229,7 +1229,7 @@ ceph config get global bluestore_cache_age_bin_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1257,7 +1257,7 @@ ceph config get global bluestore_cache_age_bins_data
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1 2 6 24 120 720 0 0 0 0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1285,7 +1285,7 @@ ceph config get global bluestore_cache_age_bins_kv
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1 2 6 24 120 720 0 0 0 0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1313,7 +1313,7 @@ ceph config get global bluestore_cache_age_bins_kv_onode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0 0 0 0 0 0 0 0 0 720`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1341,7 +1341,7 @@ ceph config get global bluestore_cache_age_bins_meta
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1 2 6 24 120 720 0 0 0 0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1369,7 +1369,7 @@ ceph config get global bluestore_cache_autotune
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1397,7 +1397,7 @@ ceph config get global bluestore_cache_autotune_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1425,7 +1425,7 @@ ceph config get global bluestore_cache_kv_onode_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.04`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1453,7 +1453,7 @@ ceph config get global bluestore_cache_kv_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.45`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1481,7 +1481,7 @@ ceph config get global bluestore_cache_meta_evict_in_autotune
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1516,7 +1516,7 @@ ceph config get global bluestore_cache_meta_evict_limit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1551,7 +1551,7 @@ ceph config get global bluestore_cache_meta_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.45`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1579,7 +1579,7 @@ ceph config get global bluestore_cache_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1607,7 +1607,7 @@ ceph config get global bluestore_cache_size_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_G`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1635,7 +1635,7 @@ ceph config get global bluestore_cache_size_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`3_G`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1663,7 +1663,7 @@ ceph config get global bluestore_cache_trim_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.05`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1698,7 +1698,7 @@ ceph config get global bluestore_cache_trim_max_skip_pinned
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1000`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1726,7 +1726,7 @@ ceph config get global bluestore_cache_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`2q`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -1754,7 +1754,7 @@ ceph config get global bluestore_cleaner_sleep_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1789,7 +1789,7 @@ ceph config get global bluestore_clone_cow
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1824,7 +1824,7 @@ ceph config get global bluestore_compression_algorithm
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `snappy`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1859,7 +1859,7 @@ ceph config get global bluestore_compression_max_blob_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1894,7 +1894,7 @@ ceph config get global bluestore_compression_max_blob_size_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1929,7 +1929,7 @@ ceph config get global bluestore_compression_max_blob_size_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1964,7 +1964,7 @@ ceph config get global bluestore_compression_min_blob_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -1999,7 +1999,7 @@ ceph config get global bluestore_compression_min_blob_size_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2034,7 +2034,7 @@ ceph config get global bluestore_compression_min_blob_size_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2069,7 +2069,7 @@ ceph config get global bluestore_compression_mode
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `none`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2104,7 +2104,7 @@ ceph config get global bluestore_compression_required_ratio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0.875`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2139,7 +2139,7 @@ ceph config get global bluestore_csum_type
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `crc32c`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2174,7 +2174,7 @@ ceph config get global bluestore_debug_enforce_min_alloc_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2202,7 +2202,7 @@ ceph config get global bluestore_debug_enforce_settings
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`default`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2230,7 +2230,7 @@ ceph config get global bluestore_debug_extent_map_encode_check
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2258,7 +2258,7 @@ ceph config get global bluestore_debug_fast_recovery_compare_chance
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2284,7 +2284,7 @@ ceph config get global bluestore_debug_freelist
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2310,7 +2310,7 @@ ceph config get global bluestore_debug_fsck_abort
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2338,7 +2338,7 @@ ceph config get global bluestore_debug_inject_allocation_from_file_failure
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2366,7 +2366,7 @@ ceph config get global bluestore_debug_inject_csum_err_probability
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2392,7 +2392,7 @@ ceph config get global bluestore_debug_inject_read_err
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2420,7 +2420,7 @@ ceph config get global bluestore_debug_legacy_omap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2446,7 +2446,7 @@ ceph config get global bluestore_debug_no_reuse_blocks
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2472,7 +2472,7 @@ ceph config get global bluestore_debug_omit_block_device_write
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2498,7 +2498,7 @@ ceph config get global bluestore_debug_omit_kv_commit
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2526,7 +2526,7 @@ ceph config get global bluestore_debug_onode_segmentation_random
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2552,7 +2552,7 @@ ceph config get global bluestore_debug_permit_any_bdev_label
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2578,7 +2578,7 @@ ceph config get global bluestore_debug_prefragment_max
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2604,7 +2604,7 @@ ceph config get global bluestore_debug_random_read_err
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2630,7 +2630,7 @@ ceph config get global bluestore_debug_randomize_serial_transaction
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2656,7 +2656,7 @@ ceph config get global bluestore_debug_small_allocations
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2682,7 +2682,7 @@ ceph config get global bluestore_debug_too_many_blobs_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`24576`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2710,7 +2710,7 @@ ceph config get global bluestore_default_buffered_read
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2745,7 +2745,7 @@ ceph config get global bluestore_default_buffered_write
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2780,7 +2780,7 @@ ceph config get global bluestore_deferred_batch_ops
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2817,7 +2817,7 @@ ceph config get global bluestore_deferred_batch_ops_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2854,7 +2854,7 @@ ceph config get global bluestore_deferred_batch_ops_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2891,7 +2891,7 @@ ceph config get global bluestore_discard_on_mkfs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2926,7 +2926,7 @@ ceph config get global bluestore_elastic_shared_blobs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -2961,7 +2961,7 @@ ceph config get global bluestore_extent_map_inline_shard_prealloc_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`256`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -2989,7 +2989,7 @@ ceph config get global bluestore_extent_map_shard_max_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1200`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3017,7 +3017,7 @@ ceph config get global bluestore_extent_map_shard_min_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`150`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3045,7 +3045,7 @@ ceph config get global bluestore_extent_map_shard_target_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`500`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3073,7 +3073,7 @@ ceph config get global bluestore_extent_map_shard_target_size_slop
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.2`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3101,7 +3101,7 @@ ceph config get global bluestore_fail_eio
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3129,7 +3129,7 @@ ceph config get global bluestore_frag_runtime
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3164,7 +3164,7 @@ ceph config get global bluestore_frag_static
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3199,7 +3199,7 @@ ceph config get global bluestore_fragmentation_check_period
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `3600` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -3233,7 +3233,7 @@ ceph config get global bluestore_freelist_blocks_per_key
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`128`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3261,7 +3261,7 @@ ceph config get global bluestore_fsck_error_on_no_per_pg_omap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3296,7 +3296,7 @@ ceph config get global bluestore_fsck_error_on_no_per_pool_omap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3331,7 +3331,7 @@ ceph config get global bluestore_fsck_error_on_no_per_pool_stats
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3366,7 +3366,7 @@ ceph config get global bluestore_fsck_on_mkfs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3394,7 +3394,7 @@ ceph config get global bluestore_fsck_on_mkfs_deep
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3422,7 +3422,7 @@ ceph config get global bluestore_fsck_on_mount
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3450,7 +3450,7 @@ ceph config get global bluestore_fsck_on_mount_deep
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3478,7 +3478,7 @@ ceph config get global bluestore_fsck_on_umount
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3506,7 +3506,7 @@ ceph config get global bluestore_fsck_on_umount_deep
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3534,7 +3534,7 @@ ceph config get global bluestore_fsck_quick_fix_on_mount
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3562,7 +3562,7 @@ ceph config get global bluestore_fsck_quick_fix_threads
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3597,7 +3597,7 @@ ceph config get global bluestore_fsck_read_bytes_cap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3632,7 +3632,7 @@ ceph config get global bluestore_fsck_shared_blob_tracker_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0.03125`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3658,7 +3658,7 @@ ceph config get global bluestore_gc_enable_blob_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3684,7 +3684,7 @@ ceph config get global bluestore_gc_enable_total_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3712,7 +3712,7 @@ ceph config get global bluestore_hybrid_alloc_mem_cap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`64_M`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3740,7 +3740,7 @@ ceph config get global bluestore_ignore_data_csum
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3768,7 +3768,7 @@ ceph config get global bluestore_kv_sync_util_logging_s
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `10`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3803,7 +3803,7 @@ ceph config get global bluestore_kvbackend
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`rocksdb`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -3831,7 +3831,7 @@ ceph config get global bluestore_log_collection_list_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1_min`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3866,7 +3866,7 @@ ceph config get global bluestore_log_omap_iterator_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3901,7 +3901,7 @@ ceph config get global bluestore_log_op_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3936,7 +3936,7 @@ ceph config get global bluestore_log_scrub_op_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `5`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -3971,7 +3971,7 @@ ceph config get global bluestore_max_alloc_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4004,7 +4004,7 @@ ceph config get global bluestore_max_blob_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4030,7 +4030,7 @@ ceph config get global bluestore_max_blob_size_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`64_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4056,7 +4056,7 @@ ceph config get global bluestore_max_blob_size_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`64_K`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4084,7 +4084,7 @@ ceph config get global bluestore_max_defer_interval
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4119,7 +4119,7 @@ ceph config get global bluestore_max_deferred_txc
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `32`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4154,7 +4154,7 @@ ceph config get global bluestore_min_alloc_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4189,7 +4189,7 @@ ceph config get global bluestore_min_alloc_size_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4224,7 +4224,7 @@ ceph config get global bluestore_min_alloc_size_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4259,7 +4259,7 @@ ceph config get global bluestore_nid_prealloc
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`1024`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4287,7 +4287,7 @@ ceph config get global bluestore_onode_segment_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4322,7 +4322,7 @@ ceph config get global bluestore_prefer_deferred_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4357,7 +4357,7 @@ ceph config get global bluestore_prefer_deferred_size_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_K`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4392,7 +4392,7 @@ ceph config get global bluestore_prefer_deferred_size_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4427,7 +4427,7 @@ ceph config get global bluestore_qfsck_on_mount
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`True`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4455,7 +4455,7 @@ ceph config get global bluestore_recompression_min_gain
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1.2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4490,7 +4490,7 @@ ceph config get global bluestore_retry_disk_reads
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `3`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4527,7 +4527,7 @@ ceph config get global bluestore_rocksdb_cf
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4562,7 +4562,7 @@ ceph config get global bluestore_rocksdb_cfs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`m(3) p(3,0-12) O(3,0-13)=block_cache={type=binned_lru} L=min_write_buffer_number_to_merge=32 P=min_write_buffer_number_to_merge=32`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4590,7 +4590,7 @@ ceph config get global bluestore_rocksdb_options
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `compression=kLZ4Compression,max_write_buffer_number=64,min_write_buffer_number_to_merge=6,compaction_style=kCompactionStyleLevel,write_buffer_size=16777216,max_background_jobs=4,level0_file_num_compaction_trigger=8,max_bytes_for_level_base=1073741824,max_bytes_for_level_multiplier=8,compaction_readahead_size=2MB,max_total_wal_size=1073741824,writable_file_max_buffer_size=0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4625,7 +4625,7 @@ ceph config get global bluestore_rocksdb_options_annex
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `(empty)`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4660,7 +4660,7 @@ ceph config get global bluestore_slow_ops_warn_lifetime
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `86400`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4695,7 +4695,7 @@ ceph config get global bluestore_slow_ops_warn_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4730,7 +4730,7 @@ ceph config get global bluestore_slow_scrub_ops_warn_threshold
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4765,7 +4765,7 @@ ceph config get global bluestore_spdk_coremask
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0x1`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4793,7 +4793,7 @@ ceph config get global bluestore_spdk_io_sleep
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`5`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4821,7 +4821,7 @@ ceph config get global bluestore_spdk_max_io_completion
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`0`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4849,7 +4849,7 @@ ceph config get global bluestore_spdk_mem
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`512`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4877,7 +4877,7 @@ ceph config get global bluestore_sync_submit_transaction
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -4905,7 +4905,7 @@ ceph config get global bluestore_throttle_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `64_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4940,7 +4940,7 @@ ceph config get global bluestore_throttle_cost_per_io
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -4975,7 +4975,7 @@ ceph config get global bluestore_throttle_cost_per_io_hdd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `670000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5010,7 +5010,7 @@ ceph config get global bluestore_throttle_cost_per_io_ssd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `4000`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5045,7 +5045,7 @@ ceph config get global bluestore_throttle_deferred_bytes
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `128_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5080,7 +5080,7 @@ ceph config get global bluestore_throttle_trace_rate
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5115,7 +5115,7 @@ ceph config get global bluestore_tracing
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5150,7 +5150,7 @@ ceph config get global bluestore_use_ebd
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5185,7 +5185,7 @@ ceph config get global bluestore_use_optimal_io_size_for_min_alloc_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5220,7 +5220,7 @@ ceph config get global bluestore_volume_selection_policy
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`use_some_extra`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.
@@ -5248,7 +5248,7 @@ ceph config get global bluestore_volume_selection_reserved
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5283,7 +5283,7 @@ ceph config get global bluestore_volume_selection_reserved_factor
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `2`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5318,7 +5318,7 @@ ceph config get global bluestore_warn_on_bluefs_spillover
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5353,7 +5353,7 @@ ceph config get global bluestore_warn_on_free_fragmentation
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Policy
+**مدل تنظیم:** سیاست
 
 1. مستند کنید چرا `0.8` برای سیاست شما درست است.
 2. فقط برای الزامات سازگاری یا امنیت تغییر دهید.
@@ -5387,7 +5387,7 @@ ceph config get global bluestore_warn_on_legacy_statfs
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5422,7 +5422,7 @@ ceph config get global bluestore_warn_on_no_per_pg_omap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5457,7 +5457,7 @@ ceph config get global bluestore_warn_on_no_per_pool_omap
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5492,7 +5492,7 @@ ceph config get global bluestore_warn_on_spurious_read_errors
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5527,7 +5527,7 @@ ceph config get global bluestore_write_v2
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5562,7 +5562,7 @@ ceph config get global bluestore_write_v2_random
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -5597,7 +5597,7 @@ ceph config get global bluestore_zero_block_detection
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Dev
+**مدل تنظیم:** توسعه
 
 1. پیش‌فرض upstream (`False`) را در محیط عملیاتی نگه دارید.
 2. فقط در آزمایشگاه (lab) هنگام بازتولید یک مشکل مشخص تغییر دهید.

@@ -2,7 +2,7 @@
 
 مستندات وظیفه‌محور بر اساس **نقش شما** و **اندازهٔ کلاستر**.
 
-## بر اساس نقش
+## بر اساس نقش {#by-role}
 
 <table class="guide-table">
 <thead>
@@ -32,7 +32,7 @@
 </tbody>
 </table>
 
-## بر اساس مقیاس
+## بر اساس مقیاس {#by-scale}
 
 <table class="guide-table">
 <thead>
@@ -70,4 +70,4 @@
   RGW · [OSD](osd-config/OVERVIEW.md) · [MON](mon-config/OVERVIEW.md) · [MGR](mgr-config/OVERVIEW.md) · [MDS](mds-config/OVERVIEW.md) · [Global](global-config/OVERVIEW.md)
 - [مشارکت](contributing.md) — قوانین، مهارت‌ها، بازتولید
 
-[← مرجع اصلی](../index.md)
+[← Cheatsheet](../cheatsheet/OVERVIEW.md)

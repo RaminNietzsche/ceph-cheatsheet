@@ -4,24 +4,24 @@
 
 | گزینه | پیش‌فرض | سطح | تنظیم |
 |--------|---------|-------|--------|
-| [rbd_cache_block_writes_upfront](#rbd_cache_block_writes_upfront) | `False` | Advanced | Performance |
-| [rbd_cache_max_dirty](#rbd_cache_max_dirty) | `24_M` | Advanced | Performance |
-| [rbd_cache_max_dirty_age](#rbd_cache_max_dirty_age) | `1` | Advanced | Performance |
-| [rbd_cache_max_dirty_object](#rbd_cache_max_dirty_object) | `0` | Advanced | Performance |
-| [rbd_cache_policy](#rbd_cache_policy) | `writearound` | Advanced | Performance |
-| [rbd_cache_size](#rbd_cache_size) | `32_M` | Advanced | Performance |
-| [rbd_cache_target_dirty](#rbd_cache_target_dirty) | `16_M` | Advanced | Performance |
-| [rbd_cache_writethrough_until_flush](#rbd_cache_writethrough_until_flush) | `True` | Advanced | Performance |
+| [rbd_cache_block_writes_upfront](#rbd_cache_block_writes_upfront) | `False` | Advanced | عملکرد |
+| [rbd_cache_max_dirty](#rbd_cache_max_dirty) | `24_M` | Advanced | عملکرد |
+| [rbd_cache_max_dirty_age](#rbd_cache_max_dirty_age) | `1` | Advanced | عملکرد |
+| [rbd_cache_max_dirty_object](#rbd_cache_max_dirty_object) | `0` | Advanced | عملکرد |
+| [rbd_cache_policy](#rbd_cache_policy) | `writearound` | Advanced | عملکرد |
+| [rbd_cache_size](#rbd_cache_size) | `32_M` | Advanced | عملکرد |
+| [rbd_cache_target_dirty](#rbd_cache_target_dirty) | `16_M` | Advanced | عملکرد |
+| [rbd_cache_writethrough_until_flush](#rbd_cache_writethrough_until_flush) | `True` | Advanced | عملکرد |
 
 ## یافتن مقادیر بهینه
 
 | مدل | نحوه انتخاب |
 |-------|---------------|
-| **Policy** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
-| **Capacity** | چیدمان دیسک، مسیرها، اندازه‌گیری |
-| **Performance** | خط پایه → تغییر تدریجی → پایش کلاستر |
-| **Connectivity** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
-| **Dev** | در محیط عملیاتی همان پیش‌فرض upstream |
+| **سیاست** | امنیت، سازگاری، پیش‌فرض‌های عملیاتی |
+| **ظرفیت** | چیدمان دیسک، مسیرها، اندازه‌گیری |
+| **عملکرد** | خط پایه → تغییر تدریجی → پایش کلاستر |
+| **اتصال** | نزدیک‌ترین نقطهٔ پایانی پایدار خارجی |
+| **توسعه** | در محیط عملیاتی همان پیش‌فرض upstream |
 
 **ابزارهای مشترک:**
 
@@ -53,7 +53,7 @@ ceph config get client rbd_cache_block_writes_upfront
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `False`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -89,7 +89,7 @@ ceph config get client rbd_cache_max_dirty
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `24_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -125,7 +125,7 @@ ceph config get client rbd_cache_max_dirty_age
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `1`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -161,7 +161,7 @@ ceph config get client rbd_cache_max_dirty_object
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `0`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -197,7 +197,7 @@ ceph config get client rbd_cache_policy
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `writearound`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -233,7 +233,7 @@ ceph config get client rbd_cache_size
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `32_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -269,7 +269,7 @@ ceph config get client rbd_cache_target_dirty
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `16_M`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
@@ -305,7 +305,7 @@ ceph config get client rbd_cache_writethrough_until_flush
 
 **یافتن مقدار بهینه:**
 
-**مدل تنظیم:** Performance
+**مدل تنظیم:** عملکرد
 
 1. خط پایه روی پیش‌فرض upstream `True`.
 2. در هر پنجره تست تحت بار نماینده **یک** گزینه را تغییر دهید.
