@@ -47,6 +47,10 @@ jobs:
       - name: Sync cheatsheet hub
         run: python3 scripts/sync-docs-index.py
 
+      - name: Sync RGW docs from docs-extended
+        run: python3 scripts/sync-rgw-from-docs-extended.py
+        continue-on-error: true
+
       - name: Generate role & scale guides
         run: python3 scripts/generate-role-scale-guides.py
 

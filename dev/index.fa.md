@@ -1,20 +1,26 @@
 # توسعه
 
-این بخش قرار است **راهنمای توسعه‌دهنده Ceph** باشد: راه‌اندازی build، قراردادهای کدنویسی، تست و گردش‌کار مشارکت.
+مسیر ساخت‌یافته برای **درک و تغییر RGW** — همگام‌شده از upstream `src/rgw/docs-extended/`.
 
-## وضعیت
+## شروع
 
-**به‌زودی** — محتوا هنوز نوشته نشده است.
+| موضوع | راهنما |
+|-------|--------|
+| برنامه یادگیری | [برنامه یادگیری RGW](../arch/rgw/learning-program/index.md) |
+| قرارداد Docs-as-Code | [قرارداد توسعه](../arch/rgw/guides/development-convention.md) |
+| استقرار (عملیاتی) | [راهنمای پیاده‌سازی استقرار](../arch/rgw/guides/deployment-implementation-guide.md) |
+| ارجاع کد در مستندات | [source-code-in-docs](../arch/rgw/guides/source-code-in-docs.md) |
 
-## موضوعات برنامه‌ریزی‌شده
+## فازهای برنامه یادگیری
 
-- ساخت Ceph از source
-- گردش‌کار توسعه RGW
-- اجرای تست و linter
-- ارسال patch به upstream
+- [پیش‌نیازها](../arch/rgw/learning-program/00-prerequisites.md)
+- [فاز ۰ — مسیر درخواست](../arch/rgw/learning-program/01-phase-0-request-path.md)
+- [چک‌لیست توسعه](../arch/rgw/learning-program/10-development-checklist.md)
+
+فهرست کامل: [نمای کلی برنامه](../arch/rgw/learning-program/index.md)
 
 ## فعلاً
 
 - [Cheatsheet](../cheatsheet/index.md) — مرجع عملیاتی
-- [معماری RGW](../arch/rgw/OVERVIEW.md) — عملکرد زیرسیستم‌ها
-- [مشارکت](../cheatsheet/guides/contributing.md) — نگهداری این مخزن
+- [معماری RGW](../arch/rgw/OVERVIEW.md)
+- [مشارکت](../cheatsheet/guides/contributing.md)

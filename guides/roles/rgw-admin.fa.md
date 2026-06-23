@@ -63,3 +63,22 @@ ceph orch apply rgw myrgw --placement="2 host1 host2" --port=8080
 | [محیط عملیاتی بزرگ](../scales/large-production.md) | چند RGW، تنظیم cache |
 
 [← نمای کلی راهنما](../OVERVIEW.md)
+
+## معماری و استقرار (از docs-extended)
+
+پیش‌نیاز: خوشه MON+OSD، poolهای placement، realm/zonegroup/zone برای multisite، TLS یا پروکسی.
+
+| حالت | گام‌ها |
+|------|--------|
+| **توسعه (تک‌نود)** | خوشه cephadm → کاربر سیستم RGW → `radosgw` با beast و `rgw enable apis = s3` → تست با `aws s3 --endpoint-url …` |
+| **تولید** | حداقل ۲ `radosgw` در AZ جدا → LB با health check → `rgw dns name` و گواهی → محدود کردن APIها → ops log و متریک mgr |
+
+| سرویس | وابستگی |
+|--------|---------|
+| radosgw | MON، OSD، poolهای rgw |
+| radosgw-admin | + caps ادمین |
+| multisite sync | HTTP بین زون‌ها |
+
+**خطاهای رایج:** 503 slow down (dmclock/ratelimit) · No such bucket (zone/tenant/endpoint) · lag همگام‌سازی.
+
+راهنمای عمیق: [معماری استقرار](../../../arch/rgw/architecture/deployment-architecture.md) · [توپولوژی زمان اجرا](../../../arch/rgw/architecture/runtime-topology.md) · [راهنمای پیاده‌سازی](../../../arch/rgw/guides/deployment-implementation-guide.md)

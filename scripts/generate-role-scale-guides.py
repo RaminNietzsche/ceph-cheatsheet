@@ -12,6 +12,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from i18n import ROOT, write_localized  # noqa: E402
 
 LOCALE_FILE = Path(__file__).resolve().parent / "locales" / "pages" / "roles-scales.yaml"
+RGW_ENRICH_FILE = (
+    Path(__file__).resolve().parent / "locales" / "pages" / "rgw-from-docs-extended.yaml"
+)
 
 ROLE_SCALE_PAGES: tuple[str, ...] = (
     "guides/roles/cluster-admin",
@@ -25,19 +28,41 @@ ROLE_SCALE_PAGES: tuple[str, ...] = (
 )
 
 
-def load_translations() -> dict[str, dict[str, str]]:
-    if not LOCALE_FILE.exists():
-        raise SystemExit(f"Missing {LOCALE_FILE}")
-    data = yaml.safe_load(LOCALE_FILE.read_text(encoding="utf-8")) or {}
+def load_yaml_pages(path: Path) -> dict[str, dict[str, str]]:
+    if not path.exists():
+        return {}
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
     out: dict[str, dict[str, str]] = {}
     for rel in ROLE_SCALE_PAGES:
         entry = data.get(rel)
         if not isinstance(entry, dict):
-            print(f"warning: no translations for {rel}", file=sys.stderr)
             continue
         for loc in ("en", "fa", "zh"):
             if entry.get(loc):
                 out.setdefault(rel, {})[loc] = entry[loc].strip() + "\n"
+    return out
+
+
+def load_translations() -> dict[str, dict[str, str]]:
+    if not LOCALE_FILE.exists():
+        raise SystemExit(f"Missing {LOCALE_FILE}")
+    base = load_yaml_pages(LOCALE_FILE)
+    enrich = load_yaml_pages(RGW_ENRICH_FILE)
+    out: dict[str, dict[str, str]] = {}
+    for rel in ROLE_SCALE_PAGES:
+        merged: dict[str, str] = {}
+        for loc in ("en", "fa", "zh"):
+            parts = [
+                base.get(rel, {}).get(loc, ""),
+                enrich.get(rel, {}).get(loc, ""),
+            ]
+            body = "\n\n".join(p.strip() for p in parts if p.strip())
+            if body:
+                merged[loc] = body + "\n"
+        if merged:
+            out[rel] = merged
+        elif rel not in base:
+            print(f"warning: no translations for {rel}", file=sys.stderr)
     return out
 
 

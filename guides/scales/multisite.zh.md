@@ -61,3 +61,18 @@ ceph fs snapshot mirror info myfs
 - 为多站点 erasure 规划各站点的 CRUSH 与池
 
 [← 指南概览](../OVERVIEW.md)
+
+## RGW 多站点模型（docs-extended）
+
+来自 [部署架构](../../../arch/rgw/architecture/deployment-architecture.md) 与 [运行时拓扑](../../../arch/rgw/architecture/runtime-topology.md)：
+
+| 概念 | 作用 |
+|------|------|
+| **Realm** | 配置命名空间 |
+| **Period** | 配置 epoch 版本 |
+| **Zone** | 带本地 pool 的地理站点 |
+| **Sync** | 区域间 HTTP 上的 metadata log + 数据同步 |
+
+每个 zone 运行独立的 RGW 集群；实例无状态 — 通过 RADOS 与多站点协调。
+
+深度阅读：[Multisite 模块](../../../arch/rgw/modules/multisite.md) · [阶段 7 — 多站点](../../../arch/rgw/learning-program/08-phase-7-multisite.md)

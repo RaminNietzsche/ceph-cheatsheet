@@ -1235,6 +1235,6 @@ sequenceDiagram
 - [معماری زمان‌بندی و QoS](scheduling-architecture.md) — خلاصه سه لایه
 - [خط لوله درخواست](request-pipeline.md)
 - [Worker architecture](worker-architecture.md)
-- [کد منبع RGW در GitHub](https://github.com/ceph/ceph/tree/main/src/rgw)
+- [ارجاع زنده به کد](../guides/source-code-in-docs.md)
 - Upstream: `doc/radosgw/admin.rst` — Rate Limit Management
 - Upstream: `doc/radosgw/adminops.rst` — Admin Ops API

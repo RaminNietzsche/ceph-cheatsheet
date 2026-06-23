@@ -61,3 +61,18 @@ Config: [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md)
 - Plan CRUSH and pools per site for erasure + multisite
 
 [← Guides overview](../OVERVIEW.md)
+
+## RGW multisite model (docs-extended)
+
+From [deployment architecture](../../../arch/rgw/architecture/deployment-architecture.md) and [runtime topology](../../../arch/rgw/architecture/runtime-topology.md):
+
+| Object | Role |
+|--------|------|
+| **Realm** | Configuration namespace |
+| **Period** | Epoch version of config |
+| **Zone** | Geographic site with local pools |
+| **Sync** | Metadata log + data sync over HTTP between zones (`RGWRESTConn`) |
+
+Each zone runs its own RGW fleet; instances are stateless — coordination via RADOS and multisite, not shared memory.
+
+Module deep dive: [Multisite module](../../../arch/rgw/modules/multisite.md) · Learning path: [Phase 7 — Multisite](../../../arch/rgw/learning-program/08-phase-7-multisite.md)

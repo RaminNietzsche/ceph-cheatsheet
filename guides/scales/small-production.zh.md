@@ -45,3 +45,18 @@ ceph osd df tree
 通过 cephadm 滚动升级 — [cli/cephadm.md](../../cli/cephadm.md)
 
 [← 指南概览](../OVERVIEW.md)
+
+## 小型生产中的 RGW
+
+来自 [部署架构](../../../arch/rgw/architecture/deployment-architecture.md)：
+
+- [ ] ≥2 个 `radosgw` 实例 + 负载均衡
+- [ ] `rgw_frontends`（Beast）+ 公网 TLS 或 LB 终结
+- [ ] `rgw_enable_apis` 仅启用所需 API
+- [ ] 单 zone；若计划多站点则预配 realm/zonegroup
+- [ ] 启用 ops log 与 mgr 指标导出
+
+```bash
+ceph orch apply rgw prod --placement="2 host1 host2" --port=8080
+ceph config set client.rgw rgw_enable_apis "s3"
+```

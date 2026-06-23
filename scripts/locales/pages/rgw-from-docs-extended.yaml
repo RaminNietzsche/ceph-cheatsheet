@@ -1,0 +1,253 @@
+# Supplemental sections for role/scale guides — sourced from dev-code/rgw/docs-extended.
+# Merged by generate-role-scale-guides.py before the back link.
+
+guides/roles/rgw-admin:
+  en: |
+    ## Architecture & deployment (from docs-extended)
+
+    Prerequisites: active MON+OSD cluster, RGW placement pools, realm/zonegroup/zone for multisite, TLS or proxy.
+
+    | Mode | Steps |
+    |------|--------|
+    | **Dev (single node)** | cephadm/volume cluster → RGW system user → `radosgw` with `rgw frontends = beast`, `rgw enable apis = s3` → test with `aws s3 --endpoint-url http://127.0.0.1:7480 ls` |
+    | **Production** | ≥2 `radosgw` in separate AZs → LB health check (`GET /health`) → `rgw dns name` + cert → restrict `rgw enable apis` → ops log + mgr metrics |
+
+    | Service | Depends on |
+    |---------|------------|
+    | radosgw | MON, OSD, RGW pools |
+    | radosgw-admin | + admin caps |
+    | multisite sync | HTTP between zones |
+
+    **Common errors:** 503 slow down (dmclock/ratelimit) · No such bucket (zone/tenant/endpoint) · sync lag (`radosgw-admin sync status`).
+
+    Deep dives: [Deployment architecture](../../../arch/rgw/architecture/deployment-architecture.md) · [Runtime topology](../../../arch/rgw/architecture/runtime-topology.md) · [Deployment guide](../../../arch/rgw/guides/deployment-implementation-guide.md)
+
+  fa: |
+    ## معماری و استقرار (از docs-extended)
+
+    پیش‌نیاز: خوشه MON+OSD، poolهای placement، realm/zonegroup/zone برای multisite، TLS یا پروکسی.
+
+    | حالت | گام‌ها |
+    |------|--------|
+    | **توسعه (تک‌نود)** | خوشه cephadm → کاربر سیستم RGW → `radosgw` با beast و `rgw enable apis = s3` → تست با `aws s3 --endpoint-url …` |
+    | **تولید** | حداقل ۲ `radosgw` در AZ جدا → LB با health check → `rgw dns name` و گواهی → محدود کردن APIها → ops log و متریک mgr |
+
+    | سرویس | وابستگی |
+    |--------|---------|
+    | radosgw | MON، OSD، poolهای rgw |
+    | radosgw-admin | + caps ادمین |
+    | multisite sync | HTTP بین زون‌ها |
+
+    **خطاهای رایج:** 503 slow down (dmclock/ratelimit) · No such bucket (zone/tenant/endpoint) · lag همگام‌سازی.
+
+    راهنمای عمیق: [معماری استقرار](../../../arch/rgw/architecture/deployment-architecture.md) · [توپولوژی زمان اجرا](../../../arch/rgw/architecture/runtime-topology.md) · [راهنمای پیاده‌سازی](../../../arch/rgw/guides/deployment-implementation-guide.md)
+
+  zh: |
+    ## 架构与部署（来自 docs-extended）
+
+    前提：MON+OSD 集群、RGW placement pool、多站点 realm/zone、TLS 或代理。
+
+    | 模式 | 步骤 |
+    |------|------|
+    | **开发（单节点）** | cephadm 集群 → RGW 系统用户 → `radosgw`（beast、`rgw enable apis = s3`）→ `aws s3 --endpoint-url …` 测试 |
+    | **生产** | ≥2 个 `radosgw` 跨 AZ → LB 健康检查 → `rgw dns name` 与证书 → 限制 API → ops log 与 mgr 指标 |
+
+    | 服务 | 依赖 |
+    |------|------|
+    | radosgw | MON、OSD、RGW pool |
+    | radosgw-admin | + admin caps |
+    | 多站点同步 | 区域间 HTTP |
+
+    **常见错误：** 503 slow down（dmclock/限速）· No such bucket（zone/tenant/endpoint）· 同步滞后。
+
+    深度阅读：[部署架构](../../../arch/rgw/architecture/deployment-architecture.md) · [运行时拓扑](../../../arch/rgw/architecture/runtime-topology.md) · [部署实施指南](../../../arch/rgw/guides/deployment-implementation-guide.md)
+
+guides/scales/lab:
+  en: |
+    ## RGW on lab (docs-extended)
+
+    Single-node dev pattern from upstream deployment guide:
+
+    ```bash
+    ceph orch apply rgw dev --placement="1" --port=7480
+    radosgw-admin user create --uid=dev --display-name="Dev"
+    radosgw-admin key create --uid=dev --key-type=s3 --gen-access-key --gen-secret
+    aws --endpoint-url http://127.0.0.1:7480 s3 ls
+    ```
+
+    Typical lab settings: self-signed TLS, broader `rgw enable apis` for testing, no rate limits.
+
+    Learn internals: [Learning program](../../../arch/rgw/learning-program/index.md) · [Request pipeline](../../../arch/rgw/architecture/request-pipeline.md)
+
+  fa: |
+    ## RGW در محیط lab (docs-extended)
+
+    الگوی تک‌نود از راهنمای استقرار upstream:
+
+    ```bash
+    ceph orch apply rgw dev --placement="1" --port=7480
+    radosgw-admin user create --uid=dev --display-name="Dev"
+    radosgw-admin key create --uid=dev --key-type=s3 --gen-access-key --gen-secret
+    aws --endpoint-url http://127.0.0.1:7480 s3 ls
+    ```
+
+    تنظیمات معمول lab: SSL خودامضا، APIهای بیشتر برای تست، بدون rate limit.
+
+    یادگیری داخلی: [برنامه یادگیری](../../../arch/rgw/learning-program/index.md) · [خط لوله درخواست](../../../arch/rgw/architecture/request-pipeline.md)
+
+  zh: |
+    ## Lab 中的 RGW（docs-extended）
+
+    上游部署指南中的单节点开发模式：
+
+    ```bash
+    ceph orch apply rgw dev --placement="1" --port=7480
+    radosgw-admin user create --uid=dev --display-name="Dev"
+    radosgw-admin key create --uid=dev --key-type=s3 --gen-access-key --gen-secret
+    aws --endpoint-url http://127.0.0.1:7480 s3 ls
+    ```
+
+    典型 lab 设置：自签 TLS、更宽的 `rgw enable apis`、无限速。
+
+    内部学习：[学习程序](../../../arch/rgw/learning-program/index.md) · [请求流水线](../../../arch/rgw/architecture/request-pipeline.md)
+
+guides/scales/small-production:
+  en: |
+    ## RGW at small production scale
+
+    From [deployment architecture](../../../arch/rgw/architecture/deployment-architecture.md):
+
+    - [ ] ≥2 `radosgw` instances behind a load balancer
+    - [ ] `rgw_frontends` (Beast) + public TLS or LB termination
+    - [ ] `rgw_enable_apis` limited to required APIs (typically `s3`)
+    - [ ] Single zone; realm/zonegroup configured if multisite is planned later
+    - [ ] Ops log + mgr/prometheus export enabled
+
+    ```bash
+    ceph orch apply rgw prod --placement="2 host1 host2" --port=8080
+    ceph config set client.rgw rgw_enable_apis "s3"
+    ```
+
+  fa: |
+    ## RGW در محیط عملیاتی کوچک
+
+    از [معماری استقرار](../../../arch/rgw/architecture/deployment-architecture.md):
+
+    - [ ] حداقل ۲ نمونه `radosgw` پشت load balancer
+    - [ ] `rgw_frontends` (Beast) + TLS عمومی یا termination در LB
+    - [ ] `rgw_enable_apis` محدود به APIهای لازم
+    - [ ] یک zone؛ realm/zonegroup اگر multisite بعداً برنامه‌ریزی شده
+    - [ ] ops log و export متریک mgr
+
+    ```bash
+    ceph orch apply rgw prod --placement="2 host1 host2" --port=8080
+    ceph config set client.rgw rgw_enable_apis "s3"
+    ```
+
+  zh: |
+    ## 小型生产中的 RGW
+
+    来自 [部署架构](../../../arch/rgw/architecture/deployment-architecture.md)：
+
+    - [ ] ≥2 个 `radosgw` 实例 + 负载均衡
+    - [ ] `rgw_frontends`（Beast）+ 公网 TLS 或 LB 终结
+    - [ ] `rgw_enable_apis` 仅启用所需 API
+    - [ ] 单 zone；若计划多站点则预配 realm/zonegroup
+    - [ ] 启用 ops log 与 mgr 指标导出
+
+    ```bash
+    ceph orch apply rgw prod --placement="2 host1 host2" --port=8080
+    ceph config set client.rgw rgw_enable_apis "s3"
+    ```
+
+guides/scales/large-production:
+  en: |
+    ## RGW at large production scale
+
+    Multiple stateless gateways, shared RADOS, separate public vs cluster networks when possible.
+
+    | Concern | Action |
+    |---------|--------|
+    | Scheduling / fairness | [dmclock architecture](../../../arch/rgw/architecture/dmclock-architecture.md) |
+    | Client throttling | [Rate limits](../../../arch/rgw/architecture/rate-limit-architecture.md) |
+    | Observability | ops log, `rgw_perf_counters`, health check — [observability](../../../arch/rgw/architecture/observability-overview.md) |
+    | HA gaps | [Critical gaps & HA limitations](../../../arch/rgw/architecture/critical-gaps-and-ha-limitations.md) |
+
+    Watch: sustained `l_rgw_qlen`, high `ERR_RATE_LIMITED`, multisite sync lag, GC/reshard failures in driver logs.
+
+  fa: |
+    ## RGW در محیط عملیاتی بزرگ
+
+    چند gateway بدون state در لبه، RADOS مشترک، شبکه public و cluster جدا در صورت امکان.
+
+    | موضوع | اقدام |
+    |-------|--------|
+    | زمان‌بندی / fairness | [معماری dmclock](../../../arch/rgw/architecture/dmclock-architecture.md) |
+    | محدودیت کلاینت | [Rate limit](../../../arch/rgw/architecture/rate-limit-architecture.md) |
+    | رصدپذیری | ops log، `rgw_perf_counters`، health check — [رصدپذیری](../../../arch/rgw/architecture/observability-overview.md) |
+    | شکاف‌های HA | [محدودیت‌های HA](../../../arch/rgw/architecture/critical-gaps-and-ha-limitations.md) |
+
+    پایش: `l_rgw_qlen` پایدار، `ERR_RATE_LIMITED`، lag multisite، شکست GC/reshard.
+
+  zh: |
+    ## 大型生产中的 RGW
+
+    多个无状态网关、共享 RADOS，尽量分离 public 与 cluster 网络。
+
+    | 关注点 | 措施 |
+    |--------|------|
+    | 调度 / 公平性 | [dmclock 架构](../../../arch/rgw/architecture/dmclock-architecture.md) |
+    | 客户端限速 | [速率限制](../../../arch/rgw/architecture/rate-limit-architecture.md) |
+    | 可观测性 | ops log、`rgw_perf_counters`、健康检查 — [可观测性](../../../arch/rgw/architecture/observability-overview.md) |
+    | HA 缺口 | [HA 限制](../../../arch/rgw/architecture/critical-gaps-and-ha-limitations.md) |
+
+    关注：持续偏高的 `l_rgw_qlen`、`ERR_RATE_LIMITED`、多站点同步滞后、GC/reshard 失败。
+
+guides/scales/multisite:
+  en: |
+    ## RGW multisite model (docs-extended)
+
+    From [deployment architecture](../../../arch/rgw/architecture/deployment-architecture.md) and [runtime topology](../../../arch/rgw/architecture/runtime-topology.md):
+
+    | Object | Role |
+    |--------|------|
+    | **Realm** | Configuration namespace |
+    | **Period** | Epoch version of config |
+    | **Zone** | Geographic site with local pools |
+    | **Sync** | Metadata log + data sync over HTTP between zones (`RGWRESTConn`) |
+
+    Each zone runs its own RGW fleet; instances are stateless — coordination via RADOS and multisite, not shared memory.
+
+    Module deep dive: [Multisite module](../../../arch/rgw/modules/multisite.md) · Learning path: [Phase 7 — Multisite](../../../arch/rgw/learning-program/08-phase-7-multisite.md)
+
+  fa: |
+    ## مدل multisite RGW (docs-extended)
+
+    از [معماری استقرار](../../../arch/rgw/architecture/deployment-architecture.md) و [توپولوژی زمان اجرا](../../../arch/rgw/architecture/runtime-topology.md):
+
+    | مفهوم | نقش |
+    |-------|------|
+    | **Realm** | فضای نام پیکربندی |
+    | **Period** | نسخه epoch پیکربندی |
+    | **Zone** | سایت با poolهای محلی |
+    | **Sync** | metadata log + data sync روی HTTP بین زون‌ها |
+
+    هر zone fleet RGW خود را دارد؛ نمونه‌ها stateless — هماهنگی از RADOS و multisite.
+
+    راهنمای عمیق: [ماژول multisite](../../../arch/rgw/modules/multisite.md) · [فاز ۷ — Multisite](../../../arch/rgw/learning-program/08-phase-7-multisite.md)
+
+  zh: |
+    ## RGW 多站点模型（docs-extended）
+
+    来自 [部署架构](../../../arch/rgw/architecture/deployment-architecture.md) 与 [运行时拓扑](../../../arch/rgw/architecture/runtime-topology.md)：
+
+    | 概念 | 作用 |
+    |------|------|
+    | **Realm** | 配置命名空间 |
+    | **Period** | 配置 epoch 版本 |
+    | **Zone** | 带本地 pool 的地理站点 |
+    | **Sync** | 区域间 HTTP 上的 metadata log + 数据同步 |
+
+    每个 zone 运行独立的 RGW 集群；实例无状态 — 通过 RADOS 与多站点协调。
+
+    深度阅读：[Multisite 模块](../../../arch/rgw/modules/multisite.md) · [阶段 7 — 多站点](../../../arch/rgw/learning-program/08-phase-7-multisite.md)

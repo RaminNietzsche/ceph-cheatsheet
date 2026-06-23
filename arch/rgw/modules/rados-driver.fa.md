@@ -43,7 +43,7 @@ flowchart TD
 
 ## پیوست
 
-[symbol-index](https://github.com/ceph/ceph/tree/main/src/rgw) — `driver.rados`.
+[symbol-index](https://github.com/ceph/ceph/tree/main/src/rgw/docs-extended/pages/appendix/generated/symbol-index.md) — `driver.rados`.
 
 ## مستندات
 

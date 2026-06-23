@@ -45,3 +45,16 @@ ceph config set osd osd_recovery_max_active 3
 [storage-operator.md](../roles/storage-operator.md) · [cluster-admin.md](../roles/cluster-admin.md)
 
 [← 指南概览](../OVERVIEW.md)
+
+## 大型生产中的 RGW
+
+多个无状态网关、共享 RADOS，尽量分离 public 与 cluster 网络。
+
+| 关注点 | 措施 |
+|--------|------|
+| 调度 / 公平性 | [dmclock 架构](../../../arch/rgw/architecture/dmclock-architecture.md) |
+| 客户端限速 | [速率限制](../../../arch/rgw/architecture/rate-limit-architecture.md) |
+| 可观测性 | ops log、`rgw_perf_counters`、健康检查 — [可观测性](../../../arch/rgw/architecture/observability-overview.md) |
+| HA 缺口 | [HA 限制](../../../arch/rgw/architecture/critical-gaps-and-ha-limitations.md) |
+
+关注：持续偏高的 `l_rgw_qlen`、`ERR_RATE_LIMITED`、多站点同步滞后、GC/reshard 失败。

@@ -63,3 +63,22 @@ ceph orch apply rgw myrgw --placement="2 host1 host2" --port=8080
 | [Large production](../scales/large-production.md) | Many RGW instances, cache tuning |
 
 [← Guides overview](../OVERVIEW.md)
+
+## Architecture & deployment (from docs-extended)
+
+Prerequisites: active MON+OSD cluster, RGW placement pools, realm/zonegroup/zone for multisite, TLS or proxy.
+
+| Mode | Steps |
+|------|--------|
+| **Dev (single node)** | cephadm/volume cluster → RGW system user → `radosgw` with `rgw frontends = beast`, `rgw enable apis = s3` → test with `aws s3 --endpoint-url http://127.0.0.1:7480 ls` |
+| **Production** | ≥2 `radosgw` in separate AZs → LB health check (`GET /health`) → `rgw dns name` + cert → restrict `rgw enable apis` → ops log + mgr metrics |
+
+| Service | Depends on |
+|---------|------------|
+| radosgw | MON, OSD, RGW pools |
+| radosgw-admin | + admin caps |
+| multisite sync | HTTP between zones |
+
+**Common errors:** 503 slow down (dmclock/ratelimit) · No such bucket (zone/tenant/endpoint) · sync lag (`radosgw-admin sync status`).
+
+Deep dives: [Deployment architecture](../../../arch/rgw/architecture/deployment-architecture.md) · [Runtime topology](../../../arch/rgw/architecture/runtime-topology.md) · [Deployment guide](../../../arch/rgw/guides/deployment-implementation-guide.md)

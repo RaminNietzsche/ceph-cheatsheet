@@ -45,3 +45,18 @@ Plan for **~70% usable** before `nearfull`; leave headroom for backfill during O
 Rolling upgrade via cephadm — [cli/cephadm.md](../../cli/cephadm.md)
 
 [← Guides overview](../OVERVIEW.md)
+
+## RGW at small production scale
+
+From [deployment architecture](../../../arch/rgw/architecture/deployment-architecture.md):
+
+- [ ] ≥2 `radosgw` instances behind a load balancer
+- [ ] `rgw_frontends` (Beast) + public TLS or LB termination
+- [ ] `rgw_enable_apis` limited to required APIs (typically `s3`)
+- [ ] Single zone; realm/zonegroup configured if multisite is planned later
+- [ ] Ops log + mgr/prometheus export enabled
+
+```bash
+ceph orch apply rgw prod --placement="2 host1 host2" --port=8080
+ceph config set client.rgw rgw_enable_apis "s3"
+```

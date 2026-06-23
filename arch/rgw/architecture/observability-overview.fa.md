@@ -39,5 +39,5 @@
 
 ## مستندات مرتبط
 
-- [تحلیل کیفیت کد](../architecture/critical-gaps-and-ha-limitations.md)
+- [تحلیل کیفیت کد](../analysis/code-quality-and-security.md)
 - [شکاف‌های HA](critical-gaps-and-ha-limitations.md)

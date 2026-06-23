@@ -50,7 +50,7 @@ flowchart LR
 
 ## پیوست نمادها
 
-پس از `make generate`: [فهرست نمادها](https://github.com/ceph/ceph/tree/main/src/rgw) — جستجوی `rgw_process.cc`, `rgw_op.h`.
+پس از `make generate`: [فهرست نمادها](https://github.com/ceph/ceph/tree/main/src/rgw/docs-extended/pages/appendix/generated/symbol-index.md) — جستجوی `rgw_process.cc`, `rgw_op.h`.
 
 ## مستندات معماری
 

@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PY = sys.executable
 
 STEPS = [
+    [PY, "scripts/sync-rgw-from-docs-extended.py"],
     [PY, "scripts/generate-role-scale-guides.py"],
     [PY, "scripts/generate-rgw-guide.py"],
     [PY, "scripts/generate-config-guide.py", "all"],

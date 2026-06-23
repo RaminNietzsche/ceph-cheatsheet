@@ -45,3 +45,18 @@ ceph osd df tree
 ارتقای rolling با cephadm — [cli/cephadm.md](../../cli/cephadm.md)
 
 [← نمای کلی راهنما](../OVERVIEW.md)
+
+## RGW در محیط عملیاتی کوچک
+
+از [معماری استقرار](../../../arch/rgw/architecture/deployment-architecture.md):
+
+- [ ] حداقل ۲ نمونه `radosgw` پشت load balancer
+- [ ] `rgw_frontends` (Beast) + TLS عمومی یا termination در LB
+- [ ] `rgw_enable_apis` محدود به APIهای لازم
+- [ ] یک zone؛ realm/zonegroup اگر multisite بعداً برنامه‌ریزی شده
+- [ ] ops log و export متریک mgr
+
+```bash
+ceph orch apply rgw prod --placement="2 host1 host2" --port=8080
+ceph config set client.rgw rgw_enable_apis "s3"
+```

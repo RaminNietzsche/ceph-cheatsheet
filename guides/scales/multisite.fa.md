@@ -61,3 +61,18 @@ Config: [config/cephfs-mirror/INDEX.md](../../config/cephfs-mirror/INDEX.md)
 - CRUSH و pool را برای erasure + چندسایته برنامه‌ریزی کنید
 
 [← نمای کلی راهنما](../OVERVIEW.md)
+
+## مدل multisite RGW (docs-extended)
+
+از [معماری استقرار](../../../arch/rgw/architecture/deployment-architecture.md) و [توپولوژی زمان اجرا](../../../arch/rgw/architecture/runtime-topology.md):
+
+| مفهوم | نقش |
+|-------|------|
+| **Realm** | فضای نام پیکربندی |
+| **Period** | نسخه epoch پیکربندی |
+| **Zone** | سایت با poolهای محلی |
+| **Sync** | metadata log + data sync روی HTTP بین زون‌ها |
+
+هر zone fleet RGW خود را دارد؛ نمونه‌ها stateless — هماهنگی از RADOS و multisite.
+
+راهنمای عمیق: [ماژول multisite](../../../arch/rgw/modules/multisite.md) · [فاز ۷ — Multisite](../../../arch/rgw/learning-program/08-phase-7-multisite.md)

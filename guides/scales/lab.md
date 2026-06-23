@@ -45,3 +45,18 @@ ceph orch apply osd --all-available-devices
 [cli/cluster.md](../../cli/cluster.md) · [cli/osd-pool.md](../../cli/osd-pool.md)
 
 [← Guides overview](../OVERVIEW.md)
+
+## RGW on lab (docs-extended)
+
+Single-node dev pattern from upstream deployment guide:
+
+```bash
+ceph orch apply rgw dev --placement="1" --port=7480
+radosgw-admin user create --uid=dev --display-name="Dev"
+radosgw-admin key create --uid=dev --key-type=s3 --gen-access-key --gen-secret
+aws --endpoint-url http://127.0.0.1:7480 s3 ls
+```
+
+Typical lab settings: self-signed TLS, broader `rgw enable apis` for testing, no rate limits.
+
+Learn internals: [Learning program](../../../arch/rgw/learning-program/index.md) · [Request pipeline](../../../arch/rgw/architecture/request-pipeline.md)

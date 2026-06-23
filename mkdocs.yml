@@ -44,9 +44,12 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/hub.css
+  - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css
 
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascripts/hub.js
 
 plugins:
   - search:
@@ -639,7 +642,25 @@ nav:
     - Overview: arch/index.md
     - RGW:
       - Overview: arch/rgw/OVERVIEW.md
-      - Learning program: arch/rgw/learning-program/index.md
+      - Guides:
+        - Deployment implementation: arch/rgw/guides/deployment-implementation-guide.md
+        - Development convention: arch/rgw/guides/development-convention.md
+        - Source code in docs: arch/rgw/guides/source-code-in-docs.md
+      - Learning program:
+        - Overview: arch/rgw/learning-program/index.md
+        - Prerequisites: arch/rgw/learning-program/00-prerequisites.md
+        - Phase 0 — Request path: arch/rgw/learning-program/01-phase-0-request-path.md
+        - Phase 1 — RGWOp lifecycle: arch/rgw/learning-program/02-phase-1-rgwop-lifecycle.md
+        - Phase 2 — REST & S3: arch/rgw/learning-program/03-phase-2-rest-s3.md
+        - Phase 3 — Auth: arch/rgw/learning-program/04-phase-3-auth.md
+        - Phase 4 — SAL: arch/rgw/learning-program/05-phase-4-sal.md
+        - Phase 5 — RADOS & services: arch/rgw/learning-program/06-phase-5-rados-services.md
+        - Phase 6 — PUT pipeline: arch/rgw/learning-program/07-phase-6-put-pipeline.md
+        - Phase 7 — Multisite: arch/rgw/learning-program/08-phase-7-multisite.md
+        - Phase 8 — Subsystems: arch/rgw/learning-program/09-phase-8-subsystems.md
+        - Development checklist: arch/rgw/learning-program/10-development-checklist.md
+        - Study method: arch/rgw/learning-program/study-method.md
+        - Progress tracker: arch/rgw/learning-program/progress-tracker.md
       - System design:
         - System overview: arch/rgw/architecture/system-overview.md
         - Request pipeline: arch/rgw/architecture/request-pipeline.md

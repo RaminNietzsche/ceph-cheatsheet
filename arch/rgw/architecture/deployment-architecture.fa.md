@@ -43,7 +43,7 @@ flowchart TB
 
 ## راهنمای گام‌به‌گام
 
-جزئیات عملیاتی در [راهنمای مدیر RGW](../../../cheatsheet/guides/roles/rgw-admin.md) — **بدون** دستورالعمل CI/CD.
+جزئیات عملیاتی در [راهنمای پیاده‌سازی استقرار](../guides/deployment-implementation-guide.md) — **بدون** دستورالعمل CI/CD.
 
 ## مستندات مرتبط
 

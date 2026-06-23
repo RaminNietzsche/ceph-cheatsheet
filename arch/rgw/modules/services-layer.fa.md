@@ -38,7 +38,7 @@ flowchart TB
 
 ## پیوست
 
-[import-graph](https://github.com/ceph/ceph/tree/main/src/rgw) — یال‌های `services` → `driver`.
+[import-graph](https://github.com/ceph/ceph/tree/main/src/rgw/docs-extended/pages/appendix/generated/import-graph.md) — یال‌های `services` → `driver`.
 
 ## مستندات
 

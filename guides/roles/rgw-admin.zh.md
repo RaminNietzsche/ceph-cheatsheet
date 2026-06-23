@@ -63,3 +63,22 @@ ceph orch apply rgw myrgw --placement="2 host1 host2" --port=8080
 | [大型生产](../scales/large-production.md) | 多 RGW、缓存调优 |
 
 [← 指南概览](../OVERVIEW.md)
+
+## 架构与部署（来自 docs-extended）
+
+前提：MON+OSD 集群、RGW placement pool、多站点 realm/zone、TLS 或代理。
+
+| 模式 | 步骤 |
+|------|------|
+| **开发（单节点）** | cephadm 集群 → RGW 系统用户 → `radosgw`（beast、`rgw enable apis = s3`）→ `aws s3 --endpoint-url …` 测试 |
+| **生产** | ≥2 个 `radosgw` 跨 AZ → LB 健康检查 → `rgw dns name` 与证书 → 限制 API → ops log 与 mgr 指标 |
+
+| 服务 | 依赖 |
+|------|------|
+| radosgw | MON、OSD、RGW pool |
+| radosgw-admin | + admin caps |
+| 多站点同步 | 区域间 HTTP |
+
+**常见错误：** 503 slow down（dmclock/限速）· No such bucket（zone/tenant/endpoint）· 同步滞后。
+
+深度阅读：[部署架构](../../../arch/rgw/architecture/deployment-architecture.md) · [运行时拓扑](../../../arch/rgw/architecture/runtime-topology.md) · [部署实施指南](../../../arch/rgw/guides/deployment-implementation-guide.md)

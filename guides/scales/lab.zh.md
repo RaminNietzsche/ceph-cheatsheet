@@ -45,3 +45,18 @@ ceph orch apply osd --all-available-devices
 [cli/cluster.md](../../cli/cluster.md) · [cli/osd-pool.md](../../cli/osd-pool.md)
 
 [← 指南概览](../OVERVIEW.md)
+
+## Lab 中的 RGW（docs-extended）
+
+上游部署指南中的单节点开发模式：
+
+```bash
+ceph orch apply rgw dev --placement="1" --port=7480
+radosgw-admin user create --uid=dev --display-name="Dev"
+radosgw-admin key create --uid=dev --key-type=s3 --gen-access-key --gen-secret
+aws --endpoint-url http://127.0.0.1:7480 s3 ls
+```
+
+典型 lab 设置：自签 TLS、更宽的 `rgw enable apis`、无限速。
+
+内部学习：[学习程序](../../../arch/rgw/learning-program/index.md) · [请求流水线](../../../arch/rgw/architecture/request-pipeline.md)

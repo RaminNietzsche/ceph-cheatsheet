@@ -45,3 +45,16 @@ ceph config set osd osd_recovery_max_active 3
 [storage-operator.md](../roles/storage-operator.md) · [cluster-admin.md](../roles/cluster-admin.md)
 
 [← نمای کلی راهنما](../OVERVIEW.md)
+
+## RGW در محیط عملیاتی بزرگ
+
+چند gateway بدون state در لبه، RADOS مشترک، شبکه public و cluster جدا در صورت امکان.
+
+| موضوع | اقدام |
+|-------|--------|
+| زمان‌بندی / fairness | [معماری dmclock](../../../arch/rgw/architecture/dmclock-architecture.md) |
+| محدودیت کلاینت | [Rate limit](../../../arch/rgw/architecture/rate-limit-architecture.md) |
+| رصدپذیری | ops log، `rgw_perf_counters`، health check — [رصدپذیری](../../../arch/rgw/architecture/observability-overview.md) |
+| شکاف‌های HA | [محدودیت‌های HA](../../../arch/rgw/architecture/critical-gaps-and-ha-limitations.md) |
+
+پایش: `l_rgw_qlen` پایدار، `ERR_RATE_LIMITED`، lag multisite، شکست GC/reshard.

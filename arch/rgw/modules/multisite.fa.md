@@ -36,4 +36,4 @@ sequenceDiagram
 
 ## پیوست
 
-جستجو در [symbol-index](https://github.com/ceph/ceph/tree/main/src/rgw): `rgw_sync`, `rgw_zone`.
+جستجو در [symbol-index](https://github.com/ceph/ceph/tree/main/src/rgw/docs-extended/pages/appendix/generated/symbol-index.md): `rgw_sync`, `rgw_zone`.

@@ -45,3 +45,16 @@ ceph config set osd osd_recovery_max_active 3
 [storage-operator.md](../roles/storage-operator.md) · [cluster-admin.md](../roles/cluster-admin.md)
 
 [← Guides overview](../OVERVIEW.md)
+
+## RGW at large production scale
+
+Multiple stateless gateways, shared RADOS, separate public vs cluster networks when possible.
+
+| Concern | Action |
+|---------|--------|
+| Scheduling / fairness | [dmclock architecture](../../../arch/rgw/architecture/dmclock-architecture.md) |
+| Client throttling | [Rate limits](../../../arch/rgw/architecture/rate-limit-architecture.md) |
+| Observability | ops log, `rgw_perf_counters`, health check — [observability](../../../arch/rgw/architecture/observability-overview.md) |
+| HA gaps | [Critical gaps & HA limitations](../../../arch/rgw/architecture/critical-gaps-and-ha-limitations.md) |
+
+Watch: sustained `l_rgw_qlen`, high `ERR_RATE_LIMITED`, multisite sync lag, GC/reshard failures in driver logs.

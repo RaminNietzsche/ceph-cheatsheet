@@ -35,4 +35,4 @@ sequenceDiagram
 ## مستندات
 
 - [خط لوله](../architecture/request-pipeline.md)
-- [تحلیل امنیت](../architecture/critical-gaps-and-ha-limitations.md)
+- [تحلیل امنیت](../analysis/code-quality-and-security.md)

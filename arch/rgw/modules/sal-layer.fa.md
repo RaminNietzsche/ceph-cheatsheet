@@ -51,7 +51,7 @@ classDiagram
 
 ## پیوست
 
-[symbol-index](https://github.com/ceph/ceph/tree/main/src/rgw) — بسته `core` و `driver.rados`.
+[symbol-index](https://github.com/ceph/ceph/tree/main/src/rgw/docs-extended/pages/appendix/generated/symbol-index.md) — بسته `core` و `driver.rados`.
 
 ## معماری
 
