@@ -68,6 +68,7 @@ nav:
     - Overview: guides/OVERVIEW.md
     - Quick start: guides/quickstart.md
     - Config lookup: guides/config-lookup.md
+    - RGW config deep dive: guides/rgw-config-options.md
     - Contributing: guides/contributing.md
     - By role:
       - Cluster admin: guides/roles/cluster-admin.md

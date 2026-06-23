@@ -66,6 +66,7 @@ Task-oriented documentation organized by **who you are** (role) and **how big th
 
 - [Quick start](quickstart.md) — daily checklist (any role)
 - [Config lookup](config-lookup.md) — read option tables
+- [RGW config deep dive](rgw-config-options.md) — selected RGW options explained
 - [Contributing](contributing.md) — rules, skills, regeneration
 
 [← Main reference](../index.md)
