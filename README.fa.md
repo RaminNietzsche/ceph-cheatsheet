@@ -4,7 +4,7 @@
 
 **مرجع آفلاین ساده و کامل** برای Ceph — بر اساس **نقش**، **مقیاس**، CLI و پیکربندی.
 
-**انتشار:** [v2026.06](https://github.com/RaminNietzsche/ceph-cheatsheet/releases/tag/v2026.06) · **سایت:** [blog.ceph-s3.ir](http://blog.ceph-s3.ir/)
+**انتشار:** [v2026.06.1](https://github.com/RaminNietzsche/ceph-cheatsheet/releases/tag/v2026.06.1) · **سایت:** [blog.ceph-s3.ir](http://blog.ceph-s3.ir/)
 
 → **[باز کردن مرجع](docs/en/cheatsheet/OVERVIEW.md)** · **[شروع کار](docs/en/cheatsheet/guides/getting-started.md)**
 

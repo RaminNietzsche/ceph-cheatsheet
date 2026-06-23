@@ -4,7 +4,7 @@
 
 **简洁、完整的离线参考** — 按 **角色**、**规模**、CLI 与配置组织。
 
-**发布：** [v2026.06](https://github.com/RaminNietzsche/ceph-cheatsheet/releases/tag/v2026.06) · **站点：** [blog.ceph-s3.ir](http://blog.ceph-s3.ir/)
+**发布：** [v2026.06.1](https://github.com/RaminNietzsche/ceph-cheatsheet/releases/tag/v2026.06.1) · **站点：** [blog.ceph-s3.ir](http://blog.ceph-s3.ir/)
 
 → **[打开参考](docs/en/cheatsheet/OVERVIEW.md)** · **[入门](docs/en/cheatsheet/guides/getting-started.md)**
 

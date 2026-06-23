@@ -4,7 +4,7 @@
 
 **Simple, complete offline reference** for Ceph — organized by **role**, **scale**, CLI, and config.
 
-**Release:** [v2026.06](https://github.com/RaminNietzsche/ceph-cheatsheet/releases/tag/v2026.06) · **Site:** [blog.ceph-s3.ir](http://blog.ceph-s3.ir/)
+**Release:** [v2026.06.1](https://github.com/RaminNietzsche/ceph-cheatsheet/releases/tag/v2026.06.1) · **Site:** [blog.ceph-s3.ir](http://blog.ceph-s3.ir/)
 
 → **[Open the reference](docs/en/cheatsheet/OVERVIEW.md)** · **[Getting started](docs/en/cheatsheet/guides/getting-started.md)**
 

@@ -48,6 +48,19 @@
   color: #fffbeb;
 }
 
+.page-trust-badge--unreviewed {
+  color: #1e40af;
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.page-trust-badge--unreviewed .page-trust-badge__icon {
+  background: #3b82f6;
+  color: #eff6ff;
+  font-style: italic;
+  font-weight: 800;
+}
+
 [data-md-color-scheme="slate"] .page-trust-badge--human {
   color: #6ee7b7;
   background: rgba(6, 95, 70, 0.35);
@@ -58,6 +71,12 @@
   color: #fcd34d;
   background: rgba(146, 64, 14, 0.35);
   border-color: rgba(252, 211, 77, 0.45);
+}
+
+[data-md-color-scheme="slate"] .page-trust-badge--unreviewed {
+  color: #93c5fd;
+  background: rgba(30, 64, 175, 0.35);
+  border-color: rgba(147, 197, 253, 0.45);
 }
 
 .page-trust-toast {
@@ -99,6 +118,12 @@
   color: #78350f;
 }
 
+.page-trust-toast--unreviewed {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1e3a8a;
+}
+
 [data-md-color-scheme="slate"] .page-trust-toast--human {
   background: rgba(6, 78, 59, 0.92);
   border-color: rgba(52, 211, 153, 0.55);
@@ -109,6 +134,12 @@
   background: rgba(120, 53, 15, 0.92);
   border-color: rgba(251, 191, 36, 0.55);
   color: #fef3c7;
+}
+
+[data-md-color-scheme="slate"] .page-trust-toast--unreviewed {
+  background: rgba(30, 58, 138, 0.92);
+  border-color: rgba(147, 197, 253, 0.55);
+  color: #dbeafe;
 }
 
 .page-trust-toast__title {

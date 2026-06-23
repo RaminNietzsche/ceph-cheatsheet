@@ -58,6 +58,7 @@ extra_javascript:
   - javascripts/copy-feedback.js
   - javascripts/page-trust-data.js
   - javascripts/page-trust.js
+  - javascripts/section-progress.js
 
 plugins:
   - search:

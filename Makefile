@@ -1,22 +1,35 @@
 # ceph-cheatsheet — common tasks
 # Run `make` or `make help` for targets. See scripts/README.md for details.
+#
+# First time: make install   (creates .venv/ with mkdocs + deps)
+# Default `python3` on macOS may be 3.14 without project packages — use .venv.
 
-PYTHON    ?= python3
-PIP       ?= pip
+VENV      := .venv
+PYTHON    := $(if $(wildcard $(VENV)/bin/python),$(abspath $(VENV)/bin/python),python3)
+PIP       := $(if $(wildcard $(VENV)/bin/pip),$(abspath $(VENV)/bin/pip),pip3)
 CEPH_REF  ?= main
 PORT      ?= 8000
 SITE_PORT ?= 8765
 
 .PHONY: help install setup validate sync-index config generate build docs all \
         inventory trust i18n i18n-pages i18n-config readme fix-hrefs check clean \
-        serve serve-site lookup search search-config search-fuzzy
+        serve serve-site lookup search search-config search-fuzzy ensure-mkdocs
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z0-9_.-]+:.*##' $(MAKEFILE_LIST) | sort | \
 		awk 'BEGIN {FS = ":.*## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
 
-install: ## Install Python deps (scripts/requirements.txt)
-	$(PIP) install -r scripts/requirements.txt
+install: ## Create .venv and install Python deps (scripts/requirements.txt)
+	@command -v python3 >/dev/null || (echo "python3 not found" >&2; exit 1)
+	python3 -m venv $(VENV)
+	$(VENV)/bin/python -m pip install -U pip
+	$(VENV)/bin/python -m pip install -r scripts/requirements.txt
+	@echo "Installed into $(VENV)/ — run: make build"
+
+ensure-mkdocs:
+	@$(PYTHON) -c "import mkdocs" 2>/dev/null || { \
+		echo "mkdocs not found for $(PYTHON). Run: make install" >&2; exit 1; \
+	}
 
 setup: ## Verify docs/{en,fa,zh}/ layout exists
 	$(PYTHON) scripts/setup-docs-layout.py
@@ -44,7 +57,7 @@ generate: setup ## Run generators + i18n + reports (no mkdocs build)
 	$(PYTHON) scripts/generate-page-trust-manifest.py
 	$(PYTHON) scripts/fix-html-hrefs.py
 
-build: fix-hrefs validate ## mkdocs build + restructure site locales
+build: fix-hrefs validate ensure-mkdocs ## mkdocs build + restructure site locales
 	$(PYTHON) -m mkdocs build
 	$(PYTHON) scripts/restructure-site-locales.py
 
@@ -83,7 +96,7 @@ check: inventory readme ## CI-style checks: validate + inventory + README commit
 	@git diff --exit-code README.md README.fa.md README.zh.md || \
 		(echo "README locales out of date — run: make readme" && exit 1)
 
-serve: setup ## Dev server (English at / — no locale restructure)
+serve: setup ensure-mkdocs ## Dev server (English at / — no locale restructure)
 	$(PYTHON) -m mkdocs serve -a 127.0.0.1:$(PORT)
 
 serve-site: ## Serve built site/ (production layout: / → en/)

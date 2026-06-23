@@ -1,4 +1,4 @@
-/* Page trust badges + toasts (human-reviewed vs auto-generated). */
+/* Page trust badges + toasts (human-reviewed / auto-generated / unreviewed). */
 (function () {
   "use strict";
 
@@ -16,6 +16,9 @@
     var p = pathname || "/";
     p = p.replace(/\/index\.html$/i, "").replace(/\/+$/, "");
     p = p.replace(/^\/(en|fa|zh)(?=\/|$)/, "") || "/";
+    if (p.length > 1 && p.charAt(0) === "/") {
+      p = p.slice(1);
+    }
     return p === "" ? "/" : p;
   }
 
@@ -23,6 +26,7 @@
     var urlPath = normalizeUrlPath(pathname);
     var map = manifest.urlToSource || {};
     if (map[urlPath]) return map[urlPath];
+    if (urlPath !== "/" && map["/" + urlPath]) return map["/" + urlPath];
     if (urlPath !== "/" && map[urlPath + "/"]) return map[urlPath + "/"];
     return null;
   }
@@ -40,22 +44,49 @@
     return all[locale] || all.en || {};
   }
 
+  function statusClass(status) {
+    if (status === "human-reviewed") return "human";
+    if (status === "auto-generated") return "auto";
+    return "unreviewed";
+  }
+
+  function badgeLabel(status, strings) {
+    if (status === "human-reviewed") return strings.badgeHuman;
+    if (status === "auto-generated") return strings.badgeAuto;
+    return strings.badgeUnreviewed;
+  }
+
+  function badgeIcon(status) {
+    if (status === "human-reviewed") return "✓";
+    if (status === "auto-generated") return "⚙";
+    return "i";
+  }
+
+  function toastTitle(status, strings) {
+    if (status === "human-reviewed") return strings.toastHumanTitle;
+    if (status === "auto-generated") return strings.toastAutoTitle;
+    return strings.toastUnreviewedTitle;
+  }
+
+  function toastBody(status, strings) {
+    if (status === "human-reviewed") return strings.toastHumanBody;
+    if (status === "auto-generated") return strings.toastAutoBody;
+    return strings.toastUnreviewedBody;
+  }
+
   function createBadge(status, strings) {
     var el = document.createElement("div");
-    el.className =
-      "page-trust-badge page-trust-badge--" +
-      (status === "human-reviewed" ? "human" : "auto");
+    el.className = "page-trust-badge page-trust-badge--" + statusClass(status);
     el.setAttribute("role", "status");
 
     var icon = document.createElement("span");
     icon.className = "page-trust-badge__icon";
     icon.setAttribute("aria-hidden", "true");
-    icon.textContent = status === "human-reviewed" ? "✓" : "⚙";
+    icon.textContent = badgeIcon(status);
 
     var label = document.createElement("span");
     label.className = "page-trust-badge__label";
-    label.textContent =
-      status === "human-reviewed" ? strings.badgeHuman : strings.badgeAuto;
+    label.textContent = badgeLabel(status, strings);
 
     el.appendChild(icon);
     el.appendChild(label);
@@ -65,18 +96,17 @@
   function showToast(status, strings) {
     var isHuman = status === "human-reviewed";
     var toast = document.createElement("div");
-    toast.className =
-      "page-trust-toast page-trust-toast--" + (isHuman ? "human" : "auto");
+    toast.className = "page-trust-toast page-trust-toast--" + statusClass(status);
     toast.setAttribute("role", isHuman ? "status" : "alert");
     toast.setAttribute("aria-live", "polite");
 
     var title = document.createElement("div");
     title.className = "page-trust-toast__title";
-    title.textContent = isHuman ? strings.toastHumanTitle : strings.toastAutoTitle;
+    title.textContent = toastTitle(status, strings);
 
     var body = document.createElement("div");
     body.className = "page-trust-toast__body";
-    body.textContent = isHuman ? strings.toastHumanBody : strings.toastAutoBody;
+    body.textContent = toastBody(status, strings);
 
     var actions = document.createElement("div");
     actions.className = "page-trust-toast__actions";
@@ -102,6 +132,7 @@
       toast.classList.add("page-trust-toast--visible");
     });
 
+    var duration = isHuman ? 9000 : 11000;
     window.setTimeout(function () {
       if (toast.parentNode) {
         toast.classList.add("page-trust-toast--hide");
@@ -109,7 +140,7 @@
           toast.remove();
         }, 280);
       }
-    }, isHuman ? 9000 : 12000);
+    }, duration);
   }
 
   function mountBadge(badge) {
@@ -124,8 +155,6 @@
   }
 
   function init() {
-    if (document.querySelector(".hub-page")) return;
-
     var manifest = window.PAGE_TRUST;
     if (!manifest || !manifest.pages) return;
 
@@ -134,7 +163,9 @@
     if (!status) return;
 
     var strings = stringsFor(manifest, locale);
-    mountBadge(createBadge(status, strings));
+    if (!document.querySelector(".hub-page")) {
+      mountBadge(createBadge(status, strings));
+    }
     showToast(status, strings);
   }
 

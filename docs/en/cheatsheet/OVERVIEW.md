@@ -1,10 +1,10 @@
-[← Home](../index.md)
+[← Home](../../index.md)
 
 # Ceph Reference
 
 Simple, offline-friendly reference for Ceph administrators — organized by **role**, **scale**, **CLI**, and **config**.
 
-**Source:** [ceph/ceph](https://github.com/ceph/ceph) `main` — see [VERSION](../version.md) for generation date.
+**Source:** [ceph/ceph](https://github.com/ceph/ceph) `main` — see [VERSION](../../version.md) for generation date.
 
 ---
 
@@ -157,4 +157,4 @@ scripts/                Search, lookup, regenerate
 .cursor/skills/         Agent maintenance workflows
 ```
 
-[README](https://github.com/RaminNietzsche/ceph-cheatsheet) · [License](../license.md)
+[README](https://github.com/RaminNietzsche/ceph-cheatsheet) · [License](../../license.md)

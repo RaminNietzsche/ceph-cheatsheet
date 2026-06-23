@@ -3,4 +3,5 @@
 site/
 *.pyc
 __pycache__/
+.venv/
 dev-code/

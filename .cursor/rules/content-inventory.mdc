@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Content inventory (auto-update)
 
-The repo tracks every MkDocs nav page in `content-inventory.csv` and `content-inventory.md` (6 columns: title, content status, en/fa/zh complete, human review).
+The repo tracks every MkDocs nav page in `content-inventory.csv` and `content-inventory.md` (title, content status, en/fa/zh complete, human review, source key, nav path, trust status).
 
 ## When this rule applies
 
@@ -28,7 +28,7 @@ python3 scripts/generate-content-inventory.py
 
 When adding or renaming nav pages, also pass `--sync-review` so new entries land in `scripts/data/content-review.yaml`.
 
-Also regenerate the live-site trust UI:
+Also regenerate the live-site trust UI (reads `reports/content-inventory.csv`):
 
 ```bash
 python3 scripts/generate-page-trust-manifest.py
@@ -37,8 +37,10 @@ python3 scripts/generate-page-trust-manifest.py
 This command:
 
 1. Scans all nav entries in `mkdocs.yml`
-2. Writes `content-inventory.csv` and `content-inventory.md`
+2. Writes `content-inventory.csv` and `content-inventory.md` (includes per-section progress summary)
 3. With `--sync-review`: appends **new** pages to `scripts/data/content-review.yaml` with `reviewed: false`
+
+`generate-page-trust-manifest.py` builds `docs/javascripts/page-trust-data.js` (toasts + section hub progress bars) from the CSV.
 
 ## Include in the same change set
 
@@ -47,6 +49,7 @@ When the user asks for a commit, stage together:
 - The doc / nav change
 - `reports/content-inventory.csv`
 - `reports/content-inventory.md`
+- `docs/javascripts/page-trust-data.js`
 - `scripts/data/content-review.yaml` (if new pages were appended)
 
 Do **not** hand-edit the CSV or markdown table — regenerate instead.
