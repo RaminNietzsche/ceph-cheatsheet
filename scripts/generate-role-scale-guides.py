@@ -9,7 +9,8 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from i18n import ROOT, write_localized  # noqa: E402
+from i18n import write_localized  # noqa: E402
+from repo_paths import docs_en_file  # noqa: E402
 
 LOCALE_FILE = Path(__file__).resolve().parent / "locales" / "pages" / "roles-scales.yaml"
 RGW_ENRICH_FILE = (
@@ -67,7 +68,7 @@ def load_translations() -> dict[str, dict[str, str]]:
 
 
 def sync_page(rel: str, locales: dict[str, str]) -> None:
-    en_path = ROOT / f"{rel}.md"
+    en_path = docs_en_file(rel)
     if "en" in locales:
         en_path.write_text(locales["en"], encoding="utf-8")
     elif not en_path.exists():
