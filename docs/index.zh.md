@@ -16,7 +16,7 @@
   <span class="portal-cta">打开速查表 →</span>
 </a>
 
-<a class="portal-card portal-architecture" href="/arch/rgw/OVERVIEW/">
+<a class="portal-card portal-architecture" href="/arch/">
   <span class="portal-icon">🏗</span>
   <h2>架构</h2>
   <p>RGW 子系统原理：请求路径、SAL、RADOS 驱动、认证、多站点、调度。</p>

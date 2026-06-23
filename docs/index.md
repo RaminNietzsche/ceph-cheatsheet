@@ -16,7 +16,7 @@
   <span class="portal-cta">Open cheatsheet →</span>
 </a>
 
-<a class="portal-card portal-architecture" href="/arch/rgw/OVERVIEW/">
+<a class="portal-card portal-architecture" href="/arch/">
   <span class="portal-icon">🏗</span>
   <h2>Architecture</h2>
   <p>How RGW subsystems work: request path, SAL, RADOS driver, auth, multisite, scheduling.</p>

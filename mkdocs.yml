@@ -636,6 +636,7 @@ nav:
       - Immutable cache: cheatsheet/config/immutable-object-cache/INDEX.md
       - Ceph exporter: cheatsheet/config/ceph-exporter/INDEX.md
   - Arch:
+    - Overview: arch/index.md
     - RGW:
       - Overview: arch/rgw/OVERVIEW.md
       - Learning program: arch/rgw/learning-program/index.md
@@ -661,4 +662,4 @@ nav:
         - Multisite: arch/rgw/modules/multisite.md
         - Protocol APIs: arch/rgw/modules/protocol-apis.md
   - Dev:
-    - Overview: dev/OVERVIEW.md
+    - Overview: dev/index.md

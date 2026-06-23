@@ -16,7 +16,7 @@
   <span class="portal-cta">باز کردن cheatsheet ←</span>
 </a>
 
-<a class="portal-card portal-architecture" href="/arch/rgw/OVERVIEW/">
+<a class="portal-card portal-architecture" href="/arch/">
   <span class="portal-icon">🏗</span>
   <h2>معماری</h2>
   <p>عملکرد زیربخش‌های RGW: مسیر درخواست، SAL، RADOS، auth، multisite، scheduling.</p>
