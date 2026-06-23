@@ -1,4 +1,4 @@
-<div class="hub-page" dir="rtl">
+<div class="hub-page" dir="rtl" lang="fa">
 
 <nav class="hub-nav">
   <div class="hub-nav__inner">
@@ -17,7 +17,14 @@
         <i class="fab fa-github"></i> گیت‌هاب
       </a>
     </div>
-    <a href="#get-started" class="hub-nav__cta"><i class="fas fa-rocket"></i> شروع کنید</a>
+    <div class="hub-nav__actions">
+      <div class="hub-lang" role="navigation" aria-label="زبان">
+        <a href="../" class="hub-lang__item" lang="en" hreflang="en" title="English">EN</a>
+        <span class="hub-lang__item hub-lang__item--active" lang="fa">فا</span>
+        <a href="../zh/" class="hub-lang__item" lang="zh" hreflang="zh" title="中文">中文</a>
+      </div>
+      <a href="#get-started" class="hub-nav__cta"><i class="fas fa-rocket"></i> شروع کنید</a>
+    </div>
   </div>
 </nav>
 
@@ -35,8 +42,8 @@
         مرجع کامل Cheatsheet، معماری عمیق RGW و راهنمای توسعه‌دهندگان Ceph Object Gateway (S3)
       </p>
       <div class="hub-hero__actions">
-        <a href="/cheatsheet/" class="hub-btn hub-btn--primary"><i class="fas fa-book"></i> Cheatsheet را ببینید</a>
-        <a href="/arch/" class="hub-btn hub-btn--outline"><i class="fas fa-layer-group"></i> معماری RGW</a>
+        <a href="cheatsheet/" class="hub-btn hub-btn--primary"><i class="fas fa-book"></i> Cheatsheet را ببینید</a>
+        <a href="arch/" class="hub-btn hub-btn--outline"><i class="fas fa-layer-group"></i> معماری RGW</a>
       </div>
       <div class="hub-hero__stats">
         <div><span class="hub-hero__stat-val">100+</span><span class="hub-hero__stat-label">دستور CLI</span></div>
@@ -78,19 +85,19 @@
       <div class="hub-card__icon">🐙</div>
       <h3 class="hub-card__title">دستورات CLI</h3>
       <p class="hub-card__text">ceph، osd، mon، rgw، rbd و صدها دستور کاربردی با مثال‌های واقعی</p>
-      <a href="/cheatsheet/cli/" class="hub-card__link">مشاهده cheatsheet کامل <i class="fas fa-arrow-left"></i></a>
+      <a href="cheatsheet/cli/" class="hub-card__link">مشاهده cheatsheet کامل <i class="fas fa-arrow-left"></i></a>
     </div>
     <div class="hub-card">
       <div class="hub-card__icon">⚙️</div>
       <h3 class="hub-card__title">تنظیمات بهینه</h3>
       <p class="hub-card__text">بهترین تنظیمات برای production، scalability، multisite و performance</p>
-      <a href="/cheatsheet/config/" class="hub-card__link">مشاهده تنظیمات <i class="fas fa-arrow-left"></i></a>
+      <a href="cheatsheet/config/" class="hub-card__link">مشاهده تنظیمات <i class="fas fa-arrow-left"></i></a>
     </div>
     <div class="hub-card">
       <div class="hub-card__icon">📈</div>
       <h3 class="hub-card__title">راهنماهای مقیاس‌پذیری</h3>
       <p class="hub-card__text">نصب، مانیتورینگ، بکاپ، disaster recovery و سناریوهای واقعی</p>
-      <a href="/cheatsheet/guides/" class="hub-card__link">شروع کنید <i class="fas fa-arrow-left"></i></a>
+      <a href="cheatsheet/guides/" class="hub-card__link">شروع کنید <i class="fas fa-arrow-left"></i></a>
     </div>
   </div>
 </section>
@@ -109,7 +116,7 @@
           <li><span class="hub-list__arrow">→</span><div><strong>Multisite Sync</strong><p>مکانیزم همگام‌سازی بین دیتاسنترها</p></div></li>
           <li><span class="hub-list__arrow">→</span><div><strong>Authentication &amp; Authorization</strong><p>S3-compatible auth mechanisms</p></div></li>
         </ul>
-        <a href="/arch/rgw/OVERVIEW/" class="hub-btn hub-btn--gradient" style="margin-top: 2rem;"><i class="fas fa-layer-group"></i> کاوش internals RGW</a>
+        <a href="arch/rgw/OVERVIEW/" class="hub-btn hub-btn--gradient" style="margin-top: 2rem;"><i class="fas fa-layer-group"></i> کاوش internals RGW</a>
       </div>
       <div class="hub-code-block">
         <pre>RGW Request Path:
@@ -133,7 +140,7 @@
     <div class="hub-develop-box__icon">🚀</div>
     <h3>برنامه یادگیری و Docs-as-Code</h3>
     <p>مسیر ساخت‌یافته در <code>src/rgw/</code> — همگام‌شده از upstream docs-extended.</p>
-    <a href="/dev/" class="hub-btn"><i class="fas fa-code"></i> مشاهده بخش توسعه</a>
+    <a href="dev/" class="hub-btn"><i class="fas fa-code"></i> مشاهده بخش توسعه</a>
   </div>
 </section>
 

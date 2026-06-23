@@ -1,38 +1,26 @@
 /* Persian / Arabic-friendly UI font (loaded for fa locale pages) */
 @import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap");
 
-/* ── Theme tokens ───────────────────────────────────────────── */
+/* ── Theme tokens (aligned with hub homepage) ─────────────────── */
 :root {
-  --ceph-teal: #0e7490;
-  --ceph-teal-light: #0891b2;
+  --ceph-teal: #0891b2;
+  --ceph-teal-light: #22d3ee;
   --ceph-coral: #e85d4c;
-  --ceph-navy: #1e293b;
-  --ceph-slate: #334155;
-  --table-head-bg: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
-  --table-head-fg: #f0fdfa;
-  --section-accent: #0891b2;
-}
-
-[data-md-color-scheme="slate"] {
+  --ceph-navy: #0f172a;
+  --ceph-slate: #94a3b8;
   --table-head-bg: linear-gradient(135deg, #164e63 0%, #0c4a6e 100%);
   --table-head-fg: #ecfeff;
   --section-accent: #22d3ee;
 }
 
-/* ── Page headings ──────────────────────────────────────────── */
-.md-typeset h1 {
-  color: var(--ceph-navy);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  border-bottom: 3px solid var(--section-accent);
-  padding-bottom: 0.35em;
-  margin-bottom: 0.8em;
+[data-md-color-scheme="slate"],
+[data-md-color-scheme="default"] {
+  --table-head-bg: linear-gradient(135deg, #164e63 0%, #0c4a6e 100%);
+  --table-head-fg: #ecfeff;
+  --section-accent: #22d3ee;
 }
 
-[data-md-color-scheme="slate"] .md-typeset h1 {
-  color: #f1f5f9;
-  border-bottom-color: var(--section-accent);
-}
+/* ── Page headings (site-theme.css provides base; badges below) ─ */
 
 [dir="rtl"] .md-typeset {
   text-align: right;
@@ -122,26 +110,7 @@ html[lang="fa"] .md-typeset h3,
   border-right: 4px solid var(--section-accent);
 }
 
-.md-typeset h2 {
-  color: var(--ceph-teal);
-  font-weight: 600;
-  border-left: 4px solid var(--section-accent);
-  padding-left: 0.65em;
-  margin-top: 1.6em;
-}
-
-[data-md-color-scheme="slate"] .md-typeset h2 {
-  color: #67e8f9;
-}
-
-.md-typeset h3 {
-  color: var(--ceph-slate);
-  font-weight: 600;
-}
-
-[data-md-color-scheme="slate"] .md-typeset h3 {
-  color: #cbd5e1;
-}
+/* h2/h3 accent handled in site-theme.css */
 
 /* ── Badges (base) ──────────────────────────────────────────── */
 .badge {

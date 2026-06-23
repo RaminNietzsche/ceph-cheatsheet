@@ -2,7 +2,7 @@
 
 docs/index:
   fa: |
-    <div class="hub-page" dir="rtl">
+    <div class="hub-page" dir="rtl" lang="fa">
 
     <nav class="hub-nav">
       <div class="hub-nav__inner">
@@ -21,7 +21,14 @@ docs/index:
             <i class="fab fa-github"></i> گیت‌هاب
           </a>
         </div>
-        <a href="#get-started" class="hub-nav__cta"><i class="fas fa-rocket"></i> شروع کنید</a>
+        <div class="hub-nav__actions">
+          <div class="hub-lang" role="navigation" aria-label="زبان">
+            <a href="../" class="hub-lang__item" lang="en" hreflang="en" title="English">EN</a>
+            <span class="hub-lang__item hub-lang__item--active" lang="fa">فا</span>
+            <a href="../zh/" class="hub-lang__item" lang="zh" hreflang="zh" title="中文">中文</a>
+          </div>
+          <a href="#get-started" class="hub-nav__cta"><i class="fas fa-rocket"></i> شروع کنید</a>
+        </div>
       </div>
     </nav>
 
@@ -39,8 +46,8 @@ docs/index:
             مرجع کامل Cheatsheet، معماری عمیق RGW و راهنمای توسعه‌دهندگان Ceph Object Gateway (S3)
           </p>
           <div class="hub-hero__actions">
-            <a href="/cheatsheet/" class="hub-btn hub-btn--primary"><i class="fas fa-book"></i> Cheatsheet را ببینید</a>
-            <a href="/arch/" class="hub-btn hub-btn--outline"><i class="fas fa-layer-group"></i> معماری RGW</a>
+            <a href="cheatsheet/" class="hub-btn hub-btn--primary"><i class="fas fa-book"></i> Cheatsheet را ببینید</a>
+            <a href="arch/" class="hub-btn hub-btn--outline"><i class="fas fa-layer-group"></i> معماری RGW</a>
           </div>
           <div class="hub-hero__stats">
             <div><span class="hub-hero__stat-val">100+</span><span class="hub-hero__stat-label">دستور CLI</span></div>
@@ -82,19 +89,19 @@ docs/index:
           <div class="hub-card__icon">🐙</div>
           <h3 class="hub-card__title">دستورات CLI</h3>
           <p class="hub-card__text">ceph، osd، mon، rgw، rbd و صدها دستور کاربردی با مثال‌های واقعی</p>
-          <a href="/cheatsheet/cli/" class="hub-card__link">مشاهده cheatsheet کامل <i class="fas fa-arrow-left"></i></a>
+          <a href="cheatsheet/cli/" class="hub-card__link">مشاهده cheatsheet کامل <i class="fas fa-arrow-left"></i></a>
         </div>
         <div class="hub-card">
           <div class="hub-card__icon">⚙️</div>
           <h3 class="hub-card__title">تنظیمات بهینه</h3>
           <p class="hub-card__text">بهترین تنظیمات برای production، scalability، multisite و performance</p>
-          <a href="/cheatsheet/config/" class="hub-card__link">مشاهده تنظیمات <i class="fas fa-arrow-left"></i></a>
+          <a href="cheatsheet/config/" class="hub-card__link">مشاهده تنظیمات <i class="fas fa-arrow-left"></i></a>
         </div>
         <div class="hub-card">
           <div class="hub-card__icon">📈</div>
           <h3 class="hub-card__title">راهنماهای مقیاس‌پذیری</h3>
           <p class="hub-card__text">نصب، مانیتورینگ، بکاپ، disaster recovery و سناریوهای واقعی</p>
-          <a href="/cheatsheet/guides/" class="hub-card__link">شروع کنید <i class="fas fa-arrow-left"></i></a>
+          <a href="cheatsheet/guides/" class="hub-card__link">شروع کنید <i class="fas fa-arrow-left"></i></a>
         </div>
       </div>
     </section>
@@ -113,7 +120,7 @@ docs/index:
               <li><span class="hub-list__arrow">→</span><div><strong>Multisite Sync</strong><p>مکانیزم همگام‌سازی بین دیتاسنترها</p></div></li>
               <li><span class="hub-list__arrow">→</span><div><strong>Authentication &amp; Authorization</strong><p>S3-compatible auth mechanisms</p></div></li>
             </ul>
-            <a href="/arch/rgw/OVERVIEW/" class="hub-btn hub-btn--gradient" style="margin-top: 2rem;"><i class="fas fa-layer-group"></i> کاوش internals RGW</a>
+            <a href="arch/rgw/OVERVIEW/" class="hub-btn hub-btn--gradient" style="margin-top: 2rem;"><i class="fas fa-layer-group"></i> کاوش internals RGW</a>
           </div>
           <div class="hub-code-block">
             <pre>RGW Request Path:
@@ -137,7 +144,7 @@ docs/index:
         <div class="hub-develop-box__icon">🚀</div>
         <h3>برنامه یادگیری و Docs-as-Code</h3>
         <p>مسیر ساخت‌یافته در <code>src/rgw/</code> — همگام‌شده از upstream docs-extended.</p>
-        <a href="/dev/" class="hub-btn"><i class="fas fa-code"></i> مشاهده بخش توسعه</a>
+        <a href="dev/" class="hub-btn"><i class="fas fa-code"></i> مشاهده بخش توسعه</a>
       </div>
     </section>
 
@@ -159,7 +166,7 @@ docs/index:
 
     </div>
   zh: |
-    <div class="hub-page">
+    <div class="hub-page" lang="zh">
 
     <nav class="hub-nav">
       <div class="hub-nav__inner">
@@ -178,7 +185,14 @@ docs/index:
             <i class="fab fa-github"></i> GitHub
           </a>
         </div>
-        <a href="#get-started" class="hub-nav__cta"><i class="fas fa-rocket"></i> 开始使用</a>
+        <div class="hub-nav__actions">
+          <div class="hub-lang" role="navigation" aria-label="语言">
+            <a href="../" class="hub-lang__item" lang="en" hreflang="en" title="English">EN</a>
+            <a href="../fa/" class="hub-lang__item" lang="fa" hreflang="fa" title="فارسی">فا</a>
+            <span class="hub-lang__item hub-lang__item--active" lang="zh">中文</span>
+          </div>
+          <a href="#get-started" class="hub-nav__cta"><i class="fas fa-rocket"></i> 开始使用</a>
+        </div>
       </div>
     </nav>
 
@@ -196,8 +210,8 @@ docs/index:
             完整速查表、RGW 深度架构与 Ceph Object Gateway (S3) 开发者指南
           </p>
           <div class="hub-hero__actions">
-            <a href="/cheatsheet/" class="hub-btn hub-btn--primary"><i class="fas fa-book"></i> 打开速查表</a>
-            <a href="/arch/" class="hub-btn hub-btn--outline"><i class="fas fa-layer-group"></i> RGW 架构</a>
+            <a href="cheatsheet/" class="hub-btn hub-btn--primary"><i class="fas fa-book"></i> 打开速查表</a>
+            <a href="arch/" class="hub-btn hub-btn--outline"><i class="fas fa-layer-group"></i> RGW 架构</a>
           </div>
           <div class="hub-hero__stats">
             <div><span class="hub-hero__stat-val">100+</span><span class="hub-hero__stat-label">CLI 命令</span></div>
@@ -239,19 +253,19 @@ docs/index:
           <div class="hub-card__icon">🐙</div>
           <h3 class="hub-card__title">CLI 命令</h3>
           <p class="hub-card__text">ceph、osd、mon、rgw、rbd — 数百条命令与实例</p>
-          <a href="/cheatsheet/cli/" class="hub-card__link">浏览 CLI 参考 <i class="fas fa-arrow-right"></i></a>
+          <a href="cheatsheet/cli/" class="hub-card__link">浏览 CLI 参考 <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="hub-card">
           <div class="hub-card__icon">⚙️</div>
           <h3 class="hub-card__title">配置</h3>
           <p class="hub-card__text">生产调优、扩展性、多站点与性能选项</p>
-          <a href="/cheatsheet/config/" class="hub-card__link">浏览配置索引 <i class="fas fa-arrow-right"></i></a>
+          <a href="cheatsheet/config/" class="hub-card__link">浏览配置索引 <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="hub-card">
           <div class="hub-card__icon">📈</div>
           <h3 class="hub-card__title">角色与规模指南</h3>
           <p class="hub-card__text">安装、监控、备份、灾备与真实部署场景</p>
-          <a href="/cheatsheet/guides/" class="hub-card__link">打开指南 <i class="fas fa-arrow-right"></i></a>
+          <a href="cheatsheet/guides/" class="hub-card__link">打开指南 <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
     </section>
@@ -270,7 +284,7 @@ docs/index:
               <li><span class="hub-list__arrow">→</span><div><strong>多站点同步</strong><p>跨数据中心复制机制</p></div></li>
               <li><span class="hub-list__arrow">→</span><div><strong>认证与授权</strong><p>S3 兼容身份与 IAM</p></div></li>
             </ul>
-            <a href="/arch/rgw/OVERVIEW/" class="hub-btn hub-btn--gradient" style="margin-top: 2rem;"><i class="fas fa-layer-group"></i> 探索 RGW 内部</a>
+            <a href="arch/rgw/OVERVIEW/" class="hub-btn hub-btn--gradient" style="margin-top: 2rem;"><i class="fas fa-layer-group"></i> 探索 RGW 内部</a>
           </div>
           <div class="hub-code-block">
             <pre>RGW Request Path:
@@ -294,7 +308,7 @@ docs/index:
         <div class="hub-develop-box__icon">🚀</div>
         <h3>学习程序与 Docs-as-Code</h3>
         <p>结构化学习 <code>src/rgw/</code> — 同步自 upstream docs-extended</p>
-        <a href="/dev/" class="hub-btn"><i class="fas fa-code"></i> 打开开发板块</a>
+        <a href="dev/" class="hub-btn"><i class="fas fa-code"></i> 打开开发板块</a>
       </div>
     </section>
 

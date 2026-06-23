@@ -1,4 +1,4 @@
-<div class="hub-page">
+<div class="hub-page" lang="en">
 
 <nav class="hub-nav">
   <div class="hub-nav__inner">
@@ -17,7 +17,14 @@
         <i class="fab fa-github"></i> GitHub
       </a>
     </div>
-    <a href="#get-started" class="hub-nav__cta"><i class="fas fa-rocket"></i> Get started</a>
+    <div class="hub-nav__actions">
+      <div class="hub-lang" role="navigation" aria-label="Language">
+        <span class="hub-lang__item hub-lang__item--active" lang="en">EN</span>
+        <a href="fa/" class="hub-lang__item" lang="fa" hreflang="fa" title="فارسی">فا</a>
+        <a href="zh/" class="hub-lang__item" lang="zh" hreflang="zh" title="中文">中文</a>
+      </div>
+      <a href="#get-started" class="hub-nav__cta"><i class="fas fa-rocket"></i> Get started</a>
+    </div>
   </div>
 </nav>
 
@@ -35,8 +42,8 @@
         Complete cheatsheet, deep RGW architecture, and developer guides for Ceph Object Gateway (S3).
       </p>
       <div class="hub-hero__actions">
-        <a href="/cheatsheet/" class="hub-btn hub-btn--primary"><i class="fas fa-book"></i> Open cheatsheet</a>
-        <a href="/arch/" class="hub-btn hub-btn--outline"><i class="fas fa-layer-group"></i> RGW architecture</a>
+        <a href="cheatsheet/" class="hub-btn hub-btn--primary"><i class="fas fa-book"></i> Open cheatsheet</a>
+        <a href="arch/" class="hub-btn hub-btn--outline"><i class="fas fa-layer-group"></i> RGW architecture</a>
       </div>
       <div class="hub-hero__stats">
         <div><span class="hub-hero__stat-val">100+</span><span class="hub-hero__stat-label">CLI commands</span></div>
@@ -78,19 +85,19 @@
       <div class="hub-card__icon">🐙</div>
       <h3 class="hub-card__title">CLI commands</h3>
       <p class="hub-card__text">ceph, osd, mon, rgw, rbd — hundreds of commands with real-world examples.</p>
-      <a href="/cheatsheet/cli/" class="hub-card__link">Browse CLI reference <i class="fas fa-arrow-right"></i></a>
+      <a href="cheatsheet/cli/" class="hub-card__link">Browse CLI reference <i class="fas fa-arrow-right"></i></a>
     </div>
     <div class="hub-card">
       <div class="hub-card__icon">⚙️</div>
       <h3 class="hub-card__title">Configuration</h3>
       <p class="hub-card__text">Production tuning, scalability, multisite, and performance options from upstream YAML.</p>
-      <a href="/cheatsheet/config/" class="hub-card__link">Browse config index <i class="fas fa-arrow-right"></i></a>
+      <a href="cheatsheet/config/" class="hub-card__link">Browse config index <i class="fas fa-arrow-right"></i></a>
     </div>
     <div class="hub-card">
       <div class="hub-card__icon">📈</div>
       <h3 class="hub-card__title">Role &amp; scale guides</h3>
       <p class="hub-card__text">Install, monitoring, backup, disaster recovery, and real deployment scenarios.</p>
-      <a href="/cheatsheet/guides/" class="hub-card__link">Open guides <i class="fas fa-arrow-right"></i></a>
+      <a href="cheatsheet/guides/" class="hub-card__link">Open guides <i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
 </section>
@@ -109,7 +116,7 @@
           <li><span class="hub-list__arrow">→</span><div><strong>Multisite sync</strong><p>Cross-datacenter replication mechanics</p></div></li>
           <li><span class="hub-list__arrow">→</span><div><strong>Auth &amp; authorization</strong><p>S3-compatible identity and IAM</p></div></li>
         </ul>
-        <a href="/arch/rgw/OVERVIEW/" class="hub-btn hub-btn--gradient" style="margin-top: 2rem;"><i class="fas fa-layer-group"></i> Explore RGW internals</a>
+        <a href="arch/rgw/OVERVIEW/" class="hub-btn hub-btn--gradient" style="margin-top: 2rem;"><i class="fas fa-layer-group"></i> Explore RGW internals</a>
       </div>
       <div class="hub-code-block">
         <pre>RGW Request Path:
@@ -133,7 +140,7 @@
     <div class="hub-develop-box__icon">🚀</div>
     <h3>Learning program &amp; docs-as-code</h3>
     <p>Structured path through <code>src/rgw/</code> — synced from upstream docs-extended.</p>
-    <a href="/dev/" class="hub-btn"><i class="fas fa-code"></i> Open develop section</a>
+    <a href="dev/" class="hub-btn"><i class="fas fa-code"></i> Open develop section</a>
   </div>
 </section>
 
