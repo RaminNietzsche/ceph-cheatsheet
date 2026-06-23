@@ -1,160 +1,152 @@
-[← Home](../index.md)
+<div class="hub-page hub-page--section hub-page--cheatsheet" lang="en">
 
-# Ceph Reference
+<nav class="hub-nav">
+  <div class="hub-nav__inner">
+    <a href="." class="hub-nav__brand">
+      <div class="hub-nav__logo">📋</div>
+      <div>
+        <p class="hub-nav__title">Cheatsheet</p>
+        <p class="hub-nav__subtitle">Operations reference</p>
+      </div>
+    </a>
+    <div class="hub-nav__links">
+      <a href="#guides" class="hub-nav__link">Guides</a>
+      <a href="#cli" class="hub-nav__link">CLI</a>
+      <a href="#config" class="hub-nav__link">Config</a>
+      <a href="guides/quickstart/" class="hub-nav__link">Quick start</a>
+    </div>
+    <div class="hub-nav__actions">
+      <a href="../" class="hub-nav__hub-link" title="Ceph Docs Hub"><i class="fas fa-home"></i> Hub</a>
+      <div class="hub-lang" role="navigation" aria-label="Language">
+        <span class="hub-lang__item hub-lang__item--active" lang="en">EN</span>
+        <a href="../fa/cheatsheet/" class="hub-lang__item" lang="fa" hreflang="fa" title="فارسی">فا</a>
+        <a href="../zh/cheatsheet/" class="hub-lang__item" lang="zh" hreflang="zh" title="中文">中文</a>
+      </div>
+      <a href="guides/OVERVIEW/" class="hub-nav__cta"><i class="fas fa-compass"></i> Browse guides</a>
+    </div>
+  </div>
+</nav>
 
-Simple, offline-friendly reference for Ceph administrators — organized by **role**, **scale**, **CLI**, and **config**.
+<section class="hub-hero hub-hero--compact" id="top">
+  <div class="hub-hero__grid hub-hero__grid--single">
+    <div>
+      <div class="hub-hero__badge">
+        <span class="hub-hero__pulse"></span>
+        Offline-friendly · synced from ceph/ceph
+      </div>
+      <h1 class="hub-hero__title">
+        <span class="hub-gradient">Operate</span> Ceph with confidence
+      </h1>
+      <p class="hub-hero__lead">
+        CLI commands, config options, and role/scale guides for day-to-day cluster administration.
+      </p>
+      <div class="hub-hero__actions">
+        <a href="cli/OVERVIEW/" class="hub-btn hub-btn--primary"><i class="fas fa-terminal"></i> CLI reference</a>
+        <a href="config/OVERVIEW/" class="hub-btn hub-btn--outline"><i class="fas fa-sliders-h"></i> Config index</a>
+      </div>
+      <div class="hub-hero__stats">
+        <div><span class="hub-hero__stat-val">100+</span><span class="hub-hero__stat-label">CLI commands</span></div>
+        <div><span class="hub-hero__stat-val">2122</span><span class="hub-hero__stat-label">Config options</span></div>
+        <div><span class="hub-hero__stat-val">13</span><span class="hub-hero__stat-label">Subsystems</span></div>
+      </div>
+    </div>
+  </div>
+  <a href="#guides" class="hub-scroll-hint" aria-label="Scroll to guides section">
+    <span aria-hidden="true">↓</span>
+    <span>Explore</span>
+  </a>
+</section>
 
-**Source:** [ceph/ceph](https://github.com/ceph/ceph) `main` — see [VERSION](../version.md) for generation date.
+<section class="hub-section" id="guides">
+  <div class="hub-section__head">
+    <div class="hub-section__icon">📈</div>
+    <h2 class="hub-section__title">Guides by role &amp; scale</h2>
+    <p class="hub-section__subtitle">Pick documentation for your job and cluster size</p>
+  </div>
+  <div class="hub-cards">
+    <div class="hub-card">
+      <div class="hub-card__icon">👤</div>
+      <h3 class="hub-card__title">By role</h3>
+      <p class="hub-card__text">Cluster admin, storage operator, RGW admin, CephFS admin.</p>
+      <a href="guides/OVERVIEW/#by-role" class="hub-card__link">Role guides <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="hub-card">
+      <div class="hub-card__icon">📐</div>
+      <h3 class="hub-card__title">By scale</h3>
+      <p class="hub-card__text">Lab, small production, large production, multisite.</p>
+      <a href="guides/OVERVIEW/#by-scale" class="hub-card__link">Scale guides <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="hub-card">
+      <div class="hub-card__icon">⚡</div>
+      <h3 class="hub-card__title">Daily ops</h3>
+      <p class="hub-card__text">Quick start, troubleshooting, config lookup, getting started.</p>
+      <a href="guides/quickstart/" class="hub-card__link">Quick start <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
 
----
+<section class="hub-section hub-section--alt" id="cli">
+  <div class="hub-section__inner">
+    <div class="hub-split">
+      <div>
+        <div class="hub-section__icon">🖥️</div>
+        <h2 class="hub-section__title">CLI command reference</h2>
+        <p class="hub-section__subtitle" style="margin: 1rem 0 0; text-align: inherit;">
+          ceph, osd, mon, rgw, rbd, cephfs, cephadm — copy-ready commands with examples.
+        </p>
+        <ul class="hub-list">
+          <li><span class="hub-list__arrow">→</span><div><strong>Cluster &amp; health</strong><p>Status, auth, CRUSH, orchestrator</p></div></li>
+          <li><span class="hub-list__arrow">→</span><div><strong>RGW / S3</strong><p>Users, buckets, multisite, quotas</p></div></li>
+          <li><span class="hub-list__arrow">→</span><div><strong>Storage</strong><p>OSD, pools, RBD, RADOS, CephFS</p></div></li>
+        </ul>
+        <a href="cli/OVERVIEW/" class="hub-btn hub-btn--gradient" style="margin-top: 2rem;"><i class="fas fa-terminal"></i> Open CLI index</a>
+      </div>
+      <div class="hub-code-block">
+        <pre>$ ceph status
+$ ceph orch ps
+$ radosgw-admin user list
+$ rbd ls</pre>
+      </div>
+    </div>
+  </div>
+</section>
 
-## Start here
+<section class="hub-section" id="config">
+  <div class="hub-section__head">
+    <div class="hub-section__icon">⚙️</div>
+    <h2 class="hub-section__title">Configuration options</h2>
+    <p class="hub-section__subtitle">Generated from upstream YAML — global, osd, mon, mgr, mds, rgw, rbd, and more</p>
+  </div>
+  <div class="hub-cards hub-cards--four">
+    <div class="hub-card hub-card--compact">
+      <h3 class="hub-card__title">global</h3>
+      <a href="config/global/INDEX/" class="hub-card__link">852 options <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="hub-card hub-card--compact">
+      <h3 class="hub-card__title">rgw</h3>
+      <a href="config/rgw/INDEX/" class="hub-card__link">441 options <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="hub-card hub-card--compact">
+      <h3 class="hub-card__title">osd</h3>
+      <a href="config/osd/INDEX/" class="hub-card__link">158 options <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="hub-card hub-card--compact">
+      <h3 class="hub-card__title">All subsystems</h3>
+      <a href="config/OVERVIEW/" class="hub-card__link">Full index <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
 
-| I want to… | Go to |
-|------------|-------|
-| Find docs for my job | [Guides by role](guides/OVERVIEW.md#by-role) |
-| Size-specific advice | [Guides by scale](guides/OVERVIEW.md#by-scale) |
-| Run cluster commands | [CLI reference](cli/OVERVIEW.md) |
-| Look up a config option | [Config reference](config/OVERVIEW.md) |
-| Daily checklist | [Quick start](guides/quickstart.md) |
-| Search locally | `./scripts/search-all.sh <term>` |
-| One config option | `./scripts/lookup-config.sh <option>` |
+<footer class="hub-footer hub-footer--section">
+  <div class="hub-footer__inner">
+    <div>
+      <div class="hub-footer__brand"><span>📋</span> Cheatsheet</div>
+      <p class="hub-footer__note">Independent operations reference · <a href="../">Ceph Docs Hub</a></p>
+    </div>
+    <div class="hub-footer__meta">
+      <p><a href="../version/">Version</a> · <a href="guides/contributing/">Contributing</a></p>
+    </div>
+  </div>
+</footer>
 
----
-
-## By role
-
-<table class="guide-table">
-<thead>
-<tr><th>Role</th><th>Guide</th><th>CLI</th><th>Config</th></tr>
-</thead>
-<tbody>
-<tr class="row-cluster">
-  <td><span class="badge badge-role-cluster">Cluster admin</span></td>
-  <td><a href="guides/roles/cluster-admin/">guide</a></td>
-  <td><a href="cli/cluster/">cluster</a>, <a href="cli/cephadm/">cephadm</a></td>
-  <td><a href="config/mon/INDEX/">mon</a>, <a href="config/mgr/INDEX/">mgr</a></td>
-</tr>
-<tr class="row-storage">
-  <td><span class="badge badge-role-storage">Storage operator</span></td>
-  <td><a href="guides/roles/storage-operator/">guide</a></td>
-  <td><a href="cli/osd-pool/">osd-pool</a></td>
-  <td><a href="config/osd/INDEX/">osd</a></td>
-</tr>
-<tr class="row-rgw">
-  <td><span class="badge badge-role-rgw">RGW admin</span></td>
-  <td><a href="guides/roles/rgw-admin/">guide</a></td>
-  <td><a href="cli/rgw/">rgw</a></td>
-  <td><a href="config/rgw/INDEX/">rgw config</a></td>
-</tr>
-<tr class="row-cephfs">
-  <td><span class="badge badge-role-cephfs">CephFS admin</span></td>
-  <td><a href="guides/roles/cephfs-admin/">guide</a></td>
-  <td><a href="cli/cephfs/">cephfs</a></td>
-  <td><a href="config/mds/INDEX/">mds</a></td>
-</tr>
-</tbody>
-</table>
-
----
-
-## By scale
-
-<table class="guide-table">
-<thead>
-<tr><th>Scale</th><th>Guide</th></tr>
-</thead>
-<tbody>
-<tr class="row-lab">
-  <td><span class="badge badge-scale-lab">Lab / dev</span> (1–3 nodes)</td>
-  <td><a href="guides/scales/lab/">lab</a></td>
-</tr>
-<tr class="row-small">
-  <td><span class="badge badge-scale-small">Small production</span> (3–12 nodes)</td>
-  <td><a href="guides/scales/small-production/">small production</a></td>
-</tr>
-<tr class="row-large">
-  <td><span class="badge badge-scale-large">Large production</span> (12+ nodes)</td>
-  <td><a href="guides/scales/large-production/">large production</a></td>
-</tr>
-<tr class="row-multi">
-  <td><span class="badge badge-scale-multi">Multisite</span></td>
-  <td><a href="guides/scales/multisite/">multisite</a></td>
-</tr>
-</tbody>
-</table>
-
----
-
-## CLI commands
-
-| Section | Description |
-|---------|-------------|
-| [Overview](cli/OVERVIEW.md) | Command families and quick examples |
-| [Cluster](cli/cluster.md) | Status, health, auth, CRUSH |
-| [Config](cli/config.md) | `ceph config get/set/dump` |
-| [OSD & pools](cli/osd-pool.md) | OSDs, pools, PGs, erasure coding |
-| [RADOS](cli/rados.md) | Objects, omap, bench |
-| [RBD](cli/rbd.md) | Images, snapshots, map, mirror |
-| [RGW](cli/rgw.md) | Users, buckets, multisite |
-| [CephFS](cli/cephfs.md) | File systems, MDS, mounts |
-| [Cephadm](cli/cephadm.md) | Orchestrator, deploy, upgrade |
-| [Troubleshooting](cli/troubleshooting.md) | Logs, recovery, diagnostics |
-
----
-
-## Configuration options
-
-**2122 options** across 13 subsystems — generated from upstream YAML.
-
-| Subsystem | Index |
-|-----------|-------|
-| [global](config/global/INDEX.md) | Auth, bluestore, debug, network |
-| [osd](config/osd/INDEX.md) | Recovery, scrub, mclock |
-| [mon](config/mon/INDEX.md) | Quorum, paxos |
-| [mgr](config/mgr/INDEX.md) | Modules, cephadm |
-| [mds](config/mds/INDEX.md) | CephFS metadata |
-| [rgw](config/rgw/INDEX.md) | S3 gateway |
-| [rbd](config/rbd/INDEX.md) | Block device client |
-| … | [Full list →](config/OVERVIEW.md) |
-
----
-
-## Maintaining this reference
-
-Rules: `.cursor/rules/` · Skill: `.cursor/skills/ceph-cheatsheet/` · [Contributing guide](guides/contributing.md)
-
----
-
-## Browse online
-
-```bash
-pip install -r scripts/requirements.txt
-mkdocs serve
-```
-
-Open http://blog.ceph-s3.ir/cheatsheet/ (or http://127.0.0.1:8000/cheatsheet/ locally).
-
----
-
-## Project layout
-
-```
-cli/                    Command reference
-config/                 Config tables (auto-generated)
-guides/roles/           By operator role
-guides/scales/          By cluster size
-guides/rgw-config/      Generated — RGW options (441)
-guides/osd-config/      Generated — OSD options (158)
-guides/mon-config/      Generated — MON options (156)
-guides/mgr-config/      Generated — MGR options (52)
-guides/mds-config/      Generated — MDS options (194)
-guides/global-config/   Generated — Global options (852)
-guides/*-config/        Other subsystems — see generate-config-guide.py
-docs/                   MkDocs shell (index, CSS; symlinks to content)
-scripts/                Search, lookup, regenerate
-.cursor/rules/          Documentation conventions
-.cursor/skills/         Agent maintenance workflows
-```
-
-[README](https://github.com/RaminNietzsche/ceph-cheatsheet) · [License](../license.md)
+</div>

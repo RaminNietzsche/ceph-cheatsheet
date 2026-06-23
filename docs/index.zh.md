@@ -10,9 +10,7 @@
       </div>
     </div>
     <div class="hub-nav__links">
-      <a href="#cheatsheet" class="hub-nav__link">速查表</a>
-      <a href="#architecture" class="hub-nav__link">架构</a>
-      <a href="#develop" class="hub-nav__link">开发</a>
+      <a href="#portals" class="hub-nav__link">板块</a>
       <a href="https://github.com/RaminNietzsche/ceph-cheatsheet" target="_blank" rel="noopener" class="hub-nav__link">
         <i class="fab fa-github"></i> GitHub
       </a>
@@ -71,79 +69,37 @@
       </div>
     </div>
   </div>
-  <a href="#cheatsheet" class="hub-scroll-hint" aria-label="滚动到速查表部分">
+  <a href="#portals" class="hub-scroll-hint" aria-label="滚动到板块">
     <span aria-hidden="true">↓</span>
-    <span>了解更多</span>
+    <span>选择板块</span>
   </a>
 </section>
 
-<section class="hub-section" id="cheatsheet">
+<section class="hub-section" id="portals">
   <div class="hub-section__head">
-    <div class="hub-section__icon">📋</div>
-    <h2 class="hub-section__title">速查表</h2>
-    <p class="hub-section__subtitle">CLI 命令、配置选项与日常 Ceph 运维快速参考</p>
+    <div class="hub-section__icon">🧭</div>
+    <h2 class="hub-section__title">三个独立板块</h2>
+    <p class="hub-section__subtitle">每个板块有独立首页与导航</p>
   </div>
-  <div class="hub-cards">
-    <div class="hub-card">
-      <div class="hub-card__icon">🐙</div>
-      <h3 class="hub-card__title">CLI 命令</h3>
-      <p class="hub-card__text">ceph、osd、mon、rgw、rbd — 数百条命令与实例</p>
-      <a href="cheatsheet/cli/" class="hub-card__link">浏览 CLI 参考 <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="hub-card">
-      <div class="hub-card__icon">⚙️</div>
-      <h3 class="hub-card__title">配置</h3>
-      <p class="hub-card__text">生产调优、扩展性、多站点与性能选项</p>
-      <a href="cheatsheet/config/" class="hub-card__link">浏览配置索引 <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="hub-card">
-      <div class="hub-card__icon">📈</div>
-      <h3 class="hub-card__title">角色与规模指南</h3>
-      <p class="hub-card__text">安装、监控、备份、灾备与真实部署场景</p>
-      <a href="cheatsheet/guides/" class="hub-card__link">打开指南 <i class="fas fa-arrow-right"></i></a>
-    </div>
-  </div>
-</section>
-
-<section class="hub-section hub-section--alt" id="architecture">
-  <div class="hub-section__inner">
-    <div class="hub-split">
-      <div>
-        <div class="hub-section__icon">🏗️</div>
-        <h2 class="hub-section__title">RGW 深度架构</h2>
-        <p class="hub-section__subtitle" style="margin: 1rem 0 0; text-align: inherit;">
-          请求路径、SAL、RADOS 驱动、认证、多站点与调度
-        </p>
-        <ul class="hub-list">
-          <li><span class="hub-list__arrow">→</span><div><strong>请求流</strong><p>从 HTTP 前端到 RADOS 存储</p></div></li>
-          <li><span class="hub-list__arrow">→</span><div><strong>多站点同步</strong><p>跨数据中心复制机制</p></div></li>
-          <li><span class="hub-list__arrow">→</span><div><strong>认证与授权</strong><p>S3 兼容身份与 IAM</p></div></li>
-        </ul>
-        <a href="arch/rgw/OVERVIEW/" class="hub-btn hub-btn--gradient" style="margin-top: 2rem;"><i class="fas fa-layer-group"></i> 探索 RGW 内部</a>
-      </div>
-      <div class="hub-code-block">
-        <pre>RGW Request Path:
-  1. Frontend (Beast/Civetweb)
-  2. RGW REST → Ops
-  3. SAL (Store Abstraction Layer)
-  4. RADOS Backend
-  5. Metadata + Data Placement</pre>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hub-section" id="develop">
-  <div class="hub-section__head">
-    <div class="hub-section__icon">🛠️</div>
-    <h2 class="hub-section__title">开发者指南</h2>
-    <p class="hub-section__subtitle">工作流、规范、构建与 Ceph 贡献</p>
-  </div>
-  <div class="hub-develop-box">
-    <div class="hub-develop-box__icon">🚀</div>
-    <h3>学习程序与 Docs-as-Code</h3>
-    <p>结构化学习 <code>src/rgw/</code> — 同步自 upstream docs-extended</p>
-    <a href="dev/" class="hub-btn"><i class="fas fa-code"></i> 打开开发板块</a>
+  <div class="hub-cards hub-cards--portals">
+    <a href="cheatsheet/" class="hub-card hub-card--portal hub-card--portal-cheatsheet">
+      <div class="hub-card__icon">📋</div>
+      <h3 class="hub-card__title">速查表</h3>
+      <p class="hub-card__text">CLI、配置与角色/规模指南。</p>
+      <span class="hub-card__link">进入速查表 <i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a href="arch/" class="hub-card hub-card--portal hub-card--portal-arch">
+      <div class="hub-card__icon">🏗️</div>
+      <h3 class="hub-card__title">架构</h3>
+      <p class="hub-card__text">RGW 内部 — 请求路径、SAL、RADOS、多站点。</p>
+      <span class="hub-card__link">进入架构 <i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a href="dev/" class="hub-card hub-card--portal hub-card--portal-dev">
+      <div class="hub-card__icon">🛠️</div>
+      <h3 class="hub-card__title">开发</h3>
+      <p class="hub-card__text">学习程序、规范与 upstream 同步。</p>
+      <span class="hub-card__link">进入开发 <i class="fas fa-arrow-right"></i></span>
+    </a>
   </div>
 </section>
 

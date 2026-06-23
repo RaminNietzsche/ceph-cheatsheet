@@ -10,9 +10,7 @@
       </div>
     </div>
     <div class="hub-nav__links">
-      <a href="#cheatsheet" class="hub-nav__link">Cheatsheet</a>
-      <a href="#architecture" class="hub-nav__link">Architecture</a>
-      <a href="#develop" class="hub-nav__link">Develop</a>
+      <a href="#portals" class="hub-nav__link">Sections</a>
       <a href="https://github.com/RaminNietzsche/ceph-cheatsheet" target="_blank" rel="noopener" class="hub-nav__link">
         <i class="fab fa-github"></i> GitHub
       </a>
@@ -71,79 +69,37 @@
       </div>
     </div>
   </div>
-  <a href="#cheatsheet" class="hub-scroll-hint" aria-label="Scroll to Cheatsheet section">
+  <a href="#portals" class="hub-scroll-hint" aria-label="Scroll to documentation sections">
     <span aria-hidden="true">↓</span>
-    <span>Explore more</span>
+    <span>Choose a section</span>
   </a>
 </section>
 
-<section class="hub-section" id="cheatsheet">
+<section class="hub-section" id="portals">
   <div class="hub-section__head">
-    <div class="hub-section__icon">📋</div>
-    <h2 class="hub-section__title">Cheatsheet</h2>
-    <p class="hub-section__subtitle">Fast reference for CLI commands, config options, and day-to-day Ceph operations</p>
+    <div class="hub-section__icon">🧭</div>
+    <h2 class="hub-section__title">Three independent sections</h2>
+    <p class="hub-section__subtitle">Each section has its own home page, navigation, and focus area</p>
   </div>
-  <div class="hub-cards">
-    <div class="hub-card">
-      <div class="hub-card__icon">🐙</div>
-      <h3 class="hub-card__title">CLI commands</h3>
-      <p class="hub-card__text">ceph, osd, mon, rgw, rbd — hundreds of commands with real-world examples.</p>
-      <a href="cheatsheet/cli/" class="hub-card__link">Browse CLI reference <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="hub-card">
-      <div class="hub-card__icon">⚙️</div>
-      <h3 class="hub-card__title">Configuration</h3>
-      <p class="hub-card__text">Production tuning, scalability, multisite, and performance options from upstream YAML.</p>
-      <a href="cheatsheet/config/" class="hub-card__link">Browse config index <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="hub-card">
-      <div class="hub-card__icon">📈</div>
-      <h3 class="hub-card__title">Role &amp; scale guides</h3>
-      <p class="hub-card__text">Install, monitoring, backup, disaster recovery, and real deployment scenarios.</p>
-      <a href="cheatsheet/guides/" class="hub-card__link">Open guides <i class="fas fa-arrow-right"></i></a>
-    </div>
-  </div>
-</section>
-
-<section class="hub-section hub-section--alt" id="architecture">
-  <div class="hub-section__inner">
-    <div class="hub-split">
-      <div>
-        <div class="hub-section__icon">🏗️</div>
-        <h2 class="hub-section__title">Deep RGW architecture</h2>
-        <p class="hub-section__subtitle" style="margin: 1rem 0 0; text-align: inherit;">
-          Request path, SAL, RADOS driver, auth, multisite, and scheduling in Ceph Object Gateway.
-        </p>
-        <ul class="hub-list">
-          <li><span class="hub-list__arrow">→</span><div><strong>Request flow</strong><p>From HTTP frontend to RADOS storage</p></div></li>
-          <li><span class="hub-list__arrow">→</span><div><strong>Multisite sync</strong><p>Cross-datacenter replication mechanics</p></div></li>
-          <li><span class="hub-list__arrow">→</span><div><strong>Auth &amp; authorization</strong><p>S3-compatible identity and IAM</p></div></li>
-        </ul>
-        <a href="arch/rgw/OVERVIEW/" class="hub-btn hub-btn--gradient" style="margin-top: 2rem;"><i class="fas fa-layer-group"></i> Explore RGW internals</a>
-      </div>
-      <div class="hub-code-block">
-        <pre>RGW Request Path:
-  1. Frontend (Beast/Civetweb)
-  2. RGW REST → Ops
-  3. SAL (Store Abstraction Layer)
-  4. RADOS Backend
-  5. Metadata + Data Placement</pre>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hub-section" id="develop">
-  <div class="hub-section__head">
-    <div class="hub-section__icon">🛠️</div>
-    <h2 class="hub-section__title">Developer guide</h2>
-    <p class="hub-section__subtitle">Workflow, conventions, build, and contribution to Ceph RGW</p>
-  </div>
-  <div class="hub-develop-box">
-    <div class="hub-develop-box__icon">🚀</div>
-    <h3>Learning program &amp; docs-as-code</h3>
-    <p>Structured path through <code>src/rgw/</code> — synced from upstream docs-extended.</p>
-    <a href="dev/" class="hub-btn"><i class="fas fa-code"></i> Open develop section</a>
+  <div class="hub-cards hub-cards--portals">
+    <a href="cheatsheet/" class="hub-card hub-card--portal hub-card--portal-cheatsheet">
+      <div class="hub-card__icon">📋</div>
+      <h3 class="hub-card__title">Cheatsheet</h3>
+      <p class="hub-card__text">CLI commands, config options, role &amp; scale guides for daily Ceph operations.</p>
+      <span class="hub-card__link">Enter cheatsheet <i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a href="arch/" class="hub-card hub-card--portal hub-card--portal-arch">
+      <div class="hub-card__icon">🏗️</div>
+      <h3 class="hub-card__title">Architecture</h3>
+      <p class="hub-card__text">RGW internals — request path, SAL, RADOS driver, multisite, system design.</p>
+      <span class="hub-card__link">Enter architecture <i class="fas fa-arrow-right"></i></span>
+    </a>
+    <a href="dev/" class="hub-card hub-card--portal hub-card--portal-dev">
+      <div class="hub-card__icon">🛠️</div>
+      <h3 class="hub-card__title">Develop</h3>
+      <p class="hub-card__text">Learning program, docs-as-code conventions, and upstream sync workflow.</p>
+      <span class="hub-card__link">Enter develop <i class="fas fa-arrow-right"></i></span>
+    </a>
   </div>
 </section>
 

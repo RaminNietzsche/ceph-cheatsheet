@@ -282,7 +282,7 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Cheatsheet:
-    - Overview: cheatsheet/index.md
+    - Home: cheatsheet/index.md
     - Guides:
       - Overview: cheatsheet/guides/OVERVIEW.md
       - Quick start: cheatsheet/guides/quickstart.md
@@ -650,7 +650,7 @@ nav:
       - Immutable cache: cheatsheet/config/immutable-object-cache/INDEX.md
       - Ceph exporter: cheatsheet/config/ceph-exporter/INDEX.md
   - Arch:
-    - Overview: arch/index.md
+    - Home: arch/index.md
     - RGW:
       - Overview: arch/rgw/OVERVIEW.md
       - Guides:
@@ -694,4 +694,4 @@ nav:
         - Multisite: arch/rgw/modules/multisite.md
         - Protocol APIs: arch/rgw/modules/protocol-apis.md
   - Dev:
-    - Overview: dev/index.md
+    - Home: dev/index.md
