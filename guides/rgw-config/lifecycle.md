@@ -1,6 +1,6 @@
-# Lifecycle (LC) workers
+# Lifecycle (LC)
 
-RGW config deep dive — 12 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 17 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
@@ -16,6 +16,11 @@ RGW config deep dive — 12 options. [← RGW config overview](OVERVIEW.md) · [
 | [rgw_lc_max_wp_worker](#rgw_lc_max_wp_worker) | `128` | Advanced | Policy |
 | [rgw_lc_ordered_list_threshold](#rgw_lc_ordered_list_threshold) | `500` | Dev | Performance |
 | [rgw_lc_thread_delay](#rgw_lc_thread_delay) | `0` | Advanced | Performance |
+| [rgw_lifecycle_work_time](#rgw_lifecycle_work_time) | `00:00-06:00` | Advanced | Performance |
+| [rgw_mp_lock_max_time](#rgw_mp_lock_max_time) | `10_min` | Advanced | Policy |
+| [rgw_restore_lock_max_time](#rgw_restore_lock_max_time) | `90` | Dev | Policy |
+| [rgwlc_auto_session_clear](#rgwlc_auto_session_clear) | `True` | Advanced | Policy |
+| [rgwlc_skip_bucket_step](#rgwlc_skip_bucket_step) | `False` | Advanced | Policy |
 
 ## Finding optimal values
 
@@ -443,6 +448,156 @@ ceph daemon rgw.<id> perf dump | jq '.rgw' | head
 radosgw-admin perf stats
 ceph -s  # cluster health, slow ops
 ```
+
+---
+
+### rgw_lifecycle_work_time
+
+| | |
+|---|---|
+| Type | Str · default `00:00-06:00` · **Advanced** |
+| Table | [rgw.md#SP_rgw_lifecycle_work_time](../../config/rgw/rgw.md#SP_rgw_lifecycle_work_time) |
+
+**What it does:** Lifecycle allowed work time
+
+**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_lifecycle_work_time 00:00-06:00
+ceph config get client.rgw rgw_lifecycle_work_time
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `00:00-06:00`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_lifecycle_work_time
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+---
+
+### rgw_mp_lock_max_time
+
+| | |
+|---|---|
+| Type | Int · default `10_min` · **Advanced** |
+| Table | [rgw.md#SP_rgw_mp_lock_max_time](../../config/rgw/rgw.md#SP_rgw_mp_lock_max_time) |
+
+**What it does:** Multipart upload max completion time
+
+**When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_mp_lock_max_time 10_min
+ceph config get client.rgw rgw_mp_lock_max_time
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `10_min` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
+
+**Bounds:** min `2_min`, max `—`.
+
+---
+
+### rgw_restore_lock_max_time
+
+| | |
+|---|---|
+| Type | Int · default `90` · **Dev** |
+| Table | [rgw.md#SP_rgw_restore_lock_max_time](../../config/rgw/rgw.md#SP_rgw_restore_lock_max_time) |
+
+**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_restore_lock_max_time 90
+ceph config get client.rgw rgw_restore_lock_max_time
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `90` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
+
+---
+
+### rgwlc_auto_session_clear
+
+| | |
+|---|---|
+| Type | Bool · default `True` · **Advanced** |
+| Table | [rgwlc.md#SP_rgwlc_auto_session_clear](../../config/rgw/rgwlc.md#SP_rgwlc_auto_session_clear) |
+
+**What it does:** Automatically clear stale lifecycle sessions (i.e., after 2 idle processing cycles)
+
+**When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgwlc_auto_session_clear True
+ceph config get client.rgw rgwlc_auto_session_clear
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
+
+---
+
+### rgwlc_skip_bucket_step
+
+| | |
+|---|---|
+| Type | Bool · default `False` · **Advanced** |
+| Table | [rgwlc.md#SP_rgwlc_skip_bucket_step](../../config/rgw/rgwlc.md#SP_rgwlc_skip_bucket_step) |
+
+**What it does:** Conditionally skip the processing (but not the scheduling) of bucket lifecycle
+
+**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgwlc_skip_bucket_step False
+ceph config get client.rgw rgwlc_skip_bucket_step
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 

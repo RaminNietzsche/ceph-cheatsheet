@@ -1,9 +1,11 @@
-# Frontends and DNS
+# Frontends & HTTP stack
 
-RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 6 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
+| [rgw_asio_assert_yielding](#rgw_asio_assert_yielding) | `False` | Dev | Dev |
+| [rgw_beast_enable_async](#rgw_beast_enable_async) | `True` | Dev | Policy |
 | [rgw_dns_name](#rgw_dns_name) | `(empty)` | Advanced | Performance |
 | [rgw_dns_s3website_name](#rgw_dns_s3website_name) | `(empty)` | Advanced | Performance |
 | [rgw_frontend_defaults](#rgw_frontend_defaults) | `beast ssl_certificate=config://rgw/cert/$realm/$zone.crt ssl_private_key=config://rgw/cert/$realm/$zone.key` | Advanced | Performance |
@@ -28,6 +30,64 @@ ceph daemon rgw.<id> perf dump | jq '.rgw' | head
 radosgw-admin perf stats
 ceph osd pool stats
 ```
+
+---
+
+### rgw_asio_assert_yielding
+
+| | |
+|---|---|
+| Type | Bool · default `False` · **Dev** |
+| Table | [rgw.md#SP_rgw_asio_assert_yielding](../../config/rgw/rgw.md#SP_rgw_asio_assert_yielding) |
+
+**What it does:** Trigger an assertion failure if an operation would block an asio thread
+
+**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_asio_assert_yielding False
+ceph config get client.rgw rgw_asio_assert_yielding
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Dev
+
+1. Keep the upstream default (`False`) on every production RGW.
+2. Enable or change only in a lab while reproducing a specific bug.
+3. Revert before returning the node to the production pool.
+
+**Signals:** assertion failures, injected errors, or trace noise in logs.
+
+---
+
+### rgw_beast_enable_async
+
+| | |
+|---|---|
+| Type | Bool · default `True` · **Dev** |
+| Table | [rgw.md#SP_rgw_beast_enable_async](../../config/rgw/rgw.md#SP_rgw_beast_enable_async) |
+
+**What it does:** Enable async request processing under beast using coroutines
+
+**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_beast_enable_async True
+ceph config get client.rgw rgw_beast_enable_async
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `True` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 

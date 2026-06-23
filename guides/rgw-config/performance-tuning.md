@@ -1,12 +1,10 @@
-# Performance and concurrency
+# Concurrency & RADOS I/O
 
-RGW config deep dive — 17 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 14 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
 | [rgw_list_bucket_min_readahead](#rgw_list_bucket_min_readahead) | `1000` | Advanced | Performance |
-| [rgw_list_buckets_max_chunk](#rgw_list_buckets_max_chunk) | `1000` | Advanced | Policy |
-| [rgw_max_chunk_size](#rgw_max_chunk_size) | `4_M` | Advanced | Performance |
 | [rgw_max_concurrent_requests](#rgw_max_concurrent_requests) | `1024` | Basic | Performance |
 | [rgw_max_copy_obj_concurrent_io](#rgw_max_copy_obj_concurrent_io) | `10` | Advanced | Performance |
 | [rgw_max_objs_per_shard](#rgw_max_objs_per_shard) | `100000` | Basic | Policy |
@@ -14,7 +12,6 @@ RGW config deep dive — 17 options. [← RGW config overview](OVERVIEW.md) · [
 | [rgw_num_async_rados_threads](#rgw_num_async_rados_threads) | `32` | Advanced | Performance |
 | [rgw_num_control_oids](#rgw_num_control_oids) | `8` | Advanced | Policy |
 | [rgw_obj_stripe_size](#rgw_obj_stripe_size) | `4_M` | Advanced | Performance |
-| [rgw_objexp_chunk_size](#rgw_objexp_chunk_size) | `100` | Dev | Performance |
 | [rgw_op_thread_suicide_timeout](#rgw_op_thread_suicide_timeout) | `0` | Dev | Dev |
 | [rgw_op_thread_timeout](#rgw_op_thread_timeout) | `10_min` | Dev | Dev |
 | [rgw_redis_connection_pool_size](#rgw_redis_connection_pool_size) | `512` | Basic | Performance |
@@ -75,71 +72,6 @@ ceph config get client.rgw rgw_list_bucket_min_readahead
 
 ```bash
 ceph config get client.rgw rgw_list_bucket_min_readahead
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph -s  # cluster health, slow ops
-```
-
----
-
-### rgw_list_buckets_max_chunk
-
-| | |
-|---|---|
-| Type | Int · default `1000` · **Advanced** |
-| Table | [rgw.md#SP_rgw_list_buckets_max_chunk](../../config/rgw/rgw.md#SP_rgw_list_buckets_max_chunk) |
-
-**What it does:** Max number of buckets to retrieve in a single listing operation
-
-**When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
-
-**Example:**
-
-```bash
-ceph config set client.rgw rgw_list_buckets_max_chunk 1000
-ceph config get client.rgw rgw_list_buckets_max_chunk
-```
-
-**Finding optimal value:**
-
-**Tuning model:** Policy
-
-1. Start at `1000` (S3/AWS-aligned for most limits).
-2. Raise only when clients return explicit limit errors in RGW logs.
-3. Lower to harden against oversized requests or DoS.
-
----
-
-### rgw_max_chunk_size
-
-| | |
-|---|---|
-| Type | Size · default `4_M` · **Advanced** |
-| Table | [rgw.md#SP_rgw_max_chunk_size](../../config/rgw/rgw.md#SP_rgw_max_chunk_size) |
-
-**What it does:** The maximum RGW chunk size.
-
-**When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
-
-**Example:**
-
-```bash
-ceph config set client.rgw rgw_max_chunk_size 4_M
-ceph config get client.rgw rgw_max_chunk_size
-```
-
-**Finding optimal value:**
-
-**Tuning model:** Performance
-
-1. Baseline `4_M` with your object size distribution (small vs large objects).
-2. Larger windows/chunks improve throughput for big objects; may hurt small-object latency.
-3. Change one step at a time; rerun `cosbench` or `warp` with the same object mix.
-
-**Signals:** PUT/GET p99 by object size, RADOS op count per MB transferred.
-
-```bash
-ceph config get client.rgw rgw_max_chunk_size
 ceph daemon rgw.<id> perf dump | jq '.rgw' | head
 radosgw-admin perf stats
 ceph -s  # cluster health, slow ops
@@ -395,41 +327,6 @@ ceph config get client.rgw rgw_obj_stripe_size
 
 ```bash
 ceph config get client.rgw rgw_obj_stripe_size
-ceph daemon rgw.<id> perf dump | jq '.rgw' | head
-radosgw-admin perf stats
-ceph -s  # cluster health, slow ops
-```
-
----
-
-### rgw_objexp_chunk_size
-
-| | |
-|---|---|
-| Type | Uint · default `100` · **Dev** |
-| Table | [rgw.md#SP_rgw_objexp_chunk_size](../../config/rgw/rgw.md#SP_rgw_objexp_chunk_size) |
-
-**When to use:** Development, testing, or upstream debugging only — not for production tuning.
-
-**Example:**
-
-```bash
-ceph config set client.rgw rgw_objexp_chunk_size 100
-ceph config get client.rgw rgw_objexp_chunk_size
-```
-
-**Finding optimal value:**
-
-**Tuning model:** Performance
-
-1. Baseline `100` with your object size distribution (small vs large objects).
-2. Larger windows/chunks improve throughput for big objects; may hurt small-object latency.
-3. Change one step at a time; rerun `cosbench` or `warp` with the same object mix.
-
-**Signals:** PUT/GET p99 by object size, RADOS op count per MB transferred.
-
-```bash
-ceph config get client.rgw rgw_objexp_chunk_size
 ceph daemon rgw.<id> perf dump | jq '.rgw' | head
 radosgw-admin perf stats
 ceph -s  # cluster health, slow ops

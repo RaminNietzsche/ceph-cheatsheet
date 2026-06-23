@@ -1,4 +1,4 @@
-# Quota sync and defaults
+# Quota sync & defaults
 
 RGW config deep dive — 5 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 

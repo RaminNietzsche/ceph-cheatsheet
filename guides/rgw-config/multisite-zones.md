@@ -1,9 +1,13 @@
-# Multisite zones and realm
+# Zones, realm & region
 
-RGW config deep dive — 15 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 19 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
+| [rgw_default_realm_info_oid](#rgw_default_realm_info_oid) | `default.realm` | Advanced | Performance |
+| [rgw_default_region_info_oid](#rgw_default_region_info_oid) | `default.region` | Advanced | Performance |
+| [rgw_default_zone_info_oid](#rgw_default_zone_info_oid) | `default.zone` | Advanced | Performance |
+| [rgw_default_zonegroup_info_oid](#rgw_default_zonegroup_info_oid) | `default.zonegroup` | Advanced | Performance |
 | [rgw_period_latest_epoch_info_oid](#rgw_period_latest_epoch_info_oid) | `.latest_epoch` | Dev | Performance |
 | [rgw_period_push_interval](#rgw_period_push_interval) | `2` | Advanced | Performance |
 | [rgw_period_push_interval_max](#rgw_period_push_interval_max) | `30` | Advanced | Performance |
@@ -38,6 +42,154 @@ ceph config get client.rgw <option>
 ceph daemon rgw.<id> perf dump | jq '.rgw' | head
 radosgw-admin perf stats
 ceph osd pool stats
+```
+
+---
+
+### rgw_default_realm_info_oid
+
+| | |
+|---|---|
+| Type | Str · default `default.realm` · **Advanced** |
+| Table | [rgw.md#SP_rgw_default_realm_info_oid](../../config/rgw/rgw.md#SP_rgw_default_realm_info_oid) |
+
+**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_default_realm_info_oid default.realm
+ceph config get client.rgw rgw_default_realm_info_oid
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `default.realm`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_default_realm_info_oid
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+---
+
+### rgw_default_region_info_oid
+
+| | |
+|---|---|
+| Type | Str · default `default.region` · **Advanced** |
+| Table | [rgw.md#SP_rgw_default_region_info_oid](../../config/rgw/rgw.md#SP_rgw_default_region_info_oid) |
+
+**What it does:** Default region info object id
+
+**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_default_region_info_oid default.region
+ceph config get client.rgw rgw_default_region_info_oid
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `default.region`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_default_region_info_oid
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+---
+
+### rgw_default_zone_info_oid
+
+| | |
+|---|---|
+| Type | Str · default `default.zone` · **Advanced** |
+| Table | [rgw.md#SP_rgw_default_zone_info_oid](../../config/rgw/rgw.md#SP_rgw_default_zone_info_oid) |
+
+**What it does:** Default zone info object id
+
+**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_default_zone_info_oid default.zone
+ceph config get client.rgw rgw_default_zone_info_oid
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `default.zone`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_default_zone_info_oid
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+---
+
+### rgw_default_zonegroup_info_oid
+
+| | |
+|---|---|
+| Type | Str · default `default.zonegroup` · **Advanced** |
+| Table | [rgw.md#SP_rgw_default_zonegroup_info_oid](../../config/rgw/rgw.md#SP_rgw_default_zonegroup_info_oid) |
+
+**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_default_zonegroup_info_oid default.zonegroup
+ceph config get client.rgw rgw_default_zonegroup_info_oid
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline at upstream default `default.zonegroup`.
+2. Change **one** option per test window under representative load.
+3. Compare p50/p99 latency and throughput before/after.
+4. Roll back if OSD slow ops, recovery backlog, or error rate increases.
+
+**Signals:** client errors, `ceph -s` HEALTH_WARN, RGW perf counter deltas.
+
+```bash
+ceph config get client.rgw rgw_default_zonegroup_info_oid
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
 ```
 
 ---

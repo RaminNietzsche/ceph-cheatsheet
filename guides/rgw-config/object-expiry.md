@@ -1,9 +1,10 @@
 # Object expiry hints
 
-RGW config deep dive — 1 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 2 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
+| [rgw_objexp_chunk_size](#rgw_objexp_chunk_size) | `100` | Dev | Performance |
 | [rgw_objexp_hints_num_shards](#rgw_objexp_hints_num_shards) | `127` | Advanced | Policy |
 
 ## Finding optimal values
@@ -24,6 +25,41 @@ ceph config get client.rgw <option>
 ceph daemon rgw.<id> perf dump | jq '.rgw' | head
 radosgw-admin perf stats
 ceph osd pool stats
+```
+
+---
+
+### rgw_objexp_chunk_size
+
+| | |
+|---|---|
+| Type | Uint · default `100` · **Dev** |
+| Table | [rgw.md#SP_rgw_objexp_chunk_size](../../config/rgw/rgw.md#SP_rgw_objexp_chunk_size) |
+
+**When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_objexp_chunk_size 100
+ceph config get client.rgw rgw_objexp_chunk_size
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline `100` with your object size distribution (small vs large objects).
+2. Larger windows/chunks improve throughput for big objects; may hurt small-object latency.
+3. Change one step at a time; rerun `cosbench` or `warp` with the same object mix.
+
+**Signals:** PUT/GET p99 by object size, RADOS op count per MB transferred.
+
+```bash
+ceph config get client.rgw rgw_objexp_chunk_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
 ```
 
 ---

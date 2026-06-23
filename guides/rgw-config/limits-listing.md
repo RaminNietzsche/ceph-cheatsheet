@@ -1,13 +1,15 @@
-# Limits and listing
+# Listing limits
 
-RGW config deep dive — 10 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 12 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
 | [rgw_delete_multi_obj_max_num](#rgw_delete_multi_obj_max_num) | `1000` | Advanced | Policy |
+| [rgw_list_buckets_max_chunk](#rgw_list_buckets_max_chunk) | `1000` | Advanced | Policy |
 | [rgw_max_attr_name_len](#rgw_max_attr_name_len) | `0` | Advanced | Policy |
 | [rgw_max_attr_size](#rgw_max_attr_size) | `0` | Advanced | Policy |
 | [rgw_max_attrs_num_in_req](#rgw_max_attrs_num_in_req) | `0` | Advanced | Policy |
+| [rgw_max_chunk_size](#rgw_max_chunk_size) | `4_M` | Advanced | Performance |
 | [rgw_max_control_aio](#rgw_max_control_aio) | `8` | Advanced | Policy |
 | [rgw_max_dynamic_shards](#rgw_max_dynamic_shards) | `1999` | Advanced | Policy |
 | [rgw_max_listing_results](#rgw_max_listing_results) | `5000` | Advanced | Policy |
@@ -53,6 +55,34 @@ ceph osd pool stats
 ```bash
 ceph config set client.rgw rgw_delete_multi_obj_max_num 1000
 ceph config get client.rgw rgw_delete_multi_obj_max_num
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Start at `1000` (S3/AWS-aligned for most limits).
+2. Raise only when clients return explicit limit errors in RGW logs.
+3. Lower to harden against oversized requests or DoS.
+
+---
+
+### rgw_list_buckets_max_chunk
+
+| | |
+|---|---|
+| Type | Int · default `1000` · **Advanced** |
+| Table | [rgw.md#SP_rgw_list_buckets_max_chunk](../../config/rgw/rgw.md#SP_rgw_list_buckets_max_chunk) |
+
+**What it does:** Max number of buckets to retrieve in a single listing operation
+
+**When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_list_buckets_max_chunk 1000
+ceph config get client.rgw rgw_list_buckets_max_chunk
 ```
 
 **Finding optimal value:**
@@ -146,6 +176,43 @@ ceph config get client.rgw rgw_max_attrs_num_in_req
 1. Start at `0` (S3/AWS-aligned for most limits).
 2. Raise only when clients return explicit limit errors in RGW logs.
 3. Lower to harden against oversized requests or DoS.
+
+---
+
+### rgw_max_chunk_size
+
+| | |
+|---|---|
+| Type | Size · default `4_M` · **Advanced** |
+| Table | [rgw.md#SP_rgw_max_chunk_size](../../config/rgw/rgw.md#SP_rgw_max_chunk_size) |
+
+**What it does:** The maximum RGW chunk size.
+
+**When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_max_chunk_size 4_M
+ceph config get client.rgw rgw_max_chunk_size
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Baseline `4_M` with your object size distribution (small vs large objects).
+2. Larger windows/chunks improve throughput for big objects; may hurt small-object latency.
+3. Change one step at a time; rerun `cosbench` or `warp` with the same object mix.
+
+**Signals:** PUT/GET p99 by object size, RADOS op count per MB transferred.
+
+```bash
+ceph config get client.rgw rgw_max_chunk_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
 
 ---
 

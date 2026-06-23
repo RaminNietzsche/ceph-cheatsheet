@@ -1,4 +1,4 @@
-# Multisite sync
+# Replication & sync
 
 RGW config deep dive — 28 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 

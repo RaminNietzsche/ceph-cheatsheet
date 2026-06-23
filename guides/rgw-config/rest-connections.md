@@ -1,4 +1,4 @@
-# REST connections (multisite)
+# REST connections
 
 RGW config deep dive — 3 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 

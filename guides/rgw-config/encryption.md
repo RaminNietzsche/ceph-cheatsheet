@@ -1,9 +1,10 @@
-# Encryption and KMS
+# Encryption & KMS
 
-RGW config deep dive — 42 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 43 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
+| [rgw_barbican_url](#rgw_barbican_url) | `(empty)` | Advanced | Connectivity |
 | [rgw_crypt_default_encryption_key](#rgw_crypt_default_encryption_key) | `(empty)` | Dev | Performance |
 | [rgw_crypt_kmip_addr](#rgw_crypt_kmip_addr) | `(empty)` | Advanced | Connectivity |
 | [rgw_crypt_kmip_ca_path](#rgw_crypt_kmip_ca_path) | `(empty)` | Advanced | Capacity |
@@ -65,6 +66,43 @@ ceph config get client.rgw <option>
 ceph daemon rgw.<id> perf dump | jq '.rgw' | head
 radosgw-admin perf stats
 ceph osd pool stats
+```
+
+---
+
+### rgw_barbican_url
+
+| | |
+|---|---|
+| Type | Str · default `(empty)` · **Advanced** |
+| Table | [rgw.md#SP_rgw_barbican_url](../../config/rgw/rgw.md#SP_rgw_barbican_url) |
+
+**What it does:** URL to barbican server.
+
+**When to use:** Set when integrating with an external service; leave empty if the feature is unused.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_barbican_url <value>
+ceph config get client.rgw rgw_barbican_url
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Connectivity
+
+1. List candidate endpoints from your provider (Barbican, Keystone, Vault, KMIP, LDAP).
+2. From **each** RGW node: `curl -k <url>` or vendor health check.
+3. Pick the lowest-latency endpoint that stays healthy over 24h.
+4. Measure p99 of operations that call this service (e.g. SSE-KMS PUT).
+5. Leave empty (`(empty)`) if the integration is disabled.
+
+```bash
+ceph config get client.rgw rgw_barbican_url
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
 ```
 
 ---

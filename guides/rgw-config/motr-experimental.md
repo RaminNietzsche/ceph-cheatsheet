@@ -1,4 +1,4 @@
-# Motr (experimental backend)
+# Motr backend
 
 RGW config deep dive — 7 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 

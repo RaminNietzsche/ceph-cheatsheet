@@ -1,12 +1,13 @@
-# RGW metadata cache
+# Metadata & object caches
 
-RGW config deep dive — 3 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
 | [rgw_cache_enabled](#rgw_cache_enabled) | `True` | Advanced | Performance |
 | [rgw_cache_expiry_interval](#rgw_cache_expiry_interval) | `900` | Advanced | Performance |
 | [rgw_cache_lru_size](#rgw_cache_lru_size) | `25000` | Advanced | Performance |
+| [rgw_obj_tombstone_cache_size](#rgw_obj_tombstone_cache_size) | `1000` | Advanced | Performance |
 
 ## Finding optimal values
 
@@ -131,6 +132,46 @@ ceph config get client.rgw rgw_cache_lru_size
 
 ```bash
 ceph config get client.rgw rgw_cache_lru_size
+ceph daemon rgw.<id> perf dump | jq '.rgw' | head
+radosgw-admin perf stats
+ceph -s  # cluster health, slow ops
+```
+
+---
+
+### rgw_obj_tombstone_cache_size
+
+| | |
+|---|---|
+| Type | Int · default `1000` · **Advanced** |
+| Table | [rgw.md#SP_rgw_obj_tombstone_cache_size](../../config/rgw/rgw.md#SP_rgw_obj_tombstone_cache_size) |
+
+**What it does:** Max number of entries to keep in tombstone cache
+
+**When to use:**
+
+- **Increase** when monitoring many active buckets/users and cache misses are visible.
+- **Decrease** when RGW memory is constrained.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_obj_tombstone_cache_size 1000
+ceph config get client.rgw rgw_obj_tombstone_cache_size
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Performance
+
+1. Size to the **active** working set (monitored buckets/users/tokens), not total catalog size.
+2. Start at `1000`; sweep upward in ~2× steps.
+3. Watch RGW RSS and cache hit behavior; use smallest size that avoids hot-path misses.
+
+**Signals:** rising RGW memory, repeated metadata lookups in logs.
+
+```bash
+ceph config get client.rgw rgw_obj_tombstone_cache_size
 ceph daemon rgw.<id> perf dump | jq '.rgw' | head
 radosgw-admin perf stats
 ceph -s  # cluster health, slow ops

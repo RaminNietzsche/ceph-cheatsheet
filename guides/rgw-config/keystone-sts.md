@@ -1,4 +1,4 @@
-# Keystone and STS
+# Keystone & STS
 
 RGW config deep dive — 32 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 

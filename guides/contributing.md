@@ -37,7 +37,7 @@ python3 scripts/generate-config.py --ref main
 python3 scripts/generate-rgw-guide.py
 ```
 
-The RGW guide generator reads `config/rgw/*.md` and writes `guides/rgw-config/` (441 options, step-by-step tuning in 44 topic files + `TUNING.md`). Re-run after config regeneration; update `mkdocs.yml` nav if new topic groups are added.
+The RGW guide generator reads `config/rgw/*.md`, writes `guides/rgw-config/` (441 options in topic files + `TUNING.md`), and patches the collapsible RGW nav in `mkdocs.yml` between `# rgw-nav:start` / `# rgw-nav:end`. Re-run after config regeneration.
 
 **Edit prose (CLI, guides, REFERENCE):**
 

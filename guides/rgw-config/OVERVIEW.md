@@ -23,53 +23,100 @@ python3 scripts/generate-rgw-guide.py  # regenerate after config sync
 | **Architecture** | Backend, multisite topology |
 | **Dev** | Upstream default only in production |
 
-## Topics
+## Topics by category
+
+
+### Core gateway
 
 | Topic | Options |
 |-------|---------|
-| [Access and object logging](logging.md) | 4 |
-| [Admin CORS](admin-cors.md) | 4 |
-| [BitTorrent](torrent.md) | 8 |
-| [Bucket notifications](notifications.md) | 13 |
-| [Bucket operations and index](bucket-ops.md) | 12 |
-| [Caches and TTL](caches-and-ttl.md) | 3 |
-| [Copy progress](copy-progress.md) | 2 |
-| [D4N / D3N cache](d4n-cache.md) | 22 |
-| [Debug and fault injection](debug-inject.md) | 7 |
-| [Dynamic resharding](resharding.md) | 12 |
-| [Encryption and KMS](encryption.md) | 42 |
-| [Experimental backends](experimental-backends.md) | 6 |
+| [Frontends & HTTP stack](frontends.md) | 6 |
 | [Feature toggles](feature-toggles.md) | 10 |
-| [Frontends and DNS](frontends-dns.md) | 4 |
+| [Scheduler & dmclock](scheduler-dmclock.md) | 13 |
+| [HTTP compatibility](http-compat.md) | 17 |
+| [Core runtime](core-runtime.md) | 16 |
+
+### Performance & I/O
+
+| Topic | Options |
+|-------|---------|
+| [Concurrency & RADOS I/O](performance-tuning.md) | 14 |
+| [Object read/write windows](object-io.md) | 4 |
+| [Multipart & copy](multipart-copy.md) | 4 |
+| [Metadata & object caches](caching.md) | 4 |
+| [Timeouts & intervals](timeouts-intervals.md) | 8 |
+| [Listing limits](limits-listing.md) | 12 |
+
+### Buckets & data lifecycle
+
+| Topic | Options |
+|-------|---------|
+| [Bucket operations](bucket-ops.md) | 12 |
+| [Bucket index & sharding](index-sharding.md) | 4 |
+| [Dynamic resharding](resharding.md) | 12 |
+| [Object expiry hints](object-expiry.md) | 2 |
 | [Garbage collection](garbage-collection.md) | 7 |
-| [General RGW options](general.md) | 54 |
-| [HTTP / libcurl](http-curl.md) | 5 |
-| [Keystone and STS](keystone-sts.md) | 32 |
-| [LDAP authentication](ldap.md) | 6 |
-| [Lifecycle (LC) workers](lifecycle.md) | 12 |
-| [Limits and listing](limits-listing.md) | 10 |
-| [Lua scripting](lua.md) | 4 |
-| [Motr (experimental backend)](motr-experimental.md) | 7 |
-| [Multipart uploads](multipart.md) | 2 |
-| [Multisite sync](multisite-sync.md) | 28 |
-| [Multisite zones and realm](multisite-zones.md) | 15 |
-| [NFS gateway](nfs.md) | 14 |
-| [OPA authorization](opa-authz.md) | 3 |
-| [Object expiry hints](object-expiry.md) | 1 |
-| [Object read/write I/O](object-io.md) | 4 |
-| [Ops logging](ops-logging.md) | 4 |
-| [POSIX backend (experimental)](posix-experimental.md) | 7 |
-| [Performance and concurrency](performance-tuning.md) | 17 |
-| [Quota sync and defaults](quotas.md) | 5 |
-| [REST connections (multisite)](rest-connections.md) | 3 |
-| [RGW LC counters](lifecycle-counters.md) | 2 |
-| [RGW metadata cache](metadata-cache.md) | 3 |
-| [Request scheduler](scheduler.md) | 1 |
-| [S3 API behavior](s3-api.md) | 8 |
+| [Lifecycle (LC)](lifecycle.md) | 17 |
+
+### Tenants & quotas
+
+| Topic | Options |
+|-------|---------|
+| [Quota sync & defaults](quotas.md) | 5 |
+| [Users & per-user settings](users-quotas.md) | 5 |
+
+### Multisite
+
+| Topic | Options |
+|-------|---------|
+| [Zones, realm & region](multisite-zones.md) | 19 |
+| [Replication & sync](multisite-sync.md) | 28 |
+| [REST connections](rest-connections.md) | 3 |
+
+### Security & authentication
+
+| Topic | Options |
+|-------|---------|
+| [Encryption & KMS](encryption.md) | 43 |
+| [Keystone & STS](keystone-sts.md) | 32 |
+| [LDAP](ldap.md) | 6 |
+| [OPA authorization](opa-authz.md) | 4 |
 | [Swift API](swift.md) | 11 |
-| [Timeouts and intervals](timeouts-intervals.md) | 8 |
+| [S3 API & auth](s3-api.md) | 8 |
+
+### Notifications
+
+| Topic | Options |
+|-------|---------|
+| [Bucket notifications](notifications.md) | 13 |
+
+### Logging & admin
+
+| Topic | Options |
+|-------|---------|
+| [Access & object logging](logging.md) | 4 |
+| [Ops logging](ops-logging.md) | 4 |
 | [Usage logging](usage-logging.md) | 4 |
-| [Users and per-user settings](users-quotas.md) | 3 |
-| [dmclock scheduler](dmclock.md) | 12 |
+| [Admin CORS](admin-cors.md) | 4 |
+| [API limits & policies](api-limits.md) | 6 |
+
+### Extensions
+
+| Topic | Options |
+|-------|---------|
+| [NFS gateway](nfs.md) | 14 |
+| [Lua scripting](lua.md) | 4 |
+| [BitTorrent](torrent.md) | 8 |
+| [HTTP / libcurl](http-curl.md) | 5 |
+
+### Experimental & debug
+
+| Topic | Options |
+|-------|---------|
+| [Experimental backends](experimental-backends.md) | 6 |
+| [Motr backend](motr-experimental.md) | 7 |
+| [POSIX backend](posix-experimental.md) | 7 |
+| [D4N / D3N cache](d4n-cache.md) | 22 |
+| [Debug & fault injection](debug-inject.md) | 7 |
 
 [← Guides overview](../OVERVIEW.md)

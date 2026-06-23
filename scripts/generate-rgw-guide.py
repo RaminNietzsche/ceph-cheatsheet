@@ -40,50 +40,172 @@ BATCH1_NAMES = {
 
 GROUP_TITLES = {
     "experimental-backends": "Experimental backends",
-    "motr-experimental": "Motr (experimental backend)",
-    "lifecycle-counters": "RGW LC counters",
-    "bucket-ops": "Bucket operations and index",
+    "motr-experimental": "Motr backend",
+    "posix-experimental": "POSIX backend",
     "d4n-cache": "D4N / D3N cache",
-    "metadata-cache": "RGW metadata cache",
-    "encryption": "Encryption and KMS",
-    "multisite-zones": "Multisite zones and realm",
-    "multisite-sync": "Multisite sync",
-    "resharding": "Dynamic resharding",
-    "quotas": "Quota sync and defaults",
-    "garbage-collection": "Garbage collection",
-    "lifecycle": "Lifecycle (LC) workers",
-    "dmclock": "dmclock scheduler",
-    "keystone-sts": "Keystone and STS",
-    "ldap": "LDAP authentication",
-    "swift": "Swift API",
-    "nfs": "NFS gateway",
-    "notifications": "Bucket notifications",
-    "lua": "Lua scripting",
-    "http-curl": "HTTP / libcurl",
-    "opa-authz": "OPA authorization",
-    "rest-connections": "REST connections (multisite)",
-    "posix-experimental": "POSIX backend (experimental)",
-    "debug-inject": "Debug and fault injection",
-    "admin-cors": "Admin CORS",
+    "frontends": "Frontends & HTTP stack",
     "feature-toggles": "Feature toggles",
-    "performance-tuning": "Performance and concurrency",
-    "caches-and-ttl": "Caches and TTL",
-    "timeouts-intervals": "Timeouts and intervals",
-    "frontends-dns": "Frontends and DNS",
-    "s3-api": "S3 API behavior",
-    "usage-logging": "Usage logging",
-    "ops-logging": "Ops logging",
-    "logging": "Access and object logging",
-    "torrent": "BitTorrent",
-    "object-expiry": "Object expiry hints",
+    "scheduler-dmclock": "Scheduler & dmclock",
+    "s3-api": "S3 API & auth",
+    "api-limits": "API limits & policies",
+    "http-compat": "HTTP compatibility",
+    "core-runtime": "Core runtime",
+    "performance-tuning": "Concurrency & RADOS I/O",
+    "object-io": "Object read/write windows",
+    "multipart-copy": "Multipart & copy",
+    "caching": "Metadata & object caches",
+    "timeouts-intervals": "Timeouts & intervals",
+    "limits-listing": "Listing limits",
     "ratelimit": "Rate limiting",
-    "scheduler": "Request scheduler",
-    "multipart": "Multipart uploads",
-    "copy-progress": "Copy progress",
-    "object-io": "Object read/write I/O",
-    "users-quotas": "Users and per-user settings",
-    "limits-listing": "Limits and listing",
-    "general": "General RGW options",
+    "bucket-ops": "Bucket operations",
+    "index-sharding": "Bucket index & sharding",
+    "resharding": "Dynamic resharding",
+    "object-expiry": "Object expiry hints",
+    "garbage-collection": "Garbage collection",
+    "quotas": "Quota sync & defaults",
+    "users-quotas": "Users & per-user settings",
+    "multisite-zones": "Zones, realm & region",
+    "multisite-sync": "Replication & sync",
+    "rest-connections": "REST connections",
+    "encryption": "Encryption & KMS",
+    "keystone-sts": "Keystone & STS",
+    "ldap": "LDAP",
+    "opa-authz": "OPA authorization",
+    "swift": "Swift API",
+    "notifications": "Bucket notifications",
+    "lifecycle": "Lifecycle (LC)",
+    "logging": "Access & object logging",
+    "ops-logging": "Ops logging",
+    "usage-logging": "Usage logging",
+    "admin-cors": "Admin CORS",
+    "nfs": "NFS gateway",
+    "lua": "Lua scripting",
+    "torrent": "BitTorrent",
+    "http-curl": "HTTP / libcurl",
+    "debug-inject": "Debug & fault injection",
+}
+
+# Sidebar nav: (section title, topic slugs). Collapsible groups in MkDocs Material.
+NAV_SECTIONS: list[tuple[str, list[str]]] = [
+    (
+        "Core gateway",
+        [
+            "frontends",
+            "feature-toggles",
+            "scheduler-dmclock",
+            "http-compat",
+            "core-runtime",
+        ],
+    ),
+    (
+        "Performance & I/O",
+        [
+            "performance-tuning",
+            "object-io",
+            "multipart-copy",
+            "caching",
+            "timeouts-intervals",
+            "limits-listing",
+        ],
+    ),
+    (
+        "Buckets & data lifecycle",
+        [
+            "bucket-ops",
+            "index-sharding",
+            "resharding",
+            "object-expiry",
+            "garbage-collection",
+            "lifecycle",
+        ],
+    ),
+    ("Tenants & quotas", ["quotas", "users-quotas"]),
+    (
+        "Multisite",
+        ["multisite-zones", "multisite-sync", "rest-connections"],
+    ),
+    (
+        "Security & authentication",
+        ["encryption", "keystone-sts", "ldap", "opa-authz", "swift", "s3-api"],
+    ),
+    ("Notifications", ["notifications"]),
+    (
+        "Logging & admin",
+        ["logging", "ops-logging", "usage-logging", "admin-cors", "api-limits"],
+    ),
+    ("Extensions", ["nfs", "lua", "torrent", "http-curl"]),
+    (
+        "Experimental & debug",
+        [
+            "experimental-backends",
+            "motr-experimental",
+            "posix-experimental",
+            "d4n-cache",
+            "debug-inject",
+        ],
+    ),
+]
+
+MKDOCS = ROOT / "mkdocs.yml"
+NAV_BEGIN = "# rgw-nav:start"
+NAV_END = "# rgw-nav:end"
+
+API_LIMITS = {
+    "rgw_acl_grants_max_num",
+    "rgw_cors_rules_max_num",
+    "rgw_website_routing_rules_max_num",
+    "rgw_policy_reject_invalid_principals",
+    "rgw_topic_require_publish_policy",
+}
+
+HTTP_COMPAT = {
+    "rgw_content_length_compat",
+    "rgw_cross_domain_policy",
+    "rgw_defer_to_bucket_acls",
+    "rgw_enforce_swift_acls",
+    "rgw_ignore_get_invalid_range",
+    "rgw_extended_http_attrs",
+    "rgw_print_continue",
+    "rgw_print_prohibited_content_length",
+    "rgw_relaxed_region_enforcement",
+    "rgw_relaxed_s3_bucket_names",
+    "rgw_relaxed_topic_names",
+    "rgw_remote_addr_param",
+    "rgw_request_uri",
+    "rgw_resolve_cname",
+    "rgw_trust_forwarded_https",
+    "rgw_verify_ssl",
+    "rgw_service_provider_name",
+}
+
+CORE_RUNTIME = {
+    "rgw_data",
+    "rgw_filter",
+    "rgw_graceful_stop",
+    "rgw_healthcheck_disabling_path",
+    "rgw_json_config",
+    "rgw_numa_node",
+    "rgw_expose_bucket",
+    "rgw_script_uri",
+    "rgw_rados_pool_autoscale_bias",
+    "rgw_rados_pool_recovery_priority",
+    "rgw_rados_tracing",
+    "rgw_op_tracing",
+    "rgw_dedup_min_obj_size_for_dedup",
+    "rgw_dedup_split_obj_head",
+    "rgw_parquet_buffer_size",
+    "rgw_mime_types_file",
+}
+
+INDEX_SHARDING = {
+    "rgw_override_bucket_index_max_shards",
+    "rgw_safe_max_objects_per_shard",
+    "rgw_shard_warning_threshold",
+    "rgw_pending_bucket_index_op_expiration",
+}
+
+ADMIN_API = {
+    "rgw_admin_entry",
 }
 
 ROW_RE = re.compile(
@@ -175,7 +297,29 @@ def group_for(name: str) -> str:
     if name.startswith("motr_"):
         return "motr-experimental"
     if name.startswith("rgwlc_"):
-        return "lifecycle-counters"
+        return "lifecycle"
+    if name in API_LIMITS:
+        return "api-limits"
+    if name in HTTP_COMPAT:
+        return "http-compat"
+    if name in CORE_RUNTIME:
+        return "core-runtime"
+    if name in INDEX_SHARDING:
+        return "index-sharding"
+    if name in ADMIN_API:
+        return "api-limits"
+    if name == "rgw_barbican_url":
+        return "encryption"
+    if name in ("rgw_asio_assert_yielding", "rgw_beast_enable_async"):
+        return "frontends"
+    if name.startswith("rgw_default_") and name.endswith("_oid"):
+        return "multisite-zones"
+    if name in (
+        "rgw_lifecycle_work_time",
+        "rgw_mp_lock_max_time",
+        "rgw_restore_lock_max_time",
+    ):
+        return "lifecycle"
     if name.startswith("rgw_crypt"):
         return "encryption"
     if name.startswith("rgw_keystone") or name.startswith("rgw_sts"):
@@ -190,14 +334,16 @@ def group_for(name: str) -> str:
         return "lifecycle"
     if name.startswith("rgw_gc_"):
         return "garbage-collection"
-    if name.startswith("rgw_dmclock"):
-        return "dmclock"
+    if name.startswith("rgw_scheduler") or name.startswith("rgw_dmclock"):
+        return "scheduler-dmclock"
     if name.startswith("rgw_bucket_"):
         return "bucket-ops"
     if name.startswith(("rgw_d4n", "rgw_d3n")) or name.startswith("d4n_"):
         return "d4n-cache"
     if name.startswith("rgw_cache"):
-        return "metadata-cache"
+        return "caching"
+    if name in ("rgw_obj_tombstone_cache_size",):
+        return "caching"
     if name.startswith(("rgw_zone", "rgw_realm", "rgw_region", "rgw_period")):
         return "multisite-zones"
     if any(
@@ -228,7 +374,7 @@ def group_for(name: str) -> str:
         return "lua"
     if name.startswith("rgw_curl"):
         return "http-curl"
-    if name.startswith("rgw_opa"):
+    if name.startswith("rgw_opa") or name == "rgw_use_opa_authz":
         return "opa-authz"
     if name.startswith("rgw_rest_"):
         return "rest-connections"
@@ -247,7 +393,6 @@ def group_for(name: str) -> str:
             "async_rados",
             "spawn_window",
             "batch",
-            "chunk",
             "connection_pool",
             "num_control",
             "max_worker",
@@ -259,15 +404,20 @@ def group_for(name: str) -> str:
         )
     ):
         return "performance-tuning"
-    if any(x in name for x in ("cache", "ttl", "lru")) and "crypt" not in name:
-        return "caches-and-ttl"
+    if name in ("rgw_user_counters_cache", "rgw_user_counters_cache_size"):
+        return "users-quotas"
+    if any(
+        x in name
+        for x in ("cache", "ttl", "lru")
+    ) and "crypt" not in name and "quota" not in name:
+        return "caching"
     if any(
         x in name
         for x in ("timeout", "interval", "period", "delay", "wait", "sleep", "tick")
     ):
         return "timeouts-intervals"
     if name.startswith(("rgw_frontends", "rgw_frontend", "rgw_dns")):
-        return "frontends-dns"
+        return "frontends"
     if name.startswith("rgw_s3_"):
         return "s3-api"
     if name.startswith("rgw_usage"):
@@ -282,19 +432,15 @@ def group_for(name: str) -> str:
         return "object-expiry"
     if name.startswith("rgw_ratelimit"):
         return "ratelimit"
-    if name.startswith("rgw_scheduler"):
-        return "scheduler"
-    if name.startswith("rgw_multipart"):
-        return "multipart"
-    if name.startswith("rgw_copy_obj"):
-        return "copy-progress"
+    if name.startswith("rgw_multipart") or name.startswith("rgw_copy_obj"):
+        return "multipart-copy"
     if name.startswith(("rgw_get_obj", "rgw_put_obj")):
         return "object-io"
     if name.startswith("rgw_user_"):
         return "users-quotas"
     if name.startswith(("rgw_max_", "rgw_list_", "rgw_delete_", "rgw_multi_obj")):
         return "limits-listing"
-    return "general"
+    return "core-runtime"
 
 
 def when_to_use(opt: Option) -> str:
@@ -894,6 +1040,28 @@ def render_tuning_index(all_options: list[Option]) -> str:
     return "\n".join(lines)
 
 
+def nav_slugs_in_order(groups: dict[str, list[Option]]) -> list[str]:
+    """All topic slugs in nav order; append any slug missing from NAV_SECTIONS."""
+    ordered: list[str] = []
+    seen: set[str] = set()
+    for _title, slugs in NAV_SECTIONS:
+        for slug in slugs:
+            if slug in groups and slug not in seen:
+                ordered.append(slug)
+                seen.add(slug)
+    for slug in sorted(groups):
+        if slug not in seen:
+            ordered.append(slug)
+    return ordered
+
+
+def section_for_slug(slug: str) -> str:
+    for title, slugs in NAV_SECTIONS:
+        if slug in slugs:
+            return title
+    return "Other"
+
+
 def render_overview(groups: dict[str, list[Option]], total: int) -> str:
     lines = [
         "# RGW Config Deep Dive — All Options",
@@ -924,12 +1092,15 @@ def render_overview(groups: dict[str, list[Option]], total: int) -> str:
         "| **Architecture** | Backend, multisite topology |",
         "| **Dev** | Upstream default only in production |",
         "",
-        "## Topics",
+        "## Topics by category",
         "",
-        "| Topic | Options |",
-        "|-------|---------|",
     ]
-    for slug in sorted(groups, key=lambda s: GROUP_TITLES.get(s, s)):
+    current_section = ""
+    for slug in nav_slugs_in_order(groups):
+        section = section_for_slug(slug)
+        if section != current_section:
+            current_section = section
+            lines.extend(["", f"### {section}", "", "| Topic | Options |", "|-------|---------|"])
         title = GROUP_TITLES.get(slug, slug)
         lines.append(f"| [{title}]({slug}.md) | {len(groups[slug])} |")
     lines.extend(
@@ -940,6 +1111,52 @@ def render_overview(groups: dict[str, list[Option]], total: int) -> str:
         ]
     )
     return "\n".join(lines)
+
+
+def build_mkdocs_nav_yaml(groups: dict[str, list[Option]]) -> str:
+    lines = [
+        "    - RGW config deep dive:",
+        "      - Start here:",
+        "        - Overview: guides/rgw-config/OVERVIEW.md",
+        "        - Tuning quick reference: guides/rgw-config/TUNING.md",
+        "        - Curated examples: guides/rgw-config-options.md",
+    ]
+    for section_title, slugs in NAV_SECTIONS:
+        present = [s for s in slugs if s in groups]
+        if not present:
+            continue
+        lines.append(f"      - {section_title}:")
+        for slug in present:
+            title = GROUP_TITLES.get(slug, slug.replace("-", " ").title())
+            lines.append(f"        - {title}: guides/rgw-config/{slug}.md")
+    extra = [s for s in sorted(groups) if section_for_slug(s) == "Other"]
+    if extra:
+        lines.append("      - Other:")
+        for slug in extra:
+            title = GROUP_TITLES.get(slug, slug)
+            lines.append(f"        - {title}: guides/rgw-config/{slug}.md")
+    return "\n".join(lines)
+
+
+def patch_mkdocs_nav(groups: dict[str, list[Option]]) -> None:
+    if not MKDOCS.exists():
+        print(f"warning: {MKDOCS} not found, skipping nav patch", file=sys.stderr)
+        return
+    text = MKDOCS.read_text(encoding="utf-8")
+    if NAV_BEGIN not in text or NAV_END not in text:
+        print(
+            f"warning: {MKDOCS} missing {NAV_BEGIN}/{NAV_END} markers",
+            file=sys.stderr,
+        )
+        return
+    before, rest = text.split(NAV_BEGIN, 1)
+    _old, after = rest.split(NAV_END, 1)
+    nav_block = build_mkdocs_nav_yaml(groups)
+    MKDOCS.write_text(
+        f"{before}{NAV_BEGIN}\n{nav_block}\n{NAV_END}{after}",
+        encoding="utf-8",
+    )
+    print(f"Patched RGW nav in {MKDOCS.relative_to(ROOT)}")
 
 
 def main() -> int:
@@ -973,6 +1190,14 @@ def main() -> int:
         (GUIDES / f"{slug}.md").write_text(
             render_group(slug, options), encoding="utf-8"
         )
+
+    keep = {f"{slug}.md" for slug in groups} | {"OVERVIEW.md", "TUNING.md"}
+    for path in GUIDES.glob("*.md"):
+        if path.name not in keep:
+            path.unlink()
+            print(f"Removed stale {path.relative_to(ROOT)}")
+
+    patch_mkdocs_nav(groups)
 
     print(
         f"Wrote {len(groups)} topic files + OVERVIEW + TUNING ({len(all_options)} options)"

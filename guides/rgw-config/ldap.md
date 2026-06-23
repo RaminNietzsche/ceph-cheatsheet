@@ -1,4 +1,4 @@
-# LDAP authentication
+# LDAP
 
 RGW config deep dive — 6 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 

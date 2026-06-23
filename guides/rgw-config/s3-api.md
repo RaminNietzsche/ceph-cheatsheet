@@ -1,4 +1,4 @@
-# S3 API behavior
+# S3 API & auth
 
 RGW config deep dive — 8 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 

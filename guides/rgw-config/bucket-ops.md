@@ -1,4 +1,4 @@
-# Bucket operations and index
+# Bucket operations
 
 RGW config deep dive — 12 options. [← RGW config overview](OVERVIEW.md) · [Curated batch 1](../rgw-config-options.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 

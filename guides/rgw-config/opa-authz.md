@@ -1,12 +1,13 @@
 # OPA authorization
 
-RGW config deep dive — 3 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
+RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
 | Option | Default | Level | Tuning |
 |--------|---------|-------|--------|
 | [rgw_opa_token](#rgw_opa_token) | `(empty)` | Advanced | Policy |
 | [rgw_opa_url](#rgw_opa_url) | `(empty)` | Advanced | Connectivity |
 | [rgw_opa_verify_ssl](#rgw_opa_verify_ssl) | `True` | Advanced | Policy |
+| [rgw_use_opa_authz](#rgw_use_opa_authz) | `False` | Advanced | Policy |
 
 ## Finding optimal values
 
@@ -120,6 +121,34 @@ ceph config get client.rgw rgw_opa_verify_ssl
 1. Production: prefer secure default (`True` for most security options).
 2. Relax only on trusted private networks with documented risk acceptance.
 3. Test client behavior (HTTPS redirects, presigned URLs) after changes.
+
+---
+
+### rgw_use_opa_authz
+
+| | |
+|---|---|
+| Type | Bool · default `False` · **Advanced** |
+| Table | [rgw.md#SP_rgw_use_opa_authz](../../config/rgw/rgw.md#SP_rgw_use_opa_authz) |
+
+**What it does:** Should OPA be used to authorize client requests.
+
+**When to use:** Disabled by default; enable when you need the related feature and accept its trade-offs.
+
+**Example:**
+
+```bash
+ceph config set client.rgw rgw_use_opa_authz False
+ceph config get client.rgw rgw_use_opa_authz
+```
+
+**Finding optimal value:**
+
+**Tuning model:** Policy
+
+1. Default `False` matches upstream/AWS-compatible behavior.
+2. Test with your S3/Swift SDKs and automation before changing.
+3. Optimal = contract your clients expect, not maximum throughput.
 
 ---
 

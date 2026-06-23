@@ -1,4 +1,4 @@
-# Object read/write I/O
+# Object read/write windows
 
 RGW config deep dive — 4 options. [← RGW config overview](OVERVIEW.md) · [Tuning index](TUNING.md) · [INDEX](../../config/rgw/INDEX.md)
 
