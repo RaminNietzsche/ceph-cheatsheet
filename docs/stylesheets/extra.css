@@ -8,15 +8,15 @@
   --ceph-coral: #e85d4c;
   --ceph-navy: #0f172a;
   --ceph-slate: #94a3b8;
-  --table-head-bg: #1e293b;
-  --table-head-fg: #67e8f9;
+  --table-head-bg: linear-gradient(135deg, #164e63 0%, #0c4a6e 100%);
+  --table-head-fg: #ecfeff;
   --section-accent: #22d3ee;
 }
 
 [data-md-color-scheme="slate"],
 [data-md-color-scheme="default"] {
-  --table-head-bg: #1e293b;
-  --table-head-fg: #67e8f9;
+  --table-head-bg: linear-gradient(135deg, #164e63 0%, #0c4a6e 100%);
+  --table-head-fg: #ecfeff;
   --section-accent: #22d3ee;
 }
 
@@ -67,6 +67,13 @@ html[lang="fa"] .md-typeset h3,
   letter-spacing: 0;
 }
 
+[dir="rtl"] .md-typeset h2 {
+  border-left: none;
+  border-right: 4px solid var(--section-accent);
+  padding-left: 0;
+  padding-right: 0.65em;
+}
+
 [dir="rtl"] .level-legend {
   border-left: none;
   border-right: 4px solid var(--section-accent);
@@ -100,10 +107,7 @@ html[lang="fa"] .md-typeset h3,
 [dir="rtl"] .md-typeset .admonition,
 [dir="rtl"] .md-typeset blockquote {
   border-left: none;
-}
-
-[dir="rtl"] .md-typeset .admonition.note {
-  border-right: 6px solid var(--section-accent);
+  border-right: 4px solid var(--section-accent);
 }
 
 /* h2/h3 accent handled in site-theme.css */
@@ -243,6 +247,7 @@ html[lang="fa"] .md-typeset h3,
   padding: 0.65em 1em !important;
   vertical-align: middle;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  color: #f1f5f9;
 }
 
 [data-md-color-scheme="slate"] .guide-table tbody td {
