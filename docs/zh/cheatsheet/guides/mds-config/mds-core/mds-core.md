@@ -276,7 +276,7 @@ ceph mds stat
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [mds.md#SP_mds_allow_batched_ops](../../../config/mds/mds.md#SP_mds_allow_batched_ops) |
 
-**作用：** allow MDS to batch lookup/getattr RPCs
+**作用：** allow MDS to batch lookup/getattr RPCs The MDS will batch a lookup or getattr RPC on the same inode when possible to avoid repetitive locks on metadata and to bypass other requests acquiring write locks. Generally, this should only improve performance but this switch exists to provide a means to turn this behavior off for comparison.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -425,7 +425,7 @@ ceph mds stat
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [mds.md#SP_mds_bal_fragment_dirs](../../../config/mds/mds.md#SP_mds_bal_fragment_dirs) |
 
-**作用：** enable directory fragmentation
+**作用：** enable directory fragmentation Directory fragmentation is a standard feature of CephFS that allows sharding directories across multiple objects for performance and stability. Additionally, this allows fragments to be distributed across multiple active MDSs to increase throughput. Disabling (new) fragmentation should only be done in exceptional circumstances and may lead to performance issues.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -1809,7 +1809,7 @@ ceph config get mds mds_defer_session_stale
 | 类型 | Millisecs · default `0` · **Dev** |
 | 表格 | [mds.md#SP_mds_delay_journal_replay_for_testing](../../../config/mds/mds.md#SP_mds_delay_journal_replay_for_testing) |
 
-**作用：** Delay the journal replay to verify the replay time estimate
+**作用：** Delay the journal replay to verify the replay time estimate Jorunal replay warning is activated if the mds has been in replay state for more than 30 seconds. This config delays replay for validating the replay warning in tests.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -1948,7 +1948,7 @@ ceph mds stat
 | 类型 | Uint · default `0` · **Advanced** |
 | 表格 | [mds.md#SP_mds_dir_max_entries](../../../config/mds/mds.md#SP_mds_dir_max_entries) |
 
-**作用：** maximum number of entries per directory before new creat/links fail
+**作用：** maximum number of entries per directory before new creat/links fail The maximum number of entries before any new entries are rejected with ENOSPC.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -2074,7 +2074,7 @@ ceph config get mds mds_dump_cache_on_map
 | 类型 | Size · default `0` · **Dev** |
 | 表格 | [mds.md#SP_mds_dump_cache_threshold_file](../../../config/mds/mds.md#SP_mds_dump_cache_threshold_file) |
 
-**作用：** threshold for cache usage to disallow "dump cache" operation to file
+**作用：** threshold for cache usage to disallow "dump cache" operation to file Disallow MDS from dumping caches to file via "dump cache" command if cache usage exceeds this threshold.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -2102,7 +2102,7 @@ ceph config get mds mds_dump_cache_threshold_file
 | 类型 | Size · default `1_G` · **Dev** |
 | 表格 | [mds.md#SP_mds_dump_cache_threshold_formatter](../../../config/mds/mds.md#SP_mds_dump_cache_threshold_formatter) |
 
-**作用：** threshold for cache usage to disallow "dump cache" operation to formatter
+**作用：** threshold for cache usage to disallow "dump cache" operation to formatter Disallow MDS from dumping caches to formatter via "dump cache" command if cache usage exceeds this threshold.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -2239,7 +2239,7 @@ ceph mds stat
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [mds.md#SP_mds_export_ephemeral_distributed](../../../config/mds/mds.md#SP_mds_export_ephemeral_distributed) |
 
-**作用：** allow ephemeral distributed pinning of the loaded subtrees
+**作用：** allow ephemeral distributed pinning of the loaded subtrees pin the immediate child directories of the loaded directory inode based on the consistent hash of the child's inode number.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -2315,7 +2315,7 @@ ceph mds stat
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [mds.md#SP_mds_export_ephemeral_random](../../../config/mds/mds.md#SP_mds_export_ephemeral_random) |
 
-**作用：** allow ephemeral random pinning of the loaded subtrees
+**作用：** allow ephemeral random pinning of the loaded subtrees probabilistically pin the loaded directory inode and the subtree beneath it to an MDS based on the consistent hash of the inode number. The higher this value the more likely the loaded subtrees get pinned
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -2356,6 +2356,10 @@ ceph mds stat
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`mds_export_ephemeral_random`](../../../config/mds/mds.md#SP_mds_export_ephemeral_random)
+
 **示例：**
 
 ```bash
@@ -2391,7 +2395,7 @@ ceph mds stat
 | 类型 | Uint · default `16` · **Advanced** |
 | 表格 | [mds.md#SP_mds_file_blockdiff_max_concurrent_object_scans](../../../config/mds/mds.md#SP_mds_file_blockdiff_max_concurrent_object_scans) |
 
-**作用：** Maximum number of concurrent object scans
+**作用：** Maximum number of concurrent object scans Maximum number of concurrent listsnaps operations sent to RADOS.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -2686,7 +2690,7 @@ ceph mds stat
 | 类型 | Str · default `(empty)` · **Basic** |
 | 表格 | [mds.md#SP_mds_join_fs](../../../config/mds/mds.md#SP_mds_join_fs) |
 
-**作用：** File system MDS prefers to join
+**作用：** File system MDS prefers to join This setting indicates which CephFS file system the MDS should prefer to join (affinity). The monitors will try to have the MDS cluster safely reach a state where all MDS have strong affinity, even via failovers to a standby.
 
 **何时使用：** 核心 MDS 行为 — 生产环境变更前请审阅。
 
@@ -3325,7 +3329,7 @@ ceph mds stat
 | 类型 | Uint · default `100` · **Advanced** |
 | 表格 | [mds.md#SP_mds_max_snaps_per_dir](../../../config/mds/mds.md#SP_mds_max_snaps_per_dir) |
 
-**作用：** max snapshots per directory
+**作用：** max snapshots per directory maximum number of snapshots that can be created per directory
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -3622,7 +3626,7 @@ ceph mds stat
 | 类型 | Secs · default `15` · **Advanced** |
 | 表格 | [mds.md#SP_mds_ping_grace](../../../config/mds/mds.md#SP_mds_ping_grace) |
 
-**作用：** timeout after which an MDS is considered laggy by rank 0 MDS.
+**作用：** timeout after which an MDS is considered laggy by rank 0 MDS. timeout for replying to a ping message sent by rank 0 after which an active MDS considered laggy (delayed metrics) by rank 0.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -4019,7 +4023,7 @@ ceph mds stat
 | 类型 | Uint · default `1` · **Advanced** |
 | 表格 | [mds.md#SP_mds_scrub_stats_review_period](../../../config/mds/mds.md#SP_mds_scrub_stats_review_period) |
 
-**作用：** Period for which scrub stats will be available for review.
+**作用：** Period for which scrub stats will be available for review. Number of days for which scrub stats will be available for review since start of scrub operation. After this period, the stats will be auto purged. These stats will not be saved to the disk. So any restart or failover of mds will cause stats to be lost forever.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
@@ -4147,9 +4151,13 @@ ceph mds stat
 | 类型 | Float · default `5_min` · **Advanced** |
 | 表格 | [mds.md#SP_mds_session_cache_liveness_decay_rate](../../../config/mds/mds.md#SP_mds_session_cache_liveness_decay_rate) |
 
-**作用：** Decay rate for session liveness leading to preemptive cap recall
+**作用：** Decay rate for session liveness leading to preemptive cap recall This determines how long a session needs to be quiescent before the MDS begins preemptively recalling capabilities. The default of 5 minutes will cause 10 halvings of the decay counter after 1 hour, or 1/1024. The default magnitude of 10 (1^10 or 1024) is chosen so that the MDS considers a previously chatty session (approximately) to be quiescent after 1 hour.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`mds_session_cache_liveness_magnitude`](../../../config/mds/mds.md#SP_mds_session_cache_liveness_magnitude)
 
 **示例：**
 
@@ -4184,9 +4192,13 @@ ceph mds stat
 | 类型 | Size · default `10` · **Advanced** |
 | 表格 | [mds.md#SP_mds_session_cache_liveness_magnitude](../../../config/mds/mds.md#SP_mds_session_cache_liveness_magnitude) |
 
-**作用：** Decay magnitude for preemptively recalling caps on quiet client
+**作用：** Decay magnitude for preemptively recalling caps on quiet client This is the order of magnitude difference (in base 2) of the internal liveness decay counter and the number of capabilities the session holds. When this difference occurs, the MDS treats the session as quiescent and begins recalling capabilities.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`mds_session_cache_liveness_decay_rate`](../../../config/mds/mds.md#SP_mds_session_cache_liveness_decay_rate)
 
 **示例：**
 
@@ -4221,7 +4233,7 @@ ceph mds stat
 | 类型 | Size · default `16_M` · **Advanced** |
 | 表格 | [mds.md#SP_mds_session_metadata_threshold](../../../config/mds/mds.md#SP_mds_session_metadata_threshold) |
 
-**作用：** Evict non-advancing client-tid sessions exceeding the config size.
+**作用：** Evict non-advancing client-tid sessions exceeding the config size. Evict clients which are not advancing their request tids which causes a large buildup of session metadata (`completed_requests`) in the MDS causing the MDS to go read-only since the RADOS operation exceeds the size threashold. This config is the maximum size (in bytes) that a session metadata (encoded) can grow.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

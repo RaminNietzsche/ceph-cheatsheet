@@ -91,6 +91,10 @@ ceph mon stat
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
+**相关选项：**
+
+- [`mon_elector_ping_divisor`](../../../config/mon/mon.md#SP_mon_elector_ping_divisor)
+
 **示例：**
 
 ```bash
@@ -127,6 +131,10 @@ ceph mon stat
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
+**相关选项：**
+
+- [`mon_lease`](../../../config/mon/mon.md#SP_mon_lease)
+
 **示例：**
 
 ```bash
@@ -161,9 +169,13 @@ ceph mon stat
 | 类型 | Float · default `0.6` · **Advanced** |
 | 表格 | [mon.md#SP_mon_lease_renew_interval_factor](../../../config/mon/mon.md#SP_mon_lease_renew_interval_factor) |
 
-**作用：** multiple of mon_lease for the lease renewal interval
+**作用：** multiple of mon_lease for the lease renewal interval Leases must be renewed before they time out. A smaller value means frequent renewals, while a value close to 1 makes a lease expiration more likely.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
+
+**相关选项：**
+
+- [`mon_lease`](../../../config/mon/mon.md#SP_mon_lease)
 
 **示例：**
 
@@ -510,6 +522,10 @@ ceph mon stat
 **作用：** frequency of clock synchronization (re)checks between monitors while clocks are believed to be skewed (seconds)
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
+
+**相关选项：**
+
+- [`mon_timecheck_interval`](../../../config/mon/mon.md#SP_mon_timecheck_interval)
 
 **示例：**
 

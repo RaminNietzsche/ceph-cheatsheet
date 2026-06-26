@@ -195,9 +195,13 @@ ceph pg stat
 | Type | Uint · default `1` · **Advanced** |
 | Table | [osd.md#SP_osd_max_backfills](../../../config/osd/osd.md#SP_osd_max_backfills) |
 
-**What it does:** Maximum number of concurrent local and remote backfills or recoveries per OSD
+**What it does:** Maximum number of concurrent local and remote backfills or recoveries per OSD There can be osd_max_backfills local reservations AND the same remote reservations per OSD. So a value of 1 lets this OSD participate as 1 PG primary in recovery and 1 shard of another recovering PG.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+
+**Related options:**
+
+- [`osd_mclock_override_recovery_settings`](../../../config/osd/osd.md#SP_osd_mclock_override_recovery_settings)
 
 **Example:**
 
@@ -232,7 +236,7 @@ ceph pg stat
 | Type | Bool · default `False` · **Advanced** |
 | Table | [osd.md#SP_osd_mclock_override_recovery_settings](../../../config/osd/osd.md#SP_osd_mclock_override_recovery_settings) |
 
-**What it does:** Setting this option enables the override of recovery/backfill limits for the mClock scheduler.
+**What it does:** Setting this option enables the override of recovery/backfill limits for the mClock scheduler. This option when set enables the override of the max recovery active and the max backfills limits with mClock scheduler active. These options are not modifiable when mClock scheduler is active. Any attempt to modify these values without setting this option will reset the recovery or backfill option back to its default value.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -269,7 +273,7 @@ ceph pg stat
 | Type | Float · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_mclock_scheduler_background_recovery_lim](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_recovery_lim) |
 
-**What it does:** IO limit for background recovery over reservation. The default value of 0 specifies no limit enforcement, which means background recovery operation can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that background recovery operation receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**What it does:** IO limit for background recovery over reservation. The default value of 0 specifies no limit enforcement, which means background recovery operation can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that background recovery operation receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -308,7 +312,7 @@ ceph pg stat
 | Type | Float · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_mclock_scheduler_background_recovery_res](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_recovery_res) |
 
-**What it does:** IO proportion reserved for background recovery (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for background recovery operations in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**What it does:** IO proportion reserved for background recovery (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for background recovery operations in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -347,7 +351,7 @@ ceph pg stat
 | Type | Uint · default `1` · **Advanced** |
 | Table | [osd.md#SP_osd_mclock_scheduler_background_recovery_wgt](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_recovery_wgt) |
 
-**What it does:** IO share for each background recovery over reservation Ignored unless osd_mclock_profile is set to 'custom'.
+**What it does:** IO share for each background recovery over reservation Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -384,7 +388,7 @@ ceph pg stat
 | Type | Int · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_min_recovery_priority](../../../config/osd/osd.md#SP_osd_min_recovery_priority) |
 
-**What it does:** Minimum priority below which recovery is not performed
+**What it does:** Minimum priority below which recovery is not performed The purpose here is to prevent the cluster from doing *any* lower priority work (e.g., rebalancing) below this threshold and focus solely on higher priority work (e.g., replicating degraded objects).
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -896,6 +900,10 @@ ceph pg stat
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
+**Related options:**
+
+- [`osd_recovery_sleep_degraded`](../../../config/osd/osd.md#SP_osd_recovery_sleep_degraded)
+
 **Example:**
 
 ```bash
@@ -932,6 +940,10 @@ ceph pg stat
 **What it does:** Time in seconds to sleep before next recovery or backfill op for SSDs when PGs are degraded.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
+
+**Related options:**
+
+- [`osd_recovery_sleep_degraded`](../../../config/osd/osd.md#SP_osd_recovery_sleep_degraded)
 
 **Example:**
 
@@ -1007,6 +1019,10 @@ ceph pg stat
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
+**Related options:**
+
+- [`osd_recovery_sleep`](../../../config/osd/osd.md#SP_osd_recovery_sleep)
+
 **Example:**
 
 ```bash
@@ -1043,6 +1059,10 @@ ceph pg stat
 **What it does:** Time in seconds to sleep before next recovery or backfill op for SSDs
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
+
+**Related options:**
+
+- [`osd_recovery_sleep`](../../../config/osd/osd.md#SP_osd_recovery_sleep)
 
 **Example:**
 

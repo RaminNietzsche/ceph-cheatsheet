@@ -218,6 +218,10 @@ ceph config get mgr mgr_debug_aggressive_pg_num_changes
 
 **When to use:** Disable unused modules to reduce attack surface and MGR startup time.
 
+**Related options:**
+
+- [`mgr_module_path`](../../../config/mgr/mgr.md#SP_mgr_module_path)
+
 **Example:**
 
 ```bash
@@ -251,7 +255,7 @@ ceph mgr stat
 | Type | Str · default `iostat nfs nvmeof` · **Basic** |
 | Table | [mgr.md#SP_mgr_initial_modules](../../../config/mgr/mgr.md#SP_mgr_initial_modules) |
 
-**What it does:** List of manager modules to enable when the cluster is first started
+**What it does:** List of manager modules to enable when the cluster is first started This list of module names is read by the monitor when the cluster is first started after installation, to populate the list of enabled manager modules. Subsequent updates are done using the 'mgr module &#91;enable\
 
 **When to use:** Core MGR behavior — review before changing in production.
 
@@ -410,9 +414,13 @@ ceph config get mgr mgr_mds_messages
 | Type | Millisecs · default `0` · **Dev** |
 | Table | [mgr.md#SP_mgr_module_load_delay](../../../config/mgr/mgr.md#SP_mgr_module_load_delay) |
 
-**What it does:** Number of milliseconds for Manager modules to delay loading. For testing purposes only.
+**What it does:** Number of milliseconds for Manager modules to delay loading. For testing purposes only. Number of milliseconds for Manager modules to delay loading. For testing purposes only.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`mgr_module_load_delay_name`](../../../config/mgr/mgr.md#SP_mgr_module_load_delay_name)
 
 **Example:**
 
@@ -438,9 +446,13 @@ ceph config get mgr mgr_module_load_delay
 | Type | Str · default `(empty)` · **Dev** |
 | Table | [mgr.md#SP_mgr_module_load_delay_name](../../../config/mgr/mgr.md#SP_mgr_module_load_delay_name) |
 
-**What it does:** Specify which Manager module is to delay loading by mgr_module_load_delay milliseconds. For testing purposes only.
+**What it does:** Specify which Manager module is to delay loading by mgr_module_load_delay milliseconds. For testing purposes only. Specify which Manager module is to delay loading by mgr_module_load_delay milliseconds. For testing purposes only.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`mgr_module_load_delay`](../../../config/mgr/mgr.md#SP_mgr_module_load_delay)
 
 **Example:**
 
@@ -466,7 +478,7 @@ ceph config get mgr mgr_module_load_delay_name
 | Type | Millisecs · default `20000` · **Dev** |
 | Table | [mgr.md#SP_mgr_module_load_expiration](../../../config/mgr/mgr.md#SP_mgr_module_load_expiration) |
 
-**What it does:** Maximum number of milliseconds the active mgr is allowed to load the mgr modules before declaring availability.
+**What it does:** Maximum number of milliseconds the active mgr is allowed to load the mgr modules before declaring availability. Maximum number of milliseconds the active mgr is allowed to load the mgr modules. If any modules are still uninitialized after the expiration is exceeded, the mgr proceeds to declare availability, but a health error will be issued indicating which modules didn't load in time.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -494,7 +506,7 @@ ceph config get mgr mgr_module_load_expiration
 | Type | Int · default `5` · **Advanced** |
 | Table | [mgr.md#SP_mgr_module_monitor_interval](../../../config/mgr/mgr.md#SP_mgr_module_monitor_interval) |
 
-**What it does:** Period in seconds for collecting Manager modules cpu and memory performance counters.
+**What it does:** Period in seconds for collecting Manager modules cpu and memory performance counters. Period in seconds for Manager Monitor to collect the cpu and memory for each enabled module. If set to 0, collection of these stats will be disabled.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -845,9 +857,13 @@ ceph mgr stat
 | Type | Bool · default `True` · **Basic** |
 | Table | [mgr.md#SP_mgr_stats_period_autotune](../../../config/mgr/mgr.md#SP_mgr_stats_period_autotune) |
 
-**What it does:** Automatically adjust mgr_stats_period based on Manager message queue depth
+**What it does:** Automatically adjust mgr_stats_period based on Manager message queue depth When enabled, the Manager monitors its incoming message queue and automatically increases mgr_stats_period when the queue backs up beyond the configured threshold, reducing daemon reporting frequency to prevent Manager overload. The period is gradually decreased back to the original value when the queue depth recovers. This prevents performance degradation during high cluster activity without requiring manual intervention. When disabled, mgr_stats_period remains at the manually configured value.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Related options:**
+
+- [`mgr_stats_period`](../../../config/mgr/mgr.md#SP_mgr_stats_period)
 
 **Example:**
 
@@ -880,9 +896,13 @@ ceph mgr stat
 | Type | Int · default `100` · **Advanced** |
 | Table | [mgr.md#SP_mgr_stats_period_autotune_queue_threshold](../../../config/mgr/mgr.md#SP_mgr_stats_period_autotune_queue_threshold) |
 
-**What it does:** Message queue depth that triggers automatic increase of mgr_stats_period
+**What it does:** Message queue depth that triggers automatic increase of mgr_stats_period When mgr_stats_period_autotune is enabled, the Manager will increase the stats reporting period if the incoming message queue exceeds this threshold. Higher values make the system less sensitive to temporary queue spikes but may allow longer periods of Manager overload.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
+
+**Related options:**
+
+- [`mgr_stats_period`](../../../config/mgr/mgr.md#SP_mgr_stats_period)
 
 **Example:**
 
@@ -916,7 +936,7 @@ ceph mgr stat
 | Type | Int · default `5` · **Advanced** |
 | Table | [mgr.md#SP_mgr_stats_threshold](../../../config/mgr/mgr.md#SP_mgr_stats_threshold) |
 
-**What it does:** Lowest perfcounter priority collected by mgr
+**What it does:** Lowest perfcounter priority collected by mgr Daemons only set perf counter data to the manager daemon if the counter has a priority higher than this.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -954,7 +974,7 @@ ceph mgr stat
 | Type | Str · default `0` · **Advanced** · **STARTUP** (restart required) |
 | Table | [mgr.md#SP_mgr_subinterpreter_modules](../../../config/mgr/mgr.md#SP_mgr_subinterpreter_modules) |
 
-**What it does:** List of manager modules to load in independent subinterpreters
+**What it does:** List of manager modules to load in independent subinterpreters A comma delimited list of module names. This list is read by manager when it starts. By default, manager loads each module into the main interpreter. Modules in this list will instead be loaded into independent subinterpreters. Specifying '*' will cause all modules to be run in independent subinterpreters.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

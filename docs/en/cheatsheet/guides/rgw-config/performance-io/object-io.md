@@ -38,7 +38,7 @@ ceph pg stat
 | Type | Size · default `4_M` · **Advanced** |
 | Table | [rgw.md#SP_rgw_get_obj_max_req_size](../../../config/rgw/rgw.md#SP_rgw_get_obj_max_req_size) |
 
-**What it does:** RGW object read chunk size
+**What it does:** RGW object read chunk size The maximum request size of a single object read operation sent to RADOS
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -66,7 +66,7 @@ ceph config get client.rgw rgw_get_obj_max_req_size
 | Type | Size · default `16_M` · **Advanced** |
 | Table | [rgw.md#SP_rgw_get_obj_window_size](../../../config/rgw/rgw.md#SP_rgw_get_obj_window_size) |
 
-**What it does:** RGW object read window size
+**What it does:** RGW object read window size The window size in bytes for a single object read request
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -103,7 +103,7 @@ ceph -s  # cluster health, slow ops
 | Type | Size · default `64_M` · **Advanced** |
 | Table | [rgw.md#SP_rgw_put_obj_max_window_size](../../../config/rgw/rgw.md#SP_rgw_put_obj_max_window_size) |
 
-**What it does:** The maximum RADOS write window size (in bytes).
+**What it does:** The maximum RADOS write window size (in bytes). The window size may be dynamically adjusted, but will not surpass this value.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -140,7 +140,7 @@ ceph -s  # cluster health, slow ops
 | Type | Size · default `16_M` · **Advanced** |
 | Table | [rgw.md#SP_rgw_put_obj_min_window_size](../../../config/rgw/rgw.md#SP_rgw_put_obj_min_window_size) |
 
-**What it does:** The minimum RADOS write window size (in bytes).
+**What it does:** The minimum RADOS write window size (in bytes). The window size determines the total concurrent RADOS writes of a single RGW object. When writing an object RGW will send multiple chunks to RADOS. The total size of the writes does not exceed the window size. The window size may be adjusted dynamically in order to better utilize the pipe.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

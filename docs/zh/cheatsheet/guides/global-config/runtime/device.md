@@ -33,7 +33,7 @@ ceph -s
 | 类型 | Str · enum: ["none", "local", "cloud"] · default `none` · **Basic** |
 | 表格 | [device.md#SP_device_failure_prediction_mode](../../../config/global/device.md#SP_device_failure_prediction_mode) |
 
-**作用：** Method used to predict device failures
+**作用：** Method used to predict device failures To disable prediction, use 'none', 'local' uses a prediction model that runs inside the mgr daemon. 'cloud' will share metrics with a cloud service and query the service for devicelife expectancy.
 
 **何时使用：** 核心 Global 行为 — 生产环境变更前请审阅。
 

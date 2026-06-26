@@ -66,6 +66,10 @@ ceph config get global lockdep
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`lockdep`](../../../config/global/lockdep.md#SP_lockdep)
+
 **Example:**
 
 ```bash

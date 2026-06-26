@@ -50,7 +50,7 @@ ceph pg stat
 | Type | Str · default `/var/lib/ceph/radosgw/$cluster-$id` · **Advanced** |
 | Table | [rgw.md#SP_rgw_data](../../../config/rgw/rgw.md#SP_rgw_data) |
 
-**What it does:** Alternative location for RGW configuration.
+**What it does:** Alternative location for RGW configuration. If this is set, the different Ceph system configurables (such as the keyring file will be located in the path that is specified here.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -126,7 +126,7 @@ ceph -s  # cluster health, slow ops
 | Type | Bool · default `True` · **Advanced** |
 | Table | [rgw.md#SP_rgw_dedup_split_obj_head](../../../config/rgw/rgw.md#SP_rgw_dedup_split_obj_head) |
 
-**What it does:** Enables the split-head functionality
+**What it does:** Enables the split-head functionality Dedup code can split head object into two objects - one with attributes and no data and a new tail-object with only data. The new-tail object will be deduped (unlike the head objects which can't be deduplicated)
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -154,7 +154,7 @@ ceph config get client.rgw rgw_dedup_split_obj_head
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_expose_bucket](../../../config/rgw/rgw.md#SP_rgw_expose_bucket) |
 
-**What it does:** Send Bucket HTTP header with the response
+**What it does:** Send Bucket HTTP header with the response If true, RGW will send a Bucket HTTP header with the responses. The header will contain the name of the bucket the operation happened on.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -182,7 +182,7 @@ ceph config get client.rgw rgw_expose_bucket
 | Type | Str · enum: ["none", "base", "d4n"] · default `none` · **Advanced** |
 | Table | [rgw.md#SP_rgw_filter](../../../config/rgw/rgw.md#SP_rgw_filter) |
 
-**What it does:** experimental Option to set a filter
+**What it does:** experimental Option to set a filter defaults to none. Other valid values are base and d4n (both experimental).
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -210,9 +210,13 @@ ceph config get client.rgw rgw_filter
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_graceful_stop](../../../config/rgw/rgw.md#SP_rgw_graceful_stop) |
 
-**What it does:** Delay the shutdown until all outstanding requests have completed
+**What it does:** Delay the shutdown until all outstanding requests have completed Wait for up to `rgw_exit_timeout_secs` for all outstanding requests to complete before exiting unconditionally. (new HTTP requests will not be accepted during this time.)
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
+
+**Related options:**
+
+- [`rgw_exit_timeout_secs`](../../../config/rgw/rgw.md#SP_rgw_exit_timeout_secs)
 
 **Example:**
 
@@ -276,6 +280,10 @@ iostat -x 5  # disk saturation
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`rgw_config_store`](../../../config/rgw/rgw.md#SP_rgw_config_store)
+
 **Example:**
 
 ```bash
@@ -310,7 +318,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `/etc/mime.types` · **Basic** |
 | Table | [rgw.md#SP_rgw_mime_types_file](../../../config/rgw/rgw.md#SP_rgw_mime_types_file) |
 
-**What it does:** Path to local mime types file
+**What it does:** Path to local mime types file The mime types file is needed in Swift when uploading an object. If object's content type is not specified, RGW will use data from this file to assign a content type to the object.
 
 **When to use:** Core RGW behavior — review before changing in production.
 

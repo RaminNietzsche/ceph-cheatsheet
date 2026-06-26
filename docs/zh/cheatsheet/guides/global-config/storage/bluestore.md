@@ -318,9 +318,13 @@ ceph config get global bluestore_allocation_from_file
 | 类型 | Uint · default `0` · **Basic** · **STARTUP**（需重启） |
 | 表格 | [bluestore.md#SP_bluestore_allocation_recovery_threads](../../../config/global/bluestore.md#SP_bluestore_allocation_recovery_threads) |
 
-**作用：** Amount of threads for allocation recovery after OSD crash.
+**作用：** Amount of threads for allocation recovery after OSD crash. The optimal value varies. For NVMe DBs may be as large as 8. Value 0 selects legacy recovery. Value 1 denotes new recovery but on single thread.
 
 **何时使用：** 核心 Global 行为 — 生产环境变更前请审阅。
+
+**相关选项：**
+
+- [`bluestore_allocation_from_file`](../../../config/global/bluestore.md#SP_bluestore_allocation_from_file)
 
 **示例：**
 
@@ -353,7 +357,7 @@ ceph -s
 | 类型 | Str · enum: ["bitmap", "stupid", "avl", "btree", "hybrid", "hybrid_btree2"] · default `hybrid` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_allocator](../../../config/global/bluestore.md#SP_bluestore_allocator) |
 
-**作用：** Allocator policy
+**作用：** Allocator policy Allocator to use for BlueStore. Stupid should only be used for testing.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -388,7 +392,7 @@ ceph -s
 | 类型 | Str · enum: ["hdd_optimized", "ssd_optimized", "auto"] · default `auto` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_allocator_lookup_policy](../../../config/global/bluestore.md#SP_bluestore_allocator_lookup_policy) |
 
-**作用：** Determines how to perform the next free extent lookup.
+**作用：** Determines how to perform the next free extent lookup. When set to 'hdd_optimized' the allocator searches from the last location found. This may facilitate contiguous disk writes. It may similarly be beneficial for large-IU QLC SSDs to enable firmware coalescing of sub-IU writes. When set to 'ssd-optimized' the allocator will search from the beginning of the device. This may facilitate SSD firmware housekeeping. When set to 'auto' the value will be derived from the detected device type (rotational or non-rotational).
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -423,7 +427,7 @@ ceph -s
 | 类型 | Bool · default `True` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_async_db_compaction](../../../config/global/bluestore.md#SP_bluestore_async_db_compaction) |
 
-**作用：** Perform DB compaction requests asynchronously
+**作用：** Perform DB compaction requests asynchronously Should BlueStore accept DB compaction requests via the admin socket?
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -451,9 +455,13 @@ ceph config get global bluestore_async_db_compaction
 | 类型 | Uint · default `4` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_avl_alloc_bf_free_pct](../../../config/global/bluestore.md#SP_bluestore_avl_alloc_bf_free_pct) |
 
-**作用：** Sets the threshold at which shrinking free space (in %, integer) triggers enabling best-fit mode.
+**作用：** Sets the threshold at which shrinking free space (in %, integer) triggers enabling best-fit mode. AVL allocator works in two modes: near-fit and best-fit. By default, it uses very fast near-fit mode, in which it tries to fit a new block near the last allocated block of similar size. The second mode is much slower best-fit mode, in which it tries to find an exact match for the requested allocation. This mode is used when either the device gets fragmented or when it is low on free space. When free space is smaller than `bluestore_avl_alloc_bf_free_pct`, best-fit mode is used.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`bluestore_avl_alloc_bf_threshold`](../../../config/global/bluestore.md#SP_bluestore_avl_alloc_bf_threshold)
 
 **示例：**
 
@@ -479,9 +487,13 @@ ceph config get global bluestore_avl_alloc_bf_free_pct
 | 类型 | Uint · default `128_K` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_avl_alloc_bf_threshold](../../../config/global/bluestore.md#SP_bluestore_avl_alloc_bf_threshold) |
 
-**作用：** Sets threshold at which shrinking max free chunk size triggers enabling best-fit mode.
+**作用：** Sets threshold at which shrinking max free chunk size triggers enabling best-fit mode. The AVL allocator works in two modes: near-fit and best-fit. By default, it uses very fast near-fit mode, in which it tries to fit a new block near the last allocated block of similar size. The second mode is much slower best-fit mode, in which it tries to find an exact match for the requested allocation. This mode is used when either the device gets fragmented or when it is low on free space. When the largest free block is smaller than 'bluestore_avl_alloc_bf_threshold', best-fit mode is used.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`bluestore_avl_alloc_bf_free_pct`](../../../config/global/bluestore.md#SP_bluestore_avl_alloc_bf_free_pct)
 
 **示例：**
 
@@ -563,7 +575,7 @@ ceph config get global bluestore_avl_alloc_ff_max_search_count
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_bdev_label_multi](../../../config/global/bluestore.md#SP_bluestore_bdev_label_multi) |
 
-**作用：** Keep multiple copies of block device label.
+**作用：** Keep multiple copies of block device label. Having multiple labels is only useful in error conditions. The label located at offset 0 has been known to be sometimes overwritten by unknown causes, but without it OSD cannot run.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -598,7 +610,7 @@ ceph -s
 | 类型 | Bool · default `False` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [bluestore.md#SP_bluestore_bdev_label_multi_upgrade](../../../config/global/bluestore.md#SP_bluestore_bdev_label_multi_upgrade) |
 
-**作用：** Let repair upgrade to multi label.
+**作用：** Let repair upgrade to multi label. By default single label is preserved. Setting this variable before running fsck-repair upgrades single label into multi label.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -633,9 +645,13 @@ ceph -s
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_bdev_label_require_all](../../../config/global/bluestore.md#SP_bluestore_bdev_label_require_all) |
 
-**作用：** Require all copies to match.
+**作用：** Require all copies to match. Under normal conditions, all copies should be the same. Clearing this flag allows to run OSD if at least one of labels could be properly read.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
+
+**相关选项：**
+
+- [`bluestore_bdev_label_multi`](../../../config/global/bluestore.md#SP_bluestore_bdev_label_multi)
 
 **示例：**
 
@@ -1028,7 +1044,7 @@ ceph config get global bluestore_block_wal_size
 | 类型 | Bool · default `True` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_bluefs](../../../config/global/bluestore.md#SP_bluestore_bluefs) |
 
-**作用：** Use BlueFS to back RocksDB
+**作用：** Use BlueFS to back RocksDB BlueFS allows RocksDB to share the same physical device(s) as the rest of BlueStore. It should be used in all cases unless testing/developing an alternative metadata database.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -1248,6 +1264,10 @@ ceph config get global bluestore_cache_age_bin_interval
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`bluestore_cache_age_bin_interval`](../../../config/global/bluestore.md#SP_bluestore_cache_age_bin_interval)
+
 **示例：**
 
 ```bash
@@ -1275,6 +1295,10 @@ ceph config get global bluestore_cache_age_bins_data
 **作用：** A 10 element, space separated list of age bins for kv cache
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`bluestore_cache_age_bin_interval`](../../../config/global/bluestore.md#SP_bluestore_cache_age_bin_interval)
 
 **示例：**
 
@@ -1304,6 +1328,10 @@ ceph config get global bluestore_cache_age_bins_kv
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`bluestore_cache_age_bin_interval`](../../../config/global/bluestore.md#SP_bluestore_cache_age_bin_interval)
+
 **示例：**
 
 ```bash
@@ -1331,6 +1359,10 @@ ceph config get global bluestore_cache_age_bins_kv_onode
 **作用：** A 10 element, space separated list of age bins for onode cache
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`bluestore_cache_age_bin_interval`](../../../config/global/bluestore.md#SP_bluestore_cache_age_bin_interval)
 
 **示例：**
 
@@ -1388,6 +1420,10 @@ ceph config get global bluestore_cache_autotune
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`bluestore_cache_autotune`](../../../config/global/bluestore.md#SP_bluestore_cache_autotune)
+
 **示例：**
 
 ```bash
@@ -1416,6 +1452,10 @@ ceph config get global bluestore_cache_autotune_interval
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`bluestore_cache_size`](../../../config/global/bluestore.md#SP_bluestore_cache_size)
+
 **示例：**
 
 ```bash
@@ -1443,6 +1483,10 @@ ceph config get global bluestore_cache_kv_onode_ratio
 **作用：** Ratio of BlueStore cache to devote to key/value database (RocksDB)
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`bluestore_cache_size`](../../../config/global/bluestore.md#SP_bluestore_cache_size)
 
 **示例：**
 
@@ -1507,6 +1551,10 @@ ceph -s
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`bluestore_cache_meta_ratio`](../../../config/global/bluestore.md#SP_bluestore_cache_meta_ratio)
+
 **示例：**
 
 ```bash
@@ -1542,6 +1590,10 @@ ceph -s
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`bluestore_cache_size`](../../../config/global/bluestore.md#SP_bluestore_cache_size)
+
 **示例：**
 
 ```bash
@@ -1566,7 +1618,7 @@ ceph config get global bluestore_cache_meta_ratio
 | 类型 | Size · default `0` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_cache_size](../../../config/global/bluestore.md#SP_bluestore_cache_size) |
 
-**作用：** Cache size (in bytes) for BlueStore
+**作用：** Cache size (in bytes) for BlueStore This includes data and metadata cached by BlueStore as well as memory devoted to rocksdb's cache(s).
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -1598,6 +1650,10 @@ ceph config get global bluestore_cache_size
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`bluestore_cache_size`](../../../config/global/bluestore.md#SP_bluestore_cache_size)
+
 **示例：**
 
 ```bash
@@ -1625,6 +1681,10 @@ ceph config get global bluestore_cache_size_hdd
 **作用：** Default bluestore_cache_size for non-rotational (solid state) media
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`bluestore_cache_size`](../../../config/global/bluestore.md#SP_bluestore_cache_size)
 
 **示例：**
 
@@ -1811,7 +1871,7 @@ ceph -s
 | 类型 | Str · enum: ["", "snappy", "zlib", "zstd", "lz4"] · default `snappy` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_compression_algorithm](../../../config/global/bluestore.md#SP_bluestore_compression_algorithm) |
 
-**作用：** Default compression algorithm to use when writing object data
+**作用：** Default compression algorithm to use when writing object data This controls the default compressor to use (if any) if the per-pool property is not set. Note that zstd is *not* recommended for bluestore due to high CPU overhead when compressing small amounts of data.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -1846,7 +1906,7 @@ ceph -s
 | 类型 | Size · default `0` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_compression_max_blob_size](../../../config/global/bluestore.md#SP_bluestore_compression_max_blob_size) |
 
-**作用：** Maximum chunk size to apply compression to when non-random access is expected for an object.
+**作用：** Maximum chunk size to apply compression to when non-random access is expected for an object. Chunks larger than this are broken into smaller chunks before being compressed
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -1885,6 +1945,10 @@ ceph -s
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`bluestore_compression_max_blob_size`](../../../config/global/bluestore.md#SP_bluestore_compression_max_blob_size)
+
 **示例：**
 
 ```bash
@@ -1920,6 +1984,10 @@ ceph -s
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`bluestore_compression_max_blob_size`](../../../config/global/bluestore.md#SP_bluestore_compression_max_blob_size)
+
 **示例：**
 
 ```bash
@@ -1951,7 +2019,7 @@ ceph -s
 | 类型 | Size · default `0` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_compression_min_blob_size](../../../config/global/bluestore.md#SP_bluestore_compression_min_blob_size) |
 
-**作用：** Maximum chunk size to apply compression to when random access is expected for an object.
+**作用：** Maximum chunk size to apply compression to when random access is expected for an object. Chunks larger than this are broken into smaller chunks before being compressed
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -1990,6 +2058,10 @@ ceph -s
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`bluestore_compression_min_blob_size`](../../../config/global/bluestore.md#SP_bluestore_compression_min_blob_size)
+
 **示例：**
 
 ```bash
@@ -2025,6 +2097,10 @@ ceph -s
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`bluestore_compression_min_blob_size`](../../../config/global/bluestore.md#SP_bluestore_compression_min_blob_size)
+
 **示例：**
 
 ```bash
@@ -2056,7 +2132,7 @@ ceph -s
 | 类型 | Str · enum: ["none", "passive", "aggressive", "force"] · default `none` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_compression_mode](../../../config/global/bluestore.md#SP_bluestore_compression_mode) |
 
-**作用：** Default policy for using compression when pool does not specify
+**作用：** Default policy for using compression when pool does not specify 'none' means never use compression. 'passive' means use compression when clients hint that data is compressible. 'aggressive' means use compression unless clients hint that data is not compressible. This option is used when the per-pool property for the compression mode is not present.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -2091,7 +2167,7 @@ ceph -s
 | 类型 | Float · default `0.875` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_compression_required_ratio](../../../config/global/bluestore.md#SP_bluestore_compression_required_ratio) |
 
-**作用：** Compression ratio required to store compressed data
+**作用：** Compression ratio required to store compressed data If we compress data and get less than this we discard the result and store the original uncompressed data.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -2126,7 +2202,7 @@ ceph -s
 | 类型 | Str · enum: ["none", "crc32c", "crc32c_16", "crc32c_8", "xxhash32", "xxhash64"] · default `crc32c` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_csum_type](../../../config/global/bluestore.md#SP_bluestore_csum_type) |
 
-**作用：** Default checksum algorithm to use
+**作用：** Default checksum algorithm to use Algorithms crc32c, xxhash32, and xxhash64 are available. The _16 and _8 variants use only a subset of the bits for more compact (but less reliable) checksumming.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -2161,9 +2237,13 @@ ceph -s
 | 类型 | Uint · default `0` · **Dev** · **STARTUP**（需重启） |
 | 表格 | [bluestore.md#SP_bluestore_debug_enforce_min_alloc_size](../../../config/global/bluestore.md#SP_bluestore_debug_enforce_min_alloc_size) |
 
-**作用：** Enforces specific min_alloc size usages
+**作用：** Enforces specific min_alloc size usages This overrides the actual min_alloc_size value persisted on mkfs (and originally obtained from bluestore_min_alloc_size) and permits an arbitrary value. Intended primarily for dev/debug purposes and should be used with care and deep understanding of potential consequences, e.g. data corruption.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`bluestore_min_alloc_size`](../../../config/global/bluestore.md#SP_bluestore_min_alloc_size)
 
 **示例：**
 
@@ -2189,7 +2269,7 @@ ceph config get global bluestore_debug_enforce_min_alloc_size
 | 类型 | Str · enum: ["default", "hdd", "ssd"] · default `default` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_debug_enforce_settings](../../../config/global/bluestore.md#SP_bluestore_debug_enforce_settings) |
 
-**作用：** Enforces specific hardware profile settings
+**作用：** Enforces specific hardware profile settings 'hdd' enforces settings intended for BlueStore on a rotational drive. 'ssd' enforces settings intended for BlueStore on an SSD. 'default' indicates that BlueStore is to use settings based on the detected hardware.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -2245,9 +2325,13 @@ ceph config get global bluestore_debug_extent_map_encode_check
 | 类型 | Float · default `0` · **Dev** · **STARTUP**（需重启） |
 | 表格 | [bluestore.md#SP_bluestore_debug_fast_recovery_compare_chance](../../../config/global/bluestore.md#SP_bluestore_debug_fast_recovery_compare_chance) |
 
-**作用：** For testing only. Compare legacy and multithread allocation recovery.
+**作用：** For testing only. Compare legacy and multithread allocation recovery. Chance to perform compare between procedures. Value in range <0..1>; defines chance to perform comparision between legacy and multithreaded allocation recovery. 0 means never compare. 1 means always compare.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`bluestore_allocation_recovery_threads`](../../../config/global/bluestore.md#SP_bluestore_allocation_recovery_threads)
 
 **示例：**
 
@@ -2325,7 +2409,7 @@ ceph config get global bluestore_debug_fsck_abort
 | 类型 | Float · default `0` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_debug_inject_allocation_from_file_failure](../../../config/global/bluestore.md#SP_bluestore_debug_inject_allocation_from_file_failure) |
 
-**作用：** Enables random error injections when restoring allocation map from file.
+**作用：** Enables random error injections when restoring allocation map from file. Specifies error injection probability for restoring allocation map from file hence causing full recovery. Intended primarily for testing.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -2513,9 +2597,13 @@ ceph config get global bluestore_debug_omit_kv_commit
 | 类型 | Bool · default `False` · **Dev** · **STARTUP**（需重启） |
 | 表格 | [bluestore.md#SP_bluestore_debug_onode_segmentation_random](../../../config/global/bluestore.md#SP_bluestore_debug_onode_segmentation_random) |
 
-**作用：** Random selection of onode segmentation
+**作用：** Random selection of onode segmentation For testing purposes. On each mount 50% roll decides whether to use bluestore_onode_segment_size or set it to 0 (disable).
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`bluestore_onode_segment_size`](../../../config/global/bluestore.md#SP_bluestore_onode_segment_size)
 
 **示例：**
 
@@ -2808,6 +2896,10 @@ ceph -s
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`bluestore_deferred_batch_ops`](../../../config/global/bluestore.md#SP_bluestore_deferred_batch_ops)
+
 **示例：**
 
 ```bash
@@ -2844,6 +2936,10 @@ ceph -s
 **作用：** Default bluestore_deferred_batch_ops for non-rotational (SSD) media
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`bluestore_deferred_batch_ops`](../../../config/global/bluestore.md#SP_bluestore_deferred_batch_ops)
 
 **示例：**
 
@@ -2913,7 +3009,7 @@ ceph -s
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_elastic_shared_blobs](../../../config/global/bluestore.md#SP_bluestore_elastic_shared_blobs) |
 
-**作用：** Let BlueStore reuse existing shared blobs if possible
+**作用：** Let BlueStore reuse existing shared blobs if possible Overwrites on snapped objects cause the shared blob count to grow. This has a very negative performance effect. When enabled, the shared blob count is significantly reduced.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -3088,7 +3184,7 @@ ceph config get global bluestore_extent_map_shard_target_size_slop
 | 类型 | Bool · default `False` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_fail_eio](../../../config/global/bluestore.md#SP_bluestore_fail_eio) |
 
-**作用：** fail/crash on EIO
+**作用：** fail/crash on EIO Whether BlueStore OSDs fail on EIO
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -3116,9 +3212,13 @@ ceph config get global bluestore_fail_eio
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_frag_runtime](../../../config/global/bluestore.md#SP_bluestore_frag_runtime) |
 
-**作用：** Enable tracking of runtime object fragmentation during reads.
+**作用：** Enable tracking of runtime object fragmentation during reads. When enabled, BlueStore measures runtime object fragmentation by counting how many physical extents are accessed for a read operation. Higher values indicate more fragmented object data and potential performance impact. The collected metric reflects runtime access patterns rather than static object layout.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
+
+**相关选项：**
+
+- [`bluestore_frag_static`](../../../config/global/bluestore.md#SP_bluestore_frag_static)
 
 **示例：**
 
@@ -3151,9 +3251,13 @@ ceph -s
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_frag_static](../../../config/global/bluestore.md#SP_bluestore_frag_static) |
 
-**作用：** Enable tracking of static object fragmentation during scrub
+**作用：** Enable tracking of static object fragmentation during scrub When enabled, BlueStore measures static object fragmentation during scrub by counting the number of disjoint physical extents that make up object's on-disk layout. The collection-level static fragmentation score is computed as the sum of the fragmentation scores of objects visited during the scrub process.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
+
+**相关选项：**
+
+- [`bluestore_frag_runtime`](../../../config/global/bluestore.md#SP_bluestore_frag_runtime)
 
 **示例：**
 
@@ -3189,6 +3293,10 @@ ceph -s
 **作用：** The interval at which to perform a BlueStore free fragmentation check. Checking fragmentation is usually almost immediate. For highly fragmented storage, it can take several miliseconds and can cause a write operation to stall.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
+
+**相关选项：**
+
+- [`bluestore_warn_on_free_fragmentation`](../../../config/global/bluestore.md#SP_bluestore_warn_on_free_fragmentation)
 
 **示例：**
 
@@ -3755,7 +3863,7 @@ ceph config get global bluestore_ignore_data_csum
 | 类型 | Float · default `10` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_kv_sync_util_logging_s](../../../config/global/bluestore.md#SP_bluestore_kv_sync_util_logging_s) |
 
-**作用：** KV sync thread utilization logging period
+**作用：** KV sync thread utilization logging period How often (in seconds) to print KV sync thread utilization, not logged when set to 0 or when utilization is 0%
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -3993,6 +4101,8 @@ ceph -s
 | 类型 | Size · default `0` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_max_blob_size](../../../config/global/bluestore.md#SP_bluestore_max_blob_size) |
 
+**作用：** BlueStore blobs are collections of extents (on-disk data) originating from one or more RADOS objects. Blobs can be compressed, typically have checksum data, may be overwritten, may be shared (with an extent ref map), or split. This setting controls the maximum size a blob is allowed to be. A value of 0 indicates that no limiit is to be enforced.
+
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
 **示例：**
@@ -4021,6 +4131,10 @@ ceph config get global bluestore_max_blob_size
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`bluestore_max_blob_size`](../../../config/global/bluestore.md#SP_bluestore_max_blob_size)
+
 **示例：**
 
 ```bash
@@ -4046,6 +4160,10 @@ ceph config get global bluestore_max_blob_size_hdd
 | 表格 | [bluestore.md#SP_bluestore_max_blob_size_ssd](../../../config/global/bluestore.md#SP_bluestore_max_blob_size_ssd) |
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`bluestore_max_blob_size`](../../../config/global/bluestore.md#SP_bluestore_max_blob_size)
 
 **示例：**
 
@@ -4141,7 +4259,7 @@ ceph -s
 | 类型 | Uint · default `0` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_min_alloc_size](../../../config/global/bluestore.md#SP_bluestore_min_alloc_size) |
 
-**作用：** Minimum allocation size to allocate for an object
+**作用：** Minimum allocation size to allocate for an object A smaller allocation size generally means less data is read and then rewritten when a copy-on-write operation is triggered (e.g., when writing to something that was recently snapshotted). Similarly, less data is journaled before performing an overwrite (writes smaller than min_alloc_size must first pass through the BlueStore WAL). Larger values of min_alloc_size reduce the amount of metadata required to describe the on-disk layout and reduce overall fragmentation. Setting to 0 directs that the effective value is taken from bluestore_min_alloc_size_hdd or bluestore_min_alloc_size_ssd according to the kernel's rotational attribute for the underlying device. Note that this is baked into each OSD at creation. An OSD must be rebuilt to use a different value.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -4180,6 +4298,10 @@ ceph -s
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`bluestore_min_alloc_size`](../../../config/global/bluestore.md#SP_bluestore_min_alloc_size)
+
 **示例：**
 
 ```bash
@@ -4214,6 +4336,10 @@ ceph -s
 **作用：** Default min_alloc_size value for non-rotational (solid state) media
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
+
+**相关选项：**
+
+- [`bluestore_min_alloc_size`](../../../config/global/bluestore.md#SP_bluestore_min_alloc_size)
 
 **示例：**
 
@@ -4274,7 +4400,7 @@ ceph config get global bluestore_nid_prealloc
 | 类型 | Size · default `0` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_onode_segment_size](../../../config/global/bluestore.md#SP_bluestore_onode_segment_size) |
 
-**作用：** Size of segment for onode.
+**作用：** Size of segment for onode. When object size grows too large BlueStore splits allocation metadata into smaller RocksDB keys (shards). When multiple blobs overlap each other some of them might belong to more than one shard. The encoding for such case is inefficient (spanning blobs). Segmentation of data prevents blobs from crossing specific separation lines, preventing spanning blobs altogether. The smaller values give better split on onode shards. The larger values minimize space loss for padding in compression. Recommended values 256K, 512K, 1024K. Value 0 disables segmentation. Actual segment size cannot be smaller than "compression_max_blob_size" pool option, if set.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -4348,6 +4474,10 @@ ceph -s
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`bluestore_prefer_deferred_size`](../../../config/global/bluestore.md#SP_bluestore_prefer_deferred_size)
+
 **示例：**
 
 ```bash
@@ -4382,6 +4512,10 @@ ceph -s
 **作用：** Default bluestore_prefer_deferred_size for non-rotational (SSD) media
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`bluestore_prefer_deferred_size`](../../../config/global/bluestore.md#SP_bluestore_prefer_deferred_size)
 
 **示例：**
 
@@ -4442,9 +4576,13 @@ ceph config get global bluestore_qfsck_on_mount
 | 类型 | Float · default `1.2` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_recompression_min_gain](../../../config/global/bluestore.md#SP_bluestore_recompression_min_gain) |
 
-**作用：** Required estimated gain for accepting extents for recompressing.
+**作用：** Required estimated gain for accepting extents for recompressing. Partial writes over compressed blobs have high cost. New data requires new allocation units, but whole old blob must remain. To combat it BlueStore looks around write position to find blobs that will make it profitable to read and recompress.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
+
+**相关选项：**
+
+- [`bluestore_compression_max_blob_size`](../../../config/global/bluestore.md#SP_bluestore_compression_max_blob_size)
 
 **示例：**
 
@@ -4477,7 +4615,7 @@ ceph -s
 | 类型 | Uint · default `3` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_retry_disk_reads](../../../config/global/bluestore.md#SP_bluestore_retry_disk_reads) |
 
-**作用：** Number of read retries on checksum validation error
+**作用：** Number of read retries on checksum validation error Retries to read data from the disk this many times when checksum validation fails to handle spurious read errors gracefully.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -4549,7 +4687,7 @@ ceph -s
 | 类型 | Str · default `m(3) p(3,0-12) O(3,0-13)=block_cache={type=binned_lru} L=min_write_buffer_number_to_merge=32 P=min_write_buffer_number_to_merge=32` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_rocksdb_cfs](../../../config/global/bluestore.md#SP_bluestore_rocksdb_cfs) |
 
-**作用：** Definition of column families and their sharding
+**作用：** Definition of column families and their sharding Space separated list of elements: column_def &#91; '=' rocksdb_options &#93;. column_def := column_name &#91; '(' shard_count &#91; ',' hash_begin '-' &#91; hash_end &#93; &#93; ')' &#93;. Example: 'I=write_buffer_size=1048576 O(6) m(7,10-)'. Interval &#91;hash_begin..hash_end) defines characters to use for hash calculation. Recommended hash ranges: O(0-13) P(0-8) m(0-16). Sharding of S,T,C,M,B prefixes is inadvised
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -4721,6 +4859,10 @@ ceph -s
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`bluestore_slow_ops_warn_threshold`](../../../config/global/bluestore.md#SP_bluestore_slow_ops_warn_threshold)
+
 **示例：**
 
 ```bash
@@ -4836,7 +4978,7 @@ ceph config get global bluestore_spdk_max_io_completion
 | 类型 | Size · default `512` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_spdk_mem](../../../config/global/bluestore.md#SP_bluestore_spdk_mem) |
 
-**作用：** Amount of dpdk memory size in MB
+**作用：** Amount of dpdk memory size in MB If running multiple SPDK instances per node, you must specify the amount of dpdk memory size in MB each instance will use, to make sure each instance uses its own dpdk memory
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -4966,6 +5108,10 @@ ceph -s
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`bluestore_throttle_cost_per_io`](../../../config/global/bluestore.md#SP_bluestore_throttle_cost_per_io)
+
 **示例：**
 
 ```bash
@@ -5000,6 +5146,10 @@ ceph -s
 **作用：** Default bluestore_throttle_cost_per_io for non-rotation (SSD) media
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`bluestore_throttle_cost_per_io`](../../../config/global/bluestore.md#SP_bluestore_throttle_cost_per_io)
 
 **示例：**
 
@@ -5137,7 +5287,7 @@ ceph -s
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [bluestore.md#SP_bluestore_use_ebd](../../../config/global/bluestore.md#SP_bluestore_use_ebd) |
 
-**作用：** EBD plugin used during mkfs is required for mounts.
+**作用：** EBD plugin used during mkfs is required for mounts. The flag has two effects, on mkfs and on mount. If set for mkfs and EBD plugin did attach to the device then save plugin name to OSD metadata. If set when mounting and plugin name is stored in OSD metadata then refuse to mount. The flag has no meaning if the device has no associated EBD plugin.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -5176,6 +5326,10 @@ ceph -s
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
+**相关选项：**
+
+- [`bluestore_min_alloc_size`](../../../config/global/bluestore.md#SP_bluestore_min_alloc_size)
+
 **示例：**
 
 ```bash
@@ -5207,7 +5361,7 @@ ceph -s
 | 类型 | Str · enum: ["rocksdb_original", "use_some_extra", "use_some_extra_enforced", "fit_to_fast"] · default `use_some_extra` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_volume_selection_policy](../../../config/global/bluestore.md#SP_bluestore_volume_selection_policy) |
 
-**作用：** Determine the BlueFS volume selection policy
+**作用：** Determine the BlueFS volume selection policy Determine the BlueFS volume selection policy. The 'use_some_extra*' policy allows overriding RocksDB level granularity and placing a high levels' data on a faster device even when the level doesn't completely fit there. The 'fit_to_fast' policy enables using 100% of faster device capacity and allows the user to enable the 'level_compaction_dynamic_level_bytes' RocksDB option.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -5343,6 +5497,10 @@ ceph -s
 **作用：** The level at which BlueStore block device free fragmentation raises a health warning. Set to "1" to disable. This is the value reported by the admin socket command "bluestore allocator score block".
 
 **何时使用：** 核心 Global 行为 — 生产环境变更前请审阅。
+
+**相关选项：**
+
+- [`bluestore_fragmentation_check_period`](../../../config/global/bluestore.md#SP_bluestore_fragmentation_check_period)
 
 **示例：**
 
@@ -5514,7 +5672,7 @@ ceph -s
 | 类型 | Bool · default `False` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [bluestore.md#SP_bluestore_write_v2](../../../config/global/bluestore.md#SP_bluestore_write_v2) |
 
-**作用：** Use faster write path
+**作用：** Use faster write path The original write path was developed over time, incrementally adding features at the cost of layered inefficiencies. This rework of the write path clears and optimizes for typical cases. Write_v2 is necessary for the recompression feature.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -5549,9 +5707,13 @@ ceph -s
 | 类型 | Bool · default `False` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [bluestore.md#SP_bluestore_write_v2_random](../../../config/global/bluestore.md#SP_bluestore_write_v2_random) |
 
-**作用：** Random selection of write path mode
+**作用：** Random selection of write path mode For testing purposes. If true, value of bluestore_write_v2 is randomly selected on each mount.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
+
+**相关选项：**
+
+- [`bluestore_write_v2`](../../../config/global/bluestore.md#SP_bluestore_write_v2)
 
 **示例：**
 
@@ -5584,7 +5746,7 @@ ceph -s
 | 类型 | Bool · default `False` · **Dev** |
 | 表格 | [bluestore.md#SP_bluestore_zero_block_detection](../../../config/global/bluestore.md#SP_bluestore_zero_block_detection) |
 
-**作用：** punch holes instead of writing zeros
+**作用：** punch holes instead of writing zeros Intended for large-scale synthetic testing. Currently this is implemented with punch hole semantics, affecting the logical extent map of the object. This does not interact well with some RBD and CephFS features.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 

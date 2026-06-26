@@ -33,7 +33,7 @@ ceph -s
 | Type | Str · default `(empty)` · **Advanced** · **STARTUP** (restart required) |
 | Table | [setgroup.md#SP_setgroup](../../../config/global/setgroup.md#SP_setgroup) |
 
-**What it does:** GID or group name to switch to on startup
+**What it does:** GID or group name to switch to on startup This is normally specified by the systemd unit file.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

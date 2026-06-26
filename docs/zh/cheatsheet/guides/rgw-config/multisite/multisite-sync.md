@@ -62,7 +62,7 @@ ceph pg stat
 | 类型 | Int · default `1000` · **Dev** |
 | 表格 | [rgw.md#SP_rgw_data_log_changes_size](../../../config/rgw/rgw.md#SP_rgw_data_log_changes_size) |
 
-**作用：** Max size of pending changes in data log
+**作用：** Max size of pending changes in data log RGW will trigger update to the data log if the number of pending entries reached this number.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -100,7 +100,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `128` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_data_log_num_shards](../../../config/rgw/rgw.md#SP_rgw_data_log_num_shards) |
 
-**作用：** Number of data log shards
+**作用：** Number of data log shards The number of shards the RGW data log entries will reside in. This affects the data sync parallelism as a shard can only be processed by a single RGW at a time.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -128,7 +128,7 @@ ceph config get client.rgw rgw_data_log_num_shards
 | 类型 | Int · default `30` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_data_log_window](../../../config/rgw/rgw.md#SP_rgw_data_log_window) |
 
-**作用：** Data log time window
+**作用：** Data log time window The data log keeps information about buckets that have objects that were modified within a specific timeframe. The sync process then knows which buckets are needed to be scanned for data sync.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -165,7 +165,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `0` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_data_notify_interval_msec](../../../config/rgw/rgw.md#SP_rgw_data_notify_interval_msec) |
 
-**作用：** data changes notification interval to followers
+**作用：** data changes notification interval to followers In multisite, radosgw will occasionally broadcast new entries in its data changes log to peer zones, so they can prioritize sync of some of the most recent changes. Can be disabled with 0.
 
 **何时使用：**
 
@@ -209,6 +209,10 @@ ceph -s  # cluster health, slow ops
 
 - **Shorten** for fresher stats or faster enforcement.
 - **Lengthen** to reduce background sync or GC cost.
+
+**相关选项：**
+
+- [`rgw_meta_sync_poll_interval`](../../../config/rgw/rgw.md#SP_rgw_meta_sync_poll_interval)
 
 **示例：**
 
@@ -284,7 +288,7 @@ radosgw-admin sync status
 | 类型 | Int · default `60` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [rgw.md#SP_rgw_lfuda_sync_frequency](../../../config/rgw/rgw.md#SP_rgw_lfuda_sync_frequency) |
 
-**作用：** LFUDA variables' sync frequency in seconds
+**作用：** LFUDA variables' sync frequency in seconds By default, the D4N cache uses the Least Frequently Used with Dynamic Aging (LFUDA) cache replacement policy. This class globally stores values that are used by the policy's algorithm. However, strong consistency for these values is not necessary and adds additional overhead to support. As a result, a thread periodically retrieves these global values and posts updates when certain conditions are satisfied. This Redis thread completes this logic in a loop that is called once every interval, with the interval being set by this option.
 
 **何时使用：** 多站点复制与同步调优 — 延迟或同步负载异常时调整。
 
@@ -323,7 +327,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `64` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_md_log_max_shards](../../../config/rgw/rgw.md#SP_rgw_md_log_max_shards) |
 
-**作用：** RGW number of metadata log shards
+**作用：** RGW number of metadata log shards The number of shards the RGW metadata log entries will reside in. This affects the metadata sync parallelism as a shard can only be processed by a single RGW at a time
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 
@@ -351,7 +355,7 @@ ceph config get client.rgw rgw_md_log_max_shards
 | 类型 | Int · default `200` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_md_notify_interval_msec](../../../config/rgw/rgw.md#SP_rgw_md_notify_interval_msec) |
 
-**作用：** Length of time to aggregate metadata changes
+**作用：** Length of time to aggregate metadata changes Length of time (in milliseconds) in which the master zone aggregates all the metadata changes that occurred, before sending notifications to all the other zones.
 
 **何时使用：**
 
@@ -395,6 +399,10 @@ ceph -s  # cluster health, slow ops
 
 - **Shorten** for fresher stats or faster enforcement.
 - **Lengthen** to reduce background sync or GC cost.
+
+**相关选项：**
+
+- [`rgw_data_sync_poll_interval`](../../../config/rgw/rgw.md#SP_rgw_data_sync_poll_interval)
 
 **示例：**
 
@@ -630,7 +638,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `20_min` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sync_log_trim_interval](../../../config/rgw/rgw.md#SP_rgw_sync_log_trim_interval) |
 
-**作用：** Sync log trim interval
+**作用：** Sync log trim interval Time in seconds between attempts to trim sync logs.
 
 **何时使用：**
 
@@ -671,7 +679,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `16` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sync_log_trim_max_buckets](../../../config/rgw/rgw.md#SP_rgw_sync_log_trim_max_buckets) |
 
-**作用：** Maximum number of buckets to trim per interval
+**作用：** Maximum number of buckets to trim per interval The maximum number of buckets to consider for bucket index log trimming each trim interval, regardless of the number of bucket index shards. Priority is given to buckets with the most sync activity over the last trim interval.
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 
@@ -699,7 +707,7 @@ ceph config get client.rgw rgw_sync_log_trim_max_buckets
 | 类型 | Int · default `4` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sync_log_trim_min_cold_buckets](../../../config/rgw/rgw.md#SP_rgw_sync_log_trim_min_cold_buckets) |
 
-**作用：** Minimum number of cold buckets to trim per interval
+**作用：** Minimum number of cold buckets to trim per interval Of the `rgw_sync_log_trim_max_buckets` selected for bucket index log trimming each trim interval, at least this many of them must be 'cold' buckets. These buckets are selected in order from the list of all bucket instances, to guarantee that all buckets will be visited eventually.
 
 **何时使用：** 多站点复制与同步调优 — 延迟或同步负载异常时调整。
 
@@ -765,7 +773,7 @@ ceph config get client.rgw rgw_sync_meta_inject_err_probability
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sync_obj_etag_verify](../../../config/rgw/rgw.md#SP_rgw_sync_obj_etag_verify) |
 
-**作用：** Verify if the object copied from remote is identical to its source
+**作用：** Verify if the object copied from remote is identical to its source If true, this option computes the MD5 checksum of the data which is written at the destination and checks if it is identical to the ETAG stored in the source. It ensures integrity of the objects fetched from a remote server over HTTP including multisite sync.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -793,7 +801,7 @@ ceph config get client.rgw rgw_sync_obj_etag_verify
 | 类型 | Size · default `4_K` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sync_trace_history_size](../../../config/rgw/rgw.md#SP_rgw_sync_trace_history_size) |
 
-**作用：** Sync trace history size
+**作用：** Sync trace history size Maximum number of complete sync trace entries to keep.
 
 **何时使用：** 多站点复制与同步调优 — 延迟或同步负载异常时调整。
 
@@ -831,7 +839,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `32` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sync_trace_per_node_log_size](../../../config/rgw/rgw.md#SP_rgw_sync_trace_per_node_log_size) |
 
-**作用：** Sync trace per-node log size
+**作用：** Sync trace per-node log size The number of log entries to keep per sync-trace node.
 
 **何时使用：** 多站点复制与同步调优 — 延迟或同步负载异常时调整。
 
@@ -869,7 +877,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `10` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sync_trace_servicemap_update_interval](../../../config/rgw/rgw.md#SP_rgw_sync_trace_servicemap_update_interval) |
 
-**作用：** Sync-trace service-map update interval
+**作用：** Sync-trace service-map update interval Number of seconds between service-map updates of sync-trace events.
 
 **何时使用：**
 
@@ -910,7 +918,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `3_min` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_user_quota_bucket_sync_interval](../../../config/rgw/rgw.md#SP_rgw_user_quota_bucket_sync_interval) |
 
-**作用：** User quota bucket sync interval
+**作用：** User quota bucket sync interval Time period for accumulating modified buckets before syncing these stats.
 
 **何时使用：**
 
@@ -951,7 +959,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_user_quota_sync_idle_users](../../../config/rgw/rgw.md#SP_rgw_user_quota_sync_idle_users) |
 
-**作用：** Should sync idle users quota
+**作用：** Should sync idle users quota Whether stats for idle users be fully synced.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -979,7 +987,7 @@ ceph config get client.rgw rgw_user_quota_sync_idle_users
 | 类型 | Int · default `1_day` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_user_quota_sync_interval](../../../config/rgw/rgw.md#SP_rgw_user_quota_sync_interval) |
 
-**作用：** User quota sync interval
+**作用：** User quota sync interval Time period for accumulating modified buckets before syncing entire user stats.
 
 **何时使用：**
 
@@ -1020,7 +1028,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `1_day` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_user_quota_sync_wait_time](../../../config/rgw/rgw.md#SP_rgw_user_quota_sync_wait_time) |
 
-**作用：** User quota full-sync wait time
+**作用：** User quota full-sync wait time Minimum time between two full stats sync for non-idle users.
 
 **何时使用：** 多站点复制与同步调优 — 延迟或同步负载异常时调整。
 

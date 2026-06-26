@@ -261,6 +261,8 @@ ceph -s
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [bdev.md#SP_bdev_async_discard](../../../config/global/bdev.md#SP_bdev_async_discard) |
 
+**作用：** When set this works like an alias for 'bdev_async_discard_threads = 1" mode to avoid implicit async discard mode disablement after upgrade. Ignored if 'dev_asunc_discard_threads' is greater than zero. This parameter is DEPRECATED and provided for backward compatibility for Squid minor releases only. PLEASE SWITCH TO 'bdev_async_discard_threads' USE.
+
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
 **示例：**
@@ -294,9 +296,13 @@ ceph -s
 | 类型 | Uint · default `1000000` · **Advanced** |
 | 表格 | [bdev.md#SP_bdev_async_discard_max_pending](../../../config/global/bdev.md#SP_bdev_async_discard_max_pending) |
 
-**作用：** maximum number of pending discards
+**作用：** maximum number of pending discards The maximum number of pending async discards that can be queued and not claimed by an async discard thread. Discards will not be issued once the queue is full and blocks will be freed back to the allocator immediately instead. This is useful if you have a device with slow discard performance that can't keep up to a consistently high write workload. 0 means 'unlimited'.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
+
+**相关选项：**
+
+- [`bdev_async_discard_threads`](../../../config/global/bdev.md#SP_bdev_async_discard_threads)
 
 **示例：**
 
@@ -533,9 +539,13 @@ ceph config get global bdev_debug_inflight_ios
 | 类型 | Size · default `10_G` · **Advanced** |
 | 表格 | [bdev.md#SP_bdev_discard_max_bytes](../../../config/global/bdev.md#SP_bdev_discard_max_bytes) |
 
-**作用：** Discard queue size in bytes that triggers health warning
+**作用：** Discard queue size in bytes that triggers health warning This parameter sets a threshold for the discard queue size (in bytes), triggering a health warning when the queue exceeds the specified limit. This is particularly useful for devices with slow discard operations, as a large backlog in the queue can block disk space that is marked as free but not yet available for allocation, impacting system performance and storage efficiency. `bdev_async_discard_max_pending` is measured in items, not bytes, so its value does not directly correspond to the discard queue size in bytes.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
+
+**相关选项：**
+
+- [`bdev_async_discard_max_pending`](../../../config/global/bdev.md#SP_bdev_async_discard_max_pending)
 
 **示例：**
 
@@ -602,7 +612,7 @@ ceph -s
 | 类型 | Uint · default `3` · **Advanced** |
 | 表格 | [bdev.md#SP_bdev_flock_retry](../../../config/global/bdev.md#SP_bdev_flock_retry) |
 
-**作用：** times to retry the flock
+**作用：** times to retry the flock The number of times to retry on getting the block device lock. Programs such as systemd-udevd may compete with Ceph for this lock. 0 means 'unlimited'.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -833,6 +843,10 @@ ceph -s
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`bdev_enable_discard`](../../../config/global/bdev.md#SP_bdev_enable_discard)
+
 **示例：**
 
 ```bash
@@ -930,7 +944,7 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [bdev.md#SP_bdev_read_preallocated_huge_buffers](../../../config/global/bdev.md#SP_bdev_read_preallocated_huge_buffers) |
 
-**作用：** description of pools arrangement for huge page-based read buffers
+**作用：** description of pools arrangement for huge page-based read buffers Arrangement of preallocated, huge pages-based pools for reading from a KernelDevice. Applied to minimize size of scatter-gather lists sent to NICs. Targets really big buffers (>= 2 or 4 MBs). Keep in mind the system must be configured accordingly (see /proc/sys/vm/nr_hugepages). Otherwise the OSD wil fail early. Beware that BlueStore, by default, stores large chunks across many smaller blobs. Increasing bluestore_max_blob_size changes that, and thus allows the data to be read back into small number of huge page-backed buffers.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

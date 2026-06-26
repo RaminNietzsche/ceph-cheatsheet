@@ -1739,7 +1739,7 @@ ceph pg stat
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [osd.md#SP_osd_fast_shutdown](../../../config/global/osd.md#SP_osd_fast_shutdown) |
 
-**作用：** Fast, immediate shutdown
+**作用：** Fast, immediate shutdown Setting this to false makes the OSD do a slower teardown of all state when it receives a SIGINT or SIGTERM or when shutting down for any other reason. That slow shutdown is primarilyy useful for doing memory leak checking with valgrind.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -1776,7 +1776,7 @@ ceph pg stat
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [osd.md#SP_osd_fast_shutdown_notify_mon](../../../config/global/osd.md#SP_osd_fast_shutdown_notify_mon) |
 
-**作用：** Tell the Monitors about OSD shutdown on immediate shutdown
+**作用：** Tell the Monitors about OSD shutdown on immediate shutdown Tell the Monitors the OSD is shutting down on immediate shutdown. This helps with cluster log messages from other OSDs reporting it immediately failed.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -2085,7 +2085,7 @@ ceph pg stat
 | 类型 | Int · default `10_min` · **Advanced** |
 | 表格 | [osd.md#SP_osd_heartbeat_stale](../../../config/global/osd.md#SP_osd_heartbeat_stale) |
 
-**作用：** Interval (in seconds) we mark an unresponsive heartbeat peer as stale.
+**作用：** Interval (in seconds) we mark an unresponsive heartbeat peer as stale. Automatically mark unresponsive heartbeat sessions as stale and tear them down. The primary benefit is that OSD doesn't need to keep a flood of blocked heartbeat messages around in memory.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -2775,7 +2775,7 @@ ceph config get osd osd_max_pg_log_entries
 | 类型 | Float · default `3` · **Advanced** |
 | 表格 | [osd.md#SP_osd_max_pg_per_osd_hard_ratio](../../../config/global/osd.md#SP_osd_max_pg_per_osd_hard_ratio) |
 
-**作用：** Maximum multiple of mon_max_pg_per_osd PGs an OSD will allow
+**作用：** Maximum multiple of mon_max_pg_per_osd PGs an OSD will allow An OSD will refuse to instantiate a PG if the number of PGs it serves exceeds this number.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -2877,7 +2877,7 @@ ceph pg stat
 | 类型 | Size · default `64` · **Advanced** |
 | 表格 | [osd.md#SP_osd_max_write_op_reply_len](../../../config/global/osd.md#SP_osd_max_write_op_reply_len) |
 
-**作用：** Max size of the per-op payload for requests with the RETURNVEC flag set
+**作用：** Max size of the per-op payload for requests with the RETURNVEC flag set This value caps the amount of data (per op; a request may have many ops) that will be sent back to the client and recorded in the PG log.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -3026,7 +3026,7 @@ ceph config get osd osd_memory_expected_fragmentation
 | 类型 | Size · default `4_G` · **Basic** |
 | 表格 | [osd.md#SP_osd_memory_target](../../../config/global/osd.md#SP_osd_memory_target) |
 
-**作用：** When TCMalloc and cache autotuning are enabled, try to keep this many bytes mapped in memory.
+**作用：** When TCMalloc and cache autotuning are enabled, try to keep this many bytes mapped in memory. The minimum value must be at least equal to osd_memory_base + osd_memory_cache_min.
 
 **何时使用：** 核心 Global 行为 — 生产环境变更前请审阅。
 
@@ -3066,6 +3066,10 @@ ceph pg stat
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
+**相关选项：**
+
+- [`osd_memory_target`](../../../config/global/osd.md#SP_osd_memory_target)
+
 **示例：**
 
 ```bash
@@ -3099,9 +3103,13 @@ ceph pg stat
 | 类型 | Float · default `0.8` · **Advanced** |
 | 表格 | [osd.md#SP_osd_memory_target_cgroup_limit_ratio](../../../config/global/osd.md#SP_osd_memory_target_cgroup_limit_ratio) |
 
-**作用：** Set the default value for osd_memory_target to the cgroup memory limit (if set) times this value
+**作用：** Set the default value for osd_memory_target to the cgroup memory limit (if set) times this value A value of 0 disables this feature.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
+
+**相关选项：**
+
+- [`osd_memory_target`](../../../config/global/osd.md#SP_osd_memory_target)
 
 **示例：**
 
@@ -3236,7 +3244,7 @@ ceph pg stat
 | 类型 | Int · default `1_hr` · **Advanced** |
 | 表格 | [osd.md#SP_osd_mon_heartbeat_stat_stale](../../../config/global/osd.md#SP_osd_mon_heartbeat_stat_stale) |
 
-**作用：** Stop reporting on heartbeat ping times not updated for this many seconds.
+**作用：** Stop reporting on heartbeat ping times not updated for this many seconds. Stop reporting on old heartbeat information unless this is set to zero
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -3415,7 +3423,7 @@ ceph pg stat
 | 类型 | Int · default `10` · **Dev** |
 | 表格 | [osd.md#SP_osd_object_clean_region_max_num_intervals](../../../config/global/osd.md#SP_osd_object_clean_region_max_num_intervals) |
 
-**作用：** Number of intervals in clean_offsets
+**作用：** Number of intervals in clean_offsets Partial recovery uses multiple intervals to record the clean part of the objectwhen the number of intervals is greater than osd_object_clean_region_max_num_intervals, minimum interval will be trimmed(0 will recovery the entire object data interval)
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -3550,9 +3558,13 @@ ceph pg stat
 | 类型 | Uint · default `64` · **Advanced** |
 | 表格 | [osd.md#SP_osd_objectstore_ideal_list_max](../../../config/global/osd.md#SP_osd_objectstore_ideal_list_max) |
 
-**作用：** The max number of results of ObjectStore::collection_list()
+**作用：** The max number of results of ObjectStore::collection_list() This value caps the maximal number of entries a single call to collection_list() can return. The configurable controls this aspect of PG deletion and OSD::clear_temp_objects(). Increasing it trade-offs less agressive chunking (and thus less CPU consumption overall) for higher memory pressure. Please note that in the case of PG deletion the chunking is steered by std::min of the this value and the value of osd_target_transaction_size.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`osd_memory_target`](../../../config/global/osd.md#SP_osd_memory_target)
 
 **示例：**
 
@@ -4775,6 +4787,10 @@ ceph config get osd osd_pool_default_flags
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`osd_tier_default_cache_hit_set_type`](../../../config/global/osd.md#SP_osd_tier_default_cache_hit_set_type)
+
 **示例：**
 
 ```bash
@@ -4808,9 +4824,13 @@ ceph pg stat
 | 类型 | Uint · default `0` · **Advanced** |
 | 表格 | [osd.md#SP_osd_pool_default_min_size](../../../config/global/osd.md#SP_osd_pool_default_min_size) |
 
-**作用：** The minimal number of copies allowed to write to a degraded pool for new replicated pools
+**作用：** The minimal number of copies allowed to write to a degraded pool for new replicated pools 0 means no specific default; ceph will use size-size/2
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
+
+**相关选项：**
+
+- [`osd_pool_default_size`](../../../config/global/osd.md#SP_osd_pool_default_size)
 
 **示例：**
 
@@ -4847,7 +4867,7 @@ ceph pg stat
 | 类型 | Str · enum: ["off", "warn", "on"] · default `on` · **Advanced** |
 | 表格 | [osd.md#SP_osd_pool_default_pg_autoscale_mode](../../../config/global/osd.md#SP_osd_pool_default_pg_autoscale_mode) |
 
-**作用：** Default PG autoscaling behavior for new pools
+**作用：** Default PG autoscaling behavior for new pools When 'on', the autoscaler assigns 1 pg to new pools unless the user specifies a value.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -4884,9 +4904,13 @@ ceph pg stat
 | 类型 | Uint · default `32` · **Advanced** |
 | 表格 | [osd.md#SP_osd_pool_default_pg_num](../../../config/global/osd.md#SP_osd_pool_default_pg_num) |
 
-**作用：** number of PGs for new pools
+**作用：** number of PGs for new pools With default value of `osd_pool_default_pg_autoscale_mode` being `on` the number of PGs for new pools will start out with 1 pg, unless the user specifies the pg_num.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`osd_pool_default_pg_autoscale_mode`](../../../config/global/osd.md#SP_osd_pool_default_pg_autoscale_mode)
 
 **示例：**
 
@@ -4958,9 +4982,13 @@ ceph pg stat
 | 类型 | Float · default `0.8` · **Dev** |
 | 表格 | [osd.md#SP_osd_pool_default_read_lease_ratio](../../../config/global/osd.md#SP_osd_pool_default_read_lease_ratio) |
 
-**作用：** Default read_lease_ratio for a pool, as a multiple of osd_heartbeat_grace
+**作用：** Default read_lease_ratio for a pool, as a multiple of osd_heartbeat_grace This should be <= 1.0 so that the read lease will have expired by the time we decide to mark a peer OSD down.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`osd_heartbeat_grace`](../../../config/global/osd.md#SP_osd_heartbeat_grace)
 
 **示例：**
 
@@ -4986,7 +5014,7 @@ ceph config get osd osd_pool_default_read_lease_ratio
 | 类型 | Uint · default `70` · **Advanced** |
 | 表格 | [osd.md#SP_osd_pool_default_read_ratio](../../../config/global/osd.md#SP_osd_pool_default_read_ratio) |
 
-**作用：** Default read ratio (the percent of read IOs out of all IOs) for a pool.
+**作用：** Default read ratio (the percent of read IOs out of all IOs) for a pool. Default read ratio (the percent of read IOs out of all IOs) for a pool. applicable to replicated pools only. This value is used to improve read balancing when OSDs have different weights.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -5099,7 +5127,7 @@ ceph pg stat
 | 类型 | Bool · default `True` · **Dev** |
 | 表格 | [osd.md#SP_osd_pool_use_gmt_hitset](../../../config/global/osd.md#SP_osd_pool_use_gmt_hitset) |
 
-**作用：** use UTC for hitset timestamps
+**作用：** use UTC for hitset timestamps This setting only exists for compatibility with hammer (and older) clusters.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -5234,7 +5262,7 @@ ceph pg stat
 | 类型 | Uint · default `5` · **Advanced** |
 | 表格 | [osd.md#SP_osd_recovery_priority](../../../config/global/osd.md#SP_osd_recovery_priority) |
 
-**作用：** Priority of recovery in the work queue
+**作用：** Priority of recovery in the work queue Not related to a pool's recovery_priority
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

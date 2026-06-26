@@ -46,7 +46,7 @@ ceph pg stat
 | Type | Bool · default `True` · **Basic** |
 | Table | [rgw.md#SP_rgw_dynamic_resharding](../../../config/rgw/rgw.md#SP_rgw_dynamic_resharding) |
 
-**What it does:** Enable dynamic resharding
+**What it does:** Enable dynamic resharding If true, RGW will dynamically increase the number of shards in buckets that have a high number of objects per shard.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -74,9 +74,13 @@ ceph config get client.rgw rgw_dynamic_resharding
 | Type | Bool · default `True` · **Advanced** |
 | Table | [rgw.md#SP_rgw_dynamic_resharding_may_reduce](../../../config/rgw/rgw.md#SP_rgw_dynamic_resharding_may_reduce) |
 
-**What it does:** Whether dynamic resharding can reduce the number of shards
+**What it does:** Whether dynamic resharding can reduce the number of shards If true, RGW's dynamic resharding ability is allowed to reduce the number of shards if it appears there are too many.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Related options:**
+
+- [`rgw_dynamic_resharding`](../../../config/rgw/rgw.md#SP_rgw_dynamic_resharding)
 
 **Example:**
 
@@ -102,7 +106,7 @@ ceph config get client.rgw rgw_dynamic_resharding_may_reduce
 | Type | Uint · default `120` · **Advanced** |
 | Table | [rgw.md#SP_rgw_dynamic_resharding_reduction_wait](../../../config/rgw/rgw.md#SP_rgw_dynamic_resharding_reduction_wait) |
 
-**What it does:** Number of hours to delay bucket index shard reduction.
+**What it does:** Number of hours to delay bucket index shard reduction. In order to avoid resharding buckets with object counts that fluctuate up and down regularly, we implement a delay between noting a shard reduction might be appropriate and when it's actually done. This allows us to cancel the reshard operation if the number of object significantly increases during this delay. WARNING: Setting this value too low could result in significantly reduced cluster performance.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -222,7 +226,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `-1` · **Dev** |
 | Table | [rgw.md#SP_rgw_reshard_debug_interval](../../../config/rgw/rgw.md#SP_rgw_reshard_debug_interval) |
 
-**What it does:** The number of seconds that simulate one "day" in order to debug RGW dynamic resharding. Do *not* modify for a production cluster.
+**What it does:** The number of seconds that simulate one "day" in order to debug RGW dynamic resharding. Do *not* modify for a production cluster. For debugging RGW dynamic resharding, the number of seconds that are equivalent to one simulated "day". Values less than 1 are ignored and do not change dynamic resharding behavior. For example, during debugging if one wanted every 10 minutes to be equivalent to one day, then this would be set to 600, the number of seconds in 10 minutes.
 
 **When to use:**
 
@@ -367,9 +371,13 @@ ceph -s  # cluster health, slow ops
 | Type | Float · default `0.5` · **Dev** |
 | Table | [rgw.md#SP_rgw_reshard_progress_judge_ratio](../../../config/rgw/rgw.md#SP_rgw_reshard_progress_judge_ratio) |
 
-**What it does:** ratio of reshard progress judge interval to randomly vary
+**What it does:** ratio of reshard progress judge interval to randomly vary Add a random delay to rgw_reshard_progress_judge_interval for deciding when to judge the reshard process. The default setting spreads judge time window of &#91;1, 1.5&#93; * rgw_reshard_progress_judge_interval.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`rgw_reshard_progress_judge_interval`](../../../config/rgw/rgw.md#SP_rgw_reshard_progress_judge_interval)
 
 **Example:**
 
@@ -450,6 +458,10 @@ ceph -s  # cluster health, slow ops
 **What it does:** threshold for a shard to record log before blocking writes
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`rgw_reshard_progress_judge_interval`](../../../config/rgw/rgw.md#SP_rgw_reshard_progress_judge_interval)
 
 **Example:**
 

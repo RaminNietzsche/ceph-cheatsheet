@@ -110,7 +110,7 @@ ceph pg stat
 | نوع | Size · default `500_M` · **Advanced** |
 | جدول | [osd.md#SP_osd_client_message_size_cap](../../../config/osd/osd.md#SP_osd_client_message_size_cap) |
 
-**کارکرد:** maximum memory to devote to in-flight client requests
+**کارکرد:** maximum memory to devote to in-flight client requests If this value is exceeded, the OSD will not read any new client data off of the network until memory is freed.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -394,7 +394,7 @@ ceph pg stat
 | نوع | Size · default `90` · **Advanced** |
 | جدول | [osd.md#SP_osd_max_write_size](../../../config/osd/osd.md#SP_osd_max_write_size) |
 
-**کارکرد:** Maximum size of a RADOS write operation in megabytes
+**کارکرد:** Maximum size of a RADOS write operation in megabytes This setting prevents clients from doing very large writes to RADOS. If you set this to a value below what clients expect, they will receive an error when attempting to write to the cluster.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -507,6 +507,10 @@ ceph pg stat
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_map_cache_size`](../../../config/osd/osd.md#SP_osd_map_cache_size)
+
 **مثال:**
 
 ```bash
@@ -540,7 +544,7 @@ ceph pg stat
 | نوع | Bool · default `False` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [osd.md#SP_set_keepcaps](../../../config/osd/osd.md#SP_set_keepcaps) |
 
-**کارکرد:** set the keepcaps flag before changing UID, preserving the permitted capability set
+**کارکرد:** set the keepcaps flag before changing UID, preserving the permitted capability set When ceph switches from root to the ceph uid, all capabilities in all sets are eraseed. If a component that is capability aware needs a specific capability, the keepcaps flag maintains the permitted capability set, allowing the capabilities in the effective set to be activated as needed.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 

@@ -64,6 +64,10 @@ ceph -s
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
+**گزینه‌های مرتبط:**
+
+- [`seastore_device_size`](../../../config/crimson/seastore.md#SP_seastore_device_size)
+
 **مثال:**
 
 ```bash
@@ -834,7 +838,7 @@ ceph pg stat
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [seastore.md#SP_seastore_segment_cleaner_gc_autotune](../../../config/crimson/seastore.md#SP_seastore_segment_cleaner_gc_autotune) |
 
-**کارکرد:** When the configured gc formula (cost_benefit or benefit) picks a segment whose free-space fraction (1 - utilization) is at least seastore_segment_cleaner_gc_autotune_ratio times smaller than the lowest-utilization candidate, override the pick with the greedy choice.
+**کارکرد:** When the configured gc formula (cost_benefit or benefit) picks a segment whose free-space fraction (1 - utilization) is at least seastore_segment_cleaner_gc_autotune_ratio times smaller than the lowest-utilization candidate, override the pick with the greedy choice. COST_BENEFIT and BENEFIT weight segment age, which is the right call when age predicts dead-byte accumulation (journaling / LIFO workloads). Under random-write at high alive_ratio dead bytes spread uniformly across segments, age stops predicting deadness, and the formula can pick a high-util old segment whose reclaim frees several times less space than the lowest-util candidate. When this option is enabled the cleaner detects the mis-selection at runtime and overrides the formula's pick with the greedy choice. Disable to honor the configured formula unconditionally. Ignored when seastore_segment_cleaner_gc_formula = greedy.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -871,7 +875,7 @@ ceph pg stat
 | نوع | Float · default `2.0` · **Advanced** |
 | جدول | [seastore.md#SP_seastore_segment_cleaner_gc_autotune_ratio](../../../config/crimson/seastore.md#SP_seastore_segment_cleaner_gc_autotune_ratio) |
 
-**کارکرد:** Override threshold for the gc auto-tune. The configured formula's pick is overridden with the greedy candidate when greedy's free fraction is at least this ratio times the formula's pick's free fraction.
+**کارکرد:** Override threshold for the gc auto-tune. The configured formula's pick is overridden with the greedy candidate when greedy's free fraction is at least this ratio times the formula's pick's free fraction. Higher is more conservative (override fires less often, the configured formula's age weighting is preserved more aggressively). Lower is more aggressive (override fires more often, behaviour converges toward pure greedy). The default (2.0) captures the random-write failure regime while staying clear of normal-operation fluctuations.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

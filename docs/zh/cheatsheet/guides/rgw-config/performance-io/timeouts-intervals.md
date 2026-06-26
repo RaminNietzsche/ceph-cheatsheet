@@ -42,7 +42,7 @@ ceph pg stat
 | 类型 | Int · default `2_min` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_exit_timeout_secs](../../../config/rgw/rgw.md#SP_rgw_exit_timeout_secs) |
 
-**作用：** RGW shutdown timeout
+**作用：** RGW shutdown timeout Number of seconds to wait for a process before exiting unconditionally.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -79,7 +79,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `5_min` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_init_timeout](../../../config/rgw/rgw.md#SP_rgw_init_timeout) |
 
-**作用：** Initialization timeout
+**作用：** Initialization timeout The time length (in seconds) that RGW will allow for its initialization. RGW process will give up and quit if initialization is not complete after this amount of time.
 
 **何时使用：** 核心 RGW 行为 — 生产环境变更前请审阅。
 
@@ -156,7 +156,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `1_hr` · **Dev** |
 | 表格 | [rgw.md#SP_rgw_olh_pending_timeout_sec](../../../config/rgw/rgw.md#SP_rgw_olh_pending_timeout_sec) |
 
-**作用：** Max time for pending OLH change to complete
+**作用：** Max time for pending OLH change to complete OLH is a versioned object's logical head. Operations on it are journaled and as pending before completion. If an operation doesn't complete with this amount of seconds, we remove the operation from the journal.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -193,7 +193,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Uint · default `60` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [rgw.md#SP_rgw_ratelimit_interval](../../../config/rgw/rgw.md#SP_rgw_ratelimit_interval) |
 
-**作用：** Time window for rate limiting in seconds
+**作用：** Time window for rate limiting in seconds This option sets the time window for rate limiting accumulation in seconds. Requests that exceed the configured rate limits within this time window will be rejected. The default is a 60 second token bucket.
 
 **何时使用：**
 
@@ -236,7 +236,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `10000` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_read_through_timeout_ms](../../../config/rgw/rgw.md#SP_rgw_read_through_timeout_ms) |
 
-**作用：** Maximum time in milliseconds for read-through GET requests to wait for cloud object restore completion
+**作用：** Maximum time in milliseconds for read-through GET requests to wait for cloud object restore completion When a GET request is made for a cloud-tiered object that must be restored, the request will wait up to this many milliseconds for the restore to complete. If the restore completes within this time, the GET request succeeds and returns the object data. If the time is exceeded, the request fails with ERR_REQUEST_TIMEOUT. Set to 0 to fail immediately without waiting.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -275,7 +275,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `-1` · **Dev** |
 | 表格 | [rgw.md#SP_rgw_restore_debug_interval](../../../config/rgw/rgw.md#SP_rgw_restore_debug_interval) |
 
-**作用：** The number of seconds that simulate one "day" in order to debug RGW CloudRestore. Do *not* modify for a production cluster.
+**作用：** The number of seconds that simulate one "day" in order to debug RGW CloudRestore. Do *not* modify for a production cluster. For debugging RGW Cloud Restore, the number of seconds that are equivalent to one simulated "day". Values less than 1 are ignored and do not change Restore behavior. For example, during debugging if one wanted every 10 minutes to be equivalent to one day, then this would be set to 600, the number of seconds in 10 minutes.
 
 **何时使用：**
 
@@ -308,7 +308,7 @@ ceph config get client.rgw rgw_restore_debug_interval
 | 类型 | Int · default `30` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_usage_log_tick_interval](../../../config/rgw/rgw.md#SP_rgw_usage_log_tick_interval) |
 
-**作用：** Number of seconds between usage log flush cycles
+**作用：** Number of seconds between usage log flush cycles The number of seconds between consecutive usage log flushes. The usage log will also flush itself to the backend if the number of pending entries reaches a certain threshold.
 
 **何时使用：**
 

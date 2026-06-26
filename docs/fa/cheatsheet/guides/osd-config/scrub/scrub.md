@@ -71,7 +71,7 @@ ceph -s
 | نوع | Int · default `120` · **Advanced** |
 | جدول | [osd.md#SP_osd_blocked_scrub_grace_period](../../../config/osd/osd.md#SP_osd_blocked_scrub_grace_period) |
 
-**کارکرد:** Time (seconds) before issuing a cluster-log warning
+**کارکرد:** Time (seconds) before issuing a cluster-log warning Waiting too long for an object in the scrubbed chunk to be unlocked.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
@@ -145,7 +145,7 @@ ceph pg stat
 | نوع | Float · default `0.2` · **Advanced** |
 | جدول | [osd.md#SP_osd_deep_scrub_interval_cv](../../../config/osd/osd.md#SP_osd_deep_scrub_interval_cv) |
 
-**کارکرد:** Determines the amount of variation in the deep scrub interval
+**کارکرد:** Determines the amount of variation in the deep scrub interval Deep scrub intervals are varied by a random amount to prevent stampedes. This parameter determines the amount of variation. Technically ``osd_deep_scrub_interval_cv`` is the coefficient of variation for the deep scrub interval.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
@@ -225,6 +225,10 @@ ceph pg stat
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_deep_scrub_large_omap_object_value_sum_threshold`](../../../config/osd/osd.md#SP_osd_deep_scrub_large_omap_object_value_sum_threshold)
+
 **مثال:**
 
 ```bash
@@ -261,6 +265,10 @@ ceph pg stat
 **کارکرد:** Warn when we encounter an object with more omap key bytes than this
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_deep_scrub_large_omap_object_key_threshold`](../../../config/osd/osd.md#SP_osd_deep_scrub_large_omap_object_key_threshold)
 
 **مثال:**
 
@@ -486,6 +494,10 @@ ceph pg stat
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_auto_repair`](../../../config/osd/osd.md#SP_osd_scrub_auto_repair)
+
 **مثال:**
 
 ```bash
@@ -519,7 +531,7 @@ ceph pg stat
 | نوع | Float · default `0.66` · **Dev** |
 | جدول | [osd.md#SP_osd_scrub_backoff_ratio](../../../config/osd/osd.md#SP_osd_scrub_backoff_ratio) |
 
-**کارکرد:** Backoff ratio for scheduling scrubs
+**کارکرد:** Backoff ratio for scheduling scrubs Probability that a particular OSD tick instance will skip scrub scheduling. 66% means that approximately one of three ticks will cause scrub scheduling.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -547,9 +559,13 @@ ceph config get osd osd_scrub_backoff_ratio
 | نوع | Int · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_scrub_begin_hour](../../../config/osd/osd.md#SP_osd_scrub_begin_hour) |
 
-**کارکرد:** Restrict scrubbing to this hour of the day or later
+**کارکرد:** Restrict scrubbing to this hour of the day or later Use osd_scrub_begin_hour=0 and osd_scrub_end_hour=0 for the entire day.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_end_hour`](../../../config/osd/osd.md#SP_osd_scrub_end_hour)
 
 **مثال:**
 
@@ -586,9 +602,13 @@ ceph pg stat
 | نوع | Int · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_scrub_begin_week_day](../../../config/osd/osd.md#SP_osd_scrub_begin_week_day) |
 
-**کارکرد:** Restrict scrubbing to this day of the week or later
+**کارکرد:** Restrict scrubbing to this day of the week or later 0 = Sunday, 1 = Monday, etc. Use osd_scrub_begin_week_day=0 osd_scrub_end_week_day=0 for the entire week.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_end_week_day`](../../../config/osd/osd.md#SP_osd_scrub_end_week_day)
 
 **مثال:**
 
@@ -629,6 +649,10 @@ ceph pg stat
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_chunk_min`](../../../config/osd/osd.md#SP_osd_scrub_chunk_min)
+
 **مثال:**
 
 ```bash
@@ -666,6 +690,10 @@ ceph pg stat
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_chunk_max`](../../../config/osd/osd.md#SP_osd_scrub_chunk_max)
+
 **مثال:**
 
 ```bash
@@ -699,7 +727,7 @@ ceph pg stat
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [osd.md#SP_osd_scrub_disable_reservation_queuing](../../../config/osd/osd.md#SP_osd_scrub_disable_reservation_queuing) |
 
-**کارکرد:** Disable queuing of scrub reservations
+**کارکرد:** Disable queuing of scrub reservations When set - scrub replica reservations are responded to immediately, with either success or failure (the pre-Squid version behaviour). This configuration option is introduced to support mixed-version clusters and debugging, and will be removed in the next release.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -772,9 +800,13 @@ ceph pg stat
 | نوع | Int · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_scrub_end_hour](../../../config/osd/osd.md#SP_osd_scrub_end_hour) |
 
-**کارکرد:** Restrict scrubbing to hours of the day earlier than this
+**کارکرد:** Restrict scrubbing to hours of the day earlier than this Use osd_scrub_begin_hour=0 and osd_scrub_end_hour=0 for the entire day.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_begin_hour`](../../../config/osd/osd.md#SP_osd_scrub_begin_hour)
 
 **مثال:**
 
@@ -811,9 +843,13 @@ ceph pg stat
 | نوع | Int · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_scrub_end_week_day](../../../config/osd/osd.md#SP_osd_scrub_end_week_day) |
 
-**کارکرد:** Restrict scrubbing to days of the week earlier than this
+**کارکرد:** Restrict scrubbing to days of the week earlier than this 0 = Sunday, 1 = Monday, etc. Use osd_scrub_begin_week_day=0 osd_scrub_end_week_day=0 for the entire week.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_begin_week_day`](../../../config/osd/osd.md#SP_osd_scrub_begin_week_day)
 
 **مثال:**
 
@@ -887,9 +923,13 @@ ceph pg stat
 | نوع | Float · default `0.5` · **Advanced** |
 | جدول | [osd.md#SP_osd_scrub_interval_randomize_ratio](../../../config/osd/osd.md#SP_osd_scrub_interval_randomize_ratio) |
 
-**کارکرد:** Ratio of scrub interval to randomly vary
+**کارکرد:** Ratio of scrub interval to randomly vary This prevents a scrub 'stampede' by randomly varying the scrub intervals so that they are uniformly distributed over time.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_min_interval`](../../../config/osd/osd.md#SP_osd_scrub_min_interval)
 
 **مثال:**
 
@@ -1000,6 +1040,10 @@ ceph pg stat
 
 **زمان استفاده:** Align with maintenance policy. Monitor `mon_warn_pg_not_scrubbed_ratio` warnings.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_min_interval`](../../../config/osd/osd.md#SP_osd_scrub_min_interval)
+
 **مثال:**
 
 ```bash
@@ -1076,6 +1120,10 @@ ceph pg stat
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_max_interval`](../../../config/osd/osd.md#SP_osd_scrub_max_interval)
+
 **مثال:**
 
 ```bash
@@ -1146,9 +1194,13 @@ ceph pg stat
 | نوع | Int · default `60` · **Advanced** |
 | جدول | [osd.md#SP_osd_scrub_retry_after_noscrub](../../../config/osd/osd.md#SP_osd_scrub_retry_after_noscrub) |
 
-**کارکرد:** Period (in seconds) before retrying to scrub a PG at a specific level after detecting a no-scrub or no-deep-scrub flag
+**کارکرد:** Period (in seconds) before retrying to scrub a PG at a specific level after detecting a no-scrub or no-deep-scrub flag Minimum delay after a failed attempt to scrub a PG at a level (shallow or deep) that is disabled by cluster or pool no-scrub or no-deep-scrub flags.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_retry_delay`](../../../config/osd/osd.md#SP_osd_scrub_retry_delay)
 
 **مثال:**
 
@@ -1185,7 +1237,7 @@ ceph pg stat
 | نوع | Int · default `30` · **Advanced** |
 | جدول | [osd.md#SP_osd_scrub_retry_delay](../../../config/osd/osd.md#SP_osd_scrub_retry_delay) |
 
-**کارکرد:** Period (in seconds) before retrying a PG that has failed a prior scrub.
+**کارکرد:** Period (in seconds) before retrying a PG that has failed a prior scrub. Minimum delay after a failed attempt to scrub a PG. The delay is either applied to one of the scheduled scrubs for the PG (the next shallow scrub or the next deep scrub), or to both. This is a default value, used when the cause of the delay does not have an associated configuration option. See the 'see also' for the configuration options for some delay reasons that have their own configuration.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -1224,9 +1276,13 @@ ceph pg stat
 | نوع | Int · default `10` · **Advanced** |
 | جدول | [osd.md#SP_osd_scrub_retry_new_interval](../../../config/osd/osd.md#SP_osd_scrub_retry_new_interval) |
 
-**کارکرد:** Period (in seconds) before retrying a scrub aborted on a new interval
+**کارکرد:** Period (in seconds) before retrying a scrub aborted on a new interval Minimum delay before retrying, after a scrub was aborted as the PG interval changed.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_retry_delay`](../../../config/osd/osd.md#SP_osd_scrub_retry_delay)
 
 **مثال:**
 
@@ -1263,9 +1319,13 @@ ceph pg stat
 | نوع | Int · default `60` · **Advanced** |
 | جدول | [osd.md#SP_osd_scrub_retry_pg_state](../../../config/osd/osd.md#SP_osd_scrub_retry_pg_state) |
 
-**کارکرد:** Period (in seconds) before retrying to scrub a previously inactive/not-clean PG
+**کارکرد:** Period (in seconds) before retrying to scrub a previously inactive/not-clean PG Minimum delay after a failed attempt to scrub a PG that is not active and clean.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_retry_delay`](../../../config/osd/osd.md#SP_osd_scrub_retry_delay)
 
 **مثال:**
 
@@ -1302,9 +1362,13 @@ ceph pg stat
 | نوع | Int · default `10` · **Advanced** |
 | جدول | [osd.md#SP_osd_scrub_retry_trimming](../../../config/osd/osd.md#SP_osd_scrub_retry_trimming) |
 
-**کارکرد:** Period (in seconds) before retrying to scrub a previously snap-trimming PG
+**کارکرد:** Period (in seconds) before retrying to scrub a previously snap-trimming PG Minimum delay after a failed attempt to scrub a PG that was performing snap trimming and not available for scrubbing.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_scrub_retry_delay`](../../../config/osd/osd.md#SP_osd_scrub_retry_delay)
 
 **مثال:**
 
@@ -1452,7 +1516,7 @@ ceph pg stat
 | نوع | Int · default `120` · **Advanced** |
 | جدول | [osd.md#SP_osd_stats_update_period_not_scrubbing](../../../config/osd/osd.md#SP_osd_stats_update_period_not_scrubbing) |
 
-**کارکرد:** Stats update period (seconds) when not scrubbing
+**کارکرد:** Stats update period (seconds) when not scrubbing A PG we are a primary of, publishes its stats (inc. scrub/block duration) every this many seconds.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
@@ -1489,7 +1553,7 @@ ceph pg stat
 | نوع | Int · default `15` · **Advanced** |
 | جدول | [osd.md#SP_osd_stats_update_period_scrubbing](../../../config/osd/osd.md#SP_osd_stats_update_period_scrubbing) |
 
-**کارکرد:** Stats update period (seconds) when scrubbing
+**کارکرد:** Stats update period (seconds) when scrubbing A PG actively scrubbing (or blocked while scrubbing) publishes its stats (inc. scrub/block duration) every this many seconds.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 

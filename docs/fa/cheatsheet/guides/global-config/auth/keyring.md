@@ -33,7 +33,7 @@ ceph -s
 | نوع | Str · default `0` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [keyring.md#SP_keyring](../../../config/global/keyring.md#SP_keyring) |
 
-**کارکرد:** Path to a keyring file.
+**کارکرد:** Path to a keyring file. A keyring file is an INI-style formatted file where the section names are client or daemon names (e.g., 'osd.0') and each section contains a 'key' property with CephX authentication key as the value.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

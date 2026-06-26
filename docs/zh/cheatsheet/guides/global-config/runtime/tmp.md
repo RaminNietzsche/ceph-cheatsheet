@@ -68,7 +68,7 @@ ceph -s
 | 类型 | Str · default `$tmp_dir/$cluster-$name.XXXXXX` · **Advanced** |
 | 表格 | [tmp.md#SP_tmp_file_template](../../../config/global/tmp.md#SP_tmp_file_template) |
 
-**作用：** Template for temporary files created by daemons for ceph tell commands
+**作用：** Template for temporary files created by daemons for ceph tell commands The template file name prefix for temporary files. For example, temporary files may be created by 'ceph tell' commands using the --daemon-output-file switch.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

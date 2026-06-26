@@ -121,7 +121,7 @@ radosgw-admin bucket stats --bucket=testbucket
 | Type | Bool · default `True` · **Advanced** |
 | Table | [rgw.md#SP_rgw_enable_quota_threads](../../../config/rgw/rgw.md#SP_rgw_enable_quota_threads) |
 
-**What it does:** Enables the quota maintenance thread.
+**What it does:** Enables the quota maintenance thread. The quota maintenance thread is responsible for quota related maintenance work. The thread itself can be disabled, but in order for quota to work correctly, at least one RGW in each zone needs to have this thread running. Having the thread enabled on multiple RGW processes within the same zone can spread some of the maintenance work between them.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -150,7 +150,7 @@ radosgw-admin quota get --quota-scope=user --uid=testuser
 | Type | Int · default `-1` · **Basic** |
 | Table | [rgw.md#SP_rgw_user_default_quota_max_objects](../../../config/rgw/rgw.md#SP_rgw_user_default_quota_max_objects) |
 
-**What it does:** User quota max objects
+**What it does:** User quota max objects The default quota configuration for total number of objects for a single user. A negative number means 'unlimited'.
 
 **When to use:** Set tenant or platform default limits for new users, accounts, or buckets.
 
@@ -187,7 +187,7 @@ radosgw-admin bucket stats --bucket=testbucket
 | Type | Int · default `-1` · **Basic** |
 | Table | [rgw.md#SP_rgw_user_default_quota_max_size](../../../config/rgw/rgw.md#SP_rgw_user_default_quota_max_size) |
 
-**What it does:** User quota max size
+**What it does:** User quota max size The default quota configuration for total size of objects for a single user. A negative number means 'unlimited'.
 
 **When to use:** Set tenant or platform default limits for new users, accounts, or buckets.
 

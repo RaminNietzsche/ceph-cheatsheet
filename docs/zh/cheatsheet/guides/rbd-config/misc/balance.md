@@ -38,6 +38,10 @@ ceph -s
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
+**相关选项：**
+
+- [`rbd_read_from_replica_policy`](../../../config/rbd/rbd.md#SP_rbd_read_from_replica_policy)
+
 **示例：**
 
 ```bash
@@ -73,6 +77,10 @@ ceph -s
 **作用：** distribute snap read requests to random OSD
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
+
+**相关选项：**
+
+- [`rbd_read_from_replica_policy`](../../../config/rbd/rbd.md#SP_rbd_read_from_replica_policy)
 
 **示例：**
 

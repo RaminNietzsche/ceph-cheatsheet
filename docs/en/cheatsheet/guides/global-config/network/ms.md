@@ -756,6 +756,10 @@ ceph -s
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
+**Related options:**
+
+- [`ms_bind_ipv6`](../../../config/global/ms.md#SP_ms_bind_ipv6)
+
 **Example:**
 
 ```bash
@@ -790,6 +794,10 @@ ceph -s
 **What it does:** Bind servers to IPv6 address(es)
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
+
+**Related options:**
+
+- [`ms_bind_ipv4`](../../../config/global/ms.md#SP_ms_bind_ipv4)
 
 **Example:**
 
@@ -826,6 +834,10 @@ ceph -s
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
+**Related options:**
+
+- [`ms_bind_msgr2`](../../../config/global/ms.md#SP_ms_bind_msgr2)
+
 **Example:**
 
 ```bash
@@ -860,6 +872,10 @@ ceph -s
 **What it does:** Bind servers to msgr2 (nautilus+) protocol address(es)
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Related options:**
+
+- [`ms_bind_msgr1`](../../../config/global/ms.md#SP_ms_bind_msgr1)
 
 **Example:**
 
@@ -1293,9 +1309,13 @@ ceph -s
 | Type | Str · default `(empty)` · **Advanced** · **STARTUP** (restart required) |
 | Table | [ms.md#SP_ms_cluster_type](../../../config/global/ms.md#SP_ms_cluster_type) |
 
-**What it does:** Messenger implementation to use for the internal cluster network
+**What it does:** Messenger implementation to use for the internal cluster network If not specified, use ms_type
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`ms_type`](../../../config/global/ms.md#SP_ms_type)
 
 **Example:**
 
@@ -1328,9 +1348,13 @@ ceph -s
 | Type | Bool · default `False` · **Advanced** |
 | Table | [ms.md#SP_ms_compress_secure](../../../config/global/ms.md#SP_ms_compress_secure) |
 
-**What it does:** Allowing compression when on-wire encryption is enabled
+**What it does:** Allowing compression when on-wire encryption is enabled Combining encryption with compression reduces the level of security of messages between peers. In case both encryption and compression are enabled, compression setting will be ignored and message will not be compressed. This behaviour can be override using this setting.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
+
+**Related options:**
+
+- [`ms_osd_compress_mode`](../../../config/global/ms.md#SP_ms_osd_compress_mode)
 
 **Example:**
 
@@ -1666,6 +1690,10 @@ ceph -s
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`ms_async_op_threads`](../../../config/global/ms.md#SP_ms_async_op_threads)
+
 **Example:**
 
 ```bash
@@ -1723,7 +1751,7 @@ ceph config get global ms_dpdk_debug_allow_loopback
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [ms.md#SP_ms_dpdk_devs_allowlist](../../../config/global/ms.md#SP_ms_dpdk_devs_allowlist) |
 
-**What it does:** NIC's PCIe address are allowed to use
+**What it does:** NIC's PCIe address are allowed to use for a single NIC use ms_dpdk_devs_allowlist=-a 0000:7d:010 or --allow=0000:7d:010; for a bond nics use ms_dpdk_devs_allowlist=--allow=0000:7d:01.0 --allow=0000:7d:02.6 --vdev=net_bonding0,mode=2,slave=0000:7d:01.0,slave=0000:7d:02.6.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -2424,7 +2452,7 @@ ceph config get global ms_inject_socket_failures
 | Type | Bool · default `True` · **Advanced** |
 | Table | [ms.md#SP_ms_learn_addr_from_peer](../../../config/global/ms.md#SP_ms_learn_addr_from_peer) |
 
-**What it does:** Learn address from what IP our first peer thinks we connect from
+**What it does:** Learn address from what IP our first peer thinks we connect from Use the IP address our first peer (usually a monitor) sees that we are connecting from. This is useful if a client is behind some sort of NAT and we want to see it identified by its local (not NATed) address.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -2497,6 +2525,10 @@ ceph -s
 **What it does:** Maximum backoff after a network error before retrying (seconds)
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+
+**Related options:**
+
+- [`ms_initial_backoff`](../../../config/global/ms.md#SP_ms_initial_backoff)
 
 **Example:**
 
@@ -2635,6 +2667,10 @@ ceph -s
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`ms_osd_compress_mode`](../../../config/global/ms.md#SP_ms_osd_compress_mode)
+
 **Example:**
 
 ```bash
@@ -2670,6 +2706,10 @@ ceph -s
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`ms_compress_secure`](../../../config/global/ms.md#SP_ms_compress_secure)
+
 **Example:**
 
 ```bash
@@ -2701,9 +2741,13 @@ ceph -s
 | Type | Str · default `snappy` · **Advanced** |
 | Table | [ms.md#SP_ms_osd_compression_algorithm](../../../config/global/ms.md#SP_ms_osd_compression_algorithm) |
 
-**What it does:** Compression algorithm to use in Messenger when communicating with OSD
+**What it does:** Compression algorithm to use in Messenger when communicating with OSD Compression algorithm for connections with OSD in order of preference Although the default value is set to snappy, a list (like snappy zlib zstd etc.) is acceptable as well.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`ms_osd_compress_mode`](../../../config/global/ms.md#SP_ms_osd_compress_mode)
 
 **Example:**
 
@@ -2788,9 +2832,13 @@ ceph config get global ms_pq_min_cost
 | Type | Str · default `(empty)` · **Advanced** · **STARTUP** (restart required) |
 | Table | [ms.md#SP_ms_public_type](../../../config/global/ms.md#SP_ms_public_type) |
 
-**What it does:** Messenger implementation to use for the public network
+**What it does:** Messenger implementation to use for the public network If not specified, use ms_type
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`ms_type`](../../../config/global/ms.md#SP_ms_type)
 
 **Example:**
 

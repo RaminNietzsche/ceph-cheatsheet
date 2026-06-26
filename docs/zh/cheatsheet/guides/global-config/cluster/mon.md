@@ -619,7 +619,7 @@ ceph mon stat
 | 类型 | Bool · default `False` · **Dev** |
 | 表格 | [mon.md#SP_mon_debug_block_osdmap_trim](../../../config/global/mon.md#SP_mon_debug_block_osdmap_trim) |
 
-**作用：** Block OSDMap trimming while the option is enabled.
+**作用：** Block OSDMap trimming while the option is enabled. Blocking OSDMap trimming may be quite helpful to easily reproduce states in which the monitor keeps (hundreds of) thousands of osdmaps.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -679,6 +679,10 @@ ceph config get mon mon_debug_deprecated_as_obsolete
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`mon_debug_dump_transactions`](../../../config/global/mon.md#SP_mon_debug_dump_transactions)
+
 **示例：**
 
 ```bash
@@ -706,6 +710,10 @@ ceph config get mon mon_debug_dump_json
 **作用：** File to which to dump Paxos transactions
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`mon_debug_dump_transactions`](../../../config/global/mon.md#SP_mon_debug_dump_transactions)
 
 **示例：**
 
@@ -735,6 +743,10 @@ ceph config get mon mon_debug_dump_location
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`mon_debug_dump_location`](../../../config/global/mon.md#SP_mon_debug_dump_location)
+
 **示例：**
 
 ```bash
@@ -759,7 +771,7 @@ ceph config get mon mon_debug_dump_transactions
 | 类型 | Bool · default `False` · **Dev** |
 | 表格 | [mon.md#SP_mon_debug_extra_checks](../../../config/global/mon.md#SP_mon_debug_extra_checks) |
 
-**作用：** Enable some additional monitor checks
+**作用：** Enable some additional monitor checks Enable some additional monitor checks that would be too expensive to run on production systems, or would only be relevant while testing or debugging.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -929,6 +941,10 @@ ceph config get mon mon_debug_unsafe_allow_tier_with_nonempty_snaps
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`mon_host`](../../../config/global/mon.md#SP_mon_host)
+
 **示例：**
 
 ```bash
@@ -1033,7 +1049,7 @@ ceph mon stat
 | 类型 | Uint · default `10000` · **Advanced** |
 | 表格 | [mon.md#SP_mon_globalid_prealloc](../../../config/global/mon.md#SP_mon_globalid_prealloc) |
 
-**作用：** number of globalid values to preallocate
+**作用：** number of globalid values to preallocate This setting caps how many new clients can authenticate with the cluster before the monitors have to perform a write to preallocate more. Large values burn through the 64-bit ID space more quickly.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -1069,7 +1085,7 @@ ceph mon stat
 | 类型 | Str · default `(empty)` · **Basic** · **STARTUP**（需重启） |
 | 表格 | [mon.md#SP_mon_host](../../../config/global/mon.md#SP_mon_host) |
 
-**作用：** List of hosts or addresses to search for a monitor
+**作用：** List of hosts or addresses to search for a monitor This is a list of IP addresses or hostnames that are separated by commas, whitespace, or semicolons. Hostnames are resolved via DNS. All A and AAAA records are included in the search list.
 
 **何时使用：** 核心 Global 行为 — 生产环境变更前请审阅。
 
@@ -1502,7 +1518,7 @@ ceph mon stat
 | 类型 | Uint · default `500` · **Advanced** |
 | 表格 | [mon.md#SP_mon_max_pg_per_osd](../../../config/global/mon.md#SP_mon_max_pg_per_osd) |
 
-**作用：** Max number of PGs per OSD the cluster will allow
+**作用：** Max number of PGs per OSD the cluster will allow If the number of PGs per OSD exceeds this, a health warning will be visible in `ceph status`. This is also used in automated PG management, as the threshold at which some pools' pg_num may be shrunk in order to enable increasing the pg_num of others.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -1748,6 +1764,10 @@ ceph mon stat
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`mon_osd_reporter_subtree_level`](../../../config/global/mon.md#SP_mon_osd_reporter_subtree_level)
+
 **示例：**
 
 ```bash
@@ -1888,7 +1908,7 @@ ceph mon stat
 | 类型 | Int · default `32768` · **Advanced** |
 | 表格 | [mon.md#SP_mon_osd_snap_trim_queue_warn_on](../../../config/global/mon.md#SP_mon_osd_snap_trim_queue_warn_on) |
 
-**作用：** Warn when snap trim queue reaches or exceeds this value
+**作用：** Warn when snap trim queue reaches or exceeds this value Warn when snap trim queue length for at least one PG crosses this value, as this is indicator of snap trimmer not keeping up, wasting disk space
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -2461,6 +2481,10 @@ ceph mon stat
 **作用：** Override mon_warn_on_slow_ping_ratio with specified threshold in milliseconds
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`mon_warn_on_slow_ping_ratio`](../../../config/global/mon.md#SP_mon_warn_on_slow_ping_ratio)
 
 **示例：**
 

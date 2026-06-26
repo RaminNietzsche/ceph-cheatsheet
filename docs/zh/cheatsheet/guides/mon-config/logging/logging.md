@@ -52,9 +52,13 @@ ceph -s
 | 类型 | Str · default `default=/var/log/ceph/$cluster.$channel.log cluster=/var/log/ceph/$cluster.log` · **Advanced** |
 | 表格 | [mon.md#SP_mon_cluster_log_file](../../../config/mon/mon.md#SP_mon_cluster_log_file) |
 
-**作用：** File(s) to write cluster log to
+**作用：** File(s) to write cluster log to This can either be a simple file name to receive all messages, or a list of key/value pairs where the key is the log channel and the value is the filename, which may include $cluster and $channel metavariables
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`mon_cluster_log_to_file`](../../../config/mon/mon.md#SP_mon_cluster_log_to_file)
 
 **示例：**
 
@@ -87,9 +91,13 @@ ceph mon stat
 | 类型 | Str · default `debug` · **Advanced** |
 | 表格 | [mon.md#SP_mon_cluster_log_level](../../../config/mon/mon.md#SP_mon_cluster_log_level) |
 
-**作用：** Lowest level to include in cluster log file and/or in external log server
+**作用：** Lowest level to include in cluster log file and/or in external log server Log level to control the cluster log message verbosity for the cluster log file as well as for all external entities.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`mon_cluster_log_file`](../../../config/mon/mon.md#SP_mon_cluster_log_file)
 
 **示例：**
 
@@ -126,6 +134,10 @@ ceph mon stat
 **作用：** Make monitor send cluster log messages to file
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
+
+**相关选项：**
+
+- [`mon_cluster_log_file`](../../../config/mon/mon.md#SP_mon_cluster_log_file)
 
 **示例：**
 
@@ -198,6 +210,10 @@ ceph mon stat
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`mon_cluster_log_to_graylog`](../../../config/mon/mon.md#SP_mon_cluster_log_to_graylog)
+
 **示例：**
 
 ```bash
@@ -233,6 +249,10 @@ ceph mon stat
 **作用：** Graylog port for cluster log messages
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`mon_cluster_log_to_graylog`](../../../config/mon/mon.md#SP_mon_cluster_log_to_graylog)
 
 **示例：**
 
@@ -378,6 +398,10 @@ ceph mon stat
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`mon_cluster_log_to_syslog`](../../../config/mon/mon.md#SP_mon_cluster_log_to_syslog)
+
 **示例：**
 
 ```bash
@@ -505,6 +529,10 @@ ceph mon stat
 **作用：** frequency to log monitor health to cluster log
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
+
+**相关选项：**
+
+- [`mon_health_to_clog`](../../../config/mon/mon.md#SP_mon_health_to_clog)
 
 **示例：**
 

@@ -33,7 +33,7 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [setgroup.md#SP_setgroup](../../../config/global/setgroup.md#SP_setgroup) |
 
-**作用：** GID or group name to switch to on startup
+**作用：** GID or group name to switch to on startup This is normally specified by the systemd unit file.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

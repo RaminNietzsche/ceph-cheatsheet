@@ -38,7 +38,7 @@ ceph pg stat
 | نوع | Int · default `1024` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_usage_log_flush_threshold](../../../config/rgw/rgw.md#SP_rgw_usage_log_flush_threshold) |
 
-**کارکرد:** Number of entries in usage log before flushing
+**کارکرد:** Number of entries in usage log before flushing This is the max number of entries that will be held in the usage log, before it will be flushed to the backend. Note that the usage log is periodically flushed, even if number of entries does not reach this threshold. A usage log entry corresponds to one or more operations on a single bucket.i
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -76,9 +76,13 @@ ceph -s  # cluster health, slow ops
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_usage_log_key_transition](../../../config/rgw/rgw.md#SP_rgw_usage_log_key_transition) |
 
-**کارکرد:** Handle the co-existence of both old and new name-by-user keys
+**کارکرد:** Handle the co-existence of both old and new name-by-user keys The new usage log keyed by owner/payer ID has the prefix of "~" for IDs starting with '0'. This prefix is absent from the old scheme. This option instructs RGW to handle the old keys if they still exist. It should be set false when the old keys no longer exist to avoid performance penalty.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_enable_usage_log`](../../../config/rgw/rgw.md#SP_rgw_enable_usage_log)
 
 **مثال:**
 
@@ -104,9 +108,13 @@ ceph config get client.rgw rgw_usage_log_key_transition
 | نوع | Int · default `32` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_usage_max_shards](../../../config/rgw/rgw.md#SP_rgw_usage_max_shards) |
 
-**کارکرد:** Number of shards for usage log.
+**کارکرد:** Number of shards for usage log. The number of RADOS objects that RGW will use in order to store the usage log data. All RGW daemons and radosgw-admin commands must use the same value for this option. If values differ, writes and reads/clears will target different objects, causing usage data to appear empty or not be cleared. Use ``ceph config set global rgw_usage_max_shards <N>`` to ensure consistency across the cluster. Alternatively, ``radosgw-admin`` supports the ``--rgw-usage-max-shards`` command-line parameter.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_enable_usage_log`](../../../config/rgw/rgw.md#SP_rgw_enable_usage_log)
 
 **مثال:**
 
@@ -132,9 +140,13 @@ ceph config get global rgw_usage_max_shards
 | نوع | Int · default `1` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_usage_max_user_shards](../../../config/rgw/rgw.md#SP_rgw_usage_max_user_shards) |
 
-**کارکرد:** Number of shards for single user in usage log
+**کارکرد:** Number of shards for single user in usage log The number of shards that a single user will span over in the usage log.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_enable_usage_log`](../../../config/rgw/rgw.md#SP_rgw_enable_usage_log)
 
 **مثال:**
 

@@ -6,7 +6,6 @@ from __future__ import annotations
 import re
 import sys
 from collections import defaultdict
-from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -20,7 +19,7 @@ from i18n import (  # noqa: E402
     t,
     write_localized,
 )
-from config_guide_lib import GUIDES_NAV_PREFIX  # noqa: E402
+from config_guide_lib import GUIDES_NAV_PREFIX, Option, parse_table, related_options  # noqa: E402
 from repo_paths import CONFIG, GUIDES  # noqa: E402
 
 CONFIG_RGW = CONFIG / "rgw"
@@ -527,71 +526,7 @@ ADMIN_API = {
     "rgw_admin_entry",
 }
 
-ROW_RE = re.compile(
-    r'^\| <span id="SP_([^"]+)">([^<]+)</span> \|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|'
-)
-SEE_ALSO_RE = re.compile(r"\[\[([^\]]+)\]\(#SP_([^)]+)\)\]")
 INDEX_LINK_RE = re.compile(r"^ - \[([^\]]+)\]\(([^)]+)\)")
-
-
-@dataclass
-class Option:
-    name: str
-    desc: str
-    level: str
-    typ: str
-    default: str
-    daemon_default: str
-    min_val: str
-    max_val: str
-    valid_values: str
-    flags: str
-    long_desc: str
-    see_also_raw: str
-    source_file: str
-
-    @property
-    def effective_default(self) -> str:
-        return self.daemon_default.strip() or self.default.strip() or "(empty)"
-
-    @property
-    def full_desc(self) -> str:
-        parts = [self.desc.strip(), self.long_desc.strip()]
-        return " ".join(p for p in parts if p)
-
-
-def strip_badge(cell: str) -> str:
-    m = re.search(r"badge-level-(\w+)", cell)
-    if m:
-        return m.group(1).capitalize()
-    return cell.strip()
-
-
-def parse_table(path: Path) -> list[Option]:
-    opts: list[Option] = []
-    for line in path.read_text(encoding="utf-8").splitlines():
-        m = ROW_RE.match(line)
-        if not m:
-            continue
-        name = m.group(2).strip()
-        opts.append(
-            Option(
-                name=name,
-                desc=m.group(3).strip(),
-                level=strip_badge(m.group(4)),
-                typ=m.group(5).strip(),
-                default=m.group(6).strip(),
-                daemon_default=m.group(7).strip(),
-                min_val=m.group(8).strip(),
-                max_val=m.group(9).strip(),
-                valid_values=m.group(10).strip(),
-                flags=m.group(13).strip(),
-                long_desc=m.group(15).strip(),
-                see_also_raw=m.group(11).strip(),
-                source_file=path.name,
-            )
-        )
-    return opts
 
 
 def parse_index_order() -> list[tuple[str, str]]:
@@ -786,13 +721,6 @@ def when_to_use(opt: Option) -> str:
     if level == "Basic":
         return t("when_use_rgw_basic")
     return t("when_use_advanced")
-
-
-def related_options(opt: Option) -> list[str]:
-    refs: list[str] = []
-    for m in SEE_ALSO_RE.finditer(opt.see_also_raw):
-        refs.append(m.group(2))
-    return refs
 
 
 def tuning_model(opt: Option) -> str:

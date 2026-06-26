@@ -64,6 +64,10 @@ ceph -s
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
+**相关选项：**
+
+- [`mon_osd_adjust_heartbeat_grace`](../../../config/mon/mon.md#SP_mon_osd_adjust_heartbeat_grace)
+
 **示例：**
 
 ```bash
@@ -96,7 +100,7 @@ ceph mon stat
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [mon.md#SP_mon_osd_adjust_heartbeat_grace](../../../config/mon/mon.md#SP_mon_osd_adjust_heartbeat_grace) |
 
-**作用：** increase OSD heartbeat grace if peers appear to be laggy
+**作用：** increase OSD heartbeat grace if peers appear to be laggy If an OSD is marked down but then marks itself back up, it implies it wasn't actually down but was unable to respond to heartbeats. If this option is true, we can use the laggy_probability and laggy_interval values calculated to model this situation to increase the heartbeat grace period for this OSD so that it isn't marked down again. laggy_probability is an estimated probability that the given OSD is down because it is laggy (not actually down), and laggy_interval is an estiate on how long it stays down when it is laggy.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -135,6 +139,10 @@ ceph mon stat
 **作用：** mark any OSD that comes up that was automatically marked 'out' back 'in'
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
+
+**相关选项：**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
 
 **示例：**
 
@@ -462,6 +470,10 @@ Common production range: 600–3600 s. Coordinate with `mon_osd_min_down_reporte
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
+
 **示例：**
 
 ```bash
@@ -566,7 +578,7 @@ ceph mon stat
 | 类型 | Float · default `0.3` · **Advanced** |
 | 表格 | [mon.md#SP_mon_osd_laggy_weight](../../../config/mon/mon.md#SP_mon_osd_laggy_weight) |
 
-**作用：** how heavily to weight OSD marking itself back up in overall laggy_probability
+**作用：** how heavily to weight OSD marking itself back up in overall laggy_probability 1.0 means that an OSD marking itself back up (because it was marked down but not actually dead) means a 100% laggy_probability; 0.0 effectively disables tracking of laggy_probability.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -632,7 +644,7 @@ ceph config get mon mon_osd_mapping_pgs_per_chunk
 | 类型 | Int · default `1024` · **Advanced** |
 | 表格 | [mon.md#SP_mon_osd_max_initial_pgs](../../../config/mon/mon.md#SP_mon_osd_max_initial_pgs) |
 
-**作用：** maximum number of PGs a pool will created with
+**作用：** maximum number of PGs a pool will created with If the user specifies more PGs than this, the cluster will subsequently split PGs after the pool is created in order to reach the target.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -672,6 +684,10 @@ ceph mon stat
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
+
 **示例：**
 
 ```bash
@@ -707,6 +723,10 @@ ceph mon stat
 **作用：** do not automatically mark OSDs 'out' if fewer than this many OSDs are 'up'
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
+
+**相关选项：**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
 
 **示例：**
 
@@ -983,9 +1003,13 @@ ceph config get mon mon_warn_on_filestore_osds
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [mon.md#SP_mon_warn_on_osd_down_out_interval_zero](../../../config/mon/mon.md#SP_mon_warn_on_osd_down_out_interval_zero) |
 
-**作用：** issue OSD_NO_DOWN_OUT_INTERVAL health warning if mon_osd_down_out_interval is zero
+**作用：** issue OSD_NO_DOWN_OUT_INTERVAL health warning if mon_osd_down_out_interval is zero Having mon_osd_down_out_interval set to 0 means that down OSDs are not marked out automatically and the cluster does not heal itself without administrator intervention.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
+
+**相关选项：**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
 
 **示例：**
 
@@ -1019,7 +1043,7 @@ ceph mon stat
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [osd.md#SP_osd_crush_update_weight_set](../../../config/mon/osd.md#SP_osd_crush_update_weight_set) |
 
-**作用：** update CRUSH weight-set weights when updating weights
+**作用：** update CRUSH weight-set weights when updating weights If this setting is true, we will update the weight-set weights when adjusting an item's weight, effectively making changes take effect immediately, and discarding any previous optimization in the weight-set value. Setting this value to false will leave it to the balancer to (slowly, presumably) adjust weights to approach the new target value.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 

@@ -1739,7 +1739,7 @@ ceph pg stat
 | Type | Bool · default `True` · **Advanced** |
 | Table | [osd.md#SP_osd_fast_shutdown](../../../config/global/osd.md#SP_osd_fast_shutdown) |
 
-**What it does:** Fast, immediate shutdown
+**What it does:** Fast, immediate shutdown Setting this to false makes the OSD do a slower teardown of all state when it receives a SIGINT or SIGTERM or when shutting down for any other reason. That slow shutdown is primarilyy useful for doing memory leak checking with valgrind.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -1776,7 +1776,7 @@ ceph pg stat
 | Type | Bool · default `True` · **Advanced** |
 | Table | [osd.md#SP_osd_fast_shutdown_notify_mon](../../../config/global/osd.md#SP_osd_fast_shutdown_notify_mon) |
 
-**What it does:** Tell the Monitors about OSD shutdown on immediate shutdown
+**What it does:** Tell the Monitors about OSD shutdown on immediate shutdown Tell the Monitors the OSD is shutting down on immediate shutdown. This helps with cluster log messages from other OSDs reporting it immediately failed.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -2085,7 +2085,7 @@ ceph pg stat
 | Type | Int · default `10_min` · **Advanced** |
 | Table | [osd.md#SP_osd_heartbeat_stale](../../../config/global/osd.md#SP_osd_heartbeat_stale) |
 
-**What it does:** Interval (in seconds) we mark an unresponsive heartbeat peer as stale.
+**What it does:** Interval (in seconds) we mark an unresponsive heartbeat peer as stale. Automatically mark unresponsive heartbeat sessions as stale and tear them down. The primary benefit is that OSD doesn't need to keep a flood of blocked heartbeat messages around in memory.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -2775,7 +2775,7 @@ ceph config get osd osd_max_pg_log_entries
 | Type | Float · default `3` · **Advanced** |
 | Table | [osd.md#SP_osd_max_pg_per_osd_hard_ratio](../../../config/global/osd.md#SP_osd_max_pg_per_osd_hard_ratio) |
 
-**What it does:** Maximum multiple of mon_max_pg_per_osd PGs an OSD will allow
+**What it does:** Maximum multiple of mon_max_pg_per_osd PGs an OSD will allow An OSD will refuse to instantiate a PG if the number of PGs it serves exceeds this number.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -2877,7 +2877,7 @@ ceph pg stat
 | Type | Size · default `64` · **Advanced** |
 | Table | [osd.md#SP_osd_max_write_op_reply_len](../../../config/global/osd.md#SP_osd_max_write_op_reply_len) |
 
-**What it does:** Max size of the per-op payload for requests with the RETURNVEC flag set
+**What it does:** Max size of the per-op payload for requests with the RETURNVEC flag set This value caps the amount of data (per op; a request may have many ops) that will be sent back to the client and recorded in the PG log.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -3026,7 +3026,7 @@ ceph config get osd osd_memory_expected_fragmentation
 | Type | Size · default `4_G` · **Basic** |
 | Table | [osd.md#SP_osd_memory_target](../../../config/global/osd.md#SP_osd_memory_target) |
 
-**What it does:** When TCMalloc and cache autotuning are enabled, try to keep this many bytes mapped in memory.
+**What it does:** When TCMalloc and cache autotuning are enabled, try to keep this many bytes mapped in memory. The minimum value must be at least equal to osd_memory_base + osd_memory_cache_min.
 
 **When to use:** Core Global behavior — review before changing in production.
 
@@ -3066,6 +3066,10 @@ ceph pg stat
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
+**Related options:**
+
+- [`osd_memory_target`](../../../config/global/osd.md#SP_osd_memory_target)
+
 **Example:**
 
 ```bash
@@ -3099,9 +3103,13 @@ ceph pg stat
 | Type | Float · default `0.8` · **Advanced** |
 | Table | [osd.md#SP_osd_memory_target_cgroup_limit_ratio](../../../config/global/osd.md#SP_osd_memory_target_cgroup_limit_ratio) |
 
-**What it does:** Set the default value for osd_memory_target to the cgroup memory limit (if set) times this value
+**What it does:** Set the default value for osd_memory_target to the cgroup memory limit (if set) times this value A value of 0 disables this feature.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+
+**Related options:**
+
+- [`osd_memory_target`](../../../config/global/osd.md#SP_osd_memory_target)
 
 **Example:**
 
@@ -3236,7 +3244,7 @@ ceph pg stat
 | Type | Int · default `1_hr` · **Advanced** |
 | Table | [osd.md#SP_osd_mon_heartbeat_stat_stale](../../../config/global/osd.md#SP_osd_mon_heartbeat_stat_stale) |
 
-**What it does:** Stop reporting on heartbeat ping times not updated for this many seconds.
+**What it does:** Stop reporting on heartbeat ping times not updated for this many seconds. Stop reporting on old heartbeat information unless this is set to zero
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -3415,7 +3423,7 @@ ceph pg stat
 | Type | Int · default `10` · **Dev** |
 | Table | [osd.md#SP_osd_object_clean_region_max_num_intervals](../../../config/global/osd.md#SP_osd_object_clean_region_max_num_intervals) |
 
-**What it does:** Number of intervals in clean_offsets
+**What it does:** Number of intervals in clean_offsets Partial recovery uses multiple intervals to record the clean part of the objectwhen the number of intervals is greater than osd_object_clean_region_max_num_intervals, minimum interval will be trimmed(0 will recovery the entire object data interval)
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -3550,9 +3558,13 @@ ceph pg stat
 | Type | Uint · default `64` · **Advanced** |
 | Table | [osd.md#SP_osd_objectstore_ideal_list_max](../../../config/global/osd.md#SP_osd_objectstore_ideal_list_max) |
 
-**What it does:** The max number of results of ObjectStore::collection_list()
+**What it does:** The max number of results of ObjectStore::collection_list() This value caps the maximal number of entries a single call to collection_list() can return. The configurable controls this aspect of PG deletion and OSD::clear_temp_objects(). Increasing it trade-offs less agressive chunking (and thus less CPU consumption overall) for higher memory pressure. Please note that in the case of PG deletion the chunking is steered by std::min of the this value and the value of osd_target_transaction_size.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_memory_target`](../../../config/global/osd.md#SP_osd_memory_target)
 
 **Example:**
 
@@ -4775,6 +4787,10 @@ ceph config get osd osd_pool_default_flags
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`osd_tier_default_cache_hit_set_type`](../../../config/global/osd.md#SP_osd_tier_default_cache_hit_set_type)
+
 **Example:**
 
 ```bash
@@ -4808,9 +4824,13 @@ ceph pg stat
 | Type | Uint · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_pool_default_min_size](../../../config/global/osd.md#SP_osd_pool_default_min_size) |
 
-**What it does:** The minimal number of copies allowed to write to a degraded pool for new replicated pools
+**What it does:** The minimal number of copies allowed to write to a degraded pool for new replicated pools 0 means no specific default; ceph will use size-size/2
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+
+**Related options:**
+
+- [`osd_pool_default_size`](../../../config/global/osd.md#SP_osd_pool_default_size)
 
 **Example:**
 
@@ -4847,7 +4867,7 @@ ceph pg stat
 | Type | Str · enum: ["off", "warn", "on"] · default `on` · **Advanced** |
 | Table | [osd.md#SP_osd_pool_default_pg_autoscale_mode](../../../config/global/osd.md#SP_osd_pool_default_pg_autoscale_mode) |
 
-**What it does:** Default PG autoscaling behavior for new pools
+**What it does:** Default PG autoscaling behavior for new pools When 'on', the autoscaler assigns 1 pg to new pools unless the user specifies a value.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -4884,9 +4904,13 @@ ceph pg stat
 | Type | Uint · default `32` · **Advanced** |
 | Table | [osd.md#SP_osd_pool_default_pg_num](../../../config/global/osd.md#SP_osd_pool_default_pg_num) |
 
-**What it does:** number of PGs for new pools
+**What it does:** number of PGs for new pools With default value of `osd_pool_default_pg_autoscale_mode` being `on` the number of PGs for new pools will start out with 1 pg, unless the user specifies the pg_num.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_pool_default_pg_autoscale_mode`](../../../config/global/osd.md#SP_osd_pool_default_pg_autoscale_mode)
 
 **Example:**
 
@@ -4958,9 +4982,13 @@ ceph pg stat
 | Type | Float · default `0.8` · **Dev** |
 | Table | [osd.md#SP_osd_pool_default_read_lease_ratio](../../../config/global/osd.md#SP_osd_pool_default_read_lease_ratio) |
 
-**What it does:** Default read_lease_ratio for a pool, as a multiple of osd_heartbeat_grace
+**What it does:** Default read_lease_ratio for a pool, as a multiple of osd_heartbeat_grace This should be <= 1.0 so that the read lease will have expired by the time we decide to mark a peer OSD down.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`osd_heartbeat_grace`](../../../config/global/osd.md#SP_osd_heartbeat_grace)
 
 **Example:**
 
@@ -4986,7 +5014,7 @@ ceph config get osd osd_pool_default_read_lease_ratio
 | Type | Uint · default `70` · **Advanced** |
 | Table | [osd.md#SP_osd_pool_default_read_ratio](../../../config/global/osd.md#SP_osd_pool_default_read_ratio) |
 
-**What it does:** Default read ratio (the percent of read IOs out of all IOs) for a pool.
+**What it does:** Default read ratio (the percent of read IOs out of all IOs) for a pool. Default read ratio (the percent of read IOs out of all IOs) for a pool. applicable to replicated pools only. This value is used to improve read balancing when OSDs have different weights.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -5099,7 +5127,7 @@ ceph pg stat
 | Type | Bool · default `True` · **Dev** |
 | Table | [osd.md#SP_osd_pool_use_gmt_hitset](../../../config/global/osd.md#SP_osd_pool_use_gmt_hitset) |
 
-**What it does:** use UTC for hitset timestamps
+**What it does:** use UTC for hitset timestamps This setting only exists for compatibility with hammer (and older) clusters.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -5234,7 +5262,7 @@ ceph pg stat
 | Type | Uint · default `5` · **Advanced** |
 | Table | [osd.md#SP_osd_recovery_priority](../../../config/global/osd.md#SP_osd_recovery_priority) |
 
-**What it does:** Priority of recovery in the work queue
+**What it does:** Priority of recovery in the work queue Not related to a pool's recovery_priority
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

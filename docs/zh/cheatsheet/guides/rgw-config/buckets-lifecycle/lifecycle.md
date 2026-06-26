@@ -51,9 +51,13 @@ ceph pg stat
 | 类型 | Uint · default `5000` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_lc_counters_batch_size](../../../config/rgw/rgw.md#SP_rgw_lc_counters_batch_size) |
 
-**作用：** Batch size for flushing LC per-bucket counters
+**作用：** Batch size for flushing LC per-bucket counters LC per-bucket counters are flushed to cache every N objects processed. Lower values provide more frequent updates, higher values reduce overhead.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_lc_counters_cache`](../../../config/rgw/rgw.md#SP_rgw_lc_counters_cache)
 
 **示例：**
 
@@ -91,7 +95,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_lc_counters_cache](../../../config/rgw/rgw.md#SP_rgw_lc_counters_cache) |
 
-**作用：** Enable per-bucket lifecycle performance counters cache
+**作用：** Enable per-bucket lifecycle performance counters cache When enabled, RGW will create and update per-bucket lifecycle performance counters and expose them via admin socket perf dump.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -120,7 +124,7 @@ ceph config set client.rgw rgw_lc_counters_cache_size 20000
 | 类型 | Uint · default `10000` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_lc_counters_cache_size](../../../config/rgw/rgw.md#SP_rgw_lc_counters_cache_size) |
 
-**作用：** Target size for lifecycle counters cache
+**作用：** Target size for lifecycle counters cache Maximum number of per-bucket LC counter entries to maintain in cache
 
 **何时使用：**
 
@@ -160,7 +164,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `-1` · **Dev** |
 | 表格 | [rgw.md#SP_rgw_lc_debug_interval](../../../config/rgw/rgw.md#SP_rgw_lc_debug_interval) |
 
-**作用：** The number of seconds that simulate one "day" in order to debug RGW LifeCycle. Do *not* modify for a production cluster.
+**作用：** The number of seconds that simulate one "day" in order to debug RGW LifeCycle. Do *not* modify for a production cluster. For debugging RGW LifeCycle, the number of seconds that are equivalent to one simulated "day". Values less than 1 are ignored and do not change LifeCycle behavior. For example, during debugging if one wanted every 10 minutes to be equivalent to one day, then this would be set to 600, the number of seconds in 10 minutes.
 
 **何时使用：**
 
@@ -193,7 +197,7 @@ ceph config get client.rgw rgw_lc_debug_interval
 | 类型 | Uint · default `1000` · **Dev** |
 | 表格 | [rgw.md#SP_rgw_lc_list_cnt](../../../config/rgw/rgw.md#SP_rgw_lc_list_cnt) |
 
-**作用：** The count of number of objects in per listing of lc processing from each bucket.
+**作用：** The count of number of objects in per listing of lc processing from each bucket. Number of objects that will be requested when performing a listing request of a bucket for lifecycle processing.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -259,7 +263,7 @@ ceph config get client.rgw rgw_lc_lock_max_time
 | 类型 | Int · default `32` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_lc_max_objs](../../../config/rgw/rgw.md#SP_rgw_lc_max_objs) |
 
-**作用：** Number of lifecycle data shards
+**作用：** Number of lifecycle data shards Number of RADOS objects to use for storing lifecycle index. This affects concurrency of lifecycle maintenance, as shards can be processed in parallel.
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 
@@ -287,7 +291,7 @@ ceph config get client.rgw rgw_lc_max_objs
 | 类型 | Uint · default `1000` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_lc_max_rules](../../../config/rgw/rgw.md#SP_rgw_lc_max_rules) |
 
-**作用：** Max number of lifecycle rules set on one bucket
+**作用：** Max number of lifecycle rules set on one bucket Number of lifecycle rules set on one bucket should be limited.
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 
@@ -315,7 +319,7 @@ ceph config get client.rgw rgw_lc_max_rules
 | 类型 | Int · default `3` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_lc_max_worker](../../../config/rgw/rgw.md#SP_rgw_lc_max_worker) |
 
-**作用：** Number of LCWorker tasks that will be run in parallel
+**作用：** Number of LCWorker tasks that will be run in parallel Number of LCWorker tasks that will run in parallel--used to permit >1 bucket/index shards to be processed simultaneously
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 
@@ -353,7 +357,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `128` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_lc_max_wp_worker](../../../config/rgw/rgw.md#SP_rgw_lc_max_wp_worker) |
 
-**作用：** Number of workpool coroutines per LCWorker
+**作用：** Number of workpool coroutines per LCWorker Number of coroutines in per-LCWorker workpools--used to accelerate per-bucket processing
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 
@@ -381,7 +385,7 @@ ceph config get client.rgw rgw_lc_max_wp_worker
 | 类型 | Uint · default `500` · **Dev** |
 | 表格 | [rgw.md#SP_rgw_lc_ordered_list_threshold](../../../config/rgw/rgw.md#SP_rgw_lc_ordered_list_threshold) |
 
-**作用：** Threshold for enabling ordered listing in lifecycle processing.
+**作用：** Threshold for enabling ordered listing in lifecycle processing. When bucket shard count is below this threshold, lifecycle processing will use ordered listing for better performance. Above this threshold, unordered listing is used to avoid excessive OSD requests. A value of 0 disables ordered listing entirely.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -459,7 +463,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `00:00-06:00` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_lifecycle_work_time](../../../config/rgw/rgw.md#SP_rgw_lifecycle_work_time) |
 
-**作用：** Lifecycle allowed work time
+**作用：** Lifecycle allowed work time Local time window in which the lifecycle maintenance thread can work. It expects 24-hour time notation. For example, "00:00-23:59" means starting at midnight lifecycle is allowed to run for the whole day (24 hours). When lifecycle completes, it waits for the next maintenance window. In this example, if it completes at 01:00, it will resume processing 23 hours later at the following midnight.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -497,7 +501,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `10_min` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_mp_lock_max_time](../../../config/rgw/rgw.md#SP_rgw_mp_lock_max_time) |
 
-**作用：** Multipart upload max completion time
+**作用：** Multipart upload max completion time Time length to allow completion of a multipart upload operation. This is done to prevent concurrent completions on the same object with the same upload id.
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 

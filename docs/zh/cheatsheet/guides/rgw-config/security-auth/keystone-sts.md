@@ -581,6 +581,10 @@ ceph -s  # cluster health, slow ops
 - **Increase** when monitoring many active buckets/users and cache misses are visible.
 - **Decrease** when RGW memory is constrained.
 
+**相关选项：**
+
+- [`rgw_keystone_service_token_enabled`](../../../config/rgw/rgw.md#SP_rgw_keystone_service_token_enabled)
+
 **示例：**
 
 ```bash
@@ -614,7 +618,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · enum: ["false", "true", "swift", "s3", "both", "0", "1", "none"] · default `false` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_keystone_implicit_tenants](../../../config/rgw/rgw.md#SP_rgw_keystone_implicit_tenants) |
 
-**作用：** RGW Keystone implicit tenants creation
+**作用：** RGW Keystone implicit tenants creation Implicitly create new users in their own tenant with the same name when authenticating via Keystone. Can be limited to S3 or SWIFT only.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -642,7 +646,7 @@ ceph config get client.rgw rgw_keystone_implicit_tenants
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_keystone_scope_enabled](../../../config/rgw/rgw.md#SP_rgw_keystone_scope_enabled) |
 
-**作用：** Enable logging of Keystone scope information in ops log
+**作用：** Enable logging of Keystone scope information in ops log When enabled, operations authenticated via Keystone will include scope information (project, domain, roles) in the ops log. This is disabled by default as it adds additional data to each log entry and most deployments do not require this level of Keystone audit detail. User identity logging is controlled separately by rgw_keystone_scope_include_user for privacy considerations. Requires rgw_enable_ops_log to be enabled.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -698,7 +702,7 @@ ceph config get client.rgw rgw_keystone_scope_include_roles
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_keystone_scope_include_user](../../../config/rgw/rgw.md#SP_rgw_keystone_scope_include_user) |
 
-**作用：** Include human-readable identity names in Keystone scope logs
+**作用：** Include human-readable identity names in Keystone scope logs When false (default), only opaque IDs are logged for all identity fields (project_id, domain_id, user_id, app_cred_id), which is GDPR-compliant and privacy-friendly. When true, human-readable names (project_name, domain names, user_name, app_cred_name) are included. Opaque IDs are always logged regardless of this setting, allowing operators to correlate with Keystone without exposing names in logs.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -729,6 +733,10 @@ ceph config get client.rgw rgw_keystone_scope_include_user
 **作用：** Only users with one of these roles will be valid for service users.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_keystone_service_token_enabled`](../../../config/rgw/rgw.md#SP_rgw_keystone_service_token_enabled)
 
 **示例：**
 
@@ -782,7 +790,7 @@ ceph config get client.rgw rgw_keystone_service_token_enabled
 | 类型 | Int · default `10000` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_keystone_token_cache_size](../../../config/rgw/rgw.md#SP_rgw_keystone_token_cache_size) |
 
-**作用：** Keystone token cache size
+**作用：** Keystone token cache size Max number of Keystone tokens that will be cached. Token that is not cached requires RGW to access the Keystone server when authenticating.
 
 **何时使用：**
 
@@ -822,7 +830,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `300` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_keystone_token_cache_ttl](../../../config/rgw/rgw.md#SP_rgw_keystone_token_cache_ttl) |
 
-**作用：** Keystone token secret key cache TTL
+**作用：** Keystone token secret key cache TTL The TTL for secret keys that are loaded from Keystone and stored in the cache system.
 
 **何时使用：**
 
@@ -928,7 +936,7 @@ ceph config get client.rgw rgw_keystone_verify_ssl
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sts_client_id](../../../config/rgw/rgw.md#SP_rgw_sts_client_id) |
 
-**作用：** Client Id
+**作用：** Client Id Client Id needed for introspecting a Web Token.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -956,7 +964,7 @@ ceph config get client.rgw rgw_sts_client_id
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sts_client_secret](../../../config/rgw/rgw.md#SP_rgw_sts_client_secret) |
 
-**作用：** Client Secret
+**作用：** Client Secret Client Secret needed for introspecting a Web Token.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -984,7 +992,7 @@ ceph config get client.rgw rgw_sts_client_secret
 | 类型 | Str · default `sts` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sts_entry](../../../config/rgw/rgw.md#SP_rgw_sts_entry) |
 
-**作用：** STS URL prefix
+**作用：** STS URL prefix URL path prefix for internal STS requests.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -1012,9 +1020,9 @@ ceph config get client.rgw rgw_sts_entry
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sts_key](../../../config/rgw/rgw.md#SP_rgw_sts_key) |
 
-**作用：** STS Key
+**作用：** STS Key Key used for encrypting/ decrypting role session tokens. This key must consist of 16 hexadecimal characters, which can be generated by the command 'openssl rand -hex 16'. All radosgw instances in a zone should use the same key. In multisite configurations, all zones in a realm should use the same key.
 
-**何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+**何时使用：** 多站点复制与同步调优 — 延迟或同步负载异常时调整。
 
 **示例：**
 
@@ -1050,9 +1058,13 @@ ceph -s  # cluster health, slow ops
 | 类型 | Uint · default `43200` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sts_max_session_duration](../../../config/rgw/rgw.md#SP_rgw_sts_max_session_duration) |
 
-**作用：** Session token max duration
+**作用：** Session token max duration This option can be used to configure the upper limit of the durationSeconds of temporary credentials returned by 'GetSessionToken'.
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
+
+**相关选项：**
+
+- [`rgw_sts_min_session_duration`](../../../config/rgw/rgw.md#SP_rgw_sts_min_session_duration)
 
 **示例：**
 
@@ -1078,9 +1090,13 @@ ceph config get client.rgw rgw_sts_max_session_duration
 | 类型 | Uint · default `900` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sts_min_session_duration](../../../config/rgw/rgw.md#SP_rgw_sts_min_session_duration) |
 
-**作用：** Minimum allowed duration of a session
+**作用：** Minimum allowed duration of a session This option can be used to configure the lower limit of durationSeconds of temporary credentials returned by 'AssumeRole*' calls.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_sts_max_session_duration`](../../../config/rgw/rgw.md#SP_rgw_sts_max_session_duration)
 
 **示例：**
 
@@ -1116,7 +1132,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_sts_token_introspection_url](../../../config/rgw/rgw.md#SP_rgw_sts_token_introspection_url) |
 
-**作用：** STS Web Token introspection URL
+**作用：** STS Web Token introspection URL URL for introspecting an STS Web Token.
 
 **何时使用：** 与外部服务集成时设置；未使用该功能时留空。
 

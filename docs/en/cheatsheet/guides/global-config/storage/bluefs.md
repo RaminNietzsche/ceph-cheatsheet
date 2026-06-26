@@ -117,7 +117,7 @@ ceph config get global bluefs_allocator
 | Type | Bool · default `True` · **Advanced** |
 | Table | [bluefs.md#SP_bluefs_buffered_io](../../../config/global/bluefs.md#SP_bluefs_buffered_io) |
 
-**What it does:** Enabled buffered IO for BlueFS reads.
+**What it does:** Enabled buffered IO for BlueFS reads. When this option is enabled, BlueFS will in some cases perform buffered reads. This allows the kernel page cache to act as a secondary cache for things like RocksDB block reads. For example, if the RocksDB block cache isn't large enough to hold all blocks during omap iteration, it may be possible to read them from page cache instead of from the device. This can dramatically improve performance when the osd_memory_target is too small to hold all entries in block cache but it does come with downsides. It has been reported to occasionally cause excessive kernel swapping (and associated stalls) under certain workloads. Currently the best and most consistent performing combination appears to be enabling bluefs_buffered_io and disabling system level swap. It is possible that this recommendation may change in the future however.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -152,7 +152,7 @@ ceph -s
 | Type | Bool · default `False` · **Dev** |
 | Table | [bluefs.md#SP_bluefs_check_for_zeros](../../../config/global/bluefs.md#SP_bluefs_check_for_zeros) |
 
-**What it does:** Check data read for suspicious pages
+**What it does:** Check data read for suspicious pages Looks into data read to check if there is a 4K block entirely filled with zeros. If this happens, we re-read data. If there is difference, we print error to log.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -180,9 +180,13 @@ ceph config get global bluefs_check_for_zeros
 | Type | Bool · default `False` · **Dev** · **STARTUP** (restart required) |
 | Table | [bluefs.md#SP_bluefs_check_volume_selector_often](../../../config/global/bluefs.md#SP_bluefs_check_volume_selector_often) |
 
-**What it does:** Periodically check validity of volume selector
+**What it does:** Periodically check validity of volume selector Periodically checks if current volume selector does not diverge from the valid state. Reference is constructed from bluefs inode table. Asserts on inconsistency. This is debug feature.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`bluefs_check_volume_selector_on_mount`](../../../config/global/bluefs.md#SP_bluefs_check_volume_selector_on_mount)
 
 **Example:**
 
@@ -208,7 +212,7 @@ ceph config get global bluefs_check_volume_selector_often
 | Type | Bool · default `False` · **Dev** |
 | Table | [bluefs.md#SP_bluefs_check_volume_selector_on_mount](../../../config/global/bluefs.md#SP_bluefs_check_volume_selector_on_mount) |
 
-**What it does:** Check validity of volume selector on mount/umount
+**What it does:** Check validity of volume selector on mount/umount Checks if volume selector did not diverge from the state it should be in. Reference is constructed from bluefs inode table. Asserts on inconsistency.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -269,7 +273,7 @@ ceph -s
 | Type | Bool · default `False` · **Dev** |
 | Table | [bluefs.md#SP_bluefs_debug_force_slow](../../../config/global/bluefs.md#SP_bluefs_debug_force_slow) |
 
-**What it does:** For testing. Force BlueFS to allocate files on slow device.
+**What it does:** For testing. Force BlueFS to allocate files on slow device. When enabled, the RocksDBBlueFSVolumeSelector will ignore normal placement policy and redirect allocations to slow device.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -297,7 +301,7 @@ ceph config get global bluefs_debug_force_slow
 | Type | Float · default `600` · **Advanced** |
 | Table | [bluefs.md#SP_bluefs_failed_shared_alloc_cooldown](../../../config/global/bluefs.md#SP_bluefs_failed_shared_alloc_cooldown) |
 
-**What it does:** duration(in seconds) untill the next attempt to use 'bluefs_shared_alloc_size' after facing ENOSPC failure.
+**What it does:** duration(in seconds) untill the next attempt to use 'bluefs_shared_alloc_size' after facing ENOSPC failure. Cooldown period(in seconds) when BlueFS uses shared/slow device allocation size instead of "bluefs_shared_alloc_size' one after facing recoverable (via fallback to smaller chunk size) ENOSPC failure. Intended primarily to avoid repetitive unsuccessful allocations which might be expensive.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -565,7 +569,7 @@ ceph -s
 | Type | Bool · default `False` · **Dev** |
 | Table | [bluefs.md#SP_bluefs_replay_recovery](../../../config/global/bluefs.md#SP_bluefs_replay_recovery) |
 
-**What it does:** Attempt to read bluefs log so large that it became unreadable.
+**What it does:** Attempt to read bluefs log so large that it became unreadable. If BlueFS log grows to extreme sizes (200GB+) it is likely that it becames unreadable. This options enables heuristics that scans devices for missing data. DO NOT ENABLE BY DEFAULT
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -660,7 +664,7 @@ ceph -s
 | Type | Bool · default `False` · **Advanced** |
 | Table | [bluefs.md#SP_bluefs_spillover_cleaner](../../../config/global/bluefs.md#SP_bluefs_spillover_cleaner) |
 
-**What it does:** Enable Background BlueFS Spillover cleaner thread
+**What it does:** Enable Background BlueFS Spillover cleaner thread Enables a background cleaner thread in BlueFS that periodically scans files that spilled over to the slow device and attempts to migrate them back to the BlueFS DB device
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -695,7 +699,7 @@ ceph -s
 | Type | Float · default `0.1` · **Advanced** |
 | Table | [bluefs.md#SP_bluefs_spillover_cleaner_work_ratio](../../../config/global/bluefs.md#SP_bluefs_spillover_cleaner_work_ratio) |
 
-**What it does:** Fraction of time the BlueFS spillover cleaner spends performing work.
+**What it does:** Fraction of time the BlueFS spillover cleaner spends performing work. Controls the rate of spillover migration work. After each migration step, the cleaner targets to sleep proportionally to the time spent doing work This reduces interference with foreground IO. For example, if a migration step took 10 ms and the ratio is 0.1, the cleaner sleeps for ~90 ms before the next step. This results in approximately 10% work time and 90% sleep time.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -730,9 +734,13 @@ ceph -s
 | Type | Uint · default `1200` · **Advanced** |
 | Table | [bluefs.md#SP_bluefs_spillover_idle_time](../../../config/global/bluefs.md#SP_bluefs_spillover_idle_time) |
 
-**What it does:** Idle time in seconds before the BlueFS spillover cleaner wakes up for the next scan cycle.
+**What it does:** Idle time in seconds before the BlueFS spillover cleaner wakes up for the next scan cycle. When no spillover files remain to migrate, the cleaner enters an idle sleep state for this duration. Once the idle period expires, it wakes up, scans for spillover files, and resumes migration if needed.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`bluefs_spillover_cleaner`](../../../config/global/bluefs.md#SP_bluefs_spillover_cleaner)
 
 **Example:**
 
@@ -798,7 +806,7 @@ ceph -s
 | Type | Bool · default `True` · **Advanced** |
 | Table | [bluefs.md#SP_bluefs_wal_envelope_mode](../../../config/global/bluefs.md#SP_bluefs_wal_envelope_mode) |
 
-**What it does:** Enables a faster backend in BlueFS for WAL writes.
+**What it does:** Enables a faster backend in BlueFS for WAL writes. In envelope mode BlueFS files do not need to update metadata. When applied to RocksDB WAL files, it reduces by ~50% the amount of fdatasync syscalls. Downgrading from an envelope mode to legacy mode requires `ceph-bluestore-tool --command downgrade-wal-to-v1`.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 

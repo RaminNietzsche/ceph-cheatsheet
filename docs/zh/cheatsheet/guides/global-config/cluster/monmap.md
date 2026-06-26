@@ -33,7 +33,7 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [monmap.md#SP_monmap](../../../config/global/monmap.md#SP_monmap) |
 
-**作用：** path to MonMap file
+**作用：** path to MonMap file This option is normally used during mkfs, but can also be used to identify which monitors to connect to.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

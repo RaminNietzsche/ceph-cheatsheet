@@ -293,7 +293,7 @@ ceph -s
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [client.md#SP_client_collect_and_send_global_metrics](../../../config/mds-client/client.md#SP_client_collect_and_send_global_metrics) |
 
-**作用：** to enable and force collecting and sending the global metrics to MDS
+**作用：** to enable and force collecting and sending the global metrics to MDS To be careful for this, when connecting to some old ceph clusters it may crash the MDS daemons while upgrading.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -433,7 +433,7 @@ ceph config get client client_debug_inject_tick_delay
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [client.md#SP_client_die_on_failed_dentry_invalidate](../../../config/mds-client/client.md#SP_client_die_on_failed_dentry_invalidate) |
 
-**作用：** kill the client when no dentry invalidation options are available
+**作用：** kill the client when no dentry invalidation options are available The CephFS client requires a mechanism to invalidate dentries in the caller (e.g. the kernel for ceph-fuse) when capabilities must be recalled. If the client cannot do this then the MDS cache cannot shrink which can cause the MDS to fail.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -495,7 +495,7 @@ ceph config get client client_die_on_failed_remount
 | 类型 | Bool · default `True` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [client.md#SP_client_dirsize_rbytes](../../../config/mds-client/client.md#SP_client_dirsize_rbytes) |
 
-**作用：** set the directory size as the number of file bytes recursively used
+**作用：** set the directory size as the number of file bytes recursively used This option enables a CephFS feature that stores the recursive directory size (the bytes used by files in the directory and its descendents) in the st_size field of the stat structure. May confuse programs such as ``rsync``.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -531,7 +531,7 @@ ceph -s
 | 类型 | Uint · default `16` · **Advanced** |
 | 表格 | [client.md#SP_client_file_blockdiff_max_concurrent_object_scans](../../../config/mds-client/client.md#SP_client_file_blockdiff_max_concurrent_object_scans) |
 
-**作用：** maximum number of concurrent object scans
+**作用：** maximum number of concurrent object scans Maximum number of concurrent listsnaps operations sent to RADOS.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -603,7 +603,7 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [client.md#SP_client_fs](../../../config/mds-client/client.md#SP_client_fs) |
 
-**作用：** CephFS file system name to mount
+**作用：** CephFS file system name to mount Use this with ceph-fuse, or with any process that uses libcephfs. Programs using libcephfs may also pass the filesystem name into mount(), which will override this setting. If no filesystem name is given in mount() or this setting, the default filesystem will be mounted (usually the first created).
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -639,7 +639,7 @@ ceph -s
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [client.md#SP_client_fscrypt_as](../../../config/mds-client/client.md#SP_client_fscrypt_as) |
 
-**作用：** Enable fscrypt access semantics
+**作用：** Enable fscrypt access semantics Enable fscrypt access semantics for locked/unlocked states.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -675,7 +675,7 @@ ceph -s
 | 类型 | Bool · default `False` · **Dev** |
 | 表格 | [client.md#SP_client_fscrypt_dummy_encryption](../../../config/mds-client/client.md#SP_client_fscrypt_dummy_encryption) |
 
-**作用：** Enable fscrypt dummy encryption
+**作用：** Enable fscrypt dummy encryption Enable fscrypt dummy encryption
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -755,7 +755,7 @@ ceph config get client client_inject_release_failure
 | 类型 | Secs · default `0` · **Dev** |
 | 表格 | [client.md#SP_client_inject_write_delay_secs](../../../config/mds-client/client.md#SP_client_inject_write_delay_secs) |
 
-**作用：** induce delay in write operation for testing
+**作用：** induce delay in write operation for testing Inject a delay in write operation after grabbing required cap references (Fb caps in this case). This config is disabled by default (value of 0) and is to be used for the purpose of validating a race case bug with concurrent fsync.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -1329,7 +1329,7 @@ ceph -s
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [client.md#SP_client_quota](../../../config/mds-client/client.md#SP_client_quota) |
 
-**作用：** Enable quota enforcement
+**作用：** Enable quota enforcement Enable quota_bytes and quota_files enforcement for the client.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -1545,7 +1545,7 @@ ceph -s
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [client.md#SP_client_respect_subvolume_snapshot_visibility](../../../config/mds-client/client.md#SP_client_respect_subvolume_snapshot_visibility) |
 
-**作用：** Respect subvolume snapshot visibility
+**作用：** Respect subvolume snapshot visibility Option to decide whether to respect the is_snapdir_visible flag set in each subvolume's snaprealm
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -1581,7 +1581,7 @@ ceph -s
 | 类型 | Secs · default `30` · **Advanced** |
 | 表格 | [client.md#SP_client_shutdown_timeout](../../../config/mds-client/client.md#SP_client_shutdown_timeout) |
 
-**作用：** timeout for shutting down CephFS
+**作用：** timeout for shutting down CephFS Timeout for shutting down CephFS via unmount or shutdown.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 

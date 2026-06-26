@@ -38,7 +38,7 @@ ceph pg stat
 | Type | Int · default `1024` · **Advanced** |
 | Table | [rgw.md#SP_rgw_usage_log_flush_threshold](../../../config/rgw/rgw.md#SP_rgw_usage_log_flush_threshold) |
 
-**What it does:** Number of entries in usage log before flushing
+**What it does:** Number of entries in usage log before flushing This is the max number of entries that will be held in the usage log, before it will be flushed to the backend. Note that the usage log is periodically flushed, even if number of entries does not reach this threshold. A usage log entry corresponds to one or more operations on a single bucket.i
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -76,9 +76,13 @@ ceph -s  # cluster health, slow ops
 | Type | Bool · default `True` · **Advanced** |
 | Table | [rgw.md#SP_rgw_usage_log_key_transition](../../../config/rgw/rgw.md#SP_rgw_usage_log_key_transition) |
 
-**What it does:** Handle the co-existence of both old and new name-by-user keys
+**What it does:** Handle the co-existence of both old and new name-by-user keys The new usage log keyed by owner/payer ID has the prefix of "~" for IDs starting with '0'. This prefix is absent from the old scheme. This option instructs RGW to handle the old keys if they still exist. It should be set false when the old keys no longer exist to avoid performance penalty.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Related options:**
+
+- [`rgw_enable_usage_log`](../../../config/rgw/rgw.md#SP_rgw_enable_usage_log)
 
 **Example:**
 
@@ -104,9 +108,13 @@ ceph config get client.rgw rgw_usage_log_key_transition
 | Type | Int · default `32` · **Advanced** |
 | Table | [rgw.md#SP_rgw_usage_max_shards](../../../config/rgw/rgw.md#SP_rgw_usage_max_shards) |
 
-**What it does:** Number of shards for usage log.
+**What it does:** Number of shards for usage log. The number of RADOS objects that RGW will use in order to store the usage log data. All RGW daemons and radosgw-admin commands must use the same value for this option. If values differ, writes and reads/clears will target different objects, causing usage data to appear empty or not be cleared. Use ``ceph config set global rgw_usage_max_shards <N>`` to ensure consistency across the cluster. Alternatively, ``radosgw-admin`` supports the ``--rgw-usage-max-shards`` command-line parameter.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
+
+**Related options:**
+
+- [`rgw_enable_usage_log`](../../../config/rgw/rgw.md#SP_rgw_enable_usage_log)
 
 **Example:**
 
@@ -132,9 +140,13 @@ ceph config get global rgw_usage_max_shards
 | Type | Int · default `1` · **Advanced** |
 | Table | [rgw.md#SP_rgw_usage_max_user_shards](../../../config/rgw/rgw.md#SP_rgw_usage_max_user_shards) |
 
-**What it does:** Number of shards for single user in usage log
+**What it does:** Number of shards for single user in usage log The number of shards that a single user will span over in the usage log.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
+
+**Related options:**
+
+- [`rgw_enable_usage_log`](../../../config/rgw/rgw.md#SP_rgw_enable_usage_log)
 
 **Example:**
 

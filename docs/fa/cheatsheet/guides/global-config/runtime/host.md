@@ -33,7 +33,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Basic** |
 | جدول | [host.md#SP_host](../../../config/global/host.md#SP_host) |
 
-**کارکرد:** local hostname
+**کارکرد:** local hostname If blank, Ceph uses the short hostname (hostname -s)
 
 **زمان استفاده:** رفتار اصلی Global — پیش از تغییر در محیط عملیاتی بررسی کنید.
 

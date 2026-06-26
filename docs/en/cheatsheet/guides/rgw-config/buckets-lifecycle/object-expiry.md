@@ -71,7 +71,7 @@ ceph -s  # cluster health, slow ops
 | Type | Uint · default `127` · **Advanced** |
 | Table | [rgw.md#SP_rgw_objexp_hints_num_shards](../../../config/rgw/rgw.md#SP_rgw_objexp_hints_num_shards) |
 
-**What it does:** Number of object expirer data shards
+**What it does:** Number of object expirer data shards The number of shards the (Swift) object expirer will store its data on.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

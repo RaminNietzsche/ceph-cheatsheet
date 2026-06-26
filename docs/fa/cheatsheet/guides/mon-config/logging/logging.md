@@ -52,9 +52,13 @@ ceph -s
 | نوع | Str · default `default=/var/log/ceph/$cluster.$channel.log cluster=/var/log/ceph/$cluster.log` · **Advanced** |
 | جدول | [mon.md#SP_mon_cluster_log_file](../../../config/mon/mon.md#SP_mon_cluster_log_file) |
 
-**کارکرد:** File(s) to write cluster log to
+**کارکرد:** File(s) to write cluster log to This can either be a simple file name to receive all messages, or a list of key/value pairs where the key is the log channel and the value is the filename, which may include $cluster and $channel metavariables
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_cluster_log_to_file`](../../../config/mon/mon.md#SP_mon_cluster_log_to_file)
 
 **مثال:**
 
@@ -87,9 +91,13 @@ ceph mon stat
 | نوع | Str · default `debug` · **Advanced** |
 | جدول | [mon.md#SP_mon_cluster_log_level](../../../config/mon/mon.md#SP_mon_cluster_log_level) |
 
-**کارکرد:** Lowest level to include in cluster log file and/or in external log server
+**کارکرد:** Lowest level to include in cluster log file and/or in external log server Log level to control the cluster log message verbosity for the cluster log file as well as for all external entities.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_cluster_log_file`](../../../config/mon/mon.md#SP_mon_cluster_log_file)
 
 **مثال:**
 
@@ -126,6 +134,10 @@ ceph mon stat
 **کارکرد:** Make monitor send cluster log messages to file
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_cluster_log_file`](../../../config/mon/mon.md#SP_mon_cluster_log_file)
 
 **مثال:**
 
@@ -198,6 +210,10 @@ ceph mon stat
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_cluster_log_to_graylog`](../../../config/mon/mon.md#SP_mon_cluster_log_to_graylog)
+
 **مثال:**
 
 ```bash
@@ -233,6 +249,10 @@ ceph mon stat
 **کارکرد:** Graylog port for cluster log messages
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_cluster_log_to_graylog`](../../../config/mon/mon.md#SP_mon_cluster_log_to_graylog)
 
 **مثال:**
 
@@ -378,6 +398,10 @@ ceph mon stat
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_cluster_log_to_syslog`](../../../config/mon/mon.md#SP_mon_cluster_log_to_syslog)
+
 **مثال:**
 
 ```bash
@@ -505,6 +529,10 @@ ceph mon stat
 **کارکرد:** frequency to log monitor health to cluster log
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_health_to_clog`](../../../config/mon/mon.md#SP_mon_health_to_clog)
 
 **مثال:**
 

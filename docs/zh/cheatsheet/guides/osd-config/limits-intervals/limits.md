@@ -110,7 +110,7 @@ ceph pg stat
 | 类型 | Size · default `500_M` · **Advanced** |
 | 表格 | [osd.md#SP_osd_client_message_size_cap](../../../config/osd/osd.md#SP_osd_client_message_size_cap) |
 
-**作用：** maximum memory to devote to in-flight client requests
+**作用：** maximum memory to devote to in-flight client requests If this value is exceeded, the OSD will not read any new client data off of the network until memory is freed.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -394,7 +394,7 @@ ceph pg stat
 | 类型 | Size · default `90` · **Advanced** |
 | 表格 | [osd.md#SP_osd_max_write_size](../../../config/osd/osd.md#SP_osd_max_write_size) |
 
-**作用：** Maximum size of a RADOS write operation in megabytes
+**作用：** Maximum size of a RADOS write operation in megabytes This setting prevents clients from doing very large writes to RADOS. If you set this to a value below what clients expect, they will receive an error when attempting to write to the cluster.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -507,6 +507,10 @@ ceph pg stat
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`osd_map_cache_size`](../../../config/osd/osd.md#SP_osd_map_cache_size)
+
 **示例：**
 
 ```bash
@@ -540,7 +544,7 @@ ceph pg stat
 | 类型 | Bool · default `False` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [osd.md#SP_set_keepcaps](../../../config/osd/osd.md#SP_set_keepcaps) |
 
-**作用：** set the keepcaps flag before changing UID, preserving the permitted capability set
+**作用：** set the keepcaps flag before changing UID, preserving the permitted capability set When ceph switches from root to the ceph uid, all capabilities in all sets are eraseed. If a component that is capability aware needs a specific capability, the keepcaps flag maintains the permitted capability set, allowing the capabilities in the effective set to be activated as needed.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 

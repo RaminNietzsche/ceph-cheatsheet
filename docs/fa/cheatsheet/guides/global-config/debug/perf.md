@@ -33,7 +33,7 @@ ceph -s
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [perf.md#SP_perf](../../../config/global/perf.md#SP_perf) |
 
-**کارکرد:** Enable internal performance metrics
+**کارکرد:** Enable internal performance metrics If enabled, collect and expose internal health metrics
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 

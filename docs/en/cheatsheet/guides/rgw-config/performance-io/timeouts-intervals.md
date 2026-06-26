@@ -42,7 +42,7 @@ ceph pg stat
 | Type | Int · default `2_min` · **Advanced** |
 | Table | [rgw.md#SP_rgw_exit_timeout_secs](../../../config/rgw/rgw.md#SP_rgw_exit_timeout_secs) |
 
-**What it does:** RGW shutdown timeout
+**What it does:** RGW shutdown timeout Number of seconds to wait for a process before exiting unconditionally.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -79,7 +79,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `5_min` · **Basic** |
 | Table | [rgw.md#SP_rgw_init_timeout](../../../config/rgw/rgw.md#SP_rgw_init_timeout) |
 
-**What it does:** Initialization timeout
+**What it does:** Initialization timeout The time length (in seconds) that RGW will allow for its initialization. RGW process will give up and quit if initialization is not complete after this amount of time.
 
 **When to use:** Core RGW behavior — review before changing in production.
 
@@ -156,7 +156,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `1_hr` · **Dev** |
 | Table | [rgw.md#SP_rgw_olh_pending_timeout_sec](../../../config/rgw/rgw.md#SP_rgw_olh_pending_timeout_sec) |
 
-**What it does:** Max time for pending OLH change to complete
+**What it does:** Max time for pending OLH change to complete OLH is a versioned object's logical head. Operations on it are journaled and as pending before completion. If an operation doesn't complete with this amount of seconds, we remove the operation from the journal.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -193,7 +193,7 @@ ceph -s  # cluster health, slow ops
 | Type | Uint · default `60` · **Advanced** · **STARTUP** (restart required) |
 | Table | [rgw.md#SP_rgw_ratelimit_interval](../../../config/rgw/rgw.md#SP_rgw_ratelimit_interval) |
 
-**What it does:** Time window for rate limiting in seconds
+**What it does:** Time window for rate limiting in seconds This option sets the time window for rate limiting accumulation in seconds. Requests that exceed the configured rate limits within this time window will be rejected. The default is a 60 second token bucket.
 
 **When to use:**
 
@@ -236,7 +236,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `10000` · **Advanced** |
 | Table | [rgw.md#SP_rgw_read_through_timeout_ms](../../../config/rgw/rgw.md#SP_rgw_read_through_timeout_ms) |
 
-**What it does:** Maximum time in milliseconds for read-through GET requests to wait for cloud object restore completion
+**What it does:** Maximum time in milliseconds for read-through GET requests to wait for cloud object restore completion When a GET request is made for a cloud-tiered object that must be restored, the request will wait up to this many milliseconds for the restore to complete. If the restore completes within this time, the GET request succeeds and returns the object data. If the time is exceeded, the request fails with ERR_REQUEST_TIMEOUT. Set to 0 to fail immediately without waiting.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -275,7 +275,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `-1` · **Dev** |
 | Table | [rgw.md#SP_rgw_restore_debug_interval](../../../config/rgw/rgw.md#SP_rgw_restore_debug_interval) |
 
-**What it does:** The number of seconds that simulate one "day" in order to debug RGW CloudRestore. Do *not* modify for a production cluster.
+**What it does:** The number of seconds that simulate one "day" in order to debug RGW CloudRestore. Do *not* modify for a production cluster. For debugging RGW Cloud Restore, the number of seconds that are equivalent to one simulated "day". Values less than 1 are ignored and do not change Restore behavior. For example, during debugging if one wanted every 10 minutes to be equivalent to one day, then this would be set to 600, the number of seconds in 10 minutes.
 
 **When to use:**
 
@@ -308,7 +308,7 @@ ceph config get client.rgw rgw_restore_debug_interval
 | Type | Int · default `30` · **Advanced** |
 | Table | [rgw.md#SP_rgw_usage_log_tick_interval](../../../config/rgw/rgw.md#SP_rgw_usage_log_tick_interval) |
 
-**What it does:** Number of seconds between usage log flush cycles
+**What it does:** Number of seconds between usage log flush cycles The number of seconds between consecutive usage log flushes. The usage log will also flush itself to the backend if the number of pending entries reaches a certain threshold.
 
 **When to use:**
 

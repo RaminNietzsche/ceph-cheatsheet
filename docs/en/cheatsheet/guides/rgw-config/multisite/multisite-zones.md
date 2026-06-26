@@ -89,9 +89,13 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `default.region` · **Advanced** |
 | Table | [rgw.md#SP_rgw_default_region_info_oid](../../../config/rgw/rgw.md#SP_rgw_default_region_info_oid) |
 
-**What it does:** Default region info object id
+**What it does:** Default region info object id Obsolete config option. The rgw_default_zonegroup_info_oid should be used instead.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_default_zonegroup_info_oid`](../../../config/rgw/rgw.md#SP_rgw_default_zonegroup_info_oid)
 
 **Example:**
 
@@ -127,7 +131,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `default.zone` · **Advanced** |
 | Table | [rgw.md#SP_rgw_default_zone_info_oid](../../../config/rgw/rgw.md#SP_rgw_default_zone_info_oid) |
 
-**What it does:** Default zone info object id
+**What it does:** Default zone info object id Name of the RADOS object that holds the default zone information.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -236,7 +240,7 @@ ceph -s  # cluster health, slow ops
 | Type | Float · default `2` · **Advanced** |
 | Table | [rgw.md#SP_rgw_period_push_interval](../../../config/rgw/rgw.md#SP_rgw_period_push_interval) |
 
-**What it does:** Period push interval
+**What it does:** Period push interval Number of seconds to wait before retrying 'period push' operation.
 
 **When to use:**
 
@@ -276,7 +280,7 @@ ceph -s  # cluster health, slow ops
 | Type | Float · default `30` · **Advanced** |
 | Table | [rgw.md#SP_rgw_period_push_interval_max](../../../config/rgw/rgw.md#SP_rgw_period_push_interval_max) |
 
-**What it does:** Period push maximum interval
+**What it does:** Period push maximum interval The max number of seconds to wait before retrying 'period push' after exponential backoff.
 
 **When to use:**
 
@@ -316,7 +320,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `.rgw.root` · **Advanced** |
 | Table | [rgw.md#SP_rgw_period_root_pool](../../../config/rgw/rgw.md#SP_rgw_period_root_pool) |
 
-**What it does:** Period root pool
+**What it does:** Period root pool The period root pool, is the pool where the RGW period configuration located.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -418,7 +422,7 @@ ceph config get client.rgw rgw_zone
 | Type | Str · default `.rgw.root` · **Advanced** |
 | Table | [rgw.md#SP_rgw_realm_root_pool](../../../config/rgw/rgw.md#SP_rgw_realm_root_pool) |
 
-**What it does:** Realm root pool
+**What it does:** Realm root pool The realm root pool, is the pool where the RGW realm configuration located.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -452,9 +456,13 @@ ceph config get client.rgw rgw_zone
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_region](../../../config/rgw/rgw.md#SP_rgw_region) |
 
-**What it does:** Region name
+**What it does:** Region name Obsolete config option. The rgw_zonegroup option should be used instead.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_zonegroup`](../../../config/rgw/rgw.md#SP_rgw_zonegroup)
 
 **Example:**
 
@@ -486,9 +494,13 @@ ceph config get client.rgw rgw_zone
 | Type | Str · default `.rgw.root` · **Advanced** |
 | Table | [rgw.md#SP_rgw_region_root_pool](../../../config/rgw/rgw.md#SP_rgw_region_root_pool) |
 
-**What it does:** Region root pool
+**What it does:** Region root pool Obsolete config option. The rgw_zonegroup_root_pool should be used instead.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_zonegroup_root_pool`](../../../config/rgw/rgw.md#SP_rgw_zonegroup_root_pool)
 
 **Example:**
 
@@ -591,7 +603,7 @@ ceph config get client.rgw rgw_zone
 | Type | Str · default `.rgw.root` · **Advanced** |
 | Table | [rgw.md#SP_rgw_zone_root_pool](../../../config/rgw/rgw.md#SP_rgw_zone_root_pool) |
 
-**What it does:** Zone root pool name
+**What it does:** Zone root pool name The zone root pool, is the pool where the RGW zone configuration located.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -697,7 +709,7 @@ ceph config get client.rgw rgw_zone
 | Type | Str · default `.rgw.root` · **Advanced** |
 | Table | [rgw.md#SP_rgw_zonegroup_root_pool](../../../config/rgw/rgw.md#SP_rgw_zonegroup_root_pool) |
 
-**What it does:** Zonegroup root pool
+**What it does:** Zonegroup root pool The zonegroup root pool, is the pool where the RGW zonegroup configuration located.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

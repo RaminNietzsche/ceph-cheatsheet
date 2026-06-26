@@ -38,7 +38,7 @@ ceph pg stat
 | Type | Bool · default `True` · **Advanced** |
 | Table | [rgw.md#SP_rgw_copy_obj_progress](../../../config/rgw/rgw.md#SP_rgw_copy_obj_progress) |
 
-**What it does:** Send progress report through copy operation
+**What it does:** Send progress report through copy operation If true, RGW will send progress information when copy operation is executed.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -104,7 +104,7 @@ ceph -s  # cluster health, slow ops
 | Type | Size · default `5_M` · **Advanced** |
 | Table | [rgw.md#SP_rgw_multipart_min_part_size](../../../config/rgw/rgw.md#SP_rgw_multipart_min_part_size) |
 
-**What it does:** Minimum S3 multipart-upload part size
+**What it does:** Minimum S3 multipart-upload part size When doing a multipart upload, each part (other than the last part) must be at least this size.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

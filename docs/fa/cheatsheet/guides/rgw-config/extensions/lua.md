@@ -67,7 +67,7 @@ ceph orch restart rgw
 | نوع | Uint · default `128000` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_lua_max_memory_per_state](../../../config/rgw/rgw.md#SP_rgw_lua_max_memory_per_state) |
 
-**کارکرد:** Max size of memory used by a single lua state
+**کارکرد:** Max size of memory used by a single lua state This is the maximum size in bytes that a lua state can allocate for its own use. Note that this does not include any memory that can be accessed from lua, but managed by the RGW. If not set, it would use a default of 128K. If set to zero, the amount of memory would only be limited by the system.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -95,7 +95,7 @@ ceph config get client.rgw rgw_lua_max_memory_per_state
 | نوع | Uint · default `1000` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_lua_max_runtime_per_state](../../../config/rgw/rgw.md#SP_rgw_lua_max_runtime_per_state) |
 
-**کارکرد:** Maximum runtime for each Lua state in milliseconds
+**کارکرد:** Maximum runtime for each Lua state in milliseconds Sets the maximum runtime for each Lua state in milliseconds. If exceeded, the script will be terminated. Defaults to 1000 milliseconds (1 second). If set to zero, there is no limit.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 

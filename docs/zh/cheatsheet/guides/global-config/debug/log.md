@@ -188,6 +188,10 @@ ceph -s
 
 **何时使用：** 核心 Global 行为 — 生产环境变更前请审阅。
 
+**相关选项：**
+
+- [`log_graylog_host`](../../../config/global/log.md#SP_log_graylog_host)
+
 **示例：**
 
 ```bash
@@ -222,6 +226,10 @@ ceph -s
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`log_max_recent`](../../../config/global/log.md#SP_log_max_recent)
+
 **示例：**
 
 ```bash
@@ -253,7 +261,7 @@ ceph -s
 | 类型 | Int · default `10000` · **Advanced** |
 | 表格 | [log.md#SP_log_max_recent](../../../config/global/log.md#SP_log_max_recent) |
 
-**作用：** Recent log entries to keep in memory to dump in the event of a crash
+**作用：** Recent log entries to keep in memory to dump in the event of a crash The purpose of this option is to log at a higher debug level only to the in-memory buffer, and write out the detailed log messages only if there is a crash. Only log entries below the lower log level will be written unconditionally to the log. For example, debug_osd=1/5 will write everything <= 1 to the log unconditionally but keep entries at levels 2-5 in memory. If there is a seg fault or assertion failure, all entries will be dumped to the log.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -290,7 +298,7 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [log.md#SP_log_stderr_prefix](../../../config/global/log.md#SP_log_stderr_prefix) |
 
-**作用：** String to prefix log messages with when sent to stderr
+**作用：** String to prefix log messages with when sent to stderr This is useful in container environments when combined with mon_cluster_log_to_stderr. The mon log prefixes each line with the channel name (e.g., 'default', 'audit'), while log_stderr_prefix can be set to 'debug '.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -329,6 +337,10 @@ ceph -s
 
 **何时使用：** 核心 Global 行为 — 生产环境变更前请审阅。
 
+**相关选项：**
+
+- [`log_file`](../../../config/global/log.md#SP_log_file)
+
 **示例：**
 
 ```bash
@@ -362,6 +374,10 @@ ceph -s
 **作用：** send log lines to a file
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
+
+**相关选项：**
+
+- [`log_file`](../../../config/global/log.md#SP_log_file)
 
 **示例：**
 
@@ -461,7 +477,7 @@ ceph -s
 | 类型 | Bool · default `False` · **Basic** |
 | 表格 | [log.md#SP_log_to_stderr](../../../config/global/log.md#SP_log_to_stderr) |
 
-**作用：** send log lines to stderr
+**作用：** send log lines to stderr When Ceph runs as a library (e.g., librados), the default value set to false because stderr may not be writable by the application. For daemons, the daemon_default of false is used instead.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 

@@ -539,6 +539,10 @@ ceph config get client.rgw rgw_crypt_s3_kms_cache_enabled
 - **Increase** when monitoring many active buckets/users and cache misses are visible.
 - **Decrease** when RGW memory is constrained.
 
+**相关选项：**
+
+- [`rgw_crypt_s3_kms_cache_enabled`](../../../config/rgw/rgw.md#SP_rgw_crypt_s3_kms_cache_enabled)
+
 **示例：**
 
 ```bash
@@ -569,6 +573,10 @@ ceph config get client.rgw rgw_crypt_s3_kms_cache_max_size
 
 - **Increase** when monitoring many active buckets/users and cache misses are visible.
 - **Decrease** when RGW memory is constrained.
+
+**相关选项：**
+
+- [`rgw_crypt_s3_kms_cache_enabled`](../../../config/rgw/rgw.md#SP_rgw_crypt_s3_kms_cache_enabled)
 
 **示例：**
 
@@ -612,6 +620,10 @@ ceph -s  # cluster health, slow ops
 - **Increase** when monitoring many active buckets/users and cache misses are visible.
 - **Decrease** when RGW memory is constrained.
 
+**相关选项：**
+
+- [`rgw_crypt_s3_kms_cache_enabled`](../../../config/rgw/rgw.md#SP_rgw_crypt_s3_kms_cache_enabled)
+
 **示例：**
 
 ```bash
@@ -653,6 +665,10 @@ ceph -s  # cluster health, slow ops
 
 - **Increase** when monitoring many active buckets/users and cache misses are visible.
 - **Decrease** when RGW memory is constrained.
+
+**相关选项：**
+
+- [`rgw_crypt_s3_kms_cache_enabled`](../../../config/rgw/rgw.md#SP_rgw_crypt_s3_kms_cache_enabled)
 
 **示例：**
 
@@ -763,9 +779,13 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · enum: ["aes-256-cbc", "aes-256-gcm"] · default `aes-256-cbc` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_crypt_sse_algorithm](../../../config/rgw/rgw.md#SP_rgw_crypt_sse_algorithm) |
 
-**作用：** Default encryption algorithm for server-side encryption
+**作用：** Default encryption algorithm for server-side encryption Specifies the default AES encryption algorithm to use for new objects encrypted with SSE-C, SSE-KMS, SSE-S3, or RGW-AUTO modes. Valid values are aes-256-cbc (legacy, compatible with older RGW versions) and aes-256-gcm (recommended, provides authenticated encryption). Existing encrypted objects are always decrypted using the algorithm specified in their metadata, regardless of this setting.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_crypt_require_ssl`](../../../config/rgw/rgw.md#SP_rgw_crypt_require_ssl)
 
 **示例：**
 
@@ -819,7 +839,7 @@ ceph config get client.rgw rgw_crypt_sse_s3_backend
 | 类型 | Str · default `%bucket_id` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_crypt_sse_s3_key_template](../../../config/rgw/rgw.md#SP_rgw_crypt_sse_s3_key_template) |
 
-**作用：** template for per-bucket SSE-S3 keys in Vault.
+**作用：** template for per-bucket SSE-S3 keys in Vault. This is the template for per-bucket sse-s3 keys. This string may include ``%bucket_id`` which will be expanded out to the bucket marker, a unique uuid assigned to that bucket. It could contain ``%owner_id``, which will expand out to the owner's id. Any other use of % is reserved and should not be used. If the template contains ``%bucket_id``, associated bucket keys will be automatically removed when the bucket is removed.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

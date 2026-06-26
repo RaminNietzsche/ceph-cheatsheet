@@ -4,7 +4,7 @@
 
 **Simple, complete offline reference** for Ceph — organized by **role**, **scale**, CLI, and config.
 
-**Release:** [v2026.06.1](https://github.com/RaminNietzsche/ceph-cheatsheet/releases/tag/v2026.06.1) · **Site:** [blog.ceph-s3.ir](http://blog.ceph-s3.ir/)
+**Release:** [v2026.06.2](https://github.com/RaminNietzsche/ceph-cheatsheet/releases/tag/v2026.06.2) · **Site:** [blog.ceph-s3.ir](https://blog.ceph-s3.ir/)
 
 → **[Open the reference](docs/en/cheatsheet/OVERVIEW.md)** · **[Getting started](docs/en/cheatsheet/guides/getting-started.md)**
 
@@ -19,7 +19,7 @@
 | [Config](docs/en/cheatsheet/config/OVERVIEW.md) | **2122** options from upstream Ceph YAML |
 | [Architecture](docs/en/arch/rgw/OVERVIEW.md) | RGW deep dives (docs-extended) |
 
-**Online:** [blog.ceph-s3.ir/cheatsheet](http://blog.ceph-s3.ir/cheatsheet/)
+**Online:** [blog.ceph-s3.ir/cheatsheet](https://blog.ceph-s3.ir/en/cheatsheet/)
 
 ## Quick tools
 

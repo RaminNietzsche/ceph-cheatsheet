@@ -37,7 +37,13 @@ ceph pg stat
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_rest_conn_connect_to_resolved_ips](../../../config/rgw/rgw.md#SP_rgw_rest_conn_connect_to_resolved_ips) |
 
+**作用：** When an RGW endpoint hostname resolves to multiple A or AAAA records, libcurl normally connects to only the first address returned by DNS. Enabling this option causes RGW to resolve each configured endpoint into all of its addresses and distribute outgoing requests across them using round-robin, with per-IP health tracking. This applies to multisite replication traffic between zones (via RGWRESTConn). For example, in a multisite deployment where zone endpoints such as "https://zone-a.example.com" map to several backend RGW nodes, this allows inter-zone traffic to be spread across all peers without requiring an external load balancer.
+
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
+
+**相关选项：**
+
+- [`rgw_rest_conn_ip_fail_timeout_secs`](../../../config/rgw/rgw.md#SP_rgw_rest_conn_ip_fail_timeout_secs)
 
 **示例：**
 
@@ -63,9 +69,13 @@ ceph config get client.rgw rgw_rest_conn_connect_to_resolved_ips
 | 类型 | Uint · default `2` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_rest_conn_ip_fail_timeout_secs](../../../config/rgw/rgw.md#SP_rgw_rest_conn_ip_fail_timeout_secs) |
 
-**作用：** IP failure tracking timeout (requires rgw_rest_conn_connect_to_resolved_ips=true)
+**作用：** IP failure tracking timeout (requires rgw_rest_conn_connect_to_resolved_ips=true) When rgw_rest_conn_connect_to_resolved_ips is enabled, RGW tracks per-IP connection failures by remembering the timestamp of the most recent failure. This option controls how long (in seconds) an IP address remains marked as "failed" before RGW considers it eligible for retry. After this timeout expires, the IP will be tried again in the normal round-robin rotation.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_rest_conn_connect_to_resolved_ips`](../../../config/rgw/rgw.md#SP_rgw_rest_conn_connect_to_resolved_ips)
 
 **示例：**
 

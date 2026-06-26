@@ -51,7 +51,7 @@ ceph pg stat
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_content_length_compat](../../../config/rgw/rgw.md#SP_rgw_content_length_compat) |
 
-**What it does:** Multiple content length headers compatibility
+**What it does:** Multiple content length headers compatibility Try to handle requests with ambiguous multiple content length headers (Content-Length, Http-Content-Length).
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -79,7 +79,7 @@ ceph config get client.rgw rgw_content_length_compat
 | Type | Str · default `<allow-access-from domain="*" secure="false" />` · **Advanced** |
 | Table | [rgw.md#SP_rgw_cross_domain_policy](../../../config/rgw/rgw.md#SP_rgw_cross_domain_policy) |
 
-**What it does:** RGW handle cross domain policy
+**What it does:** RGW handle cross domain policy Returned cross domain policy when accessing the crossdomain.xml resource (Swift compatibility).
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -117,7 +117,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_defer_to_bucket_acls](../../../config/rgw/rgw.md#SP_rgw_defer_to_bucket_acls) |
 
-**What it does:** Bucket ACLs override object ACLs
+**What it does:** Bucket ACLs override object ACLs If not empty, a string that selects that mode of operation. 'recurse' will use bucket's ACL for the authorization. 'full-control' will allow users that users that have full control permission on the bucket have access to the object.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -155,7 +155,7 @@ ceph -s  # cluster health, slow ops
 | Type | Bool · default `True` · **Advanced** |
 | Table | [rgw.md#SP_rgw_enforce_swift_acls](../../../config/rgw/rgw.md#SP_rgw_enforce_swift_acls) |
 
-**What it does:** RGW enforce swift acls
+**What it does:** RGW enforce swift acls Should RGW enforce special Swift-only ACLs. Swift has a special ACL that gives permission to access all objects in a container.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -183,7 +183,7 @@ ceph config get client.rgw rgw_enforce_swift_acls
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_extended_http_attrs](../../../config/rgw/rgw.md#SP_rgw_extended_http_attrs) |
 
-**What it does:** RGW support extended HTTP attrs
+**What it does:** RGW support extended HTTP attrs Add new set of attributes that could be set on an object. These extra attributes can be set through HTTP header fields when putting the objects. If set, these attributes will return as HTTP fields when doing GET/HEAD on the object.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -221,7 +221,7 @@ ceph -s  # cluster health, slow ops
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_ignore_get_invalid_range](../../../config/rgw/rgw.md#SP_rgw_ignore_get_invalid_range) |
 
-**What it does:** Treat invalid (e.g., negative) range request as full
+**What it does:** Treat invalid (e.g., negative) range request as full Treat invalid (e.g., negative) range request as request for the full object (AWS compatibility)
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -249,7 +249,7 @@ ceph config get client.rgw rgw_ignore_get_invalid_range
 | Type | Bool · default `True` · **Advanced** |
 | Table | [rgw.md#SP_rgw_print_continue](../../../config/rgw/rgw.md#SP_rgw_print_continue) |
 
-**What it does:** RGW support of 100-continue
+**What it does:** RGW support of 100-continue Should RGW explicitly send 100 (continue) responses. This is mainly relevant when using FastCGI, as some FastCGI modules do not fully support this feature.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -277,7 +277,7 @@ ceph config get client.rgw rgw_print_continue
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_print_prohibited_content_length](../../../config/rgw/rgw.md#SP_rgw_print_prohibited_content_length) |
 
-**What it does:** RGW RFC-7230 compatibility
+**What it does:** RGW RFC-7230 compatibility Specifies whether RGW violates RFC 7230 and sends Content-Length with 204 or 304 statuses.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -305,7 +305,7 @@ ceph config get client.rgw rgw_print_prohibited_content_length
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_relaxed_region_enforcement](../../../config/rgw/rgw.md#SP_rgw_relaxed_region_enforcement) |
 
-**What it does:** Disable region constraint enforcement
+**What it does:** Disable region constraint enforcement Enable requests such as bucket creation to succeed irrespective of region restrictions (Jewel compat).
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -333,7 +333,7 @@ ceph config get client.rgw rgw_relaxed_region_enforcement
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_relaxed_s3_bucket_names](../../../config/rgw/rgw.md#SP_rgw_relaxed_s3_bucket_names) |
 
-**What it does:** RGW enable relaxed S3 bucket names
+**What it does:** RGW enable relaxed S3 bucket names RGW enable relaxed S3 bucket name rules for US region buckets.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -361,7 +361,7 @@ ceph config get client.rgw rgw_relaxed_s3_bucket_names
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_relaxed_topic_names](../../../config/rgw/rgw.md#SP_rgw_relaxed_topic_names) |
 
-**What it does:** RGW enable relaxed topic names
+**What it does:** RGW enable relaxed topic names RGW enable relaxed topic names to allow changing existing topics that were created before validation rules were implemented. This also allows re-creating topics that were deleted, but match names that are already used externally (e.g. in Kafka)
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -389,9 +389,13 @@ ceph config get client.rgw rgw_relaxed_topic_names
 | Type | Str · default `REMOTE_ADDR` · **Advanced** |
 | Table | [rgw.md#SP_rgw_remote_addr_param](../../../config/rgw/rgw.md#SP_rgw_remote_addr_param) |
 
-**What it does:** HTTP header that holds the remote address in incoming requests.
+**What it does:** HTTP header that holds the remote address in incoming requests. RGW will use this header to extract requests origin. When RGW runs behind a reverse proxy, the remote address header will point at the proxy's address and not at the originator's address. Therefore it is sometimes possible to have the proxy add the originator's address in a separate HTTP header, which will allow RGW to log it correctly.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_enable_ops_log`](../../../config/rgw/rgw.md#SP_rgw_enable_ops_log)
 
 **Example:**
 
@@ -463,7 +467,7 @@ ceph -s  # cluster health, slow ops
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_resolve_cname](../../../config/rgw/rgw.md#SP_rgw_resolve_cname) |
 
-**What it does:** Support vanity domain names via CNAME
+**What it does:** Support vanity domain names via CNAME If true, RGW will query DNS when detecting that it's serving a request that was sent to a host in another domain. If a CNAME record is configured for that domain it will use it instead. This gives user to have the ability of creating a unique domain of their own to point at data in their bucket.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -491,7 +495,7 @@ ceph config get client.rgw rgw_resolve_cname
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_service_provider_name](../../../config/rgw/rgw.md#SP_rgw_service_provider_name) |
 
-**What it does:** Service provider name which is contained in http response headers
+**What it does:** Service provider name which is contained in http response headers As S3 or other cloud storage providers do, http response headers should contain the name of the provider. This name will be placed in http header 'Server'.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -529,9 +533,13 @@ ceph -s  # cluster health, slow ops
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_trust_forwarded_https](../../../config/rgw/rgw.md#SP_rgw_trust_forwarded_https) |
 
-**What it does:** Trust Forwarded and X-Forwarded-Proto headers
+**What it does:** Trust Forwarded and X-Forwarded-Proto headers When a proxy in front of radosgw is used for ssl termination, radosgw does not know whether incoming http connections are secure. Enable this option to trust the Forwarded and X-Forwarded-Proto headers sent by the proxy when determining whether the connection is secure. This is required for some features, such as server side encryption. (Never enable this setting if you do not have a trusted proxy in front of radosgw, or else malicious users will be able to set these headers in any request.)
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
+
+**Related options:**
+
+- [`rgw_crypt_require_ssl`](../../../config/rgw/rgw.md#SP_rgw_crypt_require_ssl)
 
 **Example:**
 
@@ -557,9 +565,13 @@ ceph config get client.rgw rgw_trust_forwarded_https
 | Type | Bool · default `True` · **Advanced** |
 | Table | [rgw.md#SP_rgw_verify_ssl](../../../config/rgw/rgw.md#SP_rgw_verify_ssl) |
 
-**What it does:** Should RGW verify SSL when connecting to a remote HTTP server
+**What it does:** Should RGW verify SSL when connecting to a remote HTTP server RGW can send requests to other RGW servers (e.g., in multi-site sync work). This configurable selects whether RGW should verify the certificate for the remote peer and host.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Related options:**
+
+- [`rgw_keystone_verify_ssl`](../../../config/rgw/rgw.md#SP_rgw_keystone_verify_ssl)
 
 **Example:**
 

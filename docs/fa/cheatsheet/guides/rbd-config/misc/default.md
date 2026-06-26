@@ -42,7 +42,7 @@ ceph -s
 | نوع | Str · enum: ["1", "2", "auto"] · default `auto` · **Advanced** |
 | جدول | [rbd.md#SP_rbd_default_clone_format](../../../config/rbd/rbd.md#SP_rbd_default_clone_format) |
 
-**کارکرد:** default internal format for handling clones
+**کارکرد:** default internal format for handling clones This sets the internal format for tracking cloned images. The value of ``1`` requires attaching to protected snapshots that cannot be removed until the clone is removed or flattened. The value of ``2`` will allow clones to be attached to any snapshot and permits removing in-use parent snapshots but requires Mimic or later clients. The default value of ``auto`` will use the v2 format if the cluster is configured to require Mimic or later clients.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -78,7 +78,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rbd.md#SP_rbd_default_data_pool](../../../config/rbd/rbd.md#SP_rbd_default_data_pool) |
 
-**کارکرد:** default pool for storing data blocks for new images &#91;&#93;(std::string *value, std::string *error_message) { std::regex pattern("^&#91;^@/&#93;*$"); if (!std::regex_match (*value, pattern)) { *value = ""; *error_message = "ignoring invalid RBD data pool"; } return 0; }
+**کارکرد:** default pool for storing data blocks for new images
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -114,7 +114,7 @@ ceph -s
 | نوع | Str · default `layering,exclusive-lock,object-map,fast-diff,deep-flatten` · **Advanced** |
 | جدول | [rbd.md#SP_rbd_default_features](../../../config/rbd/rbd.md#SP_rbd_default_features) |
 
-**کارکرد:** default v2 image features for new images &#91;&#93;(std::string *value, std::string *error_message) { std::stringstream ss; uint64_t features = librbd::rbd_features_from_string(*value, &ss); // Leave this in integer form to avoid breaking Cinder. Someday // we would like to present this in string form instead... *value = stringify(features); if (ss.str().size()) { return -EINVAL; } return 0; }
+**کارکرد:** default v2 image features for new images RBD features are only applicable for v2 images. This setting accepts either an integer bitmask value or comma-delimited string of RBD feature names. This setting is always internally stored as an integer bitmask value. The mapping between feature bitmask value and feature name is as follows: +1 -> layering, +2 -> striping, +4 -> exclusive-lock, +8 -> object-map, +16 -> fast-diff, +32 -> deep-flatten, +64 -> journaling, +128 -> data-pool
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -222,7 +222,7 @@ ceph -s
 | نوع | Uint · default `22` · **Advanced** |
 | جدول | [rbd.md#SP_rbd_default_order](../../../config/rbd/rbd.md#SP_rbd_default_order) |
 
-**کارکرد:** default order (data block object size) for new images
+**کارکرد:** default order (data block object size) for new images This configures the default object size for new images. The value is used as a power of two, meaning ``default_object_size = 2 ^ rbd_default_order``. Configure a value between 12 and 25 (inclusive), translating to 4KiB lower and 32MiB upper limit.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -258,7 +258,7 @@ ceph -s
 | نوع | Str · default `rbd` · **Advanced** |
 | جدول | [rbd.md#SP_rbd_default_pool](../../../config/rbd/rbd.md#SP_rbd_default_pool) |
 
-**کارکرد:** default pool for storing new images &#91;&#93;(std::string *value, std::string *error_message) { std::regex pattern("^&#91;^@/&#93;+$"); if (!std::regex_match (*value, pattern)) { *value = "rbd"; *error_message = "invalid RBD default pool, resetting to 'rbd'"; } return 0; }
+**کارکرد:** default pool for storing new images
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

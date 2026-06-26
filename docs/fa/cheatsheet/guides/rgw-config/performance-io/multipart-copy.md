@@ -38,7 +38,7 @@ ceph pg stat
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_copy_obj_progress](../../../config/rgw/rgw.md#SP_rgw_copy_obj_progress) |
 
-**کارکرد:** Send progress report through copy operation
+**کارکرد:** Send progress report through copy operation If true, RGW will send progress information when copy operation is executed.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -104,7 +104,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Size · default `5_M` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_multipart_min_part_size](../../../config/rgw/rgw.md#SP_rgw_multipart_min_part_size) |
 
-**کارکرد:** Minimum S3 multipart-upload part size
+**کارکرد:** Minimum S3 multipart-upload part size When doing a multipart upload, each part (other than the last part) must be at least this size.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

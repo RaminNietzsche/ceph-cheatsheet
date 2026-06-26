@@ -33,7 +33,7 @@ ceph -s
 | Type | Str · default `(empty)` · **Basic** |
 | Table | [host.md#SP_host](../../../config/global/host.md#SP_host) |
 
-**What it does:** local hostname
+**What it does:** local hostname If blank, Ceph uses the short hostname (hostname -s)
 
 **When to use:** Core Global behavior — review before changing in production.
 

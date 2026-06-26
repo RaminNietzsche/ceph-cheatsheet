@@ -39,6 +39,8 @@ ceph pg stat
 | 类型 | Int · default `524288` · **Dev** |
 | 表格 | [rgw.md#SP_rgw_curl_buffersize](../../../config/rgw/rgw.md#SP_rgw_curl_buffersize) |
 
+**作用：** Pass a long specifying your preferred size (in bytes) for the receivebuffer in libcurl. See: https://curl.se/libcurl/c/CURLOPT_BUFFERSIZE.html
+
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
 **示例：**
@@ -77,6 +79,8 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `1024` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_curl_low_speed_limit](../../../config/rgw/rgw.md#SP_rgw_curl_low_speed_limit) |
 
+**作用：** It contains the average transfer speed in bytes per second that the transfer should be below during rgw_curl_low_speed_time seconds for libcurl to consider it to be too slow and abort. Set it zero to disable this.
+
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 
 **示例：**
@@ -102,6 +106,8 @@ ceph config get client.rgw rgw_curl_low_speed_limit
 |---|---|
 | 类型 | Int · default `5_min` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_curl_low_speed_time](../../../config/rgw/rgw.md#SP_rgw_curl_low_speed_time) |
+
+**作用：** It contains the time in number seconds that the transfer speed should be below the rgw_curl_low_speed_limit for the library to consider it too slow and abort. Set it zero to disable this.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -139,7 +145,9 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · enum: ["0", "1"] · default `0` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_curl_tcp_keepalive](../../../config/rgw/rgw.md#SP_rgw_curl_tcp_keepalive) |
 
-**何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+**作用：** Enable TCP keepalive on the HTTP client sockets managed by libcurl. This does not apply to connections received by the HTTP frontend, but only to HTTP requests sent by radosgw. Examples include requests to Keystone for authentication, sync requests from multisite, and requests to key management servers for SSE.
+
+**何时使用：** 多站点复制与同步调优 — 延迟或同步负载异常时调整。
 
 **示例：**
 

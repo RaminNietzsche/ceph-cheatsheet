@@ -38,7 +38,7 @@ ceph pg stat
 | Type | Size · default `5_M` · **Advanced** |
 | Table | [rgw.md#SP_rgw_ops_log_data_backlog](../../../config/rgw/rgw.md#SP_rgw_ops_log_data_backlog) |
 
-**What it does:** Ops log socket backlog
+**What it does:** Ops log socket backlog Maximum amount of data backlog that RGW can keep when ops log is configured to send info through unix domain socket. When data backlog is higher than this, ops log entries will be lost. In order to avoid ops log information loss, the listener needs to clear data (by reading it) quickly enough.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -76,9 +76,13 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `/var/log/ceph/ops-log-$cluster-$name.log` · **Advanced** |
 | Table | [rgw.md#SP_rgw_ops_log_file_path](../../../config/rgw/rgw.md#SP_rgw_ops_log_file_path) |
 
-**What it does:** File-system path for ops log.
+**What it does:** File-system path for ops log. Path to file that RGW will log ops logs to. A cephadm deployment will automatically rotate these logs under /var/log/ceph/. Other deployments should arrange for similar log rotation.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_enable_ops_log`](../../../config/rgw/rgw.md#SP_rgw_enable_ops_log)
 
 **Example:**
 
@@ -110,7 +114,7 @@ iostat -x 5  # disk saturation
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_ops_log_rados](../../../config/rgw/rgw.md#SP_rgw_ops_log_rados) |
 
-**What it does:** Use RADOS for ops log
+**What it does:** Use RADOS for ops log If set, RGW will store ops log information in RADOS. WARNING, there is no automation to clean up these log entries, so by default they will pile up without bound. This MUST NOT be enabled unless the admin has a strategy to manage and trim these log entries with `radosgw-admin log rm`.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -138,7 +142,7 @@ ceph config get client.rgw rgw_ops_log_rados
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_ops_log_socket_path](../../../config/rgw/rgw.md#SP_rgw_ops_log_socket_path) |
 
-**What it does:** Unix domain socket path for ops log.
+**What it does:** Unix domain socket path for ops log. Path to unix domain socket that RGW will listen for connection on. When connected, RGW will send ops log data through it.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

@@ -53,6 +53,7 @@ ceph pg stat
 **گزینه‌های مرتبط:**
 
 - `rgw_bucket_counters_cache_size`
+- [`rgw_bucket_counters_cache_size`](../../../config/rgw/rgw.md#SP_rgw_bucket_counters_cache_size)
 
 **مثال:**
 
@@ -81,6 +82,10 @@ ceph config set client.rgw rgw_bucket_counters_cache_size 20000
 **کارکرد:** Maximum number of labeled per-bucket perf counter entries kept in the cache.
 
 **زمان استفاده:** Increase on clusters with many active buckets and bucket-level monitoring enabled.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_bucket_counters_cache`](../../../config/rgw/rgw.md#SP_rgw_bucket_counters_cache)
 
 **مثال:**
 
@@ -301,7 +306,7 @@ ceph config get client.rgw rgw_bucket_index_transaction_instrumentation
 | نوع | Uint · default `300` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_bucket_logging_obj_roll_time](../../../config/rgw/rgw.md#SP_rgw_bucket_logging_obj_roll_time) |
 
-**کارکرد:** Default time in seconds for the bucket logging object to roll
+**کارکرد:** Default time in seconds for the bucket logging object to roll Object roll time can be provided in the bucket logging configuration. If not provided, this value will be used.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -338,7 +343,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Uint · default `11` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_bucket_persistent_notif_num_shards](../../../config/rgw/rgw.md#SP_rgw_bucket_persistent_notif_num_shards) |
 
-**کارکرد:** Number of shards for a persistent topic.
+**کارکرد:** Number of shards for a persistent topic. Number of shards of persistent topics. The notifications will be sharded by a combination of the bucket and key name. Changing the number effect only new topics and does not change exiting ones.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -366,7 +371,7 @@ ceph config get client.rgw rgw_bucket_persistent_notif_num_shards
 | نوع | Int · default `10000` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_bucket_quota_cache_size](../../../config/rgw/rgw.md#SP_rgw_bucket_quota_cache_size) |
 
-**کارکرد:** RGW quota stats cache size
+**کارکرد:** RGW quota stats cache size Maximum number of entries in the quota stats cache.
 
 **زمان استفاده:**
 
@@ -406,7 +411,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `10_min` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_bucket_quota_ttl](../../../config/rgw/rgw.md#SP_rgw_bucket_quota_ttl) |
 
-**کارکرد:** Bucket quota stats cache TTL
+**کارکرد:** Bucket quota stats cache TTL Length of time for bucket stats to be cached within RGW instance.
 
 **زمان استفاده:**
 

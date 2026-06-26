@@ -54,6 +54,7 @@ ceph pg stat
 **Related options:**
 
 - `rgw_trust_forwarded_https` (if TLS terminates at a proxy)
+- [`rgw_trust_forwarded_https`](../../../config/rgw/rgw.md#SP_rgw_trust_forwarded_https)
 
 **Example:**
 
@@ -79,7 +80,7 @@ ceph config get client.rgw rgw_allow_notification_secrets_in_cleartext
 | Type | Uint · default `5` · **Advanced** |
 | Table | [rgw.md#SP_rgw_http_notif_connection_timeout](../../../config/rgw/rgw.md#SP_rgw_http_notif_connection_timeout) |
 
-**What it does:** This is the maximum time in seconds to connect to an endpoint
+**What it does:** This is the maximum time in seconds to connect to an endpoint This is the maximum time in seconds to connect to an endpoint. Delivery error occurs when the message timeout is exceeded. If set to zero the default value of 300 seconds will be used. see https://curl.se/libcurl/c/CURLOPT_CONNECTTIMEOUT.html
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -116,7 +117,7 @@ ceph -s  # cluster health, slow ops
 | Type | Uint · default `8192` · **Advanced** |
 | Table | [rgw.md#SP_rgw_http_notif_max_inflight](../../../config/rgw/rgw.md#SP_rgw_http_notif_max_inflight) |
 
-**What it does:** This is the maximum number of messages in-flight (across all http endpoints)
+**What it does:** This is the maximum number of messages in-flight (across all http endpoints) This is the maximum number of messages in-flight (across all http endpoints). Delivery error (BUSY) occurs when the number of messages is exceeded. If set to zero there is no limit on the number of messages in-flight.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -154,7 +155,7 @@ ceph -s  # cluster health, slow ops
 | Type | Uint · default `10` · **Advanced** |
 | Table | [rgw.md#SP_rgw_http_notif_message_timeout](../../../config/rgw/rgw.md#SP_rgw_http_notif_message_timeout) |
 
-**What it does:** This is the maximum time in seconds to deliver a notification
+**What it does:** This is the maximum time in seconds to deliver a notification This is the maximum time in seconds to deliver a notification. Delivery error occurs when the message timeout is exceeded. This value includes the connection time, and hence must be larger than rgw_http_notif_connection_timeout. If set to zero the http client will wait indefinitely. see https://curl.se/libcurl/c/CURLOPT_TIMEOUT.html
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -191,7 +192,7 @@ ceph -s  # cluster health, slow ops
 | Type | Float · default `0` · **Dev** |
 | Table | [rgw.md#SP_rgw_inject_notify_timeout_probability](../../../config/rgw/rgw.md#SP_rgw_inject_notify_timeout_probability) |
 
-**What it does:** Likelihood of ignoring a notify
+**What it does:** Likelihood of ignoring a notify This is the probability that the RGW cache will ignore a cache notify message. It exists to help with the development and testing of cache consistency and recovery improvements. Please do not set it in a production cluster, as it actively causes failures. Set this to a floating point value between 0 and 1.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -221,7 +222,7 @@ ceph config get client.rgw rgw_inject_notify_timeout_probability
 | Type | Uint · default `300` · **Advanced** |
 | Table | [rgw.md#SP_rgw_kafka_connection_idle](../../../config/rgw/rgw.md#SP_rgw_kafka_connection_idle) |
 
-**What it does:** Time in seconds to delete idle kafka connections
+**What it does:** Time in seconds to delete idle kafka connections A connection will be considered "idle" if no messages are sent to it for more than the time defined. Note that the connection will not be considered idle, even if it is down, as long as there are attempts to send messages to it.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -259,7 +260,7 @@ ceph -s  # cluster health, slow ops
 | Type | Uint · default `0` · **Advanced** |
 | Table | [rgw.md#SP_rgw_kafka_max_batch_size](../../../config/rgw/rgw.md#SP_rgw_kafka_max_batch_size) |
 
-**What it does:** This is the maximum size in bytes of a batch of messages sent to kafka
+**What it does:** This is the maximum size in bytes of a batch of messages sent to kafka This is the maximum size in bytes of a batch of messages sent to kafka. Messages will be sent in batches to improve performance, and this option sets the maximum size of those batches. If set to zero, the value is not set and the default batch size will be used.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -297,7 +298,7 @@ ceph -s  # cluster health, slow ops
 | Type | Uint · default `5000` · **Advanced** |
 | Table | [rgw.md#SP_rgw_kafka_message_timeout](../../../config/rgw/rgw.md#SP_rgw_kafka_message_timeout) |
 
-**What it does:** This is the maximum time in milliseconds to deliver a message (including retries)
+**What it does:** This is the maximum time in milliseconds to deliver a message (including retries) Delivery error occurs when the message timeout is exceeded. Value must be greater than zero, if set to zero, a value of 1 millisecond will be used.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -334,7 +335,7 @@ ceph -s  # cluster health, slow ops
 | Type | Uint · default `10` · **Advanced** |
 | Table | [rgw.md#SP_rgw_kafka_sleep_timeout](../../../config/rgw/rgw.md#SP_rgw_kafka_sleep_timeout) |
 
-**What it does:** Time in milliseconds to sleep while polling for kafka replies
+**What it does:** Time in milliseconds to sleep while polling for kafka replies This will be used to prevent busy waiting for the kafka replies As well as for the cases where the broker is down and we try to reconnect. The same values times 3 will be used to sleep if there were no messages sent or received across all kafka connections
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -371,7 +372,7 @@ ceph -s  # cluster health, slow ops
 | Type | Uint · default `10` · **Advanced** |
 | Table | [rgw.md#SP_rgw_max_notify_retries](../../../config/rgw/rgw.md#SP_rgw_max_notify_retries) |
 
-**What it does:** Number of attempts to notify peers before giving up.
+**What it does:** Number of attempts to notify peers before giving up. The number of times we will attempt to update a peer's cache in the event of error before giving up. This is unlikely to be an issue unless your cluster is very heavily loaded. Beware that increasing this value may cause some operations to take longer in exceptional cases and thus may, rarely, cause clients to time out.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 

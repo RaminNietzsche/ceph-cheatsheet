@@ -33,7 +33,7 @@ ceph -s
 | نوع | Bool · default `True` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [fatal.md#SP_fatal_signal_handlers](../../../config/global/fatal.md#SP_fatal_signal_handlers) |
 
-**کارکرد:** Whether to register signal handlers for SIGABRT etc that dump a stack trace
+**کارکرد:** Whether to register signal handlers for SIGABRT etc that dump a stack trace This is normally true for daemons and values for libraries.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 

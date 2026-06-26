@@ -318,9 +318,13 @@ ceph config get global bluestore_allocation_from_file
 | Type | Uint · default `0` · **Basic** · **STARTUP** (restart required) |
 | Table | [bluestore.md#SP_bluestore_allocation_recovery_threads](../../../config/global/bluestore.md#SP_bluestore_allocation_recovery_threads) |
 
-**What it does:** Amount of threads for allocation recovery after OSD crash.
+**What it does:** Amount of threads for allocation recovery after OSD crash. The optimal value varies. For NVMe DBs may be as large as 8. Value 0 selects legacy recovery. Value 1 denotes new recovery but on single thread.
 
 **When to use:** Core Global behavior — review before changing in production.
+
+**Related options:**
+
+- [`bluestore_allocation_from_file`](../../../config/global/bluestore.md#SP_bluestore_allocation_from_file)
 
 **Example:**
 
@@ -353,7 +357,7 @@ ceph -s
 | Type | Str · enum: ["bitmap", "stupid", "avl", "btree", "hybrid", "hybrid_btree2"] · default `hybrid` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_allocator](../../../config/global/bluestore.md#SP_bluestore_allocator) |
 
-**What it does:** Allocator policy
+**What it does:** Allocator policy Allocator to use for BlueStore. Stupid should only be used for testing.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -388,7 +392,7 @@ ceph -s
 | Type | Str · enum: ["hdd_optimized", "ssd_optimized", "auto"] · default `auto` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_allocator_lookup_policy](../../../config/global/bluestore.md#SP_bluestore_allocator_lookup_policy) |
 
-**What it does:** Determines how to perform the next free extent lookup.
+**What it does:** Determines how to perform the next free extent lookup. When set to 'hdd_optimized' the allocator searches from the last location found. This may facilitate contiguous disk writes. It may similarly be beneficial for large-IU QLC SSDs to enable firmware coalescing of sub-IU writes. When set to 'ssd-optimized' the allocator will search from the beginning of the device. This may facilitate SSD firmware housekeeping. When set to 'auto' the value will be derived from the detected device type (rotational or non-rotational).
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -423,7 +427,7 @@ ceph -s
 | Type | Bool · default `True` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_async_db_compaction](../../../config/global/bluestore.md#SP_bluestore_async_db_compaction) |
 
-**What it does:** Perform DB compaction requests asynchronously
+**What it does:** Perform DB compaction requests asynchronously Should BlueStore accept DB compaction requests via the admin socket?
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -451,9 +455,13 @@ ceph config get global bluestore_async_db_compaction
 | Type | Uint · default `4` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_avl_alloc_bf_free_pct](../../../config/global/bluestore.md#SP_bluestore_avl_alloc_bf_free_pct) |
 
-**What it does:** Sets the threshold at which shrinking free space (in %, integer) triggers enabling best-fit mode.
+**What it does:** Sets the threshold at which shrinking free space (in %, integer) triggers enabling best-fit mode. AVL allocator works in two modes: near-fit and best-fit. By default, it uses very fast near-fit mode, in which it tries to fit a new block near the last allocated block of similar size. The second mode is much slower best-fit mode, in which it tries to find an exact match for the requested allocation. This mode is used when either the device gets fragmented or when it is low on free space. When free space is smaller than `bluestore_avl_alloc_bf_free_pct`, best-fit mode is used.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`bluestore_avl_alloc_bf_threshold`](../../../config/global/bluestore.md#SP_bluestore_avl_alloc_bf_threshold)
 
 **Example:**
 
@@ -479,9 +487,13 @@ ceph config get global bluestore_avl_alloc_bf_free_pct
 | Type | Uint · default `128_K` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_avl_alloc_bf_threshold](../../../config/global/bluestore.md#SP_bluestore_avl_alloc_bf_threshold) |
 
-**What it does:** Sets threshold at which shrinking max free chunk size triggers enabling best-fit mode.
+**What it does:** Sets threshold at which shrinking max free chunk size triggers enabling best-fit mode. The AVL allocator works in two modes: near-fit and best-fit. By default, it uses very fast near-fit mode, in which it tries to fit a new block near the last allocated block of similar size. The second mode is much slower best-fit mode, in which it tries to find an exact match for the requested allocation. This mode is used when either the device gets fragmented or when it is low on free space. When the largest free block is smaller than 'bluestore_avl_alloc_bf_threshold', best-fit mode is used.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`bluestore_avl_alloc_bf_free_pct`](../../../config/global/bluestore.md#SP_bluestore_avl_alloc_bf_free_pct)
 
 **Example:**
 
@@ -563,7 +575,7 @@ ceph config get global bluestore_avl_alloc_ff_max_search_count
 | Type | Bool · default `True` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_bdev_label_multi](../../../config/global/bluestore.md#SP_bluestore_bdev_label_multi) |
 
-**What it does:** Keep multiple copies of block device label.
+**What it does:** Keep multiple copies of block device label. Having multiple labels is only useful in error conditions. The label located at offset 0 has been known to be sometimes overwritten by unknown causes, but without it OSD cannot run.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -598,7 +610,7 @@ ceph -s
 | Type | Bool · default `False` · **Advanced** · **STARTUP** (restart required) |
 | Table | [bluestore.md#SP_bluestore_bdev_label_multi_upgrade](../../../config/global/bluestore.md#SP_bluestore_bdev_label_multi_upgrade) |
 
-**What it does:** Let repair upgrade to multi label.
+**What it does:** Let repair upgrade to multi label. By default single label is preserved. Setting this variable before running fsck-repair upgrades single label into multi label.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -633,9 +645,13 @@ ceph -s
 | Type | Bool · default `True` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_bdev_label_require_all](../../../config/global/bluestore.md#SP_bluestore_bdev_label_require_all) |
 
-**What it does:** Require all copies to match.
+**What it does:** Require all copies to match. Under normal conditions, all copies should be the same. Clearing this flag allows to run OSD if at least one of labels could be properly read.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Related options:**
+
+- [`bluestore_bdev_label_multi`](../../../config/global/bluestore.md#SP_bluestore_bdev_label_multi)
 
 **Example:**
 
@@ -1028,7 +1044,7 @@ ceph config get global bluestore_block_wal_size
 | Type | Bool · default `True` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_bluefs](../../../config/global/bluestore.md#SP_bluestore_bluefs) |
 
-**What it does:** Use BlueFS to back RocksDB
+**What it does:** Use BlueFS to back RocksDB BlueFS allows RocksDB to share the same physical device(s) as the rest of BlueStore. It should be used in all cases unless testing/developing an alternative metadata database.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -1248,6 +1264,10 @@ ceph config get global bluestore_cache_age_bin_interval
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`bluestore_cache_age_bin_interval`](../../../config/global/bluestore.md#SP_bluestore_cache_age_bin_interval)
+
 **Example:**
 
 ```bash
@@ -1275,6 +1295,10 @@ ceph config get global bluestore_cache_age_bins_data
 **What it does:** A 10 element, space separated list of age bins for kv cache
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`bluestore_cache_age_bin_interval`](../../../config/global/bluestore.md#SP_bluestore_cache_age_bin_interval)
 
 **Example:**
 
@@ -1304,6 +1328,10 @@ ceph config get global bluestore_cache_age_bins_kv
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`bluestore_cache_age_bin_interval`](../../../config/global/bluestore.md#SP_bluestore_cache_age_bin_interval)
+
 **Example:**
 
 ```bash
@@ -1331,6 +1359,10 @@ ceph config get global bluestore_cache_age_bins_kv_onode
 **What it does:** A 10 element, space separated list of age bins for onode cache
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`bluestore_cache_age_bin_interval`](../../../config/global/bluestore.md#SP_bluestore_cache_age_bin_interval)
 
 **Example:**
 
@@ -1388,6 +1420,10 @@ ceph config get global bluestore_cache_autotune
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`bluestore_cache_autotune`](../../../config/global/bluestore.md#SP_bluestore_cache_autotune)
+
 **Example:**
 
 ```bash
@@ -1416,6 +1452,10 @@ ceph config get global bluestore_cache_autotune_interval
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`bluestore_cache_size`](../../../config/global/bluestore.md#SP_bluestore_cache_size)
+
 **Example:**
 
 ```bash
@@ -1443,6 +1483,10 @@ ceph config get global bluestore_cache_kv_onode_ratio
 **What it does:** Ratio of BlueStore cache to devote to key/value database (RocksDB)
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`bluestore_cache_size`](../../../config/global/bluestore.md#SP_bluestore_cache_size)
 
 **Example:**
 
@@ -1507,6 +1551,10 @@ ceph -s
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`bluestore_cache_meta_ratio`](../../../config/global/bluestore.md#SP_bluestore_cache_meta_ratio)
+
 **Example:**
 
 ```bash
@@ -1542,6 +1590,10 @@ ceph -s
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`bluestore_cache_size`](../../../config/global/bluestore.md#SP_bluestore_cache_size)
+
 **Example:**
 
 ```bash
@@ -1566,7 +1618,7 @@ ceph config get global bluestore_cache_meta_ratio
 | Type | Size · default `0` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_cache_size](../../../config/global/bluestore.md#SP_bluestore_cache_size) |
 
-**What it does:** Cache size (in bytes) for BlueStore
+**What it does:** Cache size (in bytes) for BlueStore This includes data and metadata cached by BlueStore as well as memory devoted to rocksdb's cache(s).
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -1598,6 +1650,10 @@ ceph config get global bluestore_cache_size
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`bluestore_cache_size`](../../../config/global/bluestore.md#SP_bluestore_cache_size)
+
 **Example:**
 
 ```bash
@@ -1625,6 +1681,10 @@ ceph config get global bluestore_cache_size_hdd
 **What it does:** Default bluestore_cache_size for non-rotational (solid state) media
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`bluestore_cache_size`](../../../config/global/bluestore.md#SP_bluestore_cache_size)
 
 **Example:**
 
@@ -1811,7 +1871,7 @@ ceph -s
 | Type | Str · enum: ["", "snappy", "zlib", "zstd", "lz4"] · default `snappy` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_compression_algorithm](../../../config/global/bluestore.md#SP_bluestore_compression_algorithm) |
 
-**What it does:** Default compression algorithm to use when writing object data
+**What it does:** Default compression algorithm to use when writing object data This controls the default compressor to use (if any) if the per-pool property is not set. Note that zstd is *not* recommended for bluestore due to high CPU overhead when compressing small amounts of data.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -1846,7 +1906,7 @@ ceph -s
 | Type | Size · default `0` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_compression_max_blob_size](../../../config/global/bluestore.md#SP_bluestore_compression_max_blob_size) |
 
-**What it does:** Maximum chunk size to apply compression to when non-random access is expected for an object.
+**What it does:** Maximum chunk size to apply compression to when non-random access is expected for an object. Chunks larger than this are broken into smaller chunks before being compressed
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -1885,6 +1945,10 @@ ceph -s
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`bluestore_compression_max_blob_size`](../../../config/global/bluestore.md#SP_bluestore_compression_max_blob_size)
+
 **Example:**
 
 ```bash
@@ -1920,6 +1984,10 @@ ceph -s
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`bluestore_compression_max_blob_size`](../../../config/global/bluestore.md#SP_bluestore_compression_max_blob_size)
+
 **Example:**
 
 ```bash
@@ -1951,7 +2019,7 @@ ceph -s
 | Type | Size · default `0` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_compression_min_blob_size](../../../config/global/bluestore.md#SP_bluestore_compression_min_blob_size) |
 
-**What it does:** Maximum chunk size to apply compression to when random access is expected for an object.
+**What it does:** Maximum chunk size to apply compression to when random access is expected for an object. Chunks larger than this are broken into smaller chunks before being compressed
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -1990,6 +2058,10 @@ ceph -s
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`bluestore_compression_min_blob_size`](../../../config/global/bluestore.md#SP_bluestore_compression_min_blob_size)
+
 **Example:**
 
 ```bash
@@ -2025,6 +2097,10 @@ ceph -s
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`bluestore_compression_min_blob_size`](../../../config/global/bluestore.md#SP_bluestore_compression_min_blob_size)
+
 **Example:**
 
 ```bash
@@ -2056,7 +2132,7 @@ ceph -s
 | Type | Str · enum: ["none", "passive", "aggressive", "force"] · default `none` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_compression_mode](../../../config/global/bluestore.md#SP_bluestore_compression_mode) |
 
-**What it does:** Default policy for using compression when pool does not specify
+**What it does:** Default policy for using compression when pool does not specify 'none' means never use compression. 'passive' means use compression when clients hint that data is compressible. 'aggressive' means use compression unless clients hint that data is not compressible. This option is used when the per-pool property for the compression mode is not present.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -2091,7 +2167,7 @@ ceph -s
 | Type | Float · default `0.875` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_compression_required_ratio](../../../config/global/bluestore.md#SP_bluestore_compression_required_ratio) |
 
-**What it does:** Compression ratio required to store compressed data
+**What it does:** Compression ratio required to store compressed data If we compress data and get less than this we discard the result and store the original uncompressed data.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -2126,7 +2202,7 @@ ceph -s
 | Type | Str · enum: ["none", "crc32c", "crc32c_16", "crc32c_8", "xxhash32", "xxhash64"] · default `crc32c` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_csum_type](../../../config/global/bluestore.md#SP_bluestore_csum_type) |
 
-**What it does:** Default checksum algorithm to use
+**What it does:** Default checksum algorithm to use Algorithms crc32c, xxhash32, and xxhash64 are available. The _16 and _8 variants use only a subset of the bits for more compact (but less reliable) checksumming.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -2161,9 +2237,13 @@ ceph -s
 | Type | Uint · default `0` · **Dev** · **STARTUP** (restart required) |
 | Table | [bluestore.md#SP_bluestore_debug_enforce_min_alloc_size](../../../config/global/bluestore.md#SP_bluestore_debug_enforce_min_alloc_size) |
 
-**What it does:** Enforces specific min_alloc size usages
+**What it does:** Enforces specific min_alloc size usages This overrides the actual min_alloc_size value persisted on mkfs (and originally obtained from bluestore_min_alloc_size) and permits an arbitrary value. Intended primarily for dev/debug purposes and should be used with care and deep understanding of potential consequences, e.g. data corruption.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`bluestore_min_alloc_size`](../../../config/global/bluestore.md#SP_bluestore_min_alloc_size)
 
 **Example:**
 
@@ -2189,7 +2269,7 @@ ceph config get global bluestore_debug_enforce_min_alloc_size
 | Type | Str · enum: ["default", "hdd", "ssd"] · default `default` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_debug_enforce_settings](../../../config/global/bluestore.md#SP_bluestore_debug_enforce_settings) |
 
-**What it does:** Enforces specific hardware profile settings
+**What it does:** Enforces specific hardware profile settings 'hdd' enforces settings intended for BlueStore on a rotational drive. 'ssd' enforces settings intended for BlueStore on an SSD. 'default' indicates that BlueStore is to use settings based on the detected hardware.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -2245,9 +2325,13 @@ ceph config get global bluestore_debug_extent_map_encode_check
 | Type | Float · default `0` · **Dev** · **STARTUP** (restart required) |
 | Table | [bluestore.md#SP_bluestore_debug_fast_recovery_compare_chance](../../../config/global/bluestore.md#SP_bluestore_debug_fast_recovery_compare_chance) |
 
-**What it does:** For testing only. Compare legacy and multithread allocation recovery.
+**What it does:** For testing only. Compare legacy and multithread allocation recovery. Chance to perform compare between procedures. Value in range <0..1>; defines chance to perform comparision between legacy and multithreaded allocation recovery. 0 means never compare. 1 means always compare.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`bluestore_allocation_recovery_threads`](../../../config/global/bluestore.md#SP_bluestore_allocation_recovery_threads)
 
 **Example:**
 
@@ -2325,7 +2409,7 @@ ceph config get global bluestore_debug_fsck_abort
 | Type | Float · default `0` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_debug_inject_allocation_from_file_failure](../../../config/global/bluestore.md#SP_bluestore_debug_inject_allocation_from_file_failure) |
 
-**What it does:** Enables random error injections when restoring allocation map from file.
+**What it does:** Enables random error injections when restoring allocation map from file. Specifies error injection probability for restoring allocation map from file hence causing full recovery. Intended primarily for testing.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -2513,9 +2597,13 @@ ceph config get global bluestore_debug_omit_kv_commit
 | Type | Bool · default `False` · **Dev** · **STARTUP** (restart required) |
 | Table | [bluestore.md#SP_bluestore_debug_onode_segmentation_random](../../../config/global/bluestore.md#SP_bluestore_debug_onode_segmentation_random) |
 
-**What it does:** Random selection of onode segmentation
+**What it does:** Random selection of onode segmentation For testing purposes. On each mount 50% roll decides whether to use bluestore_onode_segment_size or set it to 0 (disable).
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`bluestore_onode_segment_size`](../../../config/global/bluestore.md#SP_bluestore_onode_segment_size)
 
 **Example:**
 
@@ -2808,6 +2896,10 @@ ceph -s
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`bluestore_deferred_batch_ops`](../../../config/global/bluestore.md#SP_bluestore_deferred_batch_ops)
+
 **Example:**
 
 ```bash
@@ -2844,6 +2936,10 @@ ceph -s
 **What it does:** Default bluestore_deferred_batch_ops for non-rotational (SSD) media
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`bluestore_deferred_batch_ops`](../../../config/global/bluestore.md#SP_bluestore_deferred_batch_ops)
 
 **Example:**
 
@@ -2913,7 +3009,7 @@ ceph -s
 | Type | Bool · default `True` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_elastic_shared_blobs](../../../config/global/bluestore.md#SP_bluestore_elastic_shared_blobs) |
 
-**What it does:** Let BlueStore reuse existing shared blobs if possible
+**What it does:** Let BlueStore reuse existing shared blobs if possible Overwrites on snapped objects cause the shared blob count to grow. This has a very negative performance effect. When enabled, the shared blob count is significantly reduced.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -3088,7 +3184,7 @@ ceph config get global bluestore_extent_map_shard_target_size_slop
 | Type | Bool · default `False` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_fail_eio](../../../config/global/bluestore.md#SP_bluestore_fail_eio) |
 
-**What it does:** fail/crash on EIO
+**What it does:** fail/crash on EIO Whether BlueStore OSDs fail on EIO
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -3116,9 +3212,13 @@ ceph config get global bluestore_fail_eio
 | Type | Bool · default `False` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_frag_runtime](../../../config/global/bluestore.md#SP_bluestore_frag_runtime) |
 
-**What it does:** Enable tracking of runtime object fragmentation during reads.
+**What it does:** Enable tracking of runtime object fragmentation during reads. When enabled, BlueStore measures runtime object fragmentation by counting how many physical extents are accessed for a read operation. Higher values indicate more fragmented object data and potential performance impact. The collected metric reflects runtime access patterns rather than static object layout.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
+
+**Related options:**
+
+- [`bluestore_frag_static`](../../../config/global/bluestore.md#SP_bluestore_frag_static)
 
 **Example:**
 
@@ -3151,9 +3251,13 @@ ceph -s
 | Type | Bool · default `False` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_frag_static](../../../config/global/bluestore.md#SP_bluestore_frag_static) |
 
-**What it does:** Enable tracking of static object fragmentation during scrub
+**What it does:** Enable tracking of static object fragmentation during scrub When enabled, BlueStore measures static object fragmentation during scrub by counting the number of disjoint physical extents that make up object's on-disk layout. The collection-level static fragmentation score is computed as the sum of the fragmentation scores of objects visited during the scrub process.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
+
+**Related options:**
+
+- [`bluestore_frag_runtime`](../../../config/global/bluestore.md#SP_bluestore_frag_runtime)
 
 **Example:**
 
@@ -3189,6 +3293,10 @@ ceph -s
 **What it does:** The interval at which to perform a BlueStore free fragmentation check. Checking fragmentation is usually almost immediate. For highly fragmented storage, it can take several miliseconds and can cause a write operation to stall.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
+
+**Related options:**
+
+- [`bluestore_warn_on_free_fragmentation`](../../../config/global/bluestore.md#SP_bluestore_warn_on_free_fragmentation)
 
 **Example:**
 
@@ -3755,7 +3863,7 @@ ceph config get global bluestore_ignore_data_csum
 | Type | Float · default `10` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_kv_sync_util_logging_s](../../../config/global/bluestore.md#SP_bluestore_kv_sync_util_logging_s) |
 
-**What it does:** KV sync thread utilization logging period
+**What it does:** KV sync thread utilization logging period How often (in seconds) to print KV sync thread utilization, not logged when set to 0 or when utilization is 0%
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -3993,6 +4101,8 @@ ceph -s
 | Type | Size · default `0` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_max_blob_size](../../../config/global/bluestore.md#SP_bluestore_max_blob_size) |
 
+**What it does:** BlueStore blobs are collections of extents (on-disk data) originating from one or more RADOS objects. Blobs can be compressed, typically have checksum data, may be overwritten, may be shared (with an extent ref map), or split. This setting controls the maximum size a blob is allowed to be. A value of 0 indicates that no limiit is to be enforced.
+
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
 **Example:**
@@ -4021,6 +4131,10 @@ ceph config get global bluestore_max_blob_size
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`bluestore_max_blob_size`](../../../config/global/bluestore.md#SP_bluestore_max_blob_size)
+
 **Example:**
 
 ```bash
@@ -4046,6 +4160,10 @@ ceph config get global bluestore_max_blob_size_hdd
 | Table | [bluestore.md#SP_bluestore_max_blob_size_ssd](../../../config/global/bluestore.md#SP_bluestore_max_blob_size_ssd) |
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`bluestore_max_blob_size`](../../../config/global/bluestore.md#SP_bluestore_max_blob_size)
 
 **Example:**
 
@@ -4141,7 +4259,7 @@ ceph -s
 | Type | Uint · default `0` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_min_alloc_size](../../../config/global/bluestore.md#SP_bluestore_min_alloc_size) |
 
-**What it does:** Minimum allocation size to allocate for an object
+**What it does:** Minimum allocation size to allocate for an object A smaller allocation size generally means less data is read and then rewritten when a copy-on-write operation is triggered (e.g., when writing to something that was recently snapshotted). Similarly, less data is journaled before performing an overwrite (writes smaller than min_alloc_size must first pass through the BlueStore WAL). Larger values of min_alloc_size reduce the amount of metadata required to describe the on-disk layout and reduce overall fragmentation. Setting to 0 directs that the effective value is taken from bluestore_min_alloc_size_hdd or bluestore_min_alloc_size_ssd according to the kernel's rotational attribute for the underlying device. Note that this is baked into each OSD at creation. An OSD must be rebuilt to use a different value.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -4180,6 +4298,10 @@ ceph -s
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`bluestore_min_alloc_size`](../../../config/global/bluestore.md#SP_bluestore_min_alloc_size)
+
 **Example:**
 
 ```bash
@@ -4214,6 +4336,10 @@ ceph -s
 **What it does:** Default min_alloc_size value for non-rotational (solid state) media
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+
+**Related options:**
+
+- [`bluestore_min_alloc_size`](../../../config/global/bluestore.md#SP_bluestore_min_alloc_size)
 
 **Example:**
 
@@ -4274,7 +4400,7 @@ ceph config get global bluestore_nid_prealloc
 | Type | Size · default `0` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_onode_segment_size](../../../config/global/bluestore.md#SP_bluestore_onode_segment_size) |
 
-**What it does:** Size of segment for onode.
+**What it does:** Size of segment for onode. When object size grows too large BlueStore splits allocation metadata into smaller RocksDB keys (shards). When multiple blobs overlap each other some of them might belong to more than one shard. The encoding for such case is inefficient (spanning blobs). Segmentation of data prevents blobs from crossing specific separation lines, preventing spanning blobs altogether. The smaller values give better split on onode shards. The larger values minimize space loss for padding in compression. Recommended values 256K, 512K, 1024K. Value 0 disables segmentation. Actual segment size cannot be smaller than "compression_max_blob_size" pool option, if set.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -4348,6 +4474,10 @@ ceph -s
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`bluestore_prefer_deferred_size`](../../../config/global/bluestore.md#SP_bluestore_prefer_deferred_size)
+
 **Example:**
 
 ```bash
@@ -4382,6 +4512,10 @@ ceph -s
 **What it does:** Default bluestore_prefer_deferred_size for non-rotational (SSD) media
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`bluestore_prefer_deferred_size`](../../../config/global/bluestore.md#SP_bluestore_prefer_deferred_size)
 
 **Example:**
 
@@ -4442,9 +4576,13 @@ ceph config get global bluestore_qfsck_on_mount
 | Type | Float · default `1.2` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_recompression_min_gain](../../../config/global/bluestore.md#SP_bluestore_recompression_min_gain) |
 
-**What it does:** Required estimated gain for accepting extents for recompressing.
+**What it does:** Required estimated gain for accepting extents for recompressing. Partial writes over compressed blobs have high cost. New data requires new allocation units, but whole old blob must remain. To combat it BlueStore looks around write position to find blobs that will make it profitable to read and recompress.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+
+**Related options:**
+
+- [`bluestore_compression_max_blob_size`](../../../config/global/bluestore.md#SP_bluestore_compression_max_blob_size)
 
 **Example:**
 
@@ -4477,7 +4615,7 @@ ceph -s
 | Type | Uint · default `3` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_retry_disk_reads](../../../config/global/bluestore.md#SP_bluestore_retry_disk_reads) |
 
-**What it does:** Number of read retries on checksum validation error
+**What it does:** Number of read retries on checksum validation error Retries to read data from the disk this many times when checksum validation fails to handle spurious read errors gracefully.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -4549,7 +4687,7 @@ ceph -s
 | Type | Str · default `m(3) p(3,0-12) O(3,0-13)=block_cache={type=binned_lru} L=min_write_buffer_number_to_merge=32 P=min_write_buffer_number_to_merge=32` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_rocksdb_cfs](../../../config/global/bluestore.md#SP_bluestore_rocksdb_cfs) |
 
-**What it does:** Definition of column families and their sharding
+**What it does:** Definition of column families and their sharding Space separated list of elements: column_def &#91; '=' rocksdb_options &#93;. column_def := column_name &#91; '(' shard_count &#91; ',' hash_begin '-' &#91; hash_end &#93; &#93; ')' &#93;. Example: 'I=write_buffer_size=1048576 O(6) m(7,10-)'. Interval &#91;hash_begin..hash_end) defines characters to use for hash calculation. Recommended hash ranges: O(0-13) P(0-8) m(0-16). Sharding of S,T,C,M,B prefixes is inadvised
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -4721,6 +4859,10 @@ ceph -s
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`bluestore_slow_ops_warn_threshold`](../../../config/global/bluestore.md#SP_bluestore_slow_ops_warn_threshold)
+
 **Example:**
 
 ```bash
@@ -4836,7 +4978,7 @@ ceph config get global bluestore_spdk_max_io_completion
 | Type | Size · default `512` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_spdk_mem](../../../config/global/bluestore.md#SP_bluestore_spdk_mem) |
 
-**What it does:** Amount of dpdk memory size in MB
+**What it does:** Amount of dpdk memory size in MB If running multiple SPDK instances per node, you must specify the amount of dpdk memory size in MB each instance will use, to make sure each instance uses its own dpdk memory
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -4966,6 +5108,10 @@ ceph -s
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`bluestore_throttle_cost_per_io`](../../../config/global/bluestore.md#SP_bluestore_throttle_cost_per_io)
+
 **Example:**
 
 ```bash
@@ -5000,6 +5146,10 @@ ceph -s
 **What it does:** Default bluestore_throttle_cost_per_io for non-rotation (SSD) media
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`bluestore_throttle_cost_per_io`](../../../config/global/bluestore.md#SP_bluestore_throttle_cost_per_io)
 
 **Example:**
 
@@ -5137,7 +5287,7 @@ ceph -s
 | Type | Bool · default `True` · **Advanced** |
 | Table | [bluestore.md#SP_bluestore_use_ebd](../../../config/global/bluestore.md#SP_bluestore_use_ebd) |
 
-**What it does:** EBD plugin used during mkfs is required for mounts.
+**What it does:** EBD plugin used during mkfs is required for mounts. The flag has two effects, on mkfs and on mount. If set for mkfs and EBD plugin did attach to the device then save plugin name to OSD metadata. If set when mounting and plugin name is stored in OSD metadata then refuse to mount. The flag has no meaning if the device has no associated EBD plugin.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -5176,6 +5326,10 @@ ceph -s
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
+**Related options:**
+
+- [`bluestore_min_alloc_size`](../../../config/global/bluestore.md#SP_bluestore_min_alloc_size)
+
 **Example:**
 
 ```bash
@@ -5207,7 +5361,7 @@ ceph -s
 | Type | Str · enum: ["rocksdb_original", "use_some_extra", "use_some_extra_enforced", "fit_to_fast"] · default `use_some_extra` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_volume_selection_policy](../../../config/global/bluestore.md#SP_bluestore_volume_selection_policy) |
 
-**What it does:** Determine the BlueFS volume selection policy
+**What it does:** Determine the BlueFS volume selection policy Determine the BlueFS volume selection policy. The 'use_some_extra*' policy allows overriding RocksDB level granularity and placing a high levels' data on a faster device even when the level doesn't completely fit there. The 'fit_to_fast' policy enables using 100% of faster device capacity and allows the user to enable the 'level_compaction_dynamic_level_bytes' RocksDB option.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -5343,6 +5497,10 @@ ceph -s
 **What it does:** The level at which BlueStore block device free fragmentation raises a health warning. Set to "1" to disable. This is the value reported by the admin socket command "bluestore allocator score block".
 
 **When to use:** Core Global behavior — review before changing in production.
+
+**Related options:**
+
+- [`bluestore_fragmentation_check_period`](../../../config/global/bluestore.md#SP_bluestore_fragmentation_check_period)
 
 **Example:**
 
@@ -5514,7 +5672,7 @@ ceph -s
 | Type | Bool · default `False` · **Advanced** · **STARTUP** (restart required) |
 | Table | [bluestore.md#SP_bluestore_write_v2](../../../config/global/bluestore.md#SP_bluestore_write_v2) |
 
-**What it does:** Use faster write path
+**What it does:** Use faster write path The original write path was developed over time, incrementally adding features at the cost of layered inefficiencies. This rework of the write path clears and optimizes for typical cases. Write_v2 is necessary for the recompression feature.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -5549,9 +5707,13 @@ ceph -s
 | Type | Bool · default `False` · **Advanced** · **STARTUP** (restart required) |
 | Table | [bluestore.md#SP_bluestore_write_v2_random](../../../config/global/bluestore.md#SP_bluestore_write_v2_random) |
 
-**What it does:** Random selection of write path mode
+**What it does:** Random selection of write path mode For testing purposes. If true, value of bluestore_write_v2 is randomly selected on each mount.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
+
+**Related options:**
+
+- [`bluestore_write_v2`](../../../config/global/bluestore.md#SP_bluestore_write_v2)
 
 **Example:**
 
@@ -5584,7 +5746,7 @@ ceph -s
 | Type | Bool · default `False` · **Dev** |
 | Table | [bluestore.md#SP_bluestore_zero_block_detection](../../../config/global/bluestore.md#SP_bluestore_zero_block_detection) |
 
-**What it does:** punch holes instead of writing zeros
+**What it does:** punch holes instead of writing zeros Intended for large-scale synthetic testing. Currently this is implemented with punch hole semantics, affecting the logical extent map of the object. This does not interact well with some RBD and CephFS features.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 

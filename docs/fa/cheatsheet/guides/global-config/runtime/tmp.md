@@ -68,7 +68,7 @@ ceph -s
 | نوع | Str · default `$tmp_dir/$cluster-$name.XXXXXX` · **Advanced** |
 | جدول | [tmp.md#SP_tmp_file_template](../../../config/global/tmp.md#SP_tmp_file_template) |
 
-**کارکرد:** Template for temporary files created by daemons for ceph tell commands
+**کارکرد:** Template for temporary files created by daemons for ceph tell commands The template file name prefix for temporary files. For example, temporary files may be created by 'ceph tell' commands using the --daemon-output-file switch.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

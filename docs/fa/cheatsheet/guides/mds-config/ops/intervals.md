@@ -290,7 +290,7 @@ ceph config get mds mds_dirstat_min_interval
 | نوع | Secs · default `0` · **Advanced** |
 | جدول | [mds.md#SP_mds_extraordinary_events_dump_interval](../../../config/mds/mds.md#SP_mds_extraordinary_events_dump_interval) |
 
-**کارکرد:** Interval in seconds for dumping the recent in-memory logs when there is an extra-ordinary event.
+**کارکرد:** Interval in seconds for dumping the recent in-memory logs when there is an extra-ordinary event. Interval in seconds for dumping the recent in-memory logs when there is an extra-ordinary event. The default is ``0`` (disabled). The log level should be ``< 10`` and the gather level should be ``>=10`` in debug_mds for enabling this option.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
@@ -355,7 +355,7 @@ ceph config get mds mds_freeze_tree_timeout
 | نوع | Secs · default `2` · **Advanced** |
 | جدول | [mds.md#SP_mds_metrics_update_interval](../../../config/mds/mds.md#SP_mds_metrics_update_interval) |
 
-**کارکرد:** interval in seconds for metrics data update.
+**کارکرد:** interval in seconds for metrics data update. interval in seconds after which active MDSs send client metrics data to rank 0.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
@@ -429,7 +429,7 @@ ceph mds stat
 | نوع | Secs · default `5` · **Advanced** |
 | جدول | [mds.md#SP_mds_ping_interval](../../../config/mds/mds.md#SP_mds_ping_interval) |
 
-**کارکرد:** interval in seconds for sending ping messages to active MDSs.
+**کارکرد:** interval in seconds for sending ping messages to active MDSs. interval in seconds for rank 0 to send ping messages to all active MDSs.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
@@ -614,7 +614,7 @@ ceph mds stat
 | نوع | Float · default `2` · **Dev** |
 | جدول | [mds.md#SP_mds_task_status_update_interval](../../../config/mds/mds.md#SP_mds_task_status_update_interval) |
 
-**کارکرد:** task status update interval to manager
+**کارکرد:** task status update interval to manager interval (in seconds) for sending mds task status to ceph manager
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -679,7 +679,7 @@ ceph mds stat
 | نوع | Secs · default `30` · **Dev** |
 | جدول | [mds.md#SP_subv_metrics_window_interval](../../../config/mds/mds.md#SP_subv_metrics_window_interval) |
 
-**کارکرد:** subvolume metrics sliding window interval, seconds
+**کارکرد:** subvolume metrics sliding window interval, seconds interval in seconds to hold values in sliding window for subvolume metrics
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 

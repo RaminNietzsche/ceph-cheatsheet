@@ -205,7 +205,7 @@ ceph pg stat
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [osd.md#SP_osd_find_best_info_ignore_history_les](../../../config/osd/osd.md#SP_osd_find_best_info_ignore_history_les) |
 
-**کارکرد:** ignore last_epoch_started value when peering AND PROBABLY LOSE DATA
+**کارکرد:** ignore last_epoch_started value when peering AND PROBABLY LOSE DATA THIS IS AN EXTREMELY DANGEROUS OPTION THAT SHOULD ONLY BE USED AT THE DIRECTION OF A DEVELOPER. It makes peering ignore the last_epoch_started value when peering, which can allow the OSD to believe an OSD has an authoritative view of a PG's contents even when it is in fact old and stale, typically leading to data loss (by believing a stale PG is up to date).
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -459,6 +459,10 @@ ceph pg stat
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_numa_auto_affinity`](../../../config/osd/osd.md#SP_osd_numa_auto_affinity)
+
 **مثال:**
 
 ```bash
@@ -496,6 +500,10 @@ ceph pg stat
 **کارکرد:** prefer IP on network interface on same numa node as storage
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_numa_auto_affinity`](../../../config/osd/osd.md#SP_osd_numa_auto_affinity)
 
 **مثال:**
 
@@ -569,6 +577,10 @@ ceph pg stat
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_op_num_shards`](../../../config/osd/osd.md#SP_osd_op_num_shards)
+
 **مثال:**
 
 ```bash
@@ -604,6 +616,10 @@ ceph pg stat
 | جدول | [osd.md#SP_osd_op_num_shards_ssd](../../../config/osd/osd.md#SP_osd_op_num_shards_ssd) |
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_op_num_shards`](../../../config/osd/osd.md#SP_osd_op_num_shards)
 
 **مثال:**
 
@@ -677,6 +693,10 @@ ceph pg stat
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_op_num_threads_per_shard`](../../../config/osd/osd.md#SP_osd_op_num_threads_per_shard)
+
 **مثال:**
 
 ```bash
@@ -712,6 +732,10 @@ ceph pg stat
 | جدول | [osd.md#SP_osd_op_num_threads_per_shard_ssd](../../../config/osd/osd.md#SP_osd_op_num_threads_per_shard_ssd) |
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_op_num_threads_per_shard`](../../../config/osd/osd.md#SP_osd_op_num_threads_per_shard)
 
 **مثال:**
 
@@ -751,6 +775,10 @@ ceph pg stat
 
 **زمان استفاده:** Keep `mclock_scheduler` unless upstream support directs otherwise.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_op_queue_cut_off`](../../../config/osd/osd.md#SP_osd_op_queue_cut_off)
+
 **مثال:**
 
 ```bash
@@ -784,9 +812,13 @@ ceph pg stat
 | نوع | Str · enum: ["low", "high", "debug_random"] · default `high` · **Advanced** |
 | جدول | [osd.md#SP_osd_op_queue_cut_off](../../../config/osd/osd.md#SP_osd_op_queue_cut_off) |
 
-**کارکرد:** the threshold between high priority ops and low priority ops
+**کارکرد:** the threshold between high priority ops and low priority ops the threshold between high priority ops that use strict priority ordering and low priority ops that use a fairness algorithm that may or may not incorporate priority
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_op_queue`](../../../config/osd/osd.md#SP_osd_op_queue)
 
 **مثال:**
 

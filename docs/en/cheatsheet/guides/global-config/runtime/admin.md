@@ -73,6 +73,10 @@ ceph -s
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`admin_socket`](../../../config/global/admin.md#SP_admin_socket)
+
 **Example:**
 
 ```bash

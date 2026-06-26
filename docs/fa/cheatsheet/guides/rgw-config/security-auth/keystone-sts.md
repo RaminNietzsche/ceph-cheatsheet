@@ -581,6 +581,10 @@ ceph -s  # cluster health, slow ops
 - **Increase** when monitoring many active buckets/users and cache misses are visible.
 - **Decrease** when RGW memory is constrained.
 
+**گزینه‌های مرتبط:**
+
+- [`rgw_keystone_service_token_enabled`](../../../config/rgw/rgw.md#SP_rgw_keystone_service_token_enabled)
+
 **مثال:**
 
 ```bash
@@ -614,7 +618,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · enum: ["false", "true", "swift", "s3", "both", "0", "1", "none"] · default `false` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_keystone_implicit_tenants](../../../config/rgw/rgw.md#SP_rgw_keystone_implicit_tenants) |
 
-**کارکرد:** RGW Keystone implicit tenants creation
+**کارکرد:** RGW Keystone implicit tenants creation Implicitly create new users in their own tenant with the same name when authenticating via Keystone. Can be limited to S3 or SWIFT only.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -642,7 +646,7 @@ ceph config get client.rgw rgw_keystone_implicit_tenants
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_keystone_scope_enabled](../../../config/rgw/rgw.md#SP_rgw_keystone_scope_enabled) |
 
-**کارکرد:** Enable logging of Keystone scope information in ops log
+**کارکرد:** Enable logging of Keystone scope information in ops log When enabled, operations authenticated via Keystone will include scope information (project, domain, roles) in the ops log. This is disabled by default as it adds additional data to each log entry and most deployments do not require this level of Keystone audit detail. User identity logging is controlled separately by rgw_keystone_scope_include_user for privacy considerations. Requires rgw_enable_ops_log to be enabled.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -698,7 +702,7 @@ ceph config get client.rgw rgw_keystone_scope_include_roles
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_keystone_scope_include_user](../../../config/rgw/rgw.md#SP_rgw_keystone_scope_include_user) |
 
-**کارکرد:** Include human-readable identity names in Keystone scope logs
+**کارکرد:** Include human-readable identity names in Keystone scope logs When false (default), only opaque IDs are logged for all identity fields (project_id, domain_id, user_id, app_cred_id), which is GDPR-compliant and privacy-friendly. When true, human-readable names (project_name, domain names, user_name, app_cred_name) are included. Opaque IDs are always logged regardless of this setting, allowing operators to correlate with Keystone without exposing names in logs.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -729,6 +733,10 @@ ceph config get client.rgw rgw_keystone_scope_include_user
 **کارکرد:** Only users with one of these roles will be valid for service users.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_keystone_service_token_enabled`](../../../config/rgw/rgw.md#SP_rgw_keystone_service_token_enabled)
 
 **مثال:**
 
@@ -782,7 +790,7 @@ ceph config get client.rgw rgw_keystone_service_token_enabled
 | نوع | Int · default `10000` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_keystone_token_cache_size](../../../config/rgw/rgw.md#SP_rgw_keystone_token_cache_size) |
 
-**کارکرد:** Keystone token cache size
+**کارکرد:** Keystone token cache size Max number of Keystone tokens that will be cached. Token that is not cached requires RGW to access the Keystone server when authenticating.
 
 **زمان استفاده:**
 
@@ -822,7 +830,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `300` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_keystone_token_cache_ttl](../../../config/rgw/rgw.md#SP_rgw_keystone_token_cache_ttl) |
 
-**کارکرد:** Keystone token secret key cache TTL
+**کارکرد:** Keystone token secret key cache TTL The TTL for secret keys that are loaded from Keystone and stored in the cache system.
 
 **زمان استفاده:**
 
@@ -928,7 +936,7 @@ ceph config get client.rgw rgw_keystone_verify_ssl
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_sts_client_id](../../../config/rgw/rgw.md#SP_rgw_sts_client_id) |
 
-**کارکرد:** Client Id
+**کارکرد:** Client Id Client Id needed for introspecting a Web Token.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -956,7 +964,7 @@ ceph config get client.rgw rgw_sts_client_id
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_sts_client_secret](../../../config/rgw/rgw.md#SP_rgw_sts_client_secret) |
 
-**کارکرد:** Client Secret
+**کارکرد:** Client Secret Client Secret needed for introspecting a Web Token.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -984,7 +992,7 @@ ceph config get client.rgw rgw_sts_client_secret
 | نوع | Str · default `sts` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_sts_entry](../../../config/rgw/rgw.md#SP_rgw_sts_entry) |
 
-**کارکرد:** STS URL prefix
+**کارکرد:** STS URL prefix URL path prefix for internal STS requests.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -1012,9 +1020,9 @@ ceph config get client.rgw rgw_sts_entry
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_sts_key](../../../config/rgw/rgw.md#SP_rgw_sts_key) |
 
-**کارکرد:** STS Key
+**کارکرد:** STS Key Key used for encrypting/ decrypting role session tokens. This key must consist of 16 hexadecimal characters, which can be generated by the command 'openssl rand -hex 16'. All radosgw instances in a zone should use the same key. In multisite configurations, all zones in a realm should use the same key.
 
-**زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+**زمان استفاده:** تنظیم replication و sync در محیط چندسایته — وقتی تأخیر (lag) یا بار sync مشکل‌ساز است.
 
 **مثال:**
 
@@ -1050,9 +1058,13 @@ ceph -s  # cluster health, slow ops
 | نوع | Uint · default `43200` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_sts_max_session_duration](../../../config/rgw/rgw.md#SP_rgw_sts_max_session_duration) |
 
-**کارکرد:** Session token max duration
+**کارکرد:** Session token max duration This option can be used to configure the upper limit of the durationSeconds of temporary credentials returned by 'GetSessionToken'.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_sts_min_session_duration`](../../../config/rgw/rgw.md#SP_rgw_sts_min_session_duration)
 
 **مثال:**
 
@@ -1078,9 +1090,13 @@ ceph config get client.rgw rgw_sts_max_session_duration
 | نوع | Uint · default `900` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_sts_min_session_duration](../../../config/rgw/rgw.md#SP_rgw_sts_min_session_duration) |
 
-**کارکرد:** Minimum allowed duration of a session
+**کارکرد:** Minimum allowed duration of a session This option can be used to configure the lower limit of durationSeconds of temporary credentials returned by 'AssumeRole*' calls.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_sts_max_session_duration`](../../../config/rgw/rgw.md#SP_rgw_sts_max_session_duration)
 
 **مثال:**
 
@@ -1116,7 +1132,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_sts_token_introspection_url](../../../config/rgw/rgw.md#SP_rgw_sts_token_introspection_url) |
 
-**کارکرد:** STS Web Token introspection URL
+**کارکرد:** STS Web Token introspection URL URL for introspecting an STS Web Token.
 
 **زمان استفاده:** هنگام یکپارچه‌سازی با سرویس خارجی تنظیم کنید؛ اگر قابلیت استفاده نمی‌شود خالی بگذارید.
 

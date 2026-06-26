@@ -39,9 +39,13 @@ ceph pg stat
 | 类型 | Bool · default `False` · **Dev** |
 | 表格 | [rgw.md#SP_rgw_user_counters_cache](../../../config/rgw/rgw.md#SP_rgw_user_counters_cache) |
 
-**作用：** enable a rgw perf counters cache for counters with user label
+**作用：** enable a rgw perf counters cache for counters with user label If set to true, rgw creates perf counters with a label for the user and stores them in a perf counters cache. This perf counters cache contains only perf counters labeled by user.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`rgw_user_counters_cache_size`](../../../config/rgw/rgw.md#SP_rgw_user_counters_cache_size)
 
 **示例：**
 
@@ -74,6 +78,10 @@ ceph config set client.rgw rgw_user_counters_cache_size 20000
 
 - **Increase** when monitoring many active buckets/users and cache misses are visible.
 - **Decrease** when RGW memory is constrained.
+
+**相关选项：**
+
+- [`rgw_user_counters_cache`](../../../config/rgw/rgw.md#SP_rgw_user_counters_cache)
 
 **示例：**
 
@@ -108,7 +116,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `1000` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_user_max_buckets](../../../config/rgw/rgw.md#SP_rgw_user_max_buckets) |
 
-**作用：** Max number of buckets per user
+**作用：** Max number of buckets per user A user can create at most this number of buckets. Zero means no limit; a negative value means users cannot create any new buckets, although users will retain buckets already created.
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 
@@ -165,7 +173,7 @@ ceph config get client.rgw rgw_user_policies_max_num
 | 类型 | Bool · default `True` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_user_unique_email](../../../config/rgw/rgw.md#SP_rgw_user_unique_email) |
 
-**作用：** Require local RGW users to have unique email addresses
+**作用：** Require local RGW users to have unique email addresses Enforce builtin user accounts to have unique email addresses. This setting is historical. In future, non-enforcement of email address uniqueness is likely to become the default.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 

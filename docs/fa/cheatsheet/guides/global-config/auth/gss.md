@@ -34,7 +34,7 @@ ceph -s
 | نوع | Str · default `/var/lib/ceph/$name/gss_client_$name.ktab` · **Advanced** |
 | جدول | [gss.md#SP_gss_ktab_client_file](../../../config/global/gss.md#SP_gss_ktab_client_file) |
 
-**کارکرد:** GSS/KRB5 Keytab file for client authentication
+**کارکرد:** GSS/KRB5 Keytab file for client authentication This sets the full path for the GSS/Kerberos client keytab file location.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -67,6 +67,8 @@ ceph -s
 |---|---|
 | نوع | Str · default `ceph` · **Advanced** |
 | جدول | [gss.md#SP_gss_target_name](../../../config/global/gss.md#SP_gss_target_name) |
+
+**کارکرد:** This sets the GSS target service name.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

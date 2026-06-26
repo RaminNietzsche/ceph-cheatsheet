@@ -33,7 +33,7 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [openssl.md#SP_openssl_conf](../../../config/global/openssl.md#SP_openssl_conf) |
 
-**作用：** Use openssl_conf for specific openssl algorithm
+**作用：** Use openssl_conf for specific openssl algorithm Pass opts in this way: openssl_conf=/path/to/openssl.conf
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

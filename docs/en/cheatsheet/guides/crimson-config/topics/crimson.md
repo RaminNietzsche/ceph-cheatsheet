@@ -46,7 +46,7 @@ ceph -s
 | Type | Bool · default `True` · **Advanced** |
 | Table | [crimson.md#SP_crimson_allow_pg_split](../../../config/crimson/crimson.md#SP_crimson_allow_pg_split) |
 
-**What it does:** Allow Crimson pools to increase their PG count (split)
+**What it does:** Allow Crimson pools to increase their PG count (split) When enabled, allows the monitor to increase pg_num for pools using the crimson flag.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -158,7 +158,7 @@ ceph pg stat
 | Type | Uint · default `0` · **Advanced** · **STARTUP** (restart required) |
 | Table | [crimson.md#SP_crimson_cpu_num](../../../config/crimson/crimson.md#SP_crimson_cpu_num) |
 
-**What it does:** The number of CPUs to use for serving seastar reactors per OSD without CPU pinning.
+**What it does:** The number of CPUs to use for serving seastar reactors per OSD without CPU pinning. The number of CPUs to use for serving seastar reactors per OSD without CPU pinning. overridden if crimson_cpu_set is set. smp::count is deduced from this option.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -198,7 +198,7 @@ ceph pg stat
 | Type | Str · default `(empty)` · **Advanced** · **STARTUP** (restart required) |
 | Table | [crimson.md#SP_crimson_cpu_set](../../../config/crimson/crimson.md#SP_crimson_cpu_set) |
 
-**What it does:** CPU cores on which seastar reactor threads will run in cpuset(7) format per OSD with pinning.
+**What it does:** CPU cores on which seastar reactor threads will run in cpuset(7) format per OSD with pinning. CPU cores on which seastar reactor threads will run in cpuset(7) format per OSD with pinning. overrides crimson_cpu_num. smp::count is deduced from this option
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -236,7 +236,7 @@ ceph pg stat
 | Type | Size · default `0` · **Advanced** · **STARTUP** (restart required) |
 | Table | [crimson.md#SP_crimson_memory](../../../config/crimson/crimson.md#SP_crimson_memory) |
 
-**What it does:** Total memory to use for the seastar allocator per OSD.
+**What it does:** Total memory to use for the seastar allocator per OSD. Total memory to use for the seastar allocator per OSD. Maps to seastar's --memory flag. 0 means use seastar's default (all available memory minus a reserve).
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -423,7 +423,7 @@ ceph pg stat
 | Type | Str · enum: ["io_uring", "linux-aio", "epoll"] · default `(empty)` · **Advanced** · **STARTUP** (restart required) |
 | Table | [crimson.md#SP_crimson_reactor_backend](../../../config/crimson/crimson.md#SP_crimson_reactor_backend) |
 
-**What it does:** Select which Seastar's internal reactor implementation
+**What it does:** Select which Seastar's internal reactor implementation Controls which asynchronous I/O engine the Seastar reactor will use during OSD startup. Different backends have different performance characteristics and require different kernel capabilities. Note, If none is non is selected, let seastar choose.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -461,7 +461,7 @@ ceph pg stat
 | Type | Uint · default `200` · **Advanced** · **STARTUP** (restart required) |
 | Table | [crimson.md#SP_crimson_reactor_idle_poll_time_us](../../../config/crimson/crimson.md#SP_crimson_reactor_idle_poll_time_us) |
 
-**What it does:** Seastar's reactor idle polling time (ms) before going back to sleep.
+**What it does:** Seastar's reactor idle polling time (ms) before going back to sleep. Seastar's reactor idle polling time (ms) before going back to sleep. Longer reactor poll time will result in larger CPU utilization.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -499,7 +499,7 @@ ceph pg stat
 | Type | Float · default `0` · **Advanced** · **STARTUP** (restart required) |
 | Table | [crimson.md#SP_crimson_reactor_io_latency_goal_ms](../../../config/crimson/crimson.md#SP_crimson_reactor_io_latency_goal_ms) |
 
-**What it does:** The maximum time (ms) Seastar's reactor IO operations must take. If not set(0 mean not set), defaults to 1.5 * crimson_reactor_task_quota_ms
+**What it does:** The maximum time (ms) Seastar's reactor IO operations must take. If not set(0 mean not set), defaults to 1.5 * crimson_reactor_task_quota_ms The maximum time (ms) Seastar's reactor IO operations must take. If not set, defaults to 1.5 * crimson_reactor_task_quota_ms. Increasing this value will allow more IO requests to be dispatched concurrently.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -537,7 +537,7 @@ ceph pg stat
 | Type | Float · default `0.5` · **Advanced** · **STARTUP** (restart required) |
 | Table | [crimson.md#SP_crimson_reactor_task_quota_ms](../../../config/crimson/crimson.md#SP_crimson_reactor_task_quota_ms) |
 
-**What it does:** The maximum time (ms) Seastar reactors will wait between polls.
+**What it does:** The maximum time (ms) Seastar reactors will wait between polls. The maximum time (ms) Seastar reactors will wait between polls. Shorter time between pools will result in larger CPU utilization.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

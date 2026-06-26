@@ -166,7 +166,7 @@ ceph -s
 | Type | Int · default `5` · **Advanced** |
 | Table | [rbd.md#SP_rbd_mirror_image_perf_stats_prio](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_image_perf_stats_prio) |
 
-**What it does:** Priority level for mirror daemon per-image replication perf counters
+**What it does:** Priority level for mirror daemon per-image replication perf counters The daemon will send per-image perf counter data to the manager daemon if the priority is not lower than mgr_stats_threshold.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -574,6 +574,10 @@ ceph -s
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`rbd_mirror_memory_target`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_target)
+
 **Example:**
 
 ```bash
@@ -601,6 +605,10 @@ ceph config get client rbd_mirror_memory_autotune
 **What it does:** When tcmalloc and cache autotuning is enabled, estimate the minimum amount of memory in bytes the rbd-mirror daemon will need.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
 
 **Example:**
 
@@ -630,6 +638,10 @@ ceph config get client rbd_mirror_memory_base
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
+
 **Example:**
 
 ```bash
@@ -657,6 +669,10 @@ ceph config get client rbd_mirror_memory_cache_autotune_interval
 **What it does:** When tcmalloc and cache autotuning is enabled, set the minimum amount of memory used for cache.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
 
 **Example:**
 
@@ -686,6 +702,10 @@ ceph config get client rbd_mirror_memory_cache_min
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
+
 **Example:**
 
 ```bash
@@ -714,6 +734,10 @@ ceph config get client rbd_mirror_memory_cache_resize_interval
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
+
 **Example:**
 
 ```bash
@@ -741,6 +765,10 @@ ceph config get client rbd_mirror_memory_expected_fragmentation
 **What it does:** When tcmalloc and cache autotuning is enabled, try to keep this many bytes mapped in memory.
 
 **When to use:** Core RBD mirror behavior — review before changing in production.
+
+**Related options:**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
 
 **Example:**
 
@@ -773,7 +801,7 @@ ceph -s
 | Type | Int · default `5` · **Advanced** |
 | Table | [rbd.md#SP_rbd_mirror_perf_stats_prio](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_perf_stats_prio) |
 
-**What it does:** Priority level for mirror daemon replication perf counters
+**What it does:** Priority level for mirror daemon replication perf counters The daemon will send perf counter data to the manager daemon if the priority is not lower than mgr_stats_threshold.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

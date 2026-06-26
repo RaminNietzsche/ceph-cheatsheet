@@ -46,7 +46,7 @@ ceph pg stat
 | نوع | Bool · default `True` · **Basic** |
 | جدول | [rgw.md#SP_rgw_dynamic_resharding](../../../config/rgw/rgw.md#SP_rgw_dynamic_resharding) |
 
-**کارکرد:** Enable dynamic resharding
+**کارکرد:** Enable dynamic resharding If true, RGW will dynamically increase the number of shards in buckets that have a high number of objects per shard.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -74,9 +74,13 @@ ceph config get client.rgw rgw_dynamic_resharding
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_dynamic_resharding_may_reduce](../../../config/rgw/rgw.md#SP_rgw_dynamic_resharding_may_reduce) |
 
-**کارکرد:** Whether dynamic resharding can reduce the number of shards
+**کارکرد:** Whether dynamic resharding can reduce the number of shards If true, RGW's dynamic resharding ability is allowed to reduce the number of shards if it appears there are too many.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_dynamic_resharding`](../../../config/rgw/rgw.md#SP_rgw_dynamic_resharding)
 
 **مثال:**
 
@@ -102,7 +106,7 @@ ceph config get client.rgw rgw_dynamic_resharding_may_reduce
 | نوع | Uint · default `120` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_dynamic_resharding_reduction_wait](../../../config/rgw/rgw.md#SP_rgw_dynamic_resharding_reduction_wait) |
 
-**کارکرد:** Number of hours to delay bucket index shard reduction.
+**کارکرد:** Number of hours to delay bucket index shard reduction. In order to avoid resharding buckets with object counts that fluctuate up and down regularly, we implement a delay between noting a shard reduction might be appropriate and when it's actually done. This allows us to cancel the reshard operation if the number of object significantly increases during this delay. WARNING: Setting this value too low could result in significantly reduced cluster performance.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -222,7 +226,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `-1` · **Dev** |
 | جدول | [rgw.md#SP_rgw_reshard_debug_interval](../../../config/rgw/rgw.md#SP_rgw_reshard_debug_interval) |
 
-**کارکرد:** The number of seconds that simulate one "day" in order to debug RGW dynamic resharding. Do *not* modify for a production cluster.
+**کارکرد:** The number of seconds that simulate one "day" in order to debug RGW dynamic resharding. Do *not* modify for a production cluster. For debugging RGW dynamic resharding, the number of seconds that are equivalent to one simulated "day". Values less than 1 are ignored and do not change dynamic resharding behavior. For example, during debugging if one wanted every 10 minutes to be equivalent to one day, then this would be set to 600, the number of seconds in 10 minutes.
 
 **زمان استفاده:**
 
@@ -367,9 +371,13 @@ ceph -s  # cluster health, slow ops
 | نوع | Float · default `0.5` · **Dev** |
 | جدول | [rgw.md#SP_rgw_reshard_progress_judge_ratio](../../../config/rgw/rgw.md#SP_rgw_reshard_progress_judge_ratio) |
 
-**کارکرد:** ratio of reshard progress judge interval to randomly vary
+**کارکرد:** ratio of reshard progress judge interval to randomly vary Add a random delay to rgw_reshard_progress_judge_interval for deciding when to judge the reshard process. The default setting spreads judge time window of &#91;1, 1.5&#93; * rgw_reshard_progress_judge_interval.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_reshard_progress_judge_interval`](../../../config/rgw/rgw.md#SP_rgw_reshard_progress_judge_interval)
 
 **مثال:**
 
@@ -450,6 +458,10 @@ ceph -s  # cluster health, slow ops
 **کارکرد:** threshold for a shard to record log before blocking writes
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_reshard_progress_judge_interval`](../../../config/rgw/rgw.md#SP_rgw_reshard_progress_judge_interval)
 
 **مثال:**
 

@@ -47,7 +47,7 @@ ceph -s
 | 类型 | Secs · default `2` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_action_update_interval](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_action_update_interval) |
 
-**作用：** interval for driving asynchronous mirror actions
+**作用：** interval for driving asynchronous mirror actions Interval in seconds to process pending mirror update actions.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
@@ -84,7 +84,7 @@ ceph -s
 | 类型 | Size · default `16_M` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_blockdiff_min_file_size](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_blockdiff_min_file_size) |
 
-**作用：** minimum file size threshold in bytes above which block-level diff is used during CephFS mirroring.
+**作用：** minimum file size threshold in bytes above which block-level diff is used during CephFS mirroring. defines the minimum file size, in bytes, required for CephFS mirroring to use block-level delta synchronization instead of performing a full file copy. When a file’s size is greater than to this threshold, the mirroring engine attempts to synchronize only the modified block extents between snapshots. For files smaller than or equal to this value, a full file copy is performed instead, as block-level diff may not provide meaningful performance benefits for small files.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -119,7 +119,7 @@ ceph -s
 | 类型 | Uint · default `64` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_datasync_files_per_batch](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_datasync_files_per_batch) |
 
-**作用：** maximum number of files processed by datasync threads per scheduling cycle before yielding.
+**作用：** maximum number of files processed by datasync threads per scheduling cycle before yielding. defines the maximum number of files a data synchronization thread will process for a specific snapshot before yielding the thread to re-check scheduling logic. This is applicable only when cephfs_mirror_distribute_datasync_threads is enabled. This batch size determines the granularity of thread distribution; smaller batches allow threads to rotate between snapshots more frequently, while larger batches improve throughput by minimizing the overhead of thread re-assignment.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -156,7 +156,7 @@ ceph -s
 | 类型 | Uint · default `10` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_directory_scan_interval](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_directory_scan_interval) |
 
-**作用：** interval to scan directories to mirror snapshots
+**作用：** interval to scan directories to mirror snapshots interval in seconds to scan configured directories for snapshot mirroring.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
@@ -193,7 +193,7 @@ ceph -s
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_distribute_datasync_threads](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_distribute_datasync_threads) |
 
-**作用：** distribute data synchronization threads evenly across multiple snapshots.
+**作用：** distribute data synchronization threads evenly across multiple snapshots. controls how datasync worker threads are scheduled when multiple snapshots are queued for synchronization. When enabled, worker threads are distributed fairly across active snapshots, preventing a single large snapshot from monopolizing all available threads and causing other snapshots to starve. When disabled, datasync threads process one snapshot until completion before switching to another, which can improve throughput for individual large snapshots but may increase latency for other queued snapshots. Enabling this option improves responsiveness and reduces starvation in environments where multiple directories are configured to be mirrored.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -228,7 +228,7 @@ ceph -s
 | 类型 | Uint · default `3` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_max_concurrent_directory_syncs](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_max_concurrent_directory_syncs) |
 
-**作用：** maximum number of concurrent snapshot synchronization crawler threads
+**作用：** maximum number of concurrent snapshot synchronization crawler threads maximum number of directory snapshots that can be crawled concurrently by cephfs-mirror daemon. Controls the number of synchronization crawler threads. Note that the crawler threads also does entry operations like directory creations, file deletes and snapshot deletes/renames.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -265,7 +265,7 @@ ceph -s
 | 类型 | Uint · default `10` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_max_consecutive_failures_per_directory](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_max_consecutive_failures_per_directory) |
 
-**作用：** consecutive failed directory synchronization attempts before marking a directory as "failed"
+**作用：** consecutive failed directory synchronization attempts before marking a directory as "failed" number of consecutive snapshot synchronization failures to mark a directory as "failed". failed directories are retried for synchronization less frequently.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -302,7 +302,7 @@ ceph -s
 | 类型 | Uint · default `6` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_max_datasync_threads](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_max_datasync_threads) |
 
-**作用：** maximum number of concurrent snapshot data synchronization threads
+**作用：** maximum number of concurrent snapshot data synchronization threads specifies the maximum number of worker threads in the CephFS mirror data synchronization thread pool. These threads process file synchronization tasks produced by crawler threads for mirrored directory snapshots.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -339,7 +339,7 @@ ceph -s
 | 类型 | Uint · default `3` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_max_snapshot_sync_per_cycle](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_max_snapshot_sync_per_cycle) |
 
-**作用：** number of snapshots to mirror in one cycle
+**作用：** number of snapshots to mirror in one cycle maximum number of snapshots to mirror when a directory is picked up for mirroring by worker threads.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -376,7 +376,7 @@ ceph -s
 | 类型 | Secs · default `10` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_mount_timeout](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_mount_timeout) |
 
-**作用：** timeout for mounting primary/secondary ceph file system
+**作用：** timeout for mounting primary/secondary ceph file system Timeout in seconds for mounting primary or secondary (remote) ceph file system by the cephfs-mirror daemon. Setting this to a higher value could result in the mirror daemon getting stalled when mounting a file system if the cluster is not reachable. This option is used to override the usual client_mount_timeout.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
@@ -413,7 +413,7 @@ ceph -s
 | 类型 | Int · default `5` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_perf_stats_prio](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_perf_stats_prio) |
 
-**作用：** Priority level for mirror daemon replication perf counters
+**作用：** Priority level for mirror daemon replication perf counters The daemon will send perf counter data to the manager daemon if the priority is not lower than mgr_stats_threshold.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -450,7 +450,7 @@ ceph -s
 | 类型 | Secs · default `30` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_restart_mirror_on_blocklist_interval](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_restart_mirror_on_blocklist_interval) |
 
-**作用：** interval to restart blocklisted instances
+**作用：** interval to restart blocklisted instances Interval in seconds to restart blocklisted mirror instances. Setting to zero (0) disables restarting blocklisted instances.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
@@ -487,7 +487,7 @@ ceph -s
 | 类型 | Secs · default `20` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_restart_mirror_on_failure_interval](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_restart_mirror_on_failure_interval) |
 
-**作用：** interval to restart failed mirror instances
+**作用：** interval to restart failed mirror instances Interval in seconds to restart failed mirror instances. Setting to zero (0) disables restarting failed mirror instances.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
@@ -524,7 +524,7 @@ ceph -s
 | 类型 | Uint · default `60` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_retry_failed_directories_interval](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_retry_failed_directories_interval) |
 
-**作用：** failed directory retry interval for synchronization
+**作用：** failed directory retry interval for synchronization interval in seconds to retry synchronization for failed directories.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
@@ -561,7 +561,7 @@ ceph -s
 | 类型 | Secs · default `5` · **Advanced** |
 | 表格 | [cephfs.md#SP_cephfs_mirror_tick_interval](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_tick_interval) |
 
-**作用：** interval for the per-peer mirroring tick thread
+**作用：** interval for the per-peer mirroring tick thread interval in seconds for the per-peer tick thread that runs periodic mirroring work. The value is re-read each iteration so configuration changes take effect without restarting the daemon.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 

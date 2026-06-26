@@ -78,6 +78,10 @@ ceph -s
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`clog_to_graylog`](../../../config/global/clog.md#SP_clog_to_graylog)
+
 **Example:**
 
 ```bash
@@ -112,6 +116,10 @@ ceph -s
 **What it does:** Graylog port number for cluster log messages
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`clog_to_graylog`](../../../config/global/clog.md#SP_clog_to_graylog)
 
 **Example:**
 
@@ -218,6 +226,10 @@ ceph -s
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`clog_to_syslog`](../../../config/global/clog.md#SP_clog_to_syslog)
+
 **Example:**
 
 ```bash
@@ -252,6 +264,10 @@ ceph -s
 **What it does:** Syslog level for cluster log messages
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`clog_to_syslog`](../../../config/global/clog.md#SP_clog_to_syslog)
 
 **Example:**
 

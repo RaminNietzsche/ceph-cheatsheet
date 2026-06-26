@@ -33,7 +33,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [monmap.md#SP_monmap](../../../config/global/monmap.md#SP_monmap) |
 
-**کارکرد:** path to MonMap file
+**کارکرد:** path to MonMap file This option is normally used during mkfs, but can also be used to identify which monitors to connect to.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

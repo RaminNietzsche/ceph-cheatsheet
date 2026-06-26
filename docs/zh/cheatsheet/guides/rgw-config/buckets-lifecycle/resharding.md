@@ -46,7 +46,7 @@ ceph pg stat
 | 类型 | Bool · default `True` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_dynamic_resharding](../../../config/rgw/rgw.md#SP_rgw_dynamic_resharding) |
 
-**作用：** Enable dynamic resharding
+**作用：** Enable dynamic resharding If true, RGW will dynamically increase the number of shards in buckets that have a high number of objects per shard.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -74,9 +74,13 @@ ceph config get client.rgw rgw_dynamic_resharding
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_dynamic_resharding_may_reduce](../../../config/rgw/rgw.md#SP_rgw_dynamic_resharding_may_reduce) |
 
-**作用：** Whether dynamic resharding can reduce the number of shards
+**作用：** Whether dynamic resharding can reduce the number of shards If true, RGW's dynamic resharding ability is allowed to reduce the number of shards if it appears there are too many.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
+
+**相关选项：**
+
+- [`rgw_dynamic_resharding`](../../../config/rgw/rgw.md#SP_rgw_dynamic_resharding)
 
 **示例：**
 
@@ -102,7 +106,7 @@ ceph config get client.rgw rgw_dynamic_resharding_may_reduce
 | 类型 | Uint · default `120` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_dynamic_resharding_reduction_wait](../../../config/rgw/rgw.md#SP_rgw_dynamic_resharding_reduction_wait) |
 
-**作用：** Number of hours to delay bucket index shard reduction.
+**作用：** Number of hours to delay bucket index shard reduction. In order to avoid resharding buckets with object counts that fluctuate up and down regularly, we implement a delay between noting a shard reduction might be appropriate and when it's actually done. This allows us to cancel the reshard operation if the number of object significantly increases during this delay. WARNING: Setting this value too low could result in significantly reduced cluster performance.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -222,7 +226,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `-1` · **Dev** |
 | 表格 | [rgw.md#SP_rgw_reshard_debug_interval](../../../config/rgw/rgw.md#SP_rgw_reshard_debug_interval) |
 
-**作用：** The number of seconds that simulate one "day" in order to debug RGW dynamic resharding. Do *not* modify for a production cluster.
+**作用：** The number of seconds that simulate one "day" in order to debug RGW dynamic resharding. Do *not* modify for a production cluster. For debugging RGW dynamic resharding, the number of seconds that are equivalent to one simulated "day". Values less than 1 are ignored and do not change dynamic resharding behavior. For example, during debugging if one wanted every 10 minutes to be equivalent to one day, then this would be set to 600, the number of seconds in 10 minutes.
 
 **何时使用：**
 
@@ -367,9 +371,13 @@ ceph -s  # cluster health, slow ops
 | 类型 | Float · default `0.5` · **Dev** |
 | 表格 | [rgw.md#SP_rgw_reshard_progress_judge_ratio](../../../config/rgw/rgw.md#SP_rgw_reshard_progress_judge_ratio) |
 
-**作用：** ratio of reshard progress judge interval to randomly vary
+**作用：** ratio of reshard progress judge interval to randomly vary Add a random delay to rgw_reshard_progress_judge_interval for deciding when to judge the reshard process. The default setting spreads judge time window of &#91;1, 1.5&#93; * rgw_reshard_progress_judge_interval.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`rgw_reshard_progress_judge_interval`](../../../config/rgw/rgw.md#SP_rgw_reshard_progress_judge_interval)
 
 **示例：**
 
@@ -450,6 +458,10 @@ ceph -s  # cluster health, slow ops
 **作用：** threshold for a shard to record log before blocking writes
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`rgw_reshard_progress_judge_interval`](../../../config/rgw/rgw.md#SP_rgw_reshard_progress_judge_interval)
 
 **示例：**
 

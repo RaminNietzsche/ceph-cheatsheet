@@ -50,7 +50,7 @@ ceph pg stat
 | 类型 | Str · default `/var/lib/ceph/radosgw/$cluster-$id` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_data](../../../config/rgw/rgw.md#SP_rgw_data) |
 
-**作用：** Alternative location for RGW configuration.
+**作用：** Alternative location for RGW configuration. If this is set, the different Ceph system configurables (such as the keyring file will be located in the path that is specified here.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -126,7 +126,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_dedup_split_obj_head](../../../config/rgw/rgw.md#SP_rgw_dedup_split_obj_head) |
 
-**作用：** Enables the split-head functionality
+**作用：** Enables the split-head functionality Dedup code can split head object into two objects - one with attributes and no data and a new tail-object with only data. The new-tail object will be deduped (unlike the head objects which can't be deduplicated)
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -154,7 +154,7 @@ ceph config get client.rgw rgw_dedup_split_obj_head
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_expose_bucket](../../../config/rgw/rgw.md#SP_rgw_expose_bucket) |
 
-**作用：** Send Bucket HTTP header with the response
+**作用：** Send Bucket HTTP header with the response If true, RGW will send a Bucket HTTP header with the responses. The header will contain the name of the bucket the operation happened on.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -182,7 +182,7 @@ ceph config get client.rgw rgw_expose_bucket
 | 类型 | Str · enum: ["none", "base", "d4n"] · default `none` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_filter](../../../config/rgw/rgw.md#SP_rgw_filter) |
 
-**作用：** experimental Option to set a filter
+**作用：** experimental Option to set a filter defaults to none. Other valid values are base and d4n (both experimental).
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -210,9 +210,13 @@ ceph config get client.rgw rgw_filter
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_graceful_stop](../../../config/rgw/rgw.md#SP_rgw_graceful_stop) |
 
-**作用：** Delay the shutdown until all outstanding requests have completed
+**作用：** Delay the shutdown until all outstanding requests have completed Wait for up to `rgw_exit_timeout_secs` for all outstanding requests to complete before exiting unconditionally. (new HTTP requests will not be accepted during this time.)
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
+
+**相关选项：**
+
+- [`rgw_exit_timeout_secs`](../../../config/rgw/rgw.md#SP_rgw_exit_timeout_secs)
 
 **示例：**
 
@@ -276,6 +280,10 @@ iostat -x 5  # disk saturation
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`rgw_config_store`](../../../config/rgw/rgw.md#SP_rgw_config_store)
+
 **示例：**
 
 ```bash
@@ -310,7 +318,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `/etc/mime.types` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_mime_types_file](../../../config/rgw/rgw.md#SP_rgw_mime_types_file) |
 
-**作用：** Path to local mime types file
+**作用：** Path to local mime types file The mime types file is needed in Swift when uploading an object. If object's content type is not specified, RGW will use data from this file to assign a content type to the object.
 
 **何时使用：** 核心 RGW 行为 — 生产环境变更前请审阅。
 

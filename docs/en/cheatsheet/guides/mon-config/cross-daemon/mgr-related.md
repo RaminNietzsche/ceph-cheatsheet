@@ -130,7 +130,7 @@ ceph config get mon mon_mgr_digest_period
 | Type | Int · default `1_min` · **Advanced** |
 | Table | [mon.md#SP_mon_mgr_inactive_grace](../../../config/mon/mon.md#SP_mon_mgr_inactive_grace) |
 
-**What it does:** Period in seconds after cluster creation during which cluster may have no active manager
+**What it does:** Period in seconds after cluster creation during which cluster may have no active manager This grace period enables the cluster to come up cleanly without raising spurious health check failures about managers that aren't online yet
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

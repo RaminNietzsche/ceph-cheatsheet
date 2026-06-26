@@ -89,9 +89,13 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `default.region` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_default_region_info_oid](../../../config/rgw/rgw.md#SP_rgw_default_region_info_oid) |
 
-**作用：** Default region info object id
+**作用：** Default region info object id Obsolete config option. The rgw_default_zonegroup_info_oid should be used instead.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_default_zonegroup_info_oid`](../../../config/rgw/rgw.md#SP_rgw_default_zonegroup_info_oid)
 
 **示例：**
 
@@ -127,7 +131,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `default.zone` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_default_zone_info_oid](../../../config/rgw/rgw.md#SP_rgw_default_zone_info_oid) |
 
-**作用：** Default zone info object id
+**作用：** Default zone info object id Name of the RADOS object that holds the default zone information.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -236,7 +240,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Float · default `2` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_period_push_interval](../../../config/rgw/rgw.md#SP_rgw_period_push_interval) |
 
-**作用：** Period push interval
+**作用：** Period push interval Number of seconds to wait before retrying 'period push' operation.
 
 **何时使用：**
 
@@ -276,7 +280,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Float · default `30` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_period_push_interval_max](../../../config/rgw/rgw.md#SP_rgw_period_push_interval_max) |
 
-**作用：** Period push maximum interval
+**作用：** Period push maximum interval The max number of seconds to wait before retrying 'period push' after exponential backoff.
 
 **何时使用：**
 
@@ -316,7 +320,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `.rgw.root` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_period_root_pool](../../../config/rgw/rgw.md#SP_rgw_period_root_pool) |
 
-**作用：** Period root pool
+**作用：** Period root pool The period root pool, is the pool where the RGW period configuration located.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -418,7 +422,7 @@ ceph config get client.rgw rgw_zone
 | 类型 | Str · default `.rgw.root` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_realm_root_pool](../../../config/rgw/rgw.md#SP_rgw_realm_root_pool) |
 
-**作用：** Realm root pool
+**作用：** Realm root pool The realm root pool, is the pool where the RGW realm configuration located.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -452,9 +456,13 @@ ceph config get client.rgw rgw_zone
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_region](../../../config/rgw/rgw.md#SP_rgw_region) |
 
-**作用：** Region name
+**作用：** Region name Obsolete config option. The rgw_zonegroup option should be used instead.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_zonegroup`](../../../config/rgw/rgw.md#SP_rgw_zonegroup)
 
 **示例：**
 
@@ -486,9 +494,13 @@ ceph config get client.rgw rgw_zone
 | 类型 | Str · default `.rgw.root` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_region_root_pool](../../../config/rgw/rgw.md#SP_rgw_region_root_pool) |
 
-**作用：** Region root pool
+**作用：** Region root pool Obsolete config option. The rgw_zonegroup_root_pool should be used instead.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_zonegroup_root_pool`](../../../config/rgw/rgw.md#SP_rgw_zonegroup_root_pool)
 
 **示例：**
 
@@ -591,7 +603,7 @@ ceph config get client.rgw rgw_zone
 | 类型 | Str · default `.rgw.root` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_zone_root_pool](../../../config/rgw/rgw.md#SP_rgw_zone_root_pool) |
 
-**作用：** Zone root pool name
+**作用：** Zone root pool name The zone root pool, is the pool where the RGW zone configuration located.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -697,7 +709,7 @@ ceph config get client.rgw rgw_zone
 | 类型 | Str · default `.rgw.root` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_zonegroup_root_pool](../../../config/rgw/rgw.md#SP_rgw_zonegroup_root_pool) |
 
-**作用：** Zonegroup root pool
+**作用：** Zonegroup root pool The zonegroup root pool, is the pool where the RGW zonegroup configuration located.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

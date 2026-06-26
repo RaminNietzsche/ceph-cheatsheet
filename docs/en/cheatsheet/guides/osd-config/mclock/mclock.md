@@ -50,7 +50,7 @@ ceph -s
 | Type | Bool · default `False` · **Advanced** · **STARTUP** (restart required) |
 | Table | [osd.md#SP_osd_mclock_force_run_benchmark_on_init](../../../config/osd/osd.md#SP_osd_mclock_force_run_benchmark_on_init) |
 
-**What it does:** Force run the OSD benchmark on OSD initialization/boot-up
+**What it does:** Force run the OSD benchmark on OSD initialization/boot-up This option specifies whether the OSD benchmark must be run during the OSD boot-up sequence even if historical data about the OSD iops capacity is available in the MON config store. Enable this to refresh the OSD iops capacity if the underlying device's performance characteristics have changed significantly. Only considered for osd_op_queue = mclock_scheduler.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -88,9 +88,13 @@ ceph pg stat
 | Type | Float · default `50` · **Basic** |
 | Table | [osd.md#SP_osd_mclock_iops_capacity_low_threshold_hdd](../../../config/osd/osd.md#SP_osd_mclock_iops_capacity_low_threshold_hdd) |
 
-**What it does:** The threshold IOPs capacity (at 4KiB block size) below which to ignore the OSD bench results for an OSD (for rotational media)
+**What it does:** The threshold IOPs capacity (at 4KiB block size) below which to ignore the OSD bench results for an OSD (for rotational media) This option specifies the low threshold IOPS capacity of an OSD above which the OSD bench results can be considered for QoS calculations. Only considered when osd_op_queue = mclock_scheduler
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+
+**Related options:**
+
+- [`osd_mclock_max_capacity_iops_hdd`](../../../config/osd/osd.md#SP_osd_mclock_max_capacity_iops_hdd)
 
 **Example:**
 
@@ -125,9 +129,13 @@ ceph pg stat
 | Type | Float · default `1000` · **Basic** |
 | Table | [osd.md#SP_osd_mclock_iops_capacity_low_threshold_ssd](../../../config/osd/osd.md#SP_osd_mclock_iops_capacity_low_threshold_ssd) |
 
-**What it does:** The threshold IOPs capacity (at 4KiB block size) below which to ignore the OSD bench results for an OSD (for solid state media)
+**What it does:** The threshold IOPs capacity (at 4KiB block size) below which to ignore the OSD bench results for an OSD (for solid state media) This option specifies the low threshold IOPS capacity for an OSD above which the OSD bench results can be considered for QoS calculations. Only considered when osd_op_queue = mclock_scheduler
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+
+**Related options:**
+
+- [`osd_mclock_max_capacity_iops_ssd`](../../../config/osd/osd.md#SP_osd_mclock_max_capacity_iops_ssd)
 
 **Example:**
 
@@ -162,9 +170,13 @@ ceph pg stat
 | Type | Float · default `500` · **Basic** |
 | Table | [osd.md#SP_osd_mclock_iops_capacity_threshold_hdd](../../../config/osd/osd.md#SP_osd_mclock_iops_capacity_threshold_hdd) |
 
-**What it does:** The threshold IOPs capacity (at 4KiB block size) beyond which to ignore the OSD bench results for an OSD (for rotational media)
+**What it does:** The threshold IOPs capacity (at 4KiB block size) beyond which to ignore the OSD bench results for an OSD (for rotational media) This option specifies the high threshold IOPS capacity for an OSD below which the OSD bench results can be considered for QoS calculations. Only considered when osd_op_queue = mclock_scheduler
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+
+**Related options:**
+
+- [`osd_mclock_max_capacity_iops_hdd`](../../../config/osd/osd.md#SP_osd_mclock_max_capacity_iops_hdd)
 
 **Example:**
 
@@ -199,9 +211,13 @@ ceph pg stat
 | Type | Float · default `80000` · **Basic** |
 | Table | [osd.md#SP_osd_mclock_iops_capacity_threshold_ssd](../../../config/osd/osd.md#SP_osd_mclock_iops_capacity_threshold_ssd) |
 
-**What it does:** The threshold IOPs capacity (at 4KiB block size) beyond which to ignore the OSD bench results for an OSD (for solid state media)
+**What it does:** The threshold IOPs capacity (at 4KiB block size) beyond which to ignore the OSD bench results for an OSD (for solid state media) This option specifies the high threshold IOPS capacity for an OSD below which the OSD bench results can be considered for QoS calculations. Only considered when osd_op_queue = mclock_scheduler
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+
+**Related options:**
+
+- [`osd_mclock_max_capacity_iops_ssd`](../../../config/osd/osd.md#SP_osd_mclock_max_capacity_iops_ssd)
 
 **Example:**
 
@@ -236,7 +252,7 @@ ceph pg stat
 | Type | Float · default `315` · **Basic** |
 | Table | [osd.md#SP_osd_mclock_max_capacity_iops_hdd](../../../config/osd/osd.md#SP_osd_mclock_max_capacity_iops_hdd) |
 
-**What it does:** Max random write IOPS capacity (at 4KiB block size) to consider per OSD (for rotational media)
+**What it does:** Max random write IOPS capacity (at 4KiB block size) to consider per OSD (for rotational media) This option specifies the max OSD random write IOPS capacity per OSD. Contributes in QoS calculations when enabling a dmclock profile. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -273,7 +289,7 @@ ceph pg stat
 | Type | Float · default `21500` · **Basic** |
 | Table | [osd.md#SP_osd_mclock_max_capacity_iops_ssd](../../../config/osd/osd.md#SP_osd_mclock_max_capacity_iops_ssd) |
 
-**What it does:** Max random write IOPS capacity (at 4 KiB block size) to consider per OSD (for solid state media)
+**What it does:** Max random write IOPS capacity (at 4 KiB block size) to consider per OSD (for solid state media) This option specifies the max OSD random write IOPS capacity per OSD. Contributes in QoS calculations when enabling a dmclock profile. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -310,7 +326,7 @@ ceph pg stat
 | Type | Size · default `150_M` · **Basic** |
 | Table | [osd.md#SP_osd_mclock_max_sequential_bandwidth_hdd](../../../config/osd/osd.md#SP_osd_mclock_max_sequential_bandwidth_hdd) |
 
-**What it does:** The maximum sequential bandwidth in bytes/second of the OSD (for rotational media)
+**What it does:** The maximum sequential bandwidth in bytes/second of the OSD (for rotational media) This option specifies the maximum sequential bandwidth to consider for an OSD whose underlying device type is rotational media. This is considered by the mclock scheduler to derive the cost factor to be used in QoS calculations. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -347,7 +363,7 @@ ceph pg stat
 | Type | Size · default `1200_M` · **Basic** |
 | Table | [osd.md#SP_osd_mclock_max_sequential_bandwidth_ssd](../../../config/osd/osd.md#SP_osd_mclock_max_sequential_bandwidth_ssd) |
 
-**What it does:** The maximum sequential bandwidth in bytes/second of the OSD (for solid state media)
+**What it does:** The maximum sequential bandwidth in bytes/second of the OSD (for solid state media) This option specifies the maximum sequential bandwidth to consider for an OSD whose underlying device type is solid state media. This is considered by the mclock scheduler to derive the cost factor to be used in QoS calculations. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -388,6 +404,10 @@ ceph pg stat
 
 **When to use:** Start with `balanced` on mixed workloads. Use `high_client_ops` when recovery dominates latency; `high_recovery_ops` for aggressive rebuild windows.
 
+**Related options:**
+
+- [`osd_op_queue`](../../../config/osd/osd.md#SP_osd_op_queue)
+
 **Example:**
 
 ```bash
@@ -422,7 +442,7 @@ ceph pg stat
 | Type | Float · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_mclock_scheduler_anticipation_timeout](../../../config/osd/osd.md#SP_osd_mclock_scheduler_anticipation_timeout) |
 
-**What it does:** mclock anticipation timeout in seconds
+**What it does:** mclock anticipation timeout in seconds the amount of time that mclock waits until the unused resource is forfeited
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -459,7 +479,7 @@ ceph pg stat
 | Type | Float · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_mclock_scheduler_background_best_effort_lim](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_best_effort_lim) |
 
-**What it does:** IO limit for background best_effort over reservation. The default value of 0 specifies no limit enforcement, which means background best_effort operation can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that background best_effort operation receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**What it does:** IO limit for background best_effort over reservation. The default value of 0 specifies no limit enforcement, which means background best_effort operation can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that background best_effort operation receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -498,7 +518,7 @@ ceph pg stat
 | Type | Float · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_mclock_scheduler_background_best_effort_res](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_best_effort_res) |
 
-**What it does:** IO proportion reserved for background best_effort (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for background best_effort operations in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**What it does:** IO proportion reserved for background best_effort (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for background best_effort operations in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -537,7 +557,7 @@ ceph pg stat
 | Type | Uint · default `1` · **Advanced** |
 | Table | [osd.md#SP_osd_mclock_scheduler_background_best_effort_wgt](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_best_effort_wgt) |
 
-**What it does:** IO share for each background best_effort over reservation Ignored unless osd_mclock_profile is set to 'custom'.
+**What it does:** IO share for each background best_effort over reservation Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -574,7 +594,7 @@ ceph pg stat
 | Type | Float · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_mclock_scheduler_client_lim](../../../config/osd/osd.md#SP_osd_mclock_scheduler_client_lim) |
 
-**What it does:** IO limit for each client (default) over reservation. The default value of 0 specifies no limit enforcement, which means each client can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that each client receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**What it does:** IO limit for each client (default) over reservation. The default value of 0 specifies no limit enforcement, which means each client can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that each client receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -613,7 +633,7 @@ ceph pg stat
 | Type | Float · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_mclock_scheduler_client_res](../../../config/osd/osd.md#SP_osd_mclock_scheduler_client_res) |
 
-**What it does:** IO proportion reserved for each client (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for each client in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**What it does:** IO proportion reserved for each client (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for each client in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -652,7 +672,7 @@ ceph pg stat
 | Type | Uint · default `1` · **Advanced** |
 | Table | [osd.md#SP_osd_mclock_scheduler_client_wgt](../../../config/osd/osd.md#SP_osd_mclock_scheduler_client_wgt) |
 
-**What it does:** IO share for each client (default) over reservation Ignored unless osd_mclock_profile is set to 'custom'.
+**What it does:** IO share for each client (default) over reservation Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -689,7 +709,7 @@ ceph pg stat
 | Type | Bool · default `False` · **Dev** |
 | Table | [osd.md#SP_osd_mclock_skip_benchmark](../../../config/osd/osd.md#SP_osd_mclock_skip_benchmark) |
 
-**What it does:** Skip the OSD benchmark on OSD initialization/boot-up
+**What it does:** Skip the OSD benchmark on OSD initialization/boot-up This option specifies whether the OSD benchmark must be skipped during the OSD boot-up sequence. Only considered for osd_op_queue = mclock_scheduler.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 

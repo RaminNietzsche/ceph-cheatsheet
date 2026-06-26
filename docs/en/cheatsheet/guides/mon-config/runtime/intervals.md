@@ -91,6 +91,10 @@ ceph mon stat
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
+**Related options:**
+
+- [`mon_elector_ping_divisor`](../../../config/mon/mon.md#SP_mon_elector_ping_divisor)
+
 **Example:**
 
 ```bash
@@ -127,6 +131,10 @@ ceph mon stat
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
+**Related options:**
+
+- [`mon_lease`](../../../config/mon/mon.md#SP_mon_lease)
+
 **Example:**
 
 ```bash
@@ -161,9 +169,13 @@ ceph mon stat
 | Type | Float · default `0.6` · **Advanced** |
 | Table | [mon.md#SP_mon_lease_renew_interval_factor](../../../config/mon/mon.md#SP_mon_lease_renew_interval_factor) |
 
-**What it does:** multiple of mon_lease for the lease renewal interval
+**What it does:** multiple of mon_lease for the lease renewal interval Leases must be renewed before they time out. A smaller value means frequent renewals, while a value close to 1 makes a lease expiration more likely.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
+
+**Related options:**
+
+- [`mon_lease`](../../../config/mon/mon.md#SP_mon_lease)
 
 **Example:**
 
@@ -510,6 +522,10 @@ ceph mon stat
 **What it does:** frequency of clock synchronization (re)checks between monitors while clocks are believed to be skewed (seconds)
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
+
+**Related options:**
+
+- [`mon_timecheck_interval`](../../../config/mon/mon.md#SP_mon_timecheck_interval)
 
 **Example:**
 

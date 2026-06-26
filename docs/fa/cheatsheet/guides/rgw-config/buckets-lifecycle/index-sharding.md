@@ -66,7 +66,7 @@ ceph config get client.rgw rgw_override_bucket_index_max_shards
 | نوع | Uint · default `120` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_pending_bucket_index_op_expiration](../../../config/rgw/rgw.md#SP_rgw_pending_bucket_index_op_expiration) |
 
-**کارکرد:** Number of seconds a pending operation can remain in bucket index shard.
+**کارکرد:** Number of seconds a pending operation can remain in bucket index shard. Number of seconds a pending operation can remain in bucket index shard before it expires. Used for transactional bucket index operations, and if the operation does not complete in this time period, the operation will be dropped.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -104,9 +104,13 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `102400` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_safe_max_objects_per_shard](../../../config/rgw/rgw.md#SP_rgw_safe_max_objects_per_shard) |
 
-**کارکرد:** Safe number of objects per shard
+**کارکرد:** Safe number of objects per shard This is the max number of objects per bucket index shard that RGW considers safe. RGW will warn if it identifies a bucket where its per-shard count is higher than a percentage of this number.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_shard_warning_threshold`](../../../config/rgw/rgw.md#SP_rgw_shard_warning_threshold)
 
 **مثال:**
 
@@ -132,9 +136,13 @@ ceph config get client.rgw rgw_safe_max_objects_per_shard
 | نوع | Float · default `90` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_shard_warning_threshold](../../../config/rgw/rgw.md#SP_rgw_shard_warning_threshold) |
 
-**کارکرد:** Warn about max objects per shard
+**کارکرد:** Warn about max objects per shard Warn if number of objects per shard in a specific bucket passed this percentage of the safe number.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_safe_max_objects_per_shard`](../../../config/rgw/rgw.md#SP_rgw_safe_max_objects_per_shard)
 
 **مثال:**
 

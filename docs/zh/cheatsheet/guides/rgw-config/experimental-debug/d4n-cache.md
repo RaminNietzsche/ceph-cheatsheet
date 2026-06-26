@@ -219,7 +219,7 @@ ceph config get client.rgw rgw_d3n_l1_eviction_policy
 | 类型 | Int · default `4` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_d3n_l1_fadvise](../../../config/rgw/rgw.md#SP_rgw_d3n_l1_fadvise) |
 
-**作用：** posix_fadvise() flag for access pattern of cache files
+**作用：** posix_fadvise() flag for access pattern of cache files for example to bypass the page-cache - POSIX_FADV_DONTNEED=4
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -289,6 +289,10 @@ ceph config get client.rgw rgw_d3n_l1_local_datacache_enabled
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`rgw_thread_pool_size`](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size)
+
 **示例：**
 
 ```bash
@@ -316,6 +320,10 @@ ceph config get client.rgw rgw_d3n_libaio_aio_num
 **作用：** specifies the maximum number of worker threads that may be used by libaio
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_thread_pool_size`](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size)
 
 **示例：**
 
@@ -351,7 +359,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `127.0.0.1:6379` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [rgw.md#SP_rgw_d4n_address](../../../config/rgw/rgw.md#SP_rgw_d4n_address) |
 
-**作用：** address for the D4N Redis connection
+**作用：** address for the D4N Redis connection The current D4N implementation supports one Redis node which the D4N directory, policy, and overall filter communicate with. This default value is also the address that a Redis server with no additional configuration will use.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -470,7 +478,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `127.0.0.1:6379` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [rgw.md#SP_rgw_d4n_l1_datacache_address](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_datacache_address) |
 
-**作用：** local Redis cache address
+**作用：** local Redis cache address This is the address used to configure the Redis cache backend connection. The default value is the same address used by Redis without any additional configuration. The SSD cache does not use this option.
 
 **何时使用：** 元数据/quota/令牌缓存影响正确性延迟或 RGW 内存压力时调整。
 
@@ -509,7 +517,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Size · default `1_G` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_d4n_l1_datacache_disk_reserve](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_datacache_disk_reserve) |
 
-**作用：** amount of disk space to keep free for datacache
+**作用：** amount of disk space to keep free for datacache The local SSD cache uses this option to determine how much disk space to reserve. The cache can grow until disk usage reaches (total disk space - reserved space).
 
 **何时使用：** 元数据/quota/令牌缓存影响正确性延迟或 RGW 内存压力时调整。
 
@@ -547,7 +555,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `/tmp/rgw_d4n_datacache/` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_d4n_l1_datacache_persistent_path](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_datacache_persistent_path) |
 
-**作用：** path used for storing locally cached object data
+**作用：** path used for storing locally cached object data One cache backend option for D4N is the local SSD, which uses this path to write and read object data. This is the default cache backend chosen by the D4N filter. Only the SSD cache backend uses this path for object data storage since the RedisDriver uses a Redis server instead and there are no additional cache backend implementations available at the moment.
 
 **何时使用：** 元数据/quota/令牌缓存影响正确性延迟或 RGW 内存压力时调整。
 
@@ -581,7 +589,7 @@ iostat -x 5  # disk saturation
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_d4n_l1_evict_cache_on_start](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_evict_cache_on_start) |
 
-**作用：** clear the contents of the persistent datacache on start
+**作用：** clear the contents of the persistent datacache on start The local SSD cache uses this option to clear the contents of the path supplied by the rgw_d4n_l1_datacache_persistent_path config option on start. If false, the path's contents will be retained.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -609,7 +617,7 @@ ceph config get client.rgw rgw_d4n_l1_evict_cache_on_start
 | 类型 | Int · default `4` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_d4n_l1_fadvise](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_fadvise) |
 
-**作用：** posix_fadvise() flag for access pattern of cache files
+**作用：** posix_fadvise() flag for access pattern of cache files For example, to bypass the page-cache - POSIX_FADV_DONTNEED=4
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -647,7 +655,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Uint · default `4096` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_d4n_l1_write_open_flags](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_write_open_flags) |
 
-**作用：** cache files write 'man 2 open' 'file status flags' modifiers
+**作用：** cache files write 'man 2 open' 'file status flags' modifiers For example, to configure synchronized I/O, fcntl-linux.h defines (converted from octal) O_SYNC = 1052672 O_DSYNC = 4096 O_DIRECT = 16384 O_SYNC \
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -685,9 +693,13 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `64` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_d4n_libaio_aio_num](../../../config/rgw/rgw.md#SP_rgw_d4n_libaio_aio_num) |
 
-**作用：** specifies the maximum number of simultaneous I/O requests that libaio expects to enqueue
+**作用：** specifies the maximum number of simultaneous I/O requests that libaio expects to enqueue This option is used by the SSD cache backend during initialization to set the maximum number of simultaneous I/O requests that libaio can expect to enqueue. It does not apply to the Redis cache backend.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_thread_pool_size`](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size)
 
 **示例：**
 
@@ -713,9 +725,13 @@ ceph config get client.rgw rgw_d4n_libaio_aio_num
 | 类型 | Int · default `20` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_d4n_libaio_aio_threads](../../../config/rgw/rgw.md#SP_rgw_d4n_libaio_aio_threads) |
 
-**作用：** specifies the maximum number of worker threads that may be used by libaio
+**作用：** specifies the maximum number of worker threads that may be used by libaio This option is used by the SSD cache backend during initialization to set the maximum number of worker threads libaio may use. It does not apply to the Redis cache backend.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_thread_pool_size`](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size)
 
 **示例：**
 
@@ -751,7 +767,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `127.0.0.1:8000` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [rgw.md#SP_rgw_d4n_local_rgw_address](../../../config/rgw/rgw.md#SP_rgw_d4n_local_rgw_address) |
 
-**作用：** local RGW address
+**作用：** local RGW address This is the address used to represent the local RGW in a distributed D4N system that involves remote RGWs.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

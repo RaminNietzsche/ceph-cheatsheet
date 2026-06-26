@@ -225,7 +225,7 @@ ceph mds stat
 | 类型 | Uint · default `16` · **Advanced** |
 | 表格 | [mds.md#SP_mds_log_minor_segments_per_major_segment](../../../config/mds/mds.md#SP_mds_log_minor_segments_per_major_segment) |
 
-**作用：** Number of minor segments per major segment.
+**作用：** Number of minor segments per major segment. The number of minor mds log segments since last major segment after which a major segment is started/logged.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -379,7 +379,7 @@ ceph config get mds mds_log_skip_unbounded_events
 | 类型 | Float · default `1.0` · **Advanced** |
 | 表格 | [mds.md#SP_mds_log_trim_decay_rate](../../../config/mds/mds.md#SP_mds_log_trim_decay_rate) |
 
-**作用：** MDS log trim decay rate
+**作用：** MDS log trim decay rate The decay rate for trimming the MDS log. Increasing this value leads to the MDS spending less time in trimming the log.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -418,7 +418,7 @@ ceph mds stat
 | 类型 | Size · default `128` · **Advanced** |
 | 表格 | [mds.md#SP_mds_log_trim_threshold](../../../config/mds/mds.md#SP_mds_log_trim_threshold) |
 
-**作用：** MDS log trim threshold
+**作用：** MDS log trim threshold The threshold of the number of log segment that can be trimmed.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -457,7 +457,7 @@ ceph mds stat
 | 类型 | Millisecs · default `1000` · **Advanced** |
 | 表格 | [mds.md#SP_mds_log_trim_upkeep_interval](../../../config/mds/mds.md#SP_mds_log_trim_upkeep_interval) |
 
-**作用：** MDS log trimming interval
+**作用：** MDS log trimming interval Interval in milliseconds to trim MDS logs.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 

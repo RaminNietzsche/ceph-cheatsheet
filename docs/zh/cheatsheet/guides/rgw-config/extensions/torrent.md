@@ -188,6 +188,10 @@ ceph config get client.rgw rgw_torrent_flag
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 
+**相关选项：**
+
+- [`rgw_torrent_flag`](../../../config/rgw/rgw.md#SP_rgw_torrent_flag)
+
 **示例：**
 
 ```bash

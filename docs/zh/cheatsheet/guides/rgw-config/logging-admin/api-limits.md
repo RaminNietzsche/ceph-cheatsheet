@@ -76,7 +76,7 @@ ceph config get client.rgw rgw_acl_grants_max_num
 
 **Important:** Multisite replication **requires** the value `admin`. Do not change it on multisite clusters.
 
-**何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+**何时使用：** 多站点复制与同步调优 — 延迟或同步负载异常时调整。
 
 **示例：**
 
@@ -131,7 +131,7 @@ ceph config get client.rgw rgw_cors_rules_max_num
 | 类型 | Bool · default `True` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_policy_reject_invalid_principals](../../../config/rgw/rgw.md#SP_rgw_policy_reject_invalid_principals) |
 
-**作用：** Whether to reject policies with invalid principals
+**作用：** Whether to reject policies with invalid principals If true, policies with invalid principals will be rejected. We don't support Canonical User identifiers or some other form of policies that Amazon does, so if you are mirroring policies between RGW and AWS, you may wish to set this to false.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -159,7 +159,7 @@ ceph config get client.rgw rgw_policy_reject_invalid_principals
 | 类型 | Bool · default `False` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_topic_require_publish_policy](../../../config/rgw/rgw.md#SP_rgw_topic_require_publish_policy) |
 
-**作用：** Whether to validate user permissions to publish notifications to topics.
+**作用：** Whether to validate user permissions to publish notifications to topics. If true, all users (other then the owner of the topic) will need to have a policy to publish notifications to topics. The topic policy can be set by owner via CreateTopic() or SetTopicAttribute(). Following permissions can be granted "sns:Publish", "sns:GetTopicAttributes", "sns:SetTopicAttributes", "sns:DeleteTopic" and "sns:CreateTopic" via Policy. NOTE that even if set to "false" topics will still follow the policies if set on them.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 

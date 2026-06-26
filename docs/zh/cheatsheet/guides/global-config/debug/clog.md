@@ -78,6 +78,10 @@ ceph -s
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`clog_to_graylog`](../../../config/global/clog.md#SP_clog_to_graylog)
+
 **示例：**
 
 ```bash
@@ -112,6 +116,10 @@ ceph -s
 **作用：** Graylog port number for cluster log messages
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`clog_to_graylog`](../../../config/global/clog.md#SP_clog_to_graylog)
 
 **示例：**
 
@@ -218,6 +226,10 @@ ceph -s
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`clog_to_syslog`](../../../config/global/clog.md#SP_clog_to_syslog)
+
 **示例：**
 
 ```bash
@@ -252,6 +264,10 @@ ceph -s
 **作用：** Syslog level for cluster log messages
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`clog_to_syslog`](../../../config/global/clog.md#SP_clog_to_syslog)
 
 **示例：**
 

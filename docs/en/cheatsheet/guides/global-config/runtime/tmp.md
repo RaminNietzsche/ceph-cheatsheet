@@ -68,7 +68,7 @@ ceph -s
 | Type | Str · default `$tmp_dir/$cluster-$name.XXXXXX` · **Advanced** |
 | Table | [tmp.md#SP_tmp_file_template](../../../config/global/tmp.md#SP_tmp_file_template) |
 
-**What it does:** Template for temporary files created by daemons for ceph tell commands
+**What it does:** Template for temporary files created by daemons for ceph tell commands The template file name prefix for temporary files. For example, temporary files may be created by 'ceph tell' commands using the --daemon-output-file switch.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

@@ -86,12 +86,16 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `1024` · **Basic** |
 | جدول | [rgw.md#SP_rgw_max_concurrent_requests](../../../config/rgw/rgw.md#SP_rgw_max_concurrent_requests) |
 
-**کارکرد:** Maximum number of concurrent HTTP requests.
+**کارکرد:** Maximum number of concurrent HTTP requests. Maximum number of concurrent HTTP requests that the beast frontend will process. Tuning this can help to limit memory usage under heavy load.
 
 **زمان استفاده:**
 
 - **Increase** when RGW queues requests but CPU is not saturated.
 - **Decrease** when latency spikes or CPU context-switch overhead grows.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_frontends`](../../../config/rgw/rgw.md#SP_rgw_frontends)
 
 **مثال:**
 
@@ -168,7 +172,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Uint · default `100000` · **Basic** |
 | جدول | [rgw.md#SP_rgw_max_objs_per_shard](../../../config/rgw/rgw.md#SP_rgw_max_objs_per_shard) |
 
-**کارکرد:** Max objects per shard for dynamic resharding
+**کارکرد:** Max objects per shard for dynamic resharding This is the max number of objects per bucket index shard that RGW will allow with dynamic resharding. RGW will trigger an automatic reshard operation on the bucket if it exceeds this number.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -238,7 +242,7 @@ radosgw-admin bucket stats --bucket=BIG_BUCKET | jq '.num_shards'
 | نوع | Int · default `32` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_num_async_rados_threads](../../../config/rgw/rgw.md#SP_rgw_num_async_rados_threads) |
 
-**کارکرد:** Number of concurrent RADOS operations in multisite sync
+**کارکرد:** Number of concurrent RADOS operations in multisite sync The number of concurrent RADOS IO operations that will be triggered for handling multisite sync operations. This includes control related work, and not the actual sync operations.
 
 **زمان استفاده:** تنظیم replication و sync در محیط چندسایته — وقتی تأخیر (lag) یا بار sync مشکل‌ساز است.
 
@@ -276,7 +280,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `8` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_num_control_oids](../../../config/rgw/rgw.md#SP_rgw_num_control_oids) |
 
-**کارکرد:** Number of control objects used for cross-RGW communication.
+**کارکرد:** Number of control objects used for cross-RGW communication. RGW uses certain control objects to send messages between different RGW processes running on the same zone. These messages include metadata cache invalidation info that is being sent when metadata is modified (such as user or bucket information). A higher number of control objects allows better concurrency of these messages, at the cost of more resource utilization.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -304,7 +308,7 @@ ceph config get client.rgw rgw_num_control_oids
 | نوع | Size · default `4_M` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_obj_stripe_size](../../../config/rgw/rgw.md#SP_rgw_obj_stripe_size) |
 
-**کارکرد:** RGW object stripe size
+**کارکرد:** RGW object stripe size The size of an object stripe for RGW objects. This is the maximum size a backing RADOS object will have. RGW objects that are larger than this will span over multiple objects.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -399,7 +403,7 @@ ceph config get client.rgw rgw_op_thread_timeout
 | نوع | Int · default `512` · **Basic** |
 | جدول | [rgw.md#SP_rgw_redis_connection_pool_size](../../../config/rgw/rgw.md#SP_rgw_redis_connection_pool_size) |
 
-**کارکرد:** RGW connection pool size for Redis operation per D4N
+**کارکرد:** RGW connection pool size for Redis operation per D4N This option sets the size of the connection pool for Redis operations in D4N. It is used to manage the number of concurrent connections to Redis. A larger pool size can improve performance when multiple threads are accessing Redis simultaneously, but it also increases resource usage.
 
 **زمان استفاده:** رفتار اصلی RGW — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
@@ -437,7 +441,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `32` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_restore_max_objs](../../../config/rgw/rgw.md#SP_rgw_restore_max_objs) |
 
-**کارکرد:** Number of shards for restore processing
+**کارکرد:** Number of shards for restore processing Number of RADOS objects to use for storing restore entries which are in progress. This affects concurrency of restore maintenance, as shards can be processed in parallel.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -465,7 +469,7 @@ ceph config get client.rgw rgw_restore_max_objs
 | نوع | Int · default `15_min` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_restore_processor_period](../../../config/rgw/rgw.md#SP_rgw_restore_processor_period) |
 
-**کارکرد:** Restore cycle run time
+**کارکرد:** Restore cycle run time The amount of time between the start of consecutive runs of the restore processing threads. If the thread runs takes more than this period, it will not wait before running again.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -502,7 +506,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `512` · **Basic** |
 | جدول | [rgw.md#SP_rgw_thread_pool_size](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size) |
 
-**کارکرد:** RGW requests handling thread pool size.
+**کارکرد:** RGW requests handling thread pool size. This parameter determines the number of concurrent requests RGW can process when using either the civetweb, or the fastcgi frontends. The higher this number is, RGW will be able to deal with more concurrent requests at the cost of more resource utilization.
 
 **زمان استفاده:**
 

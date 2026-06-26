@@ -33,7 +33,7 @@ ceph -s
 | نوع | Bool · default `False` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [no.md#SP_no_config_file](../../../config/global/no.md#SP_no_config_file) |
 
-**کارکرد:** Signal that we don't require a config file to be present
+**کارکرد:** Signal that we don't require a config file to be present When specified, we won't look for a configuration file, and will instead expect that whatever options or values are required for us to work will be passed as arguments.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 

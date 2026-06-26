@@ -35,9 +35,13 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [heartbeat.md#SP_heartbeat_file](../../../config/global/heartbeat.md#SP_heartbeat_file) |
 
-**کارکرد:** File to touch on successful internal heartbeat
+**کارکرد:** File to touch on successful internal heartbeat If set, this file will be touched every time an internal heartbeat check succeeds.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`heartbeat_interval`](../../../config/global/heartbeat.md#SP_heartbeat_interval)
 
 **مثال:**
 

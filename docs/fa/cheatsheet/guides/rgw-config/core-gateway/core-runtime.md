@@ -50,7 +50,7 @@ ceph pg stat
 | نوع | Str · default `/var/lib/ceph/radosgw/$cluster-$id` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_data](../../../config/rgw/rgw.md#SP_rgw_data) |
 
-**کارکرد:** Alternative location for RGW configuration.
+**کارکرد:** Alternative location for RGW configuration. If this is set, the different Ceph system configurables (such as the keyring file will be located in the path that is specified here.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -126,7 +126,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_dedup_split_obj_head](../../../config/rgw/rgw.md#SP_rgw_dedup_split_obj_head) |
 
-**کارکرد:** Enables the split-head functionality
+**کارکرد:** Enables the split-head functionality Dedup code can split head object into two objects - one with attributes and no data and a new tail-object with only data. The new-tail object will be deduped (unlike the head objects which can't be deduplicated)
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -154,7 +154,7 @@ ceph config get client.rgw rgw_dedup_split_obj_head
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_expose_bucket](../../../config/rgw/rgw.md#SP_rgw_expose_bucket) |
 
-**کارکرد:** Send Bucket HTTP header with the response
+**کارکرد:** Send Bucket HTTP header with the response If true, RGW will send a Bucket HTTP header with the responses. The header will contain the name of the bucket the operation happened on.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -182,7 +182,7 @@ ceph config get client.rgw rgw_expose_bucket
 | نوع | Str · enum: ["none", "base", "d4n"] · default `none` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_filter](../../../config/rgw/rgw.md#SP_rgw_filter) |
 
-**کارکرد:** experimental Option to set a filter
+**کارکرد:** experimental Option to set a filter defaults to none. Other valid values are base and d4n (both experimental).
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -210,9 +210,13 @@ ceph config get client.rgw rgw_filter
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_graceful_stop](../../../config/rgw/rgw.md#SP_rgw_graceful_stop) |
 
-**کارکرد:** Delay the shutdown until all outstanding requests have completed
+**کارکرد:** Delay the shutdown until all outstanding requests have completed Wait for up to `rgw_exit_timeout_secs` for all outstanding requests to complete before exiting unconditionally. (new HTTP requests will not be accepted during this time.)
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_exit_timeout_secs`](../../../config/rgw/rgw.md#SP_rgw_exit_timeout_secs)
 
 **مثال:**
 
@@ -276,6 +280,10 @@ iostat -x 5  # disk saturation
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`rgw_config_store`](../../../config/rgw/rgw.md#SP_rgw_config_store)
+
 **مثال:**
 
 ```bash
@@ -310,7 +318,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `/etc/mime.types` · **Basic** |
 | جدول | [rgw.md#SP_rgw_mime_types_file](../../../config/rgw/rgw.md#SP_rgw_mime_types_file) |
 
-**کارکرد:** Path to local mime types file
+**کارکرد:** Path to local mime types file The mime types file is needed in Swift when uploading an object. If object's content type is not specified, RGW will use data from this file to assign a content type to the object.
 
 **زمان استفاده:** رفتار اصلی RGW — پیش از تغییر در محیط عملیاتی بررسی کنید.
 

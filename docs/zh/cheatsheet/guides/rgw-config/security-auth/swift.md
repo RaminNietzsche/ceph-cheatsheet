@@ -45,9 +45,13 @@ ceph pg stat
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_swift_account_in_url](../../../config/rgw/rgw.md#SP_rgw_swift_account_in_url) |
 
-**作用：** Swift account encoded in URL
+**作用：** Swift account encoded in URL Whether the swift account is encoded in the uri path (AUTH_<account>).
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
+
+**相关选项：**
+
+- [`rgw_swift_tenant_name`](../../../config/rgw/rgw.md#SP_rgw_swift_tenant_name)
 
 **示例：**
 
@@ -83,9 +87,13 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `auth` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_swift_auth_entry](../../../config/rgw/rgw.md#SP_rgw_swift_auth_entry) |
 
-**作用：** Swift auth URL prefix
+**作用：** Swift auth URL prefix URL path prefix for internal swift auth requests.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_swift_url`](../../../config/rgw/rgw.md#SP_rgw_swift_url)
 
 **示例：**
 
@@ -111,7 +119,7 @@ ceph config get client.rgw rgw_swift_auth_entry
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_swift_auth_url](../../../config/rgw/rgw.md#SP_rgw_swift_auth_url) |
 
-**作用：** Swift auth URL
+**作用：** Swift auth URL Default url to which RGW connects and verifies tokens for v1 auth (if not using internal swift auth).
 
 **何时使用：** 与外部服务集成时设置；未使用该功能时留空。
 
@@ -149,7 +157,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_swift_custom_header](../../../config/rgw/rgw.md#SP_rgw_swift_custom_header) |
 
-**作用：** Enable swift custom header
+**作用：** Enable swift custom header If not empty, specifies a name of HTTP header that can include custom data. When uploading an object, if this header is passed RGW will store this header info and it will be available when listing the bucket.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -187,7 +195,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_swift_enforce_content_length](../../../config/rgw/rgw.md#SP_rgw_swift_enforce_content_length) |
 
-**作用：** Send content length when listing containers (Swift)
+**作用：** Send content length when listing containers (Swift) Whether content length header is needed when listing containers. When this is set to false, RGW will send extra info for each entry in the response.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -243,9 +251,13 @@ ceph config get client.rgw rgw_swift_need_stats
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_swift_tenant_name](../../../config/rgw/rgw.md#SP_rgw_swift_tenant_name) |
 
-**作用：** Swift tenant name
+**作用：** Swift tenant name Tenant name that is used when constructing the swift path.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_swift_account_in_url`](../../../config/rgw/rgw.md#SP_rgw_swift_account_in_url)
 
 **示例：**
 
@@ -319,9 +331,13 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_swift_url](../../../config/rgw/rgw.md#SP_rgw_swift_url) |
 
-**作用：** Swift-auth storage URL
+**作用：** Swift-auth storage URL Used in conjunction with rgw internal swift authentication. This affects the X-Storage-Url response header value.
 
 **何时使用：** 与外部服务集成时设置；未使用该功能时留空。
+
+**相关选项：**
+
+- [`rgw_swift_auth_entry`](../../../config/rgw/rgw.md#SP_rgw_swift_auth_entry)
 
 **示例：**
 
@@ -357,7 +373,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `swift` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_swift_url_prefix](../../../config/rgw/rgw.md#SP_rgw_swift_url_prefix) |
 
-**作用：** Swift URL prefix
+**作用：** Swift URL prefix The URL path prefix for swift requests.
 
 **何时使用：** 与外部服务集成时设置；未使用该功能时留空。
 

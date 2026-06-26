@@ -38,7 +38,7 @@ ceph pg stat
 | 类型 | Size · default `5_M` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_ops_log_data_backlog](../../../config/rgw/rgw.md#SP_rgw_ops_log_data_backlog) |
 
-**作用：** Ops log socket backlog
+**作用：** Ops log socket backlog Maximum amount of data backlog that RGW can keep when ops log is configured to send info through unix domain socket. When data backlog is higher than this, ops log entries will be lost. In order to avoid ops log information loss, the listener needs to clear data (by reading it) quickly enough.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -76,9 +76,13 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `/var/log/ceph/ops-log-$cluster-$name.log` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_ops_log_file_path](../../../config/rgw/rgw.md#SP_rgw_ops_log_file_path) |
 
-**作用：** File-system path for ops log.
+**作用：** File-system path for ops log. Path to file that RGW will log ops logs to. A cephadm deployment will automatically rotate these logs under /var/log/ceph/. Other deployments should arrange for similar log rotation.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_enable_ops_log`](../../../config/rgw/rgw.md#SP_rgw_enable_ops_log)
 
 **示例：**
 
@@ -110,7 +114,7 @@ iostat -x 5  # disk saturation
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_ops_log_rados](../../../config/rgw/rgw.md#SP_rgw_ops_log_rados) |
 
-**作用：** Use RADOS for ops log
+**作用：** Use RADOS for ops log If set, RGW will store ops log information in RADOS. WARNING, there is no automation to clean up these log entries, so by default they will pile up without bound. This MUST NOT be enabled unless the admin has a strategy to manage and trim these log entries with `radosgw-admin log rm`.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -138,7 +142,7 @@ ceph config get client.rgw rgw_ops_log_rados
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_ops_log_socket_path](../../../config/rgw/rgw.md#SP_rgw_ops_log_socket_path) |
 
-**作用：** Unix domain socket path for ops log.
+**作用：** Unix domain socket path for ops log. Path to unix domain socket that RGW will listen for connection on. When connected, RGW will send ops log data through it.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

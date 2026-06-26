@@ -42,7 +42,7 @@ ceph pg stat
 | نوع | Int · default `2_min` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_exit_timeout_secs](../../../config/rgw/rgw.md#SP_rgw_exit_timeout_secs) |
 
-**کارکرد:** RGW shutdown timeout
+**کارکرد:** RGW shutdown timeout Number of seconds to wait for a process before exiting unconditionally.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -79,7 +79,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `5_min` · **Basic** |
 | جدول | [rgw.md#SP_rgw_init_timeout](../../../config/rgw/rgw.md#SP_rgw_init_timeout) |
 
-**کارکرد:** Initialization timeout
+**کارکرد:** Initialization timeout The time length (in seconds) that RGW will allow for its initialization. RGW process will give up and quit if initialization is not complete after this amount of time.
 
 **زمان استفاده:** رفتار اصلی RGW — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
@@ -156,7 +156,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `1_hr` · **Dev** |
 | جدول | [rgw.md#SP_rgw_olh_pending_timeout_sec](../../../config/rgw/rgw.md#SP_rgw_olh_pending_timeout_sec) |
 
-**کارکرد:** Max time for pending OLH change to complete
+**کارکرد:** Max time for pending OLH change to complete OLH is a versioned object's logical head. Operations on it are journaled and as pending before completion. If an operation doesn't complete with this amount of seconds, we remove the operation from the journal.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -193,7 +193,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Uint · default `60` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [rgw.md#SP_rgw_ratelimit_interval](../../../config/rgw/rgw.md#SP_rgw_ratelimit_interval) |
 
-**کارکرد:** Time window for rate limiting in seconds
+**کارکرد:** Time window for rate limiting in seconds This option sets the time window for rate limiting accumulation in seconds. Requests that exceed the configured rate limits within this time window will be rejected. The default is a 60 second token bucket.
 
 **زمان استفاده:**
 
@@ -236,7 +236,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `10000` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_read_through_timeout_ms](../../../config/rgw/rgw.md#SP_rgw_read_through_timeout_ms) |
 
-**کارکرد:** Maximum time in milliseconds for read-through GET requests to wait for cloud object restore completion
+**کارکرد:** Maximum time in milliseconds for read-through GET requests to wait for cloud object restore completion When a GET request is made for a cloud-tiered object that must be restored, the request will wait up to this many milliseconds for the restore to complete. If the restore completes within this time, the GET request succeeds and returns the object data. If the time is exceeded, the request fails with ERR_REQUEST_TIMEOUT. Set to 0 to fail immediately without waiting.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -275,7 +275,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `-1` · **Dev** |
 | جدول | [rgw.md#SP_rgw_restore_debug_interval](../../../config/rgw/rgw.md#SP_rgw_restore_debug_interval) |
 
-**کارکرد:** The number of seconds that simulate one "day" in order to debug RGW CloudRestore. Do *not* modify for a production cluster.
+**کارکرد:** The number of seconds that simulate one "day" in order to debug RGW CloudRestore. Do *not* modify for a production cluster. For debugging RGW Cloud Restore, the number of seconds that are equivalent to one simulated "day". Values less than 1 are ignored and do not change Restore behavior. For example, during debugging if one wanted every 10 minutes to be equivalent to one day, then this would be set to 600, the number of seconds in 10 minutes.
 
 **زمان استفاده:**
 
@@ -308,7 +308,7 @@ ceph config get client.rgw rgw_restore_debug_interval
 | نوع | Int · default `30` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_usage_log_tick_interval](../../../config/rgw/rgw.md#SP_rgw_usage_log_tick_interval) |
 
-**کارکرد:** Number of seconds between usage log flush cycles
+**کارکرد:** Number of seconds between usage log flush cycles The number of seconds between consecutive usage log flushes. The usage log will also flush itself to the backend if the number of pending entries reaches a certain threshold.
 
 **زمان استفاده:**
 

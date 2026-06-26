@@ -38,7 +38,7 @@ ceph pg stat
 | نوع | Size · default `5_M` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_ops_log_data_backlog](../../../config/rgw/rgw.md#SP_rgw_ops_log_data_backlog) |
 
-**کارکرد:** Ops log socket backlog
+**کارکرد:** Ops log socket backlog Maximum amount of data backlog that RGW can keep when ops log is configured to send info through unix domain socket. When data backlog is higher than this, ops log entries will be lost. In order to avoid ops log information loss, the listener needs to clear data (by reading it) quickly enough.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -76,9 +76,13 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `/var/log/ceph/ops-log-$cluster-$name.log` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_ops_log_file_path](../../../config/rgw/rgw.md#SP_rgw_ops_log_file_path) |
 
-**کارکرد:** File-system path for ops log.
+**کارکرد:** File-system path for ops log. Path to file that RGW will log ops logs to. A cephadm deployment will automatically rotate these logs under /var/log/ceph/. Other deployments should arrange for similar log rotation.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_enable_ops_log`](../../../config/rgw/rgw.md#SP_rgw_enable_ops_log)
 
 **مثال:**
 
@@ -110,7 +114,7 @@ iostat -x 5  # disk saturation
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_ops_log_rados](../../../config/rgw/rgw.md#SP_rgw_ops_log_rados) |
 
-**کارکرد:** Use RADOS for ops log
+**کارکرد:** Use RADOS for ops log If set, RGW will store ops log information in RADOS. WARNING, there is no automation to clean up these log entries, so by default they will pile up without bound. This MUST NOT be enabled unless the admin has a strategy to manage and trim these log entries with `radosgw-admin log rm`.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -138,7 +142,7 @@ ceph config get client.rgw rgw_ops_log_rados
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_ops_log_socket_path](../../../config/rgw/rgw.md#SP_rgw_ops_log_socket_path) |
 
-**کارکرد:** Unix domain socket path for ops log.
+**کارکرد:** Unix domain socket path for ops log. Path to unix domain socket that RGW will listen for connection on. When connected, RGW will send ops log data through it.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

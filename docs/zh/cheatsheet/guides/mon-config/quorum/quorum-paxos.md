@@ -50,6 +50,10 @@ ceph -s
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
+**相关选项：**
+
+- [`mon_lease`](../../../config/mon/mon.md#SP_mon_lease)
+
 **示例：**
 
 ```bash

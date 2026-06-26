@@ -46,7 +46,7 @@ ceph -s
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [crimson.md#SP_crimson_allow_pg_split](../../../config/crimson/crimson.md#SP_crimson_allow_pg_split) |
 
-**作用：** Allow Crimson pools to increase their PG count (split)
+**作用：** Allow Crimson pools to increase their PG count (split) When enabled, allows the monitor to increase pg_num for pools using the crimson flag.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -158,7 +158,7 @@ ceph pg stat
 | 类型 | Uint · default `0` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [crimson.md#SP_crimson_cpu_num](../../../config/crimson/crimson.md#SP_crimson_cpu_num) |
 
-**作用：** The number of CPUs to use for serving seastar reactors per OSD without CPU pinning.
+**作用：** The number of CPUs to use for serving seastar reactors per OSD without CPU pinning. The number of CPUs to use for serving seastar reactors per OSD without CPU pinning. overridden if crimson_cpu_set is set. smp::count is deduced from this option.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -198,7 +198,7 @@ ceph pg stat
 | 类型 | Str · default `(empty)` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [crimson.md#SP_crimson_cpu_set](../../../config/crimson/crimson.md#SP_crimson_cpu_set) |
 
-**作用：** CPU cores on which seastar reactor threads will run in cpuset(7) format per OSD with pinning.
+**作用：** CPU cores on which seastar reactor threads will run in cpuset(7) format per OSD with pinning. CPU cores on which seastar reactor threads will run in cpuset(7) format per OSD with pinning. overrides crimson_cpu_num. smp::count is deduced from this option
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -236,7 +236,7 @@ ceph pg stat
 | 类型 | Size · default `0` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [crimson.md#SP_crimson_memory](../../../config/crimson/crimson.md#SP_crimson_memory) |
 
-**作用：** Total memory to use for the seastar allocator per OSD.
+**作用：** Total memory to use for the seastar allocator per OSD. Total memory to use for the seastar allocator per OSD. Maps to seastar's --memory flag. 0 means use seastar's default (all available memory minus a reserve).
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -423,7 +423,7 @@ ceph pg stat
 | 类型 | Str · enum: ["io_uring", "linux-aio", "epoll"] · default `(empty)` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [crimson.md#SP_crimson_reactor_backend](../../../config/crimson/crimson.md#SP_crimson_reactor_backend) |
 
-**作用：** Select which Seastar's internal reactor implementation
+**作用：** Select which Seastar's internal reactor implementation Controls which asynchronous I/O engine the Seastar reactor will use during OSD startup. Different backends have different performance characteristics and require different kernel capabilities. Note, If none is non is selected, let seastar choose.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -461,7 +461,7 @@ ceph pg stat
 | 类型 | Uint · default `200` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [crimson.md#SP_crimson_reactor_idle_poll_time_us](../../../config/crimson/crimson.md#SP_crimson_reactor_idle_poll_time_us) |
 
-**作用：** Seastar's reactor idle polling time (ms) before going back to sleep.
+**作用：** Seastar's reactor idle polling time (ms) before going back to sleep. Seastar's reactor idle polling time (ms) before going back to sleep. Longer reactor poll time will result in larger CPU utilization.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -499,7 +499,7 @@ ceph pg stat
 | 类型 | Float · default `0` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [crimson.md#SP_crimson_reactor_io_latency_goal_ms](../../../config/crimson/crimson.md#SP_crimson_reactor_io_latency_goal_ms) |
 
-**作用：** The maximum time (ms) Seastar's reactor IO operations must take. If not set(0 mean not set), defaults to 1.5 * crimson_reactor_task_quota_ms
+**作用：** The maximum time (ms) Seastar's reactor IO operations must take. If not set(0 mean not set), defaults to 1.5 * crimson_reactor_task_quota_ms The maximum time (ms) Seastar's reactor IO operations must take. If not set, defaults to 1.5 * crimson_reactor_task_quota_ms. Increasing this value will allow more IO requests to be dispatched concurrently.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -537,7 +537,7 @@ ceph pg stat
 | 类型 | Float · default `0.5` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [crimson.md#SP_crimson_reactor_task_quota_ms](../../../config/crimson/crimson.md#SP_crimson_reactor_task_quota_ms) |
 
-**作用：** The maximum time (ms) Seastar reactors will wait between polls.
+**作用：** The maximum time (ms) Seastar reactors will wait between polls. The maximum time (ms) Seastar reactors will wait between polls. Shorter time between pools will result in larger CPU utilization.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

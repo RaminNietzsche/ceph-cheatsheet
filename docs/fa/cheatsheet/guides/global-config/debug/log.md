@@ -188,6 +188,10 @@ ceph -s
 
 **زمان استفاده:** رفتار اصلی Global — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`log_graylog_host`](../../../config/global/log.md#SP_log_graylog_host)
+
 **مثال:**
 
 ```bash
@@ -222,6 +226,10 @@ ceph -s
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`log_max_recent`](../../../config/global/log.md#SP_log_max_recent)
+
 **مثال:**
 
 ```bash
@@ -253,7 +261,7 @@ ceph -s
 | نوع | Int · default `10000` · **Advanced** |
 | جدول | [log.md#SP_log_max_recent](../../../config/global/log.md#SP_log_max_recent) |
 
-**کارکرد:** Recent log entries to keep in memory to dump in the event of a crash
+**کارکرد:** Recent log entries to keep in memory to dump in the event of a crash The purpose of this option is to log at a higher debug level only to the in-memory buffer, and write out the detailed log messages only if there is a crash. Only log entries below the lower log level will be written unconditionally to the log. For example, debug_osd=1/5 will write everything <= 1 to the log unconditionally but keep entries at levels 2-5 in memory. If there is a seg fault or assertion failure, all entries will be dumped to the log.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -290,7 +298,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [log.md#SP_log_stderr_prefix](../../../config/global/log.md#SP_log_stderr_prefix) |
 
-**کارکرد:** String to prefix log messages with when sent to stderr
+**کارکرد:** String to prefix log messages with when sent to stderr This is useful in container environments when combined with mon_cluster_log_to_stderr. The mon log prefixes each line with the channel name (e.g., 'default', 'audit'), while log_stderr_prefix can be set to 'debug '.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -329,6 +337,10 @@ ceph -s
 
 **زمان استفاده:** رفتار اصلی Global — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`log_file`](../../../config/global/log.md#SP_log_file)
+
 **مثال:**
 
 ```bash
@@ -362,6 +374,10 @@ ceph -s
 **کارکرد:** send log lines to a file
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`log_file`](../../../config/global/log.md#SP_log_file)
 
 **مثال:**
 
@@ -461,7 +477,7 @@ ceph -s
 | نوع | Bool · default `False` · **Basic** |
 | جدول | [log.md#SP_log_to_stderr](../../../config/global/log.md#SP_log_to_stderr) |
 
-**کارکرد:** send log lines to stderr
+**کارکرد:** send log lines to stderr When Ceph runs as a library (e.g., librados), the default value set to false because stderr may not be writable by the application. For daemons, the daemon_default of false is used instead.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 

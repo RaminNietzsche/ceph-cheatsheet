@@ -33,7 +33,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [openssl.md#SP_openssl_conf](../../../config/global/openssl.md#SP_openssl_conf) |
 
-**کارکرد:** Use openssl_conf for specific openssl algorithm
+**کارکرد:** Use openssl_conf for specific openssl algorithm Pass opts in this way: openssl_conf=/path/to/openssl.conf
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

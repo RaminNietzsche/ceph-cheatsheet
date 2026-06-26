@@ -33,7 +33,7 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Basic** |
 | 表格 | [host.md#SP_host](../../../config/global/host.md#SP_host) |
 
-**作用：** local hostname
+**作用：** local hostname If blank, Ceph uses the short hostname (hostname -s)
 
 **何时使用：** 核心 Global 行为 — 生产环境变更前请审阅。
 

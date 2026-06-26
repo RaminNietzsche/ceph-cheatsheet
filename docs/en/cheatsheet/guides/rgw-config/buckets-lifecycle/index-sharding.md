@@ -66,7 +66,7 @@ ceph config get client.rgw rgw_override_bucket_index_max_shards
 | Type | Uint · default `120` · **Advanced** |
 | Table | [rgw.md#SP_rgw_pending_bucket_index_op_expiration](../../../config/rgw/rgw.md#SP_rgw_pending_bucket_index_op_expiration) |
 
-**What it does:** Number of seconds a pending operation can remain in bucket index shard.
+**What it does:** Number of seconds a pending operation can remain in bucket index shard. Number of seconds a pending operation can remain in bucket index shard before it expires. Used for transactional bucket index operations, and if the operation does not complete in this time period, the operation will be dropped.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -104,9 +104,13 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `102400` · **Advanced** |
 | Table | [rgw.md#SP_rgw_safe_max_objects_per_shard](../../../config/rgw/rgw.md#SP_rgw_safe_max_objects_per_shard) |
 
-**What it does:** Safe number of objects per shard
+**What it does:** Safe number of objects per shard This is the max number of objects per bucket index shard that RGW considers safe. RGW will warn if it identifies a bucket where its per-shard count is higher than a percentage of this number.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
+
+**Related options:**
+
+- [`rgw_shard_warning_threshold`](../../../config/rgw/rgw.md#SP_rgw_shard_warning_threshold)
 
 **Example:**
 
@@ -132,9 +136,13 @@ ceph config get client.rgw rgw_safe_max_objects_per_shard
 | Type | Float · default `90` · **Advanced** |
 | Table | [rgw.md#SP_rgw_shard_warning_threshold](../../../config/rgw/rgw.md#SP_rgw_shard_warning_threshold) |
 
-**What it does:** Warn about max objects per shard
+**What it does:** Warn about max objects per shard Warn if number of objects per shard in a specific bucket passed this percentage of the safe number.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_safe_max_objects_per_shard`](../../../config/rgw/rgw.md#SP_rgw_safe_max_objects_per_shard)
 
 **Example:**
 

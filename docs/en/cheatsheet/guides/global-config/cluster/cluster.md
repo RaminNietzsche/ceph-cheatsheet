@@ -109,6 +109,10 @@ ceph -s
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`cluster_network`](../../../config/global/cluster.md#SP_cluster_network)
+
 **Example:**
 
 ```bash

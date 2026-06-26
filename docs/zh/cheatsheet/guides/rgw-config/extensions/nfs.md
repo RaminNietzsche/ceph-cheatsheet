@@ -124,9 +124,13 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `rgw-nfs` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_nfs_frontends](../../../config/rgw/rgw.md#SP_rgw_nfs_frontends) |
 
-**作用：** RGW frontends configuration when running as librgw/nfs
+**作用：** RGW frontends configuration when running as librgw/nfs A comma-delimited list of frontends configuration. Each configuration contains the type of the frontend followed by an optional space delimited set of key=value config parameters.
 
 **何时使用：** 核心 RGW 行为 — 生产环境变更前请审阅。
+
+**相关选项：**
+
+- [`rgw_frontends`](../../../config/rgw/rgw.md#SP_rgw_frontends)
 
 **示例：**
 
@@ -440,7 +444,7 @@ ceph config get client.rgw rgw_nfs_run_sync_thread
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_nfs_s3_fast_attrs](../../../config/rgw/rgw.md#SP_rgw_nfs_s3_fast_attrs) |
 
-**作用：** use fast S3 attrs from bucket index (immutable only)
+**作用：** use fast S3 attrs from bucket index (immutable only) use fast S3 attrs from bucket index (assumes NFS mounts are immutable)
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 

@@ -110,7 +110,7 @@ ceph pg stat
 | Type | Size · default `500_M` · **Advanced** |
 | Table | [osd.md#SP_osd_client_message_size_cap](../../../config/osd/osd.md#SP_osd_client_message_size_cap) |
 
-**What it does:** maximum memory to devote to in-flight client requests
+**What it does:** maximum memory to devote to in-flight client requests If this value is exceeded, the OSD will not read any new client data off of the network until memory is freed.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -394,7 +394,7 @@ ceph pg stat
 | Type | Size · default `90` · **Advanced** |
 | Table | [osd.md#SP_osd_max_write_size](../../../config/osd/osd.md#SP_osd_max_write_size) |
 
-**What it does:** Maximum size of a RADOS write operation in megabytes
+**What it does:** Maximum size of a RADOS write operation in megabytes This setting prevents clients from doing very large writes to RADOS. If you set this to a value below what clients expect, they will receive an error when attempting to write to the cluster.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -507,6 +507,10 @@ ceph pg stat
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`osd_map_cache_size`](../../../config/osd/osd.md#SP_osd_map_cache_size)
+
 **Example:**
 
 ```bash
@@ -540,7 +544,7 @@ ceph pg stat
 | Type | Bool · default `False` · **Advanced** · **STARTUP** (restart required) |
 | Table | [osd.md#SP_set_keepcaps](../../../config/osd/osd.md#SP_set_keepcaps) |
 
-**What it does:** set the keepcaps flag before changing UID, preserving the permitted capability set
+**What it does:** set the keepcaps flag before changing UID, preserving the permitted capability set When ceph switches from root to the ceph uid, all capabilities in all sets are eraseed. If a component that is capability aware needs a specific capability, the keepcaps flag maintains the permitted capability set, allowing the capabilities in the effective set to be activated as needed.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 

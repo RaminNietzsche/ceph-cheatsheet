@@ -131,9 +131,13 @@ ceph config get client.rgw rgw_debug_inject_set_olh_err
 | 类型 | Str · default `(empty)` · **Dev** |
 | 表格 | [rgw.md#SP_rgw_inject_delay_pattern](../../../config/rgw/rgw.md#SP_rgw_inject_delay_pattern) |
 
-**作用：** select which delay injection points are activated
+**作用：** select which delay injection points are activated Used together with `rgw_inject_delay_sec` to target specific delay injection points within the RGW code. The pattern should match a string associated with one or more delay locations (e.g., "delay_bucket_full_sync_loop") to activate them during testing.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`rgw_inject_delay_sec`](../../../config/rgw/rgw.md#SP_rgw_inject_delay_sec)
 
 **示例：**
 
@@ -161,9 +165,13 @@ ceph config get client.rgw rgw_inject_delay_pattern
 | 类型 | Float · default `0` · **Dev** |
 | 表格 | [rgw.md#SP_rgw_inject_delay_sec](../../../config/rgw/rgw.md#SP_rgw_inject_delay_sec) |
 
-**作用：** delay duration in seconds for test injection points
+**作用：** delay duration in seconds for test injection points Intended for integration and stress testing. When set to a positive value, this option introduces an artificial delay at specific code paths to help deterministically reproduce timing-sensitive scenarios. It is used in conjunction with `rgw_inject_delay_pattern` to control which delay points are activated.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`rgw_inject_delay_pattern`](../../../config/rgw/rgw.md#SP_rgw_inject_delay_pattern)
 
 **示例：**
 

@@ -33,7 +33,7 @@ ceph -s
 | Type | Str · default `(empty)` · **Advanced** · **STARTUP** (restart required) |
 | Table | [key.md#SP_key](../../../config/global/key.md#SP_key) |
 
-**What it does:** Authentication key
+**What it does:** Authentication key A CephX authentication key, base64 encoded. It normally looks something like 'AQAtut9ZdMbNJBAAHz6yBAWyJyz2yYRyeMWDag=='.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

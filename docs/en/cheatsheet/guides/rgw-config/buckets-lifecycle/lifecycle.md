@@ -51,9 +51,13 @@ ceph pg stat
 | Type | Uint · default `5000` · **Advanced** |
 | Table | [rgw.md#SP_rgw_lc_counters_batch_size](../../../config/rgw/rgw.md#SP_rgw_lc_counters_batch_size) |
 
-**What it does:** Batch size for flushing LC per-bucket counters
+**What it does:** Batch size for flushing LC per-bucket counters LC per-bucket counters are flushed to cache every N objects processed. Lower values provide more frequent updates, higher values reduce overhead.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_lc_counters_cache`](../../../config/rgw/rgw.md#SP_rgw_lc_counters_cache)
 
 **Example:**
 
@@ -91,7 +95,7 @@ ceph -s  # cluster health, slow ops
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_lc_counters_cache](../../../config/rgw/rgw.md#SP_rgw_lc_counters_cache) |
 
-**What it does:** Enable per-bucket lifecycle performance counters cache
+**What it does:** Enable per-bucket lifecycle performance counters cache When enabled, RGW will create and update per-bucket lifecycle performance counters and expose them via admin socket perf dump.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -120,7 +124,7 @@ ceph config set client.rgw rgw_lc_counters_cache_size 20000
 | Type | Uint · default `10000` · **Advanced** |
 | Table | [rgw.md#SP_rgw_lc_counters_cache_size](../../../config/rgw/rgw.md#SP_rgw_lc_counters_cache_size) |
 
-**What it does:** Target size for lifecycle counters cache
+**What it does:** Target size for lifecycle counters cache Maximum number of per-bucket LC counter entries to maintain in cache
 
 **When to use:**
 
@@ -160,7 +164,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `-1` · **Dev** |
 | Table | [rgw.md#SP_rgw_lc_debug_interval](../../../config/rgw/rgw.md#SP_rgw_lc_debug_interval) |
 
-**What it does:** The number of seconds that simulate one "day" in order to debug RGW LifeCycle. Do *not* modify for a production cluster.
+**What it does:** The number of seconds that simulate one "day" in order to debug RGW LifeCycle. Do *not* modify for a production cluster. For debugging RGW LifeCycle, the number of seconds that are equivalent to one simulated "day". Values less than 1 are ignored and do not change LifeCycle behavior. For example, during debugging if one wanted every 10 minutes to be equivalent to one day, then this would be set to 600, the number of seconds in 10 minutes.
 
 **When to use:**
 
@@ -193,7 +197,7 @@ ceph config get client.rgw rgw_lc_debug_interval
 | Type | Uint · default `1000` · **Dev** |
 | Table | [rgw.md#SP_rgw_lc_list_cnt](../../../config/rgw/rgw.md#SP_rgw_lc_list_cnt) |
 
-**What it does:** The count of number of objects in per listing of lc processing from each bucket.
+**What it does:** The count of number of objects in per listing of lc processing from each bucket. Number of objects that will be requested when performing a listing request of a bucket for lifecycle processing.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -259,7 +263,7 @@ ceph config get client.rgw rgw_lc_lock_max_time
 | Type | Int · default `32` · **Advanced** |
 | Table | [rgw.md#SP_rgw_lc_max_objs](../../../config/rgw/rgw.md#SP_rgw_lc_max_objs) |
 
-**What it does:** Number of lifecycle data shards
+**What it does:** Number of lifecycle data shards Number of RADOS objects to use for storing lifecycle index. This affects concurrency of lifecycle maintenance, as shards can be processed in parallel.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -287,7 +291,7 @@ ceph config get client.rgw rgw_lc_max_objs
 | Type | Uint · default `1000` · **Advanced** |
 | Table | [rgw.md#SP_rgw_lc_max_rules](../../../config/rgw/rgw.md#SP_rgw_lc_max_rules) |
 
-**What it does:** Max number of lifecycle rules set on one bucket
+**What it does:** Max number of lifecycle rules set on one bucket Number of lifecycle rules set on one bucket should be limited.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -315,7 +319,7 @@ ceph config get client.rgw rgw_lc_max_rules
 | Type | Int · default `3` · **Advanced** |
 | Table | [rgw.md#SP_rgw_lc_max_worker](../../../config/rgw/rgw.md#SP_rgw_lc_max_worker) |
 
-**What it does:** Number of LCWorker tasks that will be run in parallel
+**What it does:** Number of LCWorker tasks that will be run in parallel Number of LCWorker tasks that will run in parallel--used to permit >1 bucket/index shards to be processed simultaneously
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -353,7 +357,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `128` · **Advanced** |
 | Table | [rgw.md#SP_rgw_lc_max_wp_worker](../../../config/rgw/rgw.md#SP_rgw_lc_max_wp_worker) |
 
-**What it does:** Number of workpool coroutines per LCWorker
+**What it does:** Number of workpool coroutines per LCWorker Number of coroutines in per-LCWorker workpools--used to accelerate per-bucket processing
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -381,7 +385,7 @@ ceph config get client.rgw rgw_lc_max_wp_worker
 | Type | Uint · default `500` · **Dev** |
 | Table | [rgw.md#SP_rgw_lc_ordered_list_threshold](../../../config/rgw/rgw.md#SP_rgw_lc_ordered_list_threshold) |
 
-**What it does:** Threshold for enabling ordered listing in lifecycle processing.
+**What it does:** Threshold for enabling ordered listing in lifecycle processing. When bucket shard count is below this threshold, lifecycle processing will use ordered listing for better performance. Above this threshold, unordered listing is used to avoid excessive OSD requests. A value of 0 disables ordered listing entirely.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -459,7 +463,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `00:00-06:00` · **Advanced** |
 | Table | [rgw.md#SP_rgw_lifecycle_work_time](../../../config/rgw/rgw.md#SP_rgw_lifecycle_work_time) |
 
-**What it does:** Lifecycle allowed work time
+**What it does:** Lifecycle allowed work time Local time window in which the lifecycle maintenance thread can work. It expects 24-hour time notation. For example, "00:00-23:59" means starting at midnight lifecycle is allowed to run for the whole day (24 hours). When lifecycle completes, it waits for the next maintenance window. In this example, if it completes at 01:00, it will resume processing 23 hours later at the following midnight.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -497,7 +501,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `10_min` · **Advanced** |
 | Table | [rgw.md#SP_rgw_mp_lock_max_time](../../../config/rgw/rgw.md#SP_rgw_mp_lock_max_time) |
 
-**What it does:** Multipart upload max completion time
+**What it does:** Multipart upload max completion time Time length to allow completion of a multipart upload operation. This is done to prevent concurrent completions on the same object with the same upload id.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 

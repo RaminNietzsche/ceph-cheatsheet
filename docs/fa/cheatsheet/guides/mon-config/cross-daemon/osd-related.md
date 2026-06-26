@@ -64,6 +64,10 @@ ceph -s
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_osd_adjust_heartbeat_grace`](../../../config/mon/mon.md#SP_mon_osd_adjust_heartbeat_grace)
+
 **مثال:**
 
 ```bash
@@ -96,7 +100,7 @@ ceph mon stat
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [mon.md#SP_mon_osd_adjust_heartbeat_grace](../../../config/mon/mon.md#SP_mon_osd_adjust_heartbeat_grace) |
 
-**کارکرد:** increase OSD heartbeat grace if peers appear to be laggy
+**کارکرد:** increase OSD heartbeat grace if peers appear to be laggy If an OSD is marked down but then marks itself back up, it implies it wasn't actually down but was unable to respond to heartbeats. If this option is true, we can use the laggy_probability and laggy_interval values calculated to model this situation to increase the heartbeat grace period for this OSD so that it isn't marked down again. laggy_probability is an estimated probability that the given OSD is down because it is laggy (not actually down), and laggy_interval is an estiate on how long it stays down when it is laggy.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -135,6 +139,10 @@ ceph mon stat
 **کارکرد:** mark any OSD that comes up that was automatically marked 'out' back 'in'
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
 
 **مثال:**
 
@@ -462,6 +470,10 @@ Common production range: 600–3600 s. Coordinate with `mon_osd_min_down_reporte
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
+
 **مثال:**
 
 ```bash
@@ -566,7 +578,7 @@ ceph mon stat
 | نوع | Float · default `0.3` · **Advanced** |
 | جدول | [mon.md#SP_mon_osd_laggy_weight](../../../config/mon/mon.md#SP_mon_osd_laggy_weight) |
 
-**کارکرد:** how heavily to weight OSD marking itself back up in overall laggy_probability
+**کارکرد:** how heavily to weight OSD marking itself back up in overall laggy_probability 1.0 means that an OSD marking itself back up (because it was marked down but not actually dead) means a 100% laggy_probability; 0.0 effectively disables tracking of laggy_probability.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -632,7 +644,7 @@ ceph config get mon mon_osd_mapping_pgs_per_chunk
 | نوع | Int · default `1024` · **Advanced** |
 | جدول | [mon.md#SP_mon_osd_max_initial_pgs](../../../config/mon/mon.md#SP_mon_osd_max_initial_pgs) |
 
-**کارکرد:** maximum number of PGs a pool will created with
+**کارکرد:** maximum number of PGs a pool will created with If the user specifies more PGs than this, the cluster will subsequently split PGs after the pool is created in order to reach the target.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -672,6 +684,10 @@ ceph mon stat
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
+
 **مثال:**
 
 ```bash
@@ -707,6 +723,10 @@ ceph mon stat
 **کارکرد:** do not automatically mark OSDs 'out' if fewer than this many OSDs are 'up'
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
 
 **مثال:**
 
@@ -983,9 +1003,13 @@ ceph config get mon mon_warn_on_filestore_osds
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [mon.md#SP_mon_warn_on_osd_down_out_interval_zero](../../../config/mon/mon.md#SP_mon_warn_on_osd_down_out_interval_zero) |
 
-**کارکرد:** issue OSD_NO_DOWN_OUT_INTERVAL health warning if mon_osd_down_out_interval is zero
+**کارکرد:** issue OSD_NO_DOWN_OUT_INTERVAL health warning if mon_osd_down_out_interval is zero Having mon_osd_down_out_interval set to 0 means that down OSDs are not marked out automatically and the cluster does not heal itself without administrator intervention.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
 
 **مثال:**
 
@@ -1019,7 +1043,7 @@ ceph mon stat
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [osd.md#SP_osd_crush_update_weight_set](../../../config/mon/osd.md#SP_osd_crush_update_weight_set) |
 
-**کارکرد:** update CRUSH weight-set weights when updating weights
+**کارکرد:** update CRUSH weight-set weights when updating weights If this setting is true, we will update the weight-set weights when adjusting an item's weight, effectively making changes take effect immediately, and discarding any previous optimization in the weight-set value. Setting this value to false will leave it to the balancer to (slowly, presumably) adjust weights to approach the new target value.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 

@@ -33,7 +33,7 @@ ceph -s
 | Type | Str · default `(empty)` · **Advanced** · **STARTUP** (restart required) |
 | Table | [keyfile.md#SP_keyfile](../../../config/global/keyfile.md#SP_keyfile) |
 
-**What it does:** Path to a file containing a key
+**What it does:** Path to a file containing a key The file should contain a CephX authentication key and optionally a trailing newline, but nothing else.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

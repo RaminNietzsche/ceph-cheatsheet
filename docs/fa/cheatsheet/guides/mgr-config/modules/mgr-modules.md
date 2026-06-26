@@ -218,6 +218,10 @@ ceph config get mgr mgr_debug_aggressive_pg_num_changes
 
 **زمان استفاده:** Disable unused modules to reduce attack surface and MGR startup time.
 
+**گزینه‌های مرتبط:**
+
+- [`mgr_module_path`](../../../config/mgr/mgr.md#SP_mgr_module_path)
+
 **مثال:**
 
 ```bash
@@ -251,7 +255,7 @@ ceph mgr stat
 | نوع | Str · default `iostat nfs nvmeof` · **Basic** |
 | جدول | [mgr.md#SP_mgr_initial_modules](../../../config/mgr/mgr.md#SP_mgr_initial_modules) |
 
-**کارکرد:** List of manager modules to enable when the cluster is first started
+**کارکرد:** List of manager modules to enable when the cluster is first started This list of module names is read by the monitor when the cluster is first started after installation, to populate the list of enabled manager modules. Subsequent updates are done using the 'mgr module &#91;enable\
 
 **زمان استفاده:** رفتار اصلی MGR — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
@@ -410,9 +414,13 @@ ceph config get mgr mgr_mds_messages
 | نوع | Millisecs · default `0` · **Dev** |
 | جدول | [mgr.md#SP_mgr_module_load_delay](../../../config/mgr/mgr.md#SP_mgr_module_load_delay) |
 
-**کارکرد:** Number of milliseconds for Manager modules to delay loading. For testing purposes only.
+**کارکرد:** Number of milliseconds for Manager modules to delay loading. For testing purposes only. Number of milliseconds for Manager modules to delay loading. For testing purposes only.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
+
+**گزینه‌های مرتبط:**
+
+- [`mgr_module_load_delay_name`](../../../config/mgr/mgr.md#SP_mgr_module_load_delay_name)
 
 **مثال:**
 
@@ -438,9 +446,13 @@ ceph config get mgr mgr_module_load_delay
 | نوع | Str · default `(empty)` · **Dev** |
 | جدول | [mgr.md#SP_mgr_module_load_delay_name](../../../config/mgr/mgr.md#SP_mgr_module_load_delay_name) |
 
-**کارکرد:** Specify which Manager module is to delay loading by mgr_module_load_delay milliseconds. For testing purposes only.
+**کارکرد:** Specify which Manager module is to delay loading by mgr_module_load_delay milliseconds. For testing purposes only. Specify which Manager module is to delay loading by mgr_module_load_delay milliseconds. For testing purposes only.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
+
+**گزینه‌های مرتبط:**
+
+- [`mgr_module_load_delay`](../../../config/mgr/mgr.md#SP_mgr_module_load_delay)
 
 **مثال:**
 
@@ -466,7 +478,7 @@ ceph config get mgr mgr_module_load_delay_name
 | نوع | Millisecs · default `20000` · **Dev** |
 | جدول | [mgr.md#SP_mgr_module_load_expiration](../../../config/mgr/mgr.md#SP_mgr_module_load_expiration) |
 
-**کارکرد:** Maximum number of milliseconds the active mgr is allowed to load the mgr modules before declaring availability.
+**کارکرد:** Maximum number of milliseconds the active mgr is allowed to load the mgr modules before declaring availability. Maximum number of milliseconds the active mgr is allowed to load the mgr modules. If any modules are still uninitialized after the expiration is exceeded, the mgr proceeds to declare availability, but a health error will be issued indicating which modules didn't load in time.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -494,7 +506,7 @@ ceph config get mgr mgr_module_load_expiration
 | نوع | Int · default `5` · **Advanced** |
 | جدول | [mgr.md#SP_mgr_module_monitor_interval](../../../config/mgr/mgr.md#SP_mgr_module_monitor_interval) |
 
-**کارکرد:** Period in seconds for collecting Manager modules cpu and memory performance counters.
+**کارکرد:** Period in seconds for collecting Manager modules cpu and memory performance counters. Period in seconds for Manager Monitor to collect the cpu and memory for each enabled module. If set to 0, collection of these stats will be disabled.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
@@ -845,9 +857,13 @@ ceph mgr stat
 | نوع | Bool · default `True` · **Basic** |
 | جدول | [mgr.md#SP_mgr_stats_period_autotune](../../../config/mgr/mgr.md#SP_mgr_stats_period_autotune) |
 
-**کارکرد:** Automatically adjust mgr_stats_period based on Manager message queue depth
+**کارکرد:** Automatically adjust mgr_stats_period based on Manager message queue depth When enabled, the Manager monitors its incoming message queue and automatically increases mgr_stats_period when the queue backs up beyond the configured threshold, reducing daemon reporting frequency to prevent Manager overload. The period is gradually decreased back to the original value when the queue depth recovers. This prevents performance degradation during high cluster activity without requiring manual intervention. When disabled, mgr_stats_period remains at the manually configured value.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`mgr_stats_period`](../../../config/mgr/mgr.md#SP_mgr_stats_period)
 
 **مثال:**
 
@@ -880,9 +896,13 @@ ceph mgr stat
 | نوع | Int · default `100` · **Advanced** |
 | جدول | [mgr.md#SP_mgr_stats_period_autotune_queue_threshold](../../../config/mgr/mgr.md#SP_mgr_stats_period_autotune_queue_threshold) |
 
-**کارکرد:** Message queue depth that triggers automatic increase of mgr_stats_period
+**کارکرد:** Message queue depth that triggers automatic increase of mgr_stats_period When mgr_stats_period_autotune is enabled, the Manager will increase the stats reporting period if the incoming message queue exceeds this threshold. Higher values make the system less sensitive to temporary queue spikes but may allow longer periods of Manager overload.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`mgr_stats_period`](../../../config/mgr/mgr.md#SP_mgr_stats_period)
 
 **مثال:**
 
@@ -916,7 +936,7 @@ ceph mgr stat
 | نوع | Int · default `5` · **Advanced** |
 | جدول | [mgr.md#SP_mgr_stats_threshold](../../../config/mgr/mgr.md#SP_mgr_stats_threshold) |
 
-**کارکرد:** Lowest perfcounter priority collected by mgr
+**کارکرد:** Lowest perfcounter priority collected by mgr Daemons only set perf counter data to the manager daemon if the counter has a priority higher than this.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -954,7 +974,7 @@ ceph mgr stat
 | نوع | Str · default `0` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [mgr.md#SP_mgr_subinterpreter_modules](../../../config/mgr/mgr.md#SP_mgr_subinterpreter_modules) |
 
-**کارکرد:** List of manager modules to load in independent subinterpreters
+**کارکرد:** List of manager modules to load in independent subinterpreters A comma delimited list of module names. This list is read by manager when it starts. By default, manager loads each module into the main interpreter. Modules in this list will instead be loaded into independent subinterpreters. Specifying '*' will cause all modules to be run in independent subinterpreters.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

@@ -195,9 +195,13 @@ ceph pg stat
 | نوع | Uint · default `1` · **Advanced** |
 | جدول | [osd.md#SP_osd_max_backfills](../../../config/osd/osd.md#SP_osd_max_backfills) |
 
-**کارکرد:** Maximum number of concurrent local and remote backfills or recoveries per OSD
+**کارکرد:** Maximum number of concurrent local and remote backfills or recoveries per OSD There can be osd_max_backfills local reservations AND the same remote reservations per OSD. So a value of 1 lets this OSD participate as 1 PG primary in recovery and 1 shard of another recovering PG.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_mclock_override_recovery_settings`](../../../config/osd/osd.md#SP_osd_mclock_override_recovery_settings)
 
 **مثال:**
 
@@ -232,7 +236,7 @@ ceph pg stat
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [osd.md#SP_osd_mclock_override_recovery_settings](../../../config/osd/osd.md#SP_osd_mclock_override_recovery_settings) |
 
-**کارکرد:** Setting this option enables the override of recovery/backfill limits for the mClock scheduler.
+**کارکرد:** Setting this option enables the override of recovery/backfill limits for the mClock scheduler. This option when set enables the override of the max recovery active and the max backfills limits with mClock scheduler active. These options are not modifiable when mClock scheduler is active. Any attempt to modify these values without setting this option will reset the recovery or backfill option back to its default value.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -269,7 +273,7 @@ ceph pg stat
 | نوع | Float · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_mclock_scheduler_background_recovery_lim](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_recovery_lim) |
 
-**کارکرد:** IO limit for background recovery over reservation. The default value of 0 specifies no limit enforcement, which means background recovery operation can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that background recovery operation receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**کارکرد:** IO limit for background recovery over reservation. The default value of 0 specifies no limit enforcement, which means background recovery operation can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that background recovery operation receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -308,7 +312,7 @@ ceph pg stat
 | نوع | Float · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_mclock_scheduler_background_recovery_res](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_recovery_res) |
 
-**کارکرد:** IO proportion reserved for background recovery (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for background recovery operations in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**کارکرد:** IO proportion reserved for background recovery (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for background recovery operations in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -347,7 +351,7 @@ ceph pg stat
 | نوع | Uint · default `1` · **Advanced** |
 | جدول | [osd.md#SP_osd_mclock_scheduler_background_recovery_wgt](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_recovery_wgt) |
 
-**کارکرد:** IO share for each background recovery over reservation Ignored unless osd_mclock_profile is set to 'custom'.
+**کارکرد:** IO share for each background recovery over reservation Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -384,7 +388,7 @@ ceph pg stat
 | نوع | Int · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_min_recovery_priority](../../../config/osd/osd.md#SP_osd_min_recovery_priority) |
 
-**کارکرد:** Minimum priority below which recovery is not performed
+**کارکرد:** Minimum priority below which recovery is not performed The purpose here is to prevent the cluster from doing *any* lower priority work (e.g., rebalancing) below this threshold and focus solely on higher priority work (e.g., replicating degraded objects).
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -896,6 +900,10 @@ ceph pg stat
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_recovery_sleep_degraded`](../../../config/osd/osd.md#SP_osd_recovery_sleep_degraded)
+
 **مثال:**
 
 ```bash
@@ -932,6 +940,10 @@ ceph pg stat
 **کارکرد:** Time in seconds to sleep before next recovery or backfill op for SSDs when PGs are degraded.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_recovery_sleep_degraded`](../../../config/osd/osd.md#SP_osd_recovery_sleep_degraded)
 
 **مثال:**
 
@@ -1007,6 +1019,10 @@ ceph pg stat
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_recovery_sleep`](../../../config/osd/osd.md#SP_osd_recovery_sleep)
+
 **مثال:**
 
 ```bash
@@ -1043,6 +1059,10 @@ ceph pg stat
 **کارکرد:** Time in seconds to sleep before next recovery or backfill op for SSDs
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_recovery_sleep`](../../../config/osd/osd.md#SP_osd_recovery_sleep)
 
 **مثال:**
 

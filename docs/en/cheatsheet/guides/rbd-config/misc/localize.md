@@ -38,6 +38,10 @@ ceph -s
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
+**Related options:**
+
+- [`rbd_read_from_replica_policy`](../../../config/rbd/rbd.md#SP_rbd_read_from_replica_policy)
+
 **Example:**
 
 ```bash
@@ -73,6 +77,10 @@ ceph -s
 **What it does:** localize snap read requests to closest OSD
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
+
+**Related options:**
+
+- [`rbd_read_from_replica_policy`](../../../config/rbd/rbd.md#SP_rbd_read_from_replica_policy)
 
 **Example:**
 

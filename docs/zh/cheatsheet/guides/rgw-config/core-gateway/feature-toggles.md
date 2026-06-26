@@ -110,7 +110,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_enable_gc_threads](../../../config/rgw/rgw.md#SP_rgw_enable_gc_threads) |
 
-**作用：** Enables the garbage collection maintenance thread.
+**作用：** Enables the garbage collection maintenance thread. The garbage collection maintenance thread is responsible for garbage collector maintenance work. The thread itself can be disabled, but in order for garbage collection to work correctly, at least one RGW in each zone needs to have this thread running. Having the thread enabled on multiple RGW processes within the same zone can spread some of the maintenance work between them.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -138,7 +138,7 @@ ceph config get client.rgw rgw_enable_gc_threads
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_enable_jwks_url_verification](../../../config/rgw/rgw.md#SP_rgw_enable_jwks_url_verification) |
 
-**作用：** Enable JWKS url verification for AWS compliance
+**作用：** Enable JWKS url verification for AWS compliance Verifies the security of the JWKS url endpoint using the client provided thumbprints for AWS compliance. If turned on, the legacy verification option of using thumbprints to verify JWT x5c certs is disabled.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -166,7 +166,7 @@ ceph config get client.rgw rgw_enable_jwks_url_verification
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_enable_lc_threads](../../../config/rgw/rgw.md#SP_rgw_enable_lc_threads) |
 
-**作用：** Enables the lifecycle maintenance thread. This is required on at least one RGW daemon for each zone.
+**作用：** Enables the lifecycle maintenance thread. This is required on at least one RGW daemon for each zone. The lifecycle maintenance thread is responsible for lifecycle related maintenance work. The thread itself can be disabled, but in order for lifecycle to work correctly, at least one RGW in each zone needs to have this thread running. Having the thread enabled on multiple RGW processes within the same zone can spread some of the maintenance work between them.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -194,7 +194,7 @@ ceph config get client.rgw rgw_enable_lc_threads
 | 类型 | Bool · default `True` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_enable_mdsearch](../../../config/rgw/rgw.md#SP_rgw_enable_mdsearch) |
 
-**作用：** Enable elastic metadata search APIs
+**作用：** Enable elastic metadata search APIs This configurable controls whether RGW enables the elastic metadata search APIs.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -250,7 +250,7 @@ ceph config get client.rgw rgw_enable_ops_log
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_enable_restore_threads](../../../config/rgw/rgw.md#SP_rgw_enable_restore_threads) |
 
-**作用：** Enables the objects' restore maintenance thread.
+**作用：** Enables the objects' restore maintenance thread. The objects restore maintenance thread is responsible for all the objects restoration related maintenance work. The thread itself can be disabled, but in order for the restore from the cloud to work correctly, at least one RGW in each zone needs to have this thread running. Having the thread enabled on multiple RGW processes within the same zone can spread some of the maintenance work between them.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -278,7 +278,7 @@ ceph config get client.rgw rgw_enable_restore_threads
 | 类型 | Bool · default `False` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_enable_static_website](../../../config/rgw/rgw.md#SP_rgw_enable_static_website) |
 
-**作用：** Enable static website APIs
+**作用：** Enable static website APIs This configurable controls whether RGW enables the website control APIs. RGW can serve static websites if S3 website hostnames are configured.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -309,6 +309,10 @@ ceph config get client.rgw rgw_enable_static_website
 **作用：** Enable the usage log
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
+
+**相关选项：**
+
+- [`rgw_usage_max_shards`](../../../config/rgw/rgw.md#SP_rgw_usage_max_shards)
 
 **示例：**
 

@@ -78,6 +78,10 @@ ceph -s
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`clog_to_graylog`](../../../config/global/clog.md#SP_clog_to_graylog)
+
 **مثال:**
 
 ```bash
@@ -112,6 +116,10 @@ ceph -s
 **کارکرد:** Graylog port number for cluster log messages
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`clog_to_graylog`](../../../config/global/clog.md#SP_clog_to_graylog)
 
 **مثال:**
 
@@ -218,6 +226,10 @@ ceph -s
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`clog_to_syslog`](../../../config/global/clog.md#SP_clog_to_syslog)
+
 **مثال:**
 
 ```bash
@@ -252,6 +264,10 @@ ceph -s
 **کارکرد:** Syslog level for cluster log messages
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`clog_to_syslog`](../../../config/global/clog.md#SP_clog_to_syslog)
 
 **مثال:**
 

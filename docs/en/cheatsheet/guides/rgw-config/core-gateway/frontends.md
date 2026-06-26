@@ -102,7 +102,7 @@ ceph orch restart rgw
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_dns_name](../../../config/rgw/rgw.md#SP_rgw_dns_name) |
 
-**What it does:** The host names that RGW uses.
+**What it does:** The host names that RGW uses. A comma-separated list of FQDNs of the served domains. This is needed for virtual hosting of buckets to work properly, unless configured via the hostnames zonegroup configuration.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -140,7 +140,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_dns_s3website_name](../../../config/rgw/rgw.md#SP_rgw_dns_s3website_name) |
 
-**What it does:** The host name that RGW uses for static websites (S3)
+**What it does:** The host name that RGW uses for static websites (S3) This is needed for virtual hosting of buckets, unless configured via zonegroup configuration.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -178,7 +178,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `beast ssl_certificate=config://rgw/cert/$realm/$zone.crt ssl_private_key=config://rgw/cert/$realm/$zone.key` · **Advanced** |
 | Table | [rgw.md#SP_rgw_frontend_defaults](../../../config/rgw/rgw.md#SP_rgw_frontend_defaults) |
 
-**What it does:** RGW frontends default configuration
+**What it does:** RGW frontends default configuration A comma delimited list of default frontends configuration.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -216,7 +216,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `beast port=7480` · **Basic** |
 | Table | [rgw.md#SP_rgw_frontends](../../../config/rgw/rgw.md#SP_rgw_frontends) |
 
-**What it does:** RGW frontends configuration
+**What it does:** RGW frontends configuration A comma delimited list of frontends configuration. Each configuration contains the type of the frontend followed by an optional space delimited set of key=value config parameters.
 
 **When to use:** Core RGW behavior — review before changing in production.
 

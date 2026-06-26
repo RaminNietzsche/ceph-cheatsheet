@@ -52,9 +52,13 @@ ceph -s
 | Type | Str · default `default=/var/log/ceph/$cluster.$channel.log cluster=/var/log/ceph/$cluster.log` · **Advanced** |
 | Table | [mon.md#SP_mon_cluster_log_file](../../../config/mon/mon.md#SP_mon_cluster_log_file) |
 
-**What it does:** File(s) to write cluster log to
+**What it does:** File(s) to write cluster log to This can either be a simple file name to receive all messages, or a list of key/value pairs where the key is the log channel and the value is the filename, which may include $cluster and $channel metavariables
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`mon_cluster_log_to_file`](../../../config/mon/mon.md#SP_mon_cluster_log_to_file)
 
 **Example:**
 
@@ -87,9 +91,13 @@ ceph mon stat
 | Type | Str · default `debug` · **Advanced** |
 | Table | [mon.md#SP_mon_cluster_log_level](../../../config/mon/mon.md#SP_mon_cluster_log_level) |
 
-**What it does:** Lowest level to include in cluster log file and/or in external log server
+**What it does:** Lowest level to include in cluster log file and/or in external log server Log level to control the cluster log message verbosity for the cluster log file as well as for all external entities.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`mon_cluster_log_file`](../../../config/mon/mon.md#SP_mon_cluster_log_file)
 
 **Example:**
 
@@ -126,6 +134,10 @@ ceph mon stat
 **What it does:** Make monitor send cluster log messages to file
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Related options:**
+
+- [`mon_cluster_log_file`](../../../config/mon/mon.md#SP_mon_cluster_log_file)
 
 **Example:**
 
@@ -198,6 +210,10 @@ ceph mon stat
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`mon_cluster_log_to_graylog`](../../../config/mon/mon.md#SP_mon_cluster_log_to_graylog)
+
 **Example:**
 
 ```bash
@@ -233,6 +249,10 @@ ceph mon stat
 **What it does:** Graylog port for cluster log messages
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`mon_cluster_log_to_graylog`](../../../config/mon/mon.md#SP_mon_cluster_log_to_graylog)
 
 **Example:**
 
@@ -378,6 +398,10 @@ ceph mon stat
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`mon_cluster_log_to_syslog`](../../../config/mon/mon.md#SP_mon_cluster_log_to_syslog)
+
 **Example:**
 
 ```bash
@@ -505,6 +529,10 @@ ceph mon stat
 **What it does:** frequency to log monitor health to cluster log
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
+
+**Related options:**
+
+- [`mon_health_to_clog`](../../../config/mon/mon.md#SP_mon_health_to_clog)
 
 **Example:**
 

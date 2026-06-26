@@ -363,6 +363,10 @@ ceph mon stat
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`mon_warn_on_legacy_crush_tunables`](../../../config/mon/mon.md#SP_mon_warn_on_legacy_crush_tunables)
+
 **Example:**
 
 ```bash
@@ -579,6 +583,10 @@ ceph mon stat
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`mon_elector_ping_timeout`](../../../config/mon/mon.md#SP_mon_elector_ping_timeout)
+
 **Example:**
 
 ```bash
@@ -718,7 +726,7 @@ ceph mon stat
 | Type | Float · default `5` · **Advanced** |
 | Table | [mon.md#SP_mon_lease](../../../config/mon/mon.md#SP_mon_lease) |
 
-**What it does:** lease interval between quorum monitors (seconds)
+**What it does:** lease interval between quorum monitors (seconds) This setting controls how sensitive your mon quorum is to intermittent network issues or other failures.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -996,7 +1004,7 @@ ceph mon stat
 | Type | Uint · default `1000` · **Advanced** |
 | Table | [mon.md#SP_mon_nvmeofgw_set_group_id_retry](../../../config/mon/mon.md#SP_mon_nvmeofgw_set_group_id_retry) |
 
-**What it does:** Retry wait time in microsecond for set group id between the monitor client and gateway
+**What it does:** Retry wait time in microsecond for set group id between the monitor client and gateway The monitor server determines the gateway's group ID. If the monitor client receives a monitor group ID assignment before the gateway is fully up during initialization, a retry is required.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -1497,6 +1505,10 @@ ceph mon stat
 **What it does:** issue OLD_CRUSH_TUNABLES health warning if CRUSH tunables are older than mon_crush_min_required_version
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Related options:**
+
+- [`mon_crush_min_required_version`](../../../config/mon/mon.md#SP_mon_crush_min_required_version)
 
 **Example:**
 

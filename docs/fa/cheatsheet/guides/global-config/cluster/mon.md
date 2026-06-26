@@ -619,7 +619,7 @@ ceph mon stat
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [mon.md#SP_mon_debug_block_osdmap_trim](../../../config/global/mon.md#SP_mon_debug_block_osdmap_trim) |
 
-**کارکرد:** Block OSDMap trimming while the option is enabled.
+**کارکرد:** Block OSDMap trimming while the option is enabled. Blocking OSDMap trimming may be quite helpful to easily reproduce states in which the monitor keeps (hundreds of) thousands of osdmaps.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -679,6 +679,10 @@ ceph config get mon mon_debug_deprecated_as_obsolete
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_debug_dump_transactions`](../../../config/global/mon.md#SP_mon_debug_dump_transactions)
+
 **مثال:**
 
 ```bash
@@ -706,6 +710,10 @@ ceph config get mon mon_debug_dump_json
 **کارکرد:** File to which to dump Paxos transactions
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_debug_dump_transactions`](../../../config/global/mon.md#SP_mon_debug_dump_transactions)
 
 **مثال:**
 
@@ -735,6 +743,10 @@ ceph config get mon mon_debug_dump_location
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_debug_dump_location`](../../../config/global/mon.md#SP_mon_debug_dump_location)
+
 **مثال:**
 
 ```bash
@@ -759,7 +771,7 @@ ceph config get mon mon_debug_dump_transactions
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [mon.md#SP_mon_debug_extra_checks](../../../config/global/mon.md#SP_mon_debug_extra_checks) |
 
-**کارکرد:** Enable some additional monitor checks
+**کارکرد:** Enable some additional monitor checks Enable some additional monitor checks that would be too expensive to run on production systems, or would only be relevant while testing or debugging.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -929,6 +941,10 @@ ceph config get mon mon_debug_unsafe_allow_tier_with_nonempty_snaps
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_host`](../../../config/global/mon.md#SP_mon_host)
+
 **مثال:**
 
 ```bash
@@ -1033,7 +1049,7 @@ ceph mon stat
 | نوع | Uint · default `10000` · **Advanced** |
 | جدول | [mon.md#SP_mon_globalid_prealloc](../../../config/global/mon.md#SP_mon_globalid_prealloc) |
 
-**کارکرد:** number of globalid values to preallocate
+**کارکرد:** number of globalid values to preallocate This setting caps how many new clients can authenticate with the cluster before the monitors have to perform a write to preallocate more. Large values burn through the 64-bit ID space more quickly.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -1069,7 +1085,7 @@ ceph mon stat
 | نوع | Str · default `(empty)` · **Basic** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [mon.md#SP_mon_host](../../../config/global/mon.md#SP_mon_host) |
 
-**کارکرد:** List of hosts or addresses to search for a monitor
+**کارکرد:** List of hosts or addresses to search for a monitor This is a list of IP addresses or hostnames that are separated by commas, whitespace, or semicolons. Hostnames are resolved via DNS. All A and AAAA records are included in the search list.
 
 **زمان استفاده:** رفتار اصلی Global — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
@@ -1502,7 +1518,7 @@ ceph mon stat
 | نوع | Uint · default `500` · **Advanced** |
 | جدول | [mon.md#SP_mon_max_pg_per_osd](../../../config/global/mon.md#SP_mon_max_pg_per_osd) |
 
-**کارکرد:** Max number of PGs per OSD the cluster will allow
+**کارکرد:** Max number of PGs per OSD the cluster will allow If the number of PGs per OSD exceeds this, a health warning will be visible in `ceph status`. This is also used in automated PG management, as the threshold at which some pools' pg_num may be shrunk in order to enable increasing the pg_num of others.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -1748,6 +1764,10 @@ ceph mon stat
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_osd_reporter_subtree_level`](../../../config/global/mon.md#SP_mon_osd_reporter_subtree_level)
+
 **مثال:**
 
 ```bash
@@ -1888,7 +1908,7 @@ ceph mon stat
 | نوع | Int · default `32768` · **Advanced** |
 | جدول | [mon.md#SP_mon_osd_snap_trim_queue_warn_on](../../../config/global/mon.md#SP_mon_osd_snap_trim_queue_warn_on) |
 
-**کارکرد:** Warn when snap trim queue reaches or exceeds this value
+**کارکرد:** Warn when snap trim queue reaches or exceeds this value Warn when snap trim queue length for at least one PG crosses this value, as this is indicator of snap trimmer not keeping up, wasting disk space
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -2461,6 +2481,10 @@ ceph mon stat
 **کارکرد:** Override mon_warn_on_slow_ping_ratio with specified threshold in milliseconds
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_warn_on_slow_ping_ratio`](../../../config/global/mon.md#SP_mon_warn_on_slow_ping_ratio)
 
 **مثال:**
 

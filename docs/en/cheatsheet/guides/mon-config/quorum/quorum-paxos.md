@@ -50,6 +50,10 @@ ceph -s
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
+**Related options:**
+
+- [`mon_lease`](../../../config/mon/mon.md#SP_mon_lease)
+
 **Example:**
 
 ```bash

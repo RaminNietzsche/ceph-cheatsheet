@@ -51,7 +51,7 @@ ceph pg stat
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_content_length_compat](../../../config/rgw/rgw.md#SP_rgw_content_length_compat) |
 
-**作用：** Multiple content length headers compatibility
+**作用：** Multiple content length headers compatibility Try to handle requests with ambiguous multiple content length headers (Content-Length, Http-Content-Length).
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -79,7 +79,7 @@ ceph config get client.rgw rgw_content_length_compat
 | 类型 | Str · default `<allow-access-from domain="*" secure="false" />` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_cross_domain_policy](../../../config/rgw/rgw.md#SP_rgw_cross_domain_policy) |
 
-**作用：** RGW handle cross domain policy
+**作用：** RGW handle cross domain policy Returned cross domain policy when accessing the crossdomain.xml resource (Swift compatibility).
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -117,7 +117,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_defer_to_bucket_acls](../../../config/rgw/rgw.md#SP_rgw_defer_to_bucket_acls) |
 
-**作用：** Bucket ACLs override object ACLs
+**作用：** Bucket ACLs override object ACLs If not empty, a string that selects that mode of operation. 'recurse' will use bucket's ACL for the authorization. 'full-control' will allow users that users that have full control permission on the bucket have access to the object.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -155,7 +155,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_enforce_swift_acls](../../../config/rgw/rgw.md#SP_rgw_enforce_swift_acls) |
 
-**作用：** RGW enforce swift acls
+**作用：** RGW enforce swift acls Should RGW enforce special Swift-only ACLs. Swift has a special ACL that gives permission to access all objects in a container.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -183,7 +183,7 @@ ceph config get client.rgw rgw_enforce_swift_acls
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_extended_http_attrs](../../../config/rgw/rgw.md#SP_rgw_extended_http_attrs) |
 
-**作用：** RGW support extended HTTP attrs
+**作用：** RGW support extended HTTP attrs Add new set of attributes that could be set on an object. These extra attributes can be set through HTTP header fields when putting the objects. If set, these attributes will return as HTTP fields when doing GET/HEAD on the object.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -221,7 +221,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_ignore_get_invalid_range](../../../config/rgw/rgw.md#SP_rgw_ignore_get_invalid_range) |
 
-**作用：** Treat invalid (e.g., negative) range request as full
+**作用：** Treat invalid (e.g., negative) range request as full Treat invalid (e.g., negative) range request as request for the full object (AWS compatibility)
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -249,7 +249,7 @@ ceph config get client.rgw rgw_ignore_get_invalid_range
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_print_continue](../../../config/rgw/rgw.md#SP_rgw_print_continue) |
 
-**作用：** RGW support of 100-continue
+**作用：** RGW support of 100-continue Should RGW explicitly send 100 (continue) responses. This is mainly relevant when using FastCGI, as some FastCGI modules do not fully support this feature.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -277,7 +277,7 @@ ceph config get client.rgw rgw_print_continue
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_print_prohibited_content_length](../../../config/rgw/rgw.md#SP_rgw_print_prohibited_content_length) |
 
-**作用：** RGW RFC-7230 compatibility
+**作用：** RGW RFC-7230 compatibility Specifies whether RGW violates RFC 7230 and sends Content-Length with 204 or 304 statuses.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -305,7 +305,7 @@ ceph config get client.rgw rgw_print_prohibited_content_length
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_relaxed_region_enforcement](../../../config/rgw/rgw.md#SP_rgw_relaxed_region_enforcement) |
 
-**作用：** Disable region constraint enforcement
+**作用：** Disable region constraint enforcement Enable requests such as bucket creation to succeed irrespective of region restrictions (Jewel compat).
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -333,7 +333,7 @@ ceph config get client.rgw rgw_relaxed_region_enforcement
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_relaxed_s3_bucket_names](../../../config/rgw/rgw.md#SP_rgw_relaxed_s3_bucket_names) |
 
-**作用：** RGW enable relaxed S3 bucket names
+**作用：** RGW enable relaxed S3 bucket names RGW enable relaxed S3 bucket name rules for US region buckets.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -361,7 +361,7 @@ ceph config get client.rgw rgw_relaxed_s3_bucket_names
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_relaxed_topic_names](../../../config/rgw/rgw.md#SP_rgw_relaxed_topic_names) |
 
-**作用：** RGW enable relaxed topic names
+**作用：** RGW enable relaxed topic names RGW enable relaxed topic names to allow changing existing topics that were created before validation rules were implemented. This also allows re-creating topics that were deleted, but match names that are already used externally (e.g. in Kafka)
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -389,9 +389,13 @@ ceph config get client.rgw rgw_relaxed_topic_names
 | 类型 | Str · default `REMOTE_ADDR` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_remote_addr_param](../../../config/rgw/rgw.md#SP_rgw_remote_addr_param) |
 
-**作用：** HTTP header that holds the remote address in incoming requests.
+**作用：** HTTP header that holds the remote address in incoming requests. RGW will use this header to extract requests origin. When RGW runs behind a reverse proxy, the remote address header will point at the proxy's address and not at the originator's address. Therefore it is sometimes possible to have the proxy add the originator's address in a separate HTTP header, which will allow RGW to log it correctly.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_enable_ops_log`](../../../config/rgw/rgw.md#SP_rgw_enable_ops_log)
 
 **示例：**
 
@@ -463,7 +467,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_resolve_cname](../../../config/rgw/rgw.md#SP_rgw_resolve_cname) |
 
-**作用：** Support vanity domain names via CNAME
+**作用：** Support vanity domain names via CNAME If true, RGW will query DNS when detecting that it's serving a request that was sent to a host in another domain. If a CNAME record is configured for that domain it will use it instead. This gives user to have the ability of creating a unique domain of their own to point at data in their bucket.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -491,7 +495,7 @@ ceph config get client.rgw rgw_resolve_cname
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_service_provider_name](../../../config/rgw/rgw.md#SP_rgw_service_provider_name) |
 
-**作用：** Service provider name which is contained in http response headers
+**作用：** Service provider name which is contained in http response headers As S3 or other cloud storage providers do, http response headers should contain the name of the provider. This name will be placed in http header 'Server'.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -529,9 +533,13 @@ ceph -s  # cluster health, slow ops
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_trust_forwarded_https](../../../config/rgw/rgw.md#SP_rgw_trust_forwarded_https) |
 
-**作用：** Trust Forwarded and X-Forwarded-Proto headers
+**作用：** Trust Forwarded and X-Forwarded-Proto headers When a proxy in front of radosgw is used for ssl termination, radosgw does not know whether incoming http connections are secure. Enable this option to trust the Forwarded and X-Forwarded-Proto headers sent by the proxy when determining whether the connection is secure. This is required for some features, such as server side encryption. (Never enable this setting if you do not have a trusted proxy in front of radosgw, or else malicious users will be able to set these headers in any request.)
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
+
+**相关选项：**
+
+- [`rgw_crypt_require_ssl`](../../../config/rgw/rgw.md#SP_rgw_crypt_require_ssl)
 
 **示例：**
 
@@ -557,9 +565,13 @@ ceph config get client.rgw rgw_trust_forwarded_https
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_verify_ssl](../../../config/rgw/rgw.md#SP_rgw_verify_ssl) |
 
-**作用：** Should RGW verify SSL when connecting to a remote HTTP server
+**作用：** Should RGW verify SSL when connecting to a remote HTTP server RGW can send requests to other RGW servers (e.g., in multi-site sync work). This configurable selects whether RGW should verify the certificate for the remote peer and host.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
+
+**相关选项：**
+
+- [`rgw_keystone_verify_ssl`](../../../config/rgw/rgw.md#SP_rgw_keystone_verify_ssl)
 
 **示例：**
 

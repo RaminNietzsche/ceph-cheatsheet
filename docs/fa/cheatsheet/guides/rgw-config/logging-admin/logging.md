@@ -38,7 +38,7 @@ ceph pg stat
 | نوع | Str · default `(empty)` · **Basic** |
 | جدول | [rgw.md#SP_rgw_log_http_headers](../../../config/rgw/rgw.md#SP_rgw_log_http_headers) |
 
-**کارکرد:** List of HTTP headers to log
+**کارکرد:** List of HTTP headers to log A comma delimited list of HTTP headers to log when seen, ignores case (e.g., http_x_forwarded_for).
 
 **زمان استفاده:** رفتار اصلی RGW — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
@@ -76,9 +76,13 @@ ceph -s  # cluster health, slow ops
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_log_nonexistent_bucket](../../../config/rgw/rgw.md#SP_rgw_log_nonexistent_bucket) |
 
-**کارکرد:** Should RGW log operations on bucket that does not exist
+**کارکرد:** Should RGW log operations on bucket that does not exist This config option applies to the ops log. When this option is set, the ops log will log operations that are sent to non existing buckets. These operations inherently fail, and do not correspond to a specific user.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_enable_ops_log`](../../../config/rgw/rgw.md#SP_rgw_enable_ops_log)
 
 **مثال:**
 
@@ -104,9 +108,13 @@ ceph config get client.rgw rgw_log_nonexistent_bucket
 | نوع | Str · default `%Y-%m-%d-%H-%i-%n` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_log_object_name](../../../config/rgw/rgw.md#SP_rgw_log_object_name) |
 
-**کارکرد:** Ops log object name format
+**کارکرد:** Ops log object name format Defines the format of the RADOS objects names that ops log uses to store ops log data
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_enable_ops_log`](../../../config/rgw/rgw.md#SP_rgw_enable_ops_log)
 
 **مثال:**
 
@@ -142,7 +150,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_log_object_name_utc](../../../config/rgw/rgw.md#SP_rgw_log_object_name_utc) |
 
-**کارکرد:** Should ops log object name based on UTC
+**کارکرد:** Should ops log object name based on UTC If set, the names of the RADOS objects that hold the ops log data will be based on UTC time zone. If not set, it will use the local time zone.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 

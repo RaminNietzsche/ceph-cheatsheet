@@ -42,7 +42,7 @@ ceph pg stat
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_s3_auth_disable_signature_url](../../../config/rgw/rgw.md#SP_rgw_s3_auth_disable_signature_url) |
 
-**作用：** Should authentication with presigned URLs be disabled
+**作用：** Should authentication with presigned URLs be disabled If enabled, any request that is presigned with either V2 or V4 signature will be denied
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -80,7 +80,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `sts, external, local` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_s3_auth_order](../../../config/rgw/rgw.md#SP_rgw_s3_auth_order) |
 
-**作用：** Authentication strategy order to use for S3
+**作用：** Authentication strategy order to use for S3 The order of authentication strategies to try for S3 authentication. The value is a comma-separated list of engines, external and local. The default order is to try all configured external engines before attempting local RADOS based authentication
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -230,7 +230,7 @@ ceph config get client.rgw rgw_s3_auth_use_sts
 | 类型 | Int · default `-1` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_s3_client_max_sig_ver](../../../config/rgw/rgw.md#SP_rgw_s3_client_max_sig_ver) |
 
-**作用：** Max S3 authentication signature version
+**作用：** Max S3 authentication signature version If greater than zero, would force max signature version to use
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 
@@ -258,7 +258,7 @@ ceph config get client.rgw rgw_s3_client_max_sig_ver
 | 类型 | Int · default `0` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_s3_success_create_obj_status](../../../config/rgw/rgw.md#SP_rgw_s3_success_create_obj_status) |
 
-**作用：** HTTP return code override for object creation
+**作用：** HTTP return code override for object creation If not zero, this is the HTTP return code that will be returned on a successful S3 object creation.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

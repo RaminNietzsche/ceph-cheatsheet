@@ -293,7 +293,7 @@ ceph -s
 | Type | Bool · default `False` · **Advanced** |
 | Table | [client.md#SP_client_collect_and_send_global_metrics](../../../config/mds-client/client.md#SP_client_collect_and_send_global_metrics) |
 
-**What it does:** to enable and force collecting and sending the global metrics to MDS
+**What it does:** to enable and force collecting and sending the global metrics to MDS To be careful for this, when connecting to some old ceph clusters it may crash the MDS daemons while upgrading.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -433,7 +433,7 @@ ceph config get client client_debug_inject_tick_delay
 | Type | Bool · default `True` · **Advanced** |
 | Table | [client.md#SP_client_die_on_failed_dentry_invalidate](../../../config/mds-client/client.md#SP_client_die_on_failed_dentry_invalidate) |
 
-**What it does:** kill the client when no dentry invalidation options are available
+**What it does:** kill the client when no dentry invalidation options are available The CephFS client requires a mechanism to invalidate dentries in the caller (e.g. the kernel for ceph-fuse) when capabilities must be recalled. If the client cannot do this then the MDS cache cannot shrink which can cause the MDS to fail.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -495,7 +495,7 @@ ceph config get client client_die_on_failed_remount
 | Type | Bool · default `True` · **Advanced** · **STARTUP** (restart required) |
 | Table | [client.md#SP_client_dirsize_rbytes](../../../config/mds-client/client.md#SP_client_dirsize_rbytes) |
 
-**What it does:** set the directory size as the number of file bytes recursively used
+**What it does:** set the directory size as the number of file bytes recursively used This option enables a CephFS feature that stores the recursive directory size (the bytes used by files in the directory and its descendents) in the st_size field of the stat structure. May confuse programs such as ``rsync``.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -531,7 +531,7 @@ ceph -s
 | Type | Uint · default `16` · **Advanced** |
 | Table | [client.md#SP_client_file_blockdiff_max_concurrent_object_scans](../../../config/mds-client/client.md#SP_client_file_blockdiff_max_concurrent_object_scans) |
 
-**What it does:** maximum number of concurrent object scans
+**What it does:** maximum number of concurrent object scans Maximum number of concurrent listsnaps operations sent to RADOS.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -603,7 +603,7 @@ ceph -s
 | Type | Str · default `(empty)` · **Advanced** · **STARTUP** (restart required) |
 | Table | [client.md#SP_client_fs](../../../config/mds-client/client.md#SP_client_fs) |
 
-**What it does:** CephFS file system name to mount
+**What it does:** CephFS file system name to mount Use this with ceph-fuse, or with any process that uses libcephfs. Programs using libcephfs may also pass the filesystem name into mount(), which will override this setting. If no filesystem name is given in mount() or this setting, the default filesystem will be mounted (usually the first created).
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -639,7 +639,7 @@ ceph -s
 | Type | Bool · default `True` · **Advanced** |
 | Table | [client.md#SP_client_fscrypt_as](../../../config/mds-client/client.md#SP_client_fscrypt_as) |
 
-**What it does:** Enable fscrypt access semantics
+**What it does:** Enable fscrypt access semantics Enable fscrypt access semantics for locked/unlocked states.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -675,7 +675,7 @@ ceph -s
 | Type | Bool · default `False` · **Dev** |
 | Table | [client.md#SP_client_fscrypt_dummy_encryption](../../../config/mds-client/client.md#SP_client_fscrypt_dummy_encryption) |
 
-**What it does:** Enable fscrypt dummy encryption
+**What it does:** Enable fscrypt dummy encryption Enable fscrypt dummy encryption
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -755,7 +755,7 @@ ceph config get client client_inject_release_failure
 | Type | Secs · default `0` · **Dev** |
 | Table | [client.md#SP_client_inject_write_delay_secs](../../../config/mds-client/client.md#SP_client_inject_write_delay_secs) |
 
-**What it does:** induce delay in write operation for testing
+**What it does:** induce delay in write operation for testing Inject a delay in write operation after grabbing required cap references (Fb caps in this case). This config is disabled by default (value of 0) and is to be used for the purpose of validating a race case bug with concurrent fsync.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -1329,7 +1329,7 @@ ceph -s
 | Type | Bool · default `True` · **Advanced** |
 | Table | [client.md#SP_client_quota](../../../config/mds-client/client.md#SP_client_quota) |
 
-**What it does:** Enable quota enforcement
+**What it does:** Enable quota enforcement Enable quota_bytes and quota_files enforcement for the client.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -1545,7 +1545,7 @@ ceph -s
 | Type | Bool · default `False` · **Advanced** |
 | Table | [client.md#SP_client_respect_subvolume_snapshot_visibility](../../../config/mds-client/client.md#SP_client_respect_subvolume_snapshot_visibility) |
 
-**What it does:** Respect subvolume snapshot visibility
+**What it does:** Respect subvolume snapshot visibility Option to decide whether to respect the is_snapdir_visible flag set in each subvolume's snaprealm
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -1581,7 +1581,7 @@ ceph -s
 | Type | Secs · default `30` · **Advanced** |
 | Table | [client.md#SP_client_shutdown_timeout](../../../config/mds-client/client.md#SP_client_shutdown_timeout) |
 
-**What it does:** timeout for shutting down CephFS
+**What it does:** timeout for shutting down CephFS Timeout for shutting down CephFS via unmount or shutdown.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 

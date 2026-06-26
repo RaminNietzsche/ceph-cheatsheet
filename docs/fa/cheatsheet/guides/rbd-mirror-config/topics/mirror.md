@@ -166,7 +166,7 @@ ceph -s
 | نوع | Int · default `5` · **Advanced** |
 | جدول | [rbd.md#SP_rbd_mirror_image_perf_stats_prio](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_image_perf_stats_prio) |
 
-**کارکرد:** Priority level for mirror daemon per-image replication perf counters
+**کارکرد:** Priority level for mirror daemon per-image replication perf counters The daemon will send per-image perf counter data to the manager daemon if the priority is not lower than mgr_stats_threshold.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -574,6 +574,10 @@ ceph -s
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
+**گزینه‌های مرتبط:**
+
+- [`rbd_mirror_memory_target`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_target)
+
 **مثال:**
 
 ```bash
@@ -601,6 +605,10 @@ ceph config get client rbd_mirror_memory_autotune
 **کارکرد:** When tcmalloc and cache autotuning is enabled, estimate the minimum amount of memory in bytes the rbd-mirror daemon will need.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
+
+**گزینه‌های مرتبط:**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
 
 **مثال:**
 
@@ -630,6 +638,10 @@ ceph config get client rbd_mirror_memory_base
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
+**گزینه‌های مرتبط:**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
+
 **مثال:**
 
 ```bash
@@ -657,6 +669,10 @@ ceph config get client rbd_mirror_memory_cache_autotune_interval
 **کارکرد:** When tcmalloc and cache autotuning is enabled, set the minimum amount of memory used for cache.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
+
+**گزینه‌های مرتبط:**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
 
 **مثال:**
 
@@ -686,6 +702,10 @@ ceph config get client rbd_mirror_memory_cache_min
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
+**گزینه‌های مرتبط:**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
+
 **مثال:**
 
 ```bash
@@ -714,6 +734,10 @@ ceph config get client rbd_mirror_memory_cache_resize_interval
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
+**گزینه‌های مرتبط:**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
+
 **مثال:**
 
 ```bash
@@ -741,6 +765,10 @@ ceph config get client rbd_mirror_memory_expected_fragmentation
 **کارکرد:** When tcmalloc and cache autotuning is enabled, try to keep this many bytes mapped in memory.
 
 **زمان استفاده:** رفتار اصلی RBD mirror — پیش از تغییر در محیط عملیاتی بررسی کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
 
 **مثال:**
 
@@ -773,7 +801,7 @@ ceph -s
 | نوع | Int · default `5` · **Advanced** |
 | جدول | [rbd.md#SP_rbd_mirror_perf_stats_prio](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_perf_stats_prio) |
 
-**کارکرد:** Priority level for mirror daemon replication perf counters
+**کارکرد:** Priority level for mirror daemon replication perf counters The daemon will send perf counter data to the manager daemon if the priority is not lower than mgr_stats_threshold.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

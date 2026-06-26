@@ -225,7 +225,7 @@ ceph mds stat
 | نوع | Uint · default `16` · **Advanced** |
 | جدول | [mds.md#SP_mds_log_minor_segments_per_major_segment](../../../config/mds/mds.md#SP_mds_log_minor_segments_per_major_segment) |
 
-**کارکرد:** Number of minor segments per major segment.
+**کارکرد:** Number of minor segments per major segment. The number of minor mds log segments since last major segment after which a major segment is started/logged.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -379,7 +379,7 @@ ceph config get mds mds_log_skip_unbounded_events
 | نوع | Float · default `1.0` · **Advanced** |
 | جدول | [mds.md#SP_mds_log_trim_decay_rate](../../../config/mds/mds.md#SP_mds_log_trim_decay_rate) |
 
-**کارکرد:** MDS log trim decay rate
+**کارکرد:** MDS log trim decay rate The decay rate for trimming the MDS log. Increasing this value leads to the MDS spending less time in trimming the log.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -418,7 +418,7 @@ ceph mds stat
 | نوع | Size · default `128` · **Advanced** |
 | جدول | [mds.md#SP_mds_log_trim_threshold](../../../config/mds/mds.md#SP_mds_log_trim_threshold) |
 
-**کارکرد:** MDS log trim threshold
+**کارکرد:** MDS log trim threshold The threshold of the number of log segment that can be trimmed.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -457,7 +457,7 @@ ceph mds stat
 | نوع | Millisecs · default `1000` · **Advanced** |
 | جدول | [mds.md#SP_mds_log_trim_upkeep_interval](../../../config/mds/mds.md#SP_mds_log_trim_upkeep_interval) |
 
-**کارکرد:** MDS log trimming interval
+**کارکرد:** MDS log trimming interval Interval in milliseconds to trim MDS logs.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 

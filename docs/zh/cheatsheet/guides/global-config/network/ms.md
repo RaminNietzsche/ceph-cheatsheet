@@ -756,6 +756,10 @@ ceph -s
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
+**相关选项：**
+
+- [`ms_bind_ipv6`](../../../config/global/ms.md#SP_ms_bind_ipv6)
+
 **示例：**
 
 ```bash
@@ -790,6 +794,10 @@ ceph -s
 **作用：** Bind servers to IPv6 address(es)
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
+
+**相关选项：**
+
+- [`ms_bind_ipv4`](../../../config/global/ms.md#SP_ms_bind_ipv4)
 
 **示例：**
 
@@ -826,6 +834,10 @@ ceph -s
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
+**相关选项：**
+
+- [`ms_bind_msgr2`](../../../config/global/ms.md#SP_ms_bind_msgr2)
+
 **示例：**
 
 ```bash
@@ -860,6 +872,10 @@ ceph -s
 **作用：** Bind servers to msgr2 (nautilus+) protocol address(es)
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
+
+**相关选项：**
+
+- [`ms_bind_msgr1`](../../../config/global/ms.md#SP_ms_bind_msgr1)
 
 **示例：**
 
@@ -1293,9 +1309,13 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [ms.md#SP_ms_cluster_type](../../../config/global/ms.md#SP_ms_cluster_type) |
 
-**作用：** Messenger implementation to use for the internal cluster network
+**作用：** Messenger implementation to use for the internal cluster network If not specified, use ms_type
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`ms_type`](../../../config/global/ms.md#SP_ms_type)
 
 **示例：**
 
@@ -1328,9 +1348,13 @@ ceph -s
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [ms.md#SP_ms_compress_secure](../../../config/global/ms.md#SP_ms_compress_secure) |
 
-**作用：** Allowing compression when on-wire encryption is enabled
+**作用：** Allowing compression when on-wire encryption is enabled Combining encryption with compression reduces the level of security of messages between peers. In case both encryption and compression are enabled, compression setting will be ignored and message will not be compressed. This behaviour can be override using this setting.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
+
+**相关选项：**
+
+- [`ms_osd_compress_mode`](../../../config/global/ms.md#SP_ms_osd_compress_mode)
 
 **示例：**
 
@@ -1666,6 +1690,10 @@ ceph -s
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`ms_async_op_threads`](../../../config/global/ms.md#SP_ms_async_op_threads)
+
 **示例：**
 
 ```bash
@@ -1723,7 +1751,7 @@ ceph config get global ms_dpdk_debug_allow_loopback
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [ms.md#SP_ms_dpdk_devs_allowlist](../../../config/global/ms.md#SP_ms_dpdk_devs_allowlist) |
 
-**作用：** NIC's PCIe address are allowed to use
+**作用：** NIC's PCIe address are allowed to use for a single NIC use ms_dpdk_devs_allowlist=-a 0000:7d:010 or --allow=0000:7d:010; for a bond nics use ms_dpdk_devs_allowlist=--allow=0000:7d:01.0 --allow=0000:7d:02.6 --vdev=net_bonding0,mode=2,slave=0000:7d:01.0,slave=0000:7d:02.6.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -2424,7 +2452,7 @@ ceph config get global ms_inject_socket_failures
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [ms.md#SP_ms_learn_addr_from_peer](../../../config/global/ms.md#SP_ms_learn_addr_from_peer) |
 
-**作用：** Learn address from what IP our first peer thinks we connect from
+**作用：** Learn address from what IP our first peer thinks we connect from Use the IP address our first peer (usually a monitor) sees that we are connecting from. This is useful if a client is behind some sort of NAT and we want to see it identified by its local (not NATed) address.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -2497,6 +2525,10 @@ ceph -s
 **作用：** Maximum backoff after a network error before retrying (seconds)
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
+
+**相关选项：**
+
+- [`ms_initial_backoff`](../../../config/global/ms.md#SP_ms_initial_backoff)
 
 **示例：**
 
@@ -2635,6 +2667,10 @@ ceph -s
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`ms_osd_compress_mode`](../../../config/global/ms.md#SP_ms_osd_compress_mode)
+
 **示例：**
 
 ```bash
@@ -2670,6 +2706,10 @@ ceph -s
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`ms_compress_secure`](../../../config/global/ms.md#SP_ms_compress_secure)
+
 **示例：**
 
 ```bash
@@ -2701,9 +2741,13 @@ ceph -s
 | 类型 | Str · default `snappy` · **Advanced** |
 | 表格 | [ms.md#SP_ms_osd_compression_algorithm](../../../config/global/ms.md#SP_ms_osd_compression_algorithm) |
 
-**作用：** Compression algorithm to use in Messenger when communicating with OSD
+**作用：** Compression algorithm to use in Messenger when communicating with OSD Compression algorithm for connections with OSD in order of preference Although the default value is set to snappy, a list (like snappy zlib zstd etc.) is acceptable as well.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`ms_osd_compress_mode`](../../../config/global/ms.md#SP_ms_osd_compress_mode)
 
 **示例：**
 
@@ -2788,9 +2832,13 @@ ceph config get global ms_pq_min_cost
 | 类型 | Str · default `(empty)` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [ms.md#SP_ms_public_type](../../../config/global/ms.md#SP_ms_public_type) |
 
-**作用：** Messenger implementation to use for the public network
+**作用：** Messenger implementation to use for the public network If not specified, use ms_type
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`ms_type`](../../../config/global/ms.md#SP_ms_type)
 
 **示例：**
 

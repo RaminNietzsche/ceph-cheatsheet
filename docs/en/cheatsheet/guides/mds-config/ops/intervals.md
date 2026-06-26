@@ -290,7 +290,7 @@ ceph config get mds mds_dirstat_min_interval
 | Type | Secs · default `0` · **Advanced** |
 | Table | [mds.md#SP_mds_extraordinary_events_dump_interval](../../../config/mds/mds.md#SP_mds_extraordinary_events_dump_interval) |
 
-**What it does:** Interval in seconds for dumping the recent in-memory logs when there is an extra-ordinary event.
+**What it does:** Interval in seconds for dumping the recent in-memory logs when there is an extra-ordinary event. Interval in seconds for dumping the recent in-memory logs when there is an extra-ordinary event. The default is ``0`` (disabled). The log level should be ``< 10`` and the gather level should be ``>=10`` in debug_mds for enabling this option.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -355,7 +355,7 @@ ceph config get mds mds_freeze_tree_timeout
 | Type | Secs · default `2` · **Advanced** |
 | Table | [mds.md#SP_mds_metrics_update_interval](../../../config/mds/mds.md#SP_mds_metrics_update_interval) |
 
-**What it does:** interval in seconds for metrics data update.
+**What it does:** interval in seconds for metrics data update. interval in seconds after which active MDSs send client metrics data to rank 0.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -429,7 +429,7 @@ ceph mds stat
 | Type | Secs · default `5` · **Advanced** |
 | Table | [mds.md#SP_mds_ping_interval](../../../config/mds/mds.md#SP_mds_ping_interval) |
 
-**What it does:** interval in seconds for sending ping messages to active MDSs.
+**What it does:** interval in seconds for sending ping messages to active MDSs. interval in seconds for rank 0 to send ping messages to all active MDSs.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -614,7 +614,7 @@ ceph mds stat
 | Type | Float · default `2` · **Dev** |
 | Table | [mds.md#SP_mds_task_status_update_interval](../../../config/mds/mds.md#SP_mds_task_status_update_interval) |
 
-**What it does:** task status update interval to manager
+**What it does:** task status update interval to manager interval (in seconds) for sending mds task status to ceph manager
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -679,7 +679,7 @@ ceph mds stat
 | Type | Secs · default `30` · **Dev** |
 | Table | [mds.md#SP_subv_metrics_window_interval](../../../config/mds/mds.md#SP_subv_metrics_window_interval) |
 
-**What it does:** subvolume metrics sliding window interval, seconds
+**What it does:** subvolume metrics sliding window interval, seconds interval in seconds to hold values in sliding window for subvolume metrics
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 

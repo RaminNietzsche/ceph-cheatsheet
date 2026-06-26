@@ -38,7 +38,7 @@ ceph pg stat
 | 类型 | Size · default `4_M` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_get_obj_max_req_size](../../../config/rgw/rgw.md#SP_rgw_get_obj_max_req_size) |
 
-**作用：** RGW object read chunk size
+**作用：** RGW object read chunk size The maximum request size of a single object read operation sent to RADOS
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 
@@ -66,7 +66,7 @@ ceph config get client.rgw rgw_get_obj_max_req_size
 | 类型 | Size · default `16_M` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_get_obj_window_size](../../../config/rgw/rgw.md#SP_rgw_get_obj_window_size) |
 
-**作用：** RGW object read window size
+**作用：** RGW object read window size The window size in bytes for a single object read request
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -103,7 +103,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Size · default `64_M` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_put_obj_max_window_size](../../../config/rgw/rgw.md#SP_rgw_put_obj_max_window_size) |
 
-**作用：** The maximum RADOS write window size (in bytes).
+**作用：** The maximum RADOS write window size (in bytes). The window size may be dynamically adjusted, but will not surpass this value.
 
 **何时使用：** 客户端触及请求大小/并发限制，或保护集群资源时调整。
 
@@ -140,7 +140,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Size · default `16_M` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_put_obj_min_window_size](../../../config/rgw/rgw.md#SP_rgw_put_obj_min_window_size) |
 
-**作用：** The minimum RADOS write window size (in bytes).
+**作用：** The minimum RADOS write window size (in bytes). The window size determines the total concurrent RADOS writes of a single RGW object. When writing an object RGW will send multiple chunks to RADOS. The total size of the writes does not exceed the window size. The window size may be adjusted dynamically in order to better utilize the pipe.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

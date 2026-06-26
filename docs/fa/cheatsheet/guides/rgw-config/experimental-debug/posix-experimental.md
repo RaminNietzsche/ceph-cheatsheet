@@ -41,7 +41,7 @@ ceph pg stat
 | نوع | Str · default `/tmp/rgw_posix_driver` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_posix_base_path](../../../config/rgw/rgw.md#SP_rgw_posix_base_path) |
 
-**کارکرد:** experimental Option to set base path for POSIX Driver
+**کارکرد:** experimental Option to set base path for POSIX Driver Base path for the POSIX driver. All operations are relative to this path. Defaults to /tmp/rgw_posix_driver
 
 **زمان استفاده:** backendهای آزمایشی Motr/POSIX RGW — فقط در استقرار PoC تخصصی.
 
@@ -193,7 +193,7 @@ ceph config get client.rgw rgw_posix_cache_partitions
 | نوع | Str · default `/var/lib/ceph/radosgw` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_posix_database_root](../../../config/rgw/rgw.md#SP_rgw_posix_database_root) |
 
-**کارکرد:** experimental Path to parent of POSIX Driver LMDB bucket listing cache
+**کارکرد:** experimental Path to parent of POSIX Driver LMDB bucket listing cache Parent directory of LMDB bucket listing cache databases.
 
 **زمان استفاده:** backendهای آزمایشی Motr/POSIX RGW — فقط در استقرار PoC تخصصی.
 

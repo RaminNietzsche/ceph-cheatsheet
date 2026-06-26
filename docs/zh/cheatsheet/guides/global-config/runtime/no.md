@@ -33,7 +33,7 @@ ceph -s
 | 类型 | Bool · default `False` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [no.md#SP_no_config_file](../../../config/global/no.md#SP_no_config_file) |
 
-**作用：** Signal that we don't require a config file to be present
+**作用：** Signal that we don't require a config file to be present When specified, we won't look for a configuration file, and will instead expect that whatever options or values are required for us to work will be passed as arguments.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 

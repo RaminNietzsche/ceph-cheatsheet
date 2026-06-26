@@ -109,6 +109,10 @@ ceph -s
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`cluster_network`](../../../config/global/cluster.md#SP_cluster_network)
+
 **مثال:**
 
 ```bash

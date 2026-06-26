@@ -33,7 +33,7 @@ ceph -s
 | Type | Bool · default `True` · **Advanced** · **STARTUP** (restart required) |
 | Table | [fatal.md#SP_fatal_signal_handlers](../../../config/global/fatal.md#SP_fatal_signal_handlers) |
 
-**What it does:** Whether to register signal handlers for SIGABRT etc that dump a stack trace
+**What it does:** Whether to register signal handlers for SIGABRT etc that dump a stack trace This is normally true for daemons and values for libraries.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 

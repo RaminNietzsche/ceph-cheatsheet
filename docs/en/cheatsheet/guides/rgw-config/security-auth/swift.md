@@ -45,9 +45,13 @@ ceph pg stat
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_swift_account_in_url](../../../config/rgw/rgw.md#SP_rgw_swift_account_in_url) |
 
-**What it does:** Swift account encoded in URL
+**What it does:** Swift account encoded in URL Whether the swift account is encoded in the uri path (AUTH_<account>).
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
+
+**Related options:**
+
+- [`rgw_swift_tenant_name`](../../../config/rgw/rgw.md#SP_rgw_swift_tenant_name)
 
 **Example:**
 
@@ -83,9 +87,13 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `auth` · **Advanced** |
 | Table | [rgw.md#SP_rgw_swift_auth_entry](../../../config/rgw/rgw.md#SP_rgw_swift_auth_entry) |
 
-**What it does:** Swift auth URL prefix
+**What it does:** Swift auth URL prefix URL path prefix for internal swift auth requests.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_swift_url`](../../../config/rgw/rgw.md#SP_rgw_swift_url)
 
 **Example:**
 
@@ -111,7 +119,7 @@ ceph config get client.rgw rgw_swift_auth_entry
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_swift_auth_url](../../../config/rgw/rgw.md#SP_rgw_swift_auth_url) |
 
-**What it does:** Swift auth URL
+**What it does:** Swift auth URL Default url to which RGW connects and verifies tokens for v1 auth (if not using internal swift auth).
 
 **When to use:** Set when integrating with an external service; leave empty if the feature is unused.
 
@@ -149,7 +157,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_swift_custom_header](../../../config/rgw/rgw.md#SP_rgw_swift_custom_header) |
 
-**What it does:** Enable swift custom header
+**What it does:** Enable swift custom header If not empty, specifies a name of HTTP header that can include custom data. When uploading an object, if this header is passed RGW will store this header info and it will be available when listing the bucket.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -187,7 +195,7 @@ ceph -s  # cluster health, slow ops
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_swift_enforce_content_length](../../../config/rgw/rgw.md#SP_rgw_swift_enforce_content_length) |
 
-**What it does:** Send content length when listing containers (Swift)
+**What it does:** Send content length when listing containers (Swift) Whether content length header is needed when listing containers. When this is set to false, RGW will send extra info for each entry in the response.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -243,9 +251,13 @@ ceph config get client.rgw rgw_swift_need_stats
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_swift_tenant_name](../../../config/rgw/rgw.md#SP_rgw_swift_tenant_name) |
 
-**What it does:** Swift tenant name
+**What it does:** Swift tenant name Tenant name that is used when constructing the swift path.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_swift_account_in_url`](../../../config/rgw/rgw.md#SP_rgw_swift_account_in_url)
 
 **Example:**
 
@@ -319,9 +331,13 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_swift_url](../../../config/rgw/rgw.md#SP_rgw_swift_url) |
 
-**What it does:** Swift-auth storage URL
+**What it does:** Swift-auth storage URL Used in conjunction with rgw internal swift authentication. This affects the X-Storage-Url response header value.
 
 **When to use:** Set when integrating with an external service; leave empty if the feature is unused.
+
+**Related options:**
+
+- [`rgw_swift_auth_entry`](../../../config/rgw/rgw.md#SP_rgw_swift_auth_entry)
 
 **Example:**
 
@@ -357,7 +373,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `swift` · **Advanced** |
 | Table | [rgw.md#SP_rgw_swift_url_prefix](../../../config/rgw/rgw.md#SP_rgw_swift_url_prefix) |
 
-**What it does:** Swift URL prefix
+**What it does:** Swift URL prefix The URL path prefix for swift requests.
 
 **When to use:** Set when integrating with an external service; leave empty if the feature is unused.
 

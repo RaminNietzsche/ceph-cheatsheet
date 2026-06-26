@@ -41,7 +41,7 @@ ceph pg stat
 | نوع | Str · default `192.168.180.182@tcp:12345:4:1` · **Advanced** |
 | جدول | [motr.md#SP_motr_admin_endpoint](../../../config/rgw/motr.md#SP_motr_admin_endpoint) |
 
-**کارکرد:** experimental Option to set Admin Motr endpoint address
+**کارکرد:** experimental Option to set Admin Motr endpoint address example value 192.168.180.182@tcp:12345:4:1
 
 **زمان استفاده:** backendهای آزمایشی Motr/POSIX RGW — فقط در استقرار PoC تخصصی.
 
@@ -69,7 +69,7 @@ ceph config get client.rgw motr_admin_endpoint
 | نوع | Str · default `0x7200000000000001:0x0` · **Advanced** |
 | جدول | [motr.md#SP_motr_admin_fid](../../../config/rgw/motr.md#SP_motr_admin_fid) |
 
-**کارکرد:** Admin Tool Motr FID for admin-level access.
+**کارکرد:** Admin Tool Motr FID for admin-level access. example value 0x7200000000000001:0x2c
 
 **زمان استفاده:** backendهای آزمایشی Motr/POSIX RGW — فقط در استقرار PoC تخصصی.
 
@@ -97,7 +97,7 @@ ceph config get client.rgw motr_admin_fid
 | نوع | Str · default `192.168.180.182@tcp:12345:1:1` · **Advanced** |
 | جدول | [motr.md#SP_motr_ha_endpoint](../../../config/rgw/motr.md#SP_motr_ha_endpoint) |
 
-**کارکرد:** experimental Option to set Motr HA agent endpoint address
+**کارکرد:** experimental Option to set Motr HA agent endpoint address example value 192.168.180.182@tcp:12345:1:1
 
 **زمان استفاده:** backendهای آزمایشی Motr/POSIX RGW — فقط در استقرار PoC تخصصی.
 
@@ -125,7 +125,7 @@ ceph config get client.rgw motr_ha_endpoint
 | نوع | Str · default `192.168.180.182@tcp:12345:4:1` · **Advanced** |
 | جدول | [motr.md#SP_motr_my_endpoint](../../../config/rgw/motr.md#SP_motr_my_endpoint) |
 
-**کارکرد:** experimental Option to set my Motr endpoint address
+**کارکرد:** experimental Option to set my Motr endpoint address example value 192.168.180.182@tcp:12345:4:1
 
 **زمان استفاده:** backendهای آزمایشی Motr/POSIX RGW — فقط در استقرار PoC تخصصی.
 
@@ -153,7 +153,7 @@ ceph config get client.rgw motr_my_endpoint
 | نوع | Str · default `0x7200000000000001:0x0` · **Advanced** |
 | جدول | [motr.md#SP_motr_my_fid](../../../config/rgw/motr.md#SP_motr_my_fid) |
 
-**کارکرد:** experimental Option to set my Motr fid
+**کارکرد:** experimental Option to set my Motr fid example value 0x7200000000000001:0x29
 
 **زمان استفاده:** backendهای آزمایشی Motr/POSIX RGW — فقط در استقرار PoC تخصصی.
 
@@ -181,7 +181,7 @@ ceph config get client.rgw motr_my_fid
 | نوع | Str · default `0x7000000000000001:0x0` · **Advanced** |
 | جدول | [motr.md#SP_motr_profile_fid](../../../config/rgw/motr.md#SP_motr_profile_fid) |
 
-**کارکرد:** experimental Option to set Motr profile fid
+**کارکرد:** experimental Option to set Motr profile fid example value 0x7000000000000001:0x4f
 
 **زمان استفاده:** backendهای آزمایشی Motr/POSIX RGW — فقط در استقرار PoC تخصصی.
 

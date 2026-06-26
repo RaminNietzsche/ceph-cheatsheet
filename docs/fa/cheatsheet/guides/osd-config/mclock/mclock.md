@@ -50,7 +50,7 @@ ceph -s
 | نوع | Bool · default `False` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [osd.md#SP_osd_mclock_force_run_benchmark_on_init](../../../config/osd/osd.md#SP_osd_mclock_force_run_benchmark_on_init) |
 
-**کارکرد:** Force run the OSD benchmark on OSD initialization/boot-up
+**کارکرد:** Force run the OSD benchmark on OSD initialization/boot-up This option specifies whether the OSD benchmark must be run during the OSD boot-up sequence even if historical data about the OSD iops capacity is available in the MON config store. Enable this to refresh the OSD iops capacity if the underlying device's performance characteristics have changed significantly. Only considered for osd_op_queue = mclock_scheduler.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -88,9 +88,13 @@ ceph pg stat
 | نوع | Float · default `50` · **Basic** |
 | جدول | [osd.md#SP_osd_mclock_iops_capacity_low_threshold_hdd](../../../config/osd/osd.md#SP_osd_mclock_iops_capacity_low_threshold_hdd) |
 
-**کارکرد:** The threshold IOPs capacity (at 4KiB block size) below which to ignore the OSD bench results for an OSD (for rotational media)
+**کارکرد:** The threshold IOPs capacity (at 4KiB block size) below which to ignore the OSD bench results for an OSD (for rotational media) This option specifies the low threshold IOPS capacity of an OSD above which the OSD bench results can be considered for QoS calculations. Only considered when osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_mclock_max_capacity_iops_hdd`](../../../config/osd/osd.md#SP_osd_mclock_max_capacity_iops_hdd)
 
 **مثال:**
 
@@ -125,9 +129,13 @@ ceph pg stat
 | نوع | Float · default `1000` · **Basic** |
 | جدول | [osd.md#SP_osd_mclock_iops_capacity_low_threshold_ssd](../../../config/osd/osd.md#SP_osd_mclock_iops_capacity_low_threshold_ssd) |
 
-**کارکرد:** The threshold IOPs capacity (at 4KiB block size) below which to ignore the OSD bench results for an OSD (for solid state media)
+**کارکرد:** The threshold IOPs capacity (at 4KiB block size) below which to ignore the OSD bench results for an OSD (for solid state media) This option specifies the low threshold IOPS capacity for an OSD above which the OSD bench results can be considered for QoS calculations. Only considered when osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_mclock_max_capacity_iops_ssd`](../../../config/osd/osd.md#SP_osd_mclock_max_capacity_iops_ssd)
 
 **مثال:**
 
@@ -162,9 +170,13 @@ ceph pg stat
 | نوع | Float · default `500` · **Basic** |
 | جدول | [osd.md#SP_osd_mclock_iops_capacity_threshold_hdd](../../../config/osd/osd.md#SP_osd_mclock_iops_capacity_threshold_hdd) |
 
-**کارکرد:** The threshold IOPs capacity (at 4KiB block size) beyond which to ignore the OSD bench results for an OSD (for rotational media)
+**کارکرد:** The threshold IOPs capacity (at 4KiB block size) beyond which to ignore the OSD bench results for an OSD (for rotational media) This option specifies the high threshold IOPS capacity for an OSD below which the OSD bench results can be considered for QoS calculations. Only considered when osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_mclock_max_capacity_iops_hdd`](../../../config/osd/osd.md#SP_osd_mclock_max_capacity_iops_hdd)
 
 **مثال:**
 
@@ -199,9 +211,13 @@ ceph pg stat
 | نوع | Float · default `80000` · **Basic** |
 | جدول | [osd.md#SP_osd_mclock_iops_capacity_threshold_ssd](../../../config/osd/osd.md#SP_osd_mclock_iops_capacity_threshold_ssd) |
 
-**کارکرد:** The threshold IOPs capacity (at 4KiB block size) beyond which to ignore the OSD bench results for an OSD (for solid state media)
+**کارکرد:** The threshold IOPs capacity (at 4KiB block size) beyond which to ignore the OSD bench results for an OSD (for solid state media) This option specifies the high threshold IOPS capacity for an OSD below which the OSD bench results can be considered for QoS calculations. Only considered when osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_mclock_max_capacity_iops_ssd`](../../../config/osd/osd.md#SP_osd_mclock_max_capacity_iops_ssd)
 
 **مثال:**
 
@@ -236,7 +252,7 @@ ceph pg stat
 | نوع | Float · default `315` · **Basic** |
 | جدول | [osd.md#SP_osd_mclock_max_capacity_iops_hdd](../../../config/osd/osd.md#SP_osd_mclock_max_capacity_iops_hdd) |
 
-**کارکرد:** Max random write IOPS capacity (at 4KiB block size) to consider per OSD (for rotational media)
+**کارکرد:** Max random write IOPS capacity (at 4KiB block size) to consider per OSD (for rotational media) This option specifies the max OSD random write IOPS capacity per OSD. Contributes in QoS calculations when enabling a dmclock profile. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -273,7 +289,7 @@ ceph pg stat
 | نوع | Float · default `21500` · **Basic** |
 | جدول | [osd.md#SP_osd_mclock_max_capacity_iops_ssd](../../../config/osd/osd.md#SP_osd_mclock_max_capacity_iops_ssd) |
 
-**کارکرد:** Max random write IOPS capacity (at 4 KiB block size) to consider per OSD (for solid state media)
+**کارکرد:** Max random write IOPS capacity (at 4 KiB block size) to consider per OSD (for solid state media) This option specifies the max OSD random write IOPS capacity per OSD. Contributes in QoS calculations when enabling a dmclock profile. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -310,7 +326,7 @@ ceph pg stat
 | نوع | Size · default `150_M` · **Basic** |
 | جدول | [osd.md#SP_osd_mclock_max_sequential_bandwidth_hdd](../../../config/osd/osd.md#SP_osd_mclock_max_sequential_bandwidth_hdd) |
 
-**کارکرد:** The maximum sequential bandwidth in bytes/second of the OSD (for rotational media)
+**کارکرد:** The maximum sequential bandwidth in bytes/second of the OSD (for rotational media) This option specifies the maximum sequential bandwidth to consider for an OSD whose underlying device type is rotational media. This is considered by the mclock scheduler to derive the cost factor to be used in QoS calculations. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -347,7 +363,7 @@ ceph pg stat
 | نوع | Size · default `1200_M` · **Basic** |
 | جدول | [osd.md#SP_osd_mclock_max_sequential_bandwidth_ssd](../../../config/osd/osd.md#SP_osd_mclock_max_sequential_bandwidth_ssd) |
 
-**کارکرد:** The maximum sequential bandwidth in bytes/second of the OSD (for solid state media)
+**کارکرد:** The maximum sequential bandwidth in bytes/second of the OSD (for solid state media) This option specifies the maximum sequential bandwidth to consider for an OSD whose underlying device type is solid state media. This is considered by the mclock scheduler to derive the cost factor to be used in QoS calculations. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -388,6 +404,10 @@ ceph pg stat
 
 **زمان استفاده:** Start with `balanced` on mixed workloads. Use `high_client_ops` when recovery dominates latency; `high_recovery_ops` for aggressive rebuild windows.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_op_queue`](../../../config/osd/osd.md#SP_osd_op_queue)
+
 **مثال:**
 
 ```bash
@@ -422,7 +442,7 @@ ceph pg stat
 | نوع | Float · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_mclock_scheduler_anticipation_timeout](../../../config/osd/osd.md#SP_osd_mclock_scheduler_anticipation_timeout) |
 
-**کارکرد:** mclock anticipation timeout in seconds
+**کارکرد:** mclock anticipation timeout in seconds the amount of time that mclock waits until the unused resource is forfeited
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
@@ -459,7 +479,7 @@ ceph pg stat
 | نوع | Float · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_mclock_scheduler_background_best_effort_lim](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_best_effort_lim) |
 
-**کارکرد:** IO limit for background best_effort over reservation. The default value of 0 specifies no limit enforcement, which means background best_effort operation can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that background best_effort operation receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**کارکرد:** IO limit for background best_effort over reservation. The default value of 0 specifies no limit enforcement, which means background best_effort operation can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that background best_effort operation receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -498,7 +518,7 @@ ceph pg stat
 | نوع | Float · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_mclock_scheduler_background_best_effort_res](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_best_effort_res) |
 
-**کارکرد:** IO proportion reserved for background best_effort (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for background best_effort operations in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**کارکرد:** IO proportion reserved for background best_effort (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for background best_effort operations in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -537,7 +557,7 @@ ceph pg stat
 | نوع | Uint · default `1` · **Advanced** |
 | جدول | [osd.md#SP_osd_mclock_scheduler_background_best_effort_wgt](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_best_effort_wgt) |
 
-**کارکرد:** IO share for each background best_effort over reservation Ignored unless osd_mclock_profile is set to 'custom'.
+**کارکرد:** IO share for each background best_effort over reservation Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -574,7 +594,7 @@ ceph pg stat
 | نوع | Float · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_mclock_scheduler_client_lim](../../../config/osd/osd.md#SP_osd_mclock_scheduler_client_lim) |
 
-**کارکرد:** IO limit for each client (default) over reservation. The default value of 0 specifies no limit enforcement, which means each client can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that each client receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**کارکرد:** IO limit for each client (default) over reservation. The default value of 0 specifies no limit enforcement, which means each client can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that each client receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -613,7 +633,7 @@ ceph pg stat
 | نوع | Float · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_mclock_scheduler_client_res](../../../config/osd/osd.md#SP_osd_mclock_scheduler_client_res) |
 
-**کارکرد:** IO proportion reserved for each client (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for each client in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**کارکرد:** IO proportion reserved for each client (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for each client in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -652,7 +672,7 @@ ceph pg stat
 | نوع | Uint · default `1` · **Advanced** |
 | جدول | [osd.md#SP_osd_mclock_scheduler_client_wgt](../../../config/osd/osd.md#SP_osd_mclock_scheduler_client_wgt) |
 
-**کارکرد:** IO share for each client (default) over reservation Ignored unless osd_mclock_profile is set to 'custom'.
+**کارکرد:** IO share for each client (default) over reservation Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -689,7 +709,7 @@ ceph pg stat
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [osd.md#SP_osd_mclock_skip_benchmark](../../../config/osd/osd.md#SP_osd_mclock_skip_benchmark) |
 
-**کارکرد:** Skip the OSD benchmark on OSD initialization/boot-up
+**کارکرد:** Skip the OSD benchmark on OSD initialization/boot-up This option specifies whether the OSD benchmark must be skipped during the OSD boot-up sequence. Only considered for osd_op_queue = mclock_scheduler.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 

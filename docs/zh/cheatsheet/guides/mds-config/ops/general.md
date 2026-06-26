@@ -33,7 +33,7 @@ ceph -s
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [mds.md#SP_defer_client_eviction_on_laggy_osds](../../../config/mds/mds.md#SP_defer_client_eviction_on_laggy_osds) |
 
-**作用：** Do not evict client if any osd is laggy
+**作用：** Do not evict client if any osd is laggy Laggy OSD(s) can make clients laggy or unresponsive, this can lead to their eviction, this option once enabled can help defer client eviction.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 

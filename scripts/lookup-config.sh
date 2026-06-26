@@ -22,28 +22,67 @@ if [[ $# -lt 1 ]]; then
   exit 1
 fi
 
-name="$1"
-file="$(rg -l --glob '*.md' --glob '!**/INDEX.md' --glob '!**/readme.md' \
-  "SP_${name}\"" "${CONFIG_DIR}" 2>/dev/null | head -1 || true)"
-
-if [[ -z "${file}" ]]; then
-  echo "Option not found: ${name}" >&2
+if [[ ! -d "${CONFIG_DIR}" ]]; then
+  echo "Config reference missing at ${CONFIG_DIR#"${ROOT}/"}" >&2
+  echo "Run: make build   (or: python3 scripts/generate-config-guide.py all)" >&2
   exit 1
 fi
 
-line_content="$(rg "SP_${name}\"" "${file}" | head -1 || true)"
+name="$1"
+pattern="SP_${name}\""
+
+find_config_file() {
+  if command -v rg >/dev/null 2>&1; then
+    rg -l --glob '*.md' --glob '!**/INDEX.md' --glob '!**/readme.md' \
+      "${pattern}" "${CONFIG_DIR}" 2>/dev/null | head -1 || true
+    return
+  fi
+
+  if ! command -v grep >/dev/null 2>&1; then
+    echo "Need ripgrep (rg) or grep to search config tables." >&2
+    echo "Install ripgrep: brew install ripgrep" >&2
+    exit 1
+  fi
+
+  while IFS= read -r candidate; do
+    if grep -qF "${pattern}" "${candidate}" 2>/dev/null; then
+      echo "${candidate}"
+      return
+    fi
+  done < <(find "${CONFIG_DIR}" -name '*.md' ! -name 'INDEX.md' ! -name 'readme.md' -print)
+}
+
+find_config_line() {
+  local file="$1"
+  if command -v rg >/dev/null 2>&1; then
+    rg -F "${pattern}" "${file}" 2>/dev/null | head -1 || true
+    return
+  fi
+  grep -F "${pattern}" "${file}" 2>/dev/null | head -1 || true
+}
+
+file="$(find_config_file)"
+
+if [[ -z "${file}" ]]; then
+  echo "Option not found: ${name}" >&2
+  echo "Search: ./scripts/search-config.sh ${name}" >&2
+  exit 1
+fi
+
+line_content="$(find_config_line "${file}")"
 if [[ -z "${line_content}" ]]; then
   echo "Option not found: ${name}" >&2
   exit 1
 fi
 
 trim() { echo "$1" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'; }
+strip_html() { echo "$1" | sed -E 's/<[^>]+>//g'; }
 
 IFS='|' read -r -a cells <<< "${line_content}"
 
 raw_name="$(trim "${cells[1]:-}")"
 desc="$(trim "${cells[2]:-}")"
-level="$(trim "${cells[3]:-}")"
+level="$(strip_html "$(trim "${cells[3]:-}")")"
 typ="$(trim "${cells[4]:-}")"
 default="$(trim "${cells[5]:-}")"
 daemon_default="$(trim "${cells[6]:-}")"
@@ -55,9 +94,9 @@ services="$(trim "${cells[13]:-}")"
 long_desc="$(trim "${cells[15]:-}")"
 tags="$(trim "${cells[16]:-}")"
 
-clean_name="$(echo "${raw_name}" | sed -E 's/<[^>]+>//g')"
+clean_name="$(strip_html "${raw_name}")"
 
-rel_file="${file#${ROOT}/}"
+rel_file="${file#"${ROOT}/"}"
 
 echo "Option:    ${clean_name}"
 echo "File:      ${rel_file}"

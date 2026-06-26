@@ -42,7 +42,7 @@ ceph pg stat
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_s3_auth_disable_signature_url](../../../config/rgw/rgw.md#SP_rgw_s3_auth_disable_signature_url) |
 
-**کارکرد:** Should authentication with presigned URLs be disabled
+**کارکرد:** Should authentication with presigned URLs be disabled If enabled, any request that is presigned with either V2 or V4 signature will be denied
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -80,7 +80,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `sts, external, local` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_s3_auth_order](../../../config/rgw/rgw.md#SP_rgw_s3_auth_order) |
 
-**کارکرد:** Authentication strategy order to use for S3
+**کارکرد:** Authentication strategy order to use for S3 The order of authentication strategies to try for S3 authentication. The value is a comma-separated list of engines, external and local. The default order is to try all configured external engines before attempting local RADOS based authentication
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -230,7 +230,7 @@ ceph config get client.rgw rgw_s3_auth_use_sts
 | نوع | Int · default `-1` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_s3_client_max_sig_ver](../../../config/rgw/rgw.md#SP_rgw_s3_client_max_sig_ver) |
 
-**کارکرد:** Max S3 authentication signature version
+**کارکرد:** Max S3 authentication signature version If greater than zero, would force max signature version to use
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -258,7 +258,7 @@ ceph config get client.rgw rgw_s3_client_max_sig_ver
 | نوع | Int · default `0` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_s3_success_create_obj_status](../../../config/rgw/rgw.md#SP_rgw_s3_success_create_obj_status) |
 
-**کارکرد:** HTTP return code override for object creation
+**کارکرد:** HTTP return code override for object creation If not zero, this is the HTTP return code that will be returned on a successful S3 object creation.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

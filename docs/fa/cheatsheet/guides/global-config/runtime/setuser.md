@@ -34,7 +34,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [setuser.md#SP_setuser](../../../config/global/setuser.md#SP_setuser) |
 
-**کارکرد:** UID or user name to switch to on startup
+**کارکرد:** UID or user name to switch to on startup This is normally specified by the systemd unit file.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -69,7 +69,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [setuser.md#SP_setuser_match_path](../../../config/global/setuser.md#SP_setuser_match_path) |
 
-**کارکرد:** If set, setuser/setgroup is conditional on this path matching ownership
+**کارکرد:** If set, setuser/setgroup is conditional on this path matching ownership If setuser or setgroup are specified, and this option is non-empty, then the uid/gid of the daemon will only be changed if the file or directory specified by this option has a matching uid and/or gid. This exists primarily to allow switching to the 'ceph' user for OSDs to be conditional on whether the OSD data contents have also been chowned after an upgrade. This is normally specified by the systemd unit file and is a historical artifact of changes made in the Jewel release.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

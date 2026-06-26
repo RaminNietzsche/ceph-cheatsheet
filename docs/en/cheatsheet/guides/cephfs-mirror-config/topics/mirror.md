@@ -47,7 +47,7 @@ ceph -s
 | Type | Secs · default `2` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_action_update_interval](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_action_update_interval) |
 
-**What it does:** interval for driving asynchronous mirror actions
+**What it does:** interval for driving asynchronous mirror actions Interval in seconds to process pending mirror update actions.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -84,7 +84,7 @@ ceph -s
 | Type | Size · default `16_M` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_blockdiff_min_file_size](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_blockdiff_min_file_size) |
 
-**What it does:** minimum file size threshold in bytes above which block-level diff is used during CephFS mirroring.
+**What it does:** minimum file size threshold in bytes above which block-level diff is used during CephFS mirroring. defines the minimum file size, in bytes, required for CephFS mirroring to use block-level delta synchronization instead of performing a full file copy. When a file’s size is greater than to this threshold, the mirroring engine attempts to synchronize only the modified block extents between snapshots. For files smaller than or equal to this value, a full file copy is performed instead, as block-level diff may not provide meaningful performance benefits for small files.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -119,7 +119,7 @@ ceph -s
 | Type | Uint · default `64` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_datasync_files_per_batch](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_datasync_files_per_batch) |
 
-**What it does:** maximum number of files processed by datasync threads per scheduling cycle before yielding.
+**What it does:** maximum number of files processed by datasync threads per scheduling cycle before yielding. defines the maximum number of files a data synchronization thread will process for a specific snapshot before yielding the thread to re-check scheduling logic. This is applicable only when cephfs_mirror_distribute_datasync_threads is enabled. This batch size determines the granularity of thread distribution; smaller batches allow threads to rotate between snapshots more frequently, while larger batches improve throughput by minimizing the overhead of thread re-assignment.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -156,7 +156,7 @@ ceph -s
 | Type | Uint · default `10` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_directory_scan_interval](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_directory_scan_interval) |
 
-**What it does:** interval to scan directories to mirror snapshots
+**What it does:** interval to scan directories to mirror snapshots interval in seconds to scan configured directories for snapshot mirroring.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -193,7 +193,7 @@ ceph -s
 | Type | Bool · default `True` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_distribute_datasync_threads](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_distribute_datasync_threads) |
 
-**What it does:** distribute data synchronization threads evenly across multiple snapshots.
+**What it does:** distribute data synchronization threads evenly across multiple snapshots. controls how datasync worker threads are scheduled when multiple snapshots are queued for synchronization. When enabled, worker threads are distributed fairly across active snapshots, preventing a single large snapshot from monopolizing all available threads and causing other snapshots to starve. When disabled, datasync threads process one snapshot until completion before switching to another, which can improve throughput for individual large snapshots but may increase latency for other queued snapshots. Enabling this option improves responsiveness and reduces starvation in environments where multiple directories are configured to be mirrored.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -228,7 +228,7 @@ ceph -s
 | Type | Uint · default `3` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_max_concurrent_directory_syncs](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_max_concurrent_directory_syncs) |
 
-**What it does:** maximum number of concurrent snapshot synchronization crawler threads
+**What it does:** maximum number of concurrent snapshot synchronization crawler threads maximum number of directory snapshots that can be crawled concurrently by cephfs-mirror daemon. Controls the number of synchronization crawler threads. Note that the crawler threads also does entry operations like directory creations, file deletes and snapshot deletes/renames.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -265,7 +265,7 @@ ceph -s
 | Type | Uint · default `10` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_max_consecutive_failures_per_directory](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_max_consecutive_failures_per_directory) |
 
-**What it does:** consecutive failed directory synchronization attempts before marking a directory as "failed"
+**What it does:** consecutive failed directory synchronization attempts before marking a directory as "failed" number of consecutive snapshot synchronization failures to mark a directory as "failed". failed directories are retried for synchronization less frequently.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -302,7 +302,7 @@ ceph -s
 | Type | Uint · default `6` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_max_datasync_threads](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_max_datasync_threads) |
 
-**What it does:** maximum number of concurrent snapshot data synchronization threads
+**What it does:** maximum number of concurrent snapshot data synchronization threads specifies the maximum number of worker threads in the CephFS mirror data synchronization thread pool. These threads process file synchronization tasks produced by crawler threads for mirrored directory snapshots.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -339,7 +339,7 @@ ceph -s
 | Type | Uint · default `3` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_max_snapshot_sync_per_cycle](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_max_snapshot_sync_per_cycle) |
 
-**What it does:** number of snapshots to mirror in one cycle
+**What it does:** number of snapshots to mirror in one cycle maximum number of snapshots to mirror when a directory is picked up for mirroring by worker threads.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -376,7 +376,7 @@ ceph -s
 | Type | Secs · default `10` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_mount_timeout](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_mount_timeout) |
 
-**What it does:** timeout for mounting primary/secondary ceph file system
+**What it does:** timeout for mounting primary/secondary ceph file system Timeout in seconds for mounting primary or secondary (remote) ceph file system by the cephfs-mirror daemon. Setting this to a higher value could result in the mirror daemon getting stalled when mounting a file system if the cluster is not reachable. This option is used to override the usual client_mount_timeout.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -413,7 +413,7 @@ ceph -s
 | Type | Int · default `5` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_perf_stats_prio](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_perf_stats_prio) |
 
-**What it does:** Priority level for mirror daemon replication perf counters
+**What it does:** Priority level for mirror daemon replication perf counters The daemon will send perf counter data to the manager daemon if the priority is not lower than mgr_stats_threshold.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -450,7 +450,7 @@ ceph -s
 | Type | Secs · default `30` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_restart_mirror_on_blocklist_interval](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_restart_mirror_on_blocklist_interval) |
 
-**What it does:** interval to restart blocklisted instances
+**What it does:** interval to restart blocklisted instances Interval in seconds to restart blocklisted mirror instances. Setting to zero (0) disables restarting blocklisted instances.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -487,7 +487,7 @@ ceph -s
 | Type | Secs · default `20` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_restart_mirror_on_failure_interval](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_restart_mirror_on_failure_interval) |
 
-**What it does:** interval to restart failed mirror instances
+**What it does:** interval to restart failed mirror instances Interval in seconds to restart failed mirror instances. Setting to zero (0) disables restarting failed mirror instances.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -524,7 +524,7 @@ ceph -s
 | Type | Uint · default `60` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_retry_failed_directories_interval](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_retry_failed_directories_interval) |
 
-**What it does:** failed directory retry interval for synchronization
+**What it does:** failed directory retry interval for synchronization interval in seconds to retry synchronization for failed directories.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -561,7 +561,7 @@ ceph -s
 | Type | Secs · default `5` · **Advanced** |
 | Table | [cephfs.md#SP_cephfs_mirror_tick_interval](../../../config/cephfs-mirror/cephfs.md#SP_cephfs_mirror_tick_interval) |
 
-**What it does:** interval for the per-peer mirroring tick thread
+**What it does:** interval for the per-peer mirroring tick thread interval in seconds for the per-peer tick thread that runs periodic mirroring work. The value is re-read each iteration so configuration changes take effect without restarting the daemon.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 

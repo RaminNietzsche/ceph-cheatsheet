@@ -35,9 +35,13 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [heartbeat.md#SP_heartbeat_file](../../../config/global/heartbeat.md#SP_heartbeat_file) |
 
-**作用：** File to touch on successful internal heartbeat
+**作用：** File to touch on successful internal heartbeat If set, this file will be touched every time an internal heartbeat check succeeds.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`heartbeat_interval`](../../../config/global/heartbeat.md#SP_heartbeat_interval)
 
 **示例：**
 

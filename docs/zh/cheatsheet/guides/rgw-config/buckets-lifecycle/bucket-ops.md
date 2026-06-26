@@ -53,6 +53,7 @@ ceph pg stat
 **相关选项：**
 
 - `rgw_bucket_counters_cache_size`
+- [`rgw_bucket_counters_cache_size`](../../../config/rgw/rgw.md#SP_rgw_bucket_counters_cache_size)
 
 **示例：**
 
@@ -81,6 +82,10 @@ ceph config set client.rgw rgw_bucket_counters_cache_size 20000
 **作用：** Maximum number of labeled per-bucket perf counter entries kept in the cache.
 
 **何时使用：** Increase on clusters with many active buckets and bucket-level monitoring enabled.
+
+**相关选项：**
+
+- [`rgw_bucket_counters_cache`](../../../config/rgw/rgw.md#SP_rgw_bucket_counters_cache)
 
 **示例：**
 
@@ -301,7 +306,7 @@ ceph config get client.rgw rgw_bucket_index_transaction_instrumentation
 | 类型 | Uint · default `300` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_bucket_logging_obj_roll_time](../../../config/rgw/rgw.md#SP_rgw_bucket_logging_obj_roll_time) |
 
-**作用：** Default time in seconds for the bucket logging object to roll
+**作用：** Default time in seconds for the bucket logging object to roll Object roll time can be provided in the bucket logging configuration. If not provided, this value will be used.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -338,7 +343,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Uint · default `11` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_bucket_persistent_notif_num_shards](../../../config/rgw/rgw.md#SP_rgw_bucket_persistent_notif_num_shards) |
 
-**作用：** Number of shards for a persistent topic.
+**作用：** Number of shards for a persistent topic. Number of shards of persistent topics. The notifications will be sharded by a combination of the bucket and key name. Changing the number effect only new topics and does not change exiting ones.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -366,7 +371,7 @@ ceph config get client.rgw rgw_bucket_persistent_notif_num_shards
 | 类型 | Int · default `10000` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_bucket_quota_cache_size](../../../config/rgw/rgw.md#SP_rgw_bucket_quota_cache_size) |
 
-**作用：** RGW quota stats cache size
+**作用：** RGW quota stats cache size Maximum number of entries in the quota stats cache.
 
 **何时使用：**
 
@@ -406,7 +411,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `10_min` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_bucket_quota_ttl](../../../config/rgw/rgw.md#SP_rgw_bucket_quota_ttl) |
 
-**作用：** Bucket quota stats cache TTL
+**作用：** Bucket quota stats cache TTL Length of time for bucket stats to be cached within RGW instance.
 
 **何时使用：**
 

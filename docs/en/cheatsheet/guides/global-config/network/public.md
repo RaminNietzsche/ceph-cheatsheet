@@ -178,6 +178,10 @@ ceph -s
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`public_network`](../../../config/global/public.md#SP_public_network)
+
 **Example:**
 
 ```bash

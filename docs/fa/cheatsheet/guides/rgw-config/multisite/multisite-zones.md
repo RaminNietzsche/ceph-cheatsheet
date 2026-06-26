@@ -89,9 +89,13 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `default.region` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_default_region_info_oid](../../../config/rgw/rgw.md#SP_rgw_default_region_info_oid) |
 
-**کارکرد:** Default region info object id
+**کارکرد:** Default region info object id Obsolete config option. The rgw_default_zonegroup_info_oid should be used instead.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_default_zonegroup_info_oid`](../../../config/rgw/rgw.md#SP_rgw_default_zonegroup_info_oid)
 
 **مثال:**
 
@@ -127,7 +131,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `default.zone` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_default_zone_info_oid](../../../config/rgw/rgw.md#SP_rgw_default_zone_info_oid) |
 
-**کارکرد:** Default zone info object id
+**کارکرد:** Default zone info object id Name of the RADOS object that holds the default zone information.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -236,7 +240,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Float · default `2` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_period_push_interval](../../../config/rgw/rgw.md#SP_rgw_period_push_interval) |
 
-**کارکرد:** Period push interval
+**کارکرد:** Period push interval Number of seconds to wait before retrying 'period push' operation.
 
 **زمان استفاده:**
 
@@ -276,7 +280,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Float · default `30` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_period_push_interval_max](../../../config/rgw/rgw.md#SP_rgw_period_push_interval_max) |
 
-**کارکرد:** Period push maximum interval
+**کارکرد:** Period push maximum interval The max number of seconds to wait before retrying 'period push' after exponential backoff.
 
 **زمان استفاده:**
 
@@ -316,7 +320,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `.rgw.root` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_period_root_pool](../../../config/rgw/rgw.md#SP_rgw_period_root_pool) |
 
-**کارکرد:** Period root pool
+**کارکرد:** Period root pool The period root pool, is the pool where the RGW period configuration located.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -418,7 +422,7 @@ ceph config get client.rgw rgw_zone
 | نوع | Str · default `.rgw.root` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_realm_root_pool](../../../config/rgw/rgw.md#SP_rgw_realm_root_pool) |
 
-**کارکرد:** Realm root pool
+**کارکرد:** Realm root pool The realm root pool, is the pool where the RGW realm configuration located.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -452,9 +456,13 @@ ceph config get client.rgw rgw_zone
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_region](../../../config/rgw/rgw.md#SP_rgw_region) |
 
-**کارکرد:** Region name
+**کارکرد:** Region name Obsolete config option. The rgw_zonegroup option should be used instead.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_zonegroup`](../../../config/rgw/rgw.md#SP_rgw_zonegroup)
 
 **مثال:**
 
@@ -486,9 +494,13 @@ ceph config get client.rgw rgw_zone
 | نوع | Str · default `.rgw.root` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_region_root_pool](../../../config/rgw/rgw.md#SP_rgw_region_root_pool) |
 
-**کارکرد:** Region root pool
+**کارکرد:** Region root pool Obsolete config option. The rgw_zonegroup_root_pool should be used instead.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_zonegroup_root_pool`](../../../config/rgw/rgw.md#SP_rgw_zonegroup_root_pool)
 
 **مثال:**
 
@@ -591,7 +603,7 @@ ceph config get client.rgw rgw_zone
 | نوع | Str · default `.rgw.root` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_zone_root_pool](../../../config/rgw/rgw.md#SP_rgw_zone_root_pool) |
 
-**کارکرد:** Zone root pool name
+**کارکرد:** Zone root pool name The zone root pool, is the pool where the RGW zone configuration located.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -697,7 +709,7 @@ ceph config get client.rgw rgw_zone
 | نوع | Str · default `.rgw.root` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_zonegroup_root_pool](../../../config/rgw/rgw.md#SP_rgw_zonegroup_root_pool) |
 
-**کارکرد:** Zonegroup root pool
+**کارکرد:** Zonegroup root pool The zonegroup root pool, is the pool where the RGW zonegroup configuration located.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

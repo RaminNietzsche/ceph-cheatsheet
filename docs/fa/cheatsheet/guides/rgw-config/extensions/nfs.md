@@ -124,9 +124,13 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `rgw-nfs` · **Basic** |
 | جدول | [rgw.md#SP_rgw_nfs_frontends](../../../config/rgw/rgw.md#SP_rgw_nfs_frontends) |
 
-**کارکرد:** RGW frontends configuration when running as librgw/nfs
+**کارکرد:** RGW frontends configuration when running as librgw/nfs A comma-delimited list of frontends configuration. Each configuration contains the type of the frontend followed by an optional space delimited set of key=value config parameters.
 
 **زمان استفاده:** رفتار اصلی RGW — پیش از تغییر در محیط عملیاتی بررسی کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_frontends`](../../../config/rgw/rgw.md#SP_rgw_frontends)
 
 **مثال:**
 
@@ -440,7 +444,7 @@ ceph config get client.rgw rgw_nfs_run_sync_thread
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_nfs_s3_fast_attrs](../../../config/rgw/rgw.md#SP_rgw_nfs_s3_fast_attrs) |
 
-**کارکرد:** use fast S3 attrs from bucket index (immutable only)
+**کارکرد:** use fast S3 attrs from bucket index (immutable only) use fast S3 attrs from bucket index (assumes NFS mounts are immutable)
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 

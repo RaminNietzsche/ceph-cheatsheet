@@ -41,7 +41,7 @@ ceph pg stat
 | Type | Str · default `192.168.180.182@tcp:12345:4:1` · **Advanced** |
 | Table | [motr.md#SP_motr_admin_endpoint](../../../config/rgw/motr.md#SP_motr_admin_endpoint) |
 
-**What it does:** experimental Option to set Admin Motr endpoint address
+**What it does:** experimental Option to set Admin Motr endpoint address example value 192.168.180.182@tcp:12345:4:1
 
 **When to use:** Experimental Motr/POSIX RGW backends — use only in specialized PoC deployments.
 
@@ -69,7 +69,7 @@ ceph config get client.rgw motr_admin_endpoint
 | Type | Str · default `0x7200000000000001:0x0` · **Advanced** |
 | Table | [motr.md#SP_motr_admin_fid](../../../config/rgw/motr.md#SP_motr_admin_fid) |
 
-**What it does:** Admin Tool Motr FID for admin-level access.
+**What it does:** Admin Tool Motr FID for admin-level access. example value 0x7200000000000001:0x2c
 
 **When to use:** Experimental Motr/POSIX RGW backends — use only in specialized PoC deployments.
 
@@ -97,7 +97,7 @@ ceph config get client.rgw motr_admin_fid
 | Type | Str · default `192.168.180.182@tcp:12345:1:1` · **Advanced** |
 | Table | [motr.md#SP_motr_ha_endpoint](../../../config/rgw/motr.md#SP_motr_ha_endpoint) |
 
-**What it does:** experimental Option to set Motr HA agent endpoint address
+**What it does:** experimental Option to set Motr HA agent endpoint address example value 192.168.180.182@tcp:12345:1:1
 
 **When to use:** Experimental Motr/POSIX RGW backends — use only in specialized PoC deployments.
 
@@ -125,7 +125,7 @@ ceph config get client.rgw motr_ha_endpoint
 | Type | Str · default `192.168.180.182@tcp:12345:4:1` · **Advanced** |
 | Table | [motr.md#SP_motr_my_endpoint](../../../config/rgw/motr.md#SP_motr_my_endpoint) |
 
-**What it does:** experimental Option to set my Motr endpoint address
+**What it does:** experimental Option to set my Motr endpoint address example value 192.168.180.182@tcp:12345:4:1
 
 **When to use:** Experimental Motr/POSIX RGW backends — use only in specialized PoC deployments.
 
@@ -153,7 +153,7 @@ ceph config get client.rgw motr_my_endpoint
 | Type | Str · default `0x7200000000000001:0x0` · **Advanced** |
 | Table | [motr.md#SP_motr_my_fid](../../../config/rgw/motr.md#SP_motr_my_fid) |
 
-**What it does:** experimental Option to set my Motr fid
+**What it does:** experimental Option to set my Motr fid example value 0x7200000000000001:0x29
 
 **When to use:** Experimental Motr/POSIX RGW backends — use only in specialized PoC deployments.
 
@@ -181,7 +181,7 @@ ceph config get client.rgw motr_my_fid
 | Type | Str · default `0x7000000000000001:0x0` · **Advanced** |
 | Table | [motr.md#SP_motr_profile_fid](../../../config/rgw/motr.md#SP_motr_profile_fid) |
 
-**What it does:** experimental Option to set Motr profile fid
+**What it does:** experimental Option to set Motr profile fid example value 0x7000000000000001:0x4f
 
 **When to use:** Experimental Motr/POSIX RGW backends — use only in specialized PoC deployments.
 

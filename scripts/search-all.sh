@@ -40,11 +40,39 @@ if [[ -z "${query}" ]]; then
   exit 1
 fi
 
+search_dir_with_rg() {
+  local dir="$1"
+  rg -n --ignore-case --glob '*.md' --glob '!**/INDEX.md' \
+    "${query}" "${dir}" 2>/dev/null || true
+}
+
+search_dir_with_grep() {
+  local dir="$1"
+  if [[ ! -d "${dir}" ]]; then
+    return 0
+  fi
+  while IFS= read -r file; do
+    grep -in -e "${query}" "${file}" 2>/dev/null || true
+  done < <(find "${dir}" -name '*.md' ! -name 'INDEX.md' -print)
+}
+
+search_dir() {
+  local dir="$1"
+  if command -v rg >/dev/null 2>&1; then
+    search_dir_with_rg "${dir}"
+  elif command -v grep >/dev/null 2>&1; then
+    search_dir_with_grep "${dir}"
+  else
+    echo "Need ripgrep (rg) or grep to search documentation." >&2
+    echo "Install ripgrep: brew install ripgrep" >&2
+    exit 1
+  fi
+}
+
 search() {
   local dir="$1" label="$2"
   local results
-  results="$(rg -n --ignore-case --glob '*.md' --glob '!**/INDEX.md' \
-    "${query}" "${dir}" 2>/dev/null || true)"
+  results="$(search_dir "${dir}")"
   if [[ -n "${results}" ]]; then
     echo "=== ${label} ==="
     echo "${results}"

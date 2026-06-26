@@ -35,7 +35,7 @@ ceph -s
 | Type | Bool · default `True` · **Advanced** |
 | Table | [cephsqlite.md#SP_cephsqlite_blocklist_dead_locker](../../../config/global/cephsqlite.md#SP_cephsqlite_blocklist_dead_locker) |
 
-**What it does:** Blocklist the last dead owner of the database lock
+**What it does:** Blocklist the last dead owner of the database lock Require that the Ceph SQLite VFS blocklist the last dead owner of the database when cleanup was incomplete. DO NOT CHANGE THIS UNLESS YOU UNDERSTAND THE RAMIFICATIONS. CORRUPTION MAY RESULT.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -74,6 +74,10 @@ ceph -s
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
+**Related options:**
+
+- [`cephsqlite_lock_renewal_timeout`](../../../config/global/cephsqlite.md#SP_cephsqlite_lock_renewal_timeout)
+
 **Example:**
 
 ```bash
@@ -107,9 +111,13 @@ ceph -s
 | Type | Millisecs · default `30000` · **Advanced** |
 | Table | [cephsqlite.md#SP_cephsqlite_lock_renewal_timeout](../../../config/global/cephsqlite.md#SP_cephsqlite_lock_renewal_timeout) |
 
-**What it does:** Number of milliseconds before a libcephsqlite transaction lock times out
+**What it does:** Number of milliseconds before a libcephsqlite transaction lock times out The amount of time before a running libcephsqlite VFS connection has to renew a lock on the database before the lock is automatically lost. If the lock is lost, the VFS will abort the process to prevent database corruption.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
+
+**Related options:**
+
+- [`cephsqlite_lock_renewal_interval`](../../../config/global/cephsqlite.md#SP_cephsqlite_lock_renewal_interval)
 
 **Example:**
 

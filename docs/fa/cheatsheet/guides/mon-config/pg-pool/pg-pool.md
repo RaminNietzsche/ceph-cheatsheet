@@ -460,7 +460,7 @@ ceph pg stat
 | نوع | Size · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_pool_erasure_code_stripe_unit](../../../config/mon/osd.md#SP_osd_pool_erasure_code_stripe_unit) |
 
-**کارکرد:** the amount of data (in bytes) in a data chunk, per stripe
+**کارکرد:** the amount of data (in bytes) in a data chunk, per stripe A value of 0 causes the code to select either a 4KB or 16KB stripe_unit depending on whether allow_ec_optimizations is enabled.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

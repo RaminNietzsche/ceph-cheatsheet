@@ -1739,7 +1739,7 @@ ceph pg stat
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [osd.md#SP_osd_fast_shutdown](../../../config/global/osd.md#SP_osd_fast_shutdown) |
 
-**کارکرد:** Fast, immediate shutdown
+**کارکرد:** Fast, immediate shutdown Setting this to false makes the OSD do a slower teardown of all state when it receives a SIGINT or SIGTERM or when shutting down for any other reason. That slow shutdown is primarilyy useful for doing memory leak checking with valgrind.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -1776,7 +1776,7 @@ ceph pg stat
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [osd.md#SP_osd_fast_shutdown_notify_mon](../../../config/global/osd.md#SP_osd_fast_shutdown_notify_mon) |
 
-**کارکرد:** Tell the Monitors about OSD shutdown on immediate shutdown
+**کارکرد:** Tell the Monitors about OSD shutdown on immediate shutdown Tell the Monitors the OSD is shutting down on immediate shutdown. This helps with cluster log messages from other OSDs reporting it immediately failed.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -2085,7 +2085,7 @@ ceph pg stat
 | نوع | Int · default `10_min` · **Advanced** |
 | جدول | [osd.md#SP_osd_heartbeat_stale](../../../config/global/osd.md#SP_osd_heartbeat_stale) |
 
-**کارکرد:** Interval (in seconds) we mark an unresponsive heartbeat peer as stale.
+**کارکرد:** Interval (in seconds) we mark an unresponsive heartbeat peer as stale. Automatically mark unresponsive heartbeat sessions as stale and tear them down. The primary benefit is that OSD doesn't need to keep a flood of blocked heartbeat messages around in memory.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -2775,7 +2775,7 @@ ceph config get osd osd_max_pg_log_entries
 | نوع | Float · default `3` · **Advanced** |
 | جدول | [osd.md#SP_osd_max_pg_per_osd_hard_ratio](../../../config/global/osd.md#SP_osd_max_pg_per_osd_hard_ratio) |
 
-**کارکرد:** Maximum multiple of mon_max_pg_per_osd PGs an OSD will allow
+**کارکرد:** Maximum multiple of mon_max_pg_per_osd PGs an OSD will allow An OSD will refuse to instantiate a PG if the number of PGs it serves exceeds this number.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -2877,7 +2877,7 @@ ceph pg stat
 | نوع | Size · default `64` · **Advanced** |
 | جدول | [osd.md#SP_osd_max_write_op_reply_len](../../../config/global/osd.md#SP_osd_max_write_op_reply_len) |
 
-**کارکرد:** Max size of the per-op payload for requests with the RETURNVEC flag set
+**کارکرد:** Max size of the per-op payload for requests with the RETURNVEC flag set This value caps the amount of data (per op; a request may have many ops) that will be sent back to the client and recorded in the PG log.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -3026,7 +3026,7 @@ ceph config get osd osd_memory_expected_fragmentation
 | نوع | Size · default `4_G` · **Basic** |
 | جدول | [osd.md#SP_osd_memory_target](../../../config/global/osd.md#SP_osd_memory_target) |
 
-**کارکرد:** When TCMalloc and cache autotuning are enabled, try to keep this many bytes mapped in memory.
+**کارکرد:** When TCMalloc and cache autotuning are enabled, try to keep this many bytes mapped in memory. The minimum value must be at least equal to osd_memory_base + osd_memory_cache_min.
 
 **زمان استفاده:** رفتار اصلی Global — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
@@ -3066,6 +3066,10 @@ ceph pg stat
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_memory_target`](../../../config/global/osd.md#SP_osd_memory_target)
+
 **مثال:**
 
 ```bash
@@ -3099,9 +3103,13 @@ ceph pg stat
 | نوع | Float · default `0.8` · **Advanced** |
 | جدول | [osd.md#SP_osd_memory_target_cgroup_limit_ratio](../../../config/global/osd.md#SP_osd_memory_target_cgroup_limit_ratio) |
 
-**کارکرد:** Set the default value for osd_memory_target to the cgroup memory limit (if set) times this value
+**کارکرد:** Set the default value for osd_memory_target to the cgroup memory limit (if set) times this value A value of 0 disables this feature.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_memory_target`](../../../config/global/osd.md#SP_osd_memory_target)
 
 **مثال:**
 
@@ -3236,7 +3244,7 @@ ceph pg stat
 | نوع | Int · default `1_hr` · **Advanced** |
 | جدول | [osd.md#SP_osd_mon_heartbeat_stat_stale](../../../config/global/osd.md#SP_osd_mon_heartbeat_stat_stale) |
 
-**کارکرد:** Stop reporting on heartbeat ping times not updated for this many seconds.
+**کارکرد:** Stop reporting on heartbeat ping times not updated for this many seconds. Stop reporting on old heartbeat information unless this is set to zero
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -3415,7 +3423,7 @@ ceph pg stat
 | نوع | Int · default `10` · **Dev** |
 | جدول | [osd.md#SP_osd_object_clean_region_max_num_intervals](../../../config/global/osd.md#SP_osd_object_clean_region_max_num_intervals) |
 
-**کارکرد:** Number of intervals in clean_offsets
+**کارکرد:** Number of intervals in clean_offsets Partial recovery uses multiple intervals to record the clean part of the objectwhen the number of intervals is greater than osd_object_clean_region_max_num_intervals, minimum interval will be trimmed(0 will recovery the entire object data interval)
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -3550,9 +3558,13 @@ ceph pg stat
 | نوع | Uint · default `64` · **Advanced** |
 | جدول | [osd.md#SP_osd_objectstore_ideal_list_max](../../../config/global/osd.md#SP_osd_objectstore_ideal_list_max) |
 
-**کارکرد:** The max number of results of ObjectStore::collection_list()
+**کارکرد:** The max number of results of ObjectStore::collection_list() This value caps the maximal number of entries a single call to collection_list() can return. The configurable controls this aspect of PG deletion and OSD::clear_temp_objects(). Increasing it trade-offs less agressive chunking (and thus less CPU consumption overall) for higher memory pressure. Please note that in the case of PG deletion the chunking is steered by std::min of the this value and the value of osd_target_transaction_size.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_memory_target`](../../../config/global/osd.md#SP_osd_memory_target)
 
 **مثال:**
 
@@ -4775,6 +4787,10 @@ ceph config get osd osd_pool_default_flags
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`osd_tier_default_cache_hit_set_type`](../../../config/global/osd.md#SP_osd_tier_default_cache_hit_set_type)
+
 **مثال:**
 
 ```bash
@@ -4808,9 +4824,13 @@ ceph pg stat
 | نوع | Uint · default `0` · **Advanced** |
 | جدول | [osd.md#SP_osd_pool_default_min_size](../../../config/global/osd.md#SP_osd_pool_default_min_size) |
 
-**کارکرد:** The minimal number of copies allowed to write to a degraded pool for new replicated pools
+**کارکرد:** The minimal number of copies allowed to write to a degraded pool for new replicated pools 0 means no specific default; ceph will use size-size/2
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_pool_default_size`](../../../config/global/osd.md#SP_osd_pool_default_size)
 
 **مثال:**
 
@@ -4847,7 +4867,7 @@ ceph pg stat
 | نوع | Str · enum: ["off", "warn", "on"] · default `on` · **Advanced** |
 | جدول | [osd.md#SP_osd_pool_default_pg_autoscale_mode](../../../config/global/osd.md#SP_osd_pool_default_pg_autoscale_mode) |
 
-**کارکرد:** Default PG autoscaling behavior for new pools
+**کارکرد:** Default PG autoscaling behavior for new pools When 'on', the autoscaler assigns 1 pg to new pools unless the user specifies a value.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -4884,9 +4904,13 @@ ceph pg stat
 | نوع | Uint · default `32` · **Advanced** |
 | جدول | [osd.md#SP_osd_pool_default_pg_num](../../../config/global/osd.md#SP_osd_pool_default_pg_num) |
 
-**کارکرد:** number of PGs for new pools
+**کارکرد:** number of PGs for new pools With default value of `osd_pool_default_pg_autoscale_mode` being `on` the number of PGs for new pools will start out with 1 pg, unless the user specifies the pg_num.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_pool_default_pg_autoscale_mode`](../../../config/global/osd.md#SP_osd_pool_default_pg_autoscale_mode)
 
 **مثال:**
 
@@ -4958,9 +4982,13 @@ ceph pg stat
 | نوع | Float · default `0.8` · **Dev** |
 | جدول | [osd.md#SP_osd_pool_default_read_lease_ratio](../../../config/global/osd.md#SP_osd_pool_default_read_lease_ratio) |
 
-**کارکرد:** Default read_lease_ratio for a pool, as a multiple of osd_heartbeat_grace
+**کارکرد:** Default read_lease_ratio for a pool, as a multiple of osd_heartbeat_grace This should be <= 1.0 so that the read lease will have expired by the time we decide to mark a peer OSD down.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
+
+**گزینه‌های مرتبط:**
+
+- [`osd_heartbeat_grace`](../../../config/global/osd.md#SP_osd_heartbeat_grace)
 
 **مثال:**
 
@@ -4986,7 +5014,7 @@ ceph config get osd osd_pool_default_read_lease_ratio
 | نوع | Uint · default `70` · **Advanced** |
 | جدول | [osd.md#SP_osd_pool_default_read_ratio](../../../config/global/osd.md#SP_osd_pool_default_read_ratio) |
 
-**کارکرد:** Default read ratio (the percent of read IOs out of all IOs) for a pool.
+**کارکرد:** Default read ratio (the percent of read IOs out of all IOs) for a pool. Default read ratio (the percent of read IOs out of all IOs) for a pool. applicable to replicated pools only. This value is used to improve read balancing when OSDs have different weights.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -5099,7 +5127,7 @@ ceph pg stat
 | نوع | Bool · default `True` · **Dev** |
 | جدول | [osd.md#SP_osd_pool_use_gmt_hitset](../../../config/global/osd.md#SP_osd_pool_use_gmt_hitset) |
 
-**کارکرد:** use UTC for hitset timestamps
+**کارکرد:** use UTC for hitset timestamps This setting only exists for compatibility with hammer (and older) clusters.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -5234,7 +5262,7 @@ ceph pg stat
 | نوع | Uint · default `5` · **Advanced** |
 | جدول | [osd.md#SP_osd_recovery_priority](../../../config/global/osd.md#SP_osd_recovery_priority) |
 
-**کارکرد:** Priority of recovery in the work queue
+**کارکرد:** Priority of recovery in the work queue Not related to a pool's recovery_priority
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

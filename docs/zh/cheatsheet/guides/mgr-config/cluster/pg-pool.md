@@ -79,7 +79,7 @@ ceph mon stat
 | 类型 | Int · default `1_min` · **Advanced** |
 | 表格 | [mon.md#SP_mon_pg_stuck_threshold](../../../config/mgr/mon.md#SP_mon_pg_stuck_threshold) |
 
-**作用：** number of seconds after which pgs can be considered stuck inactive, unclean, etc
+**作用：** number of seconds after which pgs can be considered stuck inactive, unclean, etc see doc/control.rst under dump_stuck for more info
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -400,6 +400,10 @@ ceph config get mon mon_warn_on_pool_no_app
 **作用：** time after which POOL_APP_NOT_ENABLED health warning is issued
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`mon_warn_on_pool_no_app`](../../../config/mgr/mon.md#SP_mon_warn_on_pool_no_app)
 
 **示例：**
 

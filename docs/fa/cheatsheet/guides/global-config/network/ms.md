@@ -756,6 +756,10 @@ ceph -s
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`ms_bind_ipv6`](../../../config/global/ms.md#SP_ms_bind_ipv6)
+
 **مثال:**
 
 ```bash
@@ -790,6 +794,10 @@ ceph -s
 **کارکرد:** Bind servers to IPv6 address(es)
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`ms_bind_ipv4`](../../../config/global/ms.md#SP_ms_bind_ipv4)
 
 **مثال:**
 
@@ -826,6 +834,10 @@ ceph -s
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`ms_bind_msgr2`](../../../config/global/ms.md#SP_ms_bind_msgr2)
+
 **مثال:**
 
 ```bash
@@ -860,6 +872,10 @@ ceph -s
 **کارکرد:** Bind servers to msgr2 (nautilus+) protocol address(es)
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`ms_bind_msgr1`](../../../config/global/ms.md#SP_ms_bind_msgr1)
 
 **مثال:**
 
@@ -1293,9 +1309,13 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [ms.md#SP_ms_cluster_type](../../../config/global/ms.md#SP_ms_cluster_type) |
 
-**کارکرد:** Messenger implementation to use for the internal cluster network
+**کارکرد:** Messenger implementation to use for the internal cluster network If not specified, use ms_type
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`ms_type`](../../../config/global/ms.md#SP_ms_type)
 
 **مثال:**
 
@@ -1328,9 +1348,13 @@ ceph -s
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [ms.md#SP_ms_compress_secure](../../../config/global/ms.md#SP_ms_compress_secure) |
 
-**کارکرد:** Allowing compression when on-wire encryption is enabled
+**کارکرد:** Allowing compression when on-wire encryption is enabled Combining encryption with compression reduces the level of security of messages between peers. In case both encryption and compression are enabled, compression setting will be ignored and message will not be compressed. This behaviour can be override using this setting.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`ms_osd_compress_mode`](../../../config/global/ms.md#SP_ms_osd_compress_mode)
 
 **مثال:**
 
@@ -1666,6 +1690,10 @@ ceph -s
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`ms_async_op_threads`](../../../config/global/ms.md#SP_ms_async_op_threads)
+
 **مثال:**
 
 ```bash
@@ -1723,7 +1751,7 @@ ceph config get global ms_dpdk_debug_allow_loopback
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [ms.md#SP_ms_dpdk_devs_allowlist](../../../config/global/ms.md#SP_ms_dpdk_devs_allowlist) |
 
-**کارکرد:** NIC's PCIe address are allowed to use
+**کارکرد:** NIC's PCIe address are allowed to use for a single NIC use ms_dpdk_devs_allowlist=-a 0000:7d:010 or --allow=0000:7d:010; for a bond nics use ms_dpdk_devs_allowlist=--allow=0000:7d:01.0 --allow=0000:7d:02.6 --vdev=net_bonding0,mode=2,slave=0000:7d:01.0,slave=0000:7d:02.6.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -2424,7 +2452,7 @@ ceph config get global ms_inject_socket_failures
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [ms.md#SP_ms_learn_addr_from_peer](../../../config/global/ms.md#SP_ms_learn_addr_from_peer) |
 
-**کارکرد:** Learn address from what IP our first peer thinks we connect from
+**کارکرد:** Learn address from what IP our first peer thinks we connect from Use the IP address our first peer (usually a monitor) sees that we are connecting from. This is useful if a client is behind some sort of NAT and we want to see it identified by its local (not NATed) address.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -2497,6 +2525,10 @@ ceph -s
 **کارکرد:** Maximum backoff after a network error before retrying (seconds)
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`ms_initial_backoff`](../../../config/global/ms.md#SP_ms_initial_backoff)
 
 **مثال:**
 
@@ -2635,6 +2667,10 @@ ceph -s
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`ms_osd_compress_mode`](../../../config/global/ms.md#SP_ms_osd_compress_mode)
+
 **مثال:**
 
 ```bash
@@ -2670,6 +2706,10 @@ ceph -s
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`ms_compress_secure`](../../../config/global/ms.md#SP_ms_compress_secure)
+
 **مثال:**
 
 ```bash
@@ -2701,9 +2741,13 @@ ceph -s
 | نوع | Str · default `snappy` · **Advanced** |
 | جدول | [ms.md#SP_ms_osd_compression_algorithm](../../../config/global/ms.md#SP_ms_osd_compression_algorithm) |
 
-**کارکرد:** Compression algorithm to use in Messenger when communicating with OSD
+**کارکرد:** Compression algorithm to use in Messenger when communicating with OSD Compression algorithm for connections with OSD in order of preference Although the default value is set to snappy, a list (like snappy zlib zstd etc.) is acceptable as well.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`ms_osd_compress_mode`](../../../config/global/ms.md#SP_ms_osd_compress_mode)
 
 **مثال:**
 
@@ -2788,9 +2832,13 @@ ceph config get global ms_pq_min_cost
 | نوع | Str · default `(empty)` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [ms.md#SP_ms_public_type](../../../config/global/ms.md#SP_ms_public_type) |
 
-**کارکرد:** Messenger implementation to use for the public network
+**کارکرد:** Messenger implementation to use for the public network If not specified, use ms_type
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`ms_type`](../../../config/global/ms.md#SP_ms_type)
 
 **مثال:**
 

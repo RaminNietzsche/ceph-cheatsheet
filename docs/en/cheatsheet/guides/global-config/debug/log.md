@@ -188,6 +188,10 @@ ceph -s
 
 **When to use:** Core Global behavior — review before changing in production.
 
+**Related options:**
+
+- [`log_graylog_host`](../../../config/global/log.md#SP_log_graylog_host)
+
 **Example:**
 
 ```bash
@@ -222,6 +226,10 @@ ceph -s
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`log_max_recent`](../../../config/global/log.md#SP_log_max_recent)
+
 **Example:**
 
 ```bash
@@ -253,7 +261,7 @@ ceph -s
 | Type | Int · default `10000` · **Advanced** |
 | Table | [log.md#SP_log_max_recent](../../../config/global/log.md#SP_log_max_recent) |
 
-**What it does:** Recent log entries to keep in memory to dump in the event of a crash
+**What it does:** Recent log entries to keep in memory to dump in the event of a crash The purpose of this option is to log at a higher debug level only to the in-memory buffer, and write out the detailed log messages only if there is a crash. Only log entries below the lower log level will be written unconditionally to the log. For example, debug_osd=1/5 will write everything <= 1 to the log unconditionally but keep entries at levels 2-5 in memory. If there is a seg fault or assertion failure, all entries will be dumped to the log.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -290,7 +298,7 @@ ceph -s
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [log.md#SP_log_stderr_prefix](../../../config/global/log.md#SP_log_stderr_prefix) |
 
-**What it does:** String to prefix log messages with when sent to stderr
+**What it does:** String to prefix log messages with when sent to stderr This is useful in container environments when combined with mon_cluster_log_to_stderr. The mon log prefixes each line with the channel name (e.g., 'default', 'audit'), while log_stderr_prefix can be set to 'debug '.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -329,6 +337,10 @@ ceph -s
 
 **When to use:** Core Global behavior — review before changing in production.
 
+**Related options:**
+
+- [`log_file`](../../../config/global/log.md#SP_log_file)
+
 **Example:**
 
 ```bash
@@ -362,6 +374,10 @@ ceph -s
 **What it does:** send log lines to a file
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Related options:**
+
+- [`log_file`](../../../config/global/log.md#SP_log_file)
 
 **Example:**
 
@@ -461,7 +477,7 @@ ceph -s
 | Type | Bool · default `False` · **Basic** |
 | Table | [log.md#SP_log_to_stderr](../../../config/global/log.md#SP_log_to_stderr) |
 
-**What it does:** send log lines to stderr
+**What it does:** send log lines to stderr When Ceph runs as a library (e.g., librados), the default value set to false because stderr may not be writable by the application. For daemons, the daemon_default of false is used instead.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 

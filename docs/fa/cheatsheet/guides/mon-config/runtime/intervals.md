@@ -91,6 +91,10 @@ ceph mon stat
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_elector_ping_divisor`](../../../config/mon/mon.md#SP_mon_elector_ping_divisor)
+
 **مثال:**
 
 ```bash
@@ -127,6 +131,10 @@ ceph mon stat
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_lease`](../../../config/mon/mon.md#SP_mon_lease)
+
 **مثال:**
 
 ```bash
@@ -161,9 +169,13 @@ ceph mon stat
 | نوع | Float · default `0.6` · **Advanced** |
 | جدول | [mon.md#SP_mon_lease_renew_interval_factor](../../../config/mon/mon.md#SP_mon_lease_renew_interval_factor) |
 
-**کارکرد:** multiple of mon_lease for the lease renewal interval
+**کارکرد:** multiple of mon_lease for the lease renewal interval Leases must be renewed before they time out. A smaller value means frequent renewals, while a value close to 1 makes a lease expiration more likely.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_lease`](../../../config/mon/mon.md#SP_mon_lease)
 
 **مثال:**
 
@@ -510,6 +522,10 @@ ceph mon stat
 **کارکرد:** frequency of clock synchronization (re)checks between monitors while clocks are believed to be skewed (seconds)
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_timecheck_interval`](../../../config/mon/mon.md#SP_mon_timecheck_interval)
 
 **مثال:**
 

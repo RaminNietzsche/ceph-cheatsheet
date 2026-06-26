@@ -188,6 +188,10 @@ ceph config get client.rgw rgw_torrent_flag
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
+**گزینه‌های مرتبط:**
+
+- [`rgw_torrent_flag`](../../../config/rgw/rgw.md#SP_rgw_torrent_flag)
+
 **مثال:**
 
 ```bash

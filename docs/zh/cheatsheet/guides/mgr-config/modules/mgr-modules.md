@@ -218,6 +218,10 @@ ceph config get mgr mgr_debug_aggressive_pg_num_changes
 
 **何时使用：** Disable unused modules to reduce attack surface and MGR startup time.
 
+**相关选项：**
+
+- [`mgr_module_path`](../../../config/mgr/mgr.md#SP_mgr_module_path)
+
 **示例：**
 
 ```bash
@@ -251,7 +255,7 @@ ceph mgr stat
 | 类型 | Str · default `iostat nfs nvmeof` · **Basic** |
 | 表格 | [mgr.md#SP_mgr_initial_modules](../../../config/mgr/mgr.md#SP_mgr_initial_modules) |
 
-**作用：** List of manager modules to enable when the cluster is first started
+**作用：** List of manager modules to enable when the cluster is first started This list of module names is read by the monitor when the cluster is first started after installation, to populate the list of enabled manager modules. Subsequent updates are done using the 'mgr module &#91;enable\
 
 **何时使用：** 核心 MGR 行为 — 生产环境变更前请审阅。
 
@@ -410,9 +414,13 @@ ceph config get mgr mgr_mds_messages
 | 类型 | Millisecs · default `0` · **Dev** |
 | 表格 | [mgr.md#SP_mgr_module_load_delay](../../../config/mgr/mgr.md#SP_mgr_module_load_delay) |
 
-**作用：** Number of milliseconds for Manager modules to delay loading. For testing purposes only.
+**作用：** Number of milliseconds for Manager modules to delay loading. For testing purposes only. Number of milliseconds for Manager modules to delay loading. For testing purposes only.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`mgr_module_load_delay_name`](../../../config/mgr/mgr.md#SP_mgr_module_load_delay_name)
 
 **示例：**
 
@@ -438,9 +446,13 @@ ceph config get mgr mgr_module_load_delay
 | 类型 | Str · default `(empty)` · **Dev** |
 | 表格 | [mgr.md#SP_mgr_module_load_delay_name](../../../config/mgr/mgr.md#SP_mgr_module_load_delay_name) |
 
-**作用：** Specify which Manager module is to delay loading by mgr_module_load_delay milliseconds. For testing purposes only.
+**作用：** Specify which Manager module is to delay loading by mgr_module_load_delay milliseconds. For testing purposes only. Specify which Manager module is to delay loading by mgr_module_load_delay milliseconds. For testing purposes only.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`mgr_module_load_delay`](../../../config/mgr/mgr.md#SP_mgr_module_load_delay)
 
 **示例：**
 
@@ -466,7 +478,7 @@ ceph config get mgr mgr_module_load_delay_name
 | 类型 | Millisecs · default `20000` · **Dev** |
 | 表格 | [mgr.md#SP_mgr_module_load_expiration](../../../config/mgr/mgr.md#SP_mgr_module_load_expiration) |
 
-**作用：** Maximum number of milliseconds the active mgr is allowed to load the mgr modules before declaring availability.
+**作用：** Maximum number of milliseconds the active mgr is allowed to load the mgr modules before declaring availability. Maximum number of milliseconds the active mgr is allowed to load the mgr modules. If any modules are still uninitialized after the expiration is exceeded, the mgr proceeds to declare availability, but a health error will be issued indicating which modules didn't load in time.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -494,7 +506,7 @@ ceph config get mgr mgr_module_load_expiration
 | 类型 | Int · default `5` · **Advanced** |
 | 表格 | [mgr.md#SP_mgr_module_monitor_interval](../../../config/mgr/mgr.md#SP_mgr_module_monitor_interval) |
 
-**作用：** Period in seconds for collecting Manager modules cpu and memory performance counters.
+**作用：** Period in seconds for collecting Manager modules cpu and memory performance counters. Period in seconds for Manager Monitor to collect the cpu and memory for each enabled module. If set to 0, collection of these stats will be disabled.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
@@ -845,9 +857,13 @@ ceph mgr stat
 | 类型 | Bool · default `True` · **Basic** |
 | 表格 | [mgr.md#SP_mgr_stats_period_autotune](../../../config/mgr/mgr.md#SP_mgr_stats_period_autotune) |
 
-**作用：** Automatically adjust mgr_stats_period based on Manager message queue depth
+**作用：** Automatically adjust mgr_stats_period based on Manager message queue depth When enabled, the Manager monitors its incoming message queue and automatically increases mgr_stats_period when the queue backs up beyond the configured threshold, reducing daemon reporting frequency to prevent Manager overload. The period is gradually decreased back to the original value when the queue depth recovers. This prevents performance degradation during high cluster activity without requiring manual intervention. When disabled, mgr_stats_period remains at the manually configured value.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
+
+**相关选项：**
+
+- [`mgr_stats_period`](../../../config/mgr/mgr.md#SP_mgr_stats_period)
 
 **示例：**
 
@@ -880,9 +896,13 @@ ceph mgr stat
 | 类型 | Int · default `100` · **Advanced** |
 | 表格 | [mgr.md#SP_mgr_stats_period_autotune_queue_threshold](../../../config/mgr/mgr.md#SP_mgr_stats_period_autotune_queue_threshold) |
 
-**作用：** Message queue depth that triggers automatic increase of mgr_stats_period
+**作用：** Message queue depth that triggers automatic increase of mgr_stats_period When mgr_stats_period_autotune is enabled, the Manager will increase the stats reporting period if the incoming message queue exceeds this threshold. Higher values make the system less sensitive to temporary queue spikes but may allow longer periods of Manager overload.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
+
+**相关选项：**
+
+- [`mgr_stats_period`](../../../config/mgr/mgr.md#SP_mgr_stats_period)
 
 **示例：**
 
@@ -916,7 +936,7 @@ ceph mgr stat
 | 类型 | Int · default `5` · **Advanced** |
 | 表格 | [mgr.md#SP_mgr_stats_threshold](../../../config/mgr/mgr.md#SP_mgr_stats_threshold) |
 
-**作用：** Lowest perfcounter priority collected by mgr
+**作用：** Lowest perfcounter priority collected by mgr Daemons only set perf counter data to the manager daemon if the counter has a priority higher than this.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -954,7 +974,7 @@ ceph mgr stat
 | 类型 | Str · default `0` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [mgr.md#SP_mgr_subinterpreter_modules](../../../config/mgr/mgr.md#SP_mgr_subinterpreter_modules) |
 
-**作用：** List of manager modules to load in independent subinterpreters
+**作用：** List of manager modules to load in independent subinterpreters A comma delimited list of module names. This list is read by manager when it starts. By default, manager loads each module into the main interpreter. Modules in this list will instead be loaded into independent subinterpreters. Specifying '*' will cause all modules to be run in independent subinterpreters.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

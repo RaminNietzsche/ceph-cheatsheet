@@ -205,7 +205,7 @@ ceph pg stat
 | 类型 | Bool · default `False` · **Dev** |
 | 表格 | [osd.md#SP_osd_find_best_info_ignore_history_les](../../../config/osd/osd.md#SP_osd_find_best_info_ignore_history_les) |
 
-**作用：** ignore last_epoch_started value when peering AND PROBABLY LOSE DATA
+**作用：** ignore last_epoch_started value when peering AND PROBABLY LOSE DATA THIS IS AN EXTREMELY DANGEROUS OPTION THAT SHOULD ONLY BE USED AT THE DIRECTION OF A DEVELOPER. It makes peering ignore the last_epoch_started value when peering, which can allow the OSD to believe an OSD has an authoritative view of a PG's contents even when it is in fact old and stale, typically leading to data loss (by believing a stale PG is up to date).
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -459,6 +459,10 @@ ceph pg stat
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`osd_numa_auto_affinity`](../../../config/osd/osd.md#SP_osd_numa_auto_affinity)
+
 **示例：**
 
 ```bash
@@ -496,6 +500,10 @@ ceph pg stat
 **作用：** prefer IP on network interface on same numa node as storage
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
+
+**相关选项：**
+
+- [`osd_numa_auto_affinity`](../../../config/osd/osd.md#SP_osd_numa_auto_affinity)
 
 **示例：**
 
@@ -569,6 +577,10 @@ ceph pg stat
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`osd_op_num_shards`](../../../config/osd/osd.md#SP_osd_op_num_shards)
+
 **示例：**
 
 ```bash
@@ -604,6 +616,10 @@ ceph pg stat
 | 表格 | [osd.md#SP_osd_op_num_shards_ssd](../../../config/osd/osd.md#SP_osd_op_num_shards_ssd) |
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`osd_op_num_shards`](../../../config/osd/osd.md#SP_osd_op_num_shards)
 
 **示例：**
 
@@ -677,6 +693,10 @@ ceph pg stat
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`osd_op_num_threads_per_shard`](../../../config/osd/osd.md#SP_osd_op_num_threads_per_shard)
+
 **示例：**
 
 ```bash
@@ -712,6 +732,10 @@ ceph pg stat
 | 表格 | [osd.md#SP_osd_op_num_threads_per_shard_ssd](../../../config/osd/osd.md#SP_osd_op_num_threads_per_shard_ssd) |
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`osd_op_num_threads_per_shard`](../../../config/osd/osd.md#SP_osd_op_num_threads_per_shard)
 
 **示例：**
 
@@ -751,6 +775,10 @@ ceph pg stat
 
 **何时使用：** Keep `mclock_scheduler` unless upstream support directs otherwise.
 
+**相关选项：**
+
+- [`osd_op_queue_cut_off`](../../../config/osd/osd.md#SP_osd_op_queue_cut_off)
+
 **示例：**
 
 ```bash
@@ -784,9 +812,13 @@ ceph pg stat
 | 类型 | Str · enum: ["low", "high", "debug_random"] · default `high` · **Advanced** |
 | 表格 | [osd.md#SP_osd_op_queue_cut_off](../../../config/osd/osd.md#SP_osd_op_queue_cut_off) |
 
-**作用：** the threshold between high priority ops and low priority ops
+**作用：** the threshold between high priority ops and low priority ops the threshold between high priority ops that use strict priority ordering and low priority ops that use a fairness algorithm that may or may not incorporate priority
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`osd_op_queue`](../../../config/osd/osd.md#SP_osd_op_queue)
 
 **示例：**
 

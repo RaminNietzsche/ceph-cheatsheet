@@ -110,7 +110,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_enable_gc_threads](../../../config/rgw/rgw.md#SP_rgw_enable_gc_threads) |
 
-**کارکرد:** Enables the garbage collection maintenance thread.
+**کارکرد:** Enables the garbage collection maintenance thread. The garbage collection maintenance thread is responsible for garbage collector maintenance work. The thread itself can be disabled, but in order for garbage collection to work correctly, at least one RGW in each zone needs to have this thread running. Having the thread enabled on multiple RGW processes within the same zone can spread some of the maintenance work between them.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -138,7 +138,7 @@ ceph config get client.rgw rgw_enable_gc_threads
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_enable_jwks_url_verification](../../../config/rgw/rgw.md#SP_rgw_enable_jwks_url_verification) |
 
-**کارکرد:** Enable JWKS url verification for AWS compliance
+**کارکرد:** Enable JWKS url verification for AWS compliance Verifies the security of the JWKS url endpoint using the client provided thumbprints for AWS compliance. If turned on, the legacy verification option of using thumbprints to verify JWT x5c certs is disabled.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -166,7 +166,7 @@ ceph config get client.rgw rgw_enable_jwks_url_verification
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_enable_lc_threads](../../../config/rgw/rgw.md#SP_rgw_enable_lc_threads) |
 
-**کارکرد:** Enables the lifecycle maintenance thread. This is required on at least one RGW daemon for each zone.
+**کارکرد:** Enables the lifecycle maintenance thread. This is required on at least one RGW daemon for each zone. The lifecycle maintenance thread is responsible for lifecycle related maintenance work. The thread itself can be disabled, but in order for lifecycle to work correctly, at least one RGW in each zone needs to have this thread running. Having the thread enabled on multiple RGW processes within the same zone can spread some of the maintenance work between them.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -194,7 +194,7 @@ ceph config get client.rgw rgw_enable_lc_threads
 | نوع | Bool · default `True` · **Basic** |
 | جدول | [rgw.md#SP_rgw_enable_mdsearch](../../../config/rgw/rgw.md#SP_rgw_enable_mdsearch) |
 
-**کارکرد:** Enable elastic metadata search APIs
+**کارکرد:** Enable elastic metadata search APIs This configurable controls whether RGW enables the elastic metadata search APIs.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -250,7 +250,7 @@ ceph config get client.rgw rgw_enable_ops_log
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_enable_restore_threads](../../../config/rgw/rgw.md#SP_rgw_enable_restore_threads) |
 
-**کارکرد:** Enables the objects' restore maintenance thread.
+**کارکرد:** Enables the objects' restore maintenance thread. The objects restore maintenance thread is responsible for all the objects restoration related maintenance work. The thread itself can be disabled, but in order for the restore from the cloud to work correctly, at least one RGW in each zone needs to have this thread running. Having the thread enabled on multiple RGW processes within the same zone can spread some of the maintenance work between them.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -278,7 +278,7 @@ ceph config get client.rgw rgw_enable_restore_threads
 | نوع | Bool · default `False` · **Basic** |
 | جدول | [rgw.md#SP_rgw_enable_static_website](../../../config/rgw/rgw.md#SP_rgw_enable_static_website) |
 
-**کارکرد:** Enable static website APIs
+**کارکرد:** Enable static website APIs This configurable controls whether RGW enables the website control APIs. RGW can serve static websites if S3 website hostnames are configured.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -309,6 +309,10 @@ ceph config get client.rgw rgw_enable_static_website
 **کارکرد:** Enable the usage log
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_usage_max_shards`](../../../config/rgw/rgw.md#SP_rgw_usage_max_shards)
 
 **مثال:**
 

@@ -66,6 +66,10 @@ ceph config get global lockdep
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`lockdep`](../../../config/global/lockdep.md#SP_lockdep)
+
 **示例：**
 
 ```bash

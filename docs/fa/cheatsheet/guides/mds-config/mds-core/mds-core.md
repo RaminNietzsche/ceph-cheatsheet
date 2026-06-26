@@ -276,7 +276,7 @@ ceph mds stat
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [mds.md#SP_mds_allow_batched_ops](../../../config/mds/mds.md#SP_mds_allow_batched_ops) |
 
-**کارکرد:** allow MDS to batch lookup/getattr RPCs
+**کارکرد:** allow MDS to batch lookup/getattr RPCs The MDS will batch a lookup or getattr RPC on the same inode when possible to avoid repetitive locks on metadata and to bypass other requests acquiring write locks. Generally, this should only improve performance but this switch exists to provide a means to turn this behavior off for comparison.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -425,7 +425,7 @@ ceph mds stat
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [mds.md#SP_mds_bal_fragment_dirs](../../../config/mds/mds.md#SP_mds_bal_fragment_dirs) |
 
-**کارکرد:** enable directory fragmentation
+**کارکرد:** enable directory fragmentation Directory fragmentation is a standard feature of CephFS that allows sharding directories across multiple objects for performance and stability. Additionally, this allows fragments to be distributed across multiple active MDSs to increase throughput. Disabling (new) fragmentation should only be done in exceptional circumstances and may lead to performance issues.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -1809,7 +1809,7 @@ ceph config get mds mds_defer_session_stale
 | نوع | Millisecs · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_delay_journal_replay_for_testing](../../../config/mds/mds.md#SP_mds_delay_journal_replay_for_testing) |
 
-**کارکرد:** Delay the journal replay to verify the replay time estimate
+**کارکرد:** Delay the journal replay to verify the replay time estimate Jorunal replay warning is activated if the mds has been in replay state for more than 30 seconds. This config delays replay for validating the replay warning in tests.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -1948,7 +1948,7 @@ ceph mds stat
 | نوع | Uint · default `0` · **Advanced** |
 | جدول | [mds.md#SP_mds_dir_max_entries](../../../config/mds/mds.md#SP_mds_dir_max_entries) |
 
-**کارکرد:** maximum number of entries per directory before new creat/links fail
+**کارکرد:** maximum number of entries per directory before new creat/links fail The maximum number of entries before any new entries are rejected with ENOSPC.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -2074,7 +2074,7 @@ ceph config get mds mds_dump_cache_on_map
 | نوع | Size · default `0` · **Dev** |
 | جدول | [mds.md#SP_mds_dump_cache_threshold_file](../../../config/mds/mds.md#SP_mds_dump_cache_threshold_file) |
 
-**کارکرد:** threshold for cache usage to disallow "dump cache" operation to file
+**کارکرد:** threshold for cache usage to disallow "dump cache" operation to file Disallow MDS from dumping caches to file via "dump cache" command if cache usage exceeds this threshold.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -2102,7 +2102,7 @@ ceph config get mds mds_dump_cache_threshold_file
 | نوع | Size · default `1_G` · **Dev** |
 | جدول | [mds.md#SP_mds_dump_cache_threshold_formatter](../../../config/mds/mds.md#SP_mds_dump_cache_threshold_formatter) |
 
-**کارکرد:** threshold for cache usage to disallow "dump cache" operation to formatter
+**کارکرد:** threshold for cache usage to disallow "dump cache" operation to formatter Disallow MDS from dumping caches to formatter via "dump cache" command if cache usage exceeds this threshold.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -2239,7 +2239,7 @@ ceph mds stat
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [mds.md#SP_mds_export_ephemeral_distributed](../../../config/mds/mds.md#SP_mds_export_ephemeral_distributed) |
 
-**کارکرد:** allow ephemeral distributed pinning of the loaded subtrees
+**کارکرد:** allow ephemeral distributed pinning of the loaded subtrees pin the immediate child directories of the loaded directory inode based on the consistent hash of the child's inode number.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -2315,7 +2315,7 @@ ceph mds stat
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [mds.md#SP_mds_export_ephemeral_random](../../../config/mds/mds.md#SP_mds_export_ephemeral_random) |
 
-**کارکرد:** allow ephemeral random pinning of the loaded subtrees
+**کارکرد:** allow ephemeral random pinning of the loaded subtrees probabilistically pin the loaded directory inode and the subtree beneath it to an MDS based on the consistent hash of the inode number. The higher this value the more likely the loaded subtrees get pinned
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -2356,6 +2356,10 @@ ceph mds stat
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`mds_export_ephemeral_random`](../../../config/mds/mds.md#SP_mds_export_ephemeral_random)
+
 **مثال:**
 
 ```bash
@@ -2391,7 +2395,7 @@ ceph mds stat
 | نوع | Uint · default `16` · **Advanced** |
 | جدول | [mds.md#SP_mds_file_blockdiff_max_concurrent_object_scans](../../../config/mds/mds.md#SP_mds_file_blockdiff_max_concurrent_object_scans) |
 
-**کارکرد:** Maximum number of concurrent object scans
+**کارکرد:** Maximum number of concurrent object scans Maximum number of concurrent listsnaps operations sent to RADOS.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -2686,7 +2690,7 @@ ceph mds stat
 | نوع | Str · default `(empty)` · **Basic** |
 | جدول | [mds.md#SP_mds_join_fs](../../../config/mds/mds.md#SP_mds_join_fs) |
 
-**کارکرد:** File system MDS prefers to join
+**کارکرد:** File system MDS prefers to join This setting indicates which CephFS file system the MDS should prefer to join (affinity). The monitors will try to have the MDS cluster safely reach a state where all MDS have strong affinity, even via failovers to a standby.
 
 **زمان استفاده:** رفتار اصلی MDS — پیش از تغییر در محیط عملیاتی بررسی کنید.
 
@@ -3325,7 +3329,7 @@ ceph mds stat
 | نوع | Uint · default `100` · **Advanced** |
 | جدول | [mds.md#SP_mds_max_snaps_per_dir](../../../config/mds/mds.md#SP_mds_max_snaps_per_dir) |
 
-**کارکرد:** max snapshots per directory
+**کارکرد:** max snapshots per directory maximum number of snapshots that can be created per directory
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -3622,7 +3626,7 @@ ceph mds stat
 | نوع | Secs · default `15` · **Advanced** |
 | جدول | [mds.md#SP_mds_ping_grace](../../../config/mds/mds.md#SP_mds_ping_grace) |
 
-**کارکرد:** timeout after which an MDS is considered laggy by rank 0 MDS.
+**کارکرد:** timeout after which an MDS is considered laggy by rank 0 MDS. timeout for replying to a ping message sent by rank 0 after which an active MDS considered laggy (delayed metrics) by rank 0.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -4019,7 +4023,7 @@ ceph mds stat
 | نوع | Uint · default `1` · **Advanced** |
 | جدول | [mds.md#SP_mds_scrub_stats_review_period](../../../config/mds/mds.md#SP_mds_scrub_stats_review_period) |
 
-**کارکرد:** Period for which scrub stats will be available for review.
+**کارکرد:** Period for which scrub stats will be available for review. Number of days for which scrub stats will be available for review since start of scrub operation. After this period, the stats will be auto purged. These stats will not be saved to the disk. So any restart or failover of mds will cause stats to be lost forever.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
@@ -4147,9 +4151,13 @@ ceph mds stat
 | نوع | Float · default `5_min` · **Advanced** |
 | جدول | [mds.md#SP_mds_session_cache_liveness_decay_rate](../../../config/mds/mds.md#SP_mds_session_cache_liveness_decay_rate) |
 
-**کارکرد:** Decay rate for session liveness leading to preemptive cap recall
+**کارکرد:** Decay rate for session liveness leading to preemptive cap recall This determines how long a session needs to be quiescent before the MDS begins preemptively recalling capabilities. The default of 5 minutes will cause 10 halvings of the decay counter after 1 hour, or 1/1024. The default magnitude of 10 (1^10 or 1024) is chosen so that the MDS considers a previously chatty session (approximately) to be quiescent after 1 hour.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`mds_session_cache_liveness_magnitude`](../../../config/mds/mds.md#SP_mds_session_cache_liveness_magnitude)
 
 **مثال:**
 
@@ -4184,9 +4192,13 @@ ceph mds stat
 | نوع | Size · default `10` · **Advanced** |
 | جدول | [mds.md#SP_mds_session_cache_liveness_magnitude](../../../config/mds/mds.md#SP_mds_session_cache_liveness_magnitude) |
 
-**کارکرد:** Decay magnitude for preemptively recalling caps on quiet client
+**کارکرد:** Decay magnitude for preemptively recalling caps on quiet client This is the order of magnitude difference (in base 2) of the internal liveness decay counter and the number of capabilities the session holds. When this difference occurs, the MDS treats the session as quiescent and begins recalling capabilities.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`mds_session_cache_liveness_decay_rate`](../../../config/mds/mds.md#SP_mds_session_cache_liveness_decay_rate)
 
 **مثال:**
 
@@ -4221,7 +4233,7 @@ ceph mds stat
 | نوع | Size · default `16_M` · **Advanced** |
 | جدول | [mds.md#SP_mds_session_metadata_threshold](../../../config/mds/mds.md#SP_mds_session_metadata_threshold) |
 
-**کارکرد:** Evict non-advancing client-tid sessions exceeding the config size.
+**کارکرد:** Evict non-advancing client-tid sessions exceeding the config size. Evict clients which are not advancing their request tids which causes a large buildup of session metadata (`completed_requests`) in the MDS causing the MDS to go read-only since the RADOS operation exceeds the size threashold. This config is the maximum size (in bytes) that a session metadata (encoded) can grow.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

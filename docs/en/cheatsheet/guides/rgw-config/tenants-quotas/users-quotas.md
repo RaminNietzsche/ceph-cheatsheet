@@ -39,9 +39,13 @@ ceph pg stat
 | Type | Bool · default `False` · **Dev** |
 | Table | [rgw.md#SP_rgw_user_counters_cache](../../../config/rgw/rgw.md#SP_rgw_user_counters_cache) |
 
-**What it does:** enable a rgw perf counters cache for counters with user label
+**What it does:** enable a rgw perf counters cache for counters with user label If set to true, rgw creates perf counters with a label for the user and stores them in a perf counters cache. This perf counters cache contains only perf counters labeled by user.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`rgw_user_counters_cache_size`](../../../config/rgw/rgw.md#SP_rgw_user_counters_cache_size)
 
 **Example:**
 
@@ -74,6 +78,10 @@ ceph config set client.rgw rgw_user_counters_cache_size 20000
 
 - **Increase** when monitoring many active buckets/users and cache misses are visible.
 - **Decrease** when RGW memory is constrained.
+
+**Related options:**
+
+- [`rgw_user_counters_cache`](../../../config/rgw/rgw.md#SP_rgw_user_counters_cache)
 
 **Example:**
 
@@ -108,7 +116,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `1000` · **Basic** |
 | Table | [rgw.md#SP_rgw_user_max_buckets](../../../config/rgw/rgw.md#SP_rgw_user_max_buckets) |
 
-**What it does:** Max number of buckets per user
+**What it does:** Max number of buckets per user A user can create at most this number of buckets. Zero means no limit; a negative value means users cannot create any new buckets, although users will retain buckets already created.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -165,7 +173,7 @@ ceph config get client.rgw rgw_user_policies_max_num
 | Type | Bool · default `True` · **Basic** |
 | Table | [rgw.md#SP_rgw_user_unique_email](../../../config/rgw/rgw.md#SP_rgw_user_unique_email) |
 
-**What it does:** Require local RGW users to have unique email addresses
+**What it does:** Require local RGW users to have unique email addresses Enforce builtin user accounts to have unique email addresses. This setting is historical. In future, non-enforcement of email address uniqueness is likely to become the default.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 

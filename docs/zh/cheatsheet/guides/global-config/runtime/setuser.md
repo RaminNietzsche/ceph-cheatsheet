@@ -34,7 +34,7 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [setuser.md#SP_setuser](../../../config/global/setuser.md#SP_setuser) |
 
-**作用：** UID or user name to switch to on startup
+**作用：** UID or user name to switch to on startup This is normally specified by the systemd unit file.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -69,7 +69,7 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [setuser.md#SP_setuser_match_path](../../../config/global/setuser.md#SP_setuser_match_path) |
 
-**作用：** If set, setuser/setgroup is conditional on this path matching ownership
+**作用：** If set, setuser/setgroup is conditional on this path matching ownership If setuser or setgroup are specified, and this option is non-empty, then the uid/gid of the daemon will only be changed if the file or directory specified by this option has a matching uid and/or gid. This exists primarily to allow switching to the 'ceph' user for OSDs to be conditional on whether the OSD data contents have also been chowned after an upgrade. This is normally specified by the systemd unit file and is a historical artifact of changes made in the Jewel release.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

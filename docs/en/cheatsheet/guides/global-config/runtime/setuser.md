@@ -34,7 +34,7 @@ ceph -s
 | Type | Str · default `(empty)` · **Advanced** · **STARTUP** (restart required) |
 | Table | [setuser.md#SP_setuser](../../../config/global/setuser.md#SP_setuser) |
 
-**What it does:** UID or user name to switch to on startup
+**What it does:** UID or user name to switch to on startup This is normally specified by the systemd unit file.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -69,7 +69,7 @@ ceph -s
 | Type | Str · default `(empty)` · **Advanced** · **STARTUP** (restart required) |
 | Table | [setuser.md#SP_setuser_match_path](../../../config/global/setuser.md#SP_setuser_match_path) |
 
-**What it does:** If set, setuser/setgroup is conditional on this path matching ownership
+**What it does:** If set, setuser/setgroup is conditional on this path matching ownership If setuser or setgroup are specified, and this option is non-empty, then the uid/gid of the daemon will only be changed if the file or directory specified by this option has a matching uid and/or gid. This exists primarily to allow switching to the 'ceph' user for OSDs to be conditional on whether the OSD data contents have also been chowned after an upgrade. This is normally specified by the systemd unit file and is a historical artifact of changes made in the Jewel release.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

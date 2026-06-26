@@ -35,9 +35,13 @@ ceph -s
 | Type | Str · default `(empty)` · **Advanced** · **STARTUP** (restart required) |
 | Table | [heartbeat.md#SP_heartbeat_file](../../../config/global/heartbeat.md#SP_heartbeat_file) |
 
-**What it does:** File to touch on successful internal heartbeat
+**What it does:** File to touch on successful internal heartbeat If set, this file will be touched every time an internal heartbeat check succeeds.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`heartbeat_interval`](../../../config/global/heartbeat.md#SP_heartbeat_interval)
 
 **Example:**
 

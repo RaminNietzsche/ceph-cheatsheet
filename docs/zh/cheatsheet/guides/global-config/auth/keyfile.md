@@ -33,7 +33,7 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [keyfile.md#SP_keyfile](../../../config/global/keyfile.md#SP_keyfile) |
 
-**作用：** Path to a file containing a key
+**作用：** Path to a file containing a key The file should contain a CephX authentication key and optionally a trailing newline, but nothing else.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

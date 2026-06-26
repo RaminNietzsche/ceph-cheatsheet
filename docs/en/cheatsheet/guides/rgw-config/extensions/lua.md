@@ -67,7 +67,7 @@ ceph orch restart rgw
 | Type | Uint · default `128000` · **Advanced** |
 | Table | [rgw.md#SP_rgw_lua_max_memory_per_state](../../../config/rgw/rgw.md#SP_rgw_lua_max_memory_per_state) |
 
-**What it does:** Max size of memory used by a single lua state
+**What it does:** Max size of memory used by a single lua state This is the maximum size in bytes that a lua state can allocate for its own use. Note that this does not include any memory that can be accessed from lua, but managed by the RGW. If not set, it would use a default of 128K. If set to zero, the amount of memory would only be limited by the system.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -95,7 +95,7 @@ ceph config get client.rgw rgw_lua_max_memory_per_state
 | Type | Uint · default `1000` · **Advanced** |
 | Table | [rgw.md#SP_rgw_lua_max_runtime_per_state](../../../config/rgw/rgw.md#SP_rgw_lua_max_runtime_per_state) |
 
-**What it does:** Maximum runtime for each Lua state in milliseconds
+**What it does:** Maximum runtime for each Lua state in milliseconds Sets the maximum runtime for each Lua state in milliseconds. If exceeded, the script will be terminated. Defaults to 1000 milliseconds (1 second). If set to zero, there is no limit.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 

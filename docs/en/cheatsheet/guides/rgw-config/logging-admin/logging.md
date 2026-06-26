@@ -38,7 +38,7 @@ ceph pg stat
 | Type | Str · default `(empty)` · **Basic** |
 | Table | [rgw.md#SP_rgw_log_http_headers](../../../config/rgw/rgw.md#SP_rgw_log_http_headers) |
 
-**What it does:** List of HTTP headers to log
+**What it does:** List of HTTP headers to log A comma delimited list of HTTP headers to log when seen, ignores case (e.g., http_x_forwarded_for).
 
 **When to use:** Core RGW behavior — review before changing in production.
 
@@ -76,9 +76,13 @@ ceph -s  # cluster health, slow ops
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_log_nonexistent_bucket](../../../config/rgw/rgw.md#SP_rgw_log_nonexistent_bucket) |
 
-**What it does:** Should RGW log operations on bucket that does not exist
+**What it does:** Should RGW log operations on bucket that does not exist This config option applies to the ops log. When this option is set, the ops log will log operations that are sent to non existing buckets. These operations inherently fail, and do not correspond to a specific user.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
+
+**Related options:**
+
+- [`rgw_enable_ops_log`](../../../config/rgw/rgw.md#SP_rgw_enable_ops_log)
 
 **Example:**
 
@@ -104,9 +108,13 @@ ceph config get client.rgw rgw_log_nonexistent_bucket
 | Type | Str · default `%Y-%m-%d-%H-%i-%n` · **Advanced** |
 | Table | [rgw.md#SP_rgw_log_object_name](../../../config/rgw/rgw.md#SP_rgw_log_object_name) |
 
-**What it does:** Ops log object name format
+**What it does:** Ops log object name format Defines the format of the RADOS objects names that ops log uses to store ops log data
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_enable_ops_log`](../../../config/rgw/rgw.md#SP_rgw_enable_ops_log)
 
 **Example:**
 
@@ -142,7 +150,7 @@ ceph -s  # cluster health, slow ops
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_log_object_name_utc](../../../config/rgw/rgw.md#SP_rgw_log_object_name_utc) |
 
-**What it does:** Should ops log object name based on UTC
+**What it does:** Should ops log object name based on UTC If set, the names of the RADOS objects that hold the ops log data will be based on UTC time zone. If not set, it will use the local time zone.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 

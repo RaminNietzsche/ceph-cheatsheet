@@ -363,6 +363,10 @@ ceph mon stat
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_warn_on_legacy_crush_tunables`](../../../config/mon/mon.md#SP_mon_warn_on_legacy_crush_tunables)
+
 **مثال:**
 
 ```bash
@@ -579,6 +583,10 @@ ceph mon stat
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`mon_elector_ping_timeout`](../../../config/mon/mon.md#SP_mon_elector_ping_timeout)
+
 **مثال:**
 
 ```bash
@@ -718,7 +726,7 @@ ceph mon stat
 | نوع | Float · default `5` · **Advanced** |
 | جدول | [mon.md#SP_mon_lease](../../../config/mon/mon.md#SP_mon_lease) |
 
-**کارکرد:** lease interval between quorum monitors (seconds)
+**کارکرد:** lease interval between quorum monitors (seconds) This setting controls how sensitive your mon quorum is to intermittent network issues or other failures.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -996,7 +1004,7 @@ ceph mon stat
 | نوع | Uint · default `1000` · **Advanced** |
 | جدول | [mon.md#SP_mon_nvmeofgw_set_group_id_retry](../../../config/mon/mon.md#SP_mon_nvmeofgw_set_group_id_retry) |
 
-**کارکرد:** Retry wait time in microsecond for set group id between the monitor client and gateway
+**کارکرد:** Retry wait time in microsecond for set group id between the monitor client and gateway The monitor server determines the gateway's group ID. If the monitor client receives a monitor group ID assignment before the gateway is fully up during initialization, a retry is required.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -1497,6 +1505,10 @@ ceph mon stat
 **کارکرد:** issue OLD_CRUSH_TUNABLES health warning if CRUSH tunables are older than mon_crush_min_required_version
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`mon_crush_min_required_version`](../../../config/mon/mon.md#SP_mon_crush_min_required_version)
 
 **مثال:**
 

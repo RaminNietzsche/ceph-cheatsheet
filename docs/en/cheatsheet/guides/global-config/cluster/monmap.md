@@ -33,7 +33,7 @@ ceph -s
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [monmap.md#SP_monmap](../../../config/global/monmap.md#SP_monmap) |
 
-**What it does:** path to MonMap file
+**What it does:** path to MonMap file This option is normally used during mkfs, but can also be used to identify which monitors to connect to.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

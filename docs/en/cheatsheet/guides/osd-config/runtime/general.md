@@ -205,7 +205,7 @@ ceph pg stat
 | Type | Bool · default `False` · **Dev** |
 | Table | [osd.md#SP_osd_find_best_info_ignore_history_les](../../../config/osd/osd.md#SP_osd_find_best_info_ignore_history_les) |
 
-**What it does:** ignore last_epoch_started value when peering AND PROBABLY LOSE DATA
+**What it does:** ignore last_epoch_started value when peering AND PROBABLY LOSE DATA THIS IS AN EXTREMELY DANGEROUS OPTION THAT SHOULD ONLY BE USED AT THE DIRECTION OF A DEVELOPER. It makes peering ignore the last_epoch_started value when peering, which can allow the OSD to believe an OSD has an authoritative view of a PG's contents even when it is in fact old and stale, typically leading to data loss (by believing a stale PG is up to date).
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -459,6 +459,10 @@ ceph pg stat
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`osd_numa_auto_affinity`](../../../config/osd/osd.md#SP_osd_numa_auto_affinity)
+
 **Example:**
 
 ```bash
@@ -496,6 +500,10 @@ ceph pg stat
 **What it does:** prefer IP on network interface on same numa node as storage
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Related options:**
+
+- [`osd_numa_auto_affinity`](../../../config/osd/osd.md#SP_osd_numa_auto_affinity)
 
 **Example:**
 
@@ -569,6 +577,10 @@ ceph pg stat
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`osd_op_num_shards`](../../../config/osd/osd.md#SP_osd_op_num_shards)
+
 **Example:**
 
 ```bash
@@ -604,6 +616,10 @@ ceph pg stat
 | Table | [osd.md#SP_osd_op_num_shards_ssd](../../../config/osd/osd.md#SP_osd_op_num_shards_ssd) |
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_op_num_shards`](../../../config/osd/osd.md#SP_osd_op_num_shards)
 
 **Example:**
 
@@ -677,6 +693,10 @@ ceph pg stat
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`osd_op_num_threads_per_shard`](../../../config/osd/osd.md#SP_osd_op_num_threads_per_shard)
+
 **Example:**
 
 ```bash
@@ -712,6 +732,10 @@ ceph pg stat
 | Table | [osd.md#SP_osd_op_num_threads_per_shard_ssd](../../../config/osd/osd.md#SP_osd_op_num_threads_per_shard_ssd) |
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_op_num_threads_per_shard`](../../../config/osd/osd.md#SP_osd_op_num_threads_per_shard)
 
 **Example:**
 
@@ -751,6 +775,10 @@ ceph pg stat
 
 **When to use:** Keep `mclock_scheduler` unless upstream support directs otherwise.
 
+**Related options:**
+
+- [`osd_op_queue_cut_off`](../../../config/osd/osd.md#SP_osd_op_queue_cut_off)
+
 **Example:**
 
 ```bash
@@ -784,9 +812,13 @@ ceph pg stat
 | Type | Str · enum: ["low", "high", "debug_random"] · default `high` · **Advanced** |
 | Table | [osd.md#SP_osd_op_queue_cut_off](../../../config/osd/osd.md#SP_osd_op_queue_cut_off) |
 
-**What it does:** the threshold between high priority ops and low priority ops
+**What it does:** the threshold between high priority ops and low priority ops the threshold between high priority ops that use strict priority ordering and low priority ops that use a fairness algorithm that may or may not incorporate priority
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_op_queue`](../../../config/osd/osd.md#SP_osd_op_queue)
 
 **Example:**
 

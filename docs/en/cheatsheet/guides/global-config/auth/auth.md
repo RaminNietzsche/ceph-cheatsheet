@@ -41,7 +41,7 @@ ceph -s
 | Type | Bool · default `True` · **Advanced** |
 | Table | [auth.md#SP_auth_allow_insecure_global_id_reclaim](../../../config/global/auth.md#SP_auth_allow_insecure_global_id_reclaim) |
 
-**What it does:** Allow reclaiming global_id without presenting a valid ticket proving previous possession of that global_id
+**What it does:** Allow reclaiming global_id without presenting a valid ticket proving previous possession of that global_id Allowing unauthorized global_id (re)use poses a security risk. Unfortunately, older clients may omit their ticket on reconnects and therefore rely on this being allowed for preserving their global_id for the lifetime of the client instance. Setting this value to false would immediately prevent new connections from those clients (assuming auth_expose_insecure_global_id_reclaim set to true) and eventually break existing sessions as well (regardless of auth_expose_insecure_global_id_reclaim setting).
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -171,7 +171,7 @@ ceph config get global auth_debug
 | Type | Bool · default `True` · **Advanced** |
 | Table | [auth.md#SP_auth_expose_insecure_global_id_reclaim](../../../config/global/auth.md#SP_auth_expose_insecure_global_id_reclaim) |
 
-**What it does:** Force older clients that may omit their ticket on reconnects to reconnect as part of establishing a session
+**What it does:** Force older clients that may omit their ticket on reconnects to reconnect as part of establishing a session In permissive mode (auth_allow_insecure_global_id_reclaim set to true), this helps with identifying clients that are not patched. In enforcing mode (auth_allow_insecure_global_id_reclaim set to false), this is a fail-fast mechanism: don't establish a session that will almost inevitably be broken later.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 

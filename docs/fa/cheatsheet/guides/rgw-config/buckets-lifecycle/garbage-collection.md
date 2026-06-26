@@ -41,7 +41,7 @@ ceph pg stat
 | نوع | Int · default `10` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_gc_max_concurrent_io](../../../config/rgw/rgw.md#SP_rgw_gc_max_concurrent_io) |
 
-**کارکرد:** Max concurrent RADOS IO operations for garbage collection
+**کارکرد:** Max concurrent RADOS IO operations for garbage collection The maximum number of concurrent IO operations that the RGW garbage collection thread will use when purging old data.
 
 **زمان استفاده:**
 
@@ -82,7 +82,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `32` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [rgw.md#SP_rgw_gc_max_objs](../../../config/rgw/rgw.md#SP_rgw_gc_max_objs) |
 
-**کارکرد:** Number of shards for garbage collector data
+**کارکرد:** Number of shards for garbage collector data The number of garbage collector data shards, is the number of RADOS objects that RGW will use to store the garbage collection information on. This value is read once at daemon startup.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -111,7 +111,7 @@ ceph orch restart rgw
 | نوع | Uint · default `131071_K` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_gc_max_queue_size](../../../config/rgw/rgw.md#SP_rgw_gc_max_queue_size) |
 
-**کارکرد:** Maximum allowed queue size for gc
+**کارکرد:** Maximum allowed queue size for gc The maximum allowed size of each gc queue, and its value should not be greater than osd_max_object_size - 1K.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -167,7 +167,7 @@ ceph config get client.rgw rgw_gc_max_trim_chunk
 | نوع | Int · default `2_hr` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_gc_obj_min_wait](../../../config/rgw/rgw.md#SP_rgw_gc_obj_min_wait) |
 
-**کارکرد:** Garbage collection object expiration time
+**کارکرد:** Garbage collection object expiration time The length of time (in seconds) that the RGW collector will wait before purging a deleted object's data. RGW will not remove object immediately, as object could still have readers. A mechanism exists to increase the object's expiration time when it's being read. The recommended value of its lower limit is 30 minutes
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -205,7 +205,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `1_hr` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_gc_processor_max_time](../../../config/rgw/rgw.md#SP_rgw_gc_processor_max_time) |
 
-**کارکرد:** Length of time GC processor can lease shard
+**کارکرد:** Length of time GC processor can lease shard Garbage collection thread in RGW process holds a lease on its data shards. These objects contain the information about the objects that need to be removed. RGW takes a lease in order to prevent multiple RGW processes from handling the same objects concurrently. This time signifies that maximum amount of time (in seconds) that RGW is allowed to hold that lease. In the case where RGW goes down uncleanly, this is the amount of time where processing of that data shard will be blocked.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -233,7 +233,7 @@ ceph config get client.rgw rgw_gc_processor_max_time
 | نوع | Int · default `1_hr` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_gc_processor_period](../../../config/rgw/rgw.md#SP_rgw_gc_processor_period) |
 
-**کارکرد:** Garbage collector cycle run time
+**کارکرد:** Garbage collector cycle run time The amount of time between the start of consecutive runs of the garbage collector threads. If garbage collector runs takes more than this period, it will not wait before running again.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

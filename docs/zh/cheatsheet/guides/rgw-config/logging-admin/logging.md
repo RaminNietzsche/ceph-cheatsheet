@@ -38,7 +38,7 @@ ceph pg stat
 | 类型 | Str · default `(empty)` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_log_http_headers](../../../config/rgw/rgw.md#SP_rgw_log_http_headers) |
 
-**作用：** List of HTTP headers to log
+**作用：** List of HTTP headers to log A comma delimited list of HTTP headers to log when seen, ignores case (e.g., http_x_forwarded_for).
 
 **何时使用：** 核心 RGW 行为 — 生产环境变更前请审阅。
 
@@ -76,9 +76,13 @@ ceph -s  # cluster health, slow ops
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_log_nonexistent_bucket](../../../config/rgw/rgw.md#SP_rgw_log_nonexistent_bucket) |
 
-**作用：** Should RGW log operations on bucket that does not exist
+**作用：** Should RGW log operations on bucket that does not exist This config option applies to the ops log. When this option is set, the ops log will log operations that are sent to non existing buckets. These operations inherently fail, and do not correspond to a specific user.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
+
+**相关选项：**
+
+- [`rgw_enable_ops_log`](../../../config/rgw/rgw.md#SP_rgw_enable_ops_log)
 
 **示例：**
 
@@ -104,9 +108,13 @@ ceph config get client.rgw rgw_log_nonexistent_bucket
 | 类型 | Str · default `%Y-%m-%d-%H-%i-%n` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_log_object_name](../../../config/rgw/rgw.md#SP_rgw_log_object_name) |
 
-**作用：** Ops log object name format
+**作用：** Ops log object name format Defines the format of the RADOS objects names that ops log uses to store ops log data
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
+
+**相关选项：**
+
+- [`rgw_enable_ops_log`](../../../config/rgw/rgw.md#SP_rgw_enable_ops_log)
 
 **示例：**
 
@@ -142,7 +150,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_log_object_name_utc](../../../config/rgw/rgw.md#SP_rgw_log_object_name_utc) |
 
-**作用：** Should ops log object name based on UTC
+**作用：** Should ops log object name based on UTC If set, the names of the RADOS objects that hold the ops log data will be based on UTC time zone. If not set, it will use the local time zone.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 

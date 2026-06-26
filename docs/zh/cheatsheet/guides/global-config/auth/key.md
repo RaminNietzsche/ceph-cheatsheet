@@ -33,7 +33,7 @@ ceph -s
 | 类型 | Str · default `(empty)` · **Advanced** · **STARTUP**（需重启） |
 | 表格 | [key.md#SP_key](../../../config/global/key.md#SP_key) |
 
-**作用：** Authentication key
+**作用：** Authentication key A CephX authentication key, base64 encoded. It normally looks something like 'AQAtut9ZdMbNJBAAHz6yBAWyJyz2yYRyeMWDag=='.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

@@ -195,9 +195,13 @@ ceph pg stat
 | 类型 | Uint · default `1` · **Advanced** |
 | 表格 | [osd.md#SP_osd_max_backfills](../../../config/osd/osd.md#SP_osd_max_backfills) |
 
-**作用：** Maximum number of concurrent local and remote backfills or recoveries per OSD
+**作用：** Maximum number of concurrent local and remote backfills or recoveries per OSD There can be osd_max_backfills local reservations AND the same remote reservations per OSD. So a value of 1 lets this OSD participate as 1 PG primary in recovery and 1 shard of another recovering PG.
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
+
+**相关选项：**
+
+- [`osd_mclock_override_recovery_settings`](../../../config/osd/osd.md#SP_osd_mclock_override_recovery_settings)
 
 **示例：**
 
@@ -232,7 +236,7 @@ ceph pg stat
 | 类型 | Bool · default `False` · **Advanced** |
 | 表格 | [osd.md#SP_osd_mclock_override_recovery_settings](../../../config/osd/osd.md#SP_osd_mclock_override_recovery_settings) |
 
-**作用：** Setting this option enables the override of recovery/backfill limits for the mClock scheduler.
+**作用：** Setting this option enables the override of recovery/backfill limits for the mClock scheduler. This option when set enables the override of the max recovery active and the max backfills limits with mClock scheduler active. These options are not modifiable when mClock scheduler is active. Any attempt to modify these values without setting this option will reset the recovery or backfill option back to its default value.
 
 **何时使用：** 默认禁用；需要该功能并接受其权衡时启用。
 
@@ -269,7 +273,7 @@ ceph pg stat
 | 类型 | Float · default `0` · **Advanced** |
 | 表格 | [osd.md#SP_osd_mclock_scheduler_background_recovery_lim](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_recovery_lim) |
 
-**作用：** IO limit for background recovery over reservation. The default value of 0 specifies no limit enforcement, which means background recovery operation can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that background recovery operation receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**作用：** IO limit for background recovery over reservation. The default value of 0 specifies no limit enforcement, which means background recovery operation can use the maximum possible IOPS capacity of the OSD. Any value greater than 0 and up to 1.0 specifies the upper IO limit over reservation that background recovery operation receives in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -308,7 +312,7 @@ ceph pg stat
 | 类型 | Float · default `0` · **Advanced** |
 | 表格 | [osd.md#SP_osd_mclock_scheduler_background_recovery_res](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_recovery_res) |
 
-**作用：** IO proportion reserved for background recovery (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for background recovery operations in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'.
+**作用：** IO proportion reserved for background recovery (default). The default value of 0 specifies the lowest possible reservation. Any value greater than 0 and up to 1.0 specifies the minimum IO proportion to reserve for background recovery operations in terms of a fraction of the OSD's maximum IOPS capacity. Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -347,7 +351,7 @@ ceph pg stat
 | 类型 | Uint · default `1` · **Advanced** |
 | 表格 | [osd.md#SP_osd_mclock_scheduler_background_recovery_wgt](../../../config/osd/osd.md#SP_osd_mclock_scheduler_background_recovery_wgt) |
 
-**作用：** IO share for each background recovery over reservation Ignored unless osd_mclock_profile is set to 'custom'.
+**作用：** IO share for each background recovery over reservation Ignored unless osd_mclock_profile is set to 'custom'. Only considered for osd_op_queue = mclock_scheduler
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -384,7 +388,7 @@ ceph pg stat
 | 类型 | Int · default `0` · **Advanced** |
 | 表格 | [osd.md#SP_osd_min_recovery_priority](../../../config/osd/osd.md#SP_osd_min_recovery_priority) |
 
-**作用：** Minimum priority below which recovery is not performed
+**作用：** Minimum priority below which recovery is not performed The purpose here is to prevent the cluster from doing *any* lower priority work (e.g., rebalancing) below this threshold and focus solely on higher priority work (e.g., replicating degraded objects).
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
@@ -896,6 +900,10 @@ ceph pg stat
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
+**相关选项：**
+
+- [`osd_recovery_sleep_degraded`](../../../config/osd/osd.md#SP_osd_recovery_sleep_degraded)
+
 **示例：**
 
 ```bash
@@ -932,6 +940,10 @@ ceph pg stat
 **作用：** Time in seconds to sleep before next recovery or backfill op for SSDs when PGs are degraded.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
+
+**相关选项：**
+
+- [`osd_recovery_sleep_degraded`](../../../config/osd/osd.md#SP_osd_recovery_sleep_degraded)
 
 **示例：**
 
@@ -1007,6 +1019,10 @@ ceph pg stat
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
+**相关选项：**
+
+- [`osd_recovery_sleep`](../../../config/osd/osd.md#SP_osd_recovery_sleep)
+
 **示例：**
 
 ```bash
@@ -1043,6 +1059,10 @@ ceph pg stat
 **作用：** Time in seconds to sleep before next recovery or backfill op for SSDs
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
+
+**相关选项：**
+
+- [`osd_recovery_sleep`](../../../config/osd/osd.md#SP_osd_recovery_sleep)
 
 **示例：**
 

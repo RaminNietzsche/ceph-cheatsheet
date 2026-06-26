@@ -64,6 +64,10 @@ ceph -s
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
+**Related options:**
+
+- [`mon_osd_adjust_heartbeat_grace`](../../../config/mon/mon.md#SP_mon_osd_adjust_heartbeat_grace)
+
 **Example:**
 
 ```bash
@@ -96,7 +100,7 @@ ceph mon stat
 | Type | Bool · default `True` · **Advanced** |
 | Table | [mon.md#SP_mon_osd_adjust_heartbeat_grace](../../../config/mon/mon.md#SP_mon_osd_adjust_heartbeat_grace) |
 
-**What it does:** increase OSD heartbeat grace if peers appear to be laggy
+**What it does:** increase OSD heartbeat grace if peers appear to be laggy If an OSD is marked down but then marks itself back up, it implies it wasn't actually down but was unable to respond to heartbeats. If this option is true, we can use the laggy_probability and laggy_interval values calculated to model this situation to increase the heartbeat grace period for this OSD so that it isn't marked down again. laggy_probability is an estimated probability that the given OSD is down because it is laggy (not actually down), and laggy_interval is an estiate on how long it stays down when it is laggy.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -135,6 +139,10 @@ ceph mon stat
 **What it does:** mark any OSD that comes up that was automatically marked 'out' back 'in'
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Related options:**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
 
 **Example:**
 
@@ -462,6 +470,10 @@ Common production range: 600–3600 s. Coordinate with `mon_osd_min_down_reporte
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
+
 **Example:**
 
 ```bash
@@ -566,7 +578,7 @@ ceph mon stat
 | Type | Float · default `0.3` · **Advanced** |
 | Table | [mon.md#SP_mon_osd_laggy_weight](../../../config/mon/mon.md#SP_mon_osd_laggy_weight) |
 
-**What it does:** how heavily to weight OSD marking itself back up in overall laggy_probability
+**What it does:** how heavily to weight OSD marking itself back up in overall laggy_probability 1.0 means that an OSD marking itself back up (because it was marked down but not actually dead) means a 100% laggy_probability; 0.0 effectively disables tracking of laggy_probability.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -632,7 +644,7 @@ ceph config get mon mon_osd_mapping_pgs_per_chunk
 | Type | Int · default `1024` · **Advanced** |
 | Table | [mon.md#SP_mon_osd_max_initial_pgs](../../../config/mon/mon.md#SP_mon_osd_max_initial_pgs) |
 
-**What it does:** maximum number of PGs a pool will created with
+**What it does:** maximum number of PGs a pool will created with If the user specifies more PGs than this, the cluster will subsequently split PGs after the pool is created in order to reach the target.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -672,6 +684,10 @@ ceph mon stat
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
+
 **Example:**
 
 ```bash
@@ -707,6 +723,10 @@ ceph mon stat
 **What it does:** do not automatically mark OSDs 'out' if fewer than this many OSDs are 'up'
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
+
+**Related options:**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
 
 **Example:**
 
@@ -983,9 +1003,13 @@ ceph config get mon mon_warn_on_filestore_osds
 | Type | Bool · default `True` · **Advanced** |
 | Table | [mon.md#SP_mon_warn_on_osd_down_out_interval_zero](../../../config/mon/mon.md#SP_mon_warn_on_osd_down_out_interval_zero) |
 
-**What it does:** issue OSD_NO_DOWN_OUT_INTERVAL health warning if mon_osd_down_out_interval is zero
+**What it does:** issue OSD_NO_DOWN_OUT_INTERVAL health warning if mon_osd_down_out_interval is zero Having mon_osd_down_out_interval set to 0 means that down OSDs are not marked out automatically and the cluster does not heal itself without administrator intervention.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
+
+**Related options:**
+
+- [`mon_osd_down_out_interval`](../../../config/mon/mon.md#SP_mon_osd_down_out_interval)
 
 **Example:**
 
@@ -1019,7 +1043,7 @@ ceph mon stat
 | Type | Bool · default `True` · **Advanced** |
 | Table | [osd.md#SP_osd_crush_update_weight_set](../../../config/mon/osd.md#SP_osd_crush_update_weight_set) |
 
-**What it does:** update CRUSH weight-set weights when updating weights
+**What it does:** update CRUSH weight-set weights when updating weights If this setting is true, we will update the weight-set weights when adjusting an item's weight, effectively making changes take effect immediately, and discarding any previous optimization in the weight-set value. Setting this value to false will leave it to the balancer to (slowly, presumably) adjust weights to approach the new target value.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 

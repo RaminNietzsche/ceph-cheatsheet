@@ -261,7 +261,7 @@ ceph -s
 | Type | Size · default `0` · **Advanced** |
 | Table | [fuse.md#SP_fuse_max_write](../../../config/mds-client/fuse.md#SP_fuse_max_write) |
 
-**What it does:** set the maximum number of bytes in a single write operation
+**What it does:** set the maximum number of bytes in a single write operation Set the maximum number of bytes in a single write operation that may pass atomically through FUSE. The FUSE default is 128kB and may be indicated by setting this option to 0.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 

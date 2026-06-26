@@ -86,12 +86,16 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `1024` · **Basic** |
 | Table | [rgw.md#SP_rgw_max_concurrent_requests](../../../config/rgw/rgw.md#SP_rgw_max_concurrent_requests) |
 
-**What it does:** Maximum number of concurrent HTTP requests.
+**What it does:** Maximum number of concurrent HTTP requests. Maximum number of concurrent HTTP requests that the beast frontend will process. Tuning this can help to limit memory usage under heavy load.
 
 **When to use:**
 
 - **Increase** when RGW queues requests but CPU is not saturated.
 - **Decrease** when latency spikes or CPU context-switch overhead grows.
+
+**Related options:**
+
+- [`rgw_frontends`](../../../config/rgw/rgw.md#SP_rgw_frontends)
 
 **Example:**
 
@@ -168,7 +172,7 @@ ceph -s  # cluster health, slow ops
 | Type | Uint · default `100000` · **Basic** |
 | Table | [rgw.md#SP_rgw_max_objs_per_shard](../../../config/rgw/rgw.md#SP_rgw_max_objs_per_shard) |
 
-**What it does:** Max objects per shard for dynamic resharding
+**What it does:** Max objects per shard for dynamic resharding This is the max number of objects per bucket index shard that RGW will allow with dynamic resharding. RGW will trigger an automatic reshard operation on the bucket if it exceeds this number.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -238,7 +242,7 @@ radosgw-admin bucket stats --bucket=BIG_BUCKET | jq '.num_shards'
 | Type | Int · default `32` · **Advanced** |
 | Table | [rgw.md#SP_rgw_num_async_rados_threads](../../../config/rgw/rgw.md#SP_rgw_num_async_rados_threads) |
 
-**What it does:** Number of concurrent RADOS operations in multisite sync
+**What it does:** Number of concurrent RADOS operations in multisite sync The number of concurrent RADOS IO operations that will be triggered for handling multisite sync operations. This includes control related work, and not the actual sync operations.
 
 **When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
 
@@ -276,7 +280,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `8` · **Advanced** |
 | Table | [rgw.md#SP_rgw_num_control_oids](../../../config/rgw/rgw.md#SP_rgw_num_control_oids) |
 
-**What it does:** Number of control objects used for cross-RGW communication.
+**What it does:** Number of control objects used for cross-RGW communication. RGW uses certain control objects to send messages between different RGW processes running on the same zone. These messages include metadata cache invalidation info that is being sent when metadata is modified (such as user or bucket information). A higher number of control objects allows better concurrency of these messages, at the cost of more resource utilization.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -304,7 +308,7 @@ ceph config get client.rgw rgw_num_control_oids
 | Type | Size · default `4_M` · **Advanced** |
 | Table | [rgw.md#SP_rgw_obj_stripe_size](../../../config/rgw/rgw.md#SP_rgw_obj_stripe_size) |
 
-**What it does:** RGW object stripe size
+**What it does:** RGW object stripe size The size of an object stripe for RGW objects. This is the maximum size a backing RADOS object will have. RGW objects that are larger than this will span over multiple objects.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -399,7 +403,7 @@ ceph config get client.rgw rgw_op_thread_timeout
 | Type | Int · default `512` · **Basic** |
 | Table | [rgw.md#SP_rgw_redis_connection_pool_size](../../../config/rgw/rgw.md#SP_rgw_redis_connection_pool_size) |
 
-**What it does:** RGW connection pool size for Redis operation per D4N
+**What it does:** RGW connection pool size for Redis operation per D4N This option sets the size of the connection pool for Redis operations in D4N. It is used to manage the number of concurrent connections to Redis. A larger pool size can improve performance when multiple threads are accessing Redis simultaneously, but it also increases resource usage.
 
 **When to use:** Core RGW behavior — review before changing in production.
 
@@ -437,7 +441,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `32` · **Advanced** |
 | Table | [rgw.md#SP_rgw_restore_max_objs](../../../config/rgw/rgw.md#SP_rgw_restore_max_objs) |
 
-**What it does:** Number of shards for restore processing
+**What it does:** Number of shards for restore processing Number of RADOS objects to use for storing restore entries which are in progress. This affects concurrency of restore maintenance, as shards can be processed in parallel.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -465,7 +469,7 @@ ceph config get client.rgw rgw_restore_max_objs
 | Type | Int · default `15_min` · **Advanced** |
 | Table | [rgw.md#SP_rgw_restore_processor_period](../../../config/rgw/rgw.md#SP_rgw_restore_processor_period) |
 
-**What it does:** Restore cycle run time
+**What it does:** Restore cycle run time The amount of time between the start of consecutive runs of the restore processing threads. If the thread runs takes more than this period, it will not wait before running again.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -502,7 +506,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `512` · **Basic** |
 | Table | [rgw.md#SP_rgw_thread_pool_size](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size) |
 
-**What it does:** RGW requests handling thread pool size.
+**What it does:** RGW requests handling thread pool size. This parameter determines the number of concurrent requests RGW can process when using either the civetweb, or the fastcgi frontends. The higher this number is, RGW will be able to deal with more concurrent requests at the cost of more resource utilization.
 
 **When to use:**
 

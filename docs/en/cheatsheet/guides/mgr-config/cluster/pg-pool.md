@@ -79,7 +79,7 @@ ceph mon stat
 | Type | Int · default `1_min` · **Advanced** |
 | Table | [mon.md#SP_mon_pg_stuck_threshold](../../../config/mgr/mon.md#SP_mon_pg_stuck_threshold) |
 
-**What it does:** number of seconds after which pgs can be considered stuck inactive, unclean, etc
+**What it does:** number of seconds after which pgs can be considered stuck inactive, unclean, etc see doc/control.rst under dump_stuck for more info
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -400,6 +400,10 @@ ceph config get mon mon_warn_on_pool_no_app
 **What it does:** time after which POOL_APP_NOT_ENABLED health warning is issued
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`mon_warn_on_pool_no_app`](../../../config/mgr/mon.md#SP_mon_warn_on_pool_no_app)
 
 **Example:**
 

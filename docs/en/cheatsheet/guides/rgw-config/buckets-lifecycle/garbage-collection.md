@@ -41,7 +41,7 @@ ceph pg stat
 | Type | Int · default `10` · **Advanced** |
 | Table | [rgw.md#SP_rgw_gc_max_concurrent_io](../../../config/rgw/rgw.md#SP_rgw_gc_max_concurrent_io) |
 
-**What it does:** Max concurrent RADOS IO operations for garbage collection
+**What it does:** Max concurrent RADOS IO operations for garbage collection The maximum number of concurrent IO operations that the RGW garbage collection thread will use when purging old data.
 
 **When to use:**
 
@@ -82,7 +82,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `32` · **Advanced** · **STARTUP** (restart required) |
 | Table | [rgw.md#SP_rgw_gc_max_objs](../../../config/rgw/rgw.md#SP_rgw_gc_max_objs) |
 
-**What it does:** Number of shards for garbage collector data
+**What it does:** Number of shards for garbage collector data The number of garbage collector data shards, is the number of RADOS objects that RGW will use to store the garbage collection information on. This value is read once at daemon startup.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -111,7 +111,7 @@ ceph orch restart rgw
 | Type | Uint · default `131071_K` · **Advanced** |
 | Table | [rgw.md#SP_rgw_gc_max_queue_size](../../../config/rgw/rgw.md#SP_rgw_gc_max_queue_size) |
 
-**What it does:** Maximum allowed queue size for gc
+**What it does:** Maximum allowed queue size for gc The maximum allowed size of each gc queue, and its value should not be greater than osd_max_object_size - 1K.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -167,7 +167,7 @@ ceph config get client.rgw rgw_gc_max_trim_chunk
 | Type | Int · default `2_hr` · **Advanced** |
 | Table | [rgw.md#SP_rgw_gc_obj_min_wait](../../../config/rgw/rgw.md#SP_rgw_gc_obj_min_wait) |
 
-**What it does:** Garbage collection object expiration time
+**What it does:** Garbage collection object expiration time The length of time (in seconds) that the RGW collector will wait before purging a deleted object's data. RGW will not remove object immediately, as object could still have readers. A mechanism exists to increase the object's expiration time when it's being read. The recommended value of its lower limit is 30 minutes
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -205,7 +205,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `1_hr` · **Advanced** |
 | Table | [rgw.md#SP_rgw_gc_processor_max_time](../../../config/rgw/rgw.md#SP_rgw_gc_processor_max_time) |
 
-**What it does:** Length of time GC processor can lease shard
+**What it does:** Length of time GC processor can lease shard Garbage collection thread in RGW process holds a lease on its data shards. These objects contain the information about the objects that need to be removed. RGW takes a lease in order to prevent multiple RGW processes from handling the same objects concurrently. This time signifies that maximum amount of time (in seconds) that RGW is allowed to hold that lease. In the case where RGW goes down uncleanly, this is the amount of time where processing of that data shard will be blocked.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -233,7 +233,7 @@ ceph config get client.rgw rgw_gc_processor_max_time
 | Type | Int · default `1_hr` · **Advanced** |
 | Table | [rgw.md#SP_rgw_gc_processor_period](../../../config/rgw/rgw.md#SP_rgw_gc_processor_period) |
 
-**What it does:** Garbage collector cycle run time
+**What it does:** Garbage collector cycle run time The amount of time between the start of consecutive runs of the garbage collector threads. If garbage collector runs takes more than this period, it will not wait before running again.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

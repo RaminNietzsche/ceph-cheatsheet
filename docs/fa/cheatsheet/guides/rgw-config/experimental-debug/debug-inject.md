@@ -131,9 +131,13 @@ ceph config get client.rgw rgw_debug_inject_set_olh_err
 | نوع | Str · default `(empty)` · **Dev** |
 | جدول | [rgw.md#SP_rgw_inject_delay_pattern](../../../config/rgw/rgw.md#SP_rgw_inject_delay_pattern) |
 
-**کارکرد:** select which delay injection points are activated
+**کارکرد:** select which delay injection points are activated Used together with `rgw_inject_delay_sec` to target specific delay injection points within the RGW code. The pattern should match a string associated with one or more delay locations (e.g., "delay_bucket_full_sync_loop") to activate them during testing.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_inject_delay_sec`](../../../config/rgw/rgw.md#SP_rgw_inject_delay_sec)
 
 **مثال:**
 
@@ -161,9 +165,13 @@ ceph config get client.rgw rgw_inject_delay_pattern
 | نوع | Float · default `0` · **Dev** |
 | جدول | [rgw.md#SP_rgw_inject_delay_sec](../../../config/rgw/rgw.md#SP_rgw_inject_delay_sec) |
 
-**کارکرد:** delay duration in seconds for test injection points
+**کارکرد:** delay duration in seconds for test injection points Intended for integration and stress testing. When set to a positive value, this option introduces an artificial delay at specific code paths to help deterministically reproduce timing-sensitive scenarios. It is used in conjunction with `rgw_inject_delay_pattern` to control which delay points are activated.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_inject_delay_pattern`](../../../config/rgw/rgw.md#SP_rgw_inject_delay_pattern)
 
 **مثال:**
 

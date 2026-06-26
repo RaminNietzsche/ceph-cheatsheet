@@ -33,7 +33,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [setgroup.md#SP_setgroup](../../../config/global/setgroup.md#SP_setgroup) |
 
-**کارکرد:** GID or group name to switch to on startup
+**کارکرد:** GID or group name to switch to on startup This is normally specified by the systemd unit file.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

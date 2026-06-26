@@ -39,6 +39,8 @@ ceph pg stat
 | Type | Int · default `524288` · **Dev** |
 | Table | [rgw.md#SP_rgw_curl_buffersize](../../../config/rgw/rgw.md#SP_rgw_curl_buffersize) |
 
+**What it does:** Pass a long specifying your preferred size (in bytes) for the receivebuffer in libcurl. See: https://curl.se/libcurl/c/CURLOPT_BUFFERSIZE.html
+
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
 **Example:**
@@ -77,6 +79,8 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `1024` · **Advanced** |
 | Table | [rgw.md#SP_rgw_curl_low_speed_limit](../../../config/rgw/rgw.md#SP_rgw_curl_low_speed_limit) |
 
+**What it does:** It contains the average transfer speed in bytes per second that the transfer should be below during rgw_curl_low_speed_time seconds for libcurl to consider it to be too slow and abort. Set it zero to disable this.
+
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
 **Example:**
@@ -102,6 +106,8 @@ ceph config get client.rgw rgw_curl_low_speed_limit
 |---|---|
 | Type | Int · default `5_min` · **Advanced** |
 | Table | [rgw.md#SP_rgw_curl_low_speed_time](../../../config/rgw/rgw.md#SP_rgw_curl_low_speed_time) |
+
+**What it does:** It contains the time in number seconds that the transfer speed should be below the rgw_curl_low_speed_limit for the library to consider it too slow and abort. Set it zero to disable this.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -139,7 +145,9 @@ ceph -s  # cluster health, slow ops
 | Type | Int · enum: ["0", "1"] · default `0` · **Advanced** |
 | Table | [rgw.md#SP_rgw_curl_tcp_keepalive](../../../config/rgw/rgw.md#SP_rgw_curl_tcp_keepalive) |
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**What it does:** Enable TCP keepalive on the HTTP client sockets managed by libcurl. This does not apply to connections received by the HTTP frontend, but only to HTTP requests sent by radosgw. Examples include requests to Keystone for authentication, sync requests from multisite, and requests to key management servers for SSE.
+
+**When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
 
 **Example:**
 

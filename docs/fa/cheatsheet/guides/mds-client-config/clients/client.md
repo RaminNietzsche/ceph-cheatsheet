@@ -293,7 +293,7 @@ ceph -s
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [client.md#SP_client_collect_and_send_global_metrics](../../../config/mds-client/client.md#SP_client_collect_and_send_global_metrics) |
 
-**کارکرد:** to enable and force collecting and sending the global metrics to MDS
+**کارکرد:** to enable and force collecting and sending the global metrics to MDS To be careful for this, when connecting to some old ceph clusters it may crash the MDS daemons while upgrading.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -433,7 +433,7 @@ ceph config get client client_debug_inject_tick_delay
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [client.md#SP_client_die_on_failed_dentry_invalidate](../../../config/mds-client/client.md#SP_client_die_on_failed_dentry_invalidate) |
 
-**کارکرد:** kill the client when no dentry invalidation options are available
+**کارکرد:** kill the client when no dentry invalidation options are available The CephFS client requires a mechanism to invalidate dentries in the caller (e.g. the kernel for ceph-fuse) when capabilities must be recalled. If the client cannot do this then the MDS cache cannot shrink which can cause the MDS to fail.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -495,7 +495,7 @@ ceph config get client client_die_on_failed_remount
 | نوع | Bool · default `True` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [client.md#SP_client_dirsize_rbytes](../../../config/mds-client/client.md#SP_client_dirsize_rbytes) |
 
-**کارکرد:** set the directory size as the number of file bytes recursively used
+**کارکرد:** set the directory size as the number of file bytes recursively used This option enables a CephFS feature that stores the recursive directory size (the bytes used by files in the directory and its descendents) in the st_size field of the stat structure. May confuse programs such as ``rsync``.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -531,7 +531,7 @@ ceph -s
 | نوع | Uint · default `16` · **Advanced** |
 | جدول | [client.md#SP_client_file_blockdiff_max_concurrent_object_scans](../../../config/mds-client/client.md#SP_client_file_blockdiff_max_concurrent_object_scans) |
 
-**کارکرد:** maximum number of concurrent object scans
+**کارکرد:** maximum number of concurrent object scans Maximum number of concurrent listsnaps operations sent to RADOS.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
@@ -603,7 +603,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [client.md#SP_client_fs](../../../config/mds-client/client.md#SP_client_fs) |
 
-**کارکرد:** CephFS file system name to mount
+**کارکرد:** CephFS file system name to mount Use this with ceph-fuse, or with any process that uses libcephfs. Programs using libcephfs may also pass the filesystem name into mount(), which will override this setting. If no filesystem name is given in mount() or this setting, the default filesystem will be mounted (usually the first created).
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -639,7 +639,7 @@ ceph -s
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [client.md#SP_client_fscrypt_as](../../../config/mds-client/client.md#SP_client_fscrypt_as) |
 
-**کارکرد:** Enable fscrypt access semantics
+**کارکرد:** Enable fscrypt access semantics Enable fscrypt access semantics for locked/unlocked states.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -675,7 +675,7 @@ ceph -s
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [client.md#SP_client_fscrypt_dummy_encryption](../../../config/mds-client/client.md#SP_client_fscrypt_dummy_encryption) |
 
-**کارکرد:** Enable fscrypt dummy encryption
+**کارکرد:** Enable fscrypt dummy encryption Enable fscrypt dummy encryption
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -755,7 +755,7 @@ ceph config get client client_inject_release_failure
 | نوع | Secs · default `0` · **Dev** |
 | جدول | [client.md#SP_client_inject_write_delay_secs](../../../config/mds-client/client.md#SP_client_inject_write_delay_secs) |
 
-**کارکرد:** induce delay in write operation for testing
+**کارکرد:** induce delay in write operation for testing Inject a delay in write operation after grabbing required cap references (Fb caps in this case). This config is disabled by default (value of 0) and is to be used for the purpose of validating a race case bug with concurrent fsync.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -1329,7 +1329,7 @@ ceph -s
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [client.md#SP_client_quota](../../../config/mds-client/client.md#SP_client_quota) |
 
-**کارکرد:** Enable quota enforcement
+**کارکرد:** Enable quota enforcement Enable quota_bytes and quota_files enforcement for the client.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -1545,7 +1545,7 @@ ceph -s
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [client.md#SP_client_respect_subvolume_snapshot_visibility](../../../config/mds-client/client.md#SP_client_respect_subvolume_snapshot_visibility) |
 
-**کارکرد:** Respect subvolume snapshot visibility
+**کارکرد:** Respect subvolume snapshot visibility Option to decide whether to respect the is_snapdir_visible flag set in each subvolume's snaprealm
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -1581,7 +1581,7 @@ ceph -s
 | نوع | Secs · default `30` · **Advanced** |
 | جدول | [client.md#SP_client_shutdown_timeout](../../../config/mds-client/client.md#SP_client_shutdown_timeout) |
 
-**کارکرد:** timeout for shutting down CephFS
+**کارکرد:** timeout for shutting down CephFS Timeout for shutting down CephFS via unmount or shutdown.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 

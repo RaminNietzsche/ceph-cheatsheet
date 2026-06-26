@@ -33,7 +33,7 @@ ceph -s
 | Type | Str · default `(empty)` · **Advanced** · **STARTUP** (restart required) |
 | Table | [openssl.md#SP_openssl_conf](../../../config/global/openssl.md#SP_openssl_conf) |
 
-**What it does:** Use openssl_conf for specific openssl algorithm
+**What it does:** Use openssl_conf for specific openssl algorithm Pass opts in this way: openssl_conf=/path/to/openssl.conf
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

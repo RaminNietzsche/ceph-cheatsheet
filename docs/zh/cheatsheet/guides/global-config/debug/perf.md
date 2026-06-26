@@ -33,7 +33,7 @@ ceph -s
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [perf.md#SP_perf](../../../config/global/perf.md#SP_perf) |
 
-**作用：** Enable internal performance metrics
+**作用：** Enable internal performance metrics If enabled, collect and expose internal health metrics
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 

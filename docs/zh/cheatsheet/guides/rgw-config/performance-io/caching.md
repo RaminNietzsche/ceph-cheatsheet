@@ -38,9 +38,13 @@ ceph pg stat
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_cache_enabled](../../../config/rgw/rgw.md#SP_rgw_cache_enabled) |
 
-**作用：** Enable RGW metadata cache.
+**作用：** Enable RGW metadata cache. The metadata cache holds metadata entries that RGW requires for processing requests. Metadata entries can be user info, bucket info, and bucket instance info. If not found in the cache, entries will be fetched from the backing RADOS store.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
+
+**相关选项：**
+
+- [`rgw_cache_lru_size`](../../../config/rgw/rgw.md#SP_rgw_cache_lru_size)
 
 **示例：**
 
@@ -66,7 +70,7 @@ ceph config get client.rgw rgw_cache_enabled
 | 类型 | Uint · default `900` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_cache_expiry_interval](../../../config/rgw/rgw.md#SP_rgw_cache_expiry_interval) |
 
-**作用：** Number of seconds before entries in the cache are assumed stale and re-fetched. Zero is never.
+**作用：** Number of seconds before entries in the cache are assumed stale and re-fetched. Zero is never. The Rados Gateway stores metadata and objects in an internal cache. This should be kept consistent by the OSD's relaying notify events between multiple watching RGW processes. In the event that this notification protocol fails, bounding the length of time that any data in the cache will be assumed valid will ensure that any RGW instance that falls out of sync will eventually recover. This seems to be an issue mostly for large numbers of RGW instances under heavy use. If you would like to turn off cache expiry, set this value to zero.
 
 **何时使用：**
 
@@ -106,12 +110,16 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `25000` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_cache_lru_size](../../../config/rgw/rgw.md#SP_rgw_cache_lru_size) |
 
-**作用：** Max number of items in RGW metadata cache.
+**作用：** Max number of items in RGW metadata cache. When full, the RGW metadata cache evicts least recently used entries.
 
 **何时使用：**
 
 - **Increase** when monitoring many active buckets/users and cache misses are visible.
 - **Decrease** when RGW memory is constrained.
+
+**相关选项：**
+
+- [`rgw_cache_enabled`](../../../config/rgw/rgw.md#SP_rgw_cache_enabled)
 
 **示例：**
 
@@ -146,7 +154,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Int · default `1000` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_obj_tombstone_cache_size](../../../config/rgw/rgw.md#SP_rgw_obj_tombstone_cache_size) |
 
-**作用：** Max number of entries to keep in tombstone cache
+**作用：** Max number of entries to keep in tombstone cache The tombstone cache is used when doing a multi-zone data sync. RGW keeps there information about removed objects which is needed in order to prevent re-syncing of objects that were already removed.
 
 **何时使用：**
 

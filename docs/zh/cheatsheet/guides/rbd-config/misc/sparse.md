@@ -33,7 +33,7 @@ ceph -s
 | 类型 | Size · default `64_K` · **Advanced** |
 | 表格 | [rbd.md#SP_rbd_sparse_read_threshold_bytes](../../../config/rbd/rbd.md#SP_rbd_sparse_read_threshold_bytes) |
 
-**作用：** threshold for issuing a sparse-read
+**作用：** threshold for issuing a sparse-read minimum number of sequential bytes to read against an object before issuing a sparse-read request to the cluster. 0 implies it must be a full object read to issue a sparse-read, 1 implies always use sparse-read, and any value larger than the maximum object size will disable sparse-read for all requests
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

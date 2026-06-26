@@ -66,6 +66,10 @@ ceph config get global lockdep
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
+**گزینه‌های مرتبط:**
+
+- [`lockdep`](../../../config/global/lockdep.md#SP_lockdep)
+
 **مثال:**
 
 ```bash

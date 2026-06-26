@@ -581,6 +581,10 @@ ceph -s  # cluster health, slow ops
 - **Increase** when monitoring many active buckets/users and cache misses are visible.
 - **Decrease** when RGW memory is constrained.
 
+**Related options:**
+
+- [`rgw_keystone_service_token_enabled`](../../../config/rgw/rgw.md#SP_rgw_keystone_service_token_enabled)
+
 **Example:**
 
 ```bash
@@ -614,7 +618,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · enum: ["false", "true", "swift", "s3", "both", "0", "1", "none"] · default `false` · **Advanced** |
 | Table | [rgw.md#SP_rgw_keystone_implicit_tenants](../../../config/rgw/rgw.md#SP_rgw_keystone_implicit_tenants) |
 
-**What it does:** RGW Keystone implicit tenants creation
+**What it does:** RGW Keystone implicit tenants creation Implicitly create new users in their own tenant with the same name when authenticating via Keystone. Can be limited to S3 or SWIFT only.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -642,7 +646,7 @@ ceph config get client.rgw rgw_keystone_implicit_tenants
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_keystone_scope_enabled](../../../config/rgw/rgw.md#SP_rgw_keystone_scope_enabled) |
 
-**What it does:** Enable logging of Keystone scope information in ops log
+**What it does:** Enable logging of Keystone scope information in ops log When enabled, operations authenticated via Keystone will include scope information (project, domain, roles) in the ops log. This is disabled by default as it adds additional data to each log entry and most deployments do not require this level of Keystone audit detail. User identity logging is controlled separately by rgw_keystone_scope_include_user for privacy considerations. Requires rgw_enable_ops_log to be enabled.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -698,7 +702,7 @@ ceph config get client.rgw rgw_keystone_scope_include_roles
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_keystone_scope_include_user](../../../config/rgw/rgw.md#SP_rgw_keystone_scope_include_user) |
 
-**What it does:** Include human-readable identity names in Keystone scope logs
+**What it does:** Include human-readable identity names in Keystone scope logs When false (default), only opaque IDs are logged for all identity fields (project_id, domain_id, user_id, app_cred_id), which is GDPR-compliant and privacy-friendly. When true, human-readable names (project_name, domain names, user_name, app_cred_name) are included. Opaque IDs are always logged regardless of this setting, allowing operators to correlate with Keystone without exposing names in logs.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -729,6 +733,10 @@ ceph config get client.rgw rgw_keystone_scope_include_user
 **What it does:** Only users with one of these roles will be valid for service users.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_keystone_service_token_enabled`](../../../config/rgw/rgw.md#SP_rgw_keystone_service_token_enabled)
 
 **Example:**
 
@@ -782,7 +790,7 @@ ceph config get client.rgw rgw_keystone_service_token_enabled
 | Type | Int · default `10000` · **Advanced** |
 | Table | [rgw.md#SP_rgw_keystone_token_cache_size](../../../config/rgw/rgw.md#SP_rgw_keystone_token_cache_size) |
 
-**What it does:** Keystone token cache size
+**What it does:** Keystone token cache size Max number of Keystone tokens that will be cached. Token that is not cached requires RGW to access the Keystone server when authenticating.
 
 **When to use:**
 
@@ -822,7 +830,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `300` · **Advanced** |
 | Table | [rgw.md#SP_rgw_keystone_token_cache_ttl](../../../config/rgw/rgw.md#SP_rgw_keystone_token_cache_ttl) |
 
-**What it does:** Keystone token secret key cache TTL
+**What it does:** Keystone token secret key cache TTL The TTL for secret keys that are loaded from Keystone and stored in the cache system.
 
 **When to use:**
 
@@ -928,7 +936,7 @@ ceph config get client.rgw rgw_keystone_verify_ssl
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sts_client_id](../../../config/rgw/rgw.md#SP_rgw_sts_client_id) |
 
-**What it does:** Client Id
+**What it does:** Client Id Client Id needed for introspecting a Web Token.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -956,7 +964,7 @@ ceph config get client.rgw rgw_sts_client_id
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sts_client_secret](../../../config/rgw/rgw.md#SP_rgw_sts_client_secret) |
 
-**What it does:** Client Secret
+**What it does:** Client Secret Client Secret needed for introspecting a Web Token.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -984,7 +992,7 @@ ceph config get client.rgw rgw_sts_client_secret
 | Type | Str · default `sts` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sts_entry](../../../config/rgw/rgw.md#SP_rgw_sts_entry) |
 
-**What it does:** STS URL prefix
+**What it does:** STS URL prefix URL path prefix for internal STS requests.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -1012,9 +1020,9 @@ ceph config get client.rgw rgw_sts_entry
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sts_key](../../../config/rgw/rgw.md#SP_rgw_sts_key) |
 
-**What it does:** STS Key
+**What it does:** STS Key Key used for encrypting/ decrypting role session tokens. This key must consist of 16 hexadecimal characters, which can be generated by the command 'openssl rand -hex 16'. All radosgw instances in a zone should use the same key. In multisite configurations, all zones in a realm should use the same key.
 
-**When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+**When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
 
 **Example:**
 
@@ -1050,9 +1058,13 @@ ceph -s  # cluster health, slow ops
 | Type | Uint · default `43200` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sts_max_session_duration](../../../config/rgw/rgw.md#SP_rgw_sts_max_session_duration) |
 
-**What it does:** Session token max duration
+**What it does:** Session token max duration This option can be used to configure the upper limit of the durationSeconds of temporary credentials returned by 'GetSessionToken'.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
+
+**Related options:**
+
+- [`rgw_sts_min_session_duration`](../../../config/rgw/rgw.md#SP_rgw_sts_min_session_duration)
 
 **Example:**
 
@@ -1078,9 +1090,13 @@ ceph config get client.rgw rgw_sts_max_session_duration
 | Type | Uint · default `900` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sts_min_session_duration](../../../config/rgw/rgw.md#SP_rgw_sts_min_session_duration) |
 
-**What it does:** Minimum allowed duration of a session
+**What it does:** Minimum allowed duration of a session This option can be used to configure the lower limit of durationSeconds of temporary credentials returned by 'AssumeRole*' calls.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_sts_max_session_duration`](../../../config/rgw/rgw.md#SP_rgw_sts_max_session_duration)
 
 **Example:**
 
@@ -1116,7 +1132,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sts_token_introspection_url](../../../config/rgw/rgw.md#SP_rgw_sts_token_introspection_url) |
 
-**What it does:** STS Web Token introspection URL
+**What it does:** STS Web Token introspection URL URL for introspecting an STS Web Token.
 
 **When to use:** Set when integrating with an external service; leave empty if the feature is unused.
 

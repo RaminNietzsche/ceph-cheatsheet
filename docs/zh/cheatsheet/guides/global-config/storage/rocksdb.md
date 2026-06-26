@@ -86,7 +86,7 @@ ceph -s
 | 类型 | Uint · default `20` · **Advanced** |
 | 表格 | [rocksdb.md#SP_rocksdb_bloom_bits_per_key](../../../config/global/rocksdb.md#SP_rocksdb_bloom_bits_per_key) |
 
-**作用：** Number of bits per key to use for RocksDB's bloom filters.
+**作用：** Number of bits per key to use for RocksDB's bloom filters. RocksDB bloom filters can be used to quickly answer the question of whether or not a key may exist or definitely does not exist in a given RocksDB SST file without having to read all keys into memory. Using a higher bit value decreases the likelihood of false positives at the expense of additional disk space and memory consumption when the filter is loaded into RAM. The current default value of 20 was found to provide significant performance gains when getattr calls are made (such as during new object creation in BlueStore) without significant memory overhead or cache pollution when combined with rocksdb partitioned index filters. See: https://github.com/facebook/rocksdb/wiki/Partitioned-Index-Filters for more information.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -121,7 +121,7 @@ ceph -s
 | 类型 | Bool · default `True` · **Dev** |
 | 表格 | [rocksdb.md#SP_rocksdb_cache_index_and_filter_blocks](../../../config/global/rocksdb.md#SP_rocksdb_cache_index_and_filter_blocks) |
 
-**作用：** Whether to cache indices and filters in block cache
+**作用：** Whether to cache indices and filters in block cache By default RocksDB will load an SST file's index and bloom filters into memory when it is opened and remove them from memory when an SST file is closed. Thus, memory consumption by indices and bloom filters is directly tied to the number of concurrent SST files allowed to be kept open. This option instead stores cached indicies and filters in the block cache where they directly compete with other cached data. By default we set this option to true to better account for and bound rocksdb memory usage and keep filters in memory even when an SST file is closed.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -149,7 +149,7 @@ ceph config get global rocksdb_cache_index_and_filter_blocks
 | 类型 | Bool · default `False` · **Dev** |
 | 表格 | [rocksdb.md#SP_rocksdb_cache_index_and_filter_blocks_with_high_priority](../../../config/global/rocksdb.md#SP_rocksdb_cache_index_and_filter_blocks_with_high_priority) |
 
-**作用：** Whether to cache indices and filters in the block cache with high priority
+**作用：** Whether to cache indices and filters in the block cache with high priority A downside of setting rocksdb_cache_index_and_filter_blocks to true is that regular data can push indices and filters out of memory. Setting this option to true means they are cached with higher priority than other data and should typically stay in the block cache.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -311,7 +311,7 @@ ceph -s
 | 类型 | Bool · default `True` · **Dev** |
 | 表格 | [rocksdb.md#SP_rocksdb_cf_compact_on_deletion](../../../config/global/rocksdb.md#SP_rocksdb_cf_compact_on_deletion) |
 
-**作用：** Compact the column family when a certain number of tombstones are observed within a given window.
+**作用：** Compact the column family when a certain number of tombstones are observed within a given window. This setting instructs RocksDB to compact a column family when a certain number of tombstones are observed during iteration within a certain sliding window. For instance if rocksdb_cf_compact_on_deletion_sliding_window is 8192 and rocksdb_cf_compact_on_deletion_trigger is 4096, then once 4096 tombstones are observed after iteration over 8192 entries, the column family will be compacted.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -343,6 +343,10 @@ ceph config get global rocksdb_cf_compact_on_deletion
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`rocksdb_cf_compact_on_deletion`](../../../config/global/rocksdb.md#SP_rocksdb_cf_compact_on_deletion)
+
 **示例：**
 
 ```bash
@@ -370,6 +374,10 @@ ceph config get global rocksdb_cf_compact_on_deletion_sliding_window
 **作用：** The trigger to use when rocksdb_cf_compact_on_deletion is enabled.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`rocksdb_cf_compact_on_deletion`](../../../config/global/rocksdb.md#SP_rocksdb_cf_compact_on_deletion)
 
 **示例：**
 
@@ -529,7 +537,7 @@ ceph -s
 | 类型 | Str · default `binary_search` · **Dev** |
 | 表格 | [rocksdb.md#SP_rocksdb_index_type](../../../config/global/rocksdb.md#SP_rocksdb_index_type) |
 
-**作用：** Type of index for SST files: binary_search, hash_search, two_level
+**作用：** Type of index for SST files: binary_search, hash_search, two_level This option controls the table index type. binary_search is a space efficient index block that is optimized for block-search-based index. hash_search may improve prefix lookup performance at the expense of higher disk and memory usage and potentially slower compactions. two_level is an experimental index type that uses two binary search indexes and works in conjunction with partition filters. See: http://rocksdb.org/blog/2017/05/12/partitioned-index-filter.html
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -618,7 +626,7 @@ ceph config get global rocksdb_metadata_block_size
 | 类型 | Bool · default `False` · **Dev** |
 | 表格 | [rocksdb.md#SP_rocksdb_partition_filters](../../../config/global/rocksdb.md#SP_rocksdb_partition_filters) |
 
-**作用：** (Experimental) partition SST index/filters into smaller blocks
+**作用：** (Experimental) partition SST index/filters into smaller blocks This is an experimental option for RocksDB that works in conjunction with two_level indices to avoid having to keep the entire filter/index in cache when cache_index_and_filter_blocks is true. The idea is to keep a much smaller top-level index in heap/cache and then opportunistically cache the lower level indices. See: https://github.com/facebook/rocksdb/wiki/Partitioned-Index-Filters
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -679,7 +687,7 @@ ceph -s
 | 类型 | Bool · default `False` · **Dev** |
 | 表格 | [rocksdb.md#SP_rocksdb_pin_l0_filter_and_index_blocks_in_cache](../../../config/global/rocksdb.md#SP_rocksdb_pin_l0_filter_and_index_blocks_in_cache) |
 
-**作用：** Whether to pin Level 0 indices and bloom filters in the block cache
+**作用：** Whether to pin Level 0 indices and bloom filters in the block cache A downside of setting rocksdb_cache_index_and_filter_blocks to true is that regular data can push indices and filters out of memory. Setting this option to true means that level 0 SST files will always have their indices and filters pinned in the block cache.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 

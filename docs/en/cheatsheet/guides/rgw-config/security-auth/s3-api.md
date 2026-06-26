@@ -42,7 +42,7 @@ ceph pg stat
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_s3_auth_disable_signature_url](../../../config/rgw/rgw.md#SP_rgw_s3_auth_disable_signature_url) |
 
-**What it does:** Should authentication with presigned URLs be disabled
+**What it does:** Should authentication with presigned URLs be disabled If enabled, any request that is presigned with either V2 or V4 signature will be denied
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -80,7 +80,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `sts, external, local` · **Advanced** |
 | Table | [rgw.md#SP_rgw_s3_auth_order](../../../config/rgw/rgw.md#SP_rgw_s3_auth_order) |
 
-**What it does:** Authentication strategy order to use for S3
+**What it does:** Authentication strategy order to use for S3 The order of authentication strategies to try for S3 authentication. The value is a comma-separated list of engines, external and local. The default order is to try all configured external engines before attempting local RADOS based authentication
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -230,7 +230,7 @@ ceph config get client.rgw rgw_s3_auth_use_sts
 | Type | Int · default `-1` · **Advanced** |
 | Table | [rgw.md#SP_rgw_s3_client_max_sig_ver](../../../config/rgw/rgw.md#SP_rgw_s3_client_max_sig_ver) |
 
-**What it does:** Max S3 authentication signature version
+**What it does:** Max S3 authentication signature version If greater than zero, would force max signature version to use
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -258,7 +258,7 @@ ceph config get client.rgw rgw_s3_client_max_sig_ver
 | Type | Int · default `0` · **Advanced** |
 | Table | [rgw.md#SP_rgw_s3_success_create_obj_status](../../../config/rgw/rgw.md#SP_rgw_s3_success_create_obj_status) |
 
-**What it does:** HTTP return code override for object creation
+**What it does:** HTTP return code override for object creation If not zero, this is the HTTP return code that will be returned on a successful S3 object creation.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

@@ -33,7 +33,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [keyfile.md#SP_keyfile](../../../config/global/keyfile.md#SP_keyfile) |
 
-**کارکرد:** Path to a file containing a key
+**کارکرد:** Path to a file containing a key The file should contain a CephX authentication key and optionally a trailing newline, but nothing else.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

@@ -41,7 +41,7 @@ ceph pg stat
 | 类型 | Str · default `/tmp/rgw_posix_driver` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_posix_base_path](../../../config/rgw/rgw.md#SP_rgw_posix_base_path) |
 
-**作用：** experimental Option to set base path for POSIX Driver
+**作用：** experimental Option to set base path for POSIX Driver Base path for the POSIX driver. All operations are relative to this path. Defaults to /tmp/rgw_posix_driver
 
 **何时使用：** 实验性 Motr/POSIX RGW 后端 — 仅用于专用 PoC 部署。
 
@@ -193,7 +193,7 @@ ceph config get client.rgw rgw_posix_cache_partitions
 | 类型 | Str · default `/var/lib/ceph/radosgw` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_posix_database_root](../../../config/rgw/rgw.md#SP_rgw_posix_database_root) |
 
-**作用：** experimental Path to parent of POSIX Driver LMDB bucket listing cache
+**作用：** experimental Path to parent of POSIX Driver LMDB bucket listing cache Parent directory of LMDB bucket listing cache databases.
 
 **何时使用：** 实验性 Motr/POSIX RGW 后端 — 仅用于专用 PoC 部署。
 

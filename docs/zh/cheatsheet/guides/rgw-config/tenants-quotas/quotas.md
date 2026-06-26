@@ -121,7 +121,7 @@ radosgw-admin bucket stats --bucket=testbucket
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_enable_quota_threads](../../../config/rgw/rgw.md#SP_rgw_enable_quota_threads) |
 
-**作用：** Enables the quota maintenance thread.
+**作用：** Enables the quota maintenance thread. The quota maintenance thread is responsible for quota related maintenance work. The thread itself can be disabled, but in order for quota to work correctly, at least one RGW in each zone needs to have this thread running. Having the thread enabled on multiple RGW processes within the same zone can spread some of the maintenance work between them.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -150,7 +150,7 @@ radosgw-admin quota get --quota-scope=user --uid=testuser
 | 类型 | Int · default `-1` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_user_default_quota_max_objects](../../../config/rgw/rgw.md#SP_rgw_user_default_quota_max_objects) |
 
-**作用：** User quota max objects
+**作用：** User quota max objects The default quota configuration for total number of objects for a single user. A negative number means 'unlimited'.
 
 **何时使用：** 为新用户、账户或 bucket 设置租户/平台默认限制。
 
@@ -187,7 +187,7 @@ radosgw-admin bucket stats --bucket=testbucket
 | 类型 | Int · default `-1` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_user_default_quota_max_size](../../../config/rgw/rgw.md#SP_rgw_user_default_quota_max_size) |
 
-**作用：** User quota max size
+**作用：** User quota max size The default quota configuration for total size of objects for a single user. A negative number means 'unlimited'.
 
 **何时使用：** 为新用户、账户或 bucket 设置租户/平台默认限制。
 

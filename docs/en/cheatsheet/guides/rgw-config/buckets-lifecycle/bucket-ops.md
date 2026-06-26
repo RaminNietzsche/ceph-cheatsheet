@@ -53,6 +53,7 @@ ceph pg stat
 **Related options:**
 
 - `rgw_bucket_counters_cache_size`
+- [`rgw_bucket_counters_cache_size`](../../../config/rgw/rgw.md#SP_rgw_bucket_counters_cache_size)
 
 **Example:**
 
@@ -81,6 +82,10 @@ ceph config set client.rgw rgw_bucket_counters_cache_size 20000
 **What it does:** Maximum number of labeled per-bucket perf counter entries kept in the cache.
 
 **When to use:** Increase on clusters with many active buckets and bucket-level monitoring enabled.
+
+**Related options:**
+
+- [`rgw_bucket_counters_cache`](../../../config/rgw/rgw.md#SP_rgw_bucket_counters_cache)
 
 **Example:**
 
@@ -301,7 +306,7 @@ ceph config get client.rgw rgw_bucket_index_transaction_instrumentation
 | Type | Uint · default `300` · **Advanced** |
 | Table | [rgw.md#SP_rgw_bucket_logging_obj_roll_time](../../../config/rgw/rgw.md#SP_rgw_bucket_logging_obj_roll_time) |
 
-**What it does:** Default time in seconds for the bucket logging object to roll
+**What it does:** Default time in seconds for the bucket logging object to roll Object roll time can be provided in the bucket logging configuration. If not provided, this value will be used.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -338,7 +343,7 @@ ceph -s  # cluster health, slow ops
 | Type | Uint · default `11` · **Advanced** |
 | Table | [rgw.md#SP_rgw_bucket_persistent_notif_num_shards](../../../config/rgw/rgw.md#SP_rgw_bucket_persistent_notif_num_shards) |
 
-**What it does:** Number of shards for a persistent topic.
+**What it does:** Number of shards for a persistent topic. Number of shards of persistent topics. The notifications will be sharded by a combination of the bucket and key name. Changing the number effect only new topics and does not change exiting ones.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -366,7 +371,7 @@ ceph config get client.rgw rgw_bucket_persistent_notif_num_shards
 | Type | Int · default `10000` · **Advanced** |
 | Table | [rgw.md#SP_rgw_bucket_quota_cache_size](../../../config/rgw/rgw.md#SP_rgw_bucket_quota_cache_size) |
 
-**What it does:** RGW quota stats cache size
+**What it does:** RGW quota stats cache size Maximum number of entries in the quota stats cache.
 
 **When to use:**
 
@@ -406,7 +411,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `10_min` · **Advanced** |
 | Table | [rgw.md#SP_rgw_bucket_quota_ttl](../../../config/rgw/rgw.md#SP_rgw_bucket_quota_ttl) |
 
-**What it does:** Bucket quota stats cache TTL
+**What it does:** Bucket quota stats cache TTL Length of time for bucket stats to be cached within RGW instance.
 
 **When to use:**
 

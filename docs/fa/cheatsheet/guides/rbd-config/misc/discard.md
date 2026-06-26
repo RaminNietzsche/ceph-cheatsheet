@@ -34,7 +34,7 @@ ceph -s
 | نوع | Uint · default `64_K` · **Advanced** |
 | جدول | [rbd.md#SP_rbd_discard_granularity_bytes](../../../config/rbd/rbd.md#SP_rbd_discard_granularity_bytes) |
 
-**کارکرد:** minimum aligned size of discard operations &#91;&#93;(std::string *value, std::string *error_message) { uint64_t f = strict_si_cast<uint64_t>(*value, error_message); if (!error_message->empty()) { return -EINVAL; } else if (!std::has_single_bit(f)) { *error_message = "value must be a power of two"; return -EINVAL; } return 0; }
+**کارکرد:** minimum aligned size of discard operations
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

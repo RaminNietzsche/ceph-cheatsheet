@@ -33,7 +33,7 @@ ceph -s
 | Type | Bool · default `False` · **Dev** · **STARTUP** (restart required) |
 | Table | [thp.md#SP_thp](../../../config/global/thp.md#SP_thp) |
 
-**What it does:** enable transparent huge page (THP) support
+**What it does:** enable transparent huge page (THP) support Ceph is known to suffer from memory fragmentation due to THP use. This is indicated by RSS usage above configured memory targets. Enabling THP is currently discouraged until selective use of THP by Ceph is implemented.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 

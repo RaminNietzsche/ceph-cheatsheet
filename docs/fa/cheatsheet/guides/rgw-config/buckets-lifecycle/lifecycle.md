@@ -51,9 +51,13 @@ ceph pg stat
 | نوع | Uint · default `5000` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_lc_counters_batch_size](../../../config/rgw/rgw.md#SP_rgw_lc_counters_batch_size) |
 
-**کارکرد:** Batch size for flushing LC per-bucket counters
+**کارکرد:** Batch size for flushing LC per-bucket counters LC per-bucket counters are flushed to cache every N objects processed. Lower values provide more frequent updates, higher values reduce overhead.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_lc_counters_cache`](../../../config/rgw/rgw.md#SP_rgw_lc_counters_cache)
 
 **مثال:**
 
@@ -91,7 +95,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_lc_counters_cache](../../../config/rgw/rgw.md#SP_rgw_lc_counters_cache) |
 
-**کارکرد:** Enable per-bucket lifecycle performance counters cache
+**کارکرد:** Enable per-bucket lifecycle performance counters cache When enabled, RGW will create and update per-bucket lifecycle performance counters and expose them via admin socket perf dump.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -120,7 +124,7 @@ ceph config set client.rgw rgw_lc_counters_cache_size 20000
 | نوع | Uint · default `10000` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_lc_counters_cache_size](../../../config/rgw/rgw.md#SP_rgw_lc_counters_cache_size) |
 
-**کارکرد:** Target size for lifecycle counters cache
+**کارکرد:** Target size for lifecycle counters cache Maximum number of per-bucket LC counter entries to maintain in cache
 
 **زمان استفاده:**
 
@@ -160,7 +164,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `-1` · **Dev** |
 | جدول | [rgw.md#SP_rgw_lc_debug_interval](../../../config/rgw/rgw.md#SP_rgw_lc_debug_interval) |
 
-**کارکرد:** The number of seconds that simulate one "day" in order to debug RGW LifeCycle. Do *not* modify for a production cluster.
+**کارکرد:** The number of seconds that simulate one "day" in order to debug RGW LifeCycle. Do *not* modify for a production cluster. For debugging RGW LifeCycle, the number of seconds that are equivalent to one simulated "day". Values less than 1 are ignored and do not change LifeCycle behavior. For example, during debugging if one wanted every 10 minutes to be equivalent to one day, then this would be set to 600, the number of seconds in 10 minutes.
 
 **زمان استفاده:**
 
@@ -193,7 +197,7 @@ ceph config get client.rgw rgw_lc_debug_interval
 | نوع | Uint · default `1000` · **Dev** |
 | جدول | [rgw.md#SP_rgw_lc_list_cnt](../../../config/rgw/rgw.md#SP_rgw_lc_list_cnt) |
 
-**کارکرد:** The count of number of objects in per listing of lc processing from each bucket.
+**کارکرد:** The count of number of objects in per listing of lc processing from each bucket. Number of objects that will be requested when performing a listing request of a bucket for lifecycle processing.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -259,7 +263,7 @@ ceph config get client.rgw rgw_lc_lock_max_time
 | نوع | Int · default `32` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_lc_max_objs](../../../config/rgw/rgw.md#SP_rgw_lc_max_objs) |
 
-**کارکرد:** Number of lifecycle data shards
+**کارکرد:** Number of lifecycle data shards Number of RADOS objects to use for storing lifecycle index. This affects concurrency of lifecycle maintenance, as shards can be processed in parallel.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -287,7 +291,7 @@ ceph config get client.rgw rgw_lc_max_objs
 | نوع | Uint · default `1000` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_lc_max_rules](../../../config/rgw/rgw.md#SP_rgw_lc_max_rules) |
 
-**کارکرد:** Max number of lifecycle rules set on one bucket
+**کارکرد:** Max number of lifecycle rules set on one bucket Number of lifecycle rules set on one bucket should be limited.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -315,7 +319,7 @@ ceph config get client.rgw rgw_lc_max_rules
 | نوع | Int · default `3` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_lc_max_worker](../../../config/rgw/rgw.md#SP_rgw_lc_max_worker) |
 
-**کارکرد:** Number of LCWorker tasks that will be run in parallel
+**کارکرد:** Number of LCWorker tasks that will be run in parallel Number of LCWorker tasks that will run in parallel--used to permit >1 bucket/index shards to be processed simultaneously
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -353,7 +357,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `128` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_lc_max_wp_worker](../../../config/rgw/rgw.md#SP_rgw_lc_max_wp_worker) |
 
-**کارکرد:** Number of workpool coroutines per LCWorker
+**کارکرد:** Number of workpool coroutines per LCWorker Number of coroutines in per-LCWorker workpools--used to accelerate per-bucket processing
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -381,7 +385,7 @@ ceph config get client.rgw rgw_lc_max_wp_worker
 | نوع | Uint · default `500` · **Dev** |
 | جدول | [rgw.md#SP_rgw_lc_ordered_list_threshold](../../../config/rgw/rgw.md#SP_rgw_lc_ordered_list_threshold) |
 
-**کارکرد:** Threshold for enabling ordered listing in lifecycle processing.
+**کارکرد:** Threshold for enabling ordered listing in lifecycle processing. When bucket shard count is below this threshold, lifecycle processing will use ordered listing for better performance. Above this threshold, unordered listing is used to avoid excessive OSD requests. A value of 0 disables ordered listing entirely.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -459,7 +463,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `00:00-06:00` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_lifecycle_work_time](../../../config/rgw/rgw.md#SP_rgw_lifecycle_work_time) |
 
-**کارکرد:** Lifecycle allowed work time
+**کارکرد:** Lifecycle allowed work time Local time window in which the lifecycle maintenance thread can work. It expects 24-hour time notation. For example, "00:00-23:59" means starting at midnight lifecycle is allowed to run for the whole day (24 hours). When lifecycle completes, it waits for the next maintenance window. In this example, if it completes at 01:00, it will resume processing 23 hours later at the following midnight.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -497,7 +501,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `10_min` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_mp_lock_max_time](../../../config/rgw/rgw.md#SP_rgw_mp_lock_max_time) |
 
-**کارکرد:** Multipart upload max completion time
+**کارکرد:** Multipart upload max completion time Time length to allow completion of a multipart upload operation. This is done to prevent concurrent completions on the same object with the same upload id.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 

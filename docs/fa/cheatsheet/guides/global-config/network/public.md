@@ -178,6 +178,10 @@ ceph -s
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`public_network`](../../../config/global/public.md#SP_public_network)
+
 **مثال:**
 
 ```bash

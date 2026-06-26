@@ -188,6 +188,10 @@ ceph config get client.rgw rgw_torrent_flag
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
+**Related options:**
+
+- [`rgw_torrent_flag`](../../../config/rgw/rgw.md#SP_rgw_torrent_flag)
+
 **Example:**
 
 ```bash

@@ -38,9 +38,13 @@ ceph pg stat
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_cache_enabled](../../../config/rgw/rgw.md#SP_rgw_cache_enabled) |
 
-**کارکرد:** Enable RGW metadata cache.
+**کارکرد:** Enable RGW metadata cache. The metadata cache holds metadata entries that RGW requires for processing requests. Metadata entries can be user info, bucket info, and bucket instance info. If not found in the cache, entries will be fetched from the backing RADOS store.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_cache_lru_size`](../../../config/rgw/rgw.md#SP_rgw_cache_lru_size)
 
 **مثال:**
 
@@ -66,7 +70,7 @@ ceph config get client.rgw rgw_cache_enabled
 | نوع | Uint · default `900` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_cache_expiry_interval](../../../config/rgw/rgw.md#SP_rgw_cache_expiry_interval) |
 
-**کارکرد:** Number of seconds before entries in the cache are assumed stale and re-fetched. Zero is never.
+**کارکرد:** Number of seconds before entries in the cache are assumed stale and re-fetched. Zero is never. The Rados Gateway stores metadata and objects in an internal cache. This should be kept consistent by the OSD's relaying notify events between multiple watching RGW processes. In the event that this notification protocol fails, bounding the length of time that any data in the cache will be assumed valid will ensure that any RGW instance that falls out of sync will eventually recover. This seems to be an issue mostly for large numbers of RGW instances under heavy use. If you would like to turn off cache expiry, set this value to zero.
 
 **زمان استفاده:**
 
@@ -106,12 +110,16 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `25000` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_cache_lru_size](../../../config/rgw/rgw.md#SP_rgw_cache_lru_size) |
 
-**کارکرد:** Max number of items in RGW metadata cache.
+**کارکرد:** Max number of items in RGW metadata cache. When full, the RGW metadata cache evicts least recently used entries.
 
 **زمان استفاده:**
 
 - **Increase** when monitoring many active buckets/users and cache misses are visible.
 - **Decrease** when RGW memory is constrained.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_cache_enabled`](../../../config/rgw/rgw.md#SP_rgw_cache_enabled)
 
 **مثال:**
 
@@ -146,7 +154,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `1000` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_obj_tombstone_cache_size](../../../config/rgw/rgw.md#SP_rgw_obj_tombstone_cache_size) |
 
-**کارکرد:** Max number of entries to keep in tombstone cache
+**کارکرد:** Max number of entries to keep in tombstone cache The tombstone cache is used when doing a multi-zone data sync. RGW keeps there information about removed objects which is needed in order to prevent re-syncing of objects that were already removed.
 
 **زمان استفاده:**
 

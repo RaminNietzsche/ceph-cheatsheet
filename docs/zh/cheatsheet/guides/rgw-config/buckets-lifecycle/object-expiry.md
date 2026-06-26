@@ -71,7 +71,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Uint · default `127` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_objexp_hints_num_shards](../../../config/rgw/rgw.md#SP_rgw_objexp_hints_num_shards) |
 
-**作用：** Number of object expirer data shards
+**作用：** Number of object expirer data shards The number of shards the (Swift) object expirer will store its data on.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

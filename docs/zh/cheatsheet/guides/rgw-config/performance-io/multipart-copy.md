@@ -38,7 +38,7 @@ ceph pg stat
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_copy_obj_progress](../../../config/rgw/rgw.md#SP_rgw_copy_obj_progress) |
 
-**作用：** Send progress report through copy operation
+**作用：** Send progress report through copy operation If true, RGW will send progress information when copy operation is executed.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -104,7 +104,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Size · default `5_M` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_multipart_min_part_size](../../../config/rgw/rgw.md#SP_rgw_multipart_min_part_size) |
 
-**作用：** Minimum S3 multipart-upload part size
+**作用：** Minimum S3 multipart-upload part size When doing a multipart upload, each part (other than the last part) must be at least this size.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

@@ -34,7 +34,7 @@ ceph -s
 | 类型 | Float · default `-1` · **Advanced** |
 | 表格 | [osd.md#SP_osd_crush_initial_weight](../../../config/osd/osd.md#SP_osd_crush_initial_weight) |
 
-**作用：** if >= 0, initial CRUSH weight for newly created OSDs
+**作用：** if >= 0, initial CRUSH weight for newly created OSDs If this value is negative, the size of the OSD in TiB is used.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

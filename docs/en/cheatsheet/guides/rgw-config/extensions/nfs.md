@@ -124,9 +124,13 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `rgw-nfs` · **Basic** |
 | Table | [rgw.md#SP_rgw_nfs_frontends](../../../config/rgw/rgw.md#SP_rgw_nfs_frontends) |
 
-**What it does:** RGW frontends configuration when running as librgw/nfs
+**What it does:** RGW frontends configuration when running as librgw/nfs A comma-delimited list of frontends configuration. Each configuration contains the type of the frontend followed by an optional space delimited set of key=value config parameters.
 
 **When to use:** Core RGW behavior — review before changing in production.
+
+**Related options:**
+
+- [`rgw_frontends`](../../../config/rgw/rgw.md#SP_rgw_frontends)
 
 **Example:**
 
@@ -440,7 +444,7 @@ ceph config get client.rgw rgw_nfs_run_sync_thread
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_nfs_s3_fast_attrs](../../../config/rgw/rgw.md#SP_rgw_nfs_s3_fast_attrs) |
 
-**What it does:** use fast S3 attrs from bucket index (immutable only)
+**What it does:** use fast S3 attrs from bucket index (immutable only) use fast S3 attrs from bucket index (assumes NFS mounts are immutable)
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 

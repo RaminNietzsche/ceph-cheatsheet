@@ -619,7 +619,7 @@ ceph mon stat
 | Type | Bool · default `False` · **Dev** |
 | Table | [mon.md#SP_mon_debug_block_osdmap_trim](../../../config/global/mon.md#SP_mon_debug_block_osdmap_trim) |
 
-**What it does:** Block OSDMap trimming while the option is enabled.
+**What it does:** Block OSDMap trimming while the option is enabled. Blocking OSDMap trimming may be quite helpful to easily reproduce states in which the monitor keeps (hundreds of) thousands of osdmaps.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -679,6 +679,10 @@ ceph config get mon mon_debug_deprecated_as_obsolete
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`mon_debug_dump_transactions`](../../../config/global/mon.md#SP_mon_debug_dump_transactions)
+
 **Example:**
 
 ```bash
@@ -706,6 +710,10 @@ ceph config get mon mon_debug_dump_json
 **What it does:** File to which to dump Paxos transactions
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
+
+**Related options:**
+
+- [`mon_debug_dump_transactions`](../../../config/global/mon.md#SP_mon_debug_dump_transactions)
 
 **Example:**
 
@@ -735,6 +743,10 @@ ceph config get mon mon_debug_dump_location
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
+**Related options:**
+
+- [`mon_debug_dump_location`](../../../config/global/mon.md#SP_mon_debug_dump_location)
+
 **Example:**
 
 ```bash
@@ -759,7 +771,7 @@ ceph config get mon mon_debug_dump_transactions
 | Type | Bool · default `False` · **Dev** |
 | Table | [mon.md#SP_mon_debug_extra_checks](../../../config/global/mon.md#SP_mon_debug_extra_checks) |
 
-**What it does:** Enable some additional monitor checks
+**What it does:** Enable some additional monitor checks Enable some additional monitor checks that would be too expensive to run on production systems, or would only be relevant while testing or debugging.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -929,6 +941,10 @@ ceph config get mon mon_debug_unsafe_allow_tier_with_nonempty_snaps
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`mon_host`](../../../config/global/mon.md#SP_mon_host)
+
 **Example:**
 
 ```bash
@@ -1033,7 +1049,7 @@ ceph mon stat
 | Type | Uint · default `10000` · **Advanced** |
 | Table | [mon.md#SP_mon_globalid_prealloc](../../../config/global/mon.md#SP_mon_globalid_prealloc) |
 
-**What it does:** number of globalid values to preallocate
+**What it does:** number of globalid values to preallocate This setting caps how many new clients can authenticate with the cluster before the monitors have to perform a write to preallocate more. Large values burn through the 64-bit ID space more quickly.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -1069,7 +1085,7 @@ ceph mon stat
 | Type | Str · default `(empty)` · **Basic** · **STARTUP** (restart required) |
 | Table | [mon.md#SP_mon_host](../../../config/global/mon.md#SP_mon_host) |
 
-**What it does:** List of hosts or addresses to search for a monitor
+**What it does:** List of hosts or addresses to search for a monitor This is a list of IP addresses or hostnames that are separated by commas, whitespace, or semicolons. Hostnames are resolved via DNS. All A and AAAA records are included in the search list.
 
 **When to use:** Core Global behavior — review before changing in production.
 
@@ -1502,7 +1518,7 @@ ceph mon stat
 | Type | Uint · default `500` · **Advanced** |
 | Table | [mon.md#SP_mon_max_pg_per_osd](../../../config/global/mon.md#SP_mon_max_pg_per_osd) |
 
-**What it does:** Max number of PGs per OSD the cluster will allow
+**What it does:** Max number of PGs per OSD the cluster will allow If the number of PGs per OSD exceeds this, a health warning will be visible in `ceph status`. This is also used in automated PG management, as the threshold at which some pools' pg_num may be shrunk in order to enable increasing the pg_num of others.
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
@@ -1748,6 +1764,10 @@ ceph mon stat
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`mon_osd_reporter_subtree_level`](../../../config/global/mon.md#SP_mon_osd_reporter_subtree_level)
+
 **Example:**
 
 ```bash
@@ -1888,7 +1908,7 @@ ceph mon stat
 | Type | Int · default `32768` · **Advanced** |
 | Table | [mon.md#SP_mon_osd_snap_trim_queue_warn_on](../../../config/global/mon.md#SP_mon_osd_snap_trim_queue_warn_on) |
 
-**What it does:** Warn when snap trim queue reaches or exceeds this value
+**What it does:** Warn when snap trim queue reaches or exceeds this value Warn when snap trim queue length for at least one PG crosses this value, as this is indicator of snap trimmer not keeping up, wasting disk space
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -2461,6 +2481,10 @@ ceph mon stat
 **What it does:** Override mon_warn_on_slow_ping_ratio with specified threshold in milliseconds
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`mon_warn_on_slow_ping_ratio`](../../../config/global/mon.md#SP_mon_warn_on_slow_ping_ratio)
 
 **Example:**
 

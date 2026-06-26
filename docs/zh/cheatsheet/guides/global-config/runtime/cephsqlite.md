@@ -35,7 +35,7 @@ ceph -s
 | 类型 | Bool · default `True` · **Advanced** |
 | 表格 | [cephsqlite.md#SP_cephsqlite_blocklist_dead_locker](../../../config/global/cephsqlite.md#SP_cephsqlite_blocklist_dead_locker) |
 
-**作用：** Blocklist the last dead owner of the database lock
+**作用：** Blocklist the last dead owner of the database lock Require that the Ceph SQLite VFS blocklist the last dead owner of the database when cleanup was incomplete. DO NOT CHANGE THIS UNLESS YOU UNDERSTAND THE RAMIFICATIONS. CORRUPTION MAY RESULT.
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
 
@@ -74,6 +74,10 @@ ceph -s
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
+**相关选项：**
+
+- [`cephsqlite_lock_renewal_timeout`](../../../config/global/cephsqlite.md#SP_cephsqlite_lock_renewal_timeout)
+
 **示例：**
 
 ```bash
@@ -107,9 +111,13 @@ ceph -s
 | 类型 | Millisecs · default `30000` · **Advanced** |
 | 表格 | [cephsqlite.md#SP_cephsqlite_lock_renewal_timeout](../../../config/global/cephsqlite.md#SP_cephsqlite_lock_renewal_timeout) |
 
-**作用：** Number of milliseconds before a libcephsqlite transaction lock times out
+**作用：** Number of milliseconds before a libcephsqlite transaction lock times out The amount of time before a running libcephsqlite VFS connection has to renew a lock on the database before the lock is automatically lost. If the lock is lost, the VFS will abort the process to prevent database corruption.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
+
+**相关选项：**
+
+- [`cephsqlite_lock_renewal_interval`](../../../config/global/cephsqlite.md#SP_cephsqlite_lock_renewal_interval)
 
 **示例：**
 

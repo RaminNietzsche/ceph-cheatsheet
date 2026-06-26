@@ -102,7 +102,7 @@ ceph orch restart rgw
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_dns_name](../../../config/rgw/rgw.md#SP_rgw_dns_name) |
 
-**کارکرد:** The host names that RGW uses.
+**کارکرد:** The host names that RGW uses. A comma-separated list of FQDNs of the served domains. This is needed for virtual hosting of buckets to work properly, unless configured via the hostnames zonegroup configuration.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -140,7 +140,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_dns_s3website_name](../../../config/rgw/rgw.md#SP_rgw_dns_s3website_name) |
 
-**کارکرد:** The host name that RGW uses for static websites (S3)
+**کارکرد:** The host name that RGW uses for static websites (S3) This is needed for virtual hosting of buckets, unless configured via zonegroup configuration.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -178,7 +178,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `beast ssl_certificate=config://rgw/cert/$realm/$zone.crt ssl_private_key=config://rgw/cert/$realm/$zone.key` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_frontend_defaults](../../../config/rgw/rgw.md#SP_rgw_frontend_defaults) |
 
-**کارکرد:** RGW frontends default configuration
+**کارکرد:** RGW frontends default configuration A comma delimited list of default frontends configuration.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -216,7 +216,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `beast port=7480` · **Basic** |
 | جدول | [rgw.md#SP_rgw_frontends](../../../config/rgw/rgw.md#SP_rgw_frontends) |
 
-**کارکرد:** RGW frontends configuration
+**کارکرد:** RGW frontends configuration A comma delimited list of frontends configuration. Each configuration contains the type of the frontend followed by an optional space delimited set of key=value config parameters.
 
 **زمان استفاده:** رفتار اصلی RGW — پیش از تغییر در محیط عملیاتی بررسی کنید.
 

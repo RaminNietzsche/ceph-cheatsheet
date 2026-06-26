@@ -34,7 +34,7 @@ ceph -s
 | 类型 | Uint · default `64_K` · **Advanced** |
 | 表格 | [rbd.md#SP_rbd_discard_granularity_bytes](../../../config/rbd/rbd.md#SP_rbd_discard_granularity_bytes) |
 
-**作用：** minimum aligned size of discard operations &#91;&#93;(std::string *value, std::string *error_message) { uint64_t f = strict_si_cast<uint64_t>(*value, error_message); if (!error_message->empty()) { return -EINVAL; } else if (!std::has_single_bit(f)) { *error_message = "value must be a power of two"; return -EINVAL; } return 0; }
+**作用：** minimum aligned size of discard operations
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

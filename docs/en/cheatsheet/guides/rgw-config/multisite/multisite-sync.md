@@ -62,7 +62,7 @@ ceph pg stat
 | Type | Int · default `1000` · **Dev** |
 | Table | [rgw.md#SP_rgw_data_log_changes_size](../../../config/rgw/rgw.md#SP_rgw_data_log_changes_size) |
 
-**What it does:** Max size of pending changes in data log
+**What it does:** Max size of pending changes in data log RGW will trigger update to the data log if the number of pending entries reached this number.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -100,7 +100,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `128` · **Advanced** |
 | Table | [rgw.md#SP_rgw_data_log_num_shards](../../../config/rgw/rgw.md#SP_rgw_data_log_num_shards) |
 
-**What it does:** Number of data log shards
+**What it does:** Number of data log shards The number of shards the RGW data log entries will reside in. This affects the data sync parallelism as a shard can only be processed by a single RGW at a time.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -128,7 +128,7 @@ ceph config get client.rgw rgw_data_log_num_shards
 | Type | Int · default `30` · **Advanced** |
 | Table | [rgw.md#SP_rgw_data_log_window](../../../config/rgw/rgw.md#SP_rgw_data_log_window) |
 
-**What it does:** Data log time window
+**What it does:** Data log time window The data log keeps information about buckets that have objects that were modified within a specific timeframe. The sync process then knows which buckets are needed to be scanned for data sync.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -165,7 +165,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `0` · **Advanced** |
 | Table | [rgw.md#SP_rgw_data_notify_interval_msec](../../../config/rgw/rgw.md#SP_rgw_data_notify_interval_msec) |
 
-**What it does:** data changes notification interval to followers
+**What it does:** data changes notification interval to followers In multisite, radosgw will occasionally broadcast new entries in its data changes log to peer zones, so they can prioritize sync of some of the most recent changes. Can be disabled with 0.
 
 **When to use:**
 
@@ -209,6 +209,10 @@ ceph -s  # cluster health, slow ops
 
 - **Shorten** for fresher stats or faster enforcement.
 - **Lengthen** to reduce background sync or GC cost.
+
+**Related options:**
+
+- [`rgw_meta_sync_poll_interval`](../../../config/rgw/rgw.md#SP_rgw_meta_sync_poll_interval)
 
 **Example:**
 
@@ -284,7 +288,7 @@ radosgw-admin sync status
 | Type | Int · default `60` · **Advanced** · **STARTUP** (restart required) |
 | Table | [rgw.md#SP_rgw_lfuda_sync_frequency](../../../config/rgw/rgw.md#SP_rgw_lfuda_sync_frequency) |
 
-**What it does:** LFUDA variables' sync frequency in seconds
+**What it does:** LFUDA variables' sync frequency in seconds By default, the D4N cache uses the Least Frequently Used with Dynamic Aging (LFUDA) cache replacement policy. This class globally stores values that are used by the policy's algorithm. However, strong consistency for these values is not necessary and adds additional overhead to support. As a result, a thread periodically retrieves these global values and posts updates when certain conditions are satisfied. This Redis thread completes this logic in a loop that is called once every interval, with the interval being set by this option.
 
 **When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
 
@@ -323,7 +327,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `64` · **Advanced** |
 | Table | [rgw.md#SP_rgw_md_log_max_shards](../../../config/rgw/rgw.md#SP_rgw_md_log_max_shards) |
 
-**What it does:** RGW number of metadata log shards
+**What it does:** RGW number of metadata log shards The number of shards the RGW metadata log entries will reside in. This affects the metadata sync parallelism as a shard can only be processed by a single RGW at a time
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -351,7 +355,7 @@ ceph config get client.rgw rgw_md_log_max_shards
 | Type | Int · default `200` · **Advanced** |
 | Table | [rgw.md#SP_rgw_md_notify_interval_msec](../../../config/rgw/rgw.md#SP_rgw_md_notify_interval_msec) |
 
-**What it does:** Length of time to aggregate metadata changes
+**What it does:** Length of time to aggregate metadata changes Length of time (in milliseconds) in which the master zone aggregates all the metadata changes that occurred, before sending notifications to all the other zones.
 
 **When to use:**
 
@@ -395,6 +399,10 @@ ceph -s  # cluster health, slow ops
 
 - **Shorten** for fresher stats or faster enforcement.
 - **Lengthen** to reduce background sync or GC cost.
+
+**Related options:**
+
+- [`rgw_data_sync_poll_interval`](../../../config/rgw/rgw.md#SP_rgw_data_sync_poll_interval)
 
 **Example:**
 
@@ -630,7 +638,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `20_min` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sync_log_trim_interval](../../../config/rgw/rgw.md#SP_rgw_sync_log_trim_interval) |
 
-**What it does:** Sync log trim interval
+**What it does:** Sync log trim interval Time in seconds between attempts to trim sync logs.
 
 **When to use:**
 
@@ -671,7 +679,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `16` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sync_log_trim_max_buckets](../../../config/rgw/rgw.md#SP_rgw_sync_log_trim_max_buckets) |
 
-**What it does:** Maximum number of buckets to trim per interval
+**What it does:** Maximum number of buckets to trim per interval The maximum number of buckets to consider for bucket index log trimming each trim interval, regardless of the number of bucket index shards. Priority is given to buckets with the most sync activity over the last trim interval.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -699,7 +707,7 @@ ceph config get client.rgw rgw_sync_log_trim_max_buckets
 | Type | Int · default `4` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sync_log_trim_min_cold_buckets](../../../config/rgw/rgw.md#SP_rgw_sync_log_trim_min_cold_buckets) |
 
-**What it does:** Minimum number of cold buckets to trim per interval
+**What it does:** Minimum number of cold buckets to trim per interval Of the `rgw_sync_log_trim_max_buckets` selected for bucket index log trimming each trim interval, at least this many of them must be 'cold' buckets. These buckets are selected in order from the list of all bucket instances, to guarantee that all buckets will be visited eventually.
 
 **When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
 
@@ -765,7 +773,7 @@ ceph config get client.rgw rgw_sync_meta_inject_err_probability
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sync_obj_etag_verify](../../../config/rgw/rgw.md#SP_rgw_sync_obj_etag_verify) |
 
-**What it does:** Verify if the object copied from remote is identical to its source
+**What it does:** Verify if the object copied from remote is identical to its source If true, this option computes the MD5 checksum of the data which is written at the destination and checks if it is identical to the ETAG stored in the source. It ensures integrity of the objects fetched from a remote server over HTTP including multisite sync.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -793,7 +801,7 @@ ceph config get client.rgw rgw_sync_obj_etag_verify
 | Type | Size · default `4_K` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sync_trace_history_size](../../../config/rgw/rgw.md#SP_rgw_sync_trace_history_size) |
 
-**What it does:** Sync trace history size
+**What it does:** Sync trace history size Maximum number of complete sync trace entries to keep.
 
 **When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
 
@@ -831,7 +839,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `32` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sync_trace_per_node_log_size](../../../config/rgw/rgw.md#SP_rgw_sync_trace_per_node_log_size) |
 
-**What it does:** Sync trace per-node log size
+**What it does:** Sync trace per-node log size The number of log entries to keep per sync-trace node.
 
 **When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
 
@@ -869,7 +877,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `10` · **Advanced** |
 | Table | [rgw.md#SP_rgw_sync_trace_servicemap_update_interval](../../../config/rgw/rgw.md#SP_rgw_sync_trace_servicemap_update_interval) |
 
-**What it does:** Sync-trace service-map update interval
+**What it does:** Sync-trace service-map update interval Number of seconds between service-map updates of sync-trace events.
 
 **When to use:**
 
@@ -910,7 +918,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `3_min` · **Advanced** |
 | Table | [rgw.md#SP_rgw_user_quota_bucket_sync_interval](../../../config/rgw/rgw.md#SP_rgw_user_quota_bucket_sync_interval) |
 
-**What it does:** User quota bucket sync interval
+**What it does:** User quota bucket sync interval Time period for accumulating modified buckets before syncing these stats.
 
 **When to use:**
 
@@ -951,7 +959,7 @@ ceph -s  # cluster health, slow ops
 | Type | Bool · default `False` · **Advanced** |
 | Table | [rgw.md#SP_rgw_user_quota_sync_idle_users](../../../config/rgw/rgw.md#SP_rgw_user_quota_sync_idle_users) |
 
-**What it does:** Should sync idle users quota
+**What it does:** Should sync idle users quota Whether stats for idle users be fully synced.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -979,7 +987,7 @@ ceph config get client.rgw rgw_user_quota_sync_idle_users
 | Type | Int · default `1_day` · **Advanced** |
 | Table | [rgw.md#SP_rgw_user_quota_sync_interval](../../../config/rgw/rgw.md#SP_rgw_user_quota_sync_interval) |
 
-**What it does:** User quota sync interval
+**What it does:** User quota sync interval Time period for accumulating modified buckets before syncing entire user stats.
 
 **When to use:**
 
@@ -1020,7 +1028,7 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `1_day` · **Advanced** |
 | Table | [rgw.md#SP_rgw_user_quota_sync_wait_time](../../../config/rgw/rgw.md#SP_rgw_user_quota_sync_wait_time) |
 
-**What it does:** User quota full-sync wait time
+**What it does:** User quota full-sync wait time Minimum time between two full stats sync for non-idle users.
 
 **When to use:** Multisite replication and sync tuning — adjust when lag or sync load is problematic.
 

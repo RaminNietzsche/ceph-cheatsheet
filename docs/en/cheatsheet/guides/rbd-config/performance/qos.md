@@ -162,7 +162,7 @@ ceph -s
 | Type | Str · default `(empty)` · **Advanced** |
 | Table | [rbd.md#SP_rbd_qos_exclude_ops](../../../config/rbd/rbd.md#SP_rbd_qos_exclude_ops) |
 
-**What it does:** optionally exclude ops from QoS &#91;&#93;(std::string *value, std::string *error_message) { std::ostringstream ss; uint64_t exclude_ops = librbd::io::rbd_io_operations_from_string(*value, &ss); // Leave this in integer form to avoid breaking Cinder. Someday // we would like to present this in string form instead... *value = stringify(exclude_ops); if (ss.str().size()) { return -EINVAL; } return 0; }
+**What it does:** optionally exclude ops from QoS Optionally exclude ops from QoS. This setting accepts either an integer bitmask value or comma-delimited string of op names. This setting is always internally stored as an integer bitmask value. The mapping between op bitmask value and op name is as follows: +1 -> read, +2 -> write, +4 -> discard, +8 -> write_same, +16 -> compare_and_write
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -528,7 +528,7 @@ ceph -s
 | Type | Uint · default `50` · **Advanced** |
 | Table | [rbd.md#SP_rbd_qos_schedule_tick_min](../../../config/rbd/rbd.md#SP_rbd_qos_schedule_tick_min) |
 
-**What it does:** minimum schedule tick (in milliseconds) for QoS
+**What it does:** minimum schedule tick (in milliseconds) for QoS This determines the minimum time (in milliseconds) at which I/Os can become unblocked if the limit of a throttle is hit. In terms of the token bucket algorithm, this is the minimum interval at which tokens are added to the bucket.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

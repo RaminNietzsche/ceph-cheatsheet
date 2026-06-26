@@ -41,7 +41,7 @@ ceph pg stat
 | 类型 | Str · default `192.168.180.182@tcp:12345:4:1` · **Advanced** |
 | 表格 | [motr.md#SP_motr_admin_endpoint](../../../config/rgw/motr.md#SP_motr_admin_endpoint) |
 
-**作用：** experimental Option to set Admin Motr endpoint address
+**作用：** experimental Option to set Admin Motr endpoint address example value 192.168.180.182@tcp:12345:4:1
 
 **何时使用：** 实验性 Motr/POSIX RGW 后端 — 仅用于专用 PoC 部署。
 
@@ -69,7 +69,7 @@ ceph config get client.rgw motr_admin_endpoint
 | 类型 | Str · default `0x7200000000000001:0x0` · **Advanced** |
 | 表格 | [motr.md#SP_motr_admin_fid](../../../config/rgw/motr.md#SP_motr_admin_fid) |
 
-**作用：** Admin Tool Motr FID for admin-level access.
+**作用：** Admin Tool Motr FID for admin-level access. example value 0x7200000000000001:0x2c
 
 **何时使用：** 实验性 Motr/POSIX RGW 后端 — 仅用于专用 PoC 部署。
 
@@ -97,7 +97,7 @@ ceph config get client.rgw motr_admin_fid
 | 类型 | Str · default `192.168.180.182@tcp:12345:1:1` · **Advanced** |
 | 表格 | [motr.md#SP_motr_ha_endpoint](../../../config/rgw/motr.md#SP_motr_ha_endpoint) |
 
-**作用：** experimental Option to set Motr HA agent endpoint address
+**作用：** experimental Option to set Motr HA agent endpoint address example value 192.168.180.182@tcp:12345:1:1
 
 **何时使用：** 实验性 Motr/POSIX RGW 后端 — 仅用于专用 PoC 部署。
 
@@ -125,7 +125,7 @@ ceph config get client.rgw motr_ha_endpoint
 | 类型 | Str · default `192.168.180.182@tcp:12345:4:1` · **Advanced** |
 | 表格 | [motr.md#SP_motr_my_endpoint](../../../config/rgw/motr.md#SP_motr_my_endpoint) |
 
-**作用：** experimental Option to set my Motr endpoint address
+**作用：** experimental Option to set my Motr endpoint address example value 192.168.180.182@tcp:12345:4:1
 
 **何时使用：** 实验性 Motr/POSIX RGW 后端 — 仅用于专用 PoC 部署。
 
@@ -153,7 +153,7 @@ ceph config get client.rgw motr_my_endpoint
 | 类型 | Str · default `0x7200000000000001:0x0` · **Advanced** |
 | 表格 | [motr.md#SP_motr_my_fid](../../../config/rgw/motr.md#SP_motr_my_fid) |
 
-**作用：** experimental Option to set my Motr fid
+**作用：** experimental Option to set my Motr fid example value 0x7200000000000001:0x29
 
 **何时使用：** 实验性 Motr/POSIX RGW 后端 — 仅用于专用 PoC 部署。
 
@@ -181,7 +181,7 @@ ceph config get client.rgw motr_my_fid
 | 类型 | Str · default `0x7000000000000001:0x0` · **Advanced** |
 | 表格 | [motr.md#SP_motr_profile_fid](../../../config/rgw/motr.md#SP_motr_profile_fid) |
 
-**作用：** experimental Option to set Motr profile fid
+**作用：** experimental Option to set Motr profile fid example value 0x7000000000000001:0x4f
 
 **何时使用：** 实验性 Motr/POSIX RGW 后端 — 仅用于专用 PoC 部署。
 

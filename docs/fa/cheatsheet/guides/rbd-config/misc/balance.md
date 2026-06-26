@@ -38,6 +38,10 @@ ceph -s
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`rbd_read_from_replica_policy`](../../../config/rbd/rbd.md#SP_rbd_read_from_replica_policy)
+
 **مثال:**
 
 ```bash
@@ -73,6 +77,10 @@ ceph -s
 **کارکرد:** distribute snap read requests to random OSD
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`rbd_read_from_replica_policy`](../../../config/rbd/rbd.md#SP_rbd_read_from_replica_policy)
 
 **مثال:**
 

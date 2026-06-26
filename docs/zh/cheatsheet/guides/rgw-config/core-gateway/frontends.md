@@ -102,7 +102,7 @@ ceph orch restart rgw
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_dns_name](../../../config/rgw/rgw.md#SP_rgw_dns_name) |
 
-**作用：** The host names that RGW uses.
+**作用：** The host names that RGW uses. A comma-separated list of FQDNs of the served domains. This is needed for virtual hosting of buckets to work properly, unless configured via the hostnames zonegroup configuration.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -140,7 +140,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `(empty)` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_dns_s3website_name](../../../config/rgw/rgw.md#SP_rgw_dns_s3website_name) |
 
-**作用：** The host name that RGW uses for static websites (S3)
+**作用：** The host name that RGW uses for static websites (S3) This is needed for virtual hosting of buckets, unless configured via zonegroup configuration.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -178,7 +178,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `beast ssl_certificate=config://rgw/cert/$realm/$zone.crt ssl_private_key=config://rgw/cert/$realm/$zone.key` · **Advanced** |
 | 表格 | [rgw.md#SP_rgw_frontend_defaults](../../../config/rgw/rgw.md#SP_rgw_frontend_defaults) |
 
-**作用：** RGW frontends default configuration
+**作用：** RGW frontends default configuration A comma delimited list of default frontends configuration.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -216,7 +216,7 @@ ceph -s  # cluster health, slow ops
 | 类型 | Str · default `beast port=7480` · **Basic** |
 | 表格 | [rgw.md#SP_rgw_frontends](../../../config/rgw/rgw.md#SP_rgw_frontends) |
 
-**作用：** RGW frontends configuration
+**作用：** RGW frontends configuration A comma delimited list of frontends configuration. Each configuration contains the type of the frontend followed by an optional space delimited set of key=value config parameters.
 
 **何时使用：** 核心 RGW 行为 — 生产环境变更前请审阅。
 

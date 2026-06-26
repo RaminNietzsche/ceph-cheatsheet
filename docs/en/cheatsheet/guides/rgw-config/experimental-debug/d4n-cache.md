@@ -219,7 +219,7 @@ ceph config get client.rgw rgw_d3n_l1_eviction_policy
 | Type | Int · default `4` · **Advanced** |
 | Table | [rgw.md#SP_rgw_d3n_l1_fadvise](../../../config/rgw/rgw.md#SP_rgw_d3n_l1_fadvise) |
 
-**What it does:** posix_fadvise() flag for access pattern of cache files
+**What it does:** posix_fadvise() flag for access pattern of cache files for example to bypass the page-cache - POSIX_FADV_DONTNEED=4
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -289,6 +289,10 @@ ceph config get client.rgw rgw_d3n_l1_local_datacache_enabled
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`rgw_thread_pool_size`](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size)
+
 **Example:**
 
 ```bash
@@ -316,6 +320,10 @@ ceph config get client.rgw rgw_d3n_libaio_aio_num
 **What it does:** specifies the maximum number of worker threads that may be used by libaio
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_thread_pool_size`](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size)
 
 **Example:**
 
@@ -351,7 +359,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `127.0.0.1:6379` · **Advanced** · **STARTUP** (restart required) |
 | Table | [rgw.md#SP_rgw_d4n_address](../../../config/rgw/rgw.md#SP_rgw_d4n_address) |
 
-**What it does:** address for the D4N Redis connection
+**What it does:** address for the D4N Redis connection The current D4N implementation supports one Redis node which the D4N directory, policy, and overall filter communicate with. This default value is also the address that a Redis server with no additional configuration will use.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -470,7 +478,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `127.0.0.1:6379` · **Advanced** · **STARTUP** (restart required) |
 | Table | [rgw.md#SP_rgw_d4n_l1_datacache_address](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_datacache_address) |
 
-**What it does:** local Redis cache address
+**What it does:** local Redis cache address This is the address used to configure the Redis cache backend connection. The default value is the same address used by Redis without any additional configuration. The SSD cache does not use this option.
 
 **When to use:** Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure.
 
@@ -509,7 +517,7 @@ ceph -s  # cluster health, slow ops
 | Type | Size · default `1_G` · **Advanced** |
 | Table | [rgw.md#SP_rgw_d4n_l1_datacache_disk_reserve](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_datacache_disk_reserve) |
 
-**What it does:** amount of disk space to keep free for datacache
+**What it does:** amount of disk space to keep free for datacache The local SSD cache uses this option to determine how much disk space to reserve. The cache can grow until disk usage reaches (total disk space - reserved space).
 
 **When to use:** Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure.
 
@@ -547,7 +555,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `/tmp/rgw_d4n_datacache/` · **Advanced** |
 | Table | [rgw.md#SP_rgw_d4n_l1_datacache_persistent_path](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_datacache_persistent_path) |
 
-**What it does:** path used for storing locally cached object data
+**What it does:** path used for storing locally cached object data One cache backend option for D4N is the local SSD, which uses this path to write and read object data. This is the default cache backend chosen by the D4N filter. Only the SSD cache backend uses this path for object data storage since the RedisDriver uses a Redis server instead and there are no additional cache backend implementations available at the moment.
 
 **When to use:** Tune when metadata/quota/token caching affects correctness lag or RGW memory pressure.
 
@@ -581,7 +589,7 @@ iostat -x 5  # disk saturation
 | Type | Bool · default `True` · **Advanced** |
 | Table | [rgw.md#SP_rgw_d4n_l1_evict_cache_on_start](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_evict_cache_on_start) |
 
-**What it does:** clear the contents of the persistent datacache on start
+**What it does:** clear the contents of the persistent datacache on start The local SSD cache uses this option to clear the contents of the path supplied by the rgw_d4n_l1_datacache_persistent_path config option on start. If false, the path's contents will be retained.
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 
@@ -609,7 +617,7 @@ ceph config get client.rgw rgw_d4n_l1_evict_cache_on_start
 | Type | Int · default `4` · **Advanced** |
 | Table | [rgw.md#SP_rgw_d4n_l1_fadvise](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_fadvise) |
 
-**What it does:** posix_fadvise() flag for access pattern of cache files
+**What it does:** posix_fadvise() flag for access pattern of cache files For example, to bypass the page-cache - POSIX_FADV_DONTNEED=4
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -647,7 +655,7 @@ ceph -s  # cluster health, slow ops
 | Type | Uint · default `4096` · **Advanced** |
 | Table | [rgw.md#SP_rgw_d4n_l1_write_open_flags](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_write_open_flags) |
 
-**What it does:** cache files write 'man 2 open' 'file status flags' modifiers
+**What it does:** cache files write 'man 2 open' 'file status flags' modifiers For example, to configure synchronized I/O, fcntl-linux.h defines (converted from octal) O_SYNC = 1052672 O_DSYNC = 4096 O_DIRECT = 16384 O_SYNC \
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -685,9 +693,13 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `64` · **Advanced** |
 | Table | [rgw.md#SP_rgw_d4n_libaio_aio_num](../../../config/rgw/rgw.md#SP_rgw_d4n_libaio_aio_num) |
 
-**What it does:** specifies the maximum number of simultaneous I/O requests that libaio expects to enqueue
+**What it does:** specifies the maximum number of simultaneous I/O requests that libaio expects to enqueue This option is used by the SSD cache backend during initialization to set the maximum number of simultaneous I/O requests that libaio can expect to enqueue. It does not apply to the Redis cache backend.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_thread_pool_size`](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size)
 
 **Example:**
 
@@ -713,9 +725,13 @@ ceph config get client.rgw rgw_d4n_libaio_aio_num
 | Type | Int · default `20` · **Advanced** |
 | Table | [rgw.md#SP_rgw_d4n_libaio_aio_threads](../../../config/rgw/rgw.md#SP_rgw_d4n_libaio_aio_threads) |
 
-**What it does:** specifies the maximum number of worker threads that may be used by libaio
+**What it does:** specifies the maximum number of worker threads that may be used by libaio This option is used by the SSD cache backend during initialization to set the maximum number of worker threads libaio may use. It does not apply to the Redis cache backend.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`rgw_thread_pool_size`](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size)
 
 **Example:**
 
@@ -751,7 +767,7 @@ ceph -s  # cluster health, slow ops
 | Type | Str · default `127.0.0.1:8000` · **Advanced** · **STARTUP** (restart required) |
 | Table | [rgw.md#SP_rgw_d4n_local_rgw_address](../../../config/rgw/rgw.md#SP_rgw_d4n_local_rgw_address) |
 
-**What it does:** local RGW address
+**What it does:** local RGW address This is the address used to represent the local RGW in a distributed D4N system that involves remote RGWs.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

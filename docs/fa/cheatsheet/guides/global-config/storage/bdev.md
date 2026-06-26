@@ -261,6 +261,8 @@ ceph -s
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_async_discard](../../../config/global/bdev.md#SP_bdev_async_discard) |
 
+**کارکرد:** When set this works like an alias for 'bdev_async_discard_threads = 1" mode to avoid implicit async discard mode disablement after upgrade. Ignored if 'dev_asunc_discard_threads' is greater than zero. This parameter is DEPRECATED and provided for backward compatibility for Squid minor releases only. PLEASE SWITCH TO 'bdev_async_discard_threads' USE.
+
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
 **مثال:**
@@ -294,9 +296,13 @@ ceph -s
 | نوع | Uint · default `1000000` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_async_discard_max_pending](../../../config/global/bdev.md#SP_bdev_async_discard_max_pending) |
 
-**کارکرد:** maximum number of pending discards
+**کارکرد:** maximum number of pending discards The maximum number of pending async discards that can be queued and not claimed by an async discard thread. Discards will not be issued once the queue is full and blocks will be freed back to the allocator immediately instead. This is useful if you have a device with slow discard performance that can't keep up to a consistently high write workload. 0 means 'unlimited'.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`bdev_async_discard_threads`](../../../config/global/bdev.md#SP_bdev_async_discard_threads)
 
 **مثال:**
 
@@ -533,9 +539,13 @@ ceph config get global bdev_debug_inflight_ios
 | نوع | Size · default `10_G` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_discard_max_bytes](../../../config/global/bdev.md#SP_bdev_discard_max_bytes) |
 
-**کارکرد:** Discard queue size in bytes that triggers health warning
+**کارکرد:** Discard queue size in bytes that triggers health warning This parameter sets a threshold for the discard queue size (in bytes), triggering a health warning when the queue exceeds the specified limit. This is particularly useful for devices with slow discard operations, as a large backlog in the queue can block disk space that is marked as free but not yet available for allocation, impacting system performance and storage efficiency. `bdev_async_discard_max_pending` is measured in items, not bytes, so its value does not directly correspond to the discard queue size in bytes.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`bdev_async_discard_max_pending`](../../../config/global/bdev.md#SP_bdev_async_discard_max_pending)
 
 **مثال:**
 
@@ -602,7 +612,7 @@ ceph -s
 | نوع | Uint · default `3` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_flock_retry](../../../config/global/bdev.md#SP_bdev_flock_retry) |
 
-**کارکرد:** times to retry the flock
+**کارکرد:** times to retry the flock The number of times to retry on getting the block device lock. Programs such as systemd-udevd may compete with Ceph for this lock. 0 means 'unlimited'.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -833,6 +843,10 @@ ceph -s
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
+**گزینه‌های مرتبط:**
+
+- [`bdev_enable_discard`](../../../config/global/bdev.md#SP_bdev_enable_discard)
+
 **مثال:**
 
 ```bash
@@ -930,7 +944,7 @@ ceph -s
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [bdev.md#SP_bdev_read_preallocated_huge_buffers](../../../config/global/bdev.md#SP_bdev_read_preallocated_huge_buffers) |
 
-**کارکرد:** description of pools arrangement for huge page-based read buffers
+**کارکرد:** description of pools arrangement for huge page-based read buffers Arrangement of preallocated, huge pages-based pools for reading from a KernelDevice. Applied to minimize size of scatter-gather lists sent to NICs. Targets really big buffers (>= 2 or 4 MBs). Keep in mind the system must be configured accordingly (see /proc/sys/vm/nr_hugepages). Otherwise the OSD wil fail early. Beware that BlueStore, by default, stores large chunks across many smaller blobs. Increasing bluestore_max_blob_size changes that, and thus allows the data to be read back into small number of huge page-backed buffers.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

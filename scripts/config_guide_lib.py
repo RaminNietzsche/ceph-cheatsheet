@@ -29,8 +29,11 @@ from i18n import (  # noqa: E402
     write_localized,
 )
 
+# Columns after Name (generate-config.py TABLE_HEADER):
+# Desc, Level, Type, NDef, DDef, Min, Max, ValidValues, verbatim, SeeAlso,
+# Flags, Services, Validator, LongDesc, Tags
 ROW_RE = re.compile(
-    r'^\| <span id="SP_([^"]+)">([^<]+)</span> \|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|'
+    r'^\| <span id="SP_([^"]+)">([^<]+)</span> \|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|'
 )
 SEE_ALSO_RE = re.compile(r"\[\[([^\]]+)\]\(#SP_([^)]+)\)\]")
 INDEX_LINK_RE = re.compile(r"^ - \[([^\]]+)\]\(([^)]+)\)")
@@ -60,6 +63,7 @@ class Option:
     flags: str
     long_desc: str
     see_also_raw: str
+    tags: str
     source_file: str
 
     @property
@@ -129,9 +133,10 @@ def parse_table(path: Path) -> list[Option]:
                 min_val=m.group(8).strip(),
                 max_val=m.group(9).strip(),
                 valid_values=m.group(10).strip(),
+                see_also_raw=m.group(12).strip(),
                 flags=m.group(13).strip(),
-                long_desc=m.group(15).strip(),
-                see_also_raw=m.group(11).strip(),
+                long_desc=m.group(16).strip(),
+                tags=m.group(17).strip(),
                 source_file=path.name,
             )
         )

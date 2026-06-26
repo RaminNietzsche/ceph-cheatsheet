@@ -121,7 +121,7 @@ radosgw-admin bucket stats --bucket=testbucket
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_enable_quota_threads](../../../config/rgw/rgw.md#SP_rgw_enable_quota_threads) |
 
-**کارکرد:** Enables the quota maintenance thread.
+**کارکرد:** Enables the quota maintenance thread. The quota maintenance thread is responsible for quota related maintenance work. The thread itself can be disabled, but in order for quota to work correctly, at least one RGW in each zone needs to have this thread running. Having the thread enabled on multiple RGW processes within the same zone can spread some of the maintenance work between them.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -150,7 +150,7 @@ radosgw-admin quota get --quota-scope=user --uid=testuser
 | نوع | Int · default `-1` · **Basic** |
 | جدول | [rgw.md#SP_rgw_user_default_quota_max_objects](../../../config/rgw/rgw.md#SP_rgw_user_default_quota_max_objects) |
 
-**کارکرد:** User quota max objects
+**کارکرد:** User quota max objects The default quota configuration for total number of objects for a single user. A negative number means 'unlimited'.
 
 **زمان استفاده:** محدودیت پیش‌فرض tenant یا پلتفرم برای کاربران، account یا bucket جدید.
 
@@ -187,7 +187,7 @@ radosgw-admin bucket stats --bucket=testbucket
 | نوع | Int · default `-1` · **Basic** |
 | جدول | [rgw.md#SP_rgw_user_default_quota_max_size](../../../config/rgw/rgw.md#SP_rgw_user_default_quota_max_size) |
 
-**کارکرد:** User quota max size
+**کارکرد:** User quota max size The default quota configuration for total size of objects for a single user. A negative number means 'unlimited'.
 
 **زمان استفاده:** محدودیت پیش‌فرض tenant یا پلتفرم برای کاربران، account یا bucket جدید.
 

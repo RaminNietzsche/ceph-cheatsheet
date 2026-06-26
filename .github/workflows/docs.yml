@@ -24,7 +24,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  PUBLIC_SITE_URL: http://blog.ceph-s3.ir/
+  PUBLIC_SITE_URL: https://blog.ceph-s3.ir/
 
 jobs:
   build:
@@ -51,8 +51,11 @@ jobs:
         run: python3 scripts/sync-docs-index.py
 
       - name: Sync RGW docs from docs-extended
+        if: hashFiles('dev-code/rgw/docs-extended/pages/**') != ''
         run: python3 scripts/sync-rgw-from-docs-extended.py
-        continue-on-error: true
+
+      - name: Lint and test Python scripts
+        run: python3 -m pytest scripts/tests/ -q
 
       - name: Generate role & scale guides
         run: python3 scripts/generate-role-scale-guides.py

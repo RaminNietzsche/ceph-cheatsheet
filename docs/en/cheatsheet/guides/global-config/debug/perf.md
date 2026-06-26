@@ -33,7 +33,7 @@ ceph -s
 | Type | Bool · default `True` · **Advanced** |
 | Table | [perf.md#SP_perf](../../../config/global/perf.md#SP_perf) |
 
-**What it does:** Enable internal performance metrics
+**What it does:** Enable internal performance metrics If enabled, collect and expose internal health metrics
 
 **When to use:** Enabled by default; disable only when troubleshooting the related feature.
 

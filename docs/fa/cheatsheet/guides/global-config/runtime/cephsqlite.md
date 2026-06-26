@@ -35,7 +35,7 @@ ceph -s
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [cephsqlite.md#SP_cephsqlite_blocklist_dead_locker](../../../config/global/cephsqlite.md#SP_cephsqlite_blocklist_dead_locker) |
 
-**کارکرد:** Blocklist the last dead owner of the database lock
+**کارکرد:** Blocklist the last dead owner of the database lock Require that the Ceph SQLite VFS blocklist the last dead owner of the database when cleanup was incomplete. DO NOT CHANGE THIS UNLESS YOU UNDERSTAND THE RAMIFICATIONS. CORRUPTION MAY RESULT.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -74,6 +74,10 @@ ceph -s
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
 
+**گزینه‌های مرتبط:**
+
+- [`cephsqlite_lock_renewal_timeout`](../../../config/global/cephsqlite.md#SP_cephsqlite_lock_renewal_timeout)
+
 **مثال:**
 
 ```bash
@@ -107,9 +111,13 @@ ceph -s
 | نوع | Millisecs · default `30000` · **Advanced** |
 | جدول | [cephsqlite.md#SP_cephsqlite_lock_renewal_timeout](../../../config/global/cephsqlite.md#SP_cephsqlite_lock_renewal_timeout) |
 
-**کارکرد:** Number of milliseconds before a libcephsqlite transaction lock times out
+**کارکرد:** Number of milliseconds before a libcephsqlite transaction lock times out The amount of time before a running libcephsqlite VFS connection has to renew a lock on the database before the lock is automatically lost. If the lock is lost, the VFS will abort the process to prevent database corruption.
 
 **زمان استفاده:** زمان‌بندی کار پس‌زمینه را تنظیم کنید — تعادل بین تازگی و بار کلاستر.
+
+**گزینه‌های مرتبط:**
+
+- [`cephsqlite_lock_renewal_interval`](../../../config/global/cephsqlite.md#SP_cephsqlite_lock_renewal_interval)
 
 **مثال:**
 

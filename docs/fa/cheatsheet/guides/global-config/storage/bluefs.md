@@ -117,7 +117,7 @@ ceph config get global bluefs_allocator
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [bluefs.md#SP_bluefs_buffered_io](../../../config/global/bluefs.md#SP_bluefs_buffered_io) |
 
-**کارکرد:** Enabled buffered IO for BlueFS reads.
+**کارکرد:** Enabled buffered IO for BlueFS reads. When this option is enabled, BlueFS will in some cases perform buffered reads. This allows the kernel page cache to act as a secondary cache for things like RocksDB block reads. For example, if the RocksDB block cache isn't large enough to hold all blocks during omap iteration, it may be possible to read them from page cache instead of from the device. This can dramatically improve performance when the osd_memory_target is too small to hold all entries in block cache but it does come with downsides. It has been reported to occasionally cause excessive kernel swapping (and associated stalls) under certain workloads. Currently the best and most consistent performing combination appears to be enabling bluefs_buffered_io and disabling system level swap. It is possible that this recommendation may change in the future however.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -152,7 +152,7 @@ ceph -s
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [bluefs.md#SP_bluefs_check_for_zeros](../../../config/global/bluefs.md#SP_bluefs_check_for_zeros) |
 
-**کارکرد:** Check data read for suspicious pages
+**کارکرد:** Check data read for suspicious pages Looks into data read to check if there is a 4K block entirely filled with zeros. If this happens, we re-read data. If there is difference, we print error to log.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -180,9 +180,13 @@ ceph config get global bluefs_check_for_zeros
 | نوع | Bool · default `False` · **Dev** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [bluefs.md#SP_bluefs_check_volume_selector_often](../../../config/global/bluefs.md#SP_bluefs_check_volume_selector_often) |
 
-**کارکرد:** Periodically check validity of volume selector
+**کارکرد:** Periodically check validity of volume selector Periodically checks if current volume selector does not diverge from the valid state. Reference is constructed from bluefs inode table. Asserts on inconsistency. This is debug feature.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
+
+**گزینه‌های مرتبط:**
+
+- [`bluefs_check_volume_selector_on_mount`](../../../config/global/bluefs.md#SP_bluefs_check_volume_selector_on_mount)
 
 **مثال:**
 
@@ -208,7 +212,7 @@ ceph config get global bluefs_check_volume_selector_often
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [bluefs.md#SP_bluefs_check_volume_selector_on_mount](../../../config/global/bluefs.md#SP_bluefs_check_volume_selector_on_mount) |
 
-**کارکرد:** Check validity of volume selector on mount/umount
+**کارکرد:** Check validity of volume selector on mount/umount Checks if volume selector did not diverge from the state it should be in. Reference is constructed from bluefs inode table. Asserts on inconsistency.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -269,7 +273,7 @@ ceph -s
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [bluefs.md#SP_bluefs_debug_force_slow](../../../config/global/bluefs.md#SP_bluefs_debug_force_slow) |
 
-**کارکرد:** For testing. Force BlueFS to allocate files on slow device.
+**کارکرد:** For testing. Force BlueFS to allocate files on slow device. When enabled, the RocksDBBlueFSVolumeSelector will ignore normal placement policy and redirect allocations to slow device.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -297,7 +301,7 @@ ceph config get global bluefs_debug_force_slow
 | نوع | Float · default `600` · **Advanced** |
 | جدول | [bluefs.md#SP_bluefs_failed_shared_alloc_cooldown](../../../config/global/bluefs.md#SP_bluefs_failed_shared_alloc_cooldown) |
 
-**کارکرد:** duration(in seconds) untill the next attempt to use 'bluefs_shared_alloc_size' after facing ENOSPC failure.
+**کارکرد:** duration(in seconds) untill the next attempt to use 'bluefs_shared_alloc_size' after facing ENOSPC failure. Cooldown period(in seconds) when BlueFS uses shared/slow device allocation size instead of "bluefs_shared_alloc_size' one after facing recoverable (via fallback to smaller chunk size) ENOSPC failure. Intended primarily to avoid repetitive unsuccessful allocations which might be expensive.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -565,7 +569,7 @@ ceph -s
 | نوع | Bool · default `False` · **Dev** |
 | جدول | [bluefs.md#SP_bluefs_replay_recovery](../../../config/global/bluefs.md#SP_bluefs_replay_recovery) |
 
-**کارکرد:** Attempt to read bluefs log so large that it became unreadable.
+**کارکرد:** Attempt to read bluefs log so large that it became unreadable. If BlueFS log grows to extreme sizes (200GB+) it is likely that it becames unreadable. This options enables heuristics that scans devices for missing data. DO NOT ENABLE BY DEFAULT
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 
@@ -660,7 +664,7 @@ ceph -s
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [bluefs.md#SP_bluefs_spillover_cleaner](../../../config/global/bluefs.md#SP_bluefs_spillover_cleaner) |
 
-**کارکرد:** Enable Background BlueFS Spillover cleaner thread
+**کارکرد:** Enable Background BlueFS Spillover cleaner thread Enables a background cleaner thread in BlueFS that periodically scans files that spilled over to the slow device and attempts to migrate them back to the BlueFS DB device
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -695,7 +699,7 @@ ceph -s
 | نوع | Float · default `0.1` · **Advanced** |
 | جدول | [bluefs.md#SP_bluefs_spillover_cleaner_work_ratio](../../../config/global/bluefs.md#SP_bluefs_spillover_cleaner_work_ratio) |
 
-**کارکرد:** Fraction of time the BlueFS spillover cleaner spends performing work.
+**کارکرد:** Fraction of time the BlueFS spillover cleaner spends performing work. Controls the rate of spillover migration work. After each migration step, the cleaner targets to sleep proportionally to the time spent doing work This reduces interference with foreground IO. For example, if a migration step took 10 ms and the ratio is 0.1, the cleaner sleeps for ~90 ms before the next step. This results in approximately 10% work time and 90% sleep time.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -730,9 +734,13 @@ ceph -s
 | نوع | Uint · default `1200` · **Advanced** |
 | جدول | [bluefs.md#SP_bluefs_spillover_idle_time](../../../config/global/bluefs.md#SP_bluefs_spillover_idle_time) |
 
-**کارکرد:** Idle time in seconds before the BlueFS spillover cleaner wakes up for the next scan cycle.
+**کارکرد:** Idle time in seconds before the BlueFS spillover cleaner wakes up for the next scan cycle. When no spillover files remain to migrate, the cleaner enters an idle sleep state for this duration. Once the idle period expires, it wakes up, scans for spillover files, and resumes migration if needed.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`bluefs_spillover_cleaner`](../../../config/global/bluefs.md#SP_bluefs_spillover_cleaner)
 
 **مثال:**
 
@@ -798,7 +806,7 @@ ceph -s
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [bluefs.md#SP_bluefs_wal_envelope_mode](../../../config/global/bluefs.md#SP_bluefs_wal_envelope_mode) |
 
-**کارکرد:** Enables a faster backend in BlueFS for WAL writes.
+**کارکرد:** Enables a faster backend in BlueFS for WAL writes. In envelope mode BlueFS files do not need to update metadata. When applied to RocksDB WAL files, it reduces by ~50% the amount of fdatasync syscalls. Downgrading from an envelope mode to legacy mode requires `ceph-bluestore-tool --command downgrade-wal-to-v1`.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 

@@ -71,7 +71,7 @@ ceph -s
 | Type | Int · default `120` · **Advanced** |
 | Table | [osd.md#SP_osd_blocked_scrub_grace_period](../../../config/osd/osd.md#SP_osd_blocked_scrub_grace_period) |
 
-**What it does:** Time (seconds) before issuing a cluster-log warning
+**What it does:** Time (seconds) before issuing a cluster-log warning Waiting too long for an object in the scrubbed chunk to be unlocked.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -145,7 +145,7 @@ ceph pg stat
 | Type | Float · default `0.2` · **Advanced** |
 | Table | [osd.md#SP_osd_deep_scrub_interval_cv](../../../config/osd/osd.md#SP_osd_deep_scrub_interval_cv) |
 
-**What it does:** Determines the amount of variation in the deep scrub interval
+**What it does:** Determines the amount of variation in the deep scrub interval Deep scrub intervals are varied by a random amount to prevent stampedes. This parameter determines the amount of variation. Technically ``osd_deep_scrub_interval_cv`` is the coefficient of variation for the deep scrub interval.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -225,6 +225,10 @@ ceph pg stat
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`osd_deep_scrub_large_omap_object_value_sum_threshold`](../../../config/osd/osd.md#SP_osd_deep_scrub_large_omap_object_value_sum_threshold)
+
 **Example:**
 
 ```bash
@@ -261,6 +265,10 @@ ceph pg stat
 **What it does:** Warn when we encounter an object with more omap key bytes than this
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_deep_scrub_large_omap_object_key_threshold`](../../../config/osd/osd.md#SP_osd_deep_scrub_large_omap_object_key_threshold)
 
 **Example:**
 
@@ -486,6 +494,10 @@ ceph pg stat
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`osd_scrub_auto_repair`](../../../config/osd/osd.md#SP_osd_scrub_auto_repair)
+
 **Example:**
 
 ```bash
@@ -519,7 +531,7 @@ ceph pg stat
 | Type | Float · default `0.66` · **Dev** |
 | Table | [osd.md#SP_osd_scrub_backoff_ratio](../../../config/osd/osd.md#SP_osd_scrub_backoff_ratio) |
 
-**What it does:** Backoff ratio for scheduling scrubs
+**What it does:** Backoff ratio for scheduling scrubs Probability that a particular OSD tick instance will skip scrub scheduling. 66% means that approximately one of three ticks will cause scrub scheduling.
 
 **When to use:** Development, testing, or upstream debugging only — not for production tuning.
 
@@ -547,9 +559,13 @@ ceph config get osd osd_scrub_backoff_ratio
 | Type | Int · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_scrub_begin_hour](../../../config/osd/osd.md#SP_osd_scrub_begin_hour) |
 
-**What it does:** Restrict scrubbing to this hour of the day or later
+**What it does:** Restrict scrubbing to this hour of the day or later Use osd_scrub_begin_hour=0 and osd_scrub_end_hour=0 for the entire day.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_scrub_end_hour`](../../../config/osd/osd.md#SP_osd_scrub_end_hour)
 
 **Example:**
 
@@ -586,9 +602,13 @@ ceph pg stat
 | Type | Int · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_scrub_begin_week_day](../../../config/osd/osd.md#SP_osd_scrub_begin_week_day) |
 
-**What it does:** Restrict scrubbing to this day of the week or later
+**What it does:** Restrict scrubbing to this day of the week or later 0 = Sunday, 1 = Monday, etc. Use osd_scrub_begin_week_day=0 osd_scrub_end_week_day=0 for the entire week.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_scrub_end_week_day`](../../../config/osd/osd.md#SP_osd_scrub_end_week_day)
 
 **Example:**
 
@@ -629,6 +649,10 @@ ceph pg stat
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`osd_scrub_chunk_min`](../../../config/osd/osd.md#SP_osd_scrub_chunk_min)
+
 **Example:**
 
 ```bash
@@ -666,6 +690,10 @@ ceph pg stat
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
+**Related options:**
+
+- [`osd_scrub_chunk_max`](../../../config/osd/osd.md#SP_osd_scrub_chunk_max)
+
 **Example:**
 
 ```bash
@@ -699,7 +727,7 @@ ceph pg stat
 | Type | Bool · default `False` · **Advanced** |
 | Table | [osd.md#SP_osd_scrub_disable_reservation_queuing](../../../config/osd/osd.md#SP_osd_scrub_disable_reservation_queuing) |
 
-**What it does:** Disable queuing of scrub reservations
+**What it does:** Disable queuing of scrub reservations When set - scrub replica reservations are responded to immediately, with either success or failure (the pre-Squid version behaviour). This configuration option is introduced to support mixed-version clusters and debugging, and will be removed in the next release.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 
@@ -772,9 +800,13 @@ ceph pg stat
 | Type | Int · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_scrub_end_hour](../../../config/osd/osd.md#SP_osd_scrub_end_hour) |
 
-**What it does:** Restrict scrubbing to hours of the day earlier than this
+**What it does:** Restrict scrubbing to hours of the day earlier than this Use osd_scrub_begin_hour=0 and osd_scrub_end_hour=0 for the entire day.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_scrub_begin_hour`](../../../config/osd/osd.md#SP_osd_scrub_begin_hour)
 
 **Example:**
 
@@ -811,9 +843,13 @@ ceph pg stat
 | Type | Int · default `0` · **Advanced** |
 | Table | [osd.md#SP_osd_scrub_end_week_day](../../../config/osd/osd.md#SP_osd_scrub_end_week_day) |
 
-**What it does:** Restrict scrubbing to days of the week earlier than this
+**What it does:** Restrict scrubbing to days of the week earlier than this 0 = Sunday, 1 = Monday, etc. Use osd_scrub_begin_week_day=0 osd_scrub_end_week_day=0 for the entire week.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_scrub_begin_week_day`](../../../config/osd/osd.md#SP_osd_scrub_begin_week_day)
 
 **Example:**
 
@@ -887,9 +923,13 @@ ceph pg stat
 | Type | Float · default `0.5` · **Advanced** |
 | Table | [osd.md#SP_osd_scrub_interval_randomize_ratio](../../../config/osd/osd.md#SP_osd_scrub_interval_randomize_ratio) |
 
-**What it does:** Ratio of scrub interval to randomly vary
+**What it does:** Ratio of scrub interval to randomly vary This prevents a scrub 'stampede' by randomly varying the scrub intervals so that they are uniformly distributed over time.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
+
+**Related options:**
+
+- [`osd_scrub_min_interval`](../../../config/osd/osd.md#SP_osd_scrub_min_interval)
 
 **Example:**
 
@@ -1000,6 +1040,10 @@ ceph pg stat
 
 **When to use:** Align with maintenance policy. Monitor `mon_warn_pg_not_scrubbed_ratio` warnings.
 
+**Related options:**
+
+- [`osd_scrub_min_interval`](../../../config/osd/osd.md#SP_osd_scrub_min_interval)
+
 **Example:**
 
 ```bash
@@ -1076,6 +1120,10 @@ ceph pg stat
 
 **When to use:** Adjust when hitting resource limits or protecting cluster capacity.
 
+**Related options:**
+
+- [`osd_scrub_max_interval`](../../../config/osd/osd.md#SP_osd_scrub_max_interval)
+
 **Example:**
 
 ```bash
@@ -1146,9 +1194,13 @@ ceph pg stat
 | Type | Int · default `60` · **Advanced** |
 | Table | [osd.md#SP_osd_scrub_retry_after_noscrub](../../../config/osd/osd.md#SP_osd_scrub_retry_after_noscrub) |
 
-**What it does:** Period (in seconds) before retrying to scrub a PG at a specific level after detecting a no-scrub or no-deep-scrub flag
+**What it does:** Period (in seconds) before retrying to scrub a PG at a specific level after detecting a no-scrub or no-deep-scrub flag Minimum delay after a failed attempt to scrub a PG at a level (shallow or deep) that is disabled by cluster or pool no-scrub or no-deep-scrub flags.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_scrub_retry_delay`](../../../config/osd/osd.md#SP_osd_scrub_retry_delay)
 
 **Example:**
 
@@ -1185,7 +1237,7 @@ ceph pg stat
 | Type | Int · default `30` · **Advanced** |
 | Table | [osd.md#SP_osd_scrub_retry_delay](../../../config/osd/osd.md#SP_osd_scrub_retry_delay) |
 
-**What it does:** Period (in seconds) before retrying a PG that has failed a prior scrub.
+**What it does:** Period (in seconds) before retrying a PG that has failed a prior scrub. Minimum delay after a failed attempt to scrub a PG. The delay is either applied to one of the scheduled scrubs for the PG (the next shallow scrub or the next deep scrub), or to both. This is a default value, used when the cause of the delay does not have an associated configuration option. See the 'see also' for the configuration options for some delay reasons that have their own configuration.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -1224,9 +1276,13 @@ ceph pg stat
 | Type | Int · default `10` · **Advanced** |
 | Table | [osd.md#SP_osd_scrub_retry_new_interval](../../../config/osd/osd.md#SP_osd_scrub_retry_new_interval) |
 
-**What it does:** Period (in seconds) before retrying a scrub aborted on a new interval
+**What it does:** Period (in seconds) before retrying a scrub aborted on a new interval Minimum delay before retrying, after a scrub was aborted as the PG interval changed.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
+
+**Related options:**
+
+- [`osd_scrub_retry_delay`](../../../config/osd/osd.md#SP_osd_scrub_retry_delay)
 
 **Example:**
 
@@ -1263,9 +1319,13 @@ ceph pg stat
 | Type | Int · default `60` · **Advanced** |
 | Table | [osd.md#SP_osd_scrub_retry_pg_state](../../../config/osd/osd.md#SP_osd_scrub_retry_pg_state) |
 
-**What it does:** Period (in seconds) before retrying to scrub a previously inactive/not-clean PG
+**What it does:** Period (in seconds) before retrying to scrub a previously inactive/not-clean PG Minimum delay after a failed attempt to scrub a PG that is not active and clean.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_scrub_retry_delay`](../../../config/osd/osd.md#SP_osd_scrub_retry_delay)
 
 **Example:**
 
@@ -1302,9 +1362,13 @@ ceph pg stat
 | Type | Int · default `10` · **Advanced** |
 | Table | [osd.md#SP_osd_scrub_retry_trimming](../../../config/osd/osd.md#SP_osd_scrub_retry_trimming) |
 
-**What it does:** Period (in seconds) before retrying to scrub a previously snap-trimming PG
+**What it does:** Period (in seconds) before retrying to scrub a previously snap-trimming PG Minimum delay after a failed attempt to scrub a PG that was performing snap trimming and not available for scrubbing.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
+
+**Related options:**
+
+- [`osd_scrub_retry_delay`](../../../config/osd/osd.md#SP_osd_scrub_retry_delay)
 
 **Example:**
 
@@ -1452,7 +1516,7 @@ ceph pg stat
 | Type | Int · default `120` · **Advanced** |
 | Table | [osd.md#SP_osd_stats_update_period_not_scrubbing](../../../config/osd/osd.md#SP_osd_stats_update_period_not_scrubbing) |
 
-**What it does:** Stats update period (seconds) when not scrubbing
+**What it does:** Stats update period (seconds) when not scrubbing A PG we are a primary of, publishes its stats (inc. scrub/block duration) every this many seconds.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 
@@ -1489,7 +1553,7 @@ ceph pg stat
 | Type | Int · default `15` · **Advanced** |
 | Table | [osd.md#SP_osd_stats_update_period_scrubbing](../../../config/osd/osd.md#SP_osd_stats_update_period_scrubbing) |
 
-**What it does:** Stats update period (seconds) when scrubbing
+**What it does:** Stats update period (seconds) when scrubbing A PG actively scrubbing (or blocked while scrubbing) publishes its stats (inc. scrub/block duration) every this many seconds.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 

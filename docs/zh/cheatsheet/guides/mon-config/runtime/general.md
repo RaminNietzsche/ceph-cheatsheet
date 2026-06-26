@@ -363,6 +363,10 @@ ceph mon stat
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`mon_warn_on_legacy_crush_tunables`](../../../config/mon/mon.md#SP_mon_warn_on_legacy_crush_tunables)
+
 **示例：**
 
 ```bash
@@ -579,6 +583,10 @@ ceph mon stat
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`mon_elector_ping_timeout`](../../../config/mon/mon.md#SP_mon_elector_ping_timeout)
+
 **示例：**
 
 ```bash
@@ -718,7 +726,7 @@ ceph mon stat
 | 类型 | Float · default `5` · **Advanced** |
 | 表格 | [mon.md#SP_mon_lease](../../../config/mon/mon.md#SP_mon_lease) |
 
-**作用：** lease interval between quorum monitors (seconds)
+**作用：** lease interval between quorum monitors (seconds) This setting controls how sensitive your mon quorum is to intermittent network issues or other failures.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -996,7 +1004,7 @@ ceph mon stat
 | 类型 | Uint · default `1000` · **Advanced** |
 | 表格 | [mon.md#SP_mon_nvmeofgw_set_group_id_retry](../../../config/mon/mon.md#SP_mon_nvmeofgw_set_group_id_retry) |
 
-**作用：** Retry wait time in microsecond for set group id between the monitor client and gateway
+**作用：** Retry wait time in microsecond for set group id between the monitor client and gateway The monitor server determines the gateway's group ID. If the monitor client receives a monitor group ID assignment before the gateway is fully up during initialization, a retry is required.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -1497,6 +1505,10 @@ ceph mon stat
 **作用：** issue OLD_CRUSH_TUNABLES health warning if CRUSH tunables are older than mon_crush_min_required_version
 
 **何时使用：** 默认启用；仅在排查相关功能问题时禁用。
+
+**相关选项：**
+
+- [`mon_crush_min_required_version`](../../../config/mon/mon.md#SP_mon_crush_min_required_version)
 
 **示例：**
 

@@ -45,9 +45,13 @@ ceph pg stat
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_swift_account_in_url](../../../config/rgw/rgw.md#SP_rgw_swift_account_in_url) |
 
-**کارکرد:** Swift account encoded in URL
+**کارکرد:** Swift account encoded in URL Whether the swift account is encoded in the uri path (AUTH_<account>).
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_swift_tenant_name`](../../../config/rgw/rgw.md#SP_rgw_swift_tenant_name)
 
 **مثال:**
 
@@ -83,9 +87,13 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `auth` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_swift_auth_entry](../../../config/rgw/rgw.md#SP_rgw_swift_auth_entry) |
 
-**کارکرد:** Swift auth URL prefix
+**کارکرد:** Swift auth URL prefix URL path prefix for internal swift auth requests.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_swift_url`](../../../config/rgw/rgw.md#SP_rgw_swift_url)
 
 **مثال:**
 
@@ -111,7 +119,7 @@ ceph config get client.rgw rgw_swift_auth_entry
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_swift_auth_url](../../../config/rgw/rgw.md#SP_rgw_swift_auth_url) |
 
-**کارکرد:** Swift auth URL
+**کارکرد:** Swift auth URL Default url to which RGW connects and verifies tokens for v1 auth (if not using internal swift auth).
 
 **زمان استفاده:** هنگام یکپارچه‌سازی با سرویس خارجی تنظیم کنید؛ اگر قابلیت استفاده نمی‌شود خالی بگذارید.
 
@@ -149,7 +157,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_swift_custom_header](../../../config/rgw/rgw.md#SP_rgw_swift_custom_header) |
 
-**کارکرد:** Enable swift custom header
+**کارکرد:** Enable swift custom header If not empty, specifies a name of HTTP header that can include custom data. When uploading an object, if this header is passed RGW will store this header info and it will be available when listing the bucket.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -187,7 +195,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_swift_enforce_content_length](../../../config/rgw/rgw.md#SP_rgw_swift_enforce_content_length) |
 
-**کارکرد:** Send content length when listing containers (Swift)
+**کارکرد:** Send content length when listing containers (Swift) Whether content length header is needed when listing containers. When this is set to false, RGW will send extra info for each entry in the response.
 
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
 
@@ -243,9 +251,13 @@ ceph config get client.rgw rgw_swift_need_stats
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_swift_tenant_name](../../../config/rgw/rgw.md#SP_rgw_swift_tenant_name) |
 
-**کارکرد:** Swift tenant name
+**کارکرد:** Swift tenant name Tenant name that is used when constructing the swift path.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_swift_account_in_url`](../../../config/rgw/rgw.md#SP_rgw_swift_account_in_url)
 
 **مثال:**
 
@@ -319,9 +331,13 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `(empty)` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_swift_url](../../../config/rgw/rgw.md#SP_rgw_swift_url) |
 
-**کارکرد:** Swift-auth storage URL
+**کارکرد:** Swift-auth storage URL Used in conjunction with rgw internal swift authentication. This affects the X-Storage-Url response header value.
 
 **زمان استفاده:** هنگام یکپارچه‌سازی با سرویس خارجی تنظیم کنید؛ اگر قابلیت استفاده نمی‌شود خالی بگذارید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_swift_auth_entry`](../../../config/rgw/rgw.md#SP_rgw_swift_auth_entry)
 
 **مثال:**
 
@@ -357,7 +373,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `swift` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_swift_url_prefix](../../../config/rgw/rgw.md#SP_rgw_swift_url_prefix) |
 
-**کارکرد:** Swift URL prefix
+**کارکرد:** Swift URL prefix The URL path prefix for swift requests.
 
 **زمان استفاده:** هنگام یکپارچه‌سازی با سرویس خارجی تنظیم کنید؛ اگر قابلیت استفاده نمی‌شود خالی بگذارید.
 

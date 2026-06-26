@@ -33,7 +33,7 @@ ceph -s
 | Type | Bool · default `False` · **Advanced** · **STARTUP** (restart required) |
 | Table | [no.md#SP_no_config_file](../../../config/global/no.md#SP_no_config_file) |
 
-**What it does:** Signal that we don't require a config file to be present
+**What it does:** Signal that we don't require a config file to be present When specified, we won't look for a configuration file, and will instead expect that whatever options or values are required for us to work will be passed as arguments.
 
 **When to use:** Disabled by default; enable when you need the feature and accept its trade-offs.
 

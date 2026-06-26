@@ -225,7 +225,7 @@ ceph mds stat
 | Type | Uint · default `16` · **Advanced** |
 | Table | [mds.md#SP_mds_log_minor_segments_per_major_segment](../../../config/mds/mds.md#SP_mds_log_minor_segments_per_major_segment) |
 
-**What it does:** Number of minor segments per major segment.
+**What it does:** Number of minor segments per major segment. The number of minor mds log segments since last major segment after which a major segment is started/logged.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -379,7 +379,7 @@ ceph config get mds mds_log_skip_unbounded_events
 | Type | Float · default `1.0` · **Advanced** |
 | Table | [mds.md#SP_mds_log_trim_decay_rate](../../../config/mds/mds.md#SP_mds_log_trim_decay_rate) |
 
-**What it does:** MDS log trim decay rate
+**What it does:** MDS log trim decay rate The decay rate for trimming the MDS log. Increasing this value leads to the MDS spending less time in trimming the log.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -418,7 +418,7 @@ ceph mds stat
 | Type | Size · default `128` · **Advanced** |
 | Table | [mds.md#SP_mds_log_trim_threshold](../../../config/mds/mds.md#SP_mds_log_trim_threshold) |
 
-**What it does:** MDS log trim threshold
+**What it does:** MDS log trim threshold The threshold of the number of log segment that can be trimmed.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 
@@ -457,7 +457,7 @@ ceph mds stat
 | Type | Millisecs · default `1000` · **Advanced** |
 | Table | [mds.md#SP_mds_log_trim_upkeep_interval](../../../config/mds/mds.md#SP_mds_log_trim_upkeep_interval) |
 
-**What it does:** MDS log trimming interval
+**What it does:** MDS log trimming interval Interval in milliseconds to trim MDS logs.
 
 **When to use:** Tune background work timing — balance freshness vs cluster load.
 

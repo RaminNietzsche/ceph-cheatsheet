@@ -73,6 +73,10 @@ ceph -s
 
 **何时使用：** 触及资源限制或保护集群容量时调整。
 
+**相关选项：**
+
+- [`admin_socket`](../../../config/global/admin.md#SP_admin_socket)
+
 **示例：**
 
 ```bash

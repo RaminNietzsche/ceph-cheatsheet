@@ -166,7 +166,7 @@ ceph -s
 | 类型 | Int · default `5` · **Advanced** |
 | 表格 | [rbd.md#SP_rbd_mirror_image_perf_stats_prio](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_image_perf_stats_prio) |
 
-**作用：** Priority level for mirror daemon per-image replication perf counters
+**作用：** Priority level for mirror daemon per-image replication perf counters The daemon will send per-image perf counter data to the manager daemon if the priority is not lower than mgr_stats_threshold.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
@@ -574,6 +574,10 @@ ceph -s
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`rbd_mirror_memory_target`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_target)
+
 **示例：**
 
 ```bash
@@ -601,6 +605,10 @@ ceph config get client rbd_mirror_memory_autotune
 **作用：** When tcmalloc and cache autotuning is enabled, estimate the minimum amount of memory in bytes the rbd-mirror daemon will need.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
 
 **示例：**
 
@@ -630,6 +638,10 @@ ceph config get client rbd_mirror_memory_base
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
+
 **示例：**
 
 ```bash
@@ -657,6 +669,10 @@ ceph config get client rbd_mirror_memory_cache_autotune_interval
 **作用：** When tcmalloc and cache autotuning is enabled, set the minimum amount of memory used for cache.
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
+
+**相关选项：**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
 
 **示例：**
 
@@ -686,6 +702,10 @@ ceph config get client rbd_mirror_memory_cache_min
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
+
 **示例：**
 
 ```bash
@@ -714,6 +734,10 @@ ceph config get client rbd_mirror_memory_cache_resize_interval
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
+**相关选项：**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
+
 **示例：**
 
 ```bash
@@ -741,6 +765,10 @@ ceph config get client rbd_mirror_memory_expected_fragmentation
 **作用：** When tcmalloc and cache autotuning is enabled, try to keep this many bytes mapped in memory.
 
 **何时使用：** 核心 RBD mirror 行为 — 生产环境变更前请审阅。
+
+**相关选项：**
+
+- [`rbd_mirror_memory_autotune`](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_memory_autotune)
 
 **示例：**
 
@@ -773,7 +801,7 @@ ceph -s
 | 类型 | Int · default `5` · **Advanced** |
 | 表格 | [rbd.md#SP_rbd_mirror_perf_stats_prio](../../../config/rbd-mirror/rbd.md#SP_rbd_mirror_perf_stats_prio) |
 
-**作用：** Priority level for mirror daemon replication perf counters
+**作用：** Priority level for mirror daemon replication perf counters The daemon will send perf counter data to the manager daemon if the priority is not lower than mgr_stats_threshold.
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 

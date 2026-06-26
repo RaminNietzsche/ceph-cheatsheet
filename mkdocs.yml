@@ -1,6 +1,6 @@
 site_name: Ceph Docs Hub
 site_description: Ceph cheatsheet, RGW architecture, and developer documentation
-site_url: http://blog.ceph-s3.ir/
+site_url: https://blog.ceph-s3.ir/
 repo_url: https://github.com/RaminNietzsche/ceph-cheatsheet
 repo_name: RaminNietzsche/ceph-cheatsheet
 

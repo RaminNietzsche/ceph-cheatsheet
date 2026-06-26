@@ -34,7 +34,7 @@ ceph -s
 | Type | Float · default `-1` · **Advanced** |
 | Table | [osd.md#SP_osd_crush_initial_weight](../../../config/osd/osd.md#SP_osd_crush_initial_weight) |
 
-**What it does:** if >= 0, initial CRUSH weight for newly created OSDs
+**What it does:** if >= 0, initial CRUSH weight for newly created OSDs If this value is negative, the size of the OSD in TiB is used.
 
 **When to use:** Advanced tuning — change from upstream default only with a measured workload and rollback plan.
 

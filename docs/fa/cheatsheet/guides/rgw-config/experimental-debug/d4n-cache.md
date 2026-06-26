@@ -219,7 +219,7 @@ ceph config get client.rgw rgw_d3n_l1_eviction_policy
 | نوع | Int · default `4` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_d3n_l1_fadvise](../../../config/rgw/rgw.md#SP_rgw_d3n_l1_fadvise) |
 
-**کارکرد:** posix_fadvise() flag for access pattern of cache files
+**کارکرد:** posix_fadvise() flag for access pattern of cache files for example to bypass the page-cache - POSIX_FADV_DONTNEED=4
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -289,6 +289,10 @@ ceph config get client.rgw rgw_d3n_l1_local_datacache_enabled
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
+**گزینه‌های مرتبط:**
+
+- [`rgw_thread_pool_size`](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size)
+
 **مثال:**
 
 ```bash
@@ -316,6 +320,10 @@ ceph config get client.rgw rgw_d3n_libaio_aio_num
 **کارکرد:** specifies the maximum number of worker threads that may be used by libaio
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_thread_pool_size`](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size)
 
 **مثال:**
 
@@ -351,7 +359,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `127.0.0.1:6379` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [rgw.md#SP_rgw_d4n_address](../../../config/rgw/rgw.md#SP_rgw_d4n_address) |
 
-**کارکرد:** address for the D4N Redis connection
+**کارکرد:** address for the D4N Redis connection The current D4N implementation supports one Redis node which the D4N directory, policy, and overall filter communicate with. This default value is also the address that a Redis server with no additional configuration will use.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -470,7 +478,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `127.0.0.1:6379` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [rgw.md#SP_rgw_d4n_l1_datacache_address](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_datacache_address) |
 
-**کارکرد:** local Redis cache address
+**کارکرد:** local Redis cache address This is the address used to configure the Redis cache backend connection. The default value is the same address used by Redis without any additional configuration. The SSD cache does not use this option.
 
 **زمان استفاده:** وقتی کش (cache) متادیتا، سهمیه (quota) یا توکن روی تأخیر صحت یا فشار حافظهٔ RGW اثر می‌گذارد.
 
@@ -509,7 +517,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Size · default `1_G` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_d4n_l1_datacache_disk_reserve](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_datacache_disk_reserve) |
 
-**کارکرد:** amount of disk space to keep free for datacache
+**کارکرد:** amount of disk space to keep free for datacache The local SSD cache uses this option to determine how much disk space to reserve. The cache can grow until disk usage reaches (total disk space - reserved space).
 
 **زمان استفاده:** وقتی کش (cache) متادیتا، سهمیه (quota) یا توکن روی تأخیر صحت یا فشار حافظهٔ RGW اثر می‌گذارد.
 
@@ -547,7 +555,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `/tmp/rgw_d4n_datacache/` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_d4n_l1_datacache_persistent_path](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_datacache_persistent_path) |
 
-**کارکرد:** path used for storing locally cached object data
+**کارکرد:** path used for storing locally cached object data One cache backend option for D4N is the local SSD, which uses this path to write and read object data. This is the default cache backend chosen by the D4N filter. Only the SSD cache backend uses this path for object data storage since the RedisDriver uses a Redis server instead and there are no additional cache backend implementations available at the moment.
 
 **زمان استفاده:** وقتی کش (cache) متادیتا، سهمیه (quota) یا توکن روی تأخیر صحت یا فشار حافظهٔ RGW اثر می‌گذارد.
 
@@ -581,7 +589,7 @@ iostat -x 5  # disk saturation
 | نوع | Bool · default `True` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_d4n_l1_evict_cache_on_start](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_evict_cache_on_start) |
 
-**کارکرد:** clear the contents of the persistent datacache on start
+**کارکرد:** clear the contents of the persistent datacache on start The local SSD cache uses this option to clear the contents of the path supplied by the rgw_d4n_l1_datacache_persistent_path config option on start. If false, the path's contents will be retained.
 
 **زمان استفاده:** به‌طور پیش‌فرض فعال است؛ فقط هنگام عیب‌یابی قابلیت مرتبط غیرفعال کنید.
 
@@ -609,7 +617,7 @@ ceph config get client.rgw rgw_d4n_l1_evict_cache_on_start
 | نوع | Int · default `4` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_d4n_l1_fadvise](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_fadvise) |
 
-**کارکرد:** posix_fadvise() flag for access pattern of cache files
+**کارکرد:** posix_fadvise() flag for access pattern of cache files For example, to bypass the page-cache - POSIX_FADV_DONTNEED=4
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -647,7 +655,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Uint · default `4096` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_d4n_l1_write_open_flags](../../../config/rgw/rgw.md#SP_rgw_d4n_l1_write_open_flags) |
 
-**کارکرد:** cache files write 'man 2 open' 'file status flags' modifiers
+**کارکرد:** cache files write 'man 2 open' 'file status flags' modifiers For example, to configure synchronized I/O, fcntl-linux.h defines (converted from octal) O_SYNC = 1052672 O_DSYNC = 4096 O_DIRECT = 16384 O_SYNC \
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -685,9 +693,13 @@ ceph -s  # cluster health, slow ops
 | نوع | Int · default `64` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_d4n_libaio_aio_num](../../../config/rgw/rgw.md#SP_rgw_d4n_libaio_aio_num) |
 
-**کارکرد:** specifies the maximum number of simultaneous I/O requests that libaio expects to enqueue
+**کارکرد:** specifies the maximum number of simultaneous I/O requests that libaio expects to enqueue This option is used by the SSD cache backend during initialization to set the maximum number of simultaneous I/O requests that libaio can expect to enqueue. It does not apply to the Redis cache backend.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_thread_pool_size`](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size)
 
 **مثال:**
 
@@ -713,9 +725,13 @@ ceph config get client.rgw rgw_d4n_libaio_aio_num
 | نوع | Int · default `20` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_d4n_libaio_aio_threads](../../../config/rgw/rgw.md#SP_rgw_d4n_libaio_aio_threads) |
 
-**کارکرد:** specifies the maximum number of worker threads that may be used by libaio
+**کارکرد:** specifies the maximum number of worker threads that may be used by libaio This option is used by the SSD cache backend during initialization to set the maximum number of worker threads libaio may use. It does not apply to the Redis cache backend.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_thread_pool_size`](../../../config/rgw/rgw.md#SP_rgw_thread_pool_size)
 
 **مثال:**
 
@@ -751,7 +767,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Str · default `127.0.0.1:8000` · **Advanced** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [rgw.md#SP_rgw_d4n_local_rgw_address](../../../config/rgw/rgw.md#SP_rgw_d4n_local_rgw_address) |
 
-**کارکرد:** local RGW address
+**کارکرد:** local RGW address This is the address used to represent the local RGW in a distributed D4N system that involves remote RGWs.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

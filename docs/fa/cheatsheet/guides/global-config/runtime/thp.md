@@ -33,7 +33,7 @@ ceph -s
 | نوع | Bool · default `False` · **Dev** · **STARTUP** (نیاز به راه‌اندازی مجدد) |
 | جدول | [thp.md#SP_thp](../../../config/global/thp.md#SP_thp) |
 
-**کارکرد:** enable transparent huge page (THP) support
+**کارکرد:** enable transparent huge page (THP) support Ceph is known to suffer from memory fragmentation due to THP use. This is indicated by RSS usage above configured memory targets. Enabling THP is currently discouraged until selective use of THP by Ceph is implemented.
 
 **زمان استفاده:** فقط برای توسعه، آزمایش یا اشکال‌زدایی upstream — نه برای تنظیم در محیط عملیاتی.
 

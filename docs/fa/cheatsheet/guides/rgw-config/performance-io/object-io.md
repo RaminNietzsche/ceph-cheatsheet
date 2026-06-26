@@ -38,7 +38,7 @@ ceph pg stat
 | نوع | Size · default `4_M` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_get_obj_max_req_size](../../../config/rgw/rgw.md#SP_rgw_get_obj_max_req_size) |
 
-**کارکرد:** RGW object read chunk size
+**کارکرد:** RGW object read chunk size The maximum request size of a single object read operation sent to RADOS
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -66,7 +66,7 @@ ceph config get client.rgw rgw_get_obj_max_req_size
 | نوع | Size · default `16_M` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_get_obj_window_size](../../../config/rgw/rgw.md#SP_rgw_get_obj_window_size) |
 
-**کارکرد:** RGW object read window size
+**کارکرد:** RGW object read window size The window size in bytes for a single object read request
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 
@@ -103,7 +103,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Size · default `64_M` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_put_obj_max_window_size](../../../config/rgw/rgw.md#SP_rgw_put_obj_max_window_size) |
 
-**کارکرد:** The maximum RADOS write window size (in bytes).
+**کارکرد:** The maximum RADOS write window size (in bytes). The window size may be dynamically adjusted, but will not surpass this value.
 
 **زمان استفاده:** وقتی کلاینت‌ها به محدودیت اندازه یا هم‌زمانی (concurrency) می‌رسند، یا برای محافظت از منابع کلاستر.
 
@@ -140,7 +140,7 @@ ceph -s  # cluster health, slow ops
 | نوع | Size · default `16_M` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_put_obj_min_window_size](../../../config/rgw/rgw.md#SP_rgw_put_obj_min_window_size) |
 
-**کارکرد:** The minimum RADOS write window size (in bytes).
+**کارکرد:** The minimum RADOS write window size (in bytes). The window size determines the total concurrent RADOS writes of a single RGW object. When writing an object RGW will send multiple chunks to RADOS. The total size of the writes does not exceed the window size. The window size may be adjusted dynamically in order to better utilize the pipe.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
 

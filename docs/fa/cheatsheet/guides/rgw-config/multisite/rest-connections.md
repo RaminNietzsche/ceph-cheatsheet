@@ -37,7 +37,13 @@ ceph pg stat
 | نوع | Bool · default `False` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_rest_conn_connect_to_resolved_ips](../../../config/rgw/rgw.md#SP_rgw_rest_conn_connect_to_resolved_ips) |
 
+**کارکرد:** When an RGW endpoint hostname resolves to multiple A or AAAA records, libcurl normally connects to only the first address returned by DNS. Enabling this option causes RGW to resolve each configured endpoint into all of its addresses and distribute outgoing requests across them using round-robin, with per-IP health tracking. This applies to multisite replication traffic between zones (via RGWRESTConn). For example, in a multisite deployment where zone endpoints such as "https://zone-a.example.com" map to several backend RGW nodes, this allows inter-zone traffic to be spread across all peers without requiring an external load balancer.
+
 **زمان استفاده:** به‌طور پیش‌فرض غیرفعال است؛ وقتی به این قابلیت نیاز دارید و مبادله‌های آن را می‌پذیرید، فعال کنید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_rest_conn_ip_fail_timeout_secs`](../../../config/rgw/rgw.md#SP_rgw_rest_conn_ip_fail_timeout_secs)
 
 **مثال:**
 
@@ -63,9 +69,13 @@ ceph config get client.rgw rgw_rest_conn_connect_to_resolved_ips
 | نوع | Uint · default `2` · **Advanced** |
 | جدول | [rgw.md#SP_rgw_rest_conn_ip_fail_timeout_secs](../../../config/rgw/rgw.md#SP_rgw_rest_conn_ip_fail_timeout_secs) |
 
-**کارکرد:** IP failure tracking timeout (requires rgw_rest_conn_connect_to_resolved_ips=true)
+**کارکرد:** IP failure tracking timeout (requires rgw_rest_conn_connect_to_resolved_ips=true) When rgw_rest_conn_connect_to_resolved_ips is enabled, RGW tracks per-IP connection failures by remembering the timestamp of the most recent failure. This option controls how long (in seconds) an IP address remains marked as "failed" before RGW considers it eligible for retry. After this timeout expires, the IP will be tried again in the normal round-robin rotation.
 
 **زمان استفاده:** تنظیم پیشرفته — فقط با بار کاری اندازه‌گیری‌شده و برنامهٔ بازگشت (rollback) از پیش‌فرض upstream فاصله بگیرید.
+
+**گزینه‌های مرتبط:**
+
+- [`rgw_rest_conn_connect_to_resolved_ips`](../../../config/rgw/rgw.md#SP_rgw_rest_conn_connect_to_resolved_ips)
 
 **مثال:**
 

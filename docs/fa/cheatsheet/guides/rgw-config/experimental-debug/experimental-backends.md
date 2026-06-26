@@ -86,6 +86,7 @@ iostat -x 5  # disk saturation
 - `rgw_backend_store` = `dbstore`
 - `rgw_config_store` = `dbstore`
 - `dbstore_db_dir`, `dbstore_db_name_prefix`
+- [`rgw_config_store`](../../../config/rgw/rgw.md#SP_rgw_config_store)
 
 **مثال:**
 

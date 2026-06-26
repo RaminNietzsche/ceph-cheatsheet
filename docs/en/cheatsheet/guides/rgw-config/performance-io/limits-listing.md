@@ -74,7 +74,7 @@ ceph config get client.rgw rgw_delete_multi_obj_max_num
 | Type | Int · default `1000` · **Advanced** |
 | Table | [rgw.md#SP_rgw_list_buckets_max_chunk](../../../config/rgw/rgw.md#SP_rgw_list_buckets_max_chunk) |
 
-**What it does:** Max number of buckets to retrieve in a single listing operation
+**What it does:** Max number of buckets to retrieve in a single listing operation When RGW fetches lists of user's buckets from the backend, this is the max number of entries it will try to retrieve in a single operation. Note that the backend may choose to return a smaller number of entries.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -186,7 +186,7 @@ ceph config get client.rgw rgw_max_attrs_num_in_req
 | Type | Size · default `4_M` · **Advanced** |
 | Table | [rgw.md#SP_rgw_max_chunk_size](../../../config/rgw/rgw.md#SP_rgw_max_chunk_size) |
 
-**What it does:** The maximum RGW chunk size.
+**What it does:** The maximum RGW chunk size. The chunk size is the size of requests that RGW sends to OSDs when accessing RADOS objects. RGW read and write operations will never request more than this amount in a single request. This also defines the RGW HEAD object size, as head operations need to be atomic, and anything larger than this would require more than a single operation. When RGW objects are written to the default storage class, up to this amount of payload data will be stored alongside metadata in the head object. Note that when writing an RGW object to a non-default storage class the HEAD RADOS object is always stored in the default storage class' pool but no inlining of payload data is performed.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -223,9 +223,13 @@ ceph -s  # cluster health, slow ops
 | Type | Int · default `8` · **Advanced** |
 | Table | [rgw.md#SP_rgw_max_control_aio](../../../config/rgw/rgw.md#SP_rgw_max_control_aio) |
 
-**What it does:** Maximum number of concurrent operations over control objects.
+**What it does:** Maximum number of concurrent operations over control objects. When metadata caching is enabled, a watch operation is sent to each control object on startup, with a corresponding unwatch on shutdown. To accelerate startup/shutdown, allow several concurrent operations to be sent at once.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
+
+**Related options:**
+
+- [`rgw_num_control_oids`](../../../config/rgw/rgw.md#SP_rgw_num_control_oids)
 
 **Example:**
 
@@ -251,7 +255,7 @@ ceph config get client.rgw rgw_max_control_aio
 | Type | Uint · default `1999` · **Advanced** |
 | Table | [rgw.md#SP_rgw_max_dynamic_shards](../../../config/rgw/rgw.md#SP_rgw_max_dynamic_shards) |
 
-**What it does:** Max shards that dynamic resharding can create
+**What it does:** Max shards that dynamic resharding can create This is the maximum number of bucket index shards that dynamic sharding is able to create on its own. This does not limit user requested resharding. Ideally this value is a prime number.
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -281,7 +285,7 @@ ceph config get client.rgw rgw_max_dynamic_shards
 | Type | Uint · default `5000` · **Advanced** |
 | Table | [rgw.md#SP_rgw_max_listing_results](../../../config/rgw/rgw.md#SP_rgw_max_listing_results) |
 
-**What it does:** Upper bound on results in listing operations, ListObjects max-keys
+**What it does:** Upper bound on results in listing operations, ListObjects max-keys This caps the maximum permitted value for listing-like operations in RGW S3. Affects ListObjects(max-keys), ListObjectsVersions(max-keys), ListMultipartUploads(max-uploads), ListParts(max-parts)
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 
@@ -339,7 +343,7 @@ ceph config get client.rgw rgw_max_put_param_size
 | Type | Size · default `5_G` · **Advanced** |
 | Table | [rgw.md#SP_rgw_max_put_size](../../../config/rgw/rgw.md#SP_rgw_max_put_size) |
 
-**What it does:** The maximum size (in bytes) of regular (non multi-part) object upload.
+**What it does:** The maximum size (in bytes) of regular (non multi-part) object upload. Plain object upload is capped at this amount of data. In order to upload larger objects, a special composite upload mechanism is required multi-part upload (MPU) for S3 and DLO and SLO for Swift. Note that this value also limits the size of individual chunks uploaded for MPU and DLO/SLO objects, thus the largest composite object that can be uploaded is of size ``rgw_max_put_size`` * ``rgw_multipart_part_upload_limit``
 
 **When to use:** Adjust when clients hit request-size or concurrency limits, or to protect cluster resources.
 

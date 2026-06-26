@@ -290,7 +290,7 @@ ceph config get mds mds_dirstat_min_interval
 | 类型 | Secs · default `0` · **Advanced** |
 | 表格 | [mds.md#SP_mds_extraordinary_events_dump_interval](../../../config/mds/mds.md#SP_mds_extraordinary_events_dump_interval) |
 
-**作用：** Interval in seconds for dumping the recent in-memory logs when there is an extra-ordinary event.
+**作用：** Interval in seconds for dumping the recent in-memory logs when there is an extra-ordinary event. Interval in seconds for dumping the recent in-memory logs when there is an extra-ordinary event. The default is ``0`` (disabled). The log level should be ``< 10`` and the gather level should be ``>=10`` in debug_mds for enabling this option.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
@@ -355,7 +355,7 @@ ceph config get mds mds_freeze_tree_timeout
 | 类型 | Secs · default `2` · **Advanced** |
 | 表格 | [mds.md#SP_mds_metrics_update_interval](../../../config/mds/mds.md#SP_mds_metrics_update_interval) |
 
-**作用：** interval in seconds for metrics data update.
+**作用：** interval in seconds for metrics data update. interval in seconds after which active MDSs send client metrics data to rank 0.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
@@ -429,7 +429,7 @@ ceph mds stat
 | 类型 | Secs · default `5` · **Advanced** |
 | 表格 | [mds.md#SP_mds_ping_interval](../../../config/mds/mds.md#SP_mds_ping_interval) |
 
-**作用：** interval in seconds for sending ping messages to active MDSs.
+**作用：** interval in seconds for sending ping messages to active MDSs. interval in seconds for rank 0 to send ping messages to all active MDSs.
 
 **何时使用：** 调整后台任务时序 — 在新鲜度与集群负载间平衡。
 
@@ -614,7 +614,7 @@ ceph mds stat
 | 类型 | Float · default `2` · **Dev** |
 | 表格 | [mds.md#SP_mds_task_status_update_interval](../../../config/mds/mds.md#SP_mds_task_status_update_interval) |
 
-**作用：** task status update interval to manager
+**作用：** task status update interval to manager interval (in seconds) for sending mds task status to ceph manager
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 
@@ -679,7 +679,7 @@ ceph mds stat
 | 类型 | Secs · default `30` · **Dev** |
 | 表格 | [mds.md#SP_subv_metrics_window_interval](../../../config/mds/mds.md#SP_subv_metrics_window_interval) |
 
-**作用：** subvolume metrics sliding window interval, seconds
+**作用：** subvolume metrics sliding window interval, seconds interval in seconds to hold values in sliding window for subvolume metrics
 
 **何时使用：** 仅用于开发、测试或 upstream 调试 — 不可用于生产调优。
 

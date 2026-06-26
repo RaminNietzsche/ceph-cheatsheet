@@ -178,6 +178,10 @@ ceph -s
 
 **何时使用：** 高级调优 — 仅在可测量负载与回滚计划下偏离 upstream 默认值。
 
+**相关选项：**
+
+- [`public_network`](../../../config/global/public.md#SP_public_network)
+
 **示例：**
 
 ```bash

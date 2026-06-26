@@ -364,7 +364,7 @@ ceph mds stat
 | نوع | Float · default `30` · **Advanced** |
 | جدول | [mds.md#SP_mds_session_cap_acquisition_decay_rate](../../../config/mds/mds.md#SP_mds_session_cap_acquisition_decay_rate) |
 
-**کارکرد:** Decay rate for session readdir caps leading to readdir throttle
+**کارکرد:** Decay rate for session readdir caps leading to readdir throttle The half-life for the session cap acquisition counter of caps acquired by readdir. This is used for throttling readdir requests from clients.
 
 **زمان استفاده:** وقتی به محدودیت منابع می‌رسید یا ظرفیت کلاستر را محافظت می‌کنید تنظیم کنید.
 
